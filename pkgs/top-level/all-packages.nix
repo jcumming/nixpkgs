@@ -2503,6 +2503,8 @@ in
 
   oneshot = callPackage ../tools/networking/oneshot { };
 
+  openipmi = callPackage ../os-specific/linux/openipmi { };
+
   xkbd = callPackage ../applications/misc/xkbd { };
 
   libpsm2 = callPackage ../os-specific/linux/libpsm2 { };
@@ -3003,6 +3005,9 @@ in
   cpuminer = callPackage ../tools/misc/cpuminer { };
 
   cpuminer-multi = callPackage ../tools/misc/cpuminer-multi { };
+
+  crossfire-client = callPackage ../games/crossfire/client.nix { gtk = gtk2;};
+  crossfire-server = callPackage ../games/crossfire/server.nix { };
 
   cryptpad = callPackage ../servers/web-apps/cryptpad { };
 
@@ -8265,6 +8270,8 @@ in
 
   udunits = callPackage ../development/libraries/udunits { };
 
+  unac = callPackage ../development/libraries/unac { };
+
   uftp = callPackage ../servers/uftp {};
 
   uhttpmock = callPackage ../development/libraries/uhttpmock { };
@@ -12956,6 +12963,8 @@ in
 
   ganv = callPackage ../development/libraries/ganv { };
 
+  gavl = callPackage ../development/libraries/gavl { };
+
   gcab = callPackage ../development/libraries/gcab { };
 
   gcovr = with python3Packages; toPythonApplication gcovr;
@@ -17583,6 +17592,7 @@ in
   prometheus-fritzbox-exporter = callPackage ../servers/monitoring/prometheus/fritzbox-exporter.nix { };
   prometheus-gitlab-ci-pipelines-exporter = callPackage ../servers/monitoring/prometheus/gitlab-ci-pipelines-exporter.nix { };
   prometheus-haproxy-exporter = callPackage ../servers/monitoring/prometheus/haproxy-exporter.nix { };
+  prometheus-hostapd-exporter = callPackage ../servers/monitoring/prometheus/hostapd-exporter.nix { };
   prometheus-json-exporter = callPackage ../servers/monitoring/prometheus/json-exporter.nix { };
   prometheus-keylight-exporter = callPackage ../servers/monitoring/prometheus/keylight-exporter.nix { };
   prometheus-lnd-exporter = callPackage ../servers/monitoring/prometheus/lnd-exporter.nix { };
@@ -21519,6 +21529,8 @@ in
   };
 
   flac = callPackage ../applications/audio/flac { };
+
+  flactag = callPackage ../applications/audio/flactag { };
 
   redoflacs = callPackage ../applications/audio/redoflacs { };
 
@@ -25760,6 +25772,8 @@ in
 
   gogui = callPackage ../games/gogui {};
 
+  gsb = callPackage ../games/gsb { };
+
   gscrabble = python3Packages.callPackage ../games/gscrabble {};
 
   gshogi = python3Packages.callPackage ../games/gshogi {};
@@ -26223,6 +26237,7 @@ in
 
   tennix = callPackage ../games/tennix { };
 
+  terraria = callPackage ../games/terraria { };
   terraria-server = callPackage ../games/terraria-server { };
 
   tibia = pkgsi686Linux.callPackage ../games/tibia { };
@@ -28274,6 +28289,9 @@ in
   # This driver is only available as a 32 bit proprietary binary driver
   mfcl3770cdwlpr = (callPackage ../misc/cups/drivers/brother/mfcl3770cdw/default.nix { }).driver;
   mfcl3770cdwcupswrapper = (callPackage ../misc/cups/drivers/brother/mfcl3770cdw/default.nix { }).cupswrapper;
+
+  hll3270cdwlpr = (callPackage ../misc/cups/drivers/brother/hll3270cdw/default.nix { }).driver;
+  hll3270cdwcupswrapper = (callPackage ../misc/cups/drivers/brother/hll3270cdw/default.nix { }).cupswrapper;
 
   mfcl8690cdwcupswrapper = callPackage ../misc/cups/drivers/mfcl8690cdwcupswrapper { };
   mfcl8690cdwlpr = callPackage ../misc/cups/drivers/mfcl8690cdwlpr { };

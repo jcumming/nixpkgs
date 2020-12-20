@@ -3,7 +3,7 @@
 , libao, portaudio, alsaLib, libpulseaudio, libjack2
 , libsamplerate, libmad, taglib, lame, libogg
 , libvorbis, speex, libtheora, libopus
-, faad2, flac, ladspaH, ffmpeg, frei0r, dssi
+, faad2, flac, ladspaH, ffmpeg, frei0r, dssi, gst, gavl
 }:
 
 let
@@ -16,8 +16,8 @@ let
   };
 
   packageFilters = map (p: "-e '/ocaml-${p}/d'" )
-    [ "gstreamer" "shine" "aacplus" "schroedinger"
-      "voaacenc" "soundtouch" "gavl" "lo"
+    [ "shine" "aacplus" "schroedinger"
+      "voaacenc" "soundtouch" "lo" "portaudio"
     ];
 in
 stdenv.mkDerivation {
@@ -57,10 +57,17 @@ stdenv.mkDerivation {
       libvorbis speex libtheora libopus
       faad2 flac ladspaH ffmpeg frei0r dssi
       ocamlPackages.xmlm ocamlPackages.ocaml_pcre
-      ocamlPackages.camomile
+      ocamlPackages.camomile  
+      gst.gstreamer gst.gst-plugins-base gst.gst-plugins-good gst.gst-plugins-bad gst.gst-plugins-ugly gst.gst-libav
+      gavl
       ocamlPackages.fdkaac
       ocamlPackages.srt ocamlPackages.sedlex_2 ocamlPackages.menhir
     ];
+
+  postInstall = ''
+    wrapProgram "$out/bin/liquidsoap" --prefix \
+      GST_PLUGIN_SYSTEM_PATH_1_0 ":" "$GST_PLUGIN_SYSTEM_PATH_1_0"
+  '';
 
   hardeningDisable = [ "format" "fortify" ];
 

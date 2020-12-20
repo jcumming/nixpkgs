@@ -1,0 +1,22 @@
+diff -rc monotone-1.1/src/string_queue.hh monotone-1.1.new/src/string_queue.hh
+*** monotone-1.1/src/string_queue.hh	2014-05-04 02:15:18.000000000 -0700
+--- monotone-1.1.new/src/string_queue.hh	2017-08-07 20:42:32.378330143 -0700
+***************
+*** 241,248 ****
+  private:
+    static const bool do_selfcheck = false;
+    // used to avoid integer wraparound, 500 megs should be enough:
+!   static const size_t max_string_queue_size = 500 * 1024 * 1024;
+!   static const size_t max_string_queue_incr = 500 * 1024 * 1024;
+    string_queue (string_queue & from)
+      {
+        std::abort ();
+--- 241,248 ----
+  private:
+    static const bool do_selfcheck = false;
+    // used to avoid integer wraparound, 500 megs should be enough:
+!   static const size_t max_string_queue_size = 1000 * 1024 * 1024;
+!   static const size_t max_string_queue_incr = 1000 * 1024 * 1024;
+    string_queue (string_queue & from)
+      {
+        std::abort ();

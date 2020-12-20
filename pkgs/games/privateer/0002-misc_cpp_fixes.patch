@@ -1,0 +1,204 @@
+diff -crN engine-r297.orig/src/cmd/ai/aggressive.cpp engine-r297/src/cmd/ai/aggressive.cpp
+*** engine-r297.orig/src/cmd/ai/aggressive.cpp	2014-06-21 08:37:21.000000000 -0700
+--- engine-r297/src/cmd/ai/aggressive.cpp	2014-06-21 09:44:12.000000000 -0700
+***************
+*** 1566,1572 ****
+        printf ("kewl");
+      }
+  
+-   extern double aggfire;
+    jump_time_check++;//just so we get a nicely often wrapping var;
+    jump_time_check%=5;
+    Flightgroup * fg=parent->getFlightgroup();
+--- 1566,1571 ----
+***************
+*** 1577,1583 ****
+      if (rand()==0) printf ("ahoy, a pirates!");
+    }
+    FireAt::Execute();
+-   aggfire+=queryTime()-firetime;
+    static bool resistance_to_side_movement=XMLSupport::parse_bool(vs_config->getVariable("AI","resistance_to_side_movement","false"));
+    if(resistance_to_side_movement) {
+      Vector p,q,r;
+--- 1576,1581 ----
+diff -crN engine-r297.orig/src/cmd/ai/fire.cpp engine-r297/src/cmd/ai/fire.cpp
+*** engine-r297.orig/src/cmd/ai/fire.cpp	2014-06-21 08:37:21.000000000 -0700
+--- engine-r297/src/cmd/ai/fire.cpp	2014-06-21 09:44:24.000000000 -0700
+***************
+*** 385,392 ****
+  void FireAt::ChooseTargets (int numtargs, bool force) {
+    float gunspeed,gunrange,missilerange;
+    parent->getAverageGunSpeed(gunspeed,gunrange,missilerange);
+-   extern int numprocessed;
+-   extern double targetpick;
+    static float targettimer =UniverseUtil::GetGameTime(); // timer used to determine passage of physics frames
+    static float mintimetoswitch = XMLSupport::parse_float(vs_config->getVariable ("AI","Targetting","MinTimeToSwitchTargets","3"));
+    static float minnulltimetoswitch = XMLSupport::parse_float(vs_config->getVariable ("AI","Targetting","MinNullTimeToSwitchTargets","5"));
+--- 385,390 ----
+***************
+*** 434,440 ****
+        }
+      }
+    }
+-   numprocessed++;
+    
+    Unit * un=NULL;
+    vector <TurretBin> tbin;;
+--- 432,437 ----
+***************
+*** 501,507 ****
+      findObjects(_Universe->activeStarSystem()->collidemap[Unit::UNIT_ONLY],parent->location[Unit::UNIT_ONLY],&unitLocator);
+    }
+    Unit *mytarg=unitLocator.action.mytarg;
+-   targetpick+=queryTime()-pretable;
+    if (mytarg) {
+      efrel=parent->getRelation (mytarg);
+      mytargrange = UnitUtil::getDistance (parent,mytarg);
+--- 498,503 ----
+diff -crN engine-r297.orig/src/cmd/collide_map.cpp engine-r297/src/cmd/collide_map.cpp
+*** engine-r297.orig/src/cmd/collide_map.cpp	2014-06-21 08:37:21.000000000 -0700
+--- engine-r297/src/cmd/collide_map.cpp	2014-06-21 08:40:44.000000000 -0700
+***************
+*** 111,117 ****
+    size_t len=unsorted.size();
+    size_t index=count;
+    RadiusUpdate<-1,true> collideUpdate(this);
+!   for (ptrdiff_t i=len;i>=0;i--) {
+      Collidable * tmp;
+      if (i<len&&(tmp=&unsorted[i])->radius!=0.0f) {
+        sorted[--index]=*tmp;
+--- 111,117 ----
+    size_t len=unsorted.size();
+    size_t index=count;
+    RadiusUpdate<-1,true> collideUpdate(this);
+!   for (std::ptrdiff_t i=len;i>=0;i--) {
+      Collidable * tmp;
+      if (i<len&&(tmp=&unsorted[i])->radius!=0.0f) {
+        sorted[--index]=*tmp;
+diff -crN engine-r297.orig/src/cmd/unit_jump.cpp engine-r297/src/cmd/unit_jump.cpp
+*** engine-r297.orig/src/cmd/unit_jump.cpp	2014-06-21 08:37:21.000000000 -0700
+--- engine-r297/src/cmd/unit_jump.cpp	2014-06-21 09:51:03.000000000 -0700
+***************
+*** 128,134 ****
+            
+            if (tester->isUnit()==UNITPTR && tester!=this){
+              if ((this->LocalPosition()-tester->LocalPosition()).Magnitude()<this->rSize()+tester->rSize()) {
+!               SetCurPosition(this->LocalPosition()+this->cumulative_transformation_matrix.getR()*(4*(this->rSize()+tester->rSize())));
+                
+              }
+            }
+--- 128,134 ----
+            
+            if (tester->isUnit()==UNITPTR && tester!=this){
+              if ((this->LocalPosition()-tester->LocalPosition()).Magnitude()<this->rSize()+tester->rSize()) {
+!               this->SetCurPosition(this->LocalPosition()+this->cumulative_transformation_matrix.getR()*(4*(this->rSize()+tester->rSize())));
+                
+              }
+            }
+diff -crN engine-r297.orig/src/gfx/vsimage.cpp engine-r297/src/gfx/vsimage.cpp
+*** engine-r297.orig/src/gfx/vsimage.cpp	2014-06-21 08:37:21.000000000 -0700
+--- engine-r297/src/gfx/vsimage.cpp	2014-06-21 09:56:40.000000000 -0700
+***************
+*** 368,374 ****
+  		png_set_palette_to_rgb(png_ptr);
+  		   
+  	if (this->img_color_type == PNG_COLOR_TYPE_GRAY && this->img_depth < 8)
+! 		png_set_gray_1_2_4_to_8(png_ptr);
+  
+  	png_set_expand (png_ptr);
+  	png_read_update_info (png_ptr,info_ptr);
+--- 368,374 ----
+  		png_set_palette_to_rgb(png_ptr);
+  		   
+  	if (this->img_color_type == PNG_COLOR_TYPE_GRAY && this->img_depth < 8)
+! 		png_set_expand_gray_1_2_4_to_8(png_ptr);
+  
+  	png_set_expand (png_ptr);
+  	png_read_update_info (png_ptr,info_ptr);
+***************
+*** 904,910 ****
+      png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+      return BadFormat;
+    }
+!   if (setjmp(png_ptr->jmpbuf)) {
+      png_destroy_write_struct(&png_ptr, &info_ptr);
+      return BadFormat;
+    }
+--- 904,910 ----
+      png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+      return BadFormat;
+    }
+!   if (setjmp(png_jmpbuf(png_ptr))) {
+      png_destroy_write_struct(&png_ptr, &info_ptr);
+      return BadFormat;
+    }
+diff -crN engine-r297.orig/src/gfxlib.h engine-r297/src/gfxlib.h
+*** engine-r297.orig/src/gfxlib.h	2014-06-21 08:37:21.000000000 -0700
+--- engine-r297/src/gfxlib.h	2014-06-21 09:17:20.000000000 -0700
+***************
+*** 38,43 ****
+--- 38,44 ----
+  #endif
+  #endif*/
+  #include <vector>
++ #include <cstring>
+  class Matrix;
+  
+  using std::vector;
+diff -crN engine-r297.orig/src/networking/lowlevel/packetmem.cpp engine-r297/src/networking/lowlevel/packetmem.cpp
+*** engine-r297.orig/src/networking/lowlevel/packetmem.cpp	2014-06-21 08:37:21.000000000 -0700
+--- engine-r297/src/networking/lowlevel/packetmem.cpp	2014-06-21 09:09:12.000000000 -0700
+***************
+*** 102,108 ****
+      }
+      else
+      {
+!         _buffer.reset( 0 );
+          _len = 0;
+      }
+  }
+--- 102,108 ----
+      }
+      else
+      {
+!         _buffer.reset();
+          _len = 0;
+      }
+  }
+diff -crN engine-r297.orig/src/star_system_generic.cpp engine-r297/src/star_system_generic.cpp
+*** engine-r297.orig/src/star_system_generic.cpp	2014-06-21 08:37:21.000000000 -0700
+--- engine-r297/src/star_system_generic.cpp	2014-06-21 09:42:41.000000000 -0700
+***************
+*** 627,635 ****
+  unsigned int totalprocessed=0;
+  unsigned int movingavgarray[128]={0};
+  unsigned int movingtotal=0;
+- double aggfire=0;
+- int numprocessed=0;
+- double targetpick=0;
+  
+  void StarSystem::RequestPhysics(Unit *un, unsigned int queue)
+  {
+--- 627,632 ----
+***************
+*** 656,664 ****
+  	double collidetime=0;
+  	double flattentime=0;
+  	double bolttime=0;
+- 	targetpick=0;
+- 	aggfire=0;
+- 	numprocessed=0;
+  	stats.CheckVitals(this);
+  	if (phytoggle) {
+  		for (++batchcount; batchcount > 0; --batchcount) {
+--- 653,658 ----
+***************
+*** 751,757 ****
+  				int movingavgindex=physicsframecounter%128;
+  				movingtotal=movingtotal-movingavgarray[movingavgindex]+theunitcounter;
+  				movingavgarray[movingavgindex]=theunitcounter;
+- 				printf("PhysFrame:%u - %u, %u, %u t:%f ai:%f:%f:ctc_%d,tp_%f p:%f c:%f b:%f fl:%f\n",physicsframecounter,theunitcounter,movingtotal/128,totalprocessed/physicsframecounter,queryTime()-updatebegin,aitime,aggfire,numprocessed,targetpick,phytime,collidetime,bolttime,flattentime);
+  			}
+  			//end debug bookkeeping
+  			current_sim_location=(current_sim_location+1)%SIM_QUEUE_SIZE;
+--- 745,750 ----

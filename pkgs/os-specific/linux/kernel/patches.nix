@@ -1,6 +1,13 @@
 { lib, fetchpatch, fetchurl }:
 
 {
+
+  # https://github.com/openwrt/openwrt/blob/lede-17.01/package/kernel/mac80211/patches/850-brcmsmac-remove-extra-regulation-restriction.patch
+  openwrt-850 = 
+    { name = "openwrt-brcmfmac-relax-channel_restrictions";
+      patch = ./openwrt-brcmfmac-relax-channel_restrictions.patch; 
+    };
+
   bridge_stp_helper =
     { name = "bridge-stp-helper";
       patch = ./bridge-stp-helper.patch;
@@ -85,6 +92,11 @@
       name = "export_kernel_fpu_functions";
       patch = ./export_kernel_fpu_functions_5_3.patch;
     };
+  };
+
+  export-rt-sched-migrate = {
+    name = "export-rt-sched-migrate";
+    patch = ./export-rt-sched-migrate.patch;
   };
 
   export-rt-sched-migrate = {

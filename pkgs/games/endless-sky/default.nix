@@ -1,5 +1,5 @@
 { stdenv, fetchFromGitHub
-, SDL2, libpng, libjpeg, glew, openal, scons, libmad
+, SDL2, libpng, libjpeg, glew, openal, scons, libmad, makeDesktopItem
 }:
 
 let
@@ -9,6 +9,16 @@ in
 stdenv.mkDerivation {
   pname = "endless-sky";
   inherit version;
+
+  desktopItem = makeDesktopItem { 
+    name = "endless-sky";
+    exec = "endless-sky";
+    comment = "Elite like space exploration";
+    desktopName = "Endless Skey";
+    genericName = "endless-sky";
+    categories = "Game;";
+  };
+
 
   src = fetchFromGitHub {
     owner = "endless-sky";

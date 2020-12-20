@@ -19,6 +19,18 @@ stdenv.mkDerivation rec {
       url = "https://raw.githubusercontent.com/openwrt/openwrt/master/package/network/services/hostapd/patches/300-noscan.patch";
       sha256 = "04wg4yjc19wmwk6gia067z99gzzk9jacnwxh5wyia7k5wg71yj5k";
     })
+    (fetchurl {
+      url = "https://raw.githubusercontent.com/openwrt/openwrt/master/package/network/services/hostapd/patches/070-driver_nl80211-fix-WMM-queue-mapping-for-regulatory-.patch";
+      sha256 = "02b4rgqvryxpydhla2338cy3yvk8azspbvjq5rpyhj16jwapgns7";
+    })
+    (fetchurl {
+      url = "https://raw.githubusercontent.com/openwrt/openwrt/master/package/network/services/hostapd/patches/071-driver_nl80211-fix-regulatory-limits-for-wmm-cwmin-c.patch";
+      sha256 = "1w1i3v1zksn369lkbw00f6kbwbiizax08pcz07rf9rd4b1xx5qvz";
+    })
+    (fetchurl {
+      url = "https://raw.githubusercontent.com/openwrt/openwrt/master/package/network/services/hostapd/patches/330-nl80211_fix_set_freq.patch";
+      sha256 = "1cpga1dygbdlk8b8r0rn5j82mfrzxg3wbv1afjqn4ccwkjkr4d5p";
+    })
     # AP mode PMF disconnection protection bypass (CVE.2019-16275), can be removed >= 2.10
     # https://w1.fi/security/2019-7/
     (fetchurl {

@@ -12,6 +12,7 @@ pythonPackages.buildPythonApplication rec {
   propagatedBuildInputs = stdenv.lib.optionals (!pythonPackages.isPy3k) [
     pythonPackages.flup
     pythonPackages.ldap
+    pythonPackages.pam
     pythonPackages.sqlalchemy
   ];
 

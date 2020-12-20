@@ -19,7 +19,13 @@ stdenv.mkDerivation rec {
     sha256 = "124cwgi2q86hagslbk5idxbs9j896rfjzryhr6z63r6l485gcp7r";
   };
 
-  patches = [ ./monotone-1.1-Adapt-to-changes-in-pcre-8.42.patch ];
+  patches = [ 
+    ./bigger-netsync-packets.patch 
+    ./bigger-strings.patch
+    ./monotone-1.1-Adapt-to-changes-in-pcre-8.42.patch
+  ];
+
+  enableParallelBuilding = true;
 
   nativeBuildInputs = [ pkgconfig ];
   buildInputs = [ boost zlib botan libidn lua pcre sqlite expect

@@ -10,14 +10,22 @@ stdenv.mkDerivation rec {
     sha256 = "107p7h13gncsxqhixqq9zmmswvs910sck54ab10s4m5cafvnaf94";
   };
 
+  #  8.307821] brcmfmac 0000:04:00.0: Direct firmware load for brcm/brcmfmac4366c-pcie.Supermicro-Super Server.txt failed with error -2
+  postInstall = ''
+    mkdir -p $out/lib/firmware/brcm/
+    cp ${brcm4366c} $out/lib/firmware/brcm/brcmfmac4366c-pcie.bin
+    # maybe the defaults are okay for now?
+    # cp ${brcm4366c_txt} $out/lib/firmware/'brcm/brcmfmac4366c-pcie.Supermicro-Super Server.txt'
+  '';
+
+  # http://forums.fedoraforum.org/showthread.php?t=310626
+  brcm4366c = ./brcmfmac4366c-pcie.bin;
+  brcm4366c_txt = ./brcmfmac4366c-pcie.txt;
+
   installFlags = [ "DESTDIR=$(out)" ];
 
   # Firmware blobs do not need fixing and should not be modified
   dontFixup = true;
-
-  outputHashMode = "recursive";
-  outputHashAlgo = "sha256";
-  outputHash = "1319qr3mhbbvbnl8q151pgfpahwzfv9zg0fvpj34z5h0wnvmlr2v";
 
   meta = with stdenv.lib; {
     description = "Binary firmware collection packaged by kernel.org";

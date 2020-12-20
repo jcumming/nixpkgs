@@ -16,7 +16,6 @@
 , liboping
 , libpcap
 , libsigrok
-, libvirt
 , libxml2
 , libapparmor, libcap_ng, numactl
 , lvm2
@@ -25,6 +24,8 @@
 , mongoc
 , mosquitto
 , net-snmp
+, nut
+, openipmi
 , perl
 , postgresql
 , protobufc
@@ -122,7 +123,9 @@ let
     intel_rdt = {};
     interface = {};
     ipc = {};
-    ipmi = {};
+    ipmi = {
+      buildInputs = [ openipmi ];
+    };
     iptables = {
       buildInputs = [
         libpcap
@@ -194,7 +197,9 @@ let
     notify_nagios = {};
     ntpd = {};
     numa = {};
-    nut = {};
+    nut = {
+      buildInputs = [ nut ];
+    };
     olsrd = {};
     onewire = {};
     openldap = {};
@@ -278,14 +283,6 @@ let
     varnish = {
       buildInputs = [ curl varnish ];
     };
-    virt = {
-      buildInputs = [ libvirt libxml2 yajl ] ++
-        stdenv.lib.optionals stdenv.isLinux [ lvm2 udev
-          # those might be no longer required when https://github.com/NixOS/nixpkgs/pull/51767
-          # is merged
-          libapparmor numactl libcap_ng
-        ];
-    };
     vmem = {};
     vserver = {};
     wireless = {};
@@ -293,6 +290,7 @@ let
     write_http = {
       buildInputs = [ curl yajl ];
     };
+    write_influxdb_udp = {};
     write_kafka = {
       buildInputs = [ yajl rdkafka ];
     };
