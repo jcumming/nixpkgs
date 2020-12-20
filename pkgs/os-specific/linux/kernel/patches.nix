@@ -99,11 +99,6 @@
     patch = ./export-rt-sched-migrate.patch;
   };
 
-  export-rt-sched-migrate = {
-    name = "export-rt-sched-migrate";
-    patch = ./export-rt-sched-migrate.patch;
-  };
-
   # patches from https://lkml.org/lkml/2019/7/15/1748
   mac_nvme_t2 = rec {
     name = "mac_nvme_t2";

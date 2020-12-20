@@ -14,13 +14,10 @@ stdenv.mkDerivation rec {
   postInstall = ''
     mkdir -p $out/lib/firmware/brcm/
     cp ${brcm4366c} $out/lib/firmware/brcm/brcmfmac4366c-pcie.bin
-    # maybe the defaults are okay for now?
-    # cp ${brcm4366c_txt} $out/lib/firmware/'brcm/brcmfmac4366c-pcie.Supermicro-Super Server.txt'
   '';
 
   # http://forums.fedoraforum.org/showthread.php?t=310626
   brcm4366c = ./brcmfmac4366c-pcie.bin;
-  brcm4366c_txt = ./brcmfmac4366c-pcie.txt;
 
   installFlags = [ "DESTDIR=$(out)" ];
 
