@@ -70,11 +70,6 @@ let
 
     bos = callPackage ../development/ocaml-modules/bos { };
 
-    bytes =
-      if lib.versionOlder "4.02" ocaml.version
-      then callPackage ../development/ocaml-modules/bytes { }
-      else null;
-
     ca-certs = callPackage ../development/ocaml-modules/ca-certs { };
 
     camlidl = callPackage ../development/tools/ocaml/camlidl { };
@@ -748,8 +743,6 @@ let
     odate = callPackage ../development/ocaml-modules/odate { };
 
     odoc = callPackage ../development/ocaml-modules/odoc { };
-
-    ogg = callPackage ../development/ocaml-modules/ogg { };
 
     omd = callPackage ../development/ocaml-modules/omd { };
 
