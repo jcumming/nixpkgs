@@ -6390,6 +6390,8 @@ in {
 
   relatorio = callPackage ../development/python-modules/relatorio { };
 
+  remind = callPackage ../development/python-modules/remind { };
+
   remotecv = callPackage ../development/python-modules/remotecv { };
 
   rencode = callPackage ../development/python-modules/rencode { };
