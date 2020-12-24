@@ -3477,8 +3477,6 @@ in {
 
   libnacl = callPackage ../development/python-modules/libnacl { inherit (pkgs) libsodium; };
 
-  libnl = callPackage ../development/python-modules/libnl { };
-
   libnl-python = disabledIf isPy3k (toPythonModule (pkgs.libnl.override {
     pythonSupport = true;
     inherit python;

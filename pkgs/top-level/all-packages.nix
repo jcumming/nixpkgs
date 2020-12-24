@@ -5188,6 +5188,7 @@ in
   lesspipe = callPackage ../tools/misc/lesspipe { };
 
   liquidsoap = callPackage ../tools/audio/liquidsoap/full.nix {
+    gst = gst_all_1;
     ffmpeg = ffmpeg-full;
   };
 
@@ -26237,7 +26238,6 @@ in
 
   tennix = callPackage ../games/tennix { };
 
-  terraria = callPackage ../games/terraria { };
   terraria-server = callPackage ../games/terraria-server { };
 
   tibia = pkgsi686Linux.callPackage ../games/tibia { };
