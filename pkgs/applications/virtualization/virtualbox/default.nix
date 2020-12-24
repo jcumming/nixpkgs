@@ -102,14 +102,9 @@ in stdenv.mkDerivation {
       src = ./qt-env-vars.patch;
       qtPluginPath = "${qtbase.bin}/${qtbase.qtPluginPrefix}:${qtsvg.bin}/${qtbase.qtPluginPrefix}:${qtwayland.bin}/${qtbase.qtPluginPrefix}";
     })
-  ++ ( map fetchpatch  # linux 5.10 compat https://www.virtualbox.org/ticket/20055
-      [ { url = "https://www.virtualbox.org/attachment/ticket/20055/linux-5.10-r0drv-memobj-fix-r0.patch";
-          sha256 = "1vw5icr752h4fyh4vvw5cfprpwb5j6vgvah018nj181qn8sib3c6"; }
-        { url = "https://www.virtualbox.org/attachment/ticket/20055/linux-5.10-address-space-fixes.patch";
-          sha256 = "0gc5m0b09k6180ardb382vx2fm6z0m1raw4ir1l5d5bbigh9jz1s"; } 
-        { url = "https://www.virtualbox.org/attachment/ticket/20055/linux-5.10-framebuffer-fixes.patch";
-          sha256 = "0y9c6l4d9ggc2dqbj88nmm1a2179gr4nj6s68ba5gjcqr29cvkla"; } ] )
   ++ [ 
+    # when I use fetchpatch to downloads from the virtualbox trac ticket, it provides about an extra 200kiB of nulls at the end of the patch?
+    ./linux-5.10-trac-20055.patch
     ./qtx11extras.patch
   ];
 
