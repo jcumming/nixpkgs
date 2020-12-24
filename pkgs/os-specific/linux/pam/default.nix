@@ -33,14 +33,11 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  postInstall = ''
-    mv -v $out/sbin/unix_chkpwd{,.orig}
-    ln -sv /run/wrappers/bin/unix_chkpwd $out/sbin/unix_chkpwd
-  ''; /*
-    rm -rf $out/etc
-    mkdir -p $modules/lib
-    mv $out/lib/security $modules/lib/
-  '';*/
+  # postInstall = ''
+  #   rm -rf $out/etc
+  #   mkdir -p $modules/lib
+  #   mv $out/lib/security $modules/lib/
+  # '';
   # don't move modules, because libpam needs to (be able to) find them,
   # which is done by dlopening $out/lib/security/pam_foo.so
   # $out/etc was also missed: pam_env(login:session): Unable to open config file
