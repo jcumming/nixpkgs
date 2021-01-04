@@ -150,6 +150,20 @@ let
     buildInputs = [ pkgs.unzip ];
   };
 
+  AlgorithmLCSS = buildPerlPackage {
+    pname = "Algorithm-LCSS";
+    version = "0.01";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/J/JF/JFREEMAN/Algorithm-LCSS-0.01.tar.gz";
+      sha256 = "0y0zc3sq283zpv67vy7a3h3dyvjn5svjxwknanmp38a2g36fyz3i";
+    };
+    propagatedBuildInputs = [ AlgorithmDiff ];
+    meta = {
+      license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
+      maintainers = [ maintainers.sgo ];
+    };
+  };
+
   AlgorithmMerge = buildPerlPackage {
     pname = "Algorithm-Merge";
     version = "0.08";
@@ -7489,6 +7503,7 @@ let
     };
     nativeBuildInputs = [ buildPackages.pkgconfig ];
     propagatedBuildInputs = [ pkgs.pkgconfig ];
+    doCheck = false; # expects test_glib-2.0.pc in PKG_CONFIG_PATH
     meta = {
       homepage = "http://gtk2-perl.sourceforge.net";
       description = "Simplistic interface to pkg-config";
@@ -8704,8 +8719,13 @@ let
       url = "mirror://cpan/authors/id/X/XA/XAOC/Glib-Object-Introspection-0.048.tar.gz";
       sha256 = "01dx5w6r4nl3rgnz7wvgvqfaa48xmzy90p95d5k6315q44610kx6";
     };
+    checkInputs = [ pkgs.cairo ];
     propagatedBuildInputs = [ pkgs.gobject-introspection Glib ];
     meta = {
+      broken = true; # TODO: tests failing because "failed to load libregress.so"
+      # see https://github.com/NixOS/nixpkgs/pull/68115
+      # and https://github.com/NixOS/nixpkgs/issues/68116
+      # adding pkgs.gnome3.gjs does not fix it
       description = "Dynamically create Perl language bindings";
       license = stdenv.lib.licenses.lgpl2Plus;
     };
@@ -12558,10 +12578,10 @@ let
 
   MetaCPANClient = buildPerlPackage {
     pname = "MetaCPAN-Client";
-    version = "2.028000";
+    version = "2.029000";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/M/MI/MICKEY/MetaCPAN-Client-2.028000.tar.gz";
-      sha256 = "1fcafd1504e838ea37fa1769c751e096fe6ac7bba41c5f62959b156ea27d319a";
+      url = "mirror://cpan/authors/id/M/MI/MICKEY/MetaCPAN-Client-2.029000.tar.gz";
+      sha256 = "0z75qzrr6r9ijp469majavq8la2jbgn1dq02vdm5m6ip7f887n65";
     };
 
     # Most tests are online, so we only include offline tests
@@ -13499,6 +13519,22 @@ let
     };
   };
 
+  MojoSAML = buildPerlModule {
+    pname = "Mojo-SAML";
+    version = "0.07";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/J/JB/JBERGER/Mojo-SAML-0.07.tar.gz";
+      sha256 = "03biykpz281z9nmd846jlxwzbaqlqwvh987aw9spl7bgvfn4rhkj";
+    };
+    buildInputs = [ ModuleBuildTiny ];
+    propagatedBuildInputs = [ CryptOpenSSLRSA CryptOpenSSLX509 DataGUID Mojolicious XMLCanonicalizeXML ];
+    meta = {
+      description = "A SAML2 toolkit using the Mojo toolkit";
+      license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
+      maintainers = [ maintainers.sgo ];
+    };
+  };
+
   MojoSQLite = buildPerlModule {
     pname = "Mojo-SQLite";
     version = "3.004";
@@ -13577,6 +13613,24 @@ let
       homepage = "https://github.com/mojolicious/mojo-pg";
       description = "Mojolicious <3 PostgreSQL";
       license = stdenv.lib.licenses.artistic2;
+      maintainers = [ maintainers.sgo ];
+    };
+  };
+
+  MojoUserAgentCached = buildPerlPackage {
+    pname = "Mojo-UserAgent-Cached";
+    version = "1.12";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/N/NI/NICOMEN/Mojo-UserAgent-Cached-1.12.tar.gz";
+      sha256 = "08pa3sz63sq2y3g3lbhy2msbnx0myb2igmmc28cm3kaznryvsgwm";
+    };
+    buildInputs = [ ModuleInstall ];
+    propagatedBuildInputs = [ AlgorithmLCSS CHI DataSerializer DevelStackTrace Mojolicious Readonly StringTruncate ];
+    doCheck = !stdenv.isDarwin;
+    meta = {
+      homepage = "https://github.com/nicomen/mojo-useragent-cached";
+      description = "Caching, Non-blocking I/O HTTP, Local file and WebSocket user agent";
+      license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
       maintainers = [ maintainers.sgo ];
     };
   };
@@ -22885,6 +22939,21 @@ let
     meta = {
       description = "XCB bindings for X";
       license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
+    };
+  };
+
+  XMLCanonicalizeXML = buildPerlPackage {
+    pname = "XML-CanonicalizeXML";
+    version = "0.10";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/S/SJ/SJZASADA/XML-CanonicalizeXML-0.10.tar.gz";
+      sha256 = "1vl6wbqmq91mc0hkgfwlndbxcv2jm01hj7kpzprw3d6bh144ca77";
+    };
+    buildInputs = [ pkgs.libxml2 ];
+    meta = {
+      description = "Perl extension for inclusive (1.0 and 1.1) and exclusive canonicalization of XML using libxml2";
+      license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
+      maintainers = [ maintainers.sgo ];
     };
   };
 
