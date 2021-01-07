@@ -64,7 +64,7 @@
     "avion" = ps: with ps; [ ]; # missing inputs: avion
     "avri" = ps: with ps; [ pycountry ]; # missing inputs: avri-api
     "awair" = ps: with ps; [ ]; # missing inputs: python_awair
-    "aws" = ps: with ps; [ ]; # missing inputs: aiobotocore
+    "aws" = ps: with ps; [ aiobotocore ];
     "axis" = ps: with ps; [ aiohttp-cors paho-mqtt ]; # missing inputs: axis
     "azure_devops" = ps: with ps; [ ]; # missing inputs: aioazuredevops
     "azure_event_hub" = ps: with ps; [ ]; # missing inputs: azure-eventhub
@@ -234,7 +234,7 @@
     "essent" = ps: with ps; [ ]; # missing inputs: PyEssent
     "etherscan" = ps: with ps; [ ]; # missing inputs: python-etherscan-api
     "eufy" = ps: with ps; [ ]; # missing inputs: lakeside
-    "everlights" = ps: with ps; [ ]; # missing inputs: pyeverlights
+    "everlights" = ps: with ps; [ pyeverlights ];
     "evohome" = ps: with ps; [ ]; # missing inputs: evohome-async
     "ezviz" = ps: with ps; [ ]; # missing inputs: pyezviz
     "facebook" = ps: with ps; [ ];
@@ -303,7 +303,7 @@
     "github" = ps: with ps; [ PyGithub ];
     "gitlab_ci" = ps: with ps; [ python-gitlab ];
     "gitter" = ps: with ps; [ ]; # missing inputs: gitterpy
-    "glances" = ps: with ps; [ ]; # missing inputs: glances_api
+    "glances" = ps: with ps; [ glances-api ];
     "gntp" = ps: with ps; [ gntp ];
     "goalfeed" = ps: with ps; [ ]; # missing inputs: pysher
     "goalzero" = ps: with ps; [ ]; # missing inputs: goalzero
@@ -925,9 +925,9 @@
     "webostv" = ps: with ps; [ ]; # missing inputs: aiopylgtv
     "websocket_api" = ps: with ps; [ aiohttp-cors ];
     "wemo" = ps: with ps; [ ]; # missing inputs: pywemo
-    "whois" = ps: with ps; [ ]; # missing inputs: python-whois
+    "whois" = ps: with ps; [ python-whois ];
     "wiffi" = ps: with ps; [ ]; # missing inputs: wiffi
-    "wilight" = ps: with ps; [ ]; # missing inputs: pywilight
+    "wilight" = ps: with ps; [ pywilight ];
     "wink" = ps: with ps; [ aiohttp-cors ]; # missing inputs: pubnubsub-handler python-wink
     "wirelesstag" = ps: with ps; [ ]; # missing inputs: wirelesstagpy
     "withings" = ps: with ps; [ aiohttp-cors ]; # missing inputs: withings-api

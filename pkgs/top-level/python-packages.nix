@@ -181,6 +181,10 @@ in {
 
   adb-shell = callPackage ../development/python-modules/adb-shell { };
 
+  adblock = callPackage ../development/python-modules/adblock {
+    inherit (pkgs.darwin.apple_sdk.frameworks) CoreFoundation Security;
+  };
+
   addic7ed-cli = callPackage ../development/python-modules/addic7ed-cli { };
 
   adguardhome= callPackage ../development/python-modules/adguardhome { };
@@ -455,6 +459,8 @@ in {
 
   async_generator = callPackage ../development/python-modules/async_generator { };
 
+  asyncio-dgram = callPackage ../development/python-modules/asyncio-dgram { };
+
   asyncio-throttle = callPackage ../development/python-modules/asyncio-throttle { };
 
   asyncpg = callPackage ../development/python-modules/asyncpg { };
@@ -468,6 +474,8 @@ in {
   async-timeout = callPackage ../development/python-modules/async_timeout { };
 
   async-upnp-client = callPackage ../development/python-modules/async-upnp-client { };
+
+  asyncwhois = callPackage ../development/python-modules/asyncwhois { };
 
   atlassian-python-api = callPackage ../development/python-modules/atlassian-python-api { };
 
@@ -521,6 +529,8 @@ in {
   });
 
   av = callPackage ../development/python-modules/av { inherit (pkgs) pkgconfig; };
+
+  avea = callPackage ../development/python-modules/avea { };
 
   avro3k = callPackage ../development/python-modules/avro3k { };
 
@@ -2474,6 +2484,8 @@ in {
 
   glances = throw "glances has moved to pkgs.glances"; # added 2020-20-28
 
+  glances-api = callPackage ../development/python-modules/glances-api { };
+
   glasgow = callPackage ../development/python-modules/glasgow { };
 
   glob2 = callPackage ../development/python-modules/glob2 { };
@@ -3419,9 +3431,13 @@ in {
 
   lazy-object-proxy = callPackage ../development/python-modules/lazy-object-proxy { };
 
+  ldap = callPackage ../development/python-modules/ldap {
+    inherit (pkgs) openldap cyrus_sasl;
+  };
+
   ldap3 = callPackage ../development/python-modules/ldap3 { };
 
-  ldap = callPackage ../development/python-modules/ldap { inherit (pkgs) openldap cyrus_sasl; };
+  ldapdomaindump = callPackage ../development/python-modules/ldapdomaindump { };
 
   ldappool = callPackage ../development/python-modules/ldappool { };
 
@@ -4717,7 +4733,7 @@ in {
     inherit (pkgs.libsForQt5) soqt;
   };
 
-  pkgconfig = callPackage ../development/python-modules/pkgconfig { inherit (pkgs) pkgconfig; };
+  pkgconfig = callPackage ../development/python-modules/pkgconfig { inherit (pkgs) pkg-config; };
 
   pkginfo = callPackage ../development/python-modules/pkginfo { };
 
@@ -5774,6 +5790,10 @@ in {
 
   pysptk = callPackage ../development/python-modules/pysptk { };
 
+  pysqlcipher3 = callPackage ../development/python-modules/pysqlcipher3 {
+    inherit (pkgs) sqlcipher;
+  };
+
   pysqlite = callPackage ../development/python-modules/pysqlite { };
 
   pysqueezebox = callPackage ../development/python-modules/pysqueezebox { };
@@ -6063,7 +6083,10 @@ in {
 
   pythonIRClib = callPackage ../development/python-modules/pythonirclib { };
 
-  pythonix = callPackage ../development/python-modules/pythonix { inherit (pkgs) meson pkgconfig; };
+  pythonix = callPackage ../development/python-modules/pythonix {
+    inherit (pkgs) pkg-config;
+    meson = pkgs.meson.override { python3 = self.python; };
+  };
 
   python-jenkins = callPackage ../development/python-modules/python-jenkins { };
 
@@ -6201,9 +6224,13 @@ in {
 
   python-vlc = callPackage ../development/python-modules/python-vlc { };
 
+  python-whois = callPackage ../development/python-modules/python-whois { };
+
   python-wifi = callPackage ../development/python-modules/python-wifi { };
 
   python-xmp-toolkit = callPackage ../development/python-modules/python-xmp-toolkit { };
+
+  pyeverlights = callPackage ../development/python-modules/pyeverlights { };
 
   pytimeparse = callPackage ../development/python-modules/pytimeparse { };
 
@@ -6299,7 +6326,11 @@ in {
 
   pywick = callPackage ../development/python-modules/pywick { };
 
+  pywilight = callPackage ../development/python-modules/pywilight { };
+
   pywinrm = callPackage ../development/python-modules/pywinrm { };
+
+  pywizlight = callPackage ../development/python-modules/pywizlight { };
 
   pyxattr = let
     pyxattr' = callPackage ../development/python-modules/pyxattr { };
@@ -7828,6 +7859,8 @@ in {
 
   vidstab = callPackage ../development/python-modules/vidstab { };
 
+  ViennaRNA = toPythonModule pkgs.ViennaRNA;
+
   viewstate = callPackage ../development/python-modules/viewstate { };
 
   vine = callPackage ../development/python-modules/vine { };
@@ -7938,6 +7971,8 @@ in {
 
   webtest = callPackage ../development/python-modules/webtest { };
 
+  webthing = callPackage ../development/python-modules/webthing { };
+
   werkzeug = callPackage ../development/python-modules/werkzeug { };
 
   west = callPackage ../development/python-modules/west { };
@@ -7953,6 +7988,8 @@ in {
   whisper = callPackage ../development/python-modules/whisper { };
 
   whitenoise = callPackage ../development/python-modules/whitenoise { };
+
+  whois = callPackage ../development/python-modules/whois { };
 
   whoosh = callPackage ../development/python-modules/whoosh { };
 
