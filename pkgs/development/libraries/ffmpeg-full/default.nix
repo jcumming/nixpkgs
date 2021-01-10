@@ -385,7 +385,7 @@ stdenv.mkDerivation rec {
     (enableFeature (libpulseaudio != null) "libpulse")
     #(enableFeature quvi "libquvi")
     (enableFeature (rav1e != null) "librav1e")
-    (enableFeature (svt-av1 != null) "libsvtav1")
+    #(enableFeature (svt-av1 != null) "libsvtav1")
     (enableFeature (rtmpdump != null) "librtmp")
     #(enableFeature (schroedinger != null) "libschroedinger")
     (enableFeature (SDL2 != null) "sdl2")
