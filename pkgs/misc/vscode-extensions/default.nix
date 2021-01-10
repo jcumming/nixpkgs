@@ -87,6 +87,18 @@ let
         };
       };
 
+      coenraads.bracket-pair-colorizer-2 = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "bracket-pair-colorizer-2";
+          publisher = "CoenraadS";
+          version = "0.2.0";
+          sha256 = "0nppgfbmw0d089rka9cqs3sbd5260dhhiipmjfga3nar9vp87slh";
+        };
+        meta = with stdenv.lib; {
+          license = licenses.mit;
+        };
+      };
+
       dhall.dhall-lang = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "dhall-lang";
@@ -209,6 +221,18 @@ let
           publisher = "mskelton";
           version = "1.7.2";
           sha256 = "1ks6z8wsxmlfhiwa51f7d6digvw11dlxc7mja3hankgxcf5dyj31";
+        };
+        meta = {
+          license = stdenv.lib.licenses.mit;
+        };
+      };
+
+      mechatroner.rainbow-csv = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "rainbow-csv";
+          publisher = "mechatroner";
+          version = "1.7.1";
+          sha256 = "0w5mijs4ll5qjkpyw7qpn1k40pq8spm0b3q72x150ydbcini5hxw";
         };
         meta = {
           license = stdenv.lib.licenses.mit;
