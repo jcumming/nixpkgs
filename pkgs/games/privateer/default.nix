@@ -1,6 +1,6 @@
-{ stdenv, fetchsvn, boost, cmake, ffmpeg_3, freeglut, glib,
+{ lib, stdenv, fetchsvn, boost, cmake, ffmpeg_3, freeglut, glib,
   gtk2, libjpeg, libpng, libpthreadstubs, libvorbis, libXau, libXdmcp,
-  libXmu, libGLU, libGL, openal, pixman, pkgconfig, python27, SDL }:
+  libXmu, libGLU, libGL, openal, pixman, pkg-config, python27, SDL }:
 
 stdenv.mkDerivation {
   name = "privateer-1.03";
@@ -12,10 +12,11 @@ stdenv.mkDerivation {
     sha256 = "0qsc2k6z7mbfqmg6kigypvajqszkvpvd11swbv4kypansj3r0xg1";
   };
 
+  nativeBuildInputs = [ cmake pkg-config ];
   buildInputs =
-    [ boost cmake ffmpeg_3 freeglut glib gtk2 libjpeg libpng
+    [ boost ffmpeg_3 freeglut glib gtk2 libjpeg libpng
       libpthreadstubs libvorbis libXau libXdmcp libXmu libGLU libGL openal
-      pixman pkgconfig python27 SDL ];
+      pixman python27 SDL ];
 
   hardeningDisable = [ "format" ]; 
 
@@ -31,7 +32,7 @@ stdenv.mkDerivation {
     cp vegaserver $out/bin
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "http://privateer.sourceforge.net/";
     description = "Adventure space flight simulation computer game";
     license = licenses.gpl2Plus; # and a special license for art data

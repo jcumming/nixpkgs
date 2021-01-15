@@ -3,7 +3,8 @@
 stdenv.mkDerivation rec {
   name = "libmusicbrainz-5.0.1";
 
-  buildInputs = [ cmake neon libdiscid ];
+  nativeBuildInputs = [ cmake ];
+  buildInputs = [ neon libdiscid ];
 
   # this probably can be removed after 5.0.1: https://github.com/metabrainz/libmusicbrainz/issues/1
   dontUseCmakeBuildDir=true;
