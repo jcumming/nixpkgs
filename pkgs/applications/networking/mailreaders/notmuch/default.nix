@@ -1,5 +1,5 @@
-{ fetchurl, fetchgit, stdenv
-, pkgconfig, gnupg
+{ fetchurl, fetchgit, lib, stdenv
+, pkg-config, gnupg
 , xapian, gmime, talloc, zlib
 , doxygen, perl, texinfo
 , pythonPackages
@@ -9,7 +9,7 @@
 , withEmacs ? true
 }:
 
-with stdenv.lib;
+with lib;
 
 stdenv.mkDerivation rec {
   version = "0.31";
@@ -27,7 +27,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
-    pkgconfig
+    pkg-config
     doxygen                   # (optional) api docs
     pythonPackages.sphinx     # (optional) documentation -> doc/INSTALL
     texinfo                   # (optional) documentation -> doc/INSTALL
@@ -68,7 +68,7 @@ stdenv.mkDerivation rec {
   makeFlags = [ "V=1" ];
 
 
-  outputs = [ "out" "man" "info" ] ++ stdenv.lib.optional withEmacs "emacs";
+  outputs = [ "out" "man" "info" ] ++ lib.optional withEmacs "emacs";
 
   preCheck = let
     test-database = fetchurl {
@@ -94,7 +94,7 @@ stdenv.mkDerivation rec {
 
   installTargets = [ "install" "install-man" "install-info" ];
 
-  postInstall = stdenv.lib.optionalString withEmacs ''
+  postInstall = lib.optionalString withEmacs ''
     moveToOutput bin/notmuch-emacs-mua $emacs
   '';
 

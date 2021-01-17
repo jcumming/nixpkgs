@@ -610,6 +610,16 @@
     githubId = 11699655;
     name = "Stanislas Lange";
   };
+  anhdle14 = {
+    name = "Le Anh Duc";
+    email = "anhdle14@icloud.com";
+    github = "anhdle14";
+    githubId = 9645992;
+    keys = [{
+      longkeyid = "rsa4096/0x0299AFF9ECBB5169";
+      fingerprint = "AA4B 8EC3 F971 D350 482E  4E20 0299 AFF9 ECBB 5169";
+    }];
+  };
   ankhers = {
     email = "me@ankhers.dev";
     github = "ankhers";
@@ -4804,6 +4814,12 @@
     name = "Kierán Meinhardt";
     github = "kmein";
     githubId = 10352507;
+  };
+  kmicklas = {
+    email = "maintainer@kmicklas.com";
+    name = "Ken Micklas";
+    github = "kmicklas";
+    githubId = 929096;
   };
   knairda = {
     email = "adrian@kummerlaender.eu";
@@ -9305,6 +9321,12 @@
     githubId = 303489;
     name = "Manuel Bärenz";
   };
+  tu-maurice = {
+    email = "valentin.gehrke+nixpkgs@zom.bi";
+    github = "tu-maurice";
+    githubId = 16151097;
+    name = "Valentin Gehrke";
+  };
   tv = {
     email = "tv@krebsco.de";
     github = "4z3";
@@ -9643,6 +9665,10 @@
   vozz = {
     email = "oliver.huntuk@gmail.com";
     name = "Oliver Hunt";
+  };
+  vq = {
+    email = "vq@erq.se";
+    name = "Daniel Nilsson";
   };
   vrthra = {
     email = "rahul@gopinath.org";
