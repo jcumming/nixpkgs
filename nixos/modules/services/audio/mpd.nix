@@ -42,7 +42,7 @@ let
       }
     ''}
 
-    ${optionalString (cfg.credentials != []) (credentialsPlaceholder cfg.credentials)}
+    ${credentialsPlaceholder cfg.credentials}
 
     ${cfg.extraConfig}
   '';
@@ -135,7 +135,7 @@ in {
 
         listenAddress = mkOption {
           type = types.listOf types.str;
-          default = "any";
+          default = [];
           description = ''
             A list of address for mpd to listen on. Use an empty list "[]" to bind to all addresses. Ensure addresses are reachable by clients.
           '';
@@ -200,9 +200,7 @@ in {
         '';
       };
     };
-
   };
-
 
   ###### implementation
 
@@ -233,10 +231,7 @@ in {
           ExecStartPre = pkgs.writeShellScript "mpd-start-pre" ''
             set -euo pipefail
             install -m 600 ${mpdConf} /run/mpd/mpd.conf
-            ${optionalString (cfg.credentials != [])
-            "${pkgs.replace}/bin/replace-literal -fe ${
-              concatStringsSep " -a " (imap0 (i: c: "\"{{password-${toString i}}}\" \"$(cat ${c.passwordFile})\"") cfg.credentials)
-            } /run/mpd/mpd.conf"}
+            ${optionalString (cfg.credentials != []) (credentialsPlaceholder cfg.credentials)}
           '';
           RuntimeDirectory = "mpd";
           Type = "notify";

@@ -104,7 +104,7 @@ in {
     };
 
     host = mkOption {
-      default = (if mpdCfg.network.listenAddress != "any" then
+      default = (if mpdCfg.network.listenAddress != [ ] then
         mpdCfg.network.listenAddress
       else
         "localhost");
