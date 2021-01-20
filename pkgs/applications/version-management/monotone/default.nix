@@ -1,5 +1,5 @@
 { lib, stdenv, fetchurl, boost, zlib, botan, libidn
-, lua, pcre, sqlite, perl, pkgconfig, expect
+, lua, pcre, sqlite, perl, pkg-config, expect
 , bzip2, gmp, openssl
 }:
 
@@ -27,7 +27,7 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  nativeBuildInputs = [ pkgconfig ];
+  nativeBuildInputs = [ pkg-config ];
   buildInputs = [ boost zlib botan libidn lua pcre sqlite expect
     openssl gmp bzip2 ];
 
