@@ -236,6 +236,7 @@ justincampbell/vim-eighties
 justinj/vim-pico8-syntax
 justinmk/vim-dirvish
 justinmk/vim-sneak
+jvirtanen/vim-hcl
 jvoorhis/coq.vim
 KabbAmine/vCoolor.vim
 KabbAmine/zeavim.vim
@@ -275,7 +276,7 @@ leanprover/lean.vim
 ledger/vim-ledger
 lepture/vim-jinja
 lervag/vimtex
-lewis6991/gitsigns.nvim
+lewis6991/gitsigns.nvim@main
 lfilho/cosco.vim
 lifepillar/vim-mucomplete
 lighttiger2505/deoplete-vim-lsp
@@ -353,6 +354,7 @@ mopp/sky-color-clock.vim
 morhetz/gruvbox
 motus/pig.vim
 mpickering/hlint-refactor-vim
+ms-jpq/chadtree@chad
 mtikekar/vim-bsv
 nanotech/jellybeans.vim
 natebosch/vim-lsc
@@ -407,6 +409,7 @@ nvim-lua/lsp_extensions.nvim
 nvim-lua/plenary.nvim
 nvim-lua/popup.nvim
 nvim-telescope/telescope-fzf-writer.nvim
+nvim-telescope/telescope-fzy-native.nvim
 nvim-telescope/telescope.nvim
 nvim-treesitter/completion-treesitter
 nvim-treesitter/nvim-treesitter
@@ -679,6 +682,6 @@ Xuyuanp/nerdtree-git-plugin
 ycm-core/YouCompleteMe
 Yggdroot/indentLine
 Yilin-Yang/vim-markbar
-yuki-ycino/ncm2-dictionary
+yuki-yano/ncm2-dictionary
 zah/nim.vim
 ziglang/zig.vim
