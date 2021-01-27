@@ -1084,6 +1084,12 @@
     githubId = 75972;
     name = "Ben Booth";
   };
+  berberman = {
+    email = "berberman@yandex.com";
+    github = "berberman";
+    githubId = 26041945;
+    name = "Potato Hatsue";
+  };
   berce = {
     email = "bert.moens@gmail.com";
     github = "berce";
@@ -2583,6 +2589,12 @@
     githubId = 119483;
     name = "Matthew Brown";
   };
+  eduardosm = {
+    email = "esm@eduardosm.net";
+    github = "eduardosm";
+    githubId = 761151;
+    name = "Eduardo Sánchez Muñoz";
+  };
   eduarrrd = {
     email = "e.bachmakov@gmail.com";
     github = "eduarrrd";
@@ -3693,11 +3705,23 @@
     githubId = 896431;
     name = "Chris Hodapp";
   };
+  holymonson = {
+    email = "holymonson@gmail.com";
+    github = "holymonson";
+    githubId = 902012;
+    name = "Monson Shao";
+  };
   hongchangwu = {
     email = "wuhc85@gmail.com";
     github = "hongchangwu";
     githubId = 362833;
     name = "Hongchang Wu";
+  };
+  hoverbear = {
+    email = "operator+nix@hoverbear.org";
+    github = "hoverbear";
+    githubId = 130903;
+    name = "Ana Hobden";
   };
   hrdinka = {
     email = "c.nix@hrdinka.at";
@@ -3886,6 +3910,12 @@
     github = "ivan";
     githubId = 4458;
     name = "Ivan Kozik";
+  };
+  ivan-babrou = {
+    email = "nixpkgs@ivan.computer";
+    name = "Ivan Babrou";
+    github = "bobrik";
+    githubId = 89186;
   };
   ivan-timokhin = {
     email = "nixpkgs@ivan.timokhin.name";
@@ -4912,6 +4942,12 @@
     github = "krav";
     githubId = 4032;
     name = "Kristoffer Thømt Ravneberg";
+  };
+  kritnich = {
+    email = "kritnich@kritni.ch";
+    github = "Kritnich";
+    githubId = 22116767;
+    name = "Kritnich";
   };
   kroell = {
     email = "nixosmainter@makroell.de";
@@ -6698,6 +6734,12 @@
     github = "nyanloutre";
     githubId = 7677321;
     name = "Paul Trehiou";
+  };
+  nyanotech = {
+    name = "nyanotech";
+    email = "nyanotechnology@gmail.com";
+    github = "nyanotech";
+    githubId = 33802077;
   };
   nyarly = {
     email = "nyarly@gmail.com";
@@ -10477,5 +10519,11 @@
     email = "nejczupan+nix@gmail.com";
     github = "zupo";
     githubId = 311580;
+  };
+  jbcrail = {
+    name = "Joseph Crail";
+    email = "jbcrail@gmail.com";
+    github = "jbcrail";
+    githubId = 6038;
   };
 }
