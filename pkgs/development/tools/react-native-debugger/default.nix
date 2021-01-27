@@ -1,9 +1,9 @@
-{ stdenv, fetchurl, unzip, cairo, xorg, gdk-pixbuf, fontconfig, pango, gnome3, atk, at-spi2-atk, at-spi2-core
+{ lib, stdenv, fetchurl, unzip, cairo, xorg, gdk-pixbuf, fontconfig, pango, gnome3, atk, at-spi2-atk, at-spi2-core
 , gtk3, glib, freetype, dbus, nss, nspr, alsaLib, cups, expat, udev, makeDesktopItem
 }:
 
 let
-  rpath = stdenv.lib.makeLibraryPath [
+  rpath = lib.makeLibraryPath [
     cairo
     stdenv.cc.cc
     gdk-pixbuf
@@ -73,7 +73,7 @@ in stdenv.mkDerivation rec {
     categories = "Development;Debugger;";
   };
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://github.com/jhen0409/react-native-debugger";
     license = licenses.mit;
     description = "The standalone app based on official debugger of React Native, and includes React Inspector / Redux DevTools";

@@ -1,4 +1,4 @@
-{ stdenv
+{ lib
 , buildPythonPackage
 , fetchPypi
 , fetchpatch
@@ -55,9 +55,9 @@ buildPythonPackage rec {
   '';
 
   propagatedBuildInputs = [ cairosvg tinycss cssselect ]
-    ++ stdenv.lib.optionals (!isPyPy) [ lxml ];
+    ++ lib.optionals (!isPyPy) [ lxml ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Sexy and simple python charting";
     homepage = "http://www.pygal.org";
     license = licenses.lgpl3Plus;

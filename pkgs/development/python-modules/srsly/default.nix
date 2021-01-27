@@ -1,5 +1,4 @@
-{ stdenv
-, lib
+{ lib
 , buildPythonPackage
 , fetchPypi
 , pythonOlder
@@ -37,7 +36,7 @@ buildPythonPackage rec {
 
   pythonImportsCheck = [ "srsly" ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Modern high-performance serialization utilities for Python";
     homepage = "https://github.com/explosion/srsly";
     license = licenses.mit;

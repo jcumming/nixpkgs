@@ -1,4 +1,4 @@
-{ stdenv, rustPlatform, fetchFromGitHub, openssl, pkg-config, libiconv, Security }:
+{ lib, stdenv, rustPlatform, fetchFromGitHub, openssl, pkg-config, libiconv, Security }:
 
 rustPlatform.buildRustPackage rec {
   pname = "so";
@@ -14,11 +14,11 @@ rustPlatform.buildRustPackage rec {
   cargoSha256 = "1ddbhy1plag4ckbmlyj47wnky7vgmfa68msl3hl25h1lwmzaf1aq";
 
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ openssl ] ++ stdenv.lib.optionals stdenv.isDarwin [
+  buildInputs = [ openssl ] ++ lib.optionals stdenv.isDarwin [
     libiconv Security
   ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A TUI interface to the StackExchange network";
     homepage = "https://github.com/samtay/so";
     license = licenses.mit;

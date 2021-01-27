@@ -1,6 +1,6 @@
 { stable, branch, version, sha256Hash, mkOverride, commonOverrides }:
 
-{ lib, stdenv, python3, fetchFromGitHub }:
+{ lib, python3, fetchFromGitHub }:
 
 let
   defaultOverrides = commonOverrides ++ [
@@ -53,7 +53,7 @@ in python.pkgs.buildPythonPackage {
     rm $out/bin/gns3loopback # For Windows only
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Graphical Network Simulator 3 server (${branch} release)";
     longDescription = ''
       The GNS3 server manages emulators such as Dynamips, VirtualBox or

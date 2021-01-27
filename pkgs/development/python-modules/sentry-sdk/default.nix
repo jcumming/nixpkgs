@@ -17,7 +17,7 @@
 , rq
 , sanic
 , sqlalchemy
-, stdenv
+, lib
 , tornado
 , urllib3
 , trytond
@@ -38,7 +38,7 @@ buildPythonPackage rec {
 
   checkInputs = [ blinker botocore chalice django flask tornado bottle rq falcon sqlalchemy werkzeug trytond
     executing pure-eval asttokens ]
-  ++ stdenv.lib.optionals isPy3k [ celery pyramid sanic aiohttp ];
+  ++ lib.optionals isPy3k [ celery pyramid sanic aiohttp ];
 
   propagatedBuildInputs = [ urllib3 certifi ];
 
@@ -58,7 +58,7 @@ buildPythonPackage rec {
   doCheck = false;
   pythonImportsCheck = [ "sentry_sdk" ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://github.com/getsentry/sentry-python";
     description = "New Python SDK for Sentry.io";
     license = licenses.bsd2;

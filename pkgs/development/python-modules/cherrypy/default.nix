@@ -1,4 +1,4 @@
-{ stdenv, buildPythonPackage, fetchPypi, isPy3k
+{ lib, stdenv, buildPythonPackage, fetchPypi, isPy3k
 , setuptools_scm
 , cheroot, portend, more-itertools, zc_lockfile, routes
 , jaraco_collections
@@ -41,13 +41,13 @@ buildPythonPackage rec {
       -k 'not KeyboardInterrupt and not daemonize and not Autoreload' \
       --deselect=cherrypy/test/test_static.py::StaticTest::test_null_bytes \
       --deselect=cherrypy/test/test_tools.py::ToolTests::testCombinedTools \
-      ${stdenv.lib.optionalString stdenv.isDarwin
+      ${lib.optionalString stdenv.isDarwin
         "--deselect=cherrypy/test/test_bus.py::BusMethodTests::test_block"}
   '';
 
   __darwinAllowLocalNetworking = true;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://www.cherrypy.org";
     description = "A pythonic, object-oriented HTTP framework";
     license = licenses.bsd3;

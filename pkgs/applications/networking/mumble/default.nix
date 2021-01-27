@@ -1,6 +1,6 @@
-{ stdenv, fetchurl, fetchFromGitHub, fetchpatch, pkgconfig, qt5
+{ lib, stdenv, fetchurl, fetchFromGitHub, fetchpatch, pkg-config, qt5
 , avahi, boost, libopus, libsndfile, protobuf, speex, libcap
-, alsaLib, python
+, alsaLib, python3
 , rnnoise
 , jackSupport ? false, libjack2 ? null
 , speechdSupport ? false, speechd ? null
@@ -16,7 +16,7 @@ assert pulseSupport -> libpulseaudio != null;
 assert iceSupport -> zeroc-ice != null;
 assert grpcSupport -> (grpc != null && c-ares != null && abseil-cpp != null && which != null);
 
-with stdenv.lib;
+with lib;
 let
   generic = overrides: source: qt5.mkDerivation (source // overrides // {
     pname = overrides.type;
@@ -25,7 +25,7 @@ let
     patches = (source.patches or [])
       ++ [ ./fix-rnnoise-argument.patch ];
 
-    nativeBuildInputs = [ pkgconfig python qt5.qmake ]
+    nativeBuildInputs = [ pkg-config python3 qt5.qmake ]
       ++ (overrides.nativeBuildInputs or [ ]);
 
     buildInputs = [ boost protobuf avahi ]

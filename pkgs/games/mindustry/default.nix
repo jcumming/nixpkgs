@@ -1,12 +1,19 @@
-{ stdenv
+{ lib, stdenv
 , makeWrapper
 , makeDesktopItem
+, copyDesktopItems
 , fetchFromGitHub
 , gradleGen
 , jdk
 , perl
-, jre
+
+# for arc
+, SDL2
+, pkg-config
+, stb
+, ant
 , alsaLib
+, glew
 
 # Make the build version easily overridable.
 # Server and client build versions must match, and an empty build version means
@@ -22,15 +29,41 @@ let
   # Note: when raising the version, ensure that all SNAPSHOT versions in
   # build.gradle are replaced by a fixed version
   # (the current one at the time of release) (see postPatch).
-  version = "122.1";
+  version = "123.1";
   buildVersion = makeBuildVersion version;
 
-  src = fetchFromGitHub {
+  Mindustry = fetchFromGitHub {
     owner = "Anuken";
     repo = "Mindustry";
     rev = "v${version}";
-    sha256 = "18m4s81cfb2cr2fj61nf6spiln7cbvx25g42w6fypfikflv3qd8y";
+    sha256 = "0qpgilb0v93zcik12idwzdd5b5lw74431iywq4d55gn5i6gb6bh1";
   };
+  Arc = fetchFromGitHub {
+    owner = "Anuken";
+    repo = "Arc";
+    rev = "v${version}";
+    sha256 = "146wvm0dahygnq327pspr62lq29irwrhc8ylgwdwwasrvlsscdp5";
+  };
+  soloud = fetchFromGitHub {
+    owner = "Anuken";
+    repo = "soloud";
+    # this is never pinned in upstream, see https://github.com/Anuken/Arc/issues/39
+    rev = "73860909189c9c42924eb82e9b4a0eab2a4d5e1c";
+    sha256 = "1gm3r16a539hm8jbc14mfxn7v88dv40vr7nzwmpifnz54qarkg3m";
+  };
+
+  patches = [
+    ./0001-fix-include-path-for-SDL2-on-linux.patch
+  ];
+
+  unpackPhase = ''
+    cp -r ${Mindustry} Mindustry
+    cp -r ${Arc} Arc
+    chmod -R u+w -- Mindustry Arc
+    cp ${stb.src}/stb_image.h Arc/arc-core/csrc/
+    cp -r ${soloud} Arc/arc-core/csrc/soloud
+    chmod -R u+w -- Arc
+  '';
 
   desktopItem = makeDesktopItem {
     type = "Application";
@@ -40,7 +73,9 @@ let
     icon = "mindustry";
   };
 
-  postPatch = ''
+  cleanupMindustrySrc = ''
+    pushd Mindustry
+
     # Remove unbuildable iOS stuff
     sed -i '/^project(":ios"){/,/^}/d' build.gradle
     sed -i '/robo(vm|VM)/d' build.gradle
@@ -48,13 +83,8 @@ let
 
     # Pin 'SNAPSHOT' versions
     sed -i 's/com.github.anuken:packr:-SNAPSHOT/com.github.anuken:packr:034efe51781d2d8faa90370492133241bfb0283c/' build.gradle
-  '';
 
-  preBuild = ''
-    # Arc is run at build time for sprite packing, and it needs to see
-    # the runtime libraries
-    ${stdenv.lib.optionalString stdenv.isLinux "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${alsaLib}/lib"}
-    export GRADLE_USER_HOME=$(mktemp -d)
+    popd
   '';
 
   # The default one still uses jdk8 (#89731)
@@ -63,15 +93,18 @@ let
   # fake build to pre-download deps into fixed-output derivation
   deps = stdenv.mkDerivation {
     pname = "${pname}-deps";
-    inherit version src postPatch;
+    inherit version unpackPhase patches;
+    postPatch = cleanupMindustrySrc;
+
     nativeBuildInputs = [ gradle_6 perl ];
-    # Here we build both the server and the client so we only have to specify
-    # one hash for 'deps'. Deps can be garbage collected after the build,
-    # so this is not really an issue.
+    # Here we download dependencies for both the server and the client so
+    # we only have to specify one hash for 'deps'. Deps can be garbage
+    # collected after the build, so this is not really an issue.
     buildPhase = ''
-      ${preBuild}
-      gradle --no-daemon desktop:dist -Pbuildversion=${buildVersion}
-      gradle --no-daemon server:dist -Pbuildversion=${buildVersion}
+      pushd Mindustry
+      export GRADLE_USER_HOME=$(mktemp -d)
+      gradle --no-daemon resolveDependencies
+      popd
     '';
     # perl code mavenizes pathes (com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar -> com/squareup/okio/okio/1.13.0/okio-1.13.0.jar)
     installPhase = ''
@@ -81,66 +114,83 @@ let
     '';
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = "0vzck6hsrvs438s3ikk66qmpak88bmqcb8inqbbjwy7x87d2qsvj";
+    outputHash = "18r2gd1y79cy571f5hvlablfwrlz10cf7ssc9ckkvkk92i0323gk";
   };
 
-  # Separate commands for building and installing the server and the client
-  buildClient = ''
-    gradle --offline --no-daemon desktop:dist -Pbuildversion=${buildVersion}
-  '';
-  buildServer = ''
-    gradle --offline --no-daemon server:dist -Pbuildversion=${buildVersion}
-  '';
-  installClient = ''
-    install -Dm644 desktop/build/libs/Mindustry.jar $out/share/mindustry.jar
-    mkdir -p $out/bin
-    makeWrapper ${jre}/bin/java $out/bin/mindustry \
-      ${stdenv.lib.optionalString stdenv.isLinux "--prefix LD_LIBRARY_PATH : ${alsaLib}/lib"} \
-      --add-flags "-jar $out/share/mindustry.jar"
-    install -Dm644 core/assets/icons/icon_64.png $out/share/icons/hicolor/64x64/apps/mindustry.png
-    install -Dm644 ${desktopItem}/share/applications/Mindustry.desktop $out/share/applications/Mindustry.desktop
-  '';
-  installServer = ''
-    install -Dm644 server/build/libs/server-release.jar $out/share/mindustry-server.jar
-    mkdir -p $out/bin
-    makeWrapper ${jre}/bin/java $out/bin/mindustry-server \
-      --add-flags "-jar $out/share/mindustry-server.jar"
-  '';
-
 in
-assert stdenv.lib.assertMsg (enableClient || enableServer)
+assert lib.assertMsg (enableClient || enableServer)
   "mindustry: at least one of 'enableClient' and 'enableServer' must be true";
 stdenv.mkDerivation rec {
-  inherit pname version src postPatch;
+  inherit pname version unpackPhase patches;
 
-  nativeBuildInputs = [ gradle_6 makeWrapper ];
+  postPatch = ''
+    # ensure the prebuilt shared objects don't accidentally get shipped
+    rm Arc/natives/natives-desktop/libs/libarc*.so
+    rm Arc/backends/backend-sdl/libs/linux64/libsdl-arc*.so
+  '' + cleanupMindustrySrc;
 
-  buildPhase = with stdenv.lib; ''
-    ${preBuild}
+  buildInputs = lib.optionals enableClient [
+    SDL2
+    glew
+    alsaLib
+  ];
+  nativeBuildInputs = [
+    pkg-config
+    gradle_6
+    makeWrapper
+    jdk
+  ] ++ lib.optionals enableClient [
+    ant
+    copyDesktopItems
+  ];
+
+  desktopItems = lib.optional enableClient desktopItem;
+
+  buildPhase = with lib; ''
+    export GRADLE_USER_HOME=$(mktemp -d)
+
     # point to offline repo
-    sed -ie "s#mavenLocal()#mavenLocal(); maven { url '${deps}' }#g" build.gradle
-    ${optionalString enableClient buildClient}
-    ${optionalString enableServer buildServer}
+    sed -ie "s#mavenLocal()#mavenLocal(); maven { url '${deps}' }#g" Mindustry/build.gradle
+    sed -ie "s#mavenCentral()#mavenCentral(); maven { url '${deps}' }#g" Arc/build.gradle
+
+    pushd Mindustry
+  '' + optionalString enableClient ''
+    gradle --offline --no-daemon jnigenBuild -Pbuildversion=${buildVersion}
+    gradle --offline --no-daemon sdlnatives -Pdynamic -Pbuildversion=${buildVersion}
+    patchelf ../Arc/backends/backend-sdl/libs/linux64/libsdl-arc*.so \
+      --add-needed ${glew.out}/lib/libGLEW.so \
+      --add-needed ${SDL2}/lib/libSDL2.so
+    gradle --offline --no-daemon desktop:dist -Pbuildversion=${buildVersion}
+  '' + optionalString enableServer ''
+    gradle --offline --no-daemon server:dist -Pbuildversion=${buildVersion}
   '';
 
-  installPhase = with stdenv.lib; ''
-    ${optionalString enableClient installClient}
-    ${optionalString enableServer installServer}
+  installPhase = with lib; ''
+    runHook preInstall
+  '' + optionalString enableClient ''
+    install -Dm644 desktop/build/libs/Mindustry.jar $out/share/mindustry.jar
+    mkdir -p $out/bin
+    makeWrapper ${jdk}/bin/java $out/bin/mindustry \
+      --add-flags "-jar $out/share/mindustry.jar"
+    install -Dm644 core/assets/icons/icon_64.png $out/share/icons/hicolor/64x64/apps/mindustry.png
+  '' + optionalString enableServer ''
+    install -Dm644 server/build/libs/server-release.jar $out/share/mindustry-server.jar
+    mkdir -p $out/bin
+    makeWrapper ${jdk}/bin/java $out/bin/mindustry-server \
+      --add-flags "-jar $out/share/mindustry-server.jar"
+  '' + ''
+    runHook postInstall
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://mindustrygame.github.io/";
     downloadPage = "https://github.com/Anuken/Mindustry/releases";
     description = "A sandbox tower defense game";
     license = licenses.gpl3Plus;
-    maintainers = with maintainers; [ fgaz ];
-    platforms = platforms.all;
+    maintainers = with maintainers; [ fgaz petabyteboy ];
+    platforms = platforms.x86_64;
     # Hash mismatch on darwin:
     # https://github.com/NixOS/nixpkgs/pull/105590#issuecomment-737120293
-    # Problems with native libraries in aarch64:
-    # https://github.com/NixOS/nixpkgs/pull/107646
-    # https://logs.nix.ci/?key=nixos/nixpkgs.107646&attempt_id=3032c060-72e9-4a76-8186-4739544397dd
-    broken = stdenv.isDarwin ||
-             stdenv.isAarch64;
+    broken = stdenv.isDarwin;
   };
 }

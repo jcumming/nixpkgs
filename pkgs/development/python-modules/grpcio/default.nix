@@ -1,4 +1,4 @@
-{ stdenv
+{ lib, stdenv
 , buildPythonPackage
 , darwin
 , grpc
@@ -21,13 +21,13 @@ buildPythonPackage rec {
   outputs = [ "out" "dev" ];
 
   nativeBuildInputs = [ cython pkg-config ]
-    ++ stdenv.lib.optional stdenv.isDarwin darwin.cctools;
+    ++ lib.optional stdenv.isDarwin darwin.cctools;
 
   buildInputs = [ c-ares openssl zlib ];
   propagatedBuildInputs = [ six protobuf ]
-    ++ stdenv.lib.optionals (isPy27) [ enum34 futures ];
+    ++ lib.optionals (isPy27) [ enum34 futures ];
 
-  preBuild = stdenv.lib.optionalString stdenv.isDarwin "unset AR";
+  preBuild = lib.optionalString stdenv.isDarwin "unset AR";
 
   GRPC_BUILD_WITH_BORING_SSL_ASM = "";
   GRPC_PYTHON_BUILD_SYSTEM_OPENSSL = 1;
@@ -39,7 +39,7 @@ buildPythonPackage rec {
 
   pythonImportsCheck = [ "grpc" ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "HTTP/2-based RPC framework";
     license = licenses.asl20;
     homepage = "https://grpc.io/grpc/python/";

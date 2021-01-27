@@ -1,4 +1,4 @@
-{ stdenv
+{ lib
 , buildPythonPackage
 , fetchFromGitHub
 , zlib
@@ -35,7 +35,7 @@ buildPythonPackage {
   };
 
   propagatedBuildInputs = [ zlib xz ncompress gzip bzip2 gnutar p7zip cabextract cramfsswap cramfsprogs sasquatch squashfsTools lzma pycrypto ]
-  ++ stdenv.lib.optionals visualizationSupport [ matplotlib pyqtgraph ];
+  ++ lib.optionals visualizationSupport [ matplotlib pyqtgraph ];
 
   # setup.py only installs version.py during install, not test
   postPatch = ''
@@ -49,7 +49,7 @@ buildPythonPackage {
 
   checkInputs = [ nose ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://github.com/ReFirmLabs/binwalk";
     description = "A tool for searching a given binary image for embedded files";
     maintainers = [ maintainers.koral ];

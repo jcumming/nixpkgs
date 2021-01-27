@@ -1,24 +1,34 @@
-{ stdenv
+{ lib
 , buildGoModule
 , fetchFromGitHub
+, installShellFiles
 }:
 
 buildGoModule rec {
   pname = "gdu";
-  version = "2.1.0";
+  version = "4.3.0";
 
   src = fetchFromGitHub {
     owner = "dundee";
     repo = pname;
     rev = "v${version}";
-    sha256 = "0gk36z8xzj7blwzs080fqsz76hn56c89xcsyil6n5cfkbyf85c6i";
+    sha256 = "0ilaywj5vz8lgvm63j2saakhmgb2134idn6l8msbif4lsawlr313";
   };
 
-  vendorSha256 = "1jqbsda9bch3awdq816w4jybv7wz9mfflmvs5y2wsa2qnhn9nbyp";
+  vendorSha256 = "058h71gmgi3n4b697myi5890arzw8fkzmxlm1aiwzyfh3k9iv0wh";
 
-  buildFlagsArray = [ "-ldflags=-s -w -X main.AppVersion=${version}" ];
+  buildFlagsArray = [ "-ldflags=-s -w -X github.com/dundee/gdu/build.Version=${version}" ];
 
-  meta = with stdenv.lib; {
+  nativeBuildInputs = [ installShellFiles ];
+
+  postInstall = ''
+    installManPage gdu.1
+  '';
+
+  # tests fail if the version is set
+  doCheck = false;
+
+  meta = with lib; {
     description = "Disk usage analyzer with console interface";
     longDescription = ''
       Gdu is intended primarily for SSD disks where it can fully

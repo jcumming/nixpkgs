@@ -1,4 +1,4 @@
-{ stdenv
+{ lib
 , mkDerivation
 , fetchurl
 , autoPatchelfHook
@@ -43,9 +43,9 @@ in mkDerivation {
 
   qtWrapperArgs =
     let
-      binPath = stdenv.lib.makeBinPath [ jre_headless ];
-    in stdenv.lib.optionals withJava [
-      ''--prefix PATH : ${binPath}''
+      binPath = lib.makeBinPath [ jre_headless ];
+    in lib.optionals withJava [
+      "--prefix PATH : ${binPath}"
     ];
 
   installPhase = ''
@@ -58,7 +58,7 @@ in mkDerivation {
     runHook postInstall
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Convert blu-ray and dvd to mkv";
     longDescription = ''
       makemkv is a one-click QT application that transcodes an encrypted

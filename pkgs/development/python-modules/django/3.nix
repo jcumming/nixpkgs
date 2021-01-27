@@ -1,4 +1,4 @@
-{ stdenv
+{ lib, stdenv
 , buildPythonPackage
 , fetchPypi
 , substituteAll
@@ -22,7 +22,7 @@ buildPythonPackage rec {
     sha256 = "2d78425ba74c7a1a74b196058b261b9733a8570782f4e2828974777ccca7edf7";
   };
 
-  patches = stdenv.lib.optional withGdal
+  patches = lib.optional withGdal
     (substituteAll {
       src = ./django_3_set_geos_gdal_lib.patch;
       geos = geos;
@@ -39,7 +39,7 @@ buildPythonPackage rec {
   # too complicated to setup
   doCheck = false;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A high-level Python Web framework";
     homepage = "https://www.djangoproject.com/";
     license = licenses.bsd3;

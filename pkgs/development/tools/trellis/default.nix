@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub
+{ lib, stdenv, fetchFromGitHub
 , python3, boost
 , cmake
 }:
@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
   version = "2021.01.02";
 
   # git describe --tags
-  realVersion = with stdenv.lib; with builtins;
+  realVersion = with lib; with builtins;
     "1.0-482-g${substring 0 7 (elemAt srcs 0).rev}";
 
   srcs = [
@@ -37,7 +37,6 @@ stdenv.mkDerivation rec {
     # TODO: should this be in stdenv instead?
     "-DCMAKE_INSTALL_DATADIR=${placeholder "out"}/share"
   ];
-  enableParallelBuilding = true;
 
   preConfigure = with builtins; ''
     rmdir database && ln -sfv ${elemAt srcs 1} ./database
@@ -46,7 +45,7 @@ stdenv.mkDerivation rec {
     cd libtrellis
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description     = "Documentation and bitstream tools for Lattice ECP5 FPGAs";
     longDescription = ''
       Project Trellis documents the Lattice ECP5 architecture
@@ -55,8 +54,8 @@ stdenv.mkDerivation rec {
       open Verilog to bitstream toolchain for these devices.
     '';
     homepage    = "https://github.com/SymbiFlow/prjtrellis";
-    license     = stdenv.lib.licenses.isc;
+    license     = lib.licenses.isc;
     maintainers = with maintainers; [ q3k thoughtpolice emily ];
-    platforms   = stdenv.lib.platforms.all;
+    platforms   = lib.platforms.all;
   };
 }

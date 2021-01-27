@@ -82,6 +82,7 @@
   ./hardware/xpadneo.nix
   ./i18n/input-method/default.nix
   ./i18n/input-method/fcitx.nix
+  ./i18n/input-method/fcitx5.nix
   ./i18n/input-method/hime.nix
   ./i18n/input-method/ibus.nix
   ./i18n/input-method/nabi.nix
@@ -101,6 +102,7 @@
   ./misc/version.nix
   ./misc/nixops-autoluks.nix
   ./programs/adb.nix
+  ./programs/appgate-sdp.nix
   ./programs/atop.nix
   ./programs/autojump.nix
   ./programs/bandwhich.nix
@@ -167,6 +169,7 @@
   ./programs/sway.nix
   ./programs/system-config-printer.nix
   ./programs/thefuck.nix
+  ./programs/tilp2.nix
   ./programs/tmux.nix
   ./programs/traceroute.nix
   ./programs/tsm-client.nix
@@ -226,6 +229,7 @@
   ./services/audio/icecast.nix
   ./services/audio/liquidsoap.nix
   ./services/audio/mpd.nix
+  ./services/audio/mpdscribble.nix
   ./services/audio/mopidy.nix
   ./services/audio/roon-server.nix
   ./services/audio/slimserver.nix
@@ -345,6 +349,7 @@
   ./services/editors/emacs.nix
   ./services/editors/infinoted.nix
   ./services/games/factorio.nix
+  ./services/games/freeciv.nix
   ./services/games/minecraft-server.nix
   ./services/games/minetest-server.nix
   ./services/games/openarena.nix
@@ -445,8 +450,6 @@
   ./services/misc/devmon.nix
   ./services/misc/dictd.nix
   ./services/misc/dwm-status.nix
-  ./services/misc/dysnomia.nix
-  ./services/misc/disnix.nix
   ./services/misc/docker-registry.nix
   ./services/misc/domoticz.nix
   ./services/misc/errbot.nix
@@ -630,6 +633,7 @@
   ./services/networking/dnsdist.nix
   ./services/networking/dnsmasq.nix
   ./services/networking/ncdns.nix
+  ./services/networking/nomad.nix
   ./services/networking/ejabberd.nix
   ./services/networking/epmd.nix
   ./services/networking/ergo.nix
@@ -721,6 +725,7 @@
   ./services/networking/owamp.nix
   ./services/networking/pdnsd.nix
   ./services/networking/pixiecore.nix
+  ./services/networking/pleroma.nix
   ./services/networking/polipo.nix
   ./services/networking/powerdns.nix
   ./services/networking/pdns-recursor.nix
@@ -897,6 +902,7 @@
   ./services/web-apps/selfoss.nix
   ./services/web-apps/shiori.nix
   ./services/web-apps/virtlyst.nix
+  ./services/web-apps/whitebophir.nix
   ./services/web-apps/wordpress.nix
   ./services/web-apps/youtrack.nix
   ./services/web-apps/zabbix.nix
@@ -952,6 +958,7 @@
   ./services/x11/urxvtd.nix
   ./services/x11/window-managers/awesome.nix
   ./services/x11/window-managers/default.nix
+  ./services/x11/window-managers/clfswm.nix
   ./services/x11/window-managers/fluxbox.nix
   ./services/x11/window-managers/icewm.nix
   ./services/x11/window-managers/bspwm.nix

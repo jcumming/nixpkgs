@@ -1,5 +1,4 @@
-{ stdenv
-, lib
+{ lib
 , fetchFromGitHub
 , gdk-pixbuf
 , gobject-introspection
@@ -63,7 +62,7 @@ python3Packages.buildPythonApplication rec {
   doCheck = false;
 
   makeWrapperArgs = [
-    "--prefix PATH : ${stdenv.lib.makeBinPath [ youtube-dl ]}"
+    "--prefix PATH : ${lib.makeBinPath [ youtube-dl ]}"
   ];
 
   meta = with lib; {

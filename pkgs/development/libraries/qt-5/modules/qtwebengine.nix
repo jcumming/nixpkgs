@@ -1,7 +1,7 @@
 { qtModule
 , qtdeclarative, qtquickcontrols, qtlocation, qtwebchannel
 
-, bison, coreutils, flex, git, gperf, ninja, pkgconfig, python2, which
+, bison, coreutils, flex, git, gperf, ninja, pkg-config, python2, which
 
 , xorg, libXcursor, libXScrnSaver, libXrandr, libXtst
 , fontconfig, freetype, harfbuzz, icu, dbus, libdrm
@@ -18,13 +18,13 @@
 , lib, stdenv, fetchpatch
 }:
 
-with stdenv.lib;
+with lib;
 
 qtModule {
   name = "qtwebengine";
   qtInputs = [ qtdeclarative qtquickcontrols qtlocation qtwebchannel ];
   nativeBuildInputs = [
-    bison coreutils flex git gperf ninja pkgconfig python2 which gn
+    bison coreutils flex git gperf ninja pkg-config python2 which gn
   ] ++ optional stdenv.isDarwin xcbuild;
   doCheck = true;
   outputs = [ "bin" "dev" "out" ];
@@ -88,7 +88,7 @@ qtModule {
   NIX_CFLAGS_COMPILE = lib.optionals stdenv.cc.isGNU [
     # with gcc8, -Wclass-memaccess became part of -Wall and this exceeds the logging limit
     "-Wno-class-memaccess"
-  ] ++ lib.optionals (stdenv.hostPlatform.platform.gcc.arch or "" == "sandybridge") [
+  ] ++ lib.optionals (stdenv.hostPlatform.gcc.arch or "" == "sandybridge") [
     # it fails when compiled with -march=sandybridge https://github.com/NixOS/nixpkgs/pull/59148#discussion_r276696940
     # TODO: investigate and fix properly
     "-march=westmere"

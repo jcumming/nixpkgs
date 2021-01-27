@@ -1,4 +1,4 @@
-{ stdenv, buildPythonPackage, fetchPypi, substituteAll,
+{ lib, stdenv, buildPythonPackage, fetchPypi, substituteAll,
   isPy3k,
   geos, gdal, pytz, sqlparse,
   withGdal ? false
@@ -15,7 +15,7 @@ buildPythonPackage rec {
     sha256 = "cf5370a4d7765a9dd6d42a7b96b53c74f9446cd38209211304b210fe0404b861";
   };
 
-  patches = stdenv.lib.optional withGdal
+  patches = lib.optional withGdal
     (substituteAll {
       src = ./1.10-gis-libs.template.patch;
       geos = geos;
@@ -29,7 +29,7 @@ buildPythonPackage rec {
   # too complicated to setup
   doCheck = false;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A high-level Python Web framework";
     homepage = "https://www.djangoproject.com/";
     license = licenses.bsd3;

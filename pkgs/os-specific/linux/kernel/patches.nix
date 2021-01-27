@@ -40,11 +40,6 @@
 
   cpu-cgroup-v2 = import ./cpu-cgroup-v2-patches;
 
-  tag_hardened = {
-    name = "tag-hardened";
-    patch = ./hardened/tag-hardened.patch;
-  };
-
   hardened = let
     mkPatch = kernelVersion: src: {
       name = lib.removeSuffix ".patch" src.name;
@@ -111,15 +106,5 @@
   mac_nvme_t2 = rec {
     name = "mac_nvme_t2";
     patch = ./mac-nvme-t2.patch;
-  };
-
-  # https://lkml.org/lkml/2020/12/18/461
-  wireless_syntax_error = rec {
-    name = "wireless-syntax_error";
-    patch = fetchpatch {
-      name = name + ".patch";
-      url = "https://lkml.org/lkml/diff/2020/12/18/461/1";
-      sha256 = "11rnw9z7311crsx37sk68b71q51cni70lzf40ildqjnnn71m3q58";
-    };
   };
 }

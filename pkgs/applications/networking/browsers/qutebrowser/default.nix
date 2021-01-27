@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchurl, fetchzip, python3
+{ lib, fetchurl, fetchzip, python3
 , mkDerivationWith, wrapQtAppsHook, wrapGAppsHook, qtbase, glib-networking
 , asciidoc, docbook_xml_dtd_45, docbook_xsl, libxml2
 , libxslt, gst_all_1 ? null
@@ -113,7 +113,7 @@ in mkDerivationWith python3Packages.buildPythonApplication rec {
       --add-flags '--backend ${backend}'
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage    = "https://github.com/The-Compiler/qutebrowser";
     description = "Keyboard-focused browser with a minimal GUI";
     license     = licenses.gpl3Plus;

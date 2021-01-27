@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, fetchpatch, cmake, flex, bison }:
+{ lib, stdenv, fetchFromGitHub, fetchpatch, cmake, flex, bison }:
 let
   version = "2.4.3";
 in
@@ -6,7 +6,7 @@ stdenv.mkDerivation {
   pname = "minizinc";
   inherit version;
 
-  buildInputs = [ cmake flex bison ];
+  nativeBuildInputs = [ cmake flex bison ];
 
   src = fetchFromGitHub {
     owner = "MiniZinc";
@@ -34,7 +34,7 @@ stdenv.mkDerivation {
     })
   ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://www.minizinc.org/";
     description = "A medium-level constraint modelling language";
 

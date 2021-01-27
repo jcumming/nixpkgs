@@ -2,7 +2,7 @@
 , qtbase, qtdeclarative, qtlocation, qtmultimedia, qtsensors, qtwebchannel
 , fontconfig, gtk2, libwebp, libxml2, libxslt
 , sqlite, systemd, glib, gst_all_1, cmake
-, bison, flex, gdb, gperf, perl, pkgconfig, python2, ruby
+, bison, flex, gdb, gperf, perl, pkg-config, python2, ruby
 , darwin
 , flashplayerFix ? false
 }:
@@ -31,7 +31,7 @@ qtModule {
     ++ optionals (stdenv.isDarwin) (with darwin; with apple_sdk.frameworks; [ ICU OpenGL ])
     ++ optional usingAnnulenWebkitFork hyphen;
   nativeBuildInputs = [
-    bison flex gdb gperf perl pkgconfig python2 ruby
+    bison flex gdb gperf perl pkg-config python2 ruby
   ] ++ optional usingAnnulenWebkitFork cmake;
 
   cmakeFlags = optionals usingAnnulenWebkitFork ([ "-DPORT=Qt" ]
@@ -43,7 +43,7 @@ qtModule {
 
   # QtWebKit overrides qmake's default_pre and default_post features,
   # so its custom qmake files must be found first at the front of QMAKEPATH.
-  preConfigure = stdenv.lib.optionalString (!usingAnnulenWebkitFork) ''
+  preConfigure = lib.optionalString (!usingAnnulenWebkitFork) ''
     QMAKEPATH="$PWD/Tools/qmake''${QMAKEPATH:+:}$QMAKEPATH"
     fixQtBuiltinPaths . '*.pr?'
     # Fix hydra's "Log limit exceeded"
@@ -72,6 +72,6 @@ qtModule {
   preFixup = ''rm -rf "$(pwd)" && mkdir "$(pwd)" '';
 
   meta = {
-    maintainers = with stdenv.lib.maintainers; [ abbradar periklis ];
+    maintainers = with lib.maintainers; [ abbradar periklis ];
   };
 }

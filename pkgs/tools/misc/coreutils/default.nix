@@ -31,7 +31,7 @@ stdenv.mkDerivation (rec {
 
   patches = optional stdenv.hostPlatform.isCygwin ./coreutils-8.23-4.cygwin.patch
     # included on coreutils master; TODO: apply unconditionally, I guess
-    ++ optional stdenv.hostPlatform.isAarch64 ./sys-getdents-undeclared.patch
+    ++ optional (with stdenv.hostPlatform; isAarch64 || isRiscV) ./sys-getdents-undeclared.patch
     # fix gnulib tests on 32-bit ARM. Included on coreutils master.
     # https://lists.gnu.org/r/bug-gnulib/2020-08/msg00225.html
     ++ optional stdenv.hostPlatform.isAarch32 ./fix-gnulib-tests-arm.patch;
@@ -154,6 +154,6 @@ stdenv.mkDerivation (rec {
 } // optionalAttrs stdenv.hostPlatform.isMusl {
   # Work around a bogus warning in conjunction with musl.
   NIX_CFLAGS_COMPILE = "-Wno-error";
-} // stdenv.lib.optionalAttrs stdenv.hostPlatform.isAndroid {
+} // lib.optionalAttrs stdenv.hostPlatform.isAndroid {
   NIX_CFLAGS_COMPILE = "-D__USE_FORTIFY_LEVEL=0";
 })

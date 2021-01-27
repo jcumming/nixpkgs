@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, rustPlatform, makeWrapper, substituteAll, Security }:
+{ lib, stdenv, fetchFromGitHub, rustPlatform, makeWrapper, substituteAll, Security }:
 
 rustPlatform.buildRustPackage rec {
   pname = "racer";
@@ -14,7 +14,7 @@ rustPlatform.buildRustPackage rec {
   cargoSha256 = "sha256-iUomr9viCdZk4nV75/OP8vHtJpMbmy+pq1IbaA2lLmE=";
 
   nativeBuildInputs = [ makeWrapper ];
-  buildInputs = stdenv.lib.optional stdenv.isDarwin Security;
+  buildInputs = lib.optional stdenv.isDarwin Security;
 
   # a nightly compiler is required unless we use this cheat code.
   RUSTC_BOOTSTRAP = 1;
@@ -39,7 +39,7 @@ rustPlatform.buildRustPackage rec {
     $out/bin/racer --version
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A utility intended to provide Rust code completion for editors and IDEs";
     homepage = "https://github.com/racer-rust/racer";
     license = licenses.mit;

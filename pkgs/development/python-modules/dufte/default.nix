@@ -1,4 +1,4 @@
-{ stdenv
+{ lib
 , buildPythonPackage
 , fetchPypi
 , isPy3k
@@ -23,7 +23,7 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     matplotlib
     numpy
-  ] ++ stdenv.lib.optionals (pythonOlder "3.8") [
+  ] ++ lib.optionals (pythonOlder "3.8") [
     importlib-metadata
   ];
 
@@ -35,7 +35,7 @@ buildPythonPackage rec {
   checkInputs = [ pytestCheckHook ];
   pythonImportsCheck = [ "dufte" ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Clean matplotlib plots";
     homepage = "https://github.com/nschloe/dufte";
     license = licenses.gpl3Plus;

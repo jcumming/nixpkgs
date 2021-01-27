@@ -1,4 +1,4 @@
-{ stdenv
+{ lib, stdenv
 , buildPythonPackage
 , fetchPypi
 , fetchpatch
@@ -8,7 +8,7 @@
 
 buildPythonPackage rec {
   pname = "capstone";
-  version = stdenv.lib.getVersion capstone;
+  version = lib.getVersion capstone;
 
   src = capstone.src;
   sourceRoot = "${capstone.name}/bindings/python";
@@ -26,7 +26,7 @@ buildPythonPackage rec {
     make check
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "http://www.capstone-engine.org/";
     license = licenses.bsdOriginal;
     description = "Python bindings for Capstone disassembly engine";

@@ -3,6 +3,7 @@
 , stateDir ? "/nix/var"
 , confDir ? "/etc"
 , boehmgc
+, Security
 }:
 
 let
@@ -10,7 +11,7 @@ let
 common =
   { lib, stdenv, perl, curl, bzip2, sqlite, openssl ? null, xz
   , bash, coreutils, gzip, gnutar
-  , pkgconfig, boehmgc, perlPackages, libsodium, brotli, boost, editline, nlohmann_json
+  , pkg-config, boehmgc, perlPackages, libsodium, brotli, boost, editline, nlohmann_json
   , autoreconfHook, autoconf-archive, bison, flex
   , jq, libarchive
   , lowdown, mdbook
@@ -39,12 +40,12 @@ common =
       outputs = [ "out" "dev" "man" "doc" ];
 
       nativeBuildInputs =
-        [ pkgconfig ]
+        [ pkg-config ]
         ++ lib.optionals is24
           [ autoreconfHook
             autoconf-archive
             bison flex
-            lowdown mdbook
+            (lib.getBin lowdown) mdbook
             jq
            ];
 
@@ -52,8 +53,9 @@ common =
         [ curl openssl sqlite xz bzip2 nlohmann_json
           brotli boost editline
         ]
+        ++ lib.optionals stdenv.isDarwin [ Security ]
         ++ lib.optional (stdenv.isLinux || stdenv.isDarwin) libsodium
-        ++ lib.optionals is24 [ libarchive gmock ]
+        ++ lib.optionals is24 [ libarchive gmock lowdown ]
         ++ lib.optional withLibseccomp libseccomp
         ++ lib.optional withAWS
             ((aws-sdk-cpp.override {
@@ -124,7 +126,7 @@ common =
         ]
         ++ lib.optional (
             stdenv.hostPlatform != stdenv.buildPlatform && stdenv.hostPlatform ? nix && stdenv.hostPlatform.nix ? system
-        ) ''--with-system=${stdenv.hostPlatform.nix.system}''
+        ) "--with-system=${stdenv.hostPlatform.nix.system}"
            # RISC-V support in progress https://github.com/seccomp/libseccomp/pull/50
         ++ lib.optional (!withLibseccomp) "--disable-seccomp-sandboxing";
 
@@ -154,9 +156,9 @@ common =
           environments.
         '';
         homepage = "https://nixos.org/";
-        license = stdenv.lib.licenses.lgpl2Plus;
-        maintainers = [ stdenv.lib.maintainers.eelco ];
-        platforms = stdenv.lib.platforms.unix;
+        license = lib.licenses.lgpl2Plus;
+        maintainers = [ lib.maintainers.eelco ];
+        platforms = lib.platforms.unix;
         outputsToInstall = [ "out" "man" ];
       };
 
@@ -172,7 +174,7 @@ common =
           # This is not cross-compile safe, don't have time to fix right now
           # but noting for future travellers.
           nativeBuildInputs =
-            [ perl pkgconfig curl nix libsodium boost autoreconfHook autoconf-archive nlohmann_json ];
+            [ perl pkg-config curl nix libsodium boost autoreconfHook autoconf-archive nlohmann_json ];
 
           configureFlags =
             [ "--with-dbi=${perlPackages.DBI}/${perl.libPrefix}"

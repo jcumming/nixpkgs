@@ -1,5 +1,5 @@
 { stdenv, lib, fetchFromGitHub, writeText, openjdk11_headless, gradleGen
-, pkgconfig, perl, cmake, gperf, gtk2, gtk3, libXtst, libXxf86vm, glib, alsaLib
+, pkg-config, perl, cmake, gperf, gtk2, gtk3, libXtst, libXxf86vm, glib, alsaLib
 , ffmpeg_3, python, ruby }:
 
 let
@@ -22,7 +22,7 @@ let
     };
 
     buildInputs = [ gtk2 gtk3 libXtst libXxf86vm glib alsaLib ffmpeg_3 ];
-    nativeBuildInputs = [ gradle_ perl pkgconfig cmake gperf python ruby ];
+    nativeBuildInputs = [ gradle_ perl pkg-config cmake gperf python ruby ];
 
     dontUseCmakeConfigure = true;
 
@@ -65,9 +65,7 @@ let
     # Downloaded AWT jars differ by platform.
     outputHash = {
       x86_64-linux = "0hmyr5nnjgwyw3fcwqf0crqg9lny27jfirycg3xmkzbcrwqd6qkw";
-      # The build-time dependencies don't currently build for i686, so no
-      # reason to fetch this one correctly either...
-      i686-linux = "0000000000000000000000000000000000000000000000000000";
+      i686-linux = "0hx69p2z96p7jbyq4r20jykkb8gx6r8q2cj7m30pldlsw3650bqx";
     }.${stdenv.system} or (throw "Unsupported platform");
   };
 
@@ -107,7 +105,7 @@ in makePackage {
 
   passthru.deps = deps;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "http://openjdk.java.net/projects/openjfx/";
     license = licenses.gpl2;
     description = "The next-generation Java client toolkit";

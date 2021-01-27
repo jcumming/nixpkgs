@@ -1,14 +1,14 @@
-{ stdenv, fetchFromGitHub, makeWrapper, libpcap }:
+{ lib, stdenv, fetchFromGitHub, makeWrapper, libpcap }:
 
 stdenv.mkDerivation rec {
   pname = "masscan";
-  version = "1.3.0";
+  version = "1.3.1";
 
   src = fetchFromGitHub {
-    owner  = "robertdavidgraham";
-    repo   = "masscan";
-    rev    = version;
-    sha256 = "04nlnficybgxa16kq9fwrrfjsbyiaps4mikfqgdr206fkqk9i05y";
+    owner = "robertdavidgraham";
+    repo = "masscan";
+    rev = version;
+    sha256 = "sha256-gH0zOf2kl6cqws1nB3QPtaAjpvNAgbawXRx77bqJTIc=";
   };
 
   nativeBuildInputs = [ makeWrapper ];
@@ -32,11 +32,12 @@ stdenv.mkDerivation rec {
     wrapProgram $out/bin/masscan --prefix LD_LIBRARY_PATH : "${libpcap}/lib"
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Fast scan of the Internet";
-    homepage    = "https://github.com/robertdavidgraham/masscan";
-    license     = licenses.agpl3;
-    platforms   = platforms.unix;
+    homepage = "https://github.com/robertdavidgraham/masscan";
+    changelog = "https://github.com/robertdavidgraham/masscan/releases/tag/${version}";
+    license = licenses.agpl3Only;
+    platforms = platforms.unix;
     maintainers = with maintainers; [ rnhmjoj ];
   };
 }

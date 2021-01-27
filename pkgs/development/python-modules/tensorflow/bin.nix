@@ -125,7 +125,7 @@ in buildPythonPackage {
         zlib
       ];
 
-      rpath = stdenv.lib.makeLibraryPath (libpaths ++ cudapaths);
+      rpath = lib.makeLibraryPath (libpaths ++ cudapaths);
     in
     lib.optionalString stdenv.isLinux ''
       # This is an array containing all the directories in the tensorflow2
@@ -174,7 +174,7 @@ in buildPythonPackage {
     "tensorflow.python.framework"
   ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Computation using data flow graphs for scalable machine learning";
     homepage = "http://tensorflow.org";
     license = licenses.asl20;

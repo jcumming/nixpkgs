@@ -76,7 +76,7 @@ in {
       musicDirectory = mkOption {
         type = with types; either path (strMatching "(http|https|nfs|smb)://.+");
         default = "${cfg.dataDir}/music";
-        defaultText = ''''${dataDir}/music'';
+        defaultText = "\${dataDir}/music";
         description = ''
           The directory or NFS/SMB network share where MPD reads music from. If left
           as the default value this directory will automatically be created before
@@ -88,7 +88,7 @@ in {
       playlistDirectory = mkOption {
         type = types.path;
         default = "${cfg.dataDir}/playlists";
-        defaultText = ''''${dataDir}/playlists'';
+        defaultText = "\${dataDir}/playlists";
         description = ''
           The directory where MPD stores playlists. If left as the default value
           this directory will automatically be created before the MPD server starts,
@@ -135,7 +135,7 @@ in {
 
         listenAddress = mkOption {
           type = types.listOf types.str;
-          default = "any";
+          default = [];
           description = ''
             A list of address for mpd to listen on. Use an empty list "[]" to bind to all addresses. Ensure addresses are reachable by clients.
           '';
@@ -154,7 +154,7 @@ in {
       dbFile = mkOption {
         type = types.nullOr types.str;
         default = "${cfg.dataDir}/tag_cache";
-        defaultText = ''''${dataDir}/tag_cache'';
+        defaultText = "\${dataDir}/tag_cache";
         description = ''
           The path to MPD's database. If set to <literal>null</literal> the
           parameter is omitted from the configuration.
@@ -200,9 +200,7 @@ in {
         '';
       };
     };
-
   };
-
 
   ###### implementation
 
@@ -233,9 +231,7 @@ in {
           ExecStartPre = pkgs.writeShellScript "mpd-start-pre" ''
             set -euo pipefail
             install -m 600 ${mpdConf} /run/mpd/mpd.conf
-            ${pkgs.replace}/bin/replace-literal -fe ${
-              concatStringsSep " -a " (imap0 (i: c: "\"{{password-${toString i}}}\" \"$(cat ${c.passwordFile})\"") cfg.credentials)
-            } /run/mpd/mpd.conf
+            ${optionalString (cfg.credentials != []) (credentialsPlaceholder cfg.credentials)}
           '';
           RuntimeDirectory = "mpd";
           Type = "notify";

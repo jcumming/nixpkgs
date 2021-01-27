@@ -1,4 +1,4 @@
-{ stdenv, buildPackages, fetchurl, fetchpatch, flex, cracklib, db4
+{ lib, stdenv, buildPackages, fetchurl, fetchpatch, flex, cracklib, db4
 , ckpwdDir ? "/run/wrappers/bin", nixosTests 
 }:
 
@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-IB1AcwsRNbGzzeoJ8sKKxjTXMYHM0Bcs7d7jZJxXkvw=";
   };
 
-  patches = stdenv.lib.optionals (stdenv.hostPlatform.libc == "musl") [
+  patches = lib.optionals (stdenv.hostPlatform.libc == "musl") [
     (fetchpatch {
       url = "https://git.alpinelinux.org/aports/plain/main/linux-pam/fix-compat.patch?id=05a62bda8ec255d7049a2bd4cf0fdc4b32bdb2cc";
       sha256 = "1h5yp5h2mqp1fcwiwwklyfpa69a3i03ya32pivs60fd7g5bqa7sf";
@@ -20,9 +20,6 @@ stdenv.mkDerivation rec {
       url = "https://git.alpinelinux.org/aports/plain/main/linux-pam/libpam-fix-build-with-eglibc-2.16.patch?id=05a62bda8ec255d7049a2bd4cf0fdc4b32bdb2cc";
       sha256 = "1ib6shhvgzinjsc603k2x1lxh9dic6qq449fnk110gc359m23j81";
     })
-    # From adelie's package repo, using local copy since it seems to be currently offline.
-    # (we previously used similar patch from void, but stopped working with update to 1.3.1)
-    ./musl-fix-pam_exec.patch
   ];
 
   outputs = [ "out" "doc" "man" /* "modules" */ ];
@@ -49,7 +46,7 @@ stdenv.mkDerivation rec {
       # instead of trying to use the one installed into the store.
       sed -e 's%$(sbindir)/unix_chkpwd%${ckpwdDir}/unix_chkpwd%' -i modules/pam_unix/Makefile.am
       sed -e 's%$(sbindir)/unix_chkpwd%${ckpwdDir}/unix_chkpwd%' -i modules/pam_unix/Makefile.in
-  '' + stdenv.lib.optionalString (stdenv.hostPlatform.libc == "musl") ''
+  '' + lib.optionalString (stdenv.hostPlatform.libc == "musl") ''
       # export ac_cv_search_crypt=no
       # (taken from Alpine linux, apparently insecure but also doesn't build O:))
       # disable insecure modules
@@ -72,7 +69,7 @@ stdenv.mkDerivation rec {
     inherit (nixosTests) pam-oath-login pam-u2f shadow;
   };
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "http://www.linux-pam.org/";
     description = "Pluggable Authentication Modules, a flexible mechanism for authenticating user";
     platforms = platforms.linux;

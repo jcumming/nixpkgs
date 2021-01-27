@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, crystal }:
+{ lib, fetchFromGitHub, crystal }:
 
 crystal.buildCrystalPackage rec {
   pname = "ameba";
@@ -11,7 +11,7 @@ crystal.buildCrystalPackage rec {
     sha256 = "0yhb8vfrfzsm3a45h2jmcrn1n7jy3zn2hwims3dikgq8kaggws9y";
   };
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A static code analysis tool for Crystal";
     homepage = "https://crystal-ameba.github.io";
     license = licenses.mit;

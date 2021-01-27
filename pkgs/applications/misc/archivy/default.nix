@@ -1,4 +1,4 @@
-{ stdenv, lib, python3, fetchPypi, appdirs, attrs, requests,
+{ lib, python3, fetchPypi, appdirs, attrs, requests,
 beautifulsoup4, click-plugins, elasticsearch, flask_login, flask_wtf,
 pypandoc, python-dotenv, python-frontmatter, tinydb, validators,
 watchdog, wtforms }:
@@ -47,7 +47,7 @@ python3.pkgs.buildPythonApplication rec {
   # __init__.py attempts to mkdir in read-only file system
   doCheck = false;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Self-hosted knowledge repository";
     homepage = "https://archivy.github.io";
     license = licenses.mit;

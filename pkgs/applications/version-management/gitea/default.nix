@@ -1,10 +1,11 @@
-{ stdenv, buildGoPackage, fetchurl, makeWrapper
+{ lib, buildGoPackage, fetchurl, makeWrapper
 , git, bash, gzip, openssh, pam
 , sqliteSupport ? true
 , pamSupport ? true
+, nixosTests
 }:
 
-with stdenv.lib;
+with lib;
 
 buildGoPackage rec {
   pname = "gitea";
@@ -37,7 +38,7 @@ buildGoPackage rec {
 
   preBuild = let
     tags = optional pamSupport "pam"
-        ++ optional sqliteSupport "sqlite";
+        ++ optional sqliteSupport "sqlite sqlite_unlock_notify";
     tagsString = concatStringsSep " " tags;
   in ''
     export buildFlagsArray=(
@@ -59,6 +60,8 @@ buildGoPackage rec {
   '';
 
   goPackagePath = "code.gitea.io/gitea";
+
+  passthru.tests.gitea = nixosTests.gitea;
 
   meta = {
     description = "Git with a cup of tea";

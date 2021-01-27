@@ -56,7 +56,7 @@ self: super:
   av = super.av.overridePythonAttrs (
     old: {
       nativeBuildInputs = old.nativeBuildInputs ++ [
-        pkgs.pkgconfig
+        pkgs.pkg-config
       ];
       buildInputs = old.buildInputs ++ [ pkgs.ffmpeg_4 ];
     }
@@ -127,7 +127,7 @@ self: super:
   cryptography = super.cryptography.overridePythonAttrs (
     old: {
       nativeBuildInputs = old.nativeBuildInputs or [ ]
-        ++ stdenv.lib.optional (stdenv.buildPlatform != stdenv.hostPlatform) self.python.pythonForBuild.pkgs.cffi;
+        ++ lib.optional (stdenv.buildPlatform != stdenv.hostPlatform) self.python.pythonForBuild.pkgs.cffi;
       buildInputs = old.buildInputs ++ [ pkgs.openssl ];
     }
   );
@@ -234,8 +234,8 @@ self: super:
   h5py = super.h5py.overridePythonAttrs (
     old:
     if old.format != "wheel" then rec {
-      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.pkgconfig ];
-      buildInputs = old.buildInputs ++ [ pkgs.hdf5 self.pkgconfig self.cython ];
+      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.pkg-config ];
+      buildInputs = old.buildInputs ++ [ pkgs.hdf5 self.pkg-config self.cython ];
       configure_flags = "--hdf5=${pkgs.hdf5}";
       postConfigure = ''
         ${self.python.executable} setup.py configure ${configure_flags}
@@ -245,7 +245,7 @@ self: super:
 
   horovod = super.horovod.overridePythonAttrs (
     old: {
-      propagatedBuildInputs = old.propagatedBuildInputs ++ [ pkgs.openmpi ];
+      propagatedBuildInputs = old.propagatedBuildInputs ++ [ pkgs.mpi ];
     }
   );
 
@@ -386,7 +386,7 @@ self: super:
   );
 
   libvirt-python = super.libvirt-python.overridePythonAttrs ({ nativeBuildInputs ? [ ], ... }: {
-    nativeBuildInputs = nativeBuildInputs ++ [ pkgs.pkgconfig ];
+    nativeBuildInputs = nativeBuildInputs ++ [ pkgs.pkg-config ];
     propagatedBuildInputs = [ pkgs.libvirt ];
   });
 
@@ -407,7 +407,7 @@ self: super:
         export LLVM_CONFIG=${pkgs.llvm}/bin/llvm-config
       '';
 
-      __impureHostDeps = pkgs.stdenv.lib.optionals pkgs.stdenv.isDarwin [ "/usr/lib/libm.dylib" ];
+      __impureHostDeps = pkgs.lib.optionals pkgs.stdenv.isDarwin [ "/usr/lib/libm.dylib" ];
 
       passthru = old.passthru // { llvm = pkgs.llvm; };
     }
@@ -421,7 +421,7 @@ self: super:
 
   lxml = super.lxml.overridePythonAttrs (
     old: {
-      nativeBuildInputs = with pkgs; old.nativeBuildInputs ++ [ pkgconfig libxml2.dev libxslt.dev ];
+      nativeBuildInputs = with pkgs; old.nativeBuildInputs ++ [ pkg-config libxml2.dev libxslt.dev ];
       buildInputs = with pkgs; old.buildInputs ++ [ libxml2 libxslt ];
     }
   );
@@ -443,7 +443,7 @@ self: super:
       inherit (pkgs.darwin.apple_sdk.frameworks) Cocoa;
     in
     {
-      NIX_CFLAGS_COMPILE = stdenv.lib.optionalString stdenv.isDarwin "-I${pkgs.libcxx}/include/c++/v1";
+      NIX_CFLAGS_COMPILE = lib.optionalString stdenv.isDarwin "-I${pkgs.libcxx}/include/c++/v1";
 
       XDG_RUNTIME_DIR = "/tmp";
 
@@ -452,7 +452,7 @@ self: super:
         ++ lib.optional stdenv.isDarwin [ Cocoa ];
 
       nativeBuildInputs = old.nativeBuildInputs ++ [
-        pkgs.pkgconfig
+        pkgs.pkg-config
       ];
 
       postPatch = ''
@@ -466,9 +466,9 @@ self: super:
         pkgs.libpng
         pkgs.freetype
       ]
-        ++ stdenv.lib.optionals enableGtk3 [ pkgs.cairo self.pycairo pkgs.gtk3 pkgs.gobject-introspection self.pygobject3 ]
-        ++ stdenv.lib.optionals enableTk [ pkgs.tcl pkgs.tk self.tkinter pkgs.libX11 ]
-        ++ stdenv.lib.optionals enableQt [ self.pyqt5 ]
+        ++ lib.optionals enableGtk3 [ pkgs.cairo self.pycairo pkgs.gtk3 pkgs.gobject-introspection self.pygobject3 ]
+        ++ lib.optionals enableTk [ pkgs.tcl pkgs.tk self.tkinter pkgs.libX11 ]
+        ++ lib.optionals enableQt [ self.pyqt5 ]
       ;
 
       inherit (super.matplotlib) patches;
@@ -528,14 +528,14 @@ self: super:
             { }
             {
               mpi = {
-                mpicc = "${pkgs.openmpi.outPath}/bin/mpicc";
+                mpicc = "${pkgs.mpi.outPath}/bin/mpicc";
               };
             }
         );
       };
     in
     {
-      propagatedBuildInputs = old.propagatedBuildInputs ++ [ pkgs.openmpi ];
+      propagatedBuildInputs = old.propagatedBuildInputs ++ [ pkgs.mpi ];
       enableParallelBuilding = true;
       preBuild = ''
         ln -sf ${cfg} mpi.cfg
@@ -637,7 +637,7 @@ self: super:
 
   pillow = super.pillow.overridePythonAttrs (
     old: {
-      nativeBuildInputs = [ pkgs.pkgconfig ] ++ old.nativeBuildInputs;
+      nativeBuildInputs = [ pkgs.pkg-config ] ++ old.nativeBuildInputs;
       buildInputs = with pkgs; [ freetype libjpeg zlib libtiff libwebp tcl lcms2 ] ++ old.buildInputs;
     }
   );
@@ -706,7 +706,7 @@ self: super:
 
             nativeBuildInputs = old.nativeBuildInputs ++ [
               self.cython
-              pkgs.pkgconfig
+              pkgs.pkg-config
               pkgs.cmake
             ];
 
@@ -755,7 +755,7 @@ self: super:
         nativeBuildInputs = old.nativeBuildInputs ++ [
           pkgs.meson
           pkgs.ninja
-          pkgs.pkgconfig
+          pkgs.pkg-config
         ];
 
         propagatedBuildInputs = old.propagatedBuildInputs ++ [
@@ -822,7 +822,7 @@ self: super:
 
   pygobject = super.pygobject.overridePythonAttrs (
     old: {
-      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.pkgconfig ];
+      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.pkg-config ];
       buildInputs = old.buildInputs ++ [ pkgs.glib pkgs.gobject-introspection ];
     }
   );
@@ -873,7 +873,7 @@ self: super:
         format = "other";
 
         nativeBuildInputs = old.nativeBuildInputs ++ [
-          pkgs.pkgconfig
+          pkgs.pkg-config
           pkgs.qt5.qmake
           pkgs.xorg.lndir
           pkgs.qt5.qtbase
@@ -1012,7 +1012,7 @@ self: super:
 
   pyzmq = super.pyzmq.overridePythonAttrs (
     old: {
-      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.pkgconfig ];
+      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.pkg-config ];
       propagatedBuildInputs = old.propagatedBuildInputs ++ [ pkgs.zeromq ];
     }
   );
@@ -1117,7 +1117,7 @@ self: super:
   tables = super.tables.overridePythonAttrs (
     old: {
       HDF5_DIR = "${pkgs.hdf5}";
-      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.pkgconfig ];
+      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.pkg-config ];
       propagatedBuildInputs = old.nativeBuildInputs ++ [ pkgs.hdf5 self.numpy self.numexpr ];
     }
   );

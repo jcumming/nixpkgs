@@ -1,6 +1,6 @@
-{ stdenv
+{ lib, stdenv
 , fetchFromGitLab
-, pkgconfig
+, pkg-config
 , intltool
 , automake111x
 , autoconf
@@ -25,7 +25,7 @@ in stdenv.mkDerivation {
   };
 
   nativeBuildInputs = with gnome2; [
-    pkgconfig
+    pkg-config
     intltool
     automake111x
     autoconf
@@ -48,7 +48,7 @@ in stdenv.mkDerivation {
   # glib-2.62 deprecations
   NIX_CFLAGS_COMPILE = "-DGLIB_DISABLE_DEPRECATION_WARNINGS";
 
-  preConfigure = ''./autogen.sh'';
+  preConfigure = "./autogen.sh";
   configureFlags = [
     "--enable-python"
     "--enable-python-plugin"
@@ -56,7 +56,7 @@ in stdenv.mkDerivation {
 
   enableParallelBuilding = true;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://wiki.gnome.org/Apps/Planner";
     description = "Project management application for GNOME";
     longDescription = ''
