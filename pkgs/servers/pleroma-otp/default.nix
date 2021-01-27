@@ -11,19 +11,19 @@
 }:
 stdenv.mkDerivation {
   pname = "pleroma-otp";
-  version = "2.2.1";
+  version = "2.2.2";
 
   # To find the latest binary release stable link, have a look at
   # the CI pipeline for the latest commit of the stable branch
   # https://git.pleroma.social/pleroma/pleroma/-/tree/stable
   src = {
     aarch64-linux = fetchurl {
-      url = "https://git.pleroma.social/pleroma/pleroma/-/jobs/171765/artifacts/download";
-      sha256 = "14yc53vs7wyws2ni5phl6j025bgcggk5cwnsxsx2cnfqlzz9rhww";
+      url = "https://git.pleroma.social/pleroma/pleroma/-/jobs/175288/artifacts/download";
+      sha256 = "107kp5zqwq1lixk1cwkx4v7zpm0h248xzlm152aj36ghb43j2snw";
     };
     x86_64-linux = fetchurl {
-      url = "https://git.pleroma.social/pleroma/pleroma/-/jobs/171761/artifacts/download";
-      sha256 = "0z93qvyda5kh794svk00pgbzhm5pv663rjkzkwwb6sfk7f9287ir";
+      url = "https://git.pleroma.social/pleroma/pleroma/-/jobs/175284/artifacts/download";
+      sha256 = "1c6l04gga9iigm249ywwcrjg6wzy8iiid652mws3j9dnl71w2sim";
     };
   }."${stdenv.hostPlatform.system}";
 

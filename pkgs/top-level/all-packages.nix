@@ -10186,6 +10186,7 @@ in
           headless = true;
           inherit (gnome2) GConf gnome_vfs;
           openjdk13-bootstrap = callPackage ../development/compilers/openjdk/12.nix {
+            stdenv = gcc8Stdenv; /* build segfaults with gcc9 or newer, so use gcc8 like Debian does */
             openjfx = openjfx11; /* need this despite next line :-( */
             enableJavaFX = false;
             headless = true;
@@ -25284,7 +25285,7 @@ in
   }).overrideAttrs (oldAttrs: rec {
     pname = "vim-darwin";
     meta = {
-      platforms = stdenv.lib.platforms.darwin;
+      platforms = lib.platforms.darwin;
     };
   });
 
@@ -28898,18 +28899,6 @@ in
   nut = callPackage ../applications/misc/nut { };
 
   solfege = python3Packages.callPackage ../misc/solfege { };
-
-  disnix = callPackage ../tools/package-management/disnix { };
-
-  dysnomia = callPackage ../tools/package-management/disnix/dysnomia (config.disnix or {
-    inherit (pythonPackages) supervisor;
-  });
-
-  dydisnix = callPackage ../tools/package-management/disnix/dydisnix { };
-
-  disnixos = callPackage ../tools/package-management/disnix/disnixos { };
-
-  DisnixWebService = callPackage ../tools/package-management/disnix/DisnixWebService { };
 
   lkproof = callPackage ../tools/typesetting/tex/lkproof { };
 
