@@ -103,8 +103,6 @@ in stdenv.mkDerivation {
       qtPluginPath = "${qtbase.bin}/${qtbase.qtPluginPrefix}:${qtsvg.bin}/${qtbase.qtPluginPrefix}:${qtwayland.bin}/${qtbase.qtPluginPrefix}";
     })
   ++ [ 
-    # when I use fetchpatch to downloads from the virtualbox trac ticket, it provides about an extra 200kiB of nulls at the end of the patch?
-    ./linux-5.10-trac-20055.patch
     ./qtx11extras.patch
   ];
 
