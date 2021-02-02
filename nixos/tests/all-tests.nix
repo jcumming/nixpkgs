@@ -155,6 +155,7 @@ in
   # not on other platforms.
   hibernate = handleTestOn ["x86_64-linux"] ./hibernate.nix {};
   hitch = handleTest ./hitch {};
+  hledger-web = handleTest ./hledger-web.nix {};
   hocker-fetchdocker = handleTest ./hocker-fetchdocker {};
   home-assistant = handleTest ./home-assistant.nix {};
   hostname = handleTest ./hostname.nix {};
@@ -188,6 +189,7 @@ in
   kernel-latest = handleTest ./kernel-latest.nix {};
   kernel-lts = handleTest ./kernel-lts.nix {};
   kernel-testing = handleTest ./kernel-testing.nix {};
+  kernel-latest-ath-user-regd = handleTest ./kernel-latest-ath-user-regd.nix {};
   keycloak = discoverTests (import ./keycloak.nix);
   keymap = handleTest ./keymap.nix {};
   knot = handleTest ./knot.nix {};
