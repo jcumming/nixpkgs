@@ -859,7 +859,7 @@ in
 
     security.wrappers = {
       unix_chkpwd = {
-        source = "${pkgs.pam}/sbin/unix_chkpwd.orig";
+        source = "${pkgs.pam}/sbin/unix_chkpwd";
         owner = "root";
         setuid = true;
       };

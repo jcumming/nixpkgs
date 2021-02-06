@@ -46,12 +46,15 @@
   ./hardware/cpu/intel-microcode.nix
   ./hardware/digitalbitbox.nix
   ./hardware/device-tree.nix
+  ./hardware/i2c.nix
+  ./hardware/sensor/hddtemp.nix
   ./hardware/sensor/iio.nix
   ./hardware/keyboard/zsa.nix
   ./hardware/ksm.nix
   ./hardware/ledger.nix
   ./hardware/logitech.nix
   ./hardware/mcelog.nix
+  ./hardware/network/ath-user-regd.nix
   ./hardware/network/b43.nix
   ./hardware/network/intel-2200bg.nix
   ./hardware/nitrokey.nix
@@ -175,7 +178,6 @@
   ./programs/tsm-client.nix
   ./programs/udevil.nix
   ./programs/usbtop.nix
-  ./programs/venus.nix
   ./programs/vim.nix
   ./programs/wavemon.nix
   ./programs/waybar.nix
@@ -357,6 +359,7 @@
   ./services/games/terraria.nix
   ./services/hardware/acpid.nix
   ./services/hardware/actkbd.nix
+  ./services/hardware/auto-cpufreq.nix
   ./services/hardware/bluetooth.nix
   ./services/hardware/bolt.nix
   ./services/hardware/brltty.nix
@@ -454,6 +457,7 @@
   ./services/misc/domoticz.nix
   ./services/misc/errbot.nix
   ./services/misc/etcd.nix
+  ./services/misc/etebase-server.nix
   ./services/misc/ethminer.nix
   ./services/misc/exhibitor.nix
   ./services/misc/felix.nix
@@ -608,6 +612,8 @@
   ./services/networking/atftpd.nix
   ./services/networking/avahi-daemon.nix
   ./services/networking/babeld.nix
+  ./services/networking/bee.nix
+  ./services/networking/bee-clef.nix
   ./services/networking/biboumi.nix
   ./services/networking/bind.nix
   ./services/networking/bitcoind.nix
@@ -872,10 +878,12 @@
   ./services/web-apps/documize.nix
   ./services/web-apps/dokuwiki.nix
   ./services/web-apps/engelsystem.nix
+  ./services/web-apps/galene.nix
   ./services/web-apps/gerrit.nix
   ./services/web-apps/gotify-server.nix
   ./services/web-apps/grocy.nix
   ./services/web-apps/hedgedoc.nix
+  ./services/web-apps/hledger-web.nix
   ./services/web-apps/icingaweb2/icingaweb2.nix
   ./services/web-apps/icingaweb2/module-monitoring.nix
   ./services/web-apps/ihatemoney
