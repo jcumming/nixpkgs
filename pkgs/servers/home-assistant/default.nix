@@ -1,4 +1,4 @@
-{ stdenv, nixosTests, lib, fetchurl, fetchFromGitHub, fetchpatch, python3, protobuf3_6
+{ stdenv, nixosTests, lib, fetchFromGitHub, python3
 
 # Look up dependencies of specified components in component-packages.nix
 , extraComponents ? [ ]
@@ -57,7 +57,7 @@ let
   extraBuildInputs = extraPackages py.pkgs;
 
   # Don't forget to run parse-requirements.py after updating
-  hassVersion = "2021.2.1";
+  hassVersion = "2021.2.3";
 
 in with py.pkgs; buildPythonApplication rec {
   pname = "homeassistant";
@@ -76,7 +76,7 @@ in with py.pkgs; buildPythonApplication rec {
     owner = "home-assistant";
     repo = "core";
     rev = version;
-    sha256 = "0a8l23n6j0x1hjcifajgbrip7b4l8xcgxn2wa1lcg27p1cghrv5m";
+    sha256 = "0s1jcd94wwvmvzq86w8s9dwfvnmjs9l661z9pc6kwgagggjjgd8c";
   };
 
   # leave this in, so users don't have to constantly update their downstream patch handling
@@ -181,7 +181,8 @@ in with py.pkgs; buildPythonApplication rec {
   ];
 
   pytestFlagsArray = [
-    "-n auto"
+    # limit amout of runners to reduce race conditions
+    "-n 2"
     # assign tests grouped by file to workers
     "--dist loadfile"
     # don't bulk test all components

@@ -658,7 +658,7 @@ self: super: {
   });
 
   lf-vim = super.lf-vim.overrideAttrs (old: {
-    dependencies = with super; [ bclose-vim ];
+    dependencies = with super; [ vim-bbye ];
   });
 
   vim-stylish-haskell = super.vim-stylish-haskell.overrideAttrs (old: {
@@ -739,6 +739,15 @@ self: super: {
       '';
 
     meta.platforms = lib.platforms.all;
+  });
+
+  compe-tabnine = super.compe-tabnine.overrideAttrs (old: {
+    buildInputs = [ tabnine ];
+
+    postFixup = ''
+      mkdir $target/binaries
+      ln -s ${tabnine}/bin/TabNine $target/binaries/TabNine_$(uname -s)
+    '';
   });
 
   completion-tabnine = super.completion-tabnine.overrideAttrs (old: {

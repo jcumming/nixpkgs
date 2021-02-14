@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2021.2.1";
+  version = "2021.2.3";
   components = {
     "abode" = ps: with ps; [ abodepy ];
     "accuweather" = ps: with ps; [ accuweather ];
@@ -16,7 +16,7 @@
     "agent_dvr" = ps: with ps; [ agent-py ];
     "air_quality" = ps: with ps; [ ];
     "airly" = ps: with ps; [ airly ];
-    "airnow" = ps: with ps; [ ]; # missing inputs: pyairnow
+    "airnow" = ps: with ps; [ pyairnow ];
     "airvisual" = ps: with ps; [ pyairvisual ];
     "aladdin_connect" = ps: with ps; [ ]; # missing inputs: aladdin_connect
     "alarm_control_panel" = ps: with ps; [ ];
@@ -195,7 +195,7 @@
     "dwd_weather_warnings" = ps: with ps; [ ]; # missing inputs: dwdwfsapi
     "dweet" = ps: with ps; [ ]; # missing inputs: dweepy
     "dynalite" = ps: with ps; [ ]; # missing inputs: dynalite_devices
-    "dyson" = ps: with ps; [ aiohttp-cors zeroconf ]; # missing inputs: libpurecool
+    "dyson" = ps: with ps; [ aiohttp-cors libpurecool zeroconf ];
     "eafm" = ps: with ps; [ aioeafm ];
     "ebox" = ps: with ps; [ ]; # missing inputs: pyebox
     "ebusd" = ps: with ps; [ ]; # missing inputs: ebusdpy
@@ -561,7 +561,7 @@
     "nsw_rural_fire_service_feed" = ps: with ps; [ ]; # missing inputs: aio_geojson_nsw_rfs_incidents
     "nuheat" = ps: with ps; [ ]; # missing inputs: nuheat
     "nuimo_controller" = ps: with ps; [ ]; # missing inputs: --only-binary=all nuimo
-    "nuki" = ps: with ps; [ ]; # missing inputs: pynuki
+    "nuki" = ps: with ps; [ pynuki ];
     "numato" = ps: with ps; [ ]; # missing inputs: numato-gpio
     "number" = ps: with ps; [ ];
     "nut" = ps: with ps; [ ]; # missing inputs: pynut2
@@ -592,7 +592,7 @@
     "opensensemap" = ps: with ps; [ opensensemap-api ];
     "opensky" = ps: with ps; [ ];
     "opentherm_gw" = ps: with ps; [ ]; # missing inputs: pyotgw
-    "openuv" = ps: with ps; [ ]; # missing inputs: pyopenuv
+    "openuv" = ps: with ps; [ pyopenuv ];
     "openweathermap" = ps: with ps; [ pyowm ];
     "opnsense" = ps: with ps; [ pyopnsense ];
     "opple" = ps: with ps; [ ]; # missing inputs: pyoppleio
@@ -666,7 +666,7 @@
     "random" = ps: with ps; [ ];
     "raspihats" = ps: with ps; [ smbus-cffi ]; # missing inputs: raspihats
     "raspyrfm" = ps: with ps; [ ]; # missing inputs: raspyrfm-client
-    "recollect_waste" = ps: with ps; [ ]; # missing inputs: aiorecollect
+    "recollect_waste" = ps: with ps; [ aiorecollect ];
     "recorder" = ps: with ps; [ sqlalchemy ];
     "recswitch" = ps: with ps; [ ]; # missing inputs: pyrecswitch
     "reddit" = ps: with ps; [ praw ];
@@ -901,7 +901,7 @@
     "verisure" = ps: with ps; [ jsonpath vsure ];
     "versasense" = ps: with ps; [ ]; # missing inputs: pyversasense
     "version" = ps: with ps; [ pyhaversion ];
-    "vesync" = ps: with ps; [ ]; # missing inputs: pyvesync
+    "vesync" = ps: with ps; [ pyvesync ];
     "viaggiatreno" = ps: with ps; [ ];
     "vicare" = ps: with ps; [ ]; # missing inputs: PyViCare
     "vilfo" = ps: with ps; [ ]; # missing inputs: vilfo-api-client
@@ -965,7 +965,7 @@
     "zamg" = ps: with ps; [ ];
     "zengge" = ps: with ps; [ ]; # missing inputs: zengge
     "zeroconf" = ps: with ps; [ aiohttp-cors zeroconf ];
-    "zerproc" = ps: with ps; [ ]; # missing inputs: pyzerproc
+    "zerproc" = ps: with ps; [ pyzerproc ];
     "zestimate" = ps: with ps; [ xmltodict ];
     "zha" = ps: with ps; [ bellows pyserial-asyncio pyserial zha-quirks zigpy-cc zigpy-deconz zigpy-xbee zigpy-zigate zigpy-znp zigpy ];
     "zhong_hong" = ps: with ps; [ ]; # missing inputs: zhong_hong_hvac
