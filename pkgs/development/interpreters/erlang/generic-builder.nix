@@ -1,7 +1,6 @@
 { pkgs, lib, stdenv, fetchFromGitHub, makeWrapper, gawk, gnum4, gnused
 , libxml2, libxslt, ncurses, openssl, perl, autoconf
-# TODO: use jdk https://github.com/NixOS/nixpkgs/pull/89731
-, openjdk8 ? null # javacSupport
+, openjdk11 ? null # javacSupport
 , unixODBC ? null # odbcSupport
 , libGL ? null, libGLU ? null, wxGTK ? null, wxmac ? null, xorg ? null
 , parallelBuild ? false
@@ -17,9 +16,10 @@
 , enableThreads ? true
 , enableSmpSupport ? true
 , enableKernelPoll ? true
-, javacSupport ? false, javacPackages ? [ openjdk8 ]
+, javacSupport ? false, javacPackages ? [ openjdk11 ]
 , odbcSupport ? false, odbcPackages ? [ unixODBC ]
 , withSystemd ? stdenv.isLinux # systemd support in epmd
+, opensslPackage ? openssl
 , wxPackages ? [ libGL libGLU wxGTK xorg.libX11 ]
 , preUnpack ? "", postUnpack ? ""
 , patches ? [], patchPhase ? "", prePatch ? "", postPatch ? ""
@@ -37,7 +37,7 @@ assert wxSupport -> (if stdenv.isDarwin
   else libGL != null && libGLU != null && wxGTK != null && xorg != null);
 
 assert odbcSupport -> unixODBC != null;
-assert javacSupport -> openjdk8 != null;
+assert javacSupport -> openjdk11 != null;
 
 let
   inherit (lib) optional optionals optionalAttrs optionalString;
@@ -52,7 +52,7 @@ in stdenv.mkDerivation ({
 
   nativeBuildInputs = [ autoconf makeWrapper perl gnum4 libxslt libxml2 ];
 
-  buildInputs = [ ncurses openssl ]
+  buildInputs = [ ncurses opensslPackage ]
     ++ optionals wxSupport wxPackages2
     ++ optionals odbcSupport odbcPackages
     ++ optionals javacSupport javacPackages
@@ -81,7 +81,7 @@ in stdenv.mkDerivation ({
     ./otp_build autoconf
   '';
 
-  configureFlags = [ "--with-ssl=${openssl.dev}" ]
+  configureFlags = [ "--with-ssl=${lib.getDev opensslPackage}" ]
     ++ optional enableThreads "--enable-threads"
     ++ optional enableSmpSupport "--enable-smp-support"
     ++ optional enableKernelPoll "--enable-kernel-poll"

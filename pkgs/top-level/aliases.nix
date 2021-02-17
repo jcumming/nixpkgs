@@ -113,6 +113,15 @@ mapAliases ({
   cpp_ethereum = throw "cpp_ethereum has been removed; abandoned upstream."; # added 2020-11-30
   cryptol = throw "cryptol was removed due to prolonged broken build"; # added 2020-08-21
   cpp-gsl = microsoft_gsl; # added 2019-05-24
+  cudatoolkit_6 = throw "cudatoolkit_6 has been removed in favor of newer versions"; # added 2021-02-14
+  cudatoolkit_65 = throw "cudatoolkit_65 has been removed in favor of newer versions"; # added 2021-02-14
+  cudatoolkit_7 = throw "cudatoolkit_7 has been removed in favor of newer versions"; # added 2021-02-14
+  cudatoolkit_7_5 = throw "cudatoolkit_7_5 has been removed in favor of newer versions"; # added 2021-02-14
+  cudatoolkit_8 = throw "cudatoolkit_8 has been removed in favor of newer versions"; # added 2021-02-14
+  cudnn_cudatoolkit_7 = throw "cudnn_cudatoolkit_7 has been removed in favor of newer versions"; # added 2021-02-14
+  cudnn_cudatoolkit_7_5 = throw "cudnn_cudatoolkit_7_5 has been removed in favor of newer versions"; # added 2021-02-14
+  cudnn6_cudatoolkit_8 = throw "cudnn6_cudatoolkit_8 has been removed in favor of newer versions"; # added 2021-02-14
+  cudnn_cudatoolkit_8 = throw "cudnn_cudatoolkit_8 has been removed in favor of newer versions"; # added 2021-02-14
   cupsBjnp = cups-bjnp; # added 2016-01-02
   cups_filters = cups-filters; # added 2016-08
   cups-googlecloudprint = throw "Google Cloudprint is officially discontinued since Jan 2021, more info https://support.google.com/chrome/a/answer/9633006";
@@ -352,6 +361,7 @@ mapAliases ({
 
   linux-steam-integration = throw "linux-steam-integration has been removed, as the upstream project has been abandoned"; # added 2020-05-22
   loadcaffe = throw "loadcaffe has been removed, as the upstream project has been abandoned"; # added 2020-03-28
+  lprof = throw "lprof has been removed as it's unmaintained upstream and broken in nixpkgs since a while ago"; # added 2021-02-15
   lttngTools = lttng-tools;  # added 2014-07-31
   lttngUst = lttng-ust;  # added 2014-07-31
   lua5_1_sockets = lua51Packages.luasocket; # added 2017-05-02
@@ -564,6 +574,7 @@ mapAliases ({
   retroshare06 = retroshare;
   gtk-recordmydesktop = throw "gtk-recordmydesktop has been removed from nixpkgs, as it's unmaintained and uses deprecated libraries"; # added 2019-12-10
   qt-recordmydesktop = throw "qt-recordmydesktop has been removed from nixpkgs, as it's abandoned and uses deprecated libraries"; # added 2019-12-10
+  qt-3 = throw "qt-3 has been removed from nixpkgs, as it's unmaintained and insecure"; # added 2021-02-15
   rfkill = throw "rfkill has been removed, as it's included in util-linux"; # added 2020-08-23
   riak-cs = throw "riak-cs is not maintained anymore"; # added 2020-10-14
   rkt = throw "rkt was archived by upstream"; # added 2020-05-16
@@ -576,6 +587,8 @@ mapAliases ({
   ruby_2_4 = throw "ruby_2_4 was deprecated in 2019-12: use a newer version of ruby";
   ruby_2_5_0 = throw "ruby_2_5_0 was deprecated on 2018-02-13: use a newer version of ruby";
   rubyPackages_2_4 = throw "rubyPackages_2_4 was deprecated in 2019-12: use a newer version of rubyPackages instead";
+  ruby_2_5 = throw "ruby_2_5 was deprecated in 2021-02: use a newer version of ruby";
+  rubyPackages_2_5 = throw "rubyPackages_2_5 was deprecated in 2021-02: use a newer version of rubyPackages instead";
   rubygems = throw "rubygems was deprecated on 2016-03-02: rubygems is now bundled with ruby";
   rubyMinimal = throw "rubyMinimal was removed due to being unused";
   rxvt_unicode-with-plugins = rxvt-unicode; # added 2020-02-02

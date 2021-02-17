@@ -80,6 +80,7 @@
   ./hardware/video/displaylink.nix
   ./hardware/video/hidpi.nix
   ./hardware/video/nvidia.nix
+  ./hardware/video/switcheroo-control.nix
   ./hardware/video/uvcvideo/default.nix
   ./hardware/video/webcam/facetimehd.nix
   ./hardware/xpadneo.nix
@@ -320,7 +321,8 @@
   ./services/desktops/gsignond.nix
   ./services/desktops/gvfs.nix
   ./services/desktops/malcontent.nix
-  ./services/desktops/pipewire.nix
+  ./services/desktops/pipewire/pipewire.nix
+  ./services/desktops/pipewire/pipewire-media-session.nix
   ./services/desktops/gnome3/at-spi2-core.nix
   ./services/desktops/gnome3/chrome-gnome-shell.nix
   ./services/desktops/gnome3/evolution-data-server.nix
