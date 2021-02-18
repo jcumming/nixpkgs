@@ -7,9 +7,7 @@
 , ruby
 , which
 , fetchFromGitHub
-, fetchgit
 , fetchurl
-, fetchzip
 , fetchpatch
 , llvmPackages
 , rustPlatform
@@ -658,7 +656,7 @@ self: super: {
   });
 
   lf-vim = super.lf-vim.overrideAttrs (old: {
-    dependencies = with super; [ bclose-vim ];
+    dependencies = with super; [ vim-bbye ];
   });
 
   vim-stylish-haskell = super.vim-stylish-haskell.overrideAttrs (old: {
@@ -731,7 +729,7 @@ self: super: {
             libiconv
           ];
 
-          cargoSha256 = "mq5q+cIWXDMeoZfumX1benulrP/AWKZnd8aI0OzY55c=";
+          cargoSha256 = "0r3ldipdfzhdivgc43bv31c1g9hl458yznabmfzxr2phpyvq2dnn";
         };
       in
       ''
@@ -739,6 +737,15 @@ self: super: {
       '';
 
     meta.platforms = lib.platforms.all;
+  });
+
+  compe-tabnine = super.compe-tabnine.overrideAttrs (old: {
+    buildInputs = [ tabnine ];
+
+    postFixup = ''
+      mkdir $target/binaries
+      ln -s ${tabnine}/bin/TabNine $target/binaries/TabNine_$(uname -s)
+    '';
   });
 
   completion-tabnine = super.completion-tabnine.overrideAttrs (old: {

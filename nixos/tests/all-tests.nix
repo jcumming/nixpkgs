@@ -332,7 +332,6 @@ in
   redis = handleTest ./redis.nix {};
   redmine = handleTest ./redmine.nix {};
   restic = handleTest ./restic.nix {};
-  ripgrep = handleTest ./ripgrep.nix {};
   robustirc-bridge = handleTest ./robustirc-bridge.nix {};
   roundcube = handleTest ./roundcube.nix {};
   rspamd = handleTest ./rspamd.nix {};
@@ -413,6 +412,7 @@ in
   vector = handleTest ./vector.nix {};
   victoriametrics = handleTest ./victoriametrics.nix {};
   virtualbox = handleTestOn ["x86_64-linux"] ./virtualbox.nix {};
+  vscodium = handleTest ./vscodium.nix {};
   wasabibackend = handleTest ./wasabibackend.nix {};
   wireguard = handleTest ./wireguard {};
   wordpress = handleTest ./wordpress.nix {};
