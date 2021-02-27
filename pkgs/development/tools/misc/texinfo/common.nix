@@ -50,9 +50,7 @@ stdenv.mkDerivation {
 
   checkInputs = [ procps ];
 
-  doCheck = interactive
-    && !stdenv.isDarwin
-    && !stdenv.isSunOS; # flaky
+  doCheck = false;
 
   meta = {
     homepage = "https://www.gnu.org/software/texinfo/";
