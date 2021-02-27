@@ -1,5 +1,5 @@
 { lib, stdenv, fetchurl, pkg-config, autoconf, automake, gettext, intltool
-, gtk3, lcms2, exiv2, libchamplain, clutter-gtk, ffmpegthumbnailer, fbida
+, gtk2, lcms2, exiv2, libchamplain, clutter-gtk, ffmpegthumbnailer, fbida
 , wrapGAppsHook, fetchpatch
 }:
 
@@ -28,7 +28,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    gtk3 lcms2 exiv2 libchamplain clutter-gtk ffmpegthumbnailer fbida
+    gtk2 lcms2 exiv2 libchamplain clutter-gtk ffmpegthumbnailer fbida
   ];
 
   postInstall = ''
