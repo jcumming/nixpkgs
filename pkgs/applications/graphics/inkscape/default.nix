@@ -11,6 +11,7 @@
 , glib
 , glib-networking
 , glibmm
+, gobject-introspection
 , gsl
 , gtk-mac-integration
 , gtkmm3
@@ -47,6 +48,7 @@ let
       numpy
       lxml
       scour
+      pygobject3
     ]);
 in
 stdenv.mkDerivation rec {
@@ -107,6 +109,7 @@ stdenv.mkDerivation rec {
     glib
     glib-networking
     glibmm
+    gobject-introspection
     gsl
     gtkmm3
     imagemagick
