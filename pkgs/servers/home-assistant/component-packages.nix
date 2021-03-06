@@ -309,7 +309,7 @@
     "goalfeed" = ps: with ps; [ ]; # missing inputs: pysher
     "goalzero" = ps: with ps; [ ]; # missing inputs: goalzero
     "gogogate2" = ps: with ps; [ ]; # missing inputs: gogogate2-api
-    "google" = ps: with ps; [ google_api_python_client httplib2 oauth2client ];
+    "google" = ps: with ps; [ google-api-python-client httplib2 oauth2client ];
     "google_assistant" = ps: with ps; [ aiohttp-cors ];
     "google_cloud" = ps: with ps; [ google-cloud-texttospeech ];
     "google_domains" = ps: with ps; [ ];
@@ -480,7 +480,7 @@
     "media_extractor" = ps: with ps; [ aiohttp-cors youtube-dl-light ];
     "media_player" = ps: with ps; [ aiohttp-cors ];
     "media_source" = ps: with ps; [ aiohttp-cors ];
-    "mediaroom" = ps: with ps; [ ]; # missing inputs: pymediaroom
+    "mediaroom" = ps: with ps; [ pymediaroom ];
     "melcloud" = ps: with ps; [ ]; # missing inputs: pymelcloud
     "melissa" = ps: with ps; [ ]; # missing inputs: py-melissa-climate
     "meraki" = ps: with ps; [ aiohttp-cors ];
@@ -679,7 +679,7 @@
     "rest_command" = ps: with ps; [ ];
     "rflink" = ps: with ps; [ ]; # missing inputs: rflink
     "rfxtrx" = ps: with ps; [ ]; # missing inputs: pyRFXtrx
-    "ring" = ps: with ps; [ ha-ffmpeg ]; # missing inputs: ring_doorbell
+    "ring" = ps: with ps; [ ha-ffmpeg ring-doorbell ];
     "ripple" = ps: with ps; [ ]; # missing inputs: python-ripple-api
     "risco" = ps: with ps; [ pyrisco ];
     "rmvtransport" = ps: with ps; [ PyRMVtransport ];
@@ -740,7 +740,7 @@
     "sisyphus" = ps: with ps; [ ]; # missing inputs: sisyphus-control
     "sky_hub" = ps: with ps; [ ]; # missing inputs: pyskyqhub
     "skybeacon" = ps: with ps; [ ]; # missing inputs: pygatt[GATTTOOL]
-    "skybell" = ps: with ps; [ ]; # missing inputs: skybellpy
+    "skybell" = ps: with ps; [ skybellpy ];
     "slack" = ps: with ps; [ ]; # missing inputs: slackclient
     "sleepiq" = ps: with ps; [ ]; # missing inputs: sleepyq
     "slide" = ps: with ps; [ ]; # missing inputs: goslide-api
@@ -763,7 +763,7 @@
     "solarlog" = ps: with ps; [ ]; # missing inputs: sunwatcher
     "solax" = ps: with ps; [ solax ];
     "soma" = ps: with ps; [ pysoma ];
-    "somfy" = ps: with ps; [ aiohttp-cors ]; # missing inputs: pymfy
+    "somfy" = ps: with ps; [ aiohttp-cors pymfy ];
     "somfy_mylink" = ps: with ps; [ ]; # missing inputs: somfy-mylink-synergy
     "sonarr" = ps: with ps; [ ]; # missing inputs: sonarr
     "songpal" = ps: with ps; [ ]; # missing inputs: python-songpal
@@ -903,7 +903,7 @@
     "version" = ps: with ps; [ pyhaversion ];
     "vesync" = ps: with ps; [ pyvesync ];
     "viaggiatreno" = ps: with ps; [ ];
-    "vicare" = ps: with ps; [ ]; # missing inputs: PyViCare
+    "vicare" = ps: with ps; [ pyvicare ];
     "vilfo" = ps: with ps; [ ]; # missing inputs: vilfo-api-client
     "vivotek" = ps: with ps; [ ]; # missing inputs: libpyvivotek
     "vizio" = ps: with ps; [ pyvizio ];
@@ -924,7 +924,7 @@
     "waze_travel_time" = ps: with ps; [ WazeRouteCalculator ];
     "weather" = ps: with ps; [ ];
     "webhook" = ps: with ps; [ aiohttp-cors ];
-    "webostv" = ps: with ps; [ ]; # missing inputs: aiopylgtv
+    "webostv" = ps: with ps; [ aiopylgtv ];
     "websocket_api" = ps: with ps; [ aiohttp-cors ];
     "wemo" = ps: with ps; [ ]; # missing inputs: pywemo
     "whois" = ps: with ps; [ python-whois ];
