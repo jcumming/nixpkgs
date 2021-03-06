@@ -102,6 +102,7 @@ in stdenv.mkDerivation {
       src = ./qt-env-vars.patch;
       qtPluginPath = "${qtbase.bin}/${qtbase.qtPluginPrefix}:${qtsvg.bin}/${qtbase.qtPluginPrefix}:${qtwayland.bin}/${qtbase.qtPluginPrefix}";
     })
+  ++ [ 
     # NOTE: the patch for linux 5.11 can be removed when the next version of VirtualBox is released
     ./linux-5-11.patch
     ./qtx11extras.patch
