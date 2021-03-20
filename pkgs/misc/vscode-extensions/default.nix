@@ -48,6 +48,18 @@ let
         };
       };
 
+      antfu.icons-carbon = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "icons-carbon";
+          publisher = "antfu";
+          version = "0.2.2";
+          sha256 = "0mfap16la09mn0jhvy8s3dainrmjz64vra7d0d4fbcpgg420kv3f";
+        };
+        meta = with lib; {
+          license = licenses.mit;
+        };
+      };
+
       ms-python.vscode-pylance = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "vscode-pylance";
@@ -234,6 +246,18 @@ let
         };
       };
 
+      emmanuelbeziat.vscode-great-icons = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vscode-great-icons";
+          publisher = "emmanuelbeziat";
+          version = "2.1.64";
+          sha256 = "sha256-qsL1vWiEAYeWkMDNSrr1yzg0QxroEQQeznoDL3Ujy/o=";
+        };
+        meta = with lib; {
+          license = licenses.mit;
+        };
+      };
+
       esbenp.prettier-vscode = buildVscodeMarketplaceExtension {
         meta = with lib; {
           changelog = "https://marketplace.visualstudio.com/items/esbenp.prettier-vscode/changelog";
@@ -365,8 +389,8 @@ let
         mktplcRef = {
           name = "todo-tree";
           publisher = "Gruntfuggly";
-          version = "0.0.201";
-          sha256 = "1hjck1r2byc45rp28gn15wbmcrl1wjng7kn5lyhr6mgjjwqh5pa8";
+          version = "0.0.206";
+          sha256 = "1xalwk2bndb73p8p2b4w5qz7m1n80xyw67wb5qlq1rrfjchhicyv";
         };
         meta = with lib; {
           license = licenses.mit;
