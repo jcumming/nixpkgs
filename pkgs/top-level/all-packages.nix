@@ -370,6 +370,7 @@ in
   fetchgit = callPackage ../build-support/fetchgit {
     git = buildPackages.gitMinimal;
     cacert = buildPackages.cacert;
+    git-lfs = buildPackages.git-lfs;
   };
 
   fetchgitLocal = callPackage ../build-support/fetchgitlocal { };
@@ -818,6 +819,10 @@ in
 
   lilyterm-git = lilyterm.override {
     flavour = "git";
+  };
+
+  logseq = callPackage ../applications/misc/logseq {
+    electron = electron_11;
   };
 
   lxterminal = callPackage ../applications/terminal-emulators/lxterminal { };
@@ -1804,6 +1809,8 @@ in
 
   btrfs-progs = callPackage ../tools/filesystems/btrfs-progs { };
 
+  btlejack = python3Packages.callPackage ../applications/radio/btlejack { };
+
   btrbk = callPackage ../tools/backup/btrbk {
     asciidoc = asciidoc-full;
   };
@@ -2402,7 +2409,7 @@ in
 
   fuzzel = callPackage ../applications/misc/fuzzel { };
 
-  flashfocus = python3Packages.callPackage ../misc/flashfocus { };
+  flashfocus = callPackage ../misc/flashfocus { };
 
   qt-video-wlr = libsForQt5.callPackage ../applications/misc/qt-video-wlr { };
 
@@ -4473,6 +4480,8 @@ in
 
   freetds = callPackage ../development/libraries/freetds { };
 
+  freetube = callPackage ../applications/video/freetube { };
+
   freqtweak = callPackage ../applications/audio/freqtweak {
     wxGTK = wxGTK31-gtk2;
   };
@@ -5742,6 +5751,8 @@ in
   kytea = callPackage ../tools/text/kytea { };
 
   k6 = callPackage ../development/tools/k6 { };
+
+  l2md = callPackage ../tools/text/l2md { };
 
   lab = callPackage ../applications/version-management/git-and-tools/lab { };
 
@@ -7433,6 +7444,8 @@ in
 
   cntlm = callPackage ../tools/networking/cntlm { };
 
+  past-time = python3Packages.callPackage ../tools/misc/past-time { };
+
   pastebinit = callPackage ../tools/misc/pastebinit { };
 
   pifi = callPackage ../applications/audio/pifi { };
@@ -8655,6 +8668,8 @@ in
   trezor_agent = with python3Packages; toPythonApplication trezor_agent;
 
   trezor-suite = callPackage ../applications/blockchains/trezor-suite { };
+
+  trunk = callPackage ../development/tools/trunk { };
 
   tthsum = callPackage ../applications/misc/tthsum { };
 
@@ -11792,7 +11807,6 @@ in
   } // (lib.optionalAttrs (stdenv.hostPlatform.isi686 && stdenv.cc.isGNU) {
       stdenv = gcc6Stdenv; # with gcc-7: undefined reference to `__divmoddi4'
   }));
-  spidermonkey_60 = callPackage ../development/interpreters/spidermonkey/60.nix { };
   spidermonkey_68 = callPackage ../development/interpreters/spidermonkey/68.nix { };
   spidermonkey_78 = callPackage ../development/interpreters/spidermonkey/78.nix { };
 
@@ -11977,6 +11991,8 @@ in
   asn2quickder = python2Packages.callPackage ../development/tools/asn2quickder {};
 
   astyle = callPackage ../development/tools/misc/astyle { };
+
+  automaticcomponenttoolkit = callPackage ../development/tools/misc/automaticcomponenttoolkit { };
 
   awf = callPackage ../development/tools/misc/awf { };
 
@@ -12859,7 +12875,7 @@ in
     gconf = pkgs.gnome2.GConf;
   };
 
-  # NOTE: Override and set icon-lang = null to use Awk instead of Icon.
+  # NOTE: Override and set useIcon = false to use Awk instead of Icon.
   noweb = callPackage ../development/tools/literate-programming/noweb { };
 
   nuweb = callPackage ../development/tools/literate-programming/nuweb { tex = texlive.combined.scheme-medium; };
@@ -13042,6 +13058,8 @@ in
   selendroid = callPackage ../development/tools/selenium/selendroid { };
 
   semver-tool = callPackage ../development/tools/misc/semver-tool { };
+
+  semantik = libsForQt5.callPackage ../applications/office/semantik { };
 
   sconsPackages = dontRecurseIntoAttrs (callPackage ../development/tools/build-managers/scons { });
   scons = sconsPackages.scons_latest;
@@ -13295,6 +13313,8 @@ in
   xc3sprog = callPackage ../development/tools/misc/xc3sprog { };
 
   xcb-imdkit = callPackage ../development/libraries/xcb-imdkit { };
+
+  xcode-install = callPackage ../development/tools/xcode-install { };
 
   xcodebuild = callPackage ../development/tools/xcbuild/wrapper.nix {
     inherit (darwin.apple_sdk.frameworks) CoreServices CoreGraphics ImageIO;
@@ -16114,10 +16134,6 @@ in
 
   opencl-clang = callPackage ../development/libraries/opencl-clang { };
 
-  mapbox-gl-native = libsForQt5.callPackage ../development/libraries/mapbox-gl-native { };
-
-  mapbox-gl-qml = libsForQt5.callPackage ../development/libraries/mapbox-gl-qml { };
-
   mapnik = callPackage ../development/libraries/mapnik { };
 
   marisa = callPackage ../development/libraries/marisa {};
@@ -18327,7 +18343,7 @@ in
   mod_pkcs12 = pkgs.apacheHttpdPackages.mod_pkcs12;
   mod_timestamp = pkgs.apacheHttpdPackages.mod_timestamp;
 
-  inherit (callPackages ../servers/mpd { })
+  inherit (callPackages ../servers/mpd { stdenv = if stdenv.cc.isClang then llvmPackages_8.stdenv else stdenv; })
     mpd mpd-small mpdWithFeatures;
 
   libmpdclient = callPackage ../servers/mpd/libmpdclient.nix { };
@@ -19402,7 +19418,9 @@ in
     inherit (pkgs.darwin.apple_sdk.frameworks) IOKit;
   };
 
-  osxfuse = callPackage ../os-specific/darwin/osxfuse { };
+  macfuse-stubs = callPackage ../os-specific/darwin/macfuse {
+    inherit (darwin) libtapi;
+  };
 
   osxsnarf = callPackage ../os-specific/darwin/osxsnarf { };
 
@@ -19668,6 +19686,8 @@ in
     broadcom_sta = callPackage ../os-specific/linux/broadcom-sta { };
 
     tbs = callPackage ../os-specific/linux/tbs { };
+
+    mbp2018-bridge-drv = callPackage ../os-specific/linux/mbp-modules/mbp2018-bridge-drv { };
 
     nvidiabl = callPackage ../os-specific/linux/nvidiabl { };
 
@@ -20909,6 +20929,7 @@ in
   kopia = callPackage ../tools/backup/kopia { };
 
   kora-icon-theme = callPackage ../data/icons/kora-icon-theme {
+    inherit (gnome3) adwaita-icon-theme;
     inherit (libsForQt5.kdeFrameworks) breeze-icons;
   };
 
@@ -22738,6 +22759,8 @@ in
 
   freeoffice = callPackage ../applications/office/softmaker/freeoffice.nix {};
 
+  freeplane = callPackage ../applications/misc/freeplane { };
+
   freepv = callPackage ../applications/graphics/freepv { };
 
   xfontsel = callPackage ../applications/misc/xfontsel { };
@@ -22922,6 +22945,8 @@ in
   svox = callPackage ../applications/audio/svox { };
 
   giada = callPackage ../applications/audio/giada {};
+
+  giara = callPackage ../applications/networking/giara { };
 
   gitit = callPackage ../applications/misc/gitit {};
 
@@ -23143,6 +23168,8 @@ in
   };
 
   hugo = callPackage ../applications/misc/hugo { };
+
+  go-org = callPackage ../applications/misc/go-org { };
 
   hydrogen = qt5.callPackage ../applications/audio/hydrogen { };
   hydrogen_0 = callPackage ../applications/audio/hydrogen/0.nix { }; # Old stable, has GMKit.
@@ -23820,6 +23847,8 @@ in
     inherit (darwin) libobjc;
   };
 
+  handlr = callPackage ../tools/misc/handlr { };
+
   jftui = callPackage ../applications/video/jftui { };
 
   lime = callPackage ../development/libraries/lime { };
@@ -24170,6 +24199,7 @@ in
     mpvacious = callPackage ../applications/video/mpv/scripts/mpvacious.nix {};
     simple-mpv-webui = callPackage ../applications/video/mpv/scripts/simple-mpv-webui.nix {};
     sponsorblock = callPackage ../applications/video/mpv/scripts/sponsorblock.nix {};
+    thumbnail = callPackage ../applications/video/mpv/scripts/thumbnail.nix { };
   };
 
   mrpeach = callPackage ../applications/audio/pd-plugins/mrpeach { };
@@ -24856,6 +24886,8 @@ in
   pond = callPackage ../applications/networking/instant-messengers/pond { };
 
   ponymix = callPackage ../applications/audio/ponymix { };
+
+  portfolio-filemanager = callPackage ../applications/misc/portfolio-filemanager { };
 
   pothos = libsForQt5.callPackage ../applications/radio/pothos { };
 
@@ -26698,6 +26730,8 @@ in
 
   aeon = callPackage ../applications/blockchains/aeon { };
 
+  balanceofsatoshis = nodePackages.balanceofsatoshis;
+
   bitcoin  = libsForQt5.callPackage ../applications/blockchains/bitcoin.nix { miniupnpc = miniupnpc_2; withGui = true; };
   bitcoind = callPackage ../applications/blockchains/bitcoin.nix { miniupnpc = miniupnpc_2; withGui = false; };
 
@@ -27847,7 +27881,6 @@ in
 
   zeroadPackages = dontRecurseIntoAttrs (callPackage ../games/0ad {
     wxGTK = wxGTK30;
-    stdenv = gcc9Stdenv;
   });
 
   zeroad = zeroadPackages.zeroad;
@@ -29071,6 +29104,8 @@ in
 
   dell-530cdn = callPackage ../misc/drivers/dell-530cdn {};
 
+  demjson = with python3Packages; toPythonApplication demjson;
+
   dosbox = callPackage ../misc/emulators/dosbox { };
 
   emu2 = callPackage ../misc/emulators/emu2 { };
@@ -29202,6 +29237,8 @@ in
     inherit (darwin.apple_sdk.frameworks) Security CoreServices;
   };
 
+  hjson = with python3Packages; toPythonApplication hjson;
+
   epkowa = callPackage ../misc/drivers/epkowa { };
 
   utsushi = callPackage ../misc/drivers/utsushi { };
@@ -29228,6 +29265,8 @@ in
   };
   libjack2 = jack2.override { prefix = "lib"; };
   jack2Full = jack2; # TODO: move to aliases.nix
+
+  j2cli = with python3Packages; toPythonApplication j2cli;
 
   jstest-gtk = callPackage ../tools/misc/jstest-gtk { };
 
@@ -29738,8 +29777,6 @@ in
   samsung-unified-linux-driver = res.samsung-unified-linux-driver_4_01_17;
 
   sane-backends = callPackage ../applications/graphics/sane/backends (config.sane or {});
-
-  sane-backends-git = callPackage ../applications/graphics/sane/backends/git.nix (config.sane or {});
 
   senv = callPackage ../applications/misc/senv { };
 

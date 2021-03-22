@@ -316,6 +316,8 @@ in {
 
   aionotify = callPackage ../development/python-modules/aionotify { };
 
+  aionotion = callPackage ../development/python-modules/aionotion { };
+
   aioprocessing = callPackage ../development/python-modules/aioprocessing { };
 
   aiopulse = callPackage ../development/python-modules/aiopulse { };
@@ -1859,6 +1861,8 @@ in {
 
   django-cache-url = callPackage ../development/python-modules/django-cache-url { };
 
+  django-cacheops = callPackage ../development/python-modules/django-cacheops { };
+
   django_classytags = callPackage ../development/python-modules/django_classytags { };
 
   django-cleanup = callPackage ../development/python-modules/django-cleanup { };
@@ -3216,6 +3220,8 @@ in {
 
   iapws = callPackage ../development/python-modules/iapws { };
 
+  iaqualink = callPackage ../development/python-modules/iaqualink { };
+
   ibis = callPackage ../development/python-modules/ibis { };
 
   ibis-framework = callPackage ../development/python-modules/ibis-framework { };
@@ -3976,6 +3982,7 @@ in {
 
   llfuse = callPackage ../development/python-modules/llfuse {
     inherit (pkgs) fuse;
+    inherit (pkgs.darwin.apple_sdk.frameworks) DiskArbitration;
   };
 
   llvmlite = callPackage ../development/python-modules/llvmlite {
@@ -4382,6 +4389,8 @@ in {
   mpd = callPackage ../development/python-modules/mpd { };
 
   mpi4py = callPackage ../development/python-modules/mpi4py { };
+
+  mplfinance = callPackage ../development/python-modules/mplfinance { };
 
   mplleaflet = callPackage ../development/python-modules/mplleaflet { };
 
@@ -5608,6 +5617,8 @@ in {
   pydaikin = callPackage ../development/python-modules/pydaikin { };
 
   pydantic = callPackage ../development/python-modules/pydantic { };
+
+  pydash = callPackage ../development/python-modules/pydash { };
 
   pydbus = callPackage ../development/python-modules/pydbus { };
 
@@ -7684,6 +7695,8 @@ in {
   simple-salesforce = callPackage ../development/python-modules/simple-salesforce { };
 
   simple-websocket-server = callPackage ../development/python-modules/simple-websocket-server { };
+
+  simplisafe-python = callPackage ../development/python-modules/simplisafe-python { };
 
   simpy = callPackage ../development/python-modules/simpy { };
 
