@@ -2,6 +2,7 @@
 , qtdeclarative, qtquickcontrols, qtlocation, qtwebchannel
 
 , bison, coreutils, flex, git, gperf, ninja, pkg-config, python2, which
+, nodejs, qtbase, perl
 
 , xorg, libXcursor, libXScrnSaver, libXrandr, libXtst
 , fontconfig, freetype, harfbuzz, icu, dbus, libdrm
@@ -16,6 +17,7 @@
 , cups, darwin, openbsm, runCommand, xcbuild, writeScriptBin
 , ffmpeg_3 ? null
 , lib, stdenv, fetchpatch
+, version ? null
 , qtCompatVersion
 }:
 
@@ -25,7 +27,15 @@ qtModule {
   name = "qtwebengine";
   qtInputs = [ qtdeclarative qtquickcontrols qtlocation qtwebchannel ];
   nativeBuildInputs = [
-    bison coreutils flex git gperf ninja pkg-config python2 which gn
+    bison coreutils flex git gperf ninja pkg-config python2 which gn nodejs
+
+    # qmake looks for syncqt instead of syncqt.pl and fails with a cryptic
+    # error if it can't find it. syncqt.pl also has a /usr/bin/env shebang, so
+    # it can't be directly used in a sandboxed build environment.
+    (writeScriptBin "syncqt" ''
+      #!${stdenv.shell}
+      exec ${perl}/bin/perl ${qtbase.dev}/bin/syncqt.pl "$@"
+    '')
   ] ++ optional stdenv.isDarwin xcbuild;
   doCheck = true;
   outputs = [ "bin" "dev" "out" ];
@@ -40,9 +50,17 @@ qtModule {
   hardeningDisable = [ "format" ];
 
   postPatch =
-    # Patch Chromium build tools
     ''
-      ( cd src/3rdparty/chromium; patchShebangs . )
+      # Patch Chromium build tools
+      (
+        cd src/3rdparty/chromium;
+
+        # Manually fix unsupported shebangs
+        substituteInPlace third_party/harfbuzz-ng/src/src/update-unicode-tables.make \
+          --replace "/usr/bin/env -S make -f" "/usr/bin/make -f" || true
+
+        patchShebangs .
+      )
     ''
     # Prevent Chromium build script from making the path to `clang` relative to
     # the build directory.  `clang_base_path` is the value of `QMAKE_CLANG_DIR`
@@ -120,7 +138,7 @@ qtModule {
     if [ -d "$PWD/tools/qmake" ]; then
         QMAKEPATH="$PWD/tools/qmake''${QMAKEPATH:+:}$QMAKEPATH"
     fi
-   '';
+  '';
 
   qmakeFlags = if stdenv.hostPlatform.isAarch32 || stdenv.hostPlatform.isAarch64
     then [ "--" "-system-ffmpeg" ] ++ optional enableProprietaryCodecs "-proprietary-codecs"
@@ -213,6 +231,9 @@ qtModule {
     [Paths]
     Prefix = ..
     EOF
+  '' + lib.optionalString (lib.versions.majorMinor qtCompatVersion == "5.15") ''
+    # Fix for out-of-sync QtWebEngine and Qt releases (since 5.15.3)
+    sed 's/${lib.head (lib.splitString "-" version)} /${qtCompatVersion} /' -i "$out"/lib/cmake/*/*Config.cmake
   '';
 
   meta = with lib; {

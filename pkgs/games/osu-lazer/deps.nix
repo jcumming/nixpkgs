@@ -20,6 +20,11 @@
     sha256 = "0n6x57mnnvcjnrs8zyvy07h5zm4bcfy9gh4n4bvd9fx5ys4pxkvv";
   })
   (fetchNuGet {
+    name = "HidSharpCore";
+    version = "1.2.1.1";
+    sha256 = "1zkndglmz0s8rblfhnqcvv90rkq2i7lf4bc380g7z8h1avf2ikll";
+  })
+  (fetchNuGet {
     name = "Humanizer";
     version = "2.8.26";
     sha256 = "11kddzyzqpq9gkz0hmrblq494nh86va6wxx6z89xi6w1f4vj15ak";
@@ -725,9 +730,19 @@
     sha256 = "07156gr0yl9rqhyj44cp1xz9jpngbl5kb7ci3qfy9fcp01dczmm9";
   })
   (fetchNuGet {
+    name = "OpenTabletDriver";
+    version = "0.5.2.1";
+    sha256 = "0czbgxjkc5ryrnn9hl68wp464p4xp0883517iq87d1f7qb32gppl";
+  })
+  (fetchNuGet {
+    name = "OpenTabletDriver.Plugin";
+    version = "0.5.2.1";
+    sha256 = "199yasnq5dsb5c37vl8vry8lf536gpgclsk402sxdw9lz11xmmqd";
+  })
+  (fetchNuGet {
     name = "ppy.osu.Framework";
-    version = "2021.309.0";
-    sha256 = "1da0jgdcxd4zq0fzqhbm31gg66l8sgdgypis8xlch2xny1g854z6";
+    version = "2021.323.0";
+    sha256 = "1gxgvg8r7xsr94wy7rld5c1yd8ssv4iqsp2zdyp5r0qd5l1g09gc";
   })
   (fetchNuGet {
     name = "ppy.osu.Framework.NativeLibs";

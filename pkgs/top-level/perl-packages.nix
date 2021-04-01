@@ -10955,17 +10955,23 @@ let
       url = "mirror://cpan/authors/id/B/BR/BRMILLER/${pname}-${version}.tar.gz";
       sha256 = "0dr69rgl4si9i9ww1r4dc7apgb7y6f7ih808w4g0924cvz823s0x";
     };
-    propagatedBuildInputs = [ ArchiveZip DBFile FileWhich IOString ImageSize JSONXS LWP ParseRecDescent PodParser TextUnidecode XMLLibXSLT ];
+    propagatedBuildInputs = [ ArchiveZip DBFile FileWhich IOString ImageSize JSONXS LWP ParseRecDescent PerlMagick PodParser TextUnidecode XMLLibXSLT ];
     preCheck = ''
       rm t/931_epub.t # epub test fails
     '';
-    nativeBuildInputs = lib.optional stdenv.isDarwin shortenPerlShebang;
+    nativeBuildInputs = [ pkgs.makeWrapper ] ++ lib.optional stdenv.isDarwin shortenPerlShebang;
     # shebangs need to be patched before executables are copied to $out
     preBuild = ''
       patchShebangs bin/
     '' + lib.optionalString stdenv.isDarwin ''
       for file in bin/*; do
         shortenPerlShebang "$file"
+      done
+    '';
+    postInstall = ''
+      for file in latexmlc latexmlmath latexmlpost ; do
+        # add runtime dependencies that cause silent failures when missing
+        wrapProgram $out/bin/$file --prefix PATH : ${lib.makeBinPath [ pkgs.ghostscript pkgs.potrace ]}
       done
     '';
     meta = {
@@ -10976,19 +10982,11 @@ let
 
   libapreq2 = buildPerlPackage {
     pname = "libapreq2";
-    version = "2.13";
+    version = "2.16";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/I/IS/ISAAC/libapreq2-2.13.tar.gz";
-      sha256 = "5731e6833b32d88e4a5c690e45ddf20fcf969ce3da666c5627d775e92da0cf6e";
+      url = "mirror://cpan/authors/id/S/SH/SHAY/libapreq2-2.16.tar.gz";
+      sha256 = "e04c855a3ea070b8863569fbae02fe828f534ac88755b23e24d3863cc9598349";
     };
-    patches = [
-      (fetchpatch {
-        name = "CVE-2019-12412.patch";
-        url = "https://svn.apache.org/viewvc/httpd/apreq/trunk/library/parser_multipart.c?r1=1866760&r2=1866759&pathrev=1866760&view=patch";
-        sha256 = "08zaw5pb2i4w1y8crhxmlf0d8gzpvi9z49x4nwlkg4j87x7gjvaa";
-        stripLen = 2;
-      })
-    ];
     outputs = [ "out" ];
     buildInputs = [ pkgs.apacheHttpd pkgs.apr pkgs.aprutil ApacheTest ExtUtilsXSBuilder ];
     propagatedBuildInputs = [ (pkgs.apacheHttpdPackages.mod_perl.override { inherit perl; }) ];
@@ -15121,6 +15119,11 @@ let
       url = "mirror://cpan/authors/id/D/DO/DOUGW/Net-CIDR-Lite-0.21.tar.gz";
       sha256 = "cfa125e8a2aef9259bc3a44e07cbdfb7894b64d22e7c0cee92aee2f5c7915093";
     };
+    patches = [
+      # Fix for security issue: prevent leading zeroes in ipv4 octets
+      # https://blog.urth.org/2021/03/29/security-issues-in-perl-ip-address-distros/
+      ../development/perl-modules/Net-CIDR-Lite-prevent-leading-zeroes-ipv4.patch
+    ];
     meta = {
       description = "Perl extension for merging IPv4 or IPv6 CIDR addresses";
     };
@@ -15426,10 +15429,10 @@ let
 
   NetNetmask = buildPerlPackage {
     pname = "Net-Netmask";
-    version = "1.9104";
+    version = "2.0001";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/J/JM/JMASLAK/Net-Netmask-1.9104.tar.gz";
-      sha256 = "17li2svymz49az35xl6galp4b9qcnb985gzklhikkvkn9da6rz3y";
+      url = "mirror://cpan/authors/id/J/JM/JMASLAK/Net-Netmask-2.0001.tar.gz";
+      sha256 = "0waiix46wv93a5zzjjv7ypdnfdf7lizwrhx12128rcvzcvw6wd8p";
     };
     buildInputs = [ Test2Suite TestUseAllModules ];
     meta = {
