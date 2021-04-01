@@ -242,7 +242,16 @@ assert opensslExtlib -> gnutls == null && openssl != null && nonfreeLicensing;
 
 stdenv.mkDerivation rec {
   pname = "ffmpeg-full";
-  inherit (ffmpeg) src version patches;
+  inherit (ffmpeg) src version;
+
+  # this should go away in the next release
+  patches = [
+    # Patch ffmpeg for svt-av1 until version 4.4
+    (fetchpatch {
+      url = "https://raw.githubusercontent.com/AOMediaCodec/SVT-AV1/v0.8.4/ffmpeg_plugin/0001-Add-ability-for-ffmpeg-to-run-svt-av1.patch";
+      sha256 = "1p4g8skr5gjw5h1648j7qrks81zx49lrnx9g0p81qgnrvxc2wwx0";
+    })
+  ];
 
   prePatch = ''
     patchShebangs .
