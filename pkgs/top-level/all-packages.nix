@@ -285,6 +285,8 @@ in
 
   creddump = callPackage ../tools/security/creddump {};
 
+  credslayer = callPackage ../tools/security/credslayer { };
+
   device-tree_rpi = callPackage ../os-specific/linux/device-tree/raspberrypi.nix {};
 
   devour = callPackage ../tools/X11/devour {};
@@ -1381,6 +1383,10 @@ in
   glances = python3Packages.callPackage ../applications/system/glances { };
 
   glasgow = with python3Packages; toPythonApplication glasgow;
+
+  gmni = callPackage ../applications/networking/browsers/gmni { };
+
+  gmnisrv = callPackage ../servers/gemini/gmnisrv { };
 
   goimapnotify = callPackage ../tools/networking/goimapnotify { };
 
@@ -2651,6 +2657,8 @@ in
   link-grammar = callPackage ../tools/text/link-grammar { };
 
   linuxptp = callPackage ../os-specific/linux/linuxptp { };
+
+  lisgd = callPackage ../tools/inputmethods/lisgd { };
 
   lite = callPackage ../applications/editors/lite { };
 
@@ -4419,6 +4427,8 @@ in
 
   libbladeRF = callPackage ../development/libraries/libbladeRF { };
 
+  libbtbb = callPackage ../development/libraries/libbtbb { };
+
   lp_solve = callPackage ../applications/science/math/lp_solve { };
 
   fastlane = callPackage ../tools/admin/fastlane { };
@@ -4687,6 +4697,17 @@ in
     fetchPypi
     dropbox
     annexremote
+    humanfriendly;
+  };
+
+  git-annex-remote-googledrive = callPackage ../applications/version-management/git-and-tools/git-annex-remote-googledrive {
+    inherit (python3Packages)
+    buildPythonApplication
+    fetchPypi
+    annexremote
+    drivelib
+    GitPython
+    tenacity
     humanfriendly;
   };
 
@@ -5764,6 +5785,8 @@ in
   klystrack = callPackage ../applications/audio/klystrack { };
 
   knockknock = callPackage ../tools/security/knockknock { };
+
+  knockpy = callPackage ../tools/security/knockpy { };
 
   kore = callPackage ../development/web/kore { };
 
@@ -6968,6 +6991,8 @@ in
   olive-editor = libsForQt514.callPackage ../applications/video/olive-editor {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation;
   };
+
+  ombi = callPackage ../servers/ombi { };
 
   omping = callPackage ../applications/networking/omping { };
 
@@ -8320,6 +8345,8 @@ in
 
   splot = haskell.lib.justStaticExecutables haskellPackages.splot;
 
+  spotdl = callPackage ../tools/audio/spotdl { };
+
   squashfsTools = callPackage ../tools/filesystems/squashfs { };
 
   squashfs-tools-ng = callPackage ../tools/filesystems/squashfs-tools-ng { };
@@ -8843,6 +8870,8 @@ in
   ubidump = python3Packages.callPackage ../tools/filesystems/ubidump { };
 
   ubridge = callPackage ../tools/networking/ubridge { };
+
+  ubertooth = callPackage ../applications/radio/ubertooth { };
 
   ucl = callPackage ../development/libraries/ucl { };
 
@@ -9577,8 +9606,6 @@ in
   zinnia = callPackage ../tools/inputmethods/zinnia { };
   tegaki-zinnia-japanese = callPackage ../tools/inputmethods/tegaki-zinnia-japanese { };
 
-  zimreader = callPackage ../tools/text/zimreader { };
-
   zimwriterfs = callPackage ../tools/text/zimwriterfs { };
 
   par = callPackage ../tools/text/par { };
@@ -9932,6 +9959,7 @@ in
     };
   };
 
+  clang_12 = llvmPackages_12.clang;
   clang_11 = llvmPackages_11.clang;
   clang_10 = llvmPackages_10.clang;
   clang_9  = llvmPackages_9.clang;
@@ -10809,6 +10837,7 @@ in
   lld_9 = llvmPackages_9.lld;
   lld_10 = llvmPackages_10.lld;
   lld_11 = llvmPackages_11.lld;
+  lld_12 = llvmPackages_12.lld;
 
   lldb = llvmPackages_latest.lldb;
   lldb_5 = llvmPackages_5.lldb;
@@ -10818,10 +10847,12 @@ in
   lldb_9 = llvmPackages_9.lldb;
   lldb_10 = llvmPackages_10.lldb;
   lldb_11 = llvmPackages_11.lldb;
+  lldb_12 = llvmPackages_12.lldb;
 
   llvm = llvmPackages.llvm;
   llvm-manpages = llvmPackages.llvm-manpages;
 
+  llvm_12 = llvmPackages_12.llvm;
   llvm_11 = llvmPackages_11.llvm;
   llvm_10 = llvmPackages_10.llvm;
   llvm_9  = llvmPackages_9.llvm;
@@ -10882,6 +10913,14 @@ in
     inherit (stdenvAdapters) overrideCC;
     buildLlvmTools = buildPackages.llvmPackages_11.tools;
     targetLlvmLibraries = targetPackages.llvmPackages_11.libraries;
+  } // lib.optionalAttrs (stdenv.hostPlatform.isi686 && buildPackages.stdenv.cc.isGNU) {
+    stdenv = gcc7Stdenv;
+  }));
+
+  llvmPackages_12 = recurseIntoAttrs (callPackage ../development/compilers/llvm/12 ({
+    inherit (stdenvAdapters) overrideCC;
+    buildLlvmTools = buildPackages.llvmPackages_12.tools;
+    targetLlvmLibraries = targetPackages.llvmPackages_12.libraries;
   } // lib.optionalAttrs (stdenv.hostPlatform.isi686 && buildPackages.stdenv.cc.isGNU) {
     stdenv = gcc7Stdenv;
   }));
@@ -21050,6 +21089,8 @@ in
 
   koreader = callPackage ../applications/misc/koreader {};
 
+  kreative-square-fonts = callPackage ../data/fonts/kreative-square-fonts { };
+
   lato = callPackage ../data/fonts/lato {};
 
   league-of-moveable-type = callPackage ../data/fonts/league-of-moveable-type {};
@@ -21175,6 +21216,8 @@ in
   mustache-spec = callPackage ../data/documentation/mustache-spec { };
 
   mustache-go = callPackage ../development/tools/mustache-go { };
+
+  mustache-hpp = callPackage ../development/libraries/mustache-hpp { };
 
   myrica = callPackage ../data/fonts/myrica { };
 
@@ -23743,7 +23786,7 @@ in
     ffmpeg = ffmpeg_2;
   };
 
-  kiwix = callPackage ../applications/misc/kiwix { };
+  kiwix = libsForQt5.callPackage ../applications/misc/kiwix { };
 
   klayout = libsForQt5.callPackage ../applications/misc/klayout { };
 
@@ -25533,7 +25576,7 @@ in
   };
 
   lightdm_gtk_greeter = callPackage ../applications/display-managers/lightdm/gtk-greeter.nix {
-    inherit (xfce) exo;
+    inherit (xfce) xfce4-dev-tools;
   };
 
   lightdm-mini-greeter = callPackage ../applications/display-managers/lightdm-mini-greeter { };
@@ -25703,6 +25746,8 @@ in
   };
 
   sunvox = callPackage ../applications/audio/sunvox { };
+
+  svkbd = callPackage ../applications/accessibility/svkbd { };
 
   swaglyrics = callPackage ../tools/misc/swaglyrics { };
 
@@ -26021,6 +26066,8 @@ in
   });
 
   unigine-valley = callPackage ../applications/graphics/unigine-valley { };
+
+  unipicker = callPackage ../applications/misc/unipicker { };
 
   unison = callPackage ../applications/networking/sync/unison {
     ocamlPackages = ocaml-ng.ocamlPackages_4_09;
@@ -29528,6 +29575,8 @@ in
     nixStable
     nixUnstable
     nixFlakes;
+
+  nixStatic = pkgsStatic.nix;
 
   nixops = callPackage ../tools/package-management/nixops { };
 
