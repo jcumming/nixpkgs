@@ -17,7 +17,7 @@
 # This seperates "what to build" (the exact gem versions) from "how to build"
 # (to make gems behave if necessary).
 
-{ lib, fetchurl, writeScript, ruby, kerberos, libxml2, libxslt, python, stdenv, which
+{ lib, fetchurl, writeScript, ruby, libkrb5, libxml2, libxslt, python, stdenv, which
 , libiconv, postgresql, v8, clang, sqlite, zlib, imagemagick
 , pkg-config , ncurses, xapian, gpgme, util-linux, tzdata, icu, libffi
 , cmake, libssh2, openssl, libmysqlclient, darwin, git, perl, pcre, gecode_3, curl
@@ -211,12 +211,12 @@ in
     '';
   };
 
-  pg_query = attrs: lib.optionalAttrs (attrs.version == "2.0.1") {
+  pg_query = attrs: lib.optionalAttrs (attrs.version == "2.0.2") {
     dontBuild = false;
     postPatch = ''
       sed -i "s;'https://codeload.github.com.*';'${fetchurl {
-        url = "https://codeload.github.com/lfittl/libpg_query/tar.gz/13-2.0.0";
-        sha256 = "0ghk0dlmrn634p3zjr41fy4ipgw8i44f67a4l8cspqg0395m3rp5";
+        url = "https://codeload.github.com/lfittl/libpg_query/tar.gz/13-2.0.2";
+        sha256 = "0ms2s6hmy8qyzv4g1hj4i2p5fws1v8lrj73b2knwbp2ipd45yj7y";
       }}';" ext/pg_query/extconf.rb
     '';
   } // lib.optionalAttrs (attrs.version == "1.3.0") {
@@ -607,7 +607,7 @@ in
   };
 
   timfel-krb5-auth = attrs: {
-    buildInputs = [ kerberos ];
+    buildInputs = [ libkrb5 ];
   };
 
   tiny_tds = attrs: {
