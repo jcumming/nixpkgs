@@ -74,7 +74,6 @@
   ./hardware/sata.nix
   ./hardware/wooting.nix
   ./hardware/uinput.nix
-  ./hardware/video/amdgpu.nix
   ./hardware/video/amdgpu-pro.nix
   ./hardware/video/ati.nix
   ./hardware/video/capture/mwprocapture.nix
@@ -358,6 +357,7 @@
   ./services/development/jupyter/default.nix
   ./services/development/jupyterhub/default.nix
   ./services/development/lorri.nix
+  ./services/display-managers/greetd.nix
   ./services/editors/emacs.nix
   ./services/editors/infinoted.nix
   ./services/games/factorio.nix
@@ -658,6 +658,7 @@
   ./services/networking/dnscrypt-wrapper.nix
   ./services/networking/dnsdist.nix
   ./services/networking/dnsmasq.nix
+  ./services/networking/doh-proxy-rust.nix
   ./services/networking/ncdns.nix
   ./services/networking/nomad.nix
   ./services/networking/ejabberd.nix
@@ -679,6 +680,7 @@
   ./services/networking/gnunet.nix
   ./services/networking/go-neb.nix
   ./services/networking/go-shadowsocks2.nix
+  ./services/networking/gobgpd.nix
   ./services/networking/gogoclient.nix
   ./services/networking/gvpe.nix
   ./services/networking/hans.nix
@@ -897,6 +899,7 @@
   ./services/web-apps/calibre-web.nix
   ./services/web-apps/convos.nix
   ./services/web-apps/cryptpad.nix
+  ./services/web-apps/discourse.nix
   ./services/web-apps/documize.nix
   ./services/web-apps/dokuwiki.nix
   ./services/web-apps/engelsystem.nix

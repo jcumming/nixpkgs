@@ -88,6 +88,7 @@ in
   croc = handleTest ./croc.nix {};
   deluge = handleTest ./deluge.nix {};
   dhparams = handleTest ./dhparams.nix {};
+  discourse = handleTest ./discourse.nix {};
   dnscrypt-proxy2 = handleTestOn ["x86_64-linux"] ./dnscrypt-proxy2.nix {};
   dnscrypt-wrapper = handleTestOn ["x86_64-linux"] ./dnscrypt-wrapper {};
   doas = handleTest ./doas.nix {};
@@ -137,6 +138,7 @@ in
   gnome3 = handleTest ./gnome3.nix {};
   gnome3-xorg = handleTest ./gnome3-xorg.nix {};
   go-neb = handleTest ./go-neb.nix {};
+  gobgpd = handleTest ./gobgpd.nix {};
   gocd-agent = handleTest ./gocd-agent.nix {};
   gocd-server = handleTest ./gocd-server.nix {};
   google-oslogin = handleTest ./google-oslogin {};
@@ -193,9 +195,7 @@ in
   keepalived = handleTest ./keepalived.nix {};
   keepassxc = handleTest ./keepassxc.nix {};
   kerberos = handleTest ./kerberos/default.nix {};
-  kernel-latest = handleTest ./kernel-latest.nix {};
-  kernel-lts = handleTest ./kernel-lts.nix {};
-  kernel-testing = handleTest ./kernel-testing.nix {};
+  kernel-generic = handleTest ./kernel-generic.nix {};
   kernel-latest-ath-user-regd = handleTest ./kernel-latest-ath-user-regd.nix {};
   keycloak = discoverTests (import ./keycloak.nix);
   keymap = handleTest ./keymap.nix {};

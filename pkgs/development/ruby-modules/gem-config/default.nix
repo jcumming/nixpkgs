@@ -18,14 +18,14 @@
 # (to make gems behave if necessary).
 
 { lib, fetchurl, writeScript, ruby, libkrb5, libxml2, libxslt, python, stdenv, which
-, libiconv, postgresql, v8, clang, sqlite, zlib, imagemagick
+, libiconv, postgresql, v8, clang, sqlite, zlib, imagemagick, lasem
 , pkg-config , ncurses, xapian, gpgme, util-linux, tzdata, icu, libffi
 , cmake, libssh2, openssl, libmysqlclient, darwin, git, perl, pcre, gecode_3, curl
 , msgpack, libsodium, snappy, libossp_uuid, lxc, libpcap, xorg, gtk2, buildRubyGem
 , cairo, re2, rake, gobject-introspection, gdk-pixbuf, zeromq, czmq, graphicsmagick, libcxx
 , file, libvirt, glib, vips, taglib, libopus, linux-pam, libidn, protobuf, fribidi, harfbuzz
 , bison, flex, pango, python3, patchelf, binutils, freetds, wrapGAppsHook, atk
-, bundler, libsass, libselinux ? null, libsepol ? null
+, bundler, libsass, libselinux ? null, libsepol ? null, shared-mime-info
 }@args:
 
 let
@@ -162,6 +162,10 @@ in
       installPath=$(cat $out/nix-support/gem-meta/install-path)
       sed -i $installPath/lib/ffi-rzmq-core/libzmq.rb -e 's@inside_gem =.*@inside_gem = "${zeromq}/lib"@'
     '';
+  };
+
+  mimemagic = attrs: {
+    FREEDESKTOP_MIME_TYPES_PATH = "${shared-mime-info}/share/mime/packages/freedesktop.org.xml";
   };
 
   mini_magick = attrs: {
@@ -341,6 +345,7 @@ in
       flex
       pkg-config
       python3
+      patchelf
     ];
 
     buildInputs = [
@@ -365,12 +370,13 @@ in
             $out/${ruby.gemPath}/extensions/*/*/mathematical-${attrs.version}/gem_make.out
     '';
 
-    # For some reason 'mathematical.so' is missing cairo and glib in its RPATH, add them explicitly here
+    # For some reason 'mathematical.so' is missing cairo, glib, and
+    # lasem in its RPATH, add them explicitly here
     postFixup = lib.optionalString stdenv.isLinux ''
       soPath="$out/${ruby.gemPath}/gems/mathematical-${attrs.version}/lib/mathematical/mathematical.so"
-      ${patchelf}/bin/patchelf \
-        --set-rpath "${lib.makeLibraryPath [ glib cairo ]}:$(${patchelf}/bin/patchelf --print-rpath "$soPath")" \
-        "$soPath"
+      rpath="$(patchelf --print-rpath "$soPath")"
+      patchelf --set-rpath "${lib.makeLibraryPath [ lasem glib cairo ]}:$rpath" "$soPath"
+      patchelf --replace-needed liblasem.so liblasem-0.4.so "$soPath"
     '';
   };
 

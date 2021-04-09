@@ -698,6 +698,16 @@
     githubId = 1078530;
     name = "Alexandre Peyroux";
   };
+  applePrincess = {
+    email = "appleprincess@appleprincess.io";
+    github = "applePrincess";
+    githubId = 17154507;
+    name = "Lein Matsumaru";
+    keys = [{
+      longkeyid = "rsa4096/0xAAA50652F0479205";
+      fingerprint = "BF8B F725 DA30 E53E 7F11  4ED8 AAA5 0652 F047 9205";
+   }];
+  };
   ar1a = {
     email = "aria@ar1as.space";
     github = "ar1a";
@@ -2460,6 +2470,12 @@
     github = "dmvianna";
     githubId = 1708810;
     name = "Daniel Vianna";
+  };
+  dnr = {
+    email = "dnr@dnr.im";
+    github = "dnr";
+    githubId = 466723;
+    name = "David Reiss";
   };
   dochang = {
     email = "dochang@gmail.com";
@@ -7621,6 +7637,16 @@
     githubId = 610615;
     name = "Chih-Mao Chen";
   };
+  plabadens = {
+    name = "Pierre Labadens";
+    email = "labadens.pierre+nixpkgs@gmail.com";
+    github = "plabadens";
+    githubId = 4303706;
+    keys = [{
+      longkeyid = "rsa2048/0xF55814E4D6874375";
+      fingerprint = "B00F E582 FD3F 0732 EA48  3937 F558 14E4 D687 4375";
+    }];
+  };
   plchldr = {
     email = "mail@oddco.de";
     github = "plchldr";
@@ -8156,6 +8182,12 @@
     github = "rickynils";
     githubId = 16779;
     name = "Rickard Nilsson";
+  };
+  riey = {
+    email = "creeper844@gmail.com";
+    github = "Riey";
+    githubId = 14910534;
+    name = "Riey";
   };
   rika = {
     email = "rika@paymentswit.ch";
@@ -8705,6 +8737,12 @@
     githubId = 19472270;
     name = "Sebastian";
   };
+  sebbadk = {
+    email = "sebastian@sebba.dk";
+    github = "SEbbaDK";
+    githubId = 1567527;
+    name = "Sebastian Hyberts";
+  };
   sellout = {
     email = "greg@technomadic.org";
     github = "sellout";
@@ -9162,6 +9200,12 @@
     github = "Steell";
     githubId = 1699155;
     name = "Steve Elliott";
+  };
+  stephank = {
+    email = "nix@stephank.nl";
+    github = "stephank";
+    githubId = 89950;
+    name = "Stéphan Kochen";
   };
   stephenmw = {
     email = "stephen@q5comm.com";
