@@ -157,7 +157,7 @@ let
         proxy_connect_timeout   60;
         proxy_send_timeout      60;
         proxy_read_timeout      60;
-        proxy_http_version      1.0;
+        proxy_http_version      1.1;
         include ${recommendedProxyConfig};
       ''}
 
@@ -676,6 +676,7 @@ in
                 Defines the address and other parameters of the upstream servers.
               '';
               default = {};
+              example = { "127.0.0.1:8000" = {}; };
             };
             extraConfig = mkOption {
               type = types.lines;
@@ -690,6 +691,14 @@ in
           Defines a group of servers to use as proxy target.
         '';
         default = {};
+        example = literalExample ''
+          "backend_server" = {
+            servers = { "127.0.0.1:8000" = {}; };
+            extraConfig = ''''
+              keepalive 16;
+            '''';
+          };
+        '';
       };
 
       virtualHosts = mkOption {
@@ -818,7 +827,7 @@ in
         ProtectControlGroups = true;
         RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
         LockPersonality = true;
-        MemoryDenyWriteExecute = !(builtins.any (mod: (mod.allowMemoryWriteExecute or false)) (optionals (cfg.package ? modules) cfg.package.modules));
+        MemoryDenyWriteExecute = !(builtins.any (mod: (mod.allowMemoryWriteExecute or false)) cfg.package.modules);
         RestrictRealtime = true;
         RestrictSUIDSGID = true;
         PrivateMounts = true;

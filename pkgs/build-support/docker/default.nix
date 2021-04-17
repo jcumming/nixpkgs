@@ -418,7 +418,11 @@ rec {
         # details on what's going on here; basically this command
         # means that the runAsRootScript will be executed in a nearly
         # completely isolated environment.
-        unshare -imnpuf --mount-proc chroot mnt ${runAsRootScript}
+        #
+        # Ideally we would use --mount-proc=mnt/proc or similar, but this
+        # doesn't work. The workaround is to setup proc after unshare.
+        # See: https://github.com/karelzak/util-linux/issues/648
+        unshare -imnpuf --mount-proc sh -c 'mount --rbind /proc mnt/proc && chroot mnt ${runAsRootScript}'
 
         # Unmount directories and remove them.
         umount -R mnt/dev mnt/sys mnt${storeDir}
@@ -681,6 +685,42 @@ rec {
 
     in
     result;
+
+  # Merge the tarballs of images built with buildImage into a single
+  # tarball that contains all images. Running `docker load` on the resulting
+  # tarball will load the images into the docker daemon.
+  mergeImages = images: runCommand "merge-docker-images"
+    {
+      inherit images;
+      nativeBuildInputs = [ pigz jq ];
+    } ''
+    mkdir image inputs
+    # Extract images
+    repos=()
+    manifests=()
+    for item in $images; do
+      name=$(basename $item)
+      mkdir inputs/$name
+      tar -I pigz -xf $item -C inputs/$name
+      if [ -f inputs/$name/repositories ]; then
+        repos+=(inputs/$name/repositories)
+      fi
+      if [ -f inputs/$name/manifest.json ]; then
+        manifests+=(inputs/$name/manifest.json)
+      fi
+    done
+    # Copy all layers from input images to output image directory
+    cp -R --no-clobber inputs/*/* image/
+    # Merge repositories objects and manifests
+    jq -s add "''${repos[@]}" > repositories
+    jq -s add "''${manifests[@]}" > manifest.json
+    # Replace output image repositories and manifest with merged versions
+    mv repositories image/repositories
+    mv manifest.json image/manifest.json
+    # Create tarball and gzip
+    tar -C image --hard-dereference --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --xform s:'^./':: -c . | pigz -nT > $out
+  '';
+
 
   # Provide a /etc/passwd and /etc/group that contain root and nobody.
   # Useful when packaging binaries that insist on using nss to look up

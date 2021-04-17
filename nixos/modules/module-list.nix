@@ -288,6 +288,7 @@
   ./services/continuous-integration/hail.nix
   ./services/continuous-integration/hercules-ci-agent/default.nix
   ./services/continuous-integration/hydra/default.nix
+  ./services/continuous-integration/github-runner.nix
   ./services/continuous-integration/gitlab-runner.nix
   ./services/continuous-integration/gocd-agent/default.nix
   ./services/continuous-integration/gocd-server/default.nix
@@ -865,6 +866,7 @@
   ./services/security/shibboleth-sp.nix
   ./services/security/sks.nix
   ./services/security/sshguard.nix
+  ./services/security/step-ca.nix
   ./services/security/tor.nix
   ./services/security/torify.nix
   ./services/security/torsocks.nix

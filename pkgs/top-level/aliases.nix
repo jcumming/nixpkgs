@@ -179,11 +179,13 @@ mapAliases ({
   emacsPackages = emacs.pkgs; # added 2020-12-18
   emby = throw "The Emby derivation has been removed, see jellyfin instead for a free software fork."; # added 2019-05-01
   enblendenfuse = enblend-enfuse; # 2015-09-30
+  esniper = throw "esniper has been removed because upstream no longer maintains it (and it no longer works)"; # added 2021-04-12
   evolution_data_server = evolution-data-server; # added 2018-02-25
   etcdctl = etcd; # added 2018-04-25
   exfat-utils = exfat;                  # 2015-09-11
   facette = throw "facette has been removed."; # added 2020-01-06
   fast-neural-doodle = throw "fast-neural-doodle has been removed, as the upstream project has been abandoned"; # added 2020-03-28
+  fedora-coreos-config-transpiler = throw "fedora-coreos-config-transpiler has been renamed to 'butane'."; # added 2021-04-13
   fetchFromGithub = throw "You meant fetchFromGitHub, with a capital H.";
   ffadoFull = ffado; # added 2018-05-01
   firefox-esr-68 = throw "Firefox 68 ESR reached end of life with its final release 68.12esr on 2020-08-25 and was therefore removed from nixpkgs";
@@ -340,6 +342,7 @@ mapAliases ({
   krename-qt5 = krename; # added 2017-02-18
   kerberos = libkrb5; # moved from top-level 2021-03-14
   keymon = throw "keymon has been removed from nixpkgs, as it's abandoned and archived."; # 2019-12-10
+  kramdown-rfc2629 = rubyPackages.kramdown-rfc2629; # added 2021-03-23
   kvm = qemu_kvm; # added 2018-04-25
   latinmodern-math = lmmath;
   letsencrypt = certbot; # added 2016-05-16
@@ -550,7 +553,6 @@ mapAliases ({
   pmtools = acpica-tools; # added 2018-11-01
   polarssl = mbedtls; # added 2018-04-25
   poppler_qt5 = libsForQt5.poppler;  # added 2015-12-19
-  postgresql95 = postgresql_9_5;
   postgresql96 = postgresql_9_6;
   postgresql100 = throw "postgresql100 was deprecated on 2018-10-21: use postgresql_10 instead";
   # postgresql plugins
@@ -577,6 +579,7 @@ mapAliases ({
   ppl-address-book = throw "ppl-address-book deprecated on 2019-05-02: abandoned by upstream.";
   processing3 = processing; # added 2019-08-16
   procps-ng = procps; # added 2018-06-08
+  proj_5 = throw "Proj-5 has been removed from nixpkgs, use proj instead."; # added 2021-04-12
   prometheus-cups-exporter = throw "outdated and broken by design; removed by developer."; # added 2021-03-16
   pygmentex = texlive.bin.pygmentex; # added 2019-12-15
   pyload = throw "pyload has been removed from nixpkgs, as it was unmaintained."; # added 2021-03-21
@@ -621,6 +624,7 @@ mapAliases ({
   rfkill = throw "rfkill has been removed, as it's included in util-linux"; # added 2020-08-23
   riak-cs = throw "riak-cs is not maintained anymore"; # added 2020-10-14
   radare2-cutter = cutter; # added 2021-03-30
+  redkite = throw "redkite was archived by upstream"; # added 2021-04-12
   rkt = throw "rkt was archived by upstream"; # added 2020-05-16
   ruby_2_0_0 = throw "ruby_2_0_0 was deprecated on 2018-02-13: use a newer version of ruby";
   ruby_2_1_0 = throw "ruby_2_1_0 was deprecated on 2018-02-13: use a newer version of ruby";
@@ -729,6 +733,7 @@ mapAliases ({
   sup = throw "sup was deprecated on 2019-09-10: abandoned by upstream";
   swfdec = throw "swfdec has been removed as broken and unmaintained."; # added 2020-08-23
   swtpm-tpm2 = swtpm; # added 2021-02-26
+  syncthing-cli = syncthing; # added 2021-04-06
   system_config_printer = system-config-printer;  # added 2016-01-03
   systemd-cryptsetup-generator = throw "systemd-cryptsetup-generator is now included in the systemd package"; # added 2020-07-12
   systemd_with_lvm2 = throw "systemd_with_lvm2 is obsolete, enabled by default via the lvm module"; # added 2020-07-12
@@ -933,6 +938,8 @@ mapAliases ({
   ttyrec = ovh-ttyrec;
 
   zplugin = zinit; # Added 2021-01-30
+
+  posix_man_pages = man-pages-posix; # Added 2021-04-15
 
   /* If these are in the scope of all-packages.nix, they cause collisions
   between mixed versions of qt. See:
