@@ -407,6 +407,8 @@ in {
 
   androguard = callPackage ../development/python-modules/androguard { };
 
+  angr = callPackage ../development/python-modules/angr { };
+
   aniso8601 = callPackage ../development/python-modules/aniso8601 { };
 
   annexremote = callPackage ../development/python-modules/annexremote { };
@@ -1399,6 +1401,8 @@ in {
 
   cld2-cffi = callPackage ../development/python-modules/cld2-cffi { };
 
+  cle = callPackage ../development/python-modules/cle { };
+
   cleo = callPackage ../development/python-modules/cleo { };
 
   clf = callPackage ../development/python-modules/clf { };
@@ -2118,6 +2122,8 @@ in {
   ds-store = callPackage ../development/python-modules/ds-store { };
 
   ds4drv = callPackage ../development/python-modules/ds4drv { };
+
+  dsmr-parser = callPackage ../development/python-modules/dsmr-parser { };
 
   dtopt = callPackage ../development/python-modules/dtopt { };
 
@@ -3079,6 +3085,8 @@ in {
 
   habanero = callPackage ../development/python-modules/habanero { };
 
+  hachoir = callPackage ../development/python-modules/hachoir { };
+
   ha-ffmpeg = callPackage ../development/python-modules/ha-ffmpeg { };
 
   halo = callPackage ../development/python-modules/halo { };
@@ -3254,6 +3262,8 @@ in {
   hypchat = callPackage ../development/python-modules/hypchat { };
 
   hyperframe = callPackage ../development/python-modules/hyperframe { };
+
+  hyperion-py = callPackage ../development/python-modules/hyperion-py { };
 
   hyperkitty = callPackage ../servers/mail/mailman/hyperkitty.nix { };
 
@@ -3705,6 +3715,8 @@ in {
 
   karton-core = callPackage ../development/python-modules/karton-core { };
 
+  karton-dashboard = callPackage ../development/python-modules/karton-dashboard { };
+
   karton-mwdb-reporter = callPackage ../development/python-modules/karton-mwdb-reporter { };
 
   karton-yaramatcher = callPackage ../development/python-modules/karton-yaramatcher { };
@@ -3898,6 +3910,10 @@ in {
   libkeepass = callPackage ../development/python-modules/libkeepass { };
 
   liblarch = callPackage ../development/python-modules/liblarch { };
+
+  liblzfse = callPackage ../development/python-modules/liblzfse {
+    inherit (pkgs) lzfse;
+  };
 
   libmodulemd = pipe pkgs.libmodulemd [
     toPythonModule
@@ -5259,6 +5275,8 @@ in {
 
   pkuseg = callPackage ../development/python-modules/pkuseg { };
 
+  ppdeep = callPackage ../development/python-modules/ppdeep { };
+
   pynndescent = callPackage ../development/python-modules/pynndescent { };
 
   pynuki = callPackage ../development/python-modules/pynuki { };
@@ -5509,6 +5527,8 @@ in {
   pulp = callPackage ../development/python-modules/pulp { };
 
   pulsectl = callPackage ../development/python-modules/pulsectl { };
+
+  pur = callPackage ../development/python-modules/pur { };
 
   pure-cdb = callPackage ../development/python-modules/pure-cdb { };
 
@@ -7201,6 +7221,8 @@ in {
 
   pyx = callPackage ../development/python-modules/pyx { };
 
+  pyxbe = callPackage ../development/python-modules/pyxbe { };
+
   pyxdg = callPackage ../development/python-modules/pyxdg { };
 
   pyxeoma = callPackage ../development/python-modules/pyxeoma { };
@@ -8330,6 +8352,8 @@ in {
 
   tahoma-api = callPackage ../development/python-modules/tahoma-api { };
 
+  tailer = callPackage ../development/python-modules/tailer { };
+
   tarman = callPackage ../development/python-modules/tarman { };
 
   tasklib = callPackage ../development/python-modules/tasklib { };
@@ -8777,6 +8801,8 @@ in {
 
   unifi = callPackage ../development/python-modules/unifi { };
 
+  unify = callPackage ../development/python-modules/unify { };
+
   unifiled = callPackage ../development/python-modules/unifiled { };
 
   units = callPackage ../development/python-modules/units { };
@@ -8794,6 +8820,8 @@ in {
   unrpa = callPackage ../development/python-modules/unrpa { };
 
   untangle = callPackage ../development/python-modules/untangle { };
+
+  untokenize = callPackage ../development/python-modules/untokenize { };
 
   upass = callPackage ../development/python-modules/upass { };
 
