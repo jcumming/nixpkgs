@@ -176,6 +176,7 @@ mapAliases ({
   dvb_apps = throw "dvb_apps has been removed."; # added 2020-11-03
   dwarf_fortress = dwarf-fortress; # added 2016-01-23
   dwm-git = throw "dwm-git has been removed from nixpkgs, as it had no updates for 2 years not serving it's purpose."; # added 2021-02-07
+  dylibbundler = macdylibbundler; # added 2021-04-24
   elasticmq = throw "elasticmq has been removed in favour of elasticmq-server-bin"; # added 2021-01-17
   emacsPackagesGen = emacsPackagesFor; # added 2018-08-18
   emacsPackagesNgGen = emacsPackagesFor; # added 2018-08-18
@@ -335,6 +336,7 @@ mapAliases ({
   kodiGBM = kodi-gbm;
   kodiPlain = kodi;
   kodiPlainWayland = kodi-wayland;
+  jellyfin_10_5 = throw "Jellyfin 10.5 is no longer supported and contains a security vulnerability. Please upgrade to a newer version."; # added 2021-04-26
   julia_07 = throw "julia_07 is deprecated in favor of julia_10 LTS"; # added 2020-09-15
   julia_11 = throw "julia_11 is deprecated in favor of latest Julia version"; # added 2020-09-15
   kdeconnect = plasma5Packages.kdeconnect-kde; # added 2020-10-28
@@ -400,6 +402,12 @@ mapAliases ({
   # added 2020-04-04
   linuxPackages_testing_hardened = throw "linuxPackages_testing_hardened has been removed, please use linuxPackages_latest_hardened";
   linux_testing_hardened = throw "linux_testing_hardened has been removed, please use linux_latest_hardened";
+
+  # added 2021-04-04
+  linuxPackages_xen_dom0 = linuxPackages;
+  linuxPackages_latest_xen_dom0 = linuxPackages_latest;
+  linuxPackages_xen_dom0_hardened = linuxPackages_hardened;
+  linuxPackages_latest_xen_dom0_hardened = linuxPackages_latest_hardened;
 
   linux-steam-integration = throw "linux-steam-integration has been removed, as the upstream project has been abandoned"; # added 2020-05-22
   loadcaffe = throw "loadcaffe has been removed, as the upstream project has been abandoned"; # added 2020-03-28
@@ -602,6 +610,7 @@ mapAliases ({
   phonon = throw "phonon: Please use libsForQt5.phonon, as Qt4 support in this package has been removed."; # added 2019-11-22
   pynagsystemd = throw "pynagsystemd was removed as it was unmaintained and incompatible with recent systemd versions. Instead use its fork check_systemd."; # added 2020-10-24
   python2nix = throw "python2nix has been removed as it is outdated. Use e.g. nixpkgs-pytools instead."; # added 2021-03-08
+  quagga = throw "quagga is no longer maintained upstream"; # added 2021-04-22
   qca-qt5 = libsForQt5.qca-qt5;  # added 2015-12-19
   qcsxcad = libsForQt5.qcsxcad;  # added 2020-11-05
   qmk_firmware = throw "qmk_firmware has been removed because it was broken"; # added 2021-04-02

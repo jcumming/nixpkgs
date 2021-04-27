@@ -133,6 +133,7 @@
   ./programs/file-roller.nix
   ./programs/firejail.nix
   ./programs/fish.nix
+  ./programs/flexoptix-app.nix
   ./programs/freetds.nix
   ./programs/fuse.nix
   ./programs/geary.nix
@@ -529,6 +530,7 @@
   ./services/misc/parsoid.nix
   ./services/misc/plex.nix
   ./services/misc/plikd.nix
+  ./services/misc/podgrab.nix
   ./services/misc/tautulli.nix
   ./services/misc/pinnwand.nix
   ./services/misc/pykms.nix
@@ -700,6 +702,9 @@
   ./services/networking/iodine.nix
   ./services/networking/iperf3.nix
   ./services/networking/ircd-hybrid/default.nix
+  ./services/networking/iscsi/initiator.nix
+  ./services/networking/iscsi/root-initiator.nix
+  ./services/networking/iscsi/target.nix
   ./services/networking/iwd.nix
   ./services/networking/jicofo.nix
   ./services/networking/jitsi-videobridge.nix
@@ -767,7 +772,6 @@
   ./services/networking/prayer.nix
   ./services/networking/privoxy.nix
   ./services/networking/prosody.nix
-  ./services/networking/quagga.nix
   ./services/networking/quassel.nix
   ./services/networking/quorum.nix
   ./services/networking/quicktun.nix

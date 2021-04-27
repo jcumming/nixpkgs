@@ -11,11 +11,11 @@
 
 buildPythonPackage rec {
   pname = "pyvex";
-  version = "9.0.6281";
+  version = "9.0.6852";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-E8BYCzV71qVNRzWCCI2yTVU88JVMA08eqnIO8OtbNlM=";
+    sha256 = "sha256-O84QErqHIRYQZh9mR71opm+j7kb9a4s5f1yj0WNiJAM=";
   };
 
   propagatedBuildInputs = [
@@ -26,9 +26,8 @@ buildPythonPackage rec {
     pycparser
   ];
 
-  postPatch = ''
-    substituteInPlace pyvex_c/Makefile \
-      --replace "CC=gcc" "CC=${stdenv.cc.targetPrefix}cc"
+  preBuild = ''
+    export CC=${stdenv.cc.targetPrefix}cc
   '';
 
   # No tests are available on PyPI, GitHub release has tests

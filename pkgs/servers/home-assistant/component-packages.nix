@@ -32,7 +32,7 @@
     "amcrest" = ps: with ps; [ amcrest ha-ffmpeg ];
     "ampio" = ps: with ps; [ ]; # missing inputs: asmog
     "analytics" = ps: with ps; [ aiohttp-cors ];
-    "android_ip_webcam" = ps: with ps; [ ]; # missing inputs: pydroid-ipcam
+    "android_ip_webcam" = ps: with ps; [ pydroid-ipcam ];
     "androidtv" = ps: with ps; [ adb-shell androidtv pure-python-adb ];
     "anel_pwrctrl" = ps: with ps; [ ]; # missing inputs: anel_pwrctrl-homeassistant
     "anthemav" = ps: with ps; [ ]; # missing inputs: anthemav
@@ -90,7 +90,7 @@
     "blueprint" = ps: with ps; [ ];
     "bluesound" = ps: with ps; [ xmltodict ];
     "bluetooth_le_tracker" = ps: with ps; [ ]; # missing inputs: pygatt[GATTTOOL]
-    "bluetooth_tracker" = ps: with ps; [ bt_proximity ]; # missing inputs: pybluez
+    "bluetooth_tracker" = ps: with ps; [ bt_proximity pybluez ];
     "bme280" = ps: with ps; [ smbus-cffi ]; # missing inputs: i2csense
     "bme680" = ps: with ps; [ bme680 smbus-cffi ];
     "bmp280" = ps: with ps; [ ]; # missing inputs: RPi.GPIO adafruit-circuitpython-bmp280
@@ -351,7 +351,7 @@
     "hitron_coda" = ps: with ps; [ ];
     "hive" = ps: with ps; [ ]; # missing inputs: pyhiveapi
     "hlk_sw16" = ps: with ps; [ ]; # missing inputs: hlk-sw16
-    "home_connect" = ps: with ps; [ aiohttp-cors ]; # missing inputs: homeconnect
+    "home_connect" = ps: with ps; [ aiohttp-cors homeconnect ];
     "home_plus_control" = ps: with ps; [ aiohttp-cors homepluscontrol ];
     "homeassistant" = ps: with ps; [ ];
     "homekit" = ps: with ps; [ HAP-python pyqrcode pyturbojpeg aiohttp-cors base36 fnvhash ha-ffmpeg zeroconf ];
@@ -573,7 +573,7 @@
     "number" = ps: with ps; [ ];
     "nut" = ps: with ps; [ ]; # missing inputs: pynut2
     "nws" = ps: with ps; [ pynws ];
-    "nx584" = ps: with ps; [ ]; # missing inputs: pynx584
+    "nx584" = ps: with ps; [ pynx584 ];
     "nzbget" = ps: with ps; [ ]; # missing inputs: pynzbgetapi
     "oasa_telematics" = ps: with ps; [ ]; # missing inputs: oasatelematics
     "obihai" = ps: with ps; [ ]; # missing inputs: pyobihai
@@ -583,14 +583,14 @@
     "ombi" = ps: with ps; [ ]; # missing inputs: pyombi
     "omnilogic" = ps: with ps; [ omnilogic ];
     "onboarding" = ps: with ps; [ aiohttp-cors pillow ];
-    "ondilo_ico" = ps: with ps; [ aiohttp-cors ]; # missing inputs: ondilo
+    "ondilo_ico" = ps: with ps; [ aiohttp-cors ondilo ];
     "onewire" = ps: with ps; [ ]; # missing inputs: pi1wire pyownet
     "onkyo" = ps: with ps; [ onkyo-eiscp ];
     "onvif" = ps: with ps; [ ha-ffmpeg zeep ]; # missing inputs: WSDiscovery onvif-zeep-async
     "openalpr_cloud" = ps: with ps; [ ];
     "openalpr_local" = ps: with ps; [ ];
     "opencv" = ps: with ps; [ numpy ]; # missing inputs: opencv-python-headless
-    "openerz" = ps: with ps; [ ]; # missing inputs: openerz-api
+    "openerz" = ps: with ps; [ openerz-api ];
     "openevse" = ps: with ps; [ ]; # missing inputs: openevsewifi
     "openexchangerates" = ps: with ps; [ ];
     "opengarage" = ps: with ps; [ ]; # missing inputs: open-garage
@@ -692,7 +692,7 @@
     "rituals_perfume_genie" = ps: with ps; [ pyrituals ];
     "rmvtransport" = ps: with ps; [ PyRMVtransport ];
     "rocketchat" = ps: with ps; [ ]; # missing inputs: rocketchat-API
-    "roku" = ps: with ps; [ ]; # missing inputs: rokuecp
+    "roku" = ps: with ps; [ rokuecp ];
     "roomba" = ps: with ps; [ roombapy ];
     "roon" = ps: with ps; [ ]; # missing inputs: roonapi
     "route53" = ps: with ps; [ boto3 ];
@@ -750,17 +750,17 @@
     "sky_hub" = ps: with ps; [ ]; # missing inputs: pyskyqhub
     "skybeacon" = ps: with ps; [ ]; # missing inputs: pygatt[GATTTOOL]
     "skybell" = ps: with ps; [ skybellpy ];
-    "slack" = ps: with ps; [ ]; # missing inputs: slackclient
+    "slack" = ps: with ps; [ slackclient ];
     "sleepiq" = ps: with ps; [ sleepyq ];
     "slide" = ps: with ps; [ ]; # missing inputs: goslide-api
     "sma" = ps: with ps; [ pysma ];
     "smappee" = ps: with ps; [ aiohttp-cors pysmappee ];
     "smart_meter_texas" = ps: with ps; [ ]; # missing inputs: smart-meter-texas
     "smarthab" = ps: with ps; [ ]; # missing inputs: smarthab
-    "smartthings" = ps: with ps; [ aiohttp-cors hass-nabucasa ]; # missing inputs: pysmartapp pysmartthings
+    "smartthings" = ps: with ps; [ aiohttp-cors hass-nabucasa pysmartapp pysmartthings ];
     "smarttub" = ps: with ps; [ python-smarttub ];
     "smarty" = ps: with ps; [ ]; # missing inputs: pysmarty
-    "smhi" = ps: with ps; [ ]; # missing inputs: smhi-pkg
+    "smhi" = ps: with ps; [ smhi-pkg ];
     "sms" = ps: with ps; [ python-gammu ];
     "smtp" = ps: with ps; [ ];
     "snapcast" = ps: with ps; [ snapcast ];
@@ -984,6 +984,6 @@
     "zone" = ps: with ps; [ ];
     "zoneminder" = ps: with ps; [ zm-py ];
     "zwave" = ps: with ps; [ aiohttp-cors homeassistant-pyozw paho-mqtt pydispatcher python-openzwave-mqtt ];
-    "zwave_js" = ps: with ps; [ aiohttp-cors ]; # missing inputs: zwave-js-server-python
+    "zwave_js" = ps: with ps; [ aiohttp-cors zwave-js-server-python ];
   };
 }
