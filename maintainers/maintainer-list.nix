@@ -3107,6 +3107,16 @@
     githubId = 2147649;
     name = "Euan Kemp";
   };
+  evalexpr = {
+    name = "Jonathan Wilkins";
+    email = "nixos@wilkins.tech";
+    github = "evalexpr";
+    githubId = 23485511;
+    keys = [{
+      longkeyid = "rsa4096/0x2D1D402E17763DD6";
+      fingerprint = "8129 5B85 9C5A F703 C2F4  1E29 2D1D 402E 1776 3DD6";
+    }];
+  };
   evanjs = {
     email = "evanjsx@gmail.com";
     github = "evanjs";
@@ -3990,6 +4000,16 @@
     github = "hirenashah";
     githubId = 19825977;
     name = "Hiren Shah";
+  };
+  hiro98 = {
+    email = "hiro@protagon.space";
+    github = "vale981";
+    githubId = 4025991;
+    name = "Valentin Boettcher";
+    keys = [{
+      longkeyid = "rsa2048/0xC22D4DE4D7B32D19";
+      fingerprint = "45A9 9917 578C D629 9F5F  B5B4 C22D 4DE4 D7B3 2D19";
+    }];
   };
   hjones2199 = {
     email = "hjones2199@gmail.com";
@@ -7030,6 +7050,12 @@
     github = "nequissimus";
     githubId = 628342;
     name = "Tim Steinbach";
+  };
+  netcrns = {
+    email = "jason.wing@gmx.de";
+    github = "netcrns";
+    githubId = 34162313;
+    name = "Jason Wing";
   };
   netixx = {
     email = "dev.espinetfrancois@gmail.com";
