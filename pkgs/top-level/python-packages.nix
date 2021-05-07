@@ -329,6 +329,8 @@ in {
 
   aiopulse = callPackage ../development/python-modules/aiopulse { };
 
+  aiopvpc = callPackage ../development/python-modules/aiopvpc { };
+
   aiopylgtv = callPackage ../development/python-modules/aiopylgtv { };
 
   aiorecollect = callPackage ../development/python-modules/aiorecollect { };
@@ -569,6 +571,8 @@ in {
 
   asyncssh = callPackage ../development/python-modules/asyncssh { };
 
+  asyncstdlib = callPackage ../development/python-modules/asyncstdlib { };
+
   async_stagger = callPackage ../development/python-modules/async_stagger { };
 
   asynctest = callPackage ../development/python-modules/asynctest { };
@@ -619,6 +623,8 @@ in {
 
   auth0-python = callPackage ../development/python-modules/auth0-python { };
 
+  authcaptureproxy = callPackage ../development/python-modules/authcaptureproxy { };
+
   authheaders = callPackage ../development/python-modules/authheaders { };
 
   authlib = callPackage ../development/python-modules/authlib { };
@@ -628,6 +634,8 @@ in {
   autobahn = callPackage ../development/python-modules/autobahn { };
 
   autograd = callPackage ../development/python-modules/autograd { };
+
+  autoit-ripper = callPackage ../development/python-modules/autoit-ripper { };
 
   autologging = callPackage ../development/python-modules/autologging { };
 
@@ -854,6 +862,8 @@ in {
   azure-mgmt-servicebus = callPackage ../development/python-modules/azure-mgmt-servicebus { };
 
   azure-mgmt-servicefabric = callPackage ../development/python-modules/azure-mgmt-servicefabric { };
+
+  azure-mgmt-servicefabricmanagedclusters = callPackage ../development/python-modules/azure-mgmt-servicefabricmanagedclusters { };
 
   azure-mgmt-signalr = callPackage ../development/python-modules/azure-mgmt-signalr { };
 
@@ -1373,6 +1383,8 @@ in {
 
   click-completion = callPackage ../development/python-modules/click-completion { };
 
+  click-configfile = callPackage ../development/python-modules/click-configfile { };
+
   click-datetime = callPackage ../development/python-modules/click-datetime { };
 
   click-default-group = callPackage ../development/python-modules/click-default-group { };
@@ -1384,6 +1396,8 @@ in {
   click-log = callPackage ../development/python-modules/click-log { };
 
   click-plugins = callPackage ../development/python-modules/click-plugins { };
+
+  click-spinner = callPackage ../development/python-modules/click-spinner { };
 
   click-repl = callPackage ../development/python-modules/click-repl { };
 
@@ -1418,6 +1432,8 @@ in {
   cloudpickle = callPackage ../development/python-modules/cloudpickle { };
 
   cloudscraper = callPackage ../development/python-modules/cloudscraper { };
+
+  cloudsmith-api = callPackage ../development/python-modules/cloudsmith-api { };
 
   clustershell = callPackage ../development/python-modules/clustershell { };
 
@@ -1737,6 +1753,8 @@ in {
 
   decorator = callPackage ../development/python-modules/decorator { };
 
+  decopatch = callPackage ../development/python-modules/decopatch { };
+
   deep_merge = callPackage ../development/python-modules/deep_merge { };
 
   deepdiff = callPackage ../development/python-modules/deepdiff { };
@@ -1754,6 +1772,8 @@ in {
   defusedxml = callPackage ../development/python-modules/defusedxml { };
 
   delegator-py = callPackage ../development/python-modules/delegator-py { };
+
+  deltachat = callPackage ../development/python-modules/deltachat { };
 
   deluge-client = callPackage ../development/python-modules/deluge-client { };
 
@@ -2300,6 +2320,11 @@ in {
   fastimport = callPackage ../development/python-modules/fastimport { };
 
   fastjsonschema = callPackage ../development/python-modules/fastjsonschema { };
+
+  fastnlo_toolkit = toPythonModule (pkgs.fastnlo_toolkit.override {
+    withPython = true;
+    inherit python;
+  });
 
   fastpair = callPackage ../development/python-modules/fastpair { };
 
@@ -2983,6 +3008,8 @@ in {
 
   hachoir = callPackage ../development/python-modules/hachoir { };
 
+  hdate = callPackage ../development/python-modules/hdate { };
+
   ha-ffmpeg = callPackage ../development/python-modules/ha-ffmpeg { };
 
   halo = callPackage ../development/python-modules/halo { };
@@ -3570,6 +3597,8 @@ in {
   kaptan = callPackage ../development/python-modules/kaptan { };
 
   karton-asciimagic = callPackage ../development/python-modules/karton-asciimagic { };
+
+  karton-autoit-ripper = callPackage ../development/python-modules/karton-autoit-ripper { };
 
   karton-classifier = callPackage ../development/python-modules/karton-classifier { };
 
@@ -5081,7 +5110,7 @@ in {
   poolsense = callPackage ../development/python-modules/poolsense { };
 
   poppler-qt5 = callPackage ../development/python-modules/poppler-qt5 {
-    inherit (pkgs.qt5) qtbase;
+    inherit (pkgs.qt5) qtbase qmake;
     inherit (pkgs.libsForQt5) poppler;
   };
 
@@ -5907,6 +5936,8 @@ in {
     inherit (pkgs) lz4;
   };
 
+  pyotgw = callPackage ../development/python-modules/pyotgw { };
+
   pyotp = callPackage ../development/python-modules/pyotp { };
 
   pyowm = callPackage ../development/python-modules/pyowm { };
@@ -6302,6 +6333,8 @@ in {
 
   pytest-cache = self.pytestcache; # added 2021-01-04
   pytestcache = callPackage ../development/python-modules/pytestcache { };
+
+  pytest-cases = callPackage ../development/python-modules/pytest-cases{ };
 
   pytest-catchlog = callPackage ../development/python-modules/pytest-catchlog { };
 
@@ -7927,6 +7960,8 @@ in {
   tahoma-api = callPackage ../development/python-modules/tahoma-api { };
 
   tailer = callPackage ../development/python-modules/tailer { };
+
+  tappy = callPackage ../development/python-modules/tappy { };
 
   tasklib = callPackage ../development/python-modules/tasklib { };
 

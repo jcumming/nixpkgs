@@ -70,9 +70,11 @@ let
       tlc = callPackage ../development/coq-modules/tlc {};
       Velisarios = callPackage ../development/coq-modules/Velisarios {};
       Verdi = callPackage ../development/coq-modules/Verdi {};
-      VST = callPackage ../development/coq-modules/VST {
-        compcert = compcert.override { version = "3.7"; };
-      };
+      VST = callPackage ../development/coq-modules/VST (with lib.versions;
+        lib.switch coq.coq-version [
+          { case = "8.11"; out = { compcert = compcert.override { coqPackages = self; version = "3.7"; }; }; }
+          { case = range "8.12" "8.13"; out = { compcert = compcert.override { coqPackages = self; }; }; }
+        ] {});
       filterPackages = doesFilter: if doesFilter then filterCoqPackages self else self;
     };
 
@@ -122,9 +124,7 @@ in rec {
   coqPackages_8_11 = mkCoqPackages coq_8_11;
   coqPackages_8_12 = mkCoqPackages coq_8_12;
   coqPackages_8_13 = mkCoqPackages coq_8_13;
-  coqPackages = recurseIntoAttrs (lib.mapDerivationAttrset lib.dontDistribute
-    coqPackages_8_11
-  );
+  coqPackages = recurseIntoAttrs coqPackages_8_11;
   coq = coqPackages.coq;
 
 }
