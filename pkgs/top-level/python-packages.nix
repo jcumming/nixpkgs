@@ -1942,8 +1942,6 @@ in {
 
   django-picklefield = callPackage ../development/python-modules/django-picklefield { };
 
-  django_pipeline = callPackage ../development/python-modules/django-pipeline { };
-
   django_polymorphic = callPackage ../development/python-modules/django-polymorphic { };
 
   django-postgresql-netfields = callPackage ../development/python-modules/django-postgresql-netfields { };
@@ -5313,6 +5311,8 @@ in {
   py-air-control = callPackage ../development/python-modules/py-air-control { };
 
   py-air-control-exporter = callPackage ../development/python-modules/py-air-control-exporter { };
+
+  py-dmidecode = callPackage ../development/python-modules/py-dmidecode { };
 
   py2bit = callPackage ../development/python-modules/py2bit { };
 

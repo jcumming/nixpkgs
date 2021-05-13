@@ -156,7 +156,9 @@ in
 
   antsimulator = callPackage ../games/antsimulator { };
 
-  atuin = callPackage ../tools/misc/atuin { };
+  atuin = callPackage ../tools/misc/atuin {
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
+  };
 
   fiche = callPackage ../servers/fiche { };
 
@@ -252,6 +254,8 @@ in
   each = callPackage ../tools/text/each { };
 
   eclipse-mat = callPackage ../development/tools/eclipse-mat { };
+
+  evans = callPackage ../development/tools/evans { };
 
   frugal = callPackage ../development/tools/frugal { };
 
@@ -809,6 +813,8 @@ in
   quich = callPackage ../tools/misc/quich { } ;
 
   tfk8s = callPackage ../tools/misc/tfk8s { };
+
+  tnat64 = callPackage ../tools/networking/tnat64 { };
 
   xcd = callPackage ../tools/misc/xcd { };
 
@@ -1934,6 +1940,8 @@ in
 
   buildpack = callPackage ../development/tools/buildpack { };
 
+  bottom-rs = callPackage ../tools/misc/bottom-rs { };
+
   buildtorrent = callPackage ../tools/misc/buildtorrent { };
 
   bustle = haskellPackages.bustle;
@@ -2410,6 +2418,8 @@ in
   dyncall = callPackage ../development/libraries/dyncall { };
 
   dyndnsc = callPackage ../applications/networking/dyndns/dyndnsc { };
+
+  earthly = callPackage ../development/tools/earthly { };
 
   earlybird = callPackage ../tools/security/earlybird { };
 
@@ -3653,7 +3663,9 @@ in
 
   cfssl = callPackage ../tools/security/cfssl { };
 
-  chafa = callPackage ../tools/misc/chafa { };
+  chafa = callPackage ../tools/misc/chafa {
+    inherit (darwin.apple_sdk.frameworks) Foundation;
+  };
 
   checkbashisms = callPackage ../development/tools/misc/checkbashisms { };
 
@@ -6203,6 +6215,8 @@ in
 
   minidlna = callPackage ../tools/networking/minidlna { };
 
+  minipro = callPackage ../tools/misc/minipro { };
+
   minisign = callPackage ../tools/security/minisign { };
 
   ministat = callPackage ../tools/misc/ministat { };
@@ -6456,6 +6470,8 @@ in
 
   libtorrent = callPackage ../tools/networking/p2p/libtorrent { };
 
+  libtorrent-jesec = callPackage ../tools/networking/p2p/libtorrent-jesec { };
+
   libmpack = callPackage ../development/libraries/libmpack { };
 
   libiberty = callPackage ../development/libraries/libiberty { };
@@ -6609,8 +6625,9 @@ in
 
   mandoc = callPackage ../tools/misc/mandoc { };
 
-  mangohud = callPackage ../tools/graphics/mangohud/combined.nix {
+  mangohud = callPackage ../tools/graphics/mangohud {
     libXNVCtrl = linuxPackages.nvidia_x11.settings.libXNVCtrl;
+    mangohud32 = pkgsi686Linux.mangohud;
   };
 
   manix = callPackage ../tools/nix/manix {
@@ -8172,6 +8189,8 @@ in
   rsstail = callPackage ../applications/networking/feedreaders/rsstail { };
 
   rtorrent = callPackage ../tools/networking/p2p/rtorrent { };
+
+  rtorrent-jesec = callPackage ../tools/networking/p2p/rtorrent-jesec { };
 
   rubber = callPackage ../tools/typesetting/rubber { };
 
@@ -11537,7 +11556,9 @@ in
   cargo-make = callPackage ../development/tools/rust/cargo-make {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
-  cargo-msrv = callPackage ../development/tools/rust/cargo-msrv { };
+  cargo-msrv = callPackage ../development/tools/rust/cargo-msrv {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
   cargo-play = callPackage ../development/tools/rust/cargo-play { };
   cargo-raze = callPackage ../development/tools/rust/cargo-raze {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -11867,6 +11888,7 @@ in
   erlang_nox = beam_nox.interpreters.erlang;
 
   inherit (beam.packages.erlang)
+    erlang-ls
     rebar rebar3 rebar3WithPlugins
     fetchHex beamPackages
     relxExe;
@@ -19209,9 +19231,18 @@ in
 
   miniflux = callPackage ../servers/miniflux { };
 
-  nagios = callPackage ../servers/monitoring/nagios { };
+  icinga2 = callPackage ../servers/monitoring/icinga2 { };
+
+  icinga2-agent = callPackage ../servers/monitoring/icinga2 {
+    nameSuffix = "-agent";
+    withMysql = false;
+    withNotification = false;
+    withIcingadb = false;
+  };
 
   munin = callPackage ../servers/monitoring/munin { };
+
+  nagios = callPackage ../servers/monitoring/nagios { };
 
   monitoring-plugins = callPackage ../servers/monitoring/plugins { };
 
@@ -20154,6 +20185,13 @@ in
     ];
   };
 
+  linux_5_12 = callPackage ../os-specific/linux/kernel/linux-5.12.nix {
+    kernelPatches = [
+      kernelPatches.bridge_stp_helper
+      kernelPatches.request_key_helper
+    ];
+  };
+
   linux-rt_5_10 = callPackage ../os-specific/linux/kernel/linux-rt-5.10.nix {
     kernelPatches = [
       kernelPatches.bridge_stp_helper
@@ -20305,7 +20343,6 @@ in
 
     nvidiaPackages = dontRecurseIntoAttrs (callPackage ../os-specific/linux/nvidia-x11 { });
 
-    nvidia_x11_legacy304   = nvidiaPackages.legacy_304;
     nvidia_x11_legacy340   = nvidiaPackages.legacy_340;
     nvidia_x11_legacy390   = nvidiaPackages.legacy_390;
     nvidia_x11_beta        = nvidiaPackages.beta;
@@ -20459,6 +20496,7 @@ in
   linuxPackages_5_4 = recurseIntoAttrs (linuxPackagesFor pkgs.linux_5_4);
   linuxPackages_5_10 = recurseIntoAttrs (linuxPackagesFor pkgs.linux_5_10);
   linuxPackages_5_11 = recurseIntoAttrs (linuxPackagesFor pkgs.linux_5_11);
+  linuxPackages_5_12 = recurseIntoAttrs (linuxPackagesFor pkgs.linux_5_12);
 
   # When adding to the list above:
   # - Update linuxPackages_latest to the latest version
@@ -27222,6 +27260,8 @@ in
 
   picom = callPackage ../applications/window-managers/picom {};
 
+  xd = callPackage ../applications/networking/p2p/xd {};
+
   xdaliclock = callPackage ../tools/misc/xdaliclock {};
 
   xdg-dbus-proxy = callPackage ../development/libraries/xdg-dbus-proxy { };
@@ -28429,6 +28469,8 @@ in
   steam-run-native = (steam.override {
     nativeOnly = true;
   }).run;
+
+  steam-tui = callPackage ../games/steam-tui { };
 
   steamcmd = steamPackages.steamcmd;
 
@@ -30129,8 +30171,9 @@ in
     kops_1_16
     kops_1_17
     kops_1_18
+    kops_1_19
     ;
-  kops = kops_1_18;
+  kops = kops_1_19;
 
   lguf-brightness = callPackage ../misc/lguf-brightness { };
 
@@ -30187,7 +30230,8 @@ in
     nix
     nixStable
     nixUnstable
-    nixFlakes;
+    nixFlakes
+    nixExperimental;
 
   nixStatic = pkgsStatic.nix;
 
@@ -30842,7 +30886,7 @@ in
   vimb = wrapFirefox vimb-unwrapped { };
 
   vips = callPackage ../tools/graphics/vips {
-    inherit (darwin.apple_sdk.frameworks) ApplicationServices;
+    inherit (darwin.apple_sdk.frameworks) ApplicationServices Foundation;
   };
   nip2 = callPackage ../tools/graphics/nip2 { };
 
@@ -31364,7 +31408,9 @@ in
 
   treefmt = callPackage ../development/tools/treefmt { };
 
-  bottom = callPackage ../tools/system/bottom {};
+  bottom = callPackage ../tools/system/bottom {
+    inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation IOKit;
+  };
 
   cagebreak = callPackage ../applications/window-managers/cagebreak/default.nix { };
 
