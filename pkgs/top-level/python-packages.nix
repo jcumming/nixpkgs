@@ -423,7 +423,11 @@ in {
 
   ansi2html = callPackage ../development/python-modules/ansi2html { };
 
-  ansible = callPackage ../development/python-modules/ansible { };
+  ansible = callPackage ../development/python-modules/ansible/legacy.nix { };
+
+  ansible-base = callPackage ../development/python-modules/ansible/base.nix { };
+
+  ansible-collections = callPackage ../development/python-modules/ansible/collections.nix { };
 
   ansible-kernel = callPackage ../development/python-modules/ansible-kernel { };
 
@@ -1488,6 +1492,8 @@ in {
   colorclass = callPackage ../development/python-modules/colorclass { };
 
   colored = callPackage ../development/python-modules/colored { };
+
+  colored-traceback = callPackage ../development/python-modules/colored-traceback { };
 
   coloredlogs = callPackage ../development/python-modules/coloredlogs { };
 
@@ -2579,6 +2585,8 @@ in {
 
   fpylll = callPackage ../development/python-modules/fpylll { };
 
+  fpyutils = callPackage ../development/python-modules/fpyutils { };
+
   freebox-api = callPackage ../development/python-modules/freebox-api { };
 
   freetype-py = callPackage ../development/python-modules/freetype-py { };
@@ -2736,6 +2744,8 @@ in {
   glances-api = callPackage ../development/python-modules/glances-api { };
 
   glasgow = callPackage ../development/python-modules/glasgow { };
+
+  glcontext = callPackage ../development/python-modules/glcontext { };
 
   glob2 = callPackage ../development/python-modules/glob2 { };
 
@@ -3591,6 +3601,8 @@ in {
 
   jwcrypto = callPackage ../development/python-modules/jwcrypto { };
 
+  jxmlease = callPackage ../development/python-modules/jxmlease { };
+
   k5test = callPackage ../development/python-modules/k5test {
     inherit (pkgs) krb5Full findutils which;
   };
@@ -4135,7 +4147,11 @@ in {
 
   mcstatus = callPackage ../development/python-modules/mcstatus { };
 
+  md-toc = callPackage ../development/python-modules/md-toc { };
+
   md2gemini = callPackage ../development/python-modules/md2gemini { };
+
+  mdformat = callPackage ../development/python-modules/mdformat { };
 
   mdit-py-plugins = callPackage ../development/python-modules/mdit-py-plugins { };
 
@@ -4380,6 +4396,10 @@ in {
   myjwt = callPackage ../development/python-modules/myjwt { };
 
   mypy = callPackage ../development/python-modules/mypy { };
+
+  mypy-boto3-builder = callPackage ../development/python-modules/mypy-boto3-builder { };
+
+  mypy-boto3-s3 = callPackage ../development/python-modules/mypy-boto3-s3 { };
 
   mypy-extensions = callPackage ../development/python-modules/mypy/extensions.nix { };
 
@@ -5927,6 +5947,8 @@ in {
 
   pynest2d = callPackage ../development/python-modules/pynest2d { };
 
+  pynetbox = callPackage ../development/python-modules/pynetbox { };
+
   pynetdicom = callPackage ../development/python-modules/pynetdicom { };
 
   pynisher = callPackage ../development/python-modules/pynisher { };
@@ -6922,6 +6944,8 @@ in {
   pyworld = callPackage ../development/python-modules/pyworld { };
 
   pyx = callPackage ../development/python-modules/pyx { };
+
+  pyxb = callPackage ../development/python-modules/pyxb { };
 
   pyxbe = callPackage ../development/python-modules/pyxbe { };
 
@@ -8311,6 +8335,8 @@ in {
 
   trytond = callPackage ../development/python-modules/trytond { };
 
+  ttp = callPackage ../development/python-modules/ttp { };
+
   tunigo = callPackage ../development/python-modules/tunigo { };
 
   tubeup = callPackage ../development/python-modules/tubeup { };
@@ -8903,6 +8929,8 @@ in {
   yamlordereddictloader = callPackage ../development/python-modules/yamlordereddictloader { };
 
   yanc = callPackage ../development/python-modules/yanc { };
+
+  yangson = callPackage ../development/python-modules/yangson { };
 
   yapf = callPackage ../development/python-modules/yapf { };
 
