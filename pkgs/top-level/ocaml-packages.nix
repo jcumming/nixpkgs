@@ -82,6 +82,8 @@ let
 
     ca-certs = callPackage ../development/ocaml-modules/ca-certs { };
 
+    ca-certs-nss = callPackage ../development/ocaml-modules/ca-certs-nss { };
+
     carton = callPackage ../development/ocaml-modules/carton { };
 
     carton-git = callPackage ../development/ocaml-modules/carton/git.nix { };
@@ -457,7 +459,7 @@ let
 
     git-cohttp-unix = callPackage ../development/ocaml-modules/git/cohttp-unix.nix { };
 
-    git-cohttp-mirage = callPackage ../development/ocaml-modules/git/cohttp-mirage.nix { };
+    git-paf = callPackage ../development/ocaml-modules/git/paf.nix { };
 
     git-unix = callPackage ../development/ocaml-modules/git/unix.nix {
       git-binary = pkgs.git;
@@ -1075,6 +1077,8 @@ let
     ppx_deriving_rpc = callPackage ../development/ocaml-modules/ppx_deriving_rpc { };
 
     ppx_deriving_yojson = callPackage ../development/ocaml-modules/ppx_deriving_yojson {};
+
+    ppx_deriving_cmdliner = callPackage ../development/ocaml-modules/ppx_deriving_cmdliner {};
 
     ppx_gen_rec = callPackage ../development/ocaml-modules/ppx_gen_rec {};
 
