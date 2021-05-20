@@ -1,5 +1,5 @@
 { lib, buildPythonPackage, fetchFromGitHub, pillow, pyres, nose
-, preggy, numpy, yanc, nose-focus, mock, opencv }:
+, preggy, numpy, yanc, mock, opencv }:
 
 buildPythonPackage rec {
   pname = "remotecv";
@@ -7,7 +7,7 @@ buildPythonPackage rec {
 
   propagatedBuildInputs = [ pillow pyres ];
 
-  checkInputs = [ nose preggy numpy yanc nose-focus mock opencv ];
+  checkInputs = [ nose preggy numpy yanc mock opencv ];
 
   # PyPI tarball doesn't contain tests so let's use GitHub
   src = fetchFromGitHub {
