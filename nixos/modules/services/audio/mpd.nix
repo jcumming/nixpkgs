@@ -230,7 +230,7 @@ in {
         {
           User = "${cfg.user}";
           ExecStart = "${pkgs.mpd}/bin/mpd --no-daemon /run/mpd/mpd.conf";
-          ExecStartPre = pkgs.writeShellScript "mpd-start-pre" ''
+          ExecStartPre = pkgs.writeShellScript "mpd-start-pre" (''
             set -euo pipefail
             install -m 600 ${mpdConf} /run/mpd/mpd.conf
             ${optionalString (cfg.credentials != []) (credentialsPlaceholder cfg.credentials)}

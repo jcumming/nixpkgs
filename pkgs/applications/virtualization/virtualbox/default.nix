@@ -40,7 +40,7 @@ in stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://download.virtualbox.org/virtualbox/${version}/VirtualBox-${version}.tar.bz2";
-    sha256 = "sha256:0jdym2n2yfy4lz8dylf7g03gmlk2hbmzzs1i58v4jp902lm6v0cr";
+    sha256 = "99816d2a15205d49362a31e8ffeb8262d2fa0678c751dfd0a7c43b2faca8be49";
   };
 
   outputs = [ "out" "modsrc" ];
@@ -102,9 +102,7 @@ in stdenv.mkDerivation {
       src = ./qt-env-vars.patch;
       qtPluginPath = "${qtbase.bin}/${qtbase.qtPluginPrefix}:${qtsvg.bin}/${qtbase.qtPluginPrefix}:${qtwayland.bin}/${qtbase.qtPluginPrefix}";
     })
-  ++ [ 
-    # NOTE: the patch for linux 5.11 can be removed when the next version of VirtualBox is released
-    ./linux-5-11.patch
+  ++ [
     ./qtx11extras.patch
   ];
 

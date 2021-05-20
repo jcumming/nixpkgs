@@ -211,7 +211,6 @@
   ./rename.nix
   ./security/acme.nix
   ./security/apparmor.nix
-  ./security/apparmor-suid.nix
   ./security/audit.nix
   ./security/auditd.nix
   ./security/ca.nix
@@ -896,6 +895,7 @@
   ./services/system/kerberos/default.nix
   ./services/system/nscd.nix
   ./services/system/saslauthd.nix
+  ./services/system/self-deploy.nix
   ./services/system/uptimed.nix
   ./services/torrent/deluge.nix
   ./services/torrent/flexget.nix
