@@ -102,6 +102,7 @@ in stdenv.mkDerivation {
       src = ./qt-env-vars.patch;
       qtPluginPath = "${qtbase.bin}/${qtbase.qtPluginPrefix}:${qtsvg.bin}/${qtbase.qtPluginPrefix}:${qtwayland.bin}/${qtbase.qtPluginPrefix}";
     })
+  ++ optional pulseSupport [ ./pulseaudio_load.patch ]
   ++ [
     ./qtx11extras.patch
   ];

@@ -234,7 +234,7 @@ in {
             set -euo pipefail
             install -m 600 ${mpdConf} /run/mpd/mpd.conf
             ${optionalString (cfg.credentials != []) (credentialsPlaceholder cfg.credentials)}
-          '';
+          '');
           RuntimeDirectory = "mpd";
           Type = "notify";
           LimitRTPRIO = 50;
