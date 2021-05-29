@@ -32,6 +32,7 @@ let
     "domain"
     "dovecot"
     "fritzbox"
+    "iw"
     "json"
     "jitsi"
     "kea"
