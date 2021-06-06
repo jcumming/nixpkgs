@@ -52,6 +52,7 @@ let
     "pihole"
     "postfix"
     "postgres"
+    "process"
     "py-air-control"
     "redis"
     "rspamd"
