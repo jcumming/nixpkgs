@@ -8,6 +8,8 @@ in {
   port = 6798;
 
   serviceOpts = {
+    path = [ pkgs.iw ];
+
     serviceConfig = {
       ExecStart = ''
         ${pkgs.prometheus-iw-exporter}/bin/iw_exporter -http ${cfg.listenAddress}:${toString cfg.port}
