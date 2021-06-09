@@ -1,4 +1,4 @@
-{ config, lib, buildEnv, callPackage, vscode-utils, nodePackages, jdk, llvmPackages_8 }:
+{ config, lib, buildEnv, callPackage, vscode-utils, nodePackages, jdk, llvmPackages_8, nixpkgs-fmt, jq }:
 
 let
   inherit (vscode-utils) buildVscodeMarketplaceExtension;
@@ -99,13 +99,21 @@ let
         };
       };
 
-      B4dM4n.vscode-nixpkgs-fmt = buildVscodeMarketplaceExtension {
+      b4dm4n.vscode-nixpkgs-fmt = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "nixpkgs-fmt";
           publisher = "B4dM4n";
           version = "0.0.1";
           sha256 = "sha256-vz2kU36B1xkLci2QwLpl/SBEhfSWltIDJ1r7SorHcr8=";
         };
+        nativeBuildInputs = [ jq ];
+        buildInputs = [ nixpkgs-fmt ];
+        postInstall = ''
+          cd "$out/$installPrefix"
+          tmp_package_json=$(mktemp)
+          jq '.contributes.configuration.properties."nixpkgs-fmt.path".default = "${nixpkgs-fmt}/bin/nixpkgs-fmt"' package.json > "$tmp_package_json"
+          mv "$tmp_package_json" package.json
+        '';
         meta = with lib; {
           license = licenses.mit;
         };
@@ -660,6 +668,18 @@ let
         };
       };
 
+      johnpapa.vscode-peacock = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vscode-peacock";
+          publisher = "johnpapa";
+          version = "3.9.1";
+          sha256 = "1g7apzzgfm8s9sjavhwr8jpf9slhq8b9jfkww3q5n41mzzx8m94p";
+        };
+        meta = with lib; {
+          license = licenses.mit;
+        };
+      };
+
       jpoissonnier.vscode-styled-components = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "vscode-styled-components";
@@ -815,6 +835,18 @@ let
           publisher = "naumovs";
           version = "2.3.0";
           sha256 = "1syzf43ws343z911fnhrlbzbx70gdn930q67yqkf6g0mj8lf2za2";
+        };
+        meta = {
+          license = lib.licenses.mit;
+        };
+      };
+
+      octref.vetur = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vetur";
+          publisher = "octref";
+          version = "0.34.1";
+          sha256 = "09w3bik1mxs7qac67wgrc58vl98ham3syrn2anycpwd7135wlpby";
         };
         meta = {
           license = lib.licenses.mit;
@@ -1162,6 +1194,18 @@ let
         };
         meta = {
           license = lib.licenses.mit;
+        };
+      };
+
+      wix.vscode-import-cost = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vscode-import-cost";
+          publisher = "wix";
+          version = "2.15.0";
+          sha256 = "0d3b6654cdck1syn74vmmd1jmgkrw5v4c4cyrhdxbhggkip732bc";
+        };
+        meta = with lib; {
+          license = licenses.mit;
         };
       };
 
