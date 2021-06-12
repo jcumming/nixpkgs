@@ -874,6 +874,8 @@ in
 
   quich = callPackage ../tools/misc/quich { } ;
 
+  redfang = callPackage ../tools/networking/redfang { };
+
   tfk8s = callPackage ../tools/misc/tfk8s { };
 
   tnat64 = callPackage ../tools/networking/tnat64 { };
@@ -1527,6 +1529,8 @@ in
 
   github-commenter = callPackage ../development/tools/github-commenter { };
 
+  github-to-sqlite = with python3Packages; toPythonApplication github-to-sqlite;
+
   gitless = callPackage ../applications/version-management/gitless { python = python3; };
 
   gitter = callPackage  ../applications/networking/instant-messengers/gitter { };
@@ -1950,6 +1954,8 @@ in
     cudaSupport = config.cudaSupport or false;
   };
 
+  tensorflow-lite = callPackage ../development/libraries/science/math/tensorflow-lite { };
+
   behdad-fonts = callPackage ../data/fonts/behdad-fonts { };
 
   bfetch = callPackage ../tools/misc/bfetch { };
@@ -2227,6 +2233,8 @@ in
   colpack = callPackage ../applications/science/math/colpack { };
 
   commitizen = callPackage ../applications/version-management/commitizen {};
+
+  common-licenses = callPackage ../data/misc/common-licenses {};
 
   compactor = callPackage ../applications/networking/compactor { };
 
@@ -3942,7 +3950,7 @@ in
 
   cwebbin = callPackage ../development/tools/misc/cwebbin { };
 
-  cvs_fast_export = callPackage ../applications/version-management/cvs-fast-export { };
+  cvs-fast-export = callPackage ../applications/version-management/cvs-fast-export { };
 
   dadadodo = callPackage ../tools/text/dadadodo { };
 
@@ -6494,6 +6502,9 @@ in
   ispell = callPackage ../tools/text/ispell {};
 
   iodash = callPackage ../development/libraries/iodash { };
+
+  jbofihe = callPackage ../tools/text/jbofihe {};
+
   jumanpp = callPackage ../tools/text/jumanpp {};
 
   jump = callPackage ../tools/system/jump {};
@@ -7216,13 +7227,7 @@ in
 
   nvchecker = with python3Packages; toPythonApplication nvchecker;
 
-  nvfetcher = with haskell.lib; overrideCabal (justStaticExecutables haskellPackages.nvfetcher) (drv: {
-    executableToolDepends = [ makeWrapper ];
-    postInstall = ''
-      wrapProgram $out/bin/nvfetcher \
-        --prefix PATH ":" "${nvchecker}/bin:${nix-prefetch-git}/bin"
-    '';
-  });
+  nvfetcher = haskell.lib.justStaticExecutables haskellPackages.nvfetcher;
 
   miller = callPackage ../tools/text/miller { };
 
@@ -7873,7 +7878,7 @@ in
 
   tautulli = python3Packages.callPackage ../servers/tautulli { };
 
-  pleroma-otp = callPackage ../servers/pleroma-otp { };
+  pleroma = callPackage ../servers/pleroma { };
 
   ploticus = callPackage ../tools/graphics/ploticus {
     libpng = libpng12;
@@ -11984,6 +11989,8 @@ in
     jdk = oraclejdk;
   };
 
+  sqlfluff = callPackage ../development/tools/database/sqlfluff { };
+
   sqlx-cli = callPackage ../development/tools/rust/sqlx-cli {
     inherit (darwin.apple_sdk.frameworks) SystemConfiguration CoreFoundation Security;
   };
@@ -12572,6 +12579,8 @@ in
 
   scheme48 = callPackage ../development/interpreters/scheme48 { };
 
+  scheme-bytestructures = callPackage ../development/scheme-modules/scheme-bytestructures { };
+
   self = pkgsi686Linux.callPackage ../development/interpreters/self { };
 
   spark = callPackage ../applications/networking/cluster/spark { };
@@ -12645,6 +12654,8 @@ in
   guile-commonmark = callPackage ../development/guile-modules/guile-commonmark { };
 
   guile-fibers = callPackage ../development/guile-modules/guile-fibers { };
+
+  guile-git = callPackage ../development/guile-modules/guile-git { };
 
   guile-gnome = callPackage ../development/guile-modules/guile-gnome {
     gconf = gnome2.GConf;
@@ -14035,6 +14046,8 @@ in
 
   swiftformat = callPackage ../development/tools/swiftformat { };
 
+  symfony-cli = callPackage ../development/tools/symfony-cli { };
+
   swiftshader = callPackage ../development/libraries/swiftshader { };
 
   systemfd = callPackage ../development/tools/systemfd { };
@@ -14438,6 +14451,8 @@ in
   boost = boost16x;
 
   boost_process = callPackage ../development/libraries/boost-process { };
+
+  bosh-cli = callPackage ../applications/networking/cluster/bosh-cli { };
 
   botan = callPackage ../development/libraries/botan {
     openssl = openssl_1_0_2;
@@ -16120,6 +16135,8 @@ in
   libfprint-tod = callPackage ../development/libraries/libfprint-tod { };
 
   libfprint-2-tod1-goodix = callPackage ../development/libraries/libfprint-2-tod1-goodix { };
+
+  libfprint-2-tod1-vfs0090 = callPackage ../development/libraries/libfprint-2-tod1-vfs0090 { };
 
   libfpx = callPackage ../development/libraries/libfpx { };
 
@@ -20115,23 +20132,17 @@ in
 
   alertmanager-irc-relay = callPackage ../servers/monitoring/alertmanager-irc-relay { };
 
-  alsa-firmware = callPackage ../os-specific/linux/alsa-firmware { };
-
-  alsaLib = callPackage ../os-specific/linux/alsa-lib { };
-
-  alsaPlugins = callPackage ../os-specific/linux/alsa-plugins { };
-
-  alsaPluginWrapper = callPackage ../os-specific/linux/alsa-plugins/wrapper.nix { };
-
-  alsaUtils = callPackage ../os-specific/linux/alsa-utils {
+  alsa-firmware = callPackage ../os-specific/linux/alsa-project/alsa-firmware { };
+  alsa-lib = callPackage ../os-specific/linux/alsa-project/alsa-lib { };
+  alsa-oss = callPackage ../os-specific/linux/alsa-project/alsa-oss { };
+  alsa-plugins = callPackage ../os-specific/linux/alsa-project/alsa-plugins { };
+  alsa-plugins-wrapper = callPackage ../os-specific/linux/alsa-project/alsa-plugins/wrapper.nix { };
+  alsa-tools = callPackage ../os-specific/linux/alsa-project/alsa-tools { };
+  alsa-topology-conf = callPackage ../os-specific/linux/alsa-project/alsa-topology-conf { };
+  alsa-ucm-conf = callPackage ../os-specific/linux/alsa-project/alsa-ucm-conf { };
+  alsa-utils = callPackage ../os-specific/linux/alsa-project/alsa-utils {
     fftw = fftwFloat;
   };
-  alsaOss = callPackage ../os-specific/linux/alsa-oss { };
-  alsaTools = callPackage ../os-specific/linux/alsa-tools { };
-
-  alsa-ucm-conf = callPackage ../os-specific/linux/alsa-ucm-conf { };
-
-  alsa-topology-conf = callPackage ../os-specific/linux/alsa-topology-conf { };
 
   inherit (callPackage ../misc/arm-trusted-firmware {})
     buildArmTrustedFirmware
@@ -20761,6 +20772,8 @@ in
     r8125 = callPackage ../os-specific/linux/r8125 { };
 
     r8168 = callPackage ../os-specific/linux/r8168 { };
+
+    rtl8188eus-aircrack = callPackage ../os-specific/linux/rtl8188eus-aircrack { };
 
     rtl8192eu = callPackage ../os-specific/linux/rtl8192eu { };
 
@@ -22197,7 +22210,7 @@ in
 
   orbitron = callPackage ../data/fonts/orbitron { };
 
-  orchis = callPackage ../data/themes/orchis { };
+  orchis-theme = callPackage ../data/themes/orchis-theme { };
 
   orion = callPackage ../data/themes/orion {};
 
@@ -22734,10 +22747,7 @@ in
 
   jnetmap = callPackage ../applications/networking/jnetmap {};
 
-  libbitcoin = callPackage ../tools/misc/libbitcoin/libbitcoin.nix {
-    secp256k1 = secp256k1.override { enableECDH = true; };
-  };
-
+  libbitcoin = callPackage ../tools/misc/libbitcoin/libbitcoin.nix { };
   libbitcoin-protocol = callPackage ../tools/misc/libbitcoin/libbitcoin-protocol.nix { };
   libbitcoin-client   = callPackage ../tools/misc/libbitcoin/libbitcoin-client.nix { };
   libbitcoin-network  = callPackage ../tools/misc/libbitcoin/libbitcoin-network.nix { };
@@ -23363,7 +23373,7 @@ in
     libXaw = xorg.libXaw;
     Xaw3d = null;
     gconf = null;
-    alsaLib = null;
+    alsa-lib = null;
     acl = null;
     gpm = null;
     inherit (darwin.apple_sdk.frameworks) AppKit GSS ImageIO;
@@ -29431,9 +29441,7 @@ in
 
   migrate = callPackage ../applications/science/biology/migrate { };
 
-  minia = callPackage ../applications/science/biology/minia {
-    boost = boost159;
-  };
+  minia = callPackage ../applications/science/biology/minia { };
 
   mirtk = callPackage ../development/libraries/science/biology/mirtk { };
 
@@ -31311,6 +31319,8 @@ in
   vazir-fonts = callPackage ../data/fonts/vazir-fonts { };
 
   vbam = callPackage ../misc/emulators/vbam { };
+
+  vgmstream = callPackage ../applications/audio/vgmstream { };
 
   vice = callPackage ../misc/emulators/vice { };
 
