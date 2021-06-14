@@ -4860,7 +4860,9 @@ in
 
   frescobaldi = python3Packages.callPackage ../misc/frescobaldi {};
 
-  freshfetch = callPackage ../tools/misc/freshfetch { };
+  freshfetch = callPackage ../tools/misc/freshfetch {
+    inherit (darwin.apple_sdk.frameworks) AppKit CoreFoundation DiskArbitration Foundation IOKit;
+  };
 
   frostwire = callPackage ../applications/networking/p2p/frostwire { };
   frostwire-bin = callPackage ../applications/networking/p2p/frostwire/frostwire-bin.nix { };
@@ -5320,6 +5322,8 @@ in
 
   go-mtpfs = callPackage ../tools/filesystems/go-mtpfs { };
 
+  goofys = callPackage ../tools/filesystems/goofys { };
+
   go-sct = callPackage ../tools/X11/go-sct { };
 
   # rename to upower-notify?
@@ -5709,6 +5713,8 @@ in
   hotspot = libsForQt5.callPackage ../development/tools/analysis/hotspot { };
 
   hping = callPackage ../tools/networking/hping { };
+
+  hqplayer-desktop = libsForQt5.callPackage ../applications/audio/hqplayer-desktop { };
 
   html-proofer = callPackage ../tools/misc/html-proofer { };
 
@@ -6563,6 +6569,8 @@ in
 
   # Needed for apps that still depend on the unstable verison of the library (not libhandy-1)
   libhandy_0 = callPackage ../development/libraries/libhandy/0.x.nix { };
+
+  libgmpris = callPackage ../development/libraries/libgmpris { };
 
   libgumath = callPackage ../development/libraries/libgumath { };
 
@@ -15936,7 +15944,7 @@ in
 
   libcec_platform = callPackage ../development/libraries/libcec/platform.nix { };
 
-  libcef = callPackage ../development/libraries/libcef { inherit (gnome2) GConf; };
+  libcef = callPackage ../development/libraries/libcef {};
 
   libcello = callPackage ../development/libraries/libcello {};
 
@@ -19260,9 +19268,13 @@ in
 
   home-assistant-cli = callPackage ../servers/home-assistant/cli.nix { };
 
+  hqplayerd = callPackage ../servers/hqplayerd { };
+
   https-dns-proxy = callPackage ../servers/dns/https-dns-proxy { };
 
   hydron = callPackage ../servers/hydron { };
+
+  hyprspace = callPackage ../applications/networking/hyprspace { inherit (darwin) iproute2mac; };
 
   icecream = callPackage ../servers/icecream { };
 
@@ -20718,7 +20730,9 @@ in
 
     digimend = callPackage ../os-specific/linux/digimend { };
 
-    dpdk = callPackage ../os-specific/linux/dpdk { };
+    dpdk-kmods = callPackage ../os-specific/linux/dpdk-kmods { };
+
+    dpdk = throw "The dpdk driver has been renamed to dpdk-mods.";
 
     exfat-nofuse = callPackage ../os-specific/linux/exfat { };
 
@@ -21858,6 +21872,8 @@ in
   moeli = eduli;
 
   edusong = callPackage ../data/fonts/edusong { };
+
+  efont-unicode = callPackage ../data/fonts/efont-unicode { };
 
   elliptic_curves = callPackage ../data/misc/elliptic_curves { };
 

@@ -491,6 +491,8 @@ in {
 
   apptools = callPackage ../development/python-modules/apptools { };
 
+  aprslib = callPackage ../development/python-modules/aprslib { };
+
   APScheduler = callPackage ../development/python-modules/APScheduler { };
 
   apsw = callPackage ../development/python-modules/apsw { };
@@ -4723,6 +4725,8 @@ in {
   nplusone = callPackage ../development/python-modules/nplusone { };
 
   npyscreen = callPackage ../development/python-modules/npyscreen { };
+
+  nsapi = callPackage ../development/python-modules/nsapi { };
 
   ntc-templates = callPackage ../development/python-modules/ntc-templates { };
 

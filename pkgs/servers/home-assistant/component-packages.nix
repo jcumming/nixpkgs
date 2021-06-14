@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2021.6.3";
+  version = "2021.6.4";
   components = {
     "abode" = ps: with ps; [ abodepy ];
     "accuweather" = ps: with ps; [ accuweather ];
@@ -42,7 +42,7 @@
     "apns" = ps: with ps; [ ]; # missing inputs: apns2
     "apple_tv" = ps: with ps; [ aiohttp-cors ifaddr netdisco pyatv zeroconf ];
     "apprise" = ps: with ps; [ apprise ];
-    "aprs" = ps: with ps; [ geopy ]; # missing inputs: aprslib
+    "aprs" = ps: with ps; [ aprslib geopy ];
     "aqualogic" = ps: with ps; [ aqualogic ];
     "aquostv" = ps: with ps; [ ]; # missing inputs: sharp_aquos_rc
     "arcam_fmj" = ps: with ps; [ ]; # missing inputs: arcam-fmj
@@ -548,7 +548,7 @@
     "namecheapdns" = ps: with ps; [ defusedxml ];
     "nanoleaf" = ps: with ps; [ pynanoleaf ];
     "neato" = ps: with ps; [ aiohttp-cors pybotvac ];
-    "nederlandse_spoorwegen" = ps: with ps; [ ]; # missing inputs: nsapi
+    "nederlandse_spoorwegen" = ps: with ps; [ nsapi ];
     "nello" = ps: with ps; [ ]; # missing inputs: pynello
     "ness_alarm" = ps: with ps; [ ]; # missing inputs: nessclient
     "nest" = ps: with ps; [ aiohttp-cors ha-ffmpeg python-nest ]; # missing inputs: google-nest-sdm
