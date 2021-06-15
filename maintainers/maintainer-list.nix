@@ -2375,6 +2375,12 @@
     github = "delan";
     githubId = 465303;
   };
+  deliciouslytyped = {
+    email = "47436522+deliciouslytyped@users.noreply.github.com";
+    github = "deliciouslytyped";
+    githubId = 47436522;
+    name = "deliciouslytyped";
+  };
   delroth = {
     email = "delroth@gmail.com";
     github = "delroth";
@@ -4274,6 +4280,12 @@
     github = "iblech";
     githubId = 3661115;
     name = "Ingo Blechschmidt";
+  };
+  icy-thought = {
+    name = "Icy-Thought";
+    email = "gilganyx@pm.me";
+    github = "Icy-Thought";
+    githubId = 53710398;
   };
   idontgetoutmuch = {
     email = "dominic@steinitz.org";
@@ -7204,6 +7216,12 @@
     github = "nathyong";
     githubId = 818502;
     name = "Nathan Yong";
+  };
+  natto1784 = {
+    email = "natto@weirdnatto.in";
+    github = "natto1784";
+    githubId = 56316606;
+    name = "Amneesh Singh";
   };
   nbren12 = {
     email = "nbren12@gmail.com";
@@ -11702,6 +11720,16 @@
     email = "1838397+pulsation@users.noreply.github.com";
     github = "pulsation";
     githubId = 1838397;
+  };
+  princemachiavelli = {
+    name = "Josh Hoffer";
+    email = "jhoffer@sansorgan.es";
+    github = "princemachiavelli";
+    githubId = 2730968;
+    keys = [{
+      longkeyid = "ed25519/0x83124F97A318EA18";
+      fingerprint = "DD54 130B ABEC B65C 1F6B  2A38 8312 4F97 A318 EA18";
+    }];
   };
   ydlr = {
     name = "ydlr";

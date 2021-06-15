@@ -221,6 +221,8 @@ in {
 
   advantage-air = callPackage ../development/python-modules/advantage-air { };
 
+  aemet-opendata = callPackage ../development/python-modules/aemet-opendata { };
+
   aenum = callPackage ../development/python-modules/aenum { };
 
   afdko = callPackage ../development/python-modules/afdko { };
@@ -236,6 +238,14 @@ in {
   agate-sql = callPackage ../development/python-modules/agate-sql { };
 
   agent-py = callPackage ../development/python-modules/agent-py { };
+
+  aio-geojson-client = callPackage ../development/python-modules/aio-geojson-client { };
+
+  aio-geojson-geonetnz-quakes = callPackage ../development/python-modules/aio-geojson-geonetnz-quakes { };
+
+  aio-geojson-geonetnz-volcano = callPackage ../development/python-modules/aio-geojson-geonetnz-volcano { };
+
+  aio-geojson-nsw-rfs-incidents = callPackage ../development/python-modules/aio-geojson-nsw-rfs-incidents { };
 
   aio-georss-client = callPackage ../development/python-modules/aio-georss-client { };
 
@@ -366,6 +376,8 @@ in {
   aioswitcher = callPackage ../development/python-modules/aioswitcher { };
 
   aiosyncthing = callPackage ../development/python-modules/aiosyncthing { };
+
+  aiotractive = callPackage ../development/python-modules/aiotractive { };
 
   aiounifi = callPackage ../development/python-modules/aiounifi { };
 
@@ -580,6 +592,8 @@ in {
   async_generator = callPackage ../development/python-modules/async_generator { };
 
   async-dns = callPackage ../development/python-modules/async-dns { };
+
+  async-lru = callPackage ../development/python-modules/async-lru { };
 
   asyncio-dgram = callPackage ../development/python-modules/asyncio-dgram { };
 
@@ -1085,6 +1099,8 @@ in {
 
   bitstruct = callPackage ../development/python-modules/bitstruct { };
 
+  bitvavo-aio = callPackage ../development/python-modules/bitvavo-aio { };
+
   bjoern = callPackage ../development/python-modules/bjoern { };
 
   bkcharts = callPackage ../development/python-modules/bkcharts { };
@@ -1120,6 +1136,8 @@ in {
   bluepy = callPackage ../development/python-modules/bluepy { };
 
   bluepy-devices = callPackage ../development/python-modules/bluepy-devices { };
+
+  blurhash = callPackage ../development/python-modules/blurhash { };
 
   bme680 = callPackage ../development/python-modules/bme680 { };
 
@@ -1201,6 +1219,8 @@ in {
   bugz = callPackage ../development/python-modules/bugz { };
 
   bugzilla = callPackage ../development/python-modules/bugzilla { };
+
+  buienradar = callPackage ../development/python-modules/buienradar { };
 
   buildbot = callPackage ../development/python-modules/buildbot { };
 
@@ -2695,6 +2715,8 @@ in {
     enablePython = true;
     pythonPackages = self;
   });
+
+  garminconnect-aio = callPackage ../development/python-modules/garminconnect-aio { };
 
   gast = callPackage ../development/python-modules/gast { };
 
@@ -4218,6 +4240,8 @@ in {
 
   mask-rcnn = callPackage ../development/python-modules/mask-rcnn { };
 
+  mastodon-py = callPackage ../development/python-modules/mastodon-py { };
+
   mat2 = callPackage ../development/python-modules/mat2 { };
 
   matchpy = callPackage ../development/python-modules/matchpy { };
@@ -4446,6 +4470,8 @@ in {
 
   mpyq = callPackage ../development/python-modules/mpyq { };
 
+  ms-cv = callPackage ../development/python-modules/ms-cv { };
+
   msal = callPackage ../development/python-modules/msal { };
 
   msal-extensions = callPackage ../development/python-modules/msal-extensions { };
@@ -4603,6 +4629,8 @@ in {
   netdisco = callPackage ../development/python-modules/netdisco { };
 
   netifaces = callPackage ../development/python-modules/netifaces { };
+
+  nettigo-air-monitor = callPackage ../development/python-modules/nettigo-air-monitor { };
 
   networkx = callPackage ../development/python-modules/networkx { };
 
@@ -5181,6 +5209,8 @@ in {
 
   ppdeep = callPackage ../development/python-modules/ppdeep { };
 
+  pyatag = callPackage ../development/python-modules/pyatag { };
+
   pynndescent = callPackage ../development/python-modules/pynndescent { };
 
   pynobo = callPackage ../development/python-modules/pynobo { };
@@ -5190,6 +5220,8 @@ in {
   pynws = callPackage ../development/python-modules/pynws { };
 
   pynx584 = callPackage ../development/python-modules/pynx584 { };
+
+  pyrogram = callPackage ../development/python-modules/pyrogram { };
 
   pysbd = callPackage ../development/python-modules/pysbd { };
 
@@ -5516,6 +5548,8 @@ in {
   pyasn1 = callPackage ../development/python-modules/pyasn1 { };
 
   pyasn1-modules = callPackage ../development/python-modules/pyasn1-modules { };
+
+  pyathena = callPackage ../development/python-modules/pyathena { };
 
   pyatmo = callPackage ../development/python-modules/pyatmo { };
 
@@ -5903,6 +5937,8 @@ in {
   pykodi = callPackage ../development/python-modules/pykodi { };
 
   pykoplenti = callPackage ../development/python-modules/pykoplenti { };
+
+  pykulersky = callPackage ../development/python-modules/pykulersky { };
 
   pykwalify = callPackage ../development/python-modules/pykwalify { };
 
@@ -7968,6 +8004,8 @@ in {
 
   sphfile = callPackage ../development/python-modules/sphfile { };
 
+  spiderpy = callPackage ../development/python-modules/spiderpy { };
+
   spinners = callPackage ../development/python-modules/spinners { };
 
   sphinxcontrib-actdiag = callPackage ../development/python-modules/sphinxcontrib-actdiag { };
@@ -8380,6 +8418,8 @@ in {
   textwrap3 = callPackage ../development/python-modules/textwrap3 { };
 
   tflearn = callPackage ../development/python-modules/tflearn { };
+
+  tgcrypto = callPackage ../development/python-modules/tgcrypto { };
 
   Theano = callPackage ../development/python-modules/Theano rec {
     cudaSupport = pkgs.config.cudaSupport or false;
@@ -8823,6 +8863,8 @@ in {
 
   viewstate = callPackage ../development/python-modules/viewstate { };
 
+  vincenty = callPackage ../development/python-modules/vincenty { };
+
   vine = callPackage ../development/python-modules/vine { };
 
   virtkey = callPackage ../development/python-modules/virtkey { };
@@ -9067,6 +9109,8 @@ in {
   xarray = callPackage ../development/python-modules/xarray { };
 
   xattr = callPackage ../development/python-modules/xattr { };
+
+  xbox-webapi = callPackage ../development/python-modules/xbox-webapi { };
 
   xboxapi = callPackage ../development/python-modules/xboxapi { };
 

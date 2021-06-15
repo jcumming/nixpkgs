@@ -1067,6 +1067,8 @@ in
 
   apfs-fuse = callPackage ../tools/filesystems/apfs-fuse { };
 
+  apfsprogs = callPackage ../tools/filesystems/apfsprogs { };
+
   apk-tools = callPackage ../tools/package-management/apk-tools {
     lua = lua5_3;
   };
@@ -2558,6 +2560,8 @@ in
 
   electronplayer = callPackage ../applications/video/electronplayer/electronplayer.nix { };
 
+  electron-mail = callPackage ../applications/networking/mailreaders/electron-mail { };
+
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix { };
 
   element-web = callPackage ../applications/networking/instant-messengers/element/element-web.nix {
@@ -3555,6 +3559,8 @@ in
 
   cfdg = callPackage ../tools/graphics/cfdg { };
 
+  cglm = callPackage ../development/libraries/cglm { };
+
   cgreen = callPackage ../development/libraries/cgreen { };
 
   checkinstall = callPackage ../tools/package-management/checkinstall { };
@@ -4372,7 +4378,9 @@ in
 
   vorta = libsForQt5.callPackage ../applications/backup/vorta { };
 
-  vowpal-wabbit = callPackage ../applications/science/machine-learning/vowpal-wabbit { };
+  vowpal-wabbit = callPackage ../applications/science/machine-learning/vowpal-wabbit {
+    boost = boost17x;
+  };
 
   utahfs = callPackage ../applications/networking/utahfs { };
 
@@ -6322,6 +6330,8 @@ in
   martin = callPackage ../servers/martin {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
+
+  mathpix-snipping-tool = callPackage ../tools/misc/mathpix-snipping-tool { };
 
   /* Python 3.8 is currently broken with matrix-synapse since `python38Packages.bleach` fails
     (https://github.com/NixOS/nixpkgs/issues/76093) */
@@ -9601,6 +9611,10 @@ in
     inherit (python27Packages) ldap;
   };
 
+  sentry-cli = callPackage ../development/tools/sentry-cli {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   vtun = callPackage ../tools/networking/vtun {
     openssl = openssl_1_0_2;
   };
@@ -10448,6 +10462,8 @@ in
 
   aliceml = callPackage ../development/compilers/aliceml { };
 
+  armips = callPackage ../development/compilers/armips { };
+
   arachne-pnr = callPackage ../development/compilers/arachne-pnr { };
 
   asciigraph = callPackage ../tools/text/asciigraph { };
@@ -10559,7 +10575,7 @@ in
 
   cmucl_binary = pkgsi686Linux.callPackage ../development/compilers/cmucl/binary.nix { };
 
-  compcert = callPackage ../development/compilers/compcert {};
+  compcert = coqPackages.compcert.override { version = "3.9"; };
 
   computecpp-unwrapped = callPackage ../development/compilers/computecpp {};
   computecpp = wrapCCWith rec {
@@ -11501,7 +11517,7 @@ in
       /**/ if platform.isDarwin then (if platform.isAarch64 then 11 else 7)
       else if platform.isFreeBSD then 7
       else if platform.isAndroid then 12
-      else if platform.isLinux then (if platform.isRiscV then 9 else 7)
+      else if platform.isLinux then (if platform.isRiscV then 11 else 7)
       else if platform.isWasm then 8
       else 11; # latest
     # We take the "max of the mins". Why? Since those are lower bounds of the
@@ -14043,6 +14059,8 @@ in
   stm32flash = callPackage ../development/tools/misc/stm32flash { };
 
   strace = callPackage ../development/tools/misc/strace { };
+
+  stylua = callPackage ../development/tools/stylua { };
 
   summon = callPackage ../development/tools/summon { };
 
@@ -17174,6 +17192,8 @@ in
 
   micronucleus = callPackage ../development/tools/misc/micronucleus { };
 
+  markdown-anki-decks = callPackage ../tools/misc/markdown-anki-decks { };
+
   micropython = callPackage ../development/interpreters/micropython { };
 
   MIDIVisualizer = callPackage ../applications/audio/midi-visualizer { };
@@ -19883,6 +19903,8 @@ in
     boost = boost17x;
   };
 
+  roon-bridge = callPackage ../servers/roon-bridge { };
+
   roon-server = callPackage ../servers/roon-server { };
 
   s6 = skawarePackages.s6;
@@ -22545,6 +22567,8 @@ in
 
   weather-icons = callPackage ../data/fonts/weather-icons { };
 
+  whitesur-icon-theme = callPackage ../data/icons/whitesur-icon-theme { };
+
   wireless-regdb = callPackage ../data/misc/wireless-regdb { };
 
   work-sans  = callPackage ../data/fonts/work-sans { };
@@ -22671,6 +22695,8 @@ in
   antimony = libsForQt514.callPackage ../applications/graphics/antimony {};
 
   antiword = callPackage ../applications/office/antiword {};
+
+  anup = callPackage ../applications/misc/anup {};
 
   ao = libfive;
 
@@ -27959,9 +27985,7 @@ in
 
   zam-plugins = callPackage ../applications/audio/zam-plugins { };
 
-  zanshin = libsForQt5.callPackage ../applications/office/zanshin {
-    boost = boost160;
-  };
+  zanshin = libsForQt5.callPackage ../applications/office/zanshin { };
 
   zathura = callPackage ../applications/misc/zathura { };
 
@@ -30371,6 +30395,8 @@ in
   cups-pk-helper = callPackage ../misc/cups/cups-pk-helper.nix { };
 
   cups-kyocera = callPackage ../misc/cups/drivers/kyocera {};
+
+  cups-kyocera-ecosys-m552x-p502x = callPackage ../misc/cups/drivers/kyocera-ecosys-m552x-p502x {};
 
   cups-kyodialog3 = callPackage ../misc/cups/drivers/kyodialog3 {};
 
