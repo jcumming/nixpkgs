@@ -23926,7 +23926,7 @@ in
 
   flac = callPackage ../applications/audio/flac { };
 
-  flactag = callPackage ../applications/audio/flactag { };
+  flactag = callPackage ../applications/audio/flactag { libmusicbrainz  = libmusicbrainz5; };
 
   redoflacs = callPackage ../applications/audio/redoflacs { };
 
