@@ -1923,6 +1923,8 @@ in {
 
   dictionaries = callPackage ../development/python-modules/dictionaries { };
 
+  dictpath = callPackage ../development/python-modules/dictpath { };
+
   dicttoxml = callPackage ../development/python-modules/dicttoxml { };
 
   diff_cover = callPackage ../development/python-modules/diff_cover { };
@@ -3512,6 +3514,8 @@ in {
 
   injector = callPackage ../development/python-modules/injector { };
 
+  inkex = callPackage ../development/python-modules/inkex { };
+
   inotify-simple = callPackage ../development/python-modules/inotify-simple { };
 
   inquirer = callPackage ../development/python-modules/inquirer { };
@@ -3896,6 +3900,8 @@ in {
 
   korean-lunar-calendar = callPackage ../development/python-modules/korean-lunar-calendar { };
 
+  krakenex = callPackage ../development/python-modules/krakenex { };
+
   kubernetes = callPackage ../development/python-modules/kubernetes { };
 
   labelbox = callPackage ../development/python-modules/labelbox { };
@@ -4235,15 +4241,7 @@ in {
 
   macropy = callPackage ../development/python-modules/macropy { };
 
-  maestral = callPackage ../development/python-modules/maestral {
-    keyring = self.keyring.overridePythonAttrs (old: rec {
-      version = "22.0.1";
-      src = old.src.override {
-        inherit version;
-        sha256 = "sha256-mss+FFLtu3VEgisS/SVFkHh2nlYPpR9Bi20Ar6pheN8=";
-      };
-    });
-  };
+  maestral = callPackage ../development/python-modules/maestral { };
 
   magic = callPackage ../development/python-modules/magic { };
 
@@ -4331,6 +4329,8 @@ in {
     stdenv = if stdenv.isDarwin then pkgs.clangStdenv else pkgs.stdenv;
     inherit (pkgs.darwin.apple_sdk.frameworks) Cocoa;
   };
+
+  matplotlib-inline = callPackage ../development/python-modules/matplotlib-inline { };
 
   matrix-api-async = callPackage ../development/python-modules/matrix-api-async { };
 
@@ -4429,6 +4429,8 @@ in {
   milksnake = callPackage ../development/python-modules/milksnake { };
 
   millheater = callPackage ../development/python-modules/millheater { };
+
+  miniaudio = callPackage ../development/python-modules/miniaudio { };
 
   minidb = callPackage ../development/python-modules/minidb { };
 
@@ -5227,6 +5229,8 @@ in {
 
   phonenumbers = callPackage ../development/python-modules/phonenumbers { };
 
+  openapi-core = callPackage ../development/python-modules/openapi-core { };
+
   pdunehd = callPackage ../development/python-modules/pdunehd { };
 
   phonopy = callPackage ../development/python-modules/phonopy { };
@@ -5323,6 +5327,8 @@ in {
 
   pyisy = callPackage ../development/python-modules/pyisy { };
 
+  pykrakenapi = callPackage ../development/python-modules/pykrakenapi { };
+
   pynndescent = callPackage ../development/python-modules/pynndescent { };
 
   pynobo = callPackage ../development/python-modules/pynobo { };
@@ -5338,6 +5344,8 @@ in {
   pysbd = callPackage ../development/python-modules/pysbd { };
 
   pyshark = callPackage ../development/python-modules/pyshark { };
+
+  pysiaalarm = callPackage ../development/python-modules/pysiaalarm { };
 
   pytest-subprocess = callPackage ../development/python-modules/pytest-subprocess { };
 
@@ -8887,6 +8895,8 @@ in {
 
   upass = callPackage ../development/python-modules/upass { };
 
+  upb-lib = callPackage ../development/python-modules/upb-lib { };
+
   update_checker = callPackage ../development/python-modules/update_checker { };
 
   update-copyright = callPackage ../development/python-modules/update-copyright { };
@@ -8988,6 +8998,8 @@ in {
   ViennaRNA = toPythonModule pkgs.ViennaRNA;
 
   viewstate = callPackage ../development/python-modules/viewstate { };
+
+  vilfo-api-client = callPackage ../development/python-modules/vilfo-api-client { };
 
   vincenty = callPackage ../development/python-modules/vincenty { };
 

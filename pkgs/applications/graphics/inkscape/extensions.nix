@@ -4,9 +4,12 @@
 , python
 , texlive
 , inkcut
+, callPackage
 }:
 
 {
+  applytransforms = callPackage ./extensions/applytransforms { };
+
   hexmap = stdenv.mkDerivation {
     name = "hexmap";
     version = "2020-06-06";
