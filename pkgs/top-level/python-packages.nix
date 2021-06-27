@@ -335,6 +335,8 @@ in {
 
   aiolyric = callPackage ../development/python-modules/aiolyric { };
 
+  aiomodernforms = callPackage ../development/python-modules/aiomodernforms { };
+
   aiomultiprocess = callPackage ../development/python-modules/aiomultiprocess { };
 
   aiomysql = callPackage ../development/python-modules/aiomysql { };
@@ -410,6 +412,8 @@ in {
   allpairspy = callPackage ../development/python-modules/allpairspy { };
 
   alot = callPackage ../development/python-modules/alot { };
+
+  alpha-vantage = callPackage ../development/python-modules/alpha-vantage { };
 
   altair = callPackage ../development/python-modules/altair { };
 
@@ -1110,6 +1114,8 @@ in {
   bitstruct = callPackage ../development/python-modules/bitstruct { };
 
   bitvavo-aio = callPackage ../development/python-modules/bitvavo-aio { };
+
+  bizkaibus = callPackage ../development/python-modules/bizkaibus { };
 
   bjoern = callPackage ../development/python-modules/bjoern { };
 
@@ -2200,6 +2206,8 @@ in {
 
   dsmr-parser = callPackage ../development/python-modules/dsmr-parser { };
 
+  dtlssocket = callPackage ../development/python-modules/dtlssocket { };
+
   duckdb = callPackage ../development/python-modules/duckdb {
     inherit (pkgs) duckdb;
   };
@@ -2689,6 +2697,10 @@ in {
   foolscap = callPackage ../development/python-modules/foolscap { };
 
   forbiddenfruit = callPackage ../development/python-modules/forbiddenfruit { };
+
+  fordpass = callPackage ../development/python-modules/fordpass { };
+
+  forecast-solar = callPackage ../development/python-modules/forecast-solar { };
 
   fortiosapi = callPackage ../development/python-modules/fortiosapi { };
 
@@ -5785,6 +5797,8 @@ in {
 
   pycrc = callPackage ../development/python-modules/pycrc { };
 
+  pycritty = callPackage ../development/python-modules/pycritty { };
+
   pycron = callPackage ../development/python-modules/pycron { };
 
   pycrypto = callPackage ../development/python-modules/pycrypto { };
@@ -6005,6 +6019,8 @@ in {
   pyhocon = callPackage ../development/python-modules/pyhocon { };
 
   pyhomematic = callPackage ../development/python-modules/pyhomematic { };
+
+  pyhomepilot = callPackage ../development/python-modules/pyhomepilot { };
 
   pyhs100 = callPackage ../development/python-modules/pyhs100 { };
 
@@ -6347,6 +6363,8 @@ in {
 
   pypdf2 = callPackage ../development/python-modules/pypdf2 { };
 
+  pypdf3 = callPackage ../development/python-modules/pypdf3 { };
+
   pypeg2 = callPackage ../development/python-modules/pypeg2 { };
 
   pyperclip = callPackage ../development/python-modules/pyperclip { };
@@ -6391,9 +6409,7 @@ in {
 
   pyqt4 = callPackage ../development/python-modules/pyqt/4.x.nix { };
 
-  pyqt5 = pkgs.libsForQt5.callPackage ../development/python-modules/pyqt/5.x.nix {
-    pythonPackages = self;
-  };
+  pyqt5 = callPackage ../development/python-modules/pyqt/5.x.nix { };
 
   pyqt5_with_qtmultimedia = self.pyqt5.override {
     withMultimedia = true;
@@ -7181,6 +7197,8 @@ in {
   pytorchWithoutCuda = self.pytorch.override {
     cudaSupport = false;
   };
+
+  pytradfri = callPackage ../development/python-modules/pytradfri { };
 
   pytrafikverket = callPackage ../development/python-modules/pytrafikverket { };
 
@@ -8388,6 +8406,8 @@ in {
 
   syncer = callPackage ../development/python-modules/syncer { };
 
+  synologydsm-api = callPackage ../development/python-modules/synologydsm-api { };
+
   systembridge = callPackage ../development/python-modules/systembridge { };
 
   systemd = callPackage ../development/python-modules/systemd {
@@ -8663,6 +8683,8 @@ in {
   # Used by streamlit, graphite_beacon, 2021-01-29
   tornado_5 = callPackage ../development/python-modules/tornado/5.nix { };
 
+  total-connect-client = callPackage ../development/python-modules/total-connect-client { };
+
   towncrier = callPackage ../development/python-modules/towncrier {
     inherit (pkgs) git;
   };
@@ -8896,6 +8918,8 @@ in {
   upass = callPackage ../development/python-modules/upass { };
 
   upb-lib = callPackage ../development/python-modules/upb-lib { };
+
+  upcloud-api = callPackage ../development/python-modules/upcloud-api { };
 
   update_checker = callPackage ../development/python-modules/update_checker { };
 

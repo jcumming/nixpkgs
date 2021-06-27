@@ -1777,6 +1777,10 @@ in
 
   atftp = callPackage ../tools/networking/atftp { };
 
+  authoscope = callPackage ../tools/security/authoscope {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   autogen = callPackage ../development/tools/misc/autogen { };
 
   autojump = callPackage ../tools/misc/autojump { };
@@ -1826,10 +1830,6 @@ in
   b3sum = callPackage ../tools/security/b3sum {};
 
   backblaze-b2 = callPackage ../development/tools/backblaze-b2 { };
-
-  badtouch = callPackage ../tools/security/badtouch {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
 
   bandwhich = callPackage ../tools/networking/bandwhich {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -3568,6 +3568,8 @@ in
 
   nrg2iso = callPackage ../tools/cd-dvd/nrg2iso { };
 
+  ceph-csi = callPackage ../tools/filesystems/ceph-csi { };
+
   libceph = ceph.lib;
   inherit (callPackages ../tools/filesystems/ceph {
     boost = boost17x.override { enablePython = true; python = python3; };
@@ -3873,6 +3875,10 @@ in
   cocoapods = callPackage ../development/mobile/cocoapods { };
 
   cocoapods-beta = lowPrio (callPackage ../development/mobile/cocoapods { beta = true; });
+
+  cocom = callPackage ../tools/networking/cocom {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   codebraid = callPackage ../tools/misc/codebraid { };
 
@@ -5643,6 +5649,8 @@ in
 
   hash_extender = callPackage ../tools/security/hash_extender { };
 
+  hash-identifier = callPackage ../tools/security/hash-identifier { };
+
   hash-slinger = callPackage ../tools/security/hash-slinger { };
 
   haskell-language-server = callPackage ../development/tools/haskell/haskell-language-server/withWrapper.nix { };
@@ -6582,6 +6590,10 @@ in
 
   leela = callPackage ../tools/graphics/leela { };
 
+  lethe = callPackage ../tools/security/lethe {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   lftp = callPackage ../tools/networking/lftp { };
 
   libck = callPackage ../development/libraries/libck { };
@@ -6622,6 +6634,8 @@ in
   libgumath = callPackage ../development/libraries/libgumath { };
 
   libinsane = callPackage ../development/libraries/libinsane { };
+
+  libint = callPackage ../development/libraries/libint {};
 
   libipfix = callPackage ../development/libraries/libipfix { };
 
@@ -13409,6 +13423,8 @@ in
 
   effitask = callPackage ../applications/misc/effitask { };
 
+  efm-langserver = callPackage ../development/tools/efm-langserver { };
+
   egypt = callPackage ../development/tools/analysis/egypt { };
 
   elfinfo = callPackage ../development/tools/misc/elfinfo { };
@@ -13955,6 +13971,8 @@ in
   puppeteer-cli = callPackage ../tools/graphics/puppeteer-cli {};
 
   pyrseas = callPackage ../development/tools/database/pyrseas { };
+
+  pycritty = with python3Packages; toPythonApplication pycritty;
 
   qtcreator = libsForQt5.callPackage ../development/tools/qtcreator { };
 
@@ -16654,6 +16672,8 @@ in
   };
 
   libjwt = callPackage ../development/libraries/libjwt { };
+
+  libjxl = callPackage ../development/libraries/libjxl { };
 
   libkate = callPackage ../development/libraries/libkate { };
 
@@ -20849,6 +20869,8 @@ in
 
     anbox = callPackage ../os-specific/linux/anbox/kmod.nix { };
 
+    apfs = callPackage ../os-specific/linux/apfs { };
+
     batman_adv = callPackage ../os-specific/linux/batman-adv {};
 
     bcc = callPackage ../os-specific/linux/bcc {
@@ -24588,7 +24610,6 @@ in
   };
 
   wlroots_0_12 = callPackage ../development/libraries/wlroots/0.12.nix {};
-  wlroots_0_13 = callPackage ../development/libraries/wlroots/0.13.nix {};
 
   sway-unwrapped = callPackage ../applications/window-managers/sway { };
   sway = callPackage ../applications/window-managers/sway/wrapper.nix { };
@@ -27307,7 +27328,6 @@ in
   unipicker = callPackage ../applications/misc/unipicker { };
 
   unison = callPackage ../applications/networking/sync/unison {
-    ocamlPackages = ocaml-ng.ocamlPackages_4_09;
     enableX11 = config.unison.enableX11 or true;
   };
 
@@ -27666,9 +27686,7 @@ in
 
   weston = callPackage ../applications/window-managers/weston { pipewire = pipewire_0_2; };
 
-  wio = callPackage ../applications/window-managers/wio {
-    wlroots = wlroots_0_13;
-  };
+  wio = callPackage ../applications/window-managers/wio { };
 
   whitebox-tools = callPackage ../applications/gis/whitebox-tools {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -30756,10 +30774,6 @@ in
   hplip_3_16_11 = callPackage ../misc/drivers/hplip/3.16.11.nix { };
 
   hplipWithPlugin_3_16_11 = hplip_3_16_11.override { withPlugin = true; };
-
-  hplip_3_18_5 = callPackage ../misc/drivers/hplip/3.18.5.nix { };
-
-  hplipWithPlugin_3_18_5 = hplip_3_18_5.override { withPlugin = true; };
 
   hyperfine = callPackage ../tools/misc/hyperfine {
     inherit (darwin.apple_sdk.frameworks) Security;

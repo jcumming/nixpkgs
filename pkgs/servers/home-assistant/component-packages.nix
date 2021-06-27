@@ -25,7 +25,7 @@
     "alert" = ps: with ps; [ ];
     "alexa" = ps: with ps; [ aiohttp-cors ];
     "almond" = ps: with ps; [ aiohttp-cors pyalmond ];
-    "alpha_vantage" = ps: with ps; [ ]; # missing inputs: alpha_vantage
+    "alpha_vantage" = ps: with ps; [ alpha-vantage ];
     "amazon_polly" = ps: with ps; [ boto3 ];
     "ambiclimate" = ps: with ps; [ aiohttp-cors ambiclimate ];
     "ambient_station" = ps: with ps; [ aioambient ];
@@ -79,7 +79,7 @@
     "bh1750" = ps: with ps; [ smbus-cffi ]; # missing inputs: i2csense
     "binary_sensor" = ps: with ps; [ ];
     "bitcoin" = ps: with ps; [ blockchain ];
-    "bizkaibus" = ps: with ps; [ ]; # missing inputs: bizkaibus
+    "bizkaibus" = ps: with ps; [ bizkaibus ];
     "blackbird" = ps: with ps; [ pyblackbird ];
     "blebox" = ps: with ps; [ blebox-uniapi ];
     "blink" = ps: with ps; [ blinkpy ];
@@ -828,7 +828,7 @@
     "syncthing" = ps: with ps; [ aiosyncthing ];
     "syncthru" = ps: with ps; [ url-normalize ]; # missing inputs: pysyncthru
     "synology_chat" = ps: with ps; [ ];
-    "synology_dsm" = ps: with ps; [ ]; # missing inputs: synologydsm-api
+    "synology_dsm" = ps: with ps; [ synologydsm-api ];
     "synology_srm" = ps: with ps; [ ]; # missing inputs: synology-srm
     "syslog" = ps: with ps; [ ];
     "system_bridge" = ps: with ps; [ aiohttp-cors ifaddr systembridge zeroconf ];
@@ -873,14 +873,14 @@
     "tomato" = ps: with ps; [ ];
     "toon" = ps: with ps; [ aiohttp-cors hass-nabucasa toonapi ];
     "torque" = ps: with ps; [ aiohttp-cors ];
-    "totalconnect" = ps: with ps; [ ]; # missing inputs: total_connect_client
+    "totalconnect" = ps: with ps; [ total-connect-client ];
     "touchline" = ps: with ps; [ ]; # missing inputs: pytouchline
     "tplink" = ps: with ps; [ pyhs100 ];
     "tplink_lte" = ps: with ps; [ ]; # missing inputs: tp-connected
     "traccar" = ps: with ps; [ aiohttp-cors stringcase ]; # missing inputs: pytraccar
     "trace" = ps: with ps; [ ];
     "trackr" = ps: with ps; [ ]; # missing inputs: pytrackr
-    "tradfri" = ps: with ps; [ ]; # missing inputs: pytradfri[async]
+    "tradfri" = ps: with ps; [ pytradfri ];
     "trafikverket_train" = ps: with ps; [ pytrafikverket ];
     "trafikverket_weatherstation" = ps: with ps; [ pytrafikverket ];
     "transmission" = ps: with ps; [ transmissionrpc ];
@@ -905,7 +905,7 @@
     "universal" = ps: with ps; [ ];
     "upb" = ps: with ps; [ upb-lib ];
     "upc_connect" = ps: with ps; [ connect-box ];
-    "upcloud" = ps: with ps; [ ]; # missing inputs: upcloud-api
+    "upcloud" = ps: with ps; [ upcloud-api ];
     "updater" = ps: with ps; [ distro ];
     "upnp" = ps: with ps; [ async-upnp-client ];
     "uptime" = ps: with ps; [ ];
