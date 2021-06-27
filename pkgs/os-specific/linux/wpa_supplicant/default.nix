@@ -1,6 +1,5 @@
 { lib, stdenv, fetchurl, fetchpatch, openssl, pkg-config, libnl
 , dbus, readline ? null, pcsclite ? null
-
 , readOnlyModeSSIDs ? false
 }:
 
@@ -102,6 +101,8 @@ stdenv.mkDerivation rec {
     CONFIG_WPA_CLI_EDIT=y
   '');
 
+  maybePCSC = if pcsclite != null then "-I${lib.getDev pcsclite}/include/PCSC/" else "";
+
   preBuild = ''
     for manpage in wpa_supplicant/doc/docbook/wpa_supplicant.conf* ; do
       substituteInPlace "$manpage" --replace /usr/share/doc $out/share/doc
@@ -111,9 +112,8 @@ stdenv.mkDerivation rec {
     echo "$extraConfig" >> .config
     cat -n .config
     substituteInPlace Makefile --replace /usr/local $out
-    export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE \
-      -I$(echo "${lib.getDev libnl}"/include/libnl*/) \
-      -I${lib.getDev pcsclite}/include/PCSC/"
+    export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE 
+      -I$(echo "${lib.getDev libnl}"/include/libnl*/) ${maybePCSC} "
   '';
 
   buildInputs = [ openssl libnl dbus readline pcsclite ];
