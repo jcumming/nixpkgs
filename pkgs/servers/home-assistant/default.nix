@@ -255,6 +255,8 @@ in with py.pkgs; buildPythonApplication rec {
     voluptuous
     voluptuous-serialize
     yarl
+    # Not in setup.py, but used in homeassistant/util/package.py
+    setuptools
   ] ++ lib.optionals (pythonOlder "3.9") [
     backports-zoneinfo
   ] ++ componentBuildInputs ++ extraBuildInputs;
@@ -506,6 +508,7 @@ in with py.pkgs; buildPythonApplication rec {
     "isy994"
     "izone"
     "jewish_calendar"
+    "juicenet"
     "keenetic_ndms2"
     "kira"
     "kmtronic"
@@ -670,7 +673,9 @@ in with py.pkgs; buildPythonApplication rec {
     "spotify"
     "sql"
     "squeezebox"
+    "srp_energy"
     "ssdp"
+    "starline"
     "startca"
     "statistics"
     "statsd"
@@ -682,6 +687,7 @@ in with py.pkgs; buildPythonApplication rec {
     "switch"
     "switcher_kis"
     "syncthing"
+    "syncthru"
     "synology_dsm"
     "system_health"
     "system_log"

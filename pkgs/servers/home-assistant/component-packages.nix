@@ -417,7 +417,7 @@
     "izone" = ps: with ps; [ python-izone ];
     "jewish_calendar" = ps: with ps; [ hdate ];
     "joaoapps_join" = ps: with ps; [ ]; # missing inputs: python-join-api
-    "juicenet" = ps: with ps; [ ]; # missing inputs: python-juicenet
+    "juicenet" = ps: with ps; [ python-juicenet ];
     "kaiterra" = ps: with ps; [ ]; # missing inputs: kaiterra-async-client
     "kankun" = ps: with ps; [ ];
     "keba" = ps: with ps; [ ]; # missing inputs: keba-kecontact
@@ -436,7 +436,7 @@
     "kulersky" = ps: with ps; [ pykulersky ];
     "kwb" = ps: with ps; [ ]; # missing inputs: pykwb
     "lacrosse" = ps: with ps; [ pylacrosse ];
-    "lametric" = ps: with ps; [ ]; # missing inputs: lmnotify
+    "lametric" = ps: with ps; [ lmnotify ];
     "lannouncer" = ps: with ps; [ ];
     "lastfm" = ps: with ps; [ pylast ];
     "launch_library" = ps: with ps; [ ]; # missing inputs: pylaunches
@@ -799,9 +799,9 @@
     "spotify" = ps: with ps; [ aiohttp-cors spotipy ];
     "sql" = ps: with ps; [ sqlalchemy ];
     "squeezebox" = ps: with ps; [ pysqueezebox ];
-    "srp_energy" = ps: with ps; [ ]; # missing inputs: srpenergy
+    "srp_energy" = ps: with ps; [ srpenergy ];
     "ssdp" = ps: with ps; [ aiohttp-cors async-upnp-client defusedxml ifaddr netdisco zeroconf ];
-    "starline" = ps: with ps; [ ]; # missing inputs: starline
+    "starline" = ps: with ps; [ starline ];
     "starlingbank" = ps: with ps; [ ]; # missing inputs: starlingbank
     "startca" = ps: with ps; [ xmltodict ];
     "statistics" = ps: with ps; [ sqlalchemy ];
@@ -826,7 +826,7 @@
     "switcher_kis" = ps: with ps; [ aioswitcher ];
     "switchmate" = ps: with ps; [ ]; # missing inputs: pySwitchmate
     "syncthing" = ps: with ps; [ aiosyncthing ];
-    "syncthru" = ps: with ps; [ url-normalize ]; # missing inputs: pysyncthru
+    "syncthru" = ps: with ps; [ pysyncthru url-normalize ];
     "synology_chat" = ps: with ps; [ ];
     "synology_dsm" = ps: with ps; [ synologydsm-api ];
     "synology_srm" = ps: with ps; [ ]; # missing inputs: synology-srm
