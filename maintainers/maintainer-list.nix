@@ -1701,6 +1701,18 @@
     githubId = 3471749;
     name = "Claudio Bley";
   };
+  cburstedde = {
+    email = "burstedde@ins.uni-bonn.de";
+    github = "cburstedde";
+    githubId = 109908;
+    name = "Carsten Burstedde";
+    keys = [
+      {
+        longkeyid = "rsa2048/0x0704CD9E550A6BCD";
+        fingerprint = "1127 A432 6524 BF02 737B  544E 0704 CD9E 550A 6BCD";
+      }
+    ];
+  };
   cdepillabout = {
     email = "cdep.illabout@gmail.com";
     github = "cdepillabout";
@@ -2562,7 +2574,7 @@
     name = "Diego Lelis";
   };
   diffumist = {
-    email = "diffumist@gmail.com";
+    email = "git@diffumist.me";
     github = "diffumist";
     githubId = 32810399;
     name = "Diffumist";
@@ -4048,6 +4060,12 @@
     email = "me@gytis.io";
     github = "gytis-ivaskevicius";
     githubId = 23264966;
+  };
+  hagl = {
+    email = "harald@glie.be";
+    github = "hagl";
+    githubId = 1162118;
+    name = "Harald Gliebe";
   };
   hakuch = {
     email = "hakuch@gmail.com";
@@ -7228,10 +7246,10 @@
     name = "Marko Poikonen";
   };
   mtreca = {
-    email = "maxime@treca.dev";
-    name = "Maxime Tréca";
+    email = "maxime.treca@gmail.com";
     github = "mtreca";
     githubId = 16440823;
+    name = "Maxime Tréca";
   };
   mtreskin = {
     email = "zerthurd@gmail.com";
@@ -8179,6 +8197,12 @@
     github = "nbp";
     githubId = 1179566;
     name = "Nicolas B. Pierron";
+  };
+  pimeys = {
+    email = "julius@nauk.io";
+    github = "pimeys";
+    githubId = 34967;
+    name = "Julius de Bruijn";
   };
   pingiun = {
     email = "nixos@pingiun.com";
@@ -10626,6 +10650,12 @@
     github = "totoroot";
     githubId = 39650930;
   };
+  ToxicFrog = {
+    email = "toxicfrog@ancilla.ca";
+    github = "ToxicFrog";
+    githubId = 90456;
+    name = "Rebecca (Bex) Kelly";
+  };
   travisbhartwell = {
     email = "nafai@travishartwell.net";
     github = "travisbhartwell";
@@ -10776,6 +10806,12 @@
     githubId = 347983;
     name = "Udo Spallek";
   };
+  ulrikstrid = {
+    email = "ulrik.strid@outlook.com";
+    github = "ulrikstrid";
+    githubId = 1607770;
+    name = "Ulrik Strid";
+  };
   unode = {
     email = "alves.rjc@gmail.com";
     github = "unode";
@@ -10871,6 +10907,12 @@
     github = "vandenoever";
     githubId = 608417;
     name = "Jos van den Oever";
+  };
+  vanilla = {
+    email = "neko@hydev.org";
+    github = "VergeDX";
+    githubId = 25173827;
+    name = "Vanilla";
   };
   vanschelven = {
     email = "klaas@vanschelven.com";
