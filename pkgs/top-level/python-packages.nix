@@ -837,6 +837,8 @@ in {
 
   azure-mgmt-eventhub = callPackage ../development/python-modules/azure-mgmt-eventhub { };
 
+  azure-mgmt-extendedlocation = callPackage ../development/python-modules/azure-mgmt-extendedlocation { };
+
   azure-mgmt-hanaonazure = callPackage ../development/python-modules/azure-mgmt-hanaonazure { };
 
   azure-mgmt-hdinsight = callPackage ../development/python-modules/azure-mgmt-hdinsight { };
@@ -5966,6 +5968,8 @@ in {
 
   pyfritzhome = callPackage ../development/python-modules/pyfritzhome { };
 
+  pyfronius = callPackage ../development/python-modules/pyfronius { };
+
   pyftdi = callPackage ../development/python-modules/pyftdi { };
 
   pyftgl = callPackage ../development/python-modules/pyftgl { };
@@ -8062,6 +8066,8 @@ in {
 
   slob = callPackage ../development/python-modules/slob { };
 
+  slowapi = callPackage ../development/python-modules/slowapi { };
+
   sly = callPackage ../development/python-modules/sly { };
 
   smart-meter-texas = callPackage ../development/python-modules/smart-meter-texas { };
@@ -8864,6 +8870,10 @@ in {
   typeguard = callPackage ../development/python-modules/typeguard { };
 
   typer = callPackage ../development/python-modules/typer { };
+
+  types-decorator = callPackage ../development/python-modules/types-decorator { };
+
+  types-requests = callPackage ../development/python-modules/types-requests { };
 
   typesentry = callPackage ../development/python-modules/typesentry { };
 
