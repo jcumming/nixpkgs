@@ -1684,6 +1684,8 @@ in {
 
   cram = callPackage ../development/python-modules/cram { };
 
+  cramjam = callPackage ../development/python-modules/cramjam { };
+
   crashtest = callPackage ../development/python-modules/crashtest { };
 
   crate = callPackage ../development/python-modules/crate { };
@@ -3145,6 +3147,10 @@ in {
 
   grpcio-tools = callPackage ../development/python-modules/grpcio-tools { };
 
+  gruut = callPackage ../development/python-modules/gruut { };
+
+  gruut-ipa = callPackage ../development/python-modules/gruut-ipa { };
+
   gsd = callPackage ../development/python-modules/gsd { };
 
   gspread = callPackage ../development/python-modules/gspread { };
@@ -3399,6 +3405,8 @@ in {
   hydrawiser = callPackage ../development/python-modules/hydrawiser { };
 
   hypchat = callPackage ../development/python-modules/hypchat { };
+
+  hypercorn = callPackage ../development/python-modules/hypercorn { };
 
   hyperframe = callPackage ../development/python-modules/hyperframe { };
 
@@ -4335,6 +4343,8 @@ in {
 
   marshmallow-enum = callPackage ../development/python-modules/marshmallow-enum { };
 
+  marshmallow-oneofschema = callPackage ../development/python-modules/marshmallow-oneofschema { };
+
   marshmallow-polyfield = callPackage ../development/python-modules/marshmallow-polyfield { };
 
   marshmallow-sqlalchemy = callPackage ../development/python-modules/marshmallow-sqlalchemy { };
@@ -4678,6 +4688,8 @@ in {
 
   names = callPackage ../development/python-modules/names { };
 
+  nampa = callPackage ../development/python-modules/nampa { };
+
   nanoleaf = callPackage ../development/python-modules/nanoleaf { };
 
   nanomsg-python = callPackage ../development/python-modules/nanomsg-python {
@@ -4902,6 +4914,8 @@ in {
 
   nvchecker = callPackage ../development/python-modules/nvchecker { };
 
+  python-nvd3 = callPackage ../development/python-modules/python-nvd3 { };
+
   nwdiag = callPackage ../development/python-modules/nwdiag { };
 
   oath = callPackage ../development/python-modules/oath { };
@@ -4988,6 +5002,8 @@ in {
   opensensemap-api = callPackage ../development/python-modules/opensensemap-api { };
 
   openshift = callPackage ../development/python-modules/openshift { };
+
+  opensimplex = callPackage ../development/python-modules/opensimplex { };
 
   opentimestamps = callPackage ../development/python-modules/opentimestamps { };
 
@@ -5387,6 +5403,8 @@ in {
 
   python-codon-tables = callPackage ../development/python-modules/python-codon-tables { };
 
+  python-crfsuite = callPackage ../development/python-modules/python-crfsuite { };
+
   python-csxcad = callPackage ../development/python-modules/python-csxcad { };
 
   python-ecobee-api = callPackage ../development/python-modules/python-ecobee-api { };
@@ -5644,6 +5662,8 @@ in {
   puremagic = callPackage ../development/python-modules/puremagic { };
 
   purl = callPackage ../development/python-modules/purl { };
+
+  push-receiver = callPackage ../development/python-modules/push-receiver { };
 
   pushbullet = callPackage ../development/python-modules/pushbullet { };
 
@@ -7466,6 +7486,8 @@ in {
     gdal = pkgs.gdal_2;
   };
 
+  ratelim = callPackage ../development/python-modules/ratelim { };
+
   ratelimit = callPackage ../development/python-modules/ratelimit { };
 
   ratelimiter = callPackage ../development/python-modules/ratelimiter { };
@@ -8293,6 +8315,8 @@ in {
   sqlalchemy-i18n = callPackage ../development/python-modules/sqlalchemy-i18n { };
 
   SQLAlchemy-ImageAttach = callPackage ../development/python-modules/sqlalchemy-imageattach { };
+
+  sqlalchemy-jsonfield = callPackage ../development/python-modules/sqlalchemy-jsonfield { };
 
   sqlalchemy_migrate = callPackage ../development/python-modules/sqlalchemy-migrate { };
 
