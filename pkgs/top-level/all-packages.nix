@@ -1333,6 +1333,8 @@ in
 
   blockbench-electron = callPackage ../applications/graphics/blockbench-electron { };
 
+  blocksat-cli = with python3Packages; toPythonApplication blocksat-cli;
+
   bmap-tools = callPackage ../tools/misc/bmap-tools { };
 
   bonnmotion = callPackage ../development/tools/misc/bonnmotion { };
@@ -4085,6 +4087,8 @@ in
   debian-devscripts = callPackage ../tools/misc/debian-devscripts { };
 
   debootstrap = callPackage ../tools/misc/debootstrap { };
+
+  debugedit-unstable = callPackage ../development/tools/misc/debugedit { };
 
   deer = callPackage ../shells/zsh/zsh-deer { };
 
@@ -8062,10 +8066,7 @@ in
 
   podiff = callPackage ../tools/text/podiff { };
 
-  podman = if stdenv.isDarwin then
-    callPackage ../applications/virtualization/podman { }
-  else
-    callPackage ../applications/virtualization/podman/wrapper.nix { };
+  podman = callPackage ../applications/virtualization/podman/wrapper.nix { };
   podman-unwrapped = callPackage ../applications/virtualization/podman { };
 
   podman-compose = python3Packages.callPackage ../applications/virtualization/podman-compose {};
@@ -8495,9 +8496,7 @@ in
 
   routino = callPackage ../tools/misc/routino { };
 
-  rq = callPackage ../development/tools/rq {
-    inherit (darwin) libiconv;
-  };
+  rq = callPackage ../development/tools/rq { };
 
   rs-git-fsmonitor = callPackage ../applications/version-management/git-and-tools/rs-git-fsmonitor { };
 
@@ -12593,7 +12592,7 @@ in
   python3 = python38;
   pypy = pypy2;
   pypy2 = pypy27;
-  pypy3 = pypy36;
+  pypy3 = pypy37;
 
   # Python interpreter that is build with all modules, including tkinter.
   # These are for compatibility and should not be used inside Nixpkgs.
@@ -12649,7 +12648,7 @@ in
   python3Packages = python3.pkgs;
 
   pythonInterpreters = callPackage ./../development/interpreters/python { };
-  inherit (pythonInterpreters) python27 python36 python37 python38 python39 python310 python3Minimal pypy27 pypy36;
+  inherit (pythonInterpreters) python27 python36 python37 python38 python39 python310 python3Minimal pypy27 pypy37;
 
   # Python package sets.
   python27Packages = python27.pkgs;
@@ -13914,6 +13913,10 @@ in
   mockgen = callPackage ../development/tools/mockgen { };
 
   modd = callPackage ../development/tools/modd { };
+
+  mold = callPackage ../development/tools/mold {
+    stdenv = llvmPackages_latest.stdenv;
+  };
 
   msgpack-tools = callPackage ../development/tools/msgpack-tools { };
 
@@ -16551,6 +16554,8 @@ in
   };
 
   libgksu = callPackage ../development/libraries/libgksu { };
+
+  libgnt = callPackage ../development/libraries/libgnt { };
 
   libgpgerror = callPackage ../development/libraries/libgpg-error { };
 
@@ -27948,6 +27953,8 @@ in
 
   wofi = callPackage ../applications/misc/wofi { };
 
+  wofi-emoji = callPackage ../applications/misc/wofi-emoji { };
+
   wordnet = callPackage ../applications/misc/wordnet {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
   };
@@ -28524,6 +28531,9 @@ in
   dogecoind = callPackage ../applications/blockchains/dogecoin.nix { boost = boost165; withGui = false; };
 
   electrs = callPackage ../applications/blockchains/electrs.nix { };
+
+  elements  = libsForQt5.callPackage ../applications/blockchains/elements.nix { miniupnpc = miniupnpc_2; withGui = true; };
+  elementsd = callPackage ../applications/blockchains/elements.nix { miniupnpc = miniupnpc_2; withGui = false; };
 
   ergo = callPackage ../applications/blockchains/ergo { };
 
