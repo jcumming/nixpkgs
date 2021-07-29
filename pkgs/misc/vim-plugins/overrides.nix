@@ -251,6 +251,14 @@ self: super: {
       '';
     });
 
+  fzf-checkout-vim = super.fzf-checkout-vim.overrideAttrs (old: {
+    # The plugin has a makefile which tries to run tests in a docker container.
+    # This prevents it.
+    prePatch = ''
+      rm Makefile
+    '';
+  });
+
   fzf-vim = super.fzf-vim.overrideAttrs (old: {
     dependencies = with self; [ fzfWrapper ];
   });
@@ -397,6 +405,10 @@ self: super: {
 
   neogit = super.neogit.overrideAttrs (old: {
     dependencies = with self; [ plenary-nvim ];
+  });
+
+  null-ls-nvim = super.null-ls-nvim.overrideAttrs (old: {
+    path = "null-ls.nvim";
   });
 
   nvim-lsputils = super.nvim-lsputils.overrideAttrs (old: {
@@ -631,7 +643,7 @@ self: super: {
             libiconv
           ];
 
-          cargoSha256 = "sha256-D54R7LK4CH5S7x0g+3K1EJ4b10P7wRAIkHYwCOFJtfg=";
+          cargoSha256 = "sha256-J5BCLcwOPB+EfOmdITCHgec9XDkm2oCGfRo/sKjEOIg=";
         };
       in
       ''

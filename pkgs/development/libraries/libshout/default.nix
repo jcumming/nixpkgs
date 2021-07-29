@@ -4,11 +4,12 @@
 # need pkg-config so that libshout installs ${out}/lib/pkgconfig/shout.pc
 
 stdenv.mkDerivation rec {
-  name = "libshout-2.4.5";
+  pname = "libshout";
+  version = "2.4.5";
 
   src = fetchurl {
-    url = "http://downloads.xiph.org/releases/libshout/${name}.tar.gz";
-    sha256 = "1438da40y73y9068saxrbmm27qq6xqmmzsziwgmr8fb7i9k6irfr";
+    url = "https://downloads.xiph.org/releases/libshout/${pname}-${version}.tar.gz";
+    sha256 = "sha256-2eVoZopnOZTr4/HrXyvuBuMjal25K40MSH4cD4hqaJA=";
   };
 
   outputs = [ "out" "dev" "doc" ];

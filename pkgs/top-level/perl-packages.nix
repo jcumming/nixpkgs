@@ -91,11 +91,11 @@ let
 
   ack = buildPerlPackage {
     pname = "ack";
-    version = "3.4.0";
+    version = "3.5.0";
 
     src = fetchurl {
-      url = "mirror://cpan/authors/id/P/PE/PETDANCE/ack-v3.4.0.tar.gz";
-      sha256 = "0l3bkac2kl1nl5pwmh5b4plyr7wdzf1h501gwkga2ag1p6wxdkvf";
+      url = "mirror://cpan/authors/id/P/PE/PETDANCE/ack-v3.5.0.tar.gz";
+      sha256 = "sha256-ZgU+iE6AM4egLd7g1oq/KhAjn6tlQ2TaszKHMJpyVSE=";
     };
 
     outputs = ["out" "man"];
@@ -1328,12 +1328,12 @@ let
     propagatedBuildInputs = [ CarpClan ];
   };
 
-  BKeywords = buildPerlPackage {
+  BKeywords = buildPerlPackage rec {
     pname = "B-Keywords";
-    version = "1.21";
+    version = "1.22";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/R/RU/RURBAN/B-Keywords-1.21.tar.gz";
-      sha256 = "12481z1z1nyrjlkizzqn4cdmcrfjkc3hvxppqipsf6r5gnffh9as";
+      url = "mirror://cpan/authors/id/R/RU/RURBAN/B-Keywords-${version}.tar.gz";
+      sha256 = "0i2ksp0w9wv1qc22hrdl3k48cww64syhmv8zf6x0kgyd4081hr56";
     };
     meta = {
       description = "Lists of reserved barewords and symbol names";
@@ -6231,10 +6231,10 @@ let
 
   DevelNYTProf = buildPerlPackage {
     pname = "Devel-NYTProf";
-    version = "6.06";
+    version = "6.10";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/T/TI/TIMB/Devel-NYTProf-6.06.tar.gz";
-      sha256 = "a14227ca79f1750b92cc7b8b0a5806c92abc4964a21a7fb100bd4907d6c4be55";
+      url = "mirror://cpan/authors/id/J/JK/JKEENAN/Devel-NYTProf-6.10.tar.gz";
+      sha256 = "24ac4174f1f01322063fa4e119b247d371d3260ddca6e778c6c1a0e3f905f58e";
     };
     propagatedBuildInputs = [ FileWhich JSONMaybeXS ];
     meta = {
@@ -6242,7 +6242,7 @@ let
       description = "Powerful fast feature-rich Perl source code profiler";
       license = with lib.licenses; [ artistic1 gpl1Plus ];
     };
-    buildInputs = [ TestDifferences ];
+    buildInputs = [ CaptureTiny TestDifferences ];
     nativeBuildInputs = lib.optional stdenv.isDarwin shortenPerlShebang;
     postInstall = lib.optionalString stdenv.isDarwin ''
       shortenPerlShebang $out/bin/*
@@ -11410,10 +11410,10 @@ let
 
   LinkEmbedder = buildPerlPackage {
     pname = "LinkEmbedder";
-    version = "1.18";
+    version = "1.20";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/J/JH/JHTHORSEN/LinkEmbedder-1.18.tar.gz";
-      sha256 = "17gnixbawzr0r1k37dry7axb7ry6sj2xiahki28m8qbk1l69dfjz";
+      url = "mirror://cpan/authors/id/J/JH/JHTHORSEN/LinkEmbedder-1.20.tar.gz";
+      sha256 = "19fwr3y8dd1bya2z86x3904s4dxfx15h7b777529j8n74m78ppmi";
     };
     buildInputs = [ TestDeep ];
     propagatedBuildInputs = [ Mojolicious ];

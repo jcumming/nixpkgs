@@ -1,7 +1,8 @@
 { lib, stdenv, fetchurl, cmake, neon, libdiscid }:
 
 stdenv.mkDerivation rec {
-  name = "libmusicbrainz-5.0.1";
+  pname = "libmusicbrainz";
+  version = "3.0.3";
 
   nativeBuildInputs = [ cmake ];
   buildInputs = [ neon libdiscid ];
@@ -10,7 +11,7 @@ stdenv.mkDerivation rec {
   dontUseCmakeBuildDir=true;
 
   src = fetchurl {
-    url = "ftp://ftp.musicbrainz.org/pub/musicbrainz/${name}.tar.gz";
+    url = "ftp://ftp.musicbrainz.org/pub/musicbrainz/${pname}-${version}.tar.gz";
     sha256 = "1i9qly13bwwmgj68vma766hgvsd1m75236haqsp9zgh5znlmkm3z";
   };
 
