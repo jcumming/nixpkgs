@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "sslh";
-  version = "1.21c";
+  version = "1.21+20210702-bf57d63";
 
   src = fetchurl {
-    url = "https://www.rutschle.net/tech/sslh/sslh-v${version}.tar.gz";
-    sha256 = "01p7w74ppszxgz6n41lqd6xqvc7bjk2dsc769dd1yb7q4qvpiziv";
+    url = "https://github.com/yrutschle/sslh/archive/bf57d63c3a91fa73fd37e1541c4446956b37148b.tar.gz";
+    sha256 = "11wvjrp0i2d3zw05rjv9sfnwcb9kwgb3cwbdv3h938b1n081gds6";
   };
 
   postPatch = "patchShebangs *.sh";
