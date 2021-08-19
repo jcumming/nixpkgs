@@ -1,4 +1,4 @@
-{ fetchurl, stdenv, popt, ncurses, readline }:
+{lib, fetchurl, stdenv, popt, ncurses, readline }:
 
 # https://sourceforge.net/projects/openipmi/files/OpenIPMI%202.0%20Library/OpenIPMI-2.0.29.tar.gz/download
 stdenv.mkDerivation rec {
@@ -22,8 +22,8 @@ stdenv.mkDerivation rec {
   meta = {
     description = "library and daemon for high level IPMI access";
     homepage = "http://openipmi.sourceforge.net/";
-    license = stdenv.lib.licenses.gpl3;
-    platforms = stdenv.lib.platforms.linux;
-    maintainers = with stdenv.lib.maintainers; [ jcumming ];
+    license = lib.licenses.gpl3;
+    platforms = lib.platforms.linux;
+    maintainers = with lib.maintainers; [ jcumming ];
   };
 }
