@@ -37,6 +37,7 @@ stdenv.mkDerivation rec {
     ./monotone-1.1-Adapt-to-changes-in-pcre-8.42.patch
     ./monotone-1.1-adapt-to-botan2.patch
     ./bigger-netsync-packets.patch 
+    ./bigger-strings.patch
   ];
 
   postPatch = ''
