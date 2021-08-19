@@ -749,6 +749,7 @@ in {
         ExecReload = "${pkgs.util-linux}/bin/kill -HUP $MAINPID";
         Restart = "on-failure";
         UMask = "0077";
+        TimeoutStartSec = "360";
       };
     };
   };
