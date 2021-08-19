@@ -16,6 +16,7 @@
 , liboping
 , libpcap
 , libsigrok
+, libvirt
 , libxml2
 , libapparmor, libcap_ng, numactl
 , lvm2
