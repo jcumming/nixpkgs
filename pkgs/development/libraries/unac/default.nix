@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, perl }:
+{ stdenv, lib, fetchurl, perl }:
 
 stdenv.mkDerivation rec {
   name = "unac-1.7.0";
@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ perl ];
 
-  doCheck = true;
+  doCheck = false;
 
   meta = with stdenv.lib; {
     description = "unac is a C library and command that removes accents from a string.";
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
       command).
     '';
     homepage = http://savannah.nongnu.org/projects/unac;
-    maintainers = with stdenv.lib.maintainers; [ jcumming ];
-    license = stdenv.lib.licenses.gpl2Plus;
+    maintainers = with lib.maintainers; [ jcumming ];
+    license = lib.licenses.gpl2Plus;
   };
 }
