@@ -2,12 +2,12 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "firmware-linux-nonfree";
-  version = "2021-07-16";
+  version = "2021-08-18";
 
   src = fetchgit {
     url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git";
-    rev = "refs/tags/" + lib.replaceStrings ["-"] [""] version;
-    sha256 = "185pnaqf2qmhbcdvvldmbar09zgaxhh3h8x9bxn6079bcdpaskn6";
+    rev = "refs/tags/" + lib.replaceStrings [ "-" ] [ "" ] version;
+    sha256 = "sha256-RLPTbH2quBqCF3fi70GtOE0i3lEdaL5xo67xk8gbYMo=";
   };
 
   #  8.307821] brcmfmac 0000:04:00.0: Direct firmware load for brcm/brcmfmac4366c-pcie.Supermicro-Super Server.txt failed with error -2
