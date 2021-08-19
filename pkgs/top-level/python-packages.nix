@@ -411,6 +411,8 @@ in {
 
   alarmdecoder = callPackage ../development/python-modules/alarmdecoder { };
 
+  alectryon = callPackage ../development/python-modules/alectryon { };
+
   alembic = callPackage ../development/python-modules/alembic { };
 
   algebraic-data-types = callPackage ../development/python-modules/algebraic-data-types { };
@@ -1440,6 +1442,8 @@ in {
   cheroot = callPackage ../development/python-modules/cheroot { };
 
   cherrypy = callPackage ../development/python-modules/cherrypy { };
+
+  chess = callPackage ../development/python-modules/chess { };
 
   chevron = callPackage ../development/python-modules/chevron { };
 
@@ -2796,6 +2800,8 @@ in {
 
   furl = callPackage ../development/python-modules/furl { };
 
+  furo = callPackage ../development/python-modules/furo { };
+
   fuse = callPackage ../development/python-modules/fuse-python {
     inherit (pkgs) fuse;
   };
@@ -3009,6 +3015,8 @@ in {
 
   google-cloud-core = callPackage ../development/python-modules/google-cloud-core { };
 
+  google-cloud-datacatalog = callPackage ../development/python-modules/google-cloud-datacatalog { };
+
   google-cloud-dataproc = callPackage ../development/python-modules/google-cloud-dataproc { };
 
   google-cloud-datastore = callPackage ../development/python-modules/google-cloud-datastore { };
@@ -3176,7 +3184,7 @@ in {
 
   grip = callPackage ../development/python-modules/grip { };
 
-  grpc_google_iam_v1 = callPackage ../development/python-modules/grpc_google_iam_v1 { };
+  grpc-google-iam-v1 = callPackage ../development/python-modules/grpc-google-iam-v1 { };
 
   grpcio = callPackage ../development/python-modules/grpcio { };
 
@@ -3590,6 +3598,8 @@ in {
   inkex = callPackage ../development/python-modules/inkex { };
 
   inotify-simple = callPackage ../development/python-modules/inotify-simple { };
+
+  inotifyrecursive = callPackage ../development/python-modules/inotifyrecursive { };
 
   inquirer = callPackage ../development/python-modules/inquirer { };
 
@@ -5452,8 +5462,6 @@ in {
 
   pysyncthru = callPackage ../development/python-modules/pysyncthru { };
 
-  pytest-subprocess = callPackage ../development/python-modules/pytest-subprocess { };
-
   python-codon-tables = callPackage ../development/python-modules/python-codon-tables { };
 
   python-crfsuite = callPackage ../development/python-modules/python-crfsuite { };
@@ -6337,7 +6345,9 @@ in {
 
   pymumble = callPackage ../development/python-modules/pymumble { };
 
-  pymunk = callPackage ../development/python-modules/pymunk { };
+  pymunk = callPackage ../development/python-modules/pymunk {
+    inherit (pkgs.darwin.apple_sdk.frameworks) ApplicationServices;
+  };
 
   pymupdf = callPackage ../development/python-modules/pymupdf { };
 
@@ -7019,6 +7029,8 @@ in {
 
   pytest-socket = callPackage ../development/python-modules/pytest-socket { };
 
+  pytest-subprocess = callPackage ../development/python-modules/pytest-subprocess { };
+
   pytest-subtesthack = callPackage ../development/python-modules/pytest-subtesthack { };
 
   pytest-subtests = callPackage ../development/python-modules/pytest-subtests { };
@@ -7355,6 +7367,8 @@ in {
 
   pyturbojpeg = callPackage ../development/python-modules/pyturbojpeg { };
 
+  pytwitchapi = callPackage ../development/python-modules/pytwitchapi { };
+
   pytz = callPackage ../development/python-modules/pytz { };
 
   pytzdata = callPackage ../development/python-modules/pytzdata { };
@@ -7387,6 +7401,8 @@ in {
   pyusb = callPackage ../development/python-modules/pyusb {
     inherit (pkgs) libusb1;
   };
+
+  pyuseragents = callPackage ../development/python-modules/pyuseragents { };
 
   pyutilib = callPackage ../development/python-modules/pyutilib { };
 
@@ -7970,6 +7986,8 @@ in {
 
   scripttest = callPackage ../development/python-modules/scripttest { };
 
+  scikit-survival = callPackage ../development/python-modules/scikit-survival { };
+
   scs = callPackage ../development/python-modules/scs { scs = pkgs.scs; };
 
   sdnotify = callPackage ../development/python-modules/sdnotify { };
@@ -8527,6 +8545,8 @@ in {
 
   subliminal = callPackage ../development/python-modules/subliminal { };
 
+  subprocess-tee = callPackage ../development/python-modules/subprocess-tee { };
+
   subunit = callPackage ../development/python-modules/subunit {
     inherit (pkgs) subunit cppunit check;
   };
@@ -8784,6 +8804,8 @@ in {
 
   tifffile = callPackage ../development/python-modules/tifffile { };
 
+  tika = callPackage ../development/python-modules/tika { };
+
   tiledb = callPackage ../development/python-modules/tiledb {
     inherit (pkgs) tiledb;
   };
@@ -8901,6 +8923,8 @@ in {
   transip = callPackage ../development/python-modules/transip { };
 
   transitions = callPackage ../development/python-modules/transitions { };
+
+  translatepy = callPackage ../development/python-modules/translatepy { };
 
   translationstring = callPackage ../development/python-modules/translationstring { };
 
@@ -9581,6 +9605,13 @@ in {
   youtube-dl = callPackage ../tools/misc/youtube-dl { };
 
   youtube-dl-light = callPackage ../tools/misc/youtube-dl {
+    ffmpegSupport = false;
+    phantomjsSupport = false;
+  };
+
+  yt-dlp = callPackage ../tools/misc/yt-dlp { };
+
+  yt-dlp-light = callPackage ../tools/misc/yt-dlp {
     ffmpegSupport = false;
     phantomjsSupport = false;
   };
