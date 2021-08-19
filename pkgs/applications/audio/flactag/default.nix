@@ -1,4 +1,4 @@
-{stdenv, fetchurl, libmusicbrainz, flac, slang, neon, unac, libjpeg, asciidoc, libdiscid, pkgconfig}:
+{stdenv, lib, fetchurl, libmusicbrainz, flac, slang, neon, unac, libjpeg, asciidoc, libdiscid, pkgconfig}:
 
 stdenv.mkDerivation rec {
   ver = "2.0.4";
@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
       queries the musicbrainz server for track lists, and other album metadata. 
     '';
     homepage = http://flactag.sourceforge.net/;
-    license = stdenv.lib.licenses.gpl3;
-    maintainers = with stdenv.lib.maintainers; [ jcumming ];
+    license = lib.licenses.gpl3;
+    maintainers = with lib.maintainers; [ jcumming ];
   };
 }
