@@ -1553,6 +1553,8 @@ in {
 
   cloudsmith-api = callPackage ../development/python-modules/cloudsmith-api { };
 
+  cloudsplaining = callPackage ../development/python-modules/cloudsplaining { };
+
   clustershell = callPackage ../development/python-modules/clustershell { };
 
   clvm = callPackage ../development/python-modules/clvm { };
@@ -1854,6 +1856,8 @@ in {
 
   datasette = callPackage ../development/python-modules/datasette { };
 
+  datasette-template-sql = callPackage ../development/python-modules/datasette-template-sql { };
+
   datashader = callPackage ../development/python-modules/datashader {
     dask = self.dask.override { withExtraComplete = true; };
   };
@@ -1943,6 +1947,8 @@ in {
   descartes = callPackage ../development/python-modules/descartes { };
 
   desktop-notifier = callPackage ../development/python-modules/desktop-notifier { };
+
+  detect-secrets = callPackage ../development/python-modules/detect-secrets { };
 
   devolo-home-control-api = callPackage ../development/python-modules/devolo-home-control-api { };
 
@@ -2174,6 +2180,8 @@ in {
   docloud = callPackage ../development/python-modules/docloud { };
 
   docopt = callPackage ../development/python-modules/docopt { };
+
+  docopt-ng = callPackage ../development/python-modules/docopt-ng { };
 
   docplex = callPackage ../development/python-modules/docplex { };
 
@@ -3220,6 +3228,8 @@ in {
 
   guestfs = callPackage ../development/python-modules/guestfs { };
 
+  gudhi = callPackage ../development/python-modules/gudhi { };
+
   gumath = callPackage ../development/python-modules/gumath { };
 
   gunicorn = callPackage ../development/python-modules/gunicorn { };
@@ -3743,6 +3753,8 @@ in {
   jieba = callPackage ../development/python-modules/jieba { };
 
   jinja2 = callPackage ../development/python-modules/jinja2 { };
+
+  jinja2-git = callPackage ../development/python-modules/jinja2-git { };
 
   jinja2_pluralize = callPackage ../development/python-modules/jinja2_pluralize { };
 
@@ -4472,6 +4484,8 @@ in {
   meld3 = callPackage ../development/python-modules/meld3 { };
 
   memcached = callPackage ../development/python-modules/memcached { };
+
+  memory-allocator = callPackage ../development/python-modules/memory-allocator { };
 
   memory_profiler = callPackage ../development/python-modules/memory_profiler { };
 
@@ -5552,6 +5566,10 @@ in {
 
   polib = callPackage ../development/python-modules/polib { };
 
+  policy-sentry = callPackage ../development/python-modules/policy-sentry { };
+
+  policyuniverse = callPackage ../development/python-modules/policyuniverse { };
+
   polyline = callPackage ../development/python-modules/polyline { };
 
   pomegranate = callPackage ../development/python-modules/pomegranate { };
@@ -5582,6 +5600,8 @@ in {
   poster3 = callPackage ../development/python-modules/poster3 { };
 
   postorius = callPackage ../servers/mail/mailman/postorius.nix { };
+
+  pot = callPackage ../development/python-modules/pot { };
 
   potr = callPackage ../development/python-modules/potr { };
 
@@ -6079,7 +6099,9 @@ in {
 
   pygal = callPackage ../development/python-modules/pygal { };
 
-  pygame = callPackage ../development/python-modules/pygame { };
+  pygame = callPackage ../development/python-modules/pygame {
+    inherit (pkgs.darwin.apple_sdk.frameworks) AppKit CoreMIDI;
+  };
 
   pygame_sdl2 = callPackage ../development/python-modules/pygame_sdl2 { };
 
@@ -6282,6 +6304,8 @@ in {
   pymaging = callPackage ../development/python-modules/pymaging { };
 
   pymaging_png = callPackage ../development/python-modules/pymaging_png { };
+
+  pymanopt = callPackage ../development/python-modules/pymanopt { };
 
   pymata-express = callPackage ../development/python-modules/pymata-express { };
 
@@ -8955,6 +8979,8 @@ in {
   trytond = callPackage ../development/python-modules/trytond { };
 
   ttp = callPackage ../development/python-modules/ttp { };
+
+  tubes = callPackage ../development/python-modules/tubes { };
 
   tunigo = callPackage ../development/python-modules/tunigo { };
 

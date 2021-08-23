@@ -6,8 +6,8 @@ ahmedkhalf/lsp-rooter.nvim@main
 airblade/vim-gitgutter
 airblade/vim-rooter
 ajmwagar/vim-deus
-akinsho/nvim-bufferline.lua
-akinsho/nvim-toggleterm.lua
+akinsho/bufferline.nvim
+akinsho/toggleterm.nvim
 aklt/plantuml-syntax
 allendang/nvim-expand-expr@main
 altercation/vim-colors-solarized
@@ -432,7 +432,7 @@ mhartington/oceanic-next
 mhinz/vim-crates
 mhinz/vim-grepper
 mhinz/vim-janah
-mhinz/vim-sayonara
+mhinz/vim-sayonara@7e774f58c5865d9c10d40396850b35ab95af17c5
 mhinz/vim-signify
 mhinz/vim-startify
 michaeljsmith/vim-indent-object
@@ -666,6 +666,7 @@ sjl/gundo.vim
 sjl/splice.vim
 sk1418/last256
 slashmili/alchemist.vim
+smiteshp/nvim-gps
 sodapopcan/vim-twiggy
 solarnz/arcanist.vim
 sonph/onehalf
@@ -846,6 +847,8 @@ will133/vim-dirdiff
 wincent/command-t
 wincent/ferret
 windwp/nvim-autopairs
+winston0410/cmd-parser.nvim
+winston0410/range-highlight.nvim
 wlangstroth/vim-racket
 wsdjeg/vim-fetch
 xavierd/clang_complete
