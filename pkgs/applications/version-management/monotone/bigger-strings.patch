@@ -6,8 +6,8 @@
 #    to [e4965f4bce5e24964225358a538a5aa0980d426e]
 #
 ============================================================
---- src/string_queue.hh	13bd52c88dd3abd8c4352de119158856b3529887
-+++ src/string_queue.hh	e4965f4bce5e24964225358a538a5aa0980d426e
+--- monotone-1.1/src/string_queue.hh	13bd52c88dd3abd8c4352de119158856b3529887
++++ monotone-1.1/src/string_queue.hh	e4965f4bce5e24964225358a538a5aa0980d426e
 @@ -241,9 +241,9 @@ private:
  
  private:
