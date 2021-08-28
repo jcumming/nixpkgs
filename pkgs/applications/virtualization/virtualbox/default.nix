@@ -92,12 +92,12 @@ in stdenv.mkDerivation {
       src = ./qt-env-vars.patch;
       qtPluginPath = "${qtbase.bin}/${qtbase.qtPluginPrefix}:${qtsvg.bin}/${qtbase.qtPluginPrefix}:${qtwayland.bin}/${qtbase.qtPluginPrefix}";
     })
-  ++ optional pulseSupport [ ./pulseaudio_load.patch ]
   ++ [
     ./qtx11extras.patch
     # Temporary workaround for broken build
     # https://www.virtualbox.org/pipermail/vbox-dev/2021-July/015670.html
     ./fix-configure-pkgconfig-qt.patch
+    ./fix-audio-driver-loading.patch
   ];
 
   postPatch = ''
