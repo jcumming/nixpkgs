@@ -4621,7 +4621,7 @@ with pkgs;
   # The latest version used by elasticsearch, logstash, kibana and the the beats from elastic.
   # When updating make sure to update all plugins or they will break!
   elk6Version = "6.8.3";
-  elk7Version = "7.5.1";
+  elk7Version = "7.10.2";
 
   elasticsearch6 = callPackage ../servers/search/elasticsearch/6.x.nix {
     util-linux = util-linuxMinimal;
@@ -4634,12 +4634,12 @@ with pkgs;
   };
   elasticsearch7 = callPackage ../servers/search/elasticsearch/7.x.nix {
     util-linux = util-linuxMinimal;
-    jre_headless = jre8_headless; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
+    jre_headless = jdk11_headless; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
   elasticsearch7-oss = callPackage ../servers/search/elasticsearch/7.x.nix {
     enableUnfree = false;
     util-linux = util-linuxMinimal;
-    jre_headless = jre8_headless; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
+    jre_headless = jdk11_headless; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
   elasticsearch = elasticsearch6;
   elasticsearch-oss = elasticsearch6-oss;
@@ -5258,7 +5258,9 @@ with pkgs;
 
   git-big-picture = callPackage ../applications/version-management/git-and-tools/git-big-picture { };
 
-  git-branchless = callPackage ../applications/version-management/git-and-tools/git-branchless { };
+  git-branchless = callPackage ../applications/version-management/git-and-tools/git-branchless {
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
+  };
 
   inherit (haskellPackages) git-brunch;
 
@@ -10824,6 +10826,7 @@ with pkgs;
 
   bluespec = callPackage ../development/compilers/bluespec {
     gmp-static = gmp.override { withStatic = true; };
+    tex = texlive.combined.scheme-full;
   };
 
   cakelisp = callPackage ../development/compilers/cakelisp { };
@@ -13752,6 +13755,8 @@ with pkgs;
   drm_info = callPackage ../development/tools/drm_info { };
 
   drush = callPackage ../development/tools/misc/drush { };
+
+  dwz = callPackage ../development/tools/misc/dwz { };
 
   easypdkprog = callPackage ../development/embedded/easypdkprog { };
 
