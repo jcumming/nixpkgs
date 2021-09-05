@@ -338,6 +338,8 @@ with pkgs;
 
   creddump = callPackage ../tools/security/creddump {};
 
+  credential-detector = callPackage ../tools/security/credential-detector { };
+
   credslayer = callPackage ../tools/security/credslayer { };
 
   device-tree_rpi = callPackage ../os-specific/linux/device-tree/raspberrypi.nix {};
@@ -877,6 +879,8 @@ with pkgs;
 
   amidst = callPackage ../tools/games/minecraft/amidst { };
 
+  cope = callPackage ../tools/misc/cope { };
+
   gamemode = callPackage ../tools/games/gamemode {
     libgamemode32 = pkgsi686Linux.gamemode.lib;
   };
@@ -1027,9 +1031,9 @@ with pkgs;
   };
   termite-unwrapped = callPackage ../applications/terminal-emulators/termite { };
 
-  termonad-with-packages = callPackage ../applications/terminal-emulators/termonad {
-    inherit (haskellPackages) ghcWithPackages;
-  };
+  termonad-with-packages = callPackage ../applications/terminal-emulators/termonad { };
+
+  termonad = termonad-with-packages;
 
   termsyn = callPackage ../data/fonts/termsyn { };
 
@@ -1454,7 +1458,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) PCSC;
   };
 
-  cozy = callPackage ../applications/audio/cozy-audiobooks { };
+  cozy = callPackage ../applications/audio/cozy { };
 
   cpuid = callPackage ../os-specific/linux/cpuid { };
 
@@ -2652,6 +2656,7 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
+    electron = electron_13;
   };
   element-desktop-wayland = element-desktop.override {
     useWayland = true;
@@ -5438,6 +5443,8 @@ with pkgs;
 
   gitea = callPackage ../applications/version-management/gitea { };
 
+  gokart = callPackage ../development/tools/gokart { };
+
   gl2ps = callPackage ../development/libraries/gl2ps { };
 
   glab = callPackage ../applications/version-management/git-and-tools/glab { };
@@ -6353,7 +6360,7 @@ with pkgs;
 
   keeperrl = callPackage ../games/keeperrl { };
 
-  kexectools = callPackage ../os-specific/linux/kexectools { };
+  kexec-tools = callPackage ../os-specific/linux/kexec-tools { };
 
   keepkey_agent = with python3Packages; toPythonApplication keepkey_agent;
 
@@ -6632,7 +6639,7 @@ with pkgs;
   };
 
   meilisearch = callPackage ../servers/search/meilisearch {
-    inherit (darwin.apple_sdk.frameworks) IOKit Security;
+    inherit (darwin.apple_sdk.frameworks) Security;
   };
 
   memtester = callPackage ../tools/system/memtester { };
@@ -7273,6 +7280,8 @@ with pkgs;
 
   mscgen = callPackage ../tools/graphics/mscgen { };
 
+  metabigor = callPackage ../tools/security/metabigor { };
+
   metasploit = callPackage ../tools/security/metasploit { };
 
   ms-sys = callPackage ../tools/misc/ms-sys { };
@@ -7577,6 +7586,8 @@ with pkgs;
   nmap-graphical = nmap.override {
     graphicalSupport = true;
   };
+
+  nmap-formatter = callPackage ../tools/security/nmap-formatter { };
 
   nmapsi4 = libsForQt514.callPackage ../tools/security/nmap/qt.nix { };
 
@@ -11484,7 +11495,7 @@ with pkgs;
 
   # Please update doc/languages-frameworks/haskell.section.md, “Our
   # current default compiler is”, if you bump this:
-  haskellPackages = dontRecurseIntoAttrs haskell.packages.ghc8106;
+  haskellPackages = dontRecurseIntoAttrs haskell.packages.ghc8107;
 
   inherit (haskellPackages) ghc;
 
@@ -13259,7 +13270,19 @@ with pkgs;
   aws-adfs = with python3Packages; toPythonApplication aws-adfs;
 
   inherit (callPackages ../development/tools/electron { })
-    electron electron_3 electron_4 electron_5 electron_6 electron_7 electron_8 electron_9 electron_10 electron_11 electron_12 electron_13;
+    electron
+    electron_3
+    electron_4
+    electron_5
+    electron_6
+    electron_7
+    electron_8
+    electron_9
+    electron_10
+    electron_11
+    electron_12
+    electron_13
+    electron_14;
 
   autobuild = callPackage ../development/tools/misc/autobuild { };
 
@@ -14371,6 +14394,8 @@ with pkgs;
     inherit (gnome2) vte;
     lua = lua5;
   } // (config.radare or {}));
+
+  ran = callPackage ../servers/http/ran { };
 
   retry = callPackage ../tools/system/retry { };
 
@@ -16331,6 +16356,8 @@ with pkgs;
   libb64 = callPackage ../development/libraries/libb64 { };
 
   judy = callPackage ../development/libraries/judy { };
+
+  kddockwidgets = libsForQt5.callPackage ../development/libraries/kddockwidgets { };
 
   keybinder = callPackage ../development/libraries/keybinder {
     automake = automake111x;
@@ -18555,6 +18582,8 @@ with pkgs;
 
   rubberband = callPackage ../development/libraries/rubberband { };
 
+  rustc-demangle = callPackage ../development/libraries/rustc-demangle { };
+
   s2geometry = callPackage ../development/libraries/s2geometry { };
 
   /*  This package references ghc844, which we no longer have. Unfortunately, I
@@ -19027,6 +19056,8 @@ with pkgs;
   };
 
   tremor = callPackage ../development/libraries/tremor { };
+
+  triehash = callPackage ../tools/misc/triehash { };
 
   trillian = callPackage ../tools/misc/trillian {
     buildGoModule = buildGo115Module;
@@ -19937,6 +19968,8 @@ with pkgs;
 
   jetty = callPackage ../servers/http/jetty { };
 
+  jibri = callPackage ../servers/jibri { };
+
   jicofo = callPackage ../servers/jicofo { };
 
   jitsi-meet = callPackage ../servers/web-apps/jitsi-meet { };
@@ -20092,7 +20125,7 @@ with pkgs;
     modules = [ nginxModules.dav nginxModules.moreheaders ];
   };
 
-  nginxModules = callPackage ../servers/http/nginx/modules.nix { };
+  nginxModules = recurseIntoAttrs (callPackage ../servers/http/nginx/modules.nix { });
 
   # We should move to dynmaic modules and create a nginxFull package with all modules
   nginxShibboleth = nginxStable.override {
@@ -22005,6 +22038,8 @@ with pkgs;
   perf-tools = callPackage ../os-specific/linux/perf-tools { };
 
   pipes = callPackage ../misc/screensavers/pipes { };
+
+  pipes-rs = callPackage ../misc/screensavers/pipes-rs { };
 
   pipework = callPackage ../os-specific/linux/pipework { };
 
@@ -24021,6 +24056,8 @@ with pkgs;
   };
 
   docker-distribution = callPackage ../applications/virtualization/docker/distribution.nix { };
+
+  dockfmt = callPackage ../development/tools/dockfmt { };
 
   afterburn = callPackage ../tools/admin/afterburn {};
 
@@ -29925,6 +29962,8 @@ with pkgs;
     inherit (gnome) zenity;
   };
 
+  protonup = with python3Packages; toPythonApplication protonup;
+
   sdlpop = callPackage ../games/sdlpop { };
 
   stepmania = callPackage ../games/stepmania {
@@ -30383,6 +30422,8 @@ with pkgs;
   clustal-omega = callPackage ../applications/science/biology/clustal-omega { };
 
   conglomerate = callPackage ../applications/science/biology/conglomerate { };
+
+  dalfox = callPackage ../tools/security/dalfox { };
 
   dcm2niix = callPackage ../applications/science/biology/dcm2niix { };
 
@@ -31448,6 +31489,8 @@ with pkgs;
 
   emu2 = callPackage ../misc/emulators/emu2 { };
 
+  apt = callPackage ../tools/package-management/apt { };
+
   dpkg = callPackage ../tools/package-management/dpkg { };
 
   dumb = callPackage ../misc/dumb { };
@@ -31539,6 +31582,8 @@ with pkgs;
 
   gobuster = callPackage ../tools/security/gobuster { };
 
+  gotestwaf = callPackage ../tools/security/gotestwaf { };
+
   guetzli = callPackage ../applications/graphics/guetzli { };
 
   gummi = callPackage ../applications/misc/gummi { };
@@ -31547,7 +31592,9 @@ with pkgs;
 
   hatari = callPackage ../misc/emulators/hatari { };
 
-  hck = callPackage ../tools/text/hck { };
+  hck = callPackage ../tools/text/hck {
+    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
+  };
 
   helm = callPackage ../applications/audio/helm { };
 
