@@ -1,8 +1,8 @@
 {
   "stable": {
-    "version": "93.0.4577.63",
-    "sha256": "0ls8r77la6p7474j84wchvs4rvnxwfv7c8xvbxjm8h7jqak4zwza",
-    "sha256bin64": "1kv742arnv710mhakm2v59dwfypg7j01k7rd5if8h0s49yzdw3qc",
+    "version": "93.0.4577.82",
+    "sha256": "0lr8zdq06smncdzd6knzww9hxl8ynvxadmrkyyl13fpwb1422rjx",
+    "sha256bin64": "0ydvcakpnl20gx7493hv6aqnyf8f28rkvzgwnm4gws92b92n9ify",
     "deps": {
       "gn": {
         "version": "2021-07-08",
@@ -12,15 +12,15 @@
       }
     },
     "chromedriver": {
-      "version": "93.0.4577.15",
-      "sha256_linux": "11wcimkcgaiz740k9xibi5hq1kd4zgy1vk6bd6cp31wjw4y21x5f",
-      "sha256_darwin": "0cxf3cg5pg9rigq7wmbap6wvmgpdr6v44bndisyaqhlw7s2hhndn"
+      "version": "93.0.4577.63",
+      "sha256_linux": "0w2lyjj0y9g1wnvk1sg2wi9dvhbjhdz1jb20rlrp5ny2gak6a47b",
+      "sha256_darwin": "11420nflyfvf95hxj488336jq6xqjn4lcrwpr67rj2fx6ganji7z"
     }
   },
   "beta": {
-    "version": "94.0.4606.31",
-    "sha256": "1f5hk2acd9lj88m2acz8ik85fh5h3giz65p19dpfg92zsyly54nf",
-    "sha256bin64": "1ypf9j51a4kmx27x3s9izzbd2r094idz194gwhbdly75l1x8hk4z",
+    "version": "94.0.4606.50",
+    "sha256": "1aqy9bvypx66bvn5p15g94p47yfbal8mixs1d0j82pznqnqgph1z",
+    "sha256bin64": "07hq4qnbgq6m43zhipgy84yhiiy1fs6ffjkgsi8ixhr9b5pipzpv",
     "deps": {
       "gn": {
         "version": "2021-08-11",
@@ -31,9 +31,9 @@
     }
   },
   "dev": {
-    "version": "95.0.4628.3",
-    "sha256": "04r2db9kl77lp4jyyj01pc70jkxrifbnz5hic4r91lf8m2gf1fa3",
-    "sha256bin64": "1ssf8jdk6gn2mrnyvgz2c9nkk70rsidd5y26w2kx3s0cllfr7d96",
+    "version": "95.0.4638.10",
+    "sha256": "0pgd5k24yly9fqpzigc5qqx6lvn6m95fjp7294cgmk0132icx71j",
+    "sha256bin64": "1gfaal3yxmi1n2nvfp39xp82g8vykzm0fjbdk0c1wh4gvlq2xx85",
     "deps": {
       "gn": {
         "version": "2021-08-11",

@@ -11,11 +11,11 @@
 
 buildPythonPackage rec {
   pname = "pyvex";
-  version = "9.0.9684";
+  version = "9.0.9947";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-pf+LUFatC16a8EScoNYZKCXiaCINPRRn+6R1Op4GMRE=";
+    sha256 = "sha256-52yI8V2rQTDbo/giHqhTKJ5Pz0PAMEz6ErZuo7RlbbM=";
   };
 
   postPatch = lib.optionalString stdenv.isDarwin ''

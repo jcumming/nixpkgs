@@ -1,5 +1,6 @@
 { lib, stdenv, fetchurl, zlib, interactive ? false, readline ? null, ncurses ? null
 , python3Packages
+, enableDeserialize ? false
 }:
 
 assert interactive -> readline != null && ncurses != null;
@@ -32,7 +33,7 @@ stdenv.mkDerivation rec {
 
   configureFlags = [ "--enable-threadsafe" ] ++ optional interactive "--enable-readline";
 
-  NIX_CFLAGS_COMPILE = toString [
+  NIX_CFLAGS_COMPILE = toString ([
     "-DSQLITE_ENABLE_COLUMN_METADATA"
     "-DSQLITE_ENABLE_DBSTAT_VTAB"
     "-DSQLITE_ENABLE_JSON1"
@@ -49,7 +50,10 @@ stdenv.mkDerivation rec {
     "-DSQLITE_MAX_VARIABLE_NUMBER=250000"
     "-DSQLITE_MAX_EXPR_DEPTH=10000"
     "-DSQLITE_MAX_LENGTH=2147483647"  # to be able to store big blobs in monotone
-  ];
+  ] ++ lib.optionals enableDeserialize [
+    # Can be removed in v3.36+, as this will become the default
+    "-DSQLITE_ENABLE_DESERIALIZE"
+  ]);
 
   # Test for features which may not be available at compile time
   preBuild = ''
