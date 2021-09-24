@@ -3846,9 +3846,6 @@ with pkgs;
 
   cpuminer-multi = callPackage ../tools/misc/cpuminer-multi { };
 
-  crossfire-client = callPackage ../games/crossfire/client.nix { gtk = gtk2;};
-  crossfire-server = callPackage ../games/crossfire/server.nix { };
-
   cryptpad = callPackage ../servers/web-apps/cryptpad {
     nodejs = nodejs-12_x;
   };
