@@ -1,6 +1,6 @@
 { lib, stdenv, buildPackages, fetchurl, flex, cracklib, db4, gettext
 , nixosTests
-, withLibxcrypt ? false, libxcrypt, ckpwdDir ? "/run/wrappers/bin"
+, withLibxcrypt ? false, libxcrypt
 }:
 
 stdenv.mkDerivation rec {
@@ -23,22 +23,19 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  # postInstall = ''
-  #   rm -rf $out/etc
-  #   mkdir -p $modules/lib
-  #   mv $out/lib/security $modules/lib/
-  # '';
+  postInstall = ''
+    mv -v $out/sbin/unix_chkpwd{,.orig}
+    ln -sv /run/wrappers/bin/unix_chkpwd $out/sbin/unix_chkpwd
+  ''; /*
+    rm -rf $out/etc
+    mkdir -p $modules/lib
+    mv $out/lib/security $modules/lib/
+  '';*/
   # don't move modules, because libpam needs to (be able to) find them,
   # which is done by dlopening $out/lib/security/pam_foo.so
   # $out/etc was also missed: pam_env(login:session): Unable to open config file
 
-  preConfigure = ''
-      # the unix_chkpwd binary needs to be suid to check /etc/shadow. NixOS
-      # builds a suid wrapper in /run/wrappers/bin/ for unix_chkpwd, use that
-      # instead of trying to use the one installed into the store.
-      sed -e 's%$(sbindir)/unix_chkpwd%${ckpwdDir}/unix_chkpwd%' -i modules/pam_unix/Makefile.am
-      sed -e 's%$(sbindir)/unix_chkpwd%${ckpwdDir}/unix_chkpwd%' -i modules/pam_unix/Makefile.in
-  '' + lib.optionalString (stdenv.hostPlatform.libc == "musl") ''
+  preConfigure = lib.optionalString (stdenv.hostPlatform.libc == "musl") ''
       # export ac_cv_search_crypt=no
       # (taken from Alpine linux, apparently insecure but also doesn't build O:))
       # disable insecure modules
