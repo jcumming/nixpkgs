@@ -171,6 +171,7 @@
   ./programs/npm.nix
   ./programs/noisetorch.nix
   ./programs/oblogout.nix
+  ./programs/pantheon-tweaks.nix
   ./programs/partition-manager.nix
   ./programs/plotinus.nix
   ./programs/proxychains.nix
@@ -201,6 +202,7 @@
   ./programs/vim.nix
   ./programs/wavemon.nix
   ./programs/waybar.nix
+  ./programs/weylus.nix
   ./programs/wireshark.nix
   ./programs/wshowkeys.nix
   ./programs/xfs_quota.nix
@@ -342,6 +344,7 @@
   ./services/desktops/accountsservice.nix
   ./services/desktops/bamf.nix
   ./services/desktops/blueman.nix
+  ./services/desktops/cpupower-gui.nix
   ./services/desktops/dleyna-renderer.nix
   ./services/desktops/dleyna-server.nix
   ./services/desktops/pantheon/files.nix
@@ -898,6 +901,7 @@
   ./services/search/elasticsearch-curator.nix
   ./services/search/hound.nix
   ./services/search/kibana.nix
+  ./services/search/meilisearch.nix
   ./services/search/solr.nix
   ./services/security/certmgr.nix
   ./services/security/cfssl.nix
@@ -914,6 +918,7 @@
   ./services/security/nginx-sso.nix
   ./services/security/oauth2_proxy.nix
   ./services/security/oauth2_proxy_nginx.nix
+  ./services/security/opensnitch.nix
   ./services/security/privacyidea.nix
   ./services/security/physlock.nix
   ./services/security/shibboleth-sp.nix
@@ -1026,7 +1031,7 @@
   ./services/web-servers/shellinabox.nix
   ./services/web-servers/tomcat.nix
   ./services/web-servers/traefik.nix
-  ./services/web-servers/trafficserver.nix
+  ./services/web-servers/trafficserver/default.nix
   ./services/web-servers/ttyd.nix
   ./services/web-servers/uwsgi.nix
   ./services/web-servers/varnish/default.nix
