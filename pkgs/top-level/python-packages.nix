@@ -259,6 +259,8 @@ in {
 
   aioambient = callPackage ../development/python-modules/aioambient { };
 
+  aioapns = callPackage ../development/python-modules/aioapns { };
+
   ailment = callPackage ../development/python-modules/ailment { };
 
   aioamqp = callPackage ../development/python-modules/aioamqp { };
@@ -7422,6 +7424,8 @@ in {
   python-openstackclient = callPackage ../development/python-modules/python-openstackclient { };
 
   python_openzwave = callPackage ../development/python-modules/python_openzwave { };
+
+  python-osc = callPackage ../development/python-modules/python-osc { };
 
   python-packer = callPackage ../development/python-modules/python-packer { };
 
