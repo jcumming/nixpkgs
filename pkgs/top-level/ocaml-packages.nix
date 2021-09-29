@@ -611,6 +611,10 @@ let
 
     letsencrypt = callPackage ../development/ocaml-modules/letsencrypt { };
 
+    letsencrypt-app = callPackage ../development/ocaml-modules/letsencrypt/app.nix { };
+
+    letsencrypt-dns = callPackage ../development/ocaml-modules/letsencrypt/dns.nix { };
+
     linenoise = callPackage ../development/ocaml-modules/linenoise { };
 
     llvm = callPackage ../development/ocaml-modules/llvm {
@@ -989,6 +993,10 @@ let
     ounit2 = callPackage ../development/ocaml-modules/ounit2 { };
 
     paf = callPackage ../development/ocaml-modules/paf { };
+
+    paf-cohttp = callPackage ../development/ocaml-modules/paf/cohttp.nix { };
+
+    paf-le = callPackage ../development/ocaml-modules/paf/le.nix { };
 
     parse-argv = callPackage ../development/ocaml-modules/parse-argv { };
 
@@ -1601,7 +1609,7 @@ in let inherit (pkgs) callPackage; in rec
 
   ocamlPackages_4_13 = mkOcamlPackages (callPackage ../development/compilers/ocaml/4.13.nix { });
 
-  ocamlPackages_latest = ocamlPackages_4_12;
+  ocamlPackages_latest = ocamlPackages_4_13;
 
   ocamlPackages = ocamlPackages_4_12;
 }
