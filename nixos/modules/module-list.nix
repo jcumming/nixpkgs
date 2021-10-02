@@ -135,6 +135,7 @@
   ./programs/droidcam.nix
   ./programs/environment.nix
   ./programs/evince.nix
+  ./programs/extra-container.nix
   ./programs/feedbackd.nix
   ./programs/file-roller.nix
   ./programs/firejail.nix
@@ -592,6 +593,7 @@
   ./services/misc/sysprof.nix
   ./services/misc/taskserver
   ./services/misc/tiddlywiki.nix
+  ./services/misc/tp-auto-kbbl.nix
   ./services/misc/tzupdate.nix
   ./services/misc/uhub.nix
   ./services/misc/weechat.nix
@@ -991,6 +993,7 @@
   ./services/web-apps/nextcloud.nix
   ./services/web-apps/nexus.nix
   ./services/web-apps/node-red.nix
+  ./services/web-apps/pict-rs.nix
   ./services/web-apps/plantuml-server.nix
   ./services/web-apps/plausible.nix
   ./services/web-apps/pgpkeyserver-lite.nix

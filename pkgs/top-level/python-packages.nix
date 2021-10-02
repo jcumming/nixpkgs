@@ -593,6 +593,8 @@ in {
 
   asgiref = callPackage ../development/python-modules/asgiref { };
 
+  asmog = callPackage ../development/python-modules/asmog { };
+
   asn1 = callPackage ../development/python-modules/asn1 { };
 
   asn1ate = callPackage ../development/python-modules/asn1ate { };
@@ -1625,6 +1627,8 @@ in {
 
   colander = callPackage ../development/python-modules/colander { };
 
+  collections-extended = callPackage ../development/python-modules/collections-extended { };
+
   colorama = callPackage ../development/python-modules/colorama { };
 
   colorcet = callPackage ../development/python-modules/colorcet { };
@@ -2534,6 +2538,8 @@ in {
 
   falcon = callPackage ../development/python-modules/falcon { };
 
+  faraday-agent-parameters-types = callPackage ../development/python-modules/faraday-agent-parameters-types { };
+
   faraday-plugins = callPackage ../development/python-modules/faraday-plugins { };
 
   fastapi = callPackage ../development/python-modules/fastapi { };
@@ -2638,6 +2644,8 @@ in {
   fixerio = callPackage ../development/python-modules/fixerio { };
 
   fixtures = callPackage ../development/python-modules/fixtures { };
+
+  fjaraskupan = callPackage ../development/python-modules/fjaraskupan { };
 
   flake8-blind-except = callPackage ../development/python-modules/flake8-blind-except { };
 
@@ -2989,6 +2997,8 @@ in {
   gibberish-detector = callPackage ../development/python-modules/gibberish-detector { };
 
   gidgethub = callPackage ../development/python-modules/gidgethub { };
+
+  gigalixir = callPackage ../development/python-modules/gigalixir { };
 
   gin-config = callPackage ../development/python-modules/gin-config { };
 
@@ -4543,6 +4553,8 @@ in {
     inherit buildPythonPackage pythonOlder fetchPypi;
     inherit (self) pyface pygments numpy vtk traitsui envisage apptools pyqt5;
   };
+
+  mbddns = callPackage ../development/python-modules/mbddns { };
 
   mccabe = callPackage ../development/python-modules/mccabe { };
 
@@ -8046,6 +8058,8 @@ in {
 
   rokuecp = callPackage ../development/python-modules/rokuecp { };
 
+  rollbar = callPackage ../development/python-modules/rollbar { };
+
   roman = callPackage ../development/python-modules/roman { };
 
   roombapy = callPackage ../development/python-modules/roombapy { };
@@ -8814,6 +8828,8 @@ in {
 
   sunpy = callPackage ../development/python-modules/sunpy { };
 
+  sunwatcher = callPackage ../development/python-modules/sunwatcher { };
+
   supervise_api = callPackage ../development/python-modules/supervise_api { };
 
   supervisor = callPackage ../development/python-modules/supervisor { };
@@ -9421,6 +9437,8 @@ in {
 
   url-normalize = callPackage ../development/python-modules/url-normalize { };
 
+  urlextract = callPackage ../development/python-modules/urlextract { };
+
   urlgrabber = callPackage ../development/python-modules/urlgrabber { };
 
   urllib3 = callPackage ../development/python-modules/urllib3 { };
@@ -9597,7 +9615,7 @@ in {
 
   wavedrom = callPackage ../development/python-modules/wavedrom { };
 
-  WazeRouteCalculator = callPackage ../development/python-modules/WazeRouteCalculator { };
+  wazeroutecalculator = callPackage ../development/python-modules/wazeroutecalculator { };
 
   wcmatch = callPackage ../development/python-modules/wcmatch { };
 
