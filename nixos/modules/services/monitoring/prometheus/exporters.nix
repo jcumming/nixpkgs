@@ -193,7 +193,7 @@ let
         serviceConfig.MemoryDenyWriteExecute = true;
         serviceConfig.NoNewPrivileges = true;
         serviceConfig.PrivateDevices = true;
-        serviceConfig.ProtectClock = true;
+        serviceConfig.ProtectClock = mkDefault true;
         serviceConfig.ProtectControlGroups = true;
         serviceConfig.ProtectHome = true;
         serviceConfig.ProtectHostname = true;
