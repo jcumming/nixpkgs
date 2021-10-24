@@ -5,7 +5,6 @@
 , beautifulsoup4
 , buildPythonPackage
 , fetchFromGitHub
-, fetchpatch
 , httpx
 , poetry-core
 , pytest-asyncio
@@ -16,7 +15,7 @@
 
 buildPythonPackage rec {
   pname = "teslajsonpy";
-  version = "1.1.2";
+  version = "1.2.1";
   format = "pyproject";
 
   disabled = pythonOlder "3.6";
@@ -25,7 +24,7 @@ buildPythonPackage rec {
     owner = "zabuldon";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-i1p36qy3UF9dKzFBHaW5w0s75z/mgQ8tlYWe6qLxAKk=";
+    sha256 = "sha256-49dQgzYsEn5jmHWTJ3e3QOTqNeoTRMjUWxp+MaOYod4=";
   };
 
   nativeBuildInputs = [
@@ -46,7 +45,9 @@ buildPythonPackage rec {
     pytestCheckHook
   ];
 
-  pythonImportsCheck = [ "teslajsonpy" ];
+  pythonImportsCheck = [
+    "teslajsonpy"
+  ];
 
   meta = with lib; {
     description = "Python library to work with Tesla API";

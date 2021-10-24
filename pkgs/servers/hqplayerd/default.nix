@@ -1,5 +1,6 @@
 { stdenv
 , alsa-lib
+, addOpenGLRunpath
 , autoPatchelfHook
 , cairo
 , fetchurl
@@ -17,18 +18,18 @@
 
 stdenv.mkDerivation rec {
   pname = "hqplayerd";
-  version = "4.25.2-66";
+  version = "4.26.0-67";
 
   src = fetchurl {
     url = "https://www.signalyst.eu/bins/${pname}/fc34/${pname}-${version}.fc34.x86_64.rpm";
-    sha256 = "sha256-BZGtv/Bumkltk6fJw3+RG1LZc3pGpd8e4DvgLxOTvcQ=";
+    sha256 = "sha256-Wbtt1yO/CE2cewOE5RynwEm+fCdOV1cxzR/XiCwj0NU=";
   };
 
   unpackPhase = ''
     ${rpmextract}/bin/rpmextract $src
   '';
 
-  nativeBuildInputs = [ autoPatchelfHook rpmextract ];
+  nativeBuildInputs = [ addOpenGLRunpath autoPatchelfHook rpmextract ];
 
   buildInputs = [
     alsa-lib
@@ -86,8 +87,12 @@ stdenv.mkDerivation rec {
       --replace "NetworkManager-wait-online.service" ""
   '';
 
-  postFixup = ''
-    patchelf --replace-needed libomp.so.5 libomp.so $out/bin/hqplayerd
+  # NB: addOpenGLRunpath needs to run _after_ autoPatchelfHook, which runs in
+  # postFixup, so we tack it on here.
+  doInstallCheck = true;
+  installCheckPhase = ''
+    addOpenGLRunpath $out/bin/hqplayerd
+    $out/bin/hqplayerd --version
   '';
 
   meta = with lib; {

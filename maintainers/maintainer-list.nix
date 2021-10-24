@@ -741,6 +741,7 @@
   angustrau = {
     name = "Angus Trau";
     email = "nix@angus.ws";
+    matrix = "@angustrau:matrix.org";
     github = "angustrau";
     githubId = 13267947;
   };
@@ -3115,6 +3116,7 @@
   };
   earvstedt = {
     email = "erik.arvstedt@gmail.com";
+    matrix = "@erikarvstedt:matrix.org";
     github = "erikarvstedt";
     githubId = 36110478;
     name = "Erik Arvstedt";
@@ -4816,6 +4818,7 @@
   };
   ilkecan = {
     email = "ilkecan@protonmail.com";
+    matrix = "@ilkecan:matrix.org";
     github = "ilkecan";
     githubId = 40234257;
     name = "ilkecan bozdogan";
@@ -6345,6 +6348,12 @@
     githubId = 1104419;
     name = "Lucas Hoffmann";
   };
+  lucasew = {
+    email = "lucas59356@gmail.com";
+    github = "lucasew";
+    githubId = 15693688;
+    name = "Lucas Eduardo Wendt";
+  };
   lde = {
     email = "lilian.deloche@puck.fr";
     github = "lde";
@@ -7000,6 +7009,12 @@
     github = "martingms";
     githubId = 458783;
     name = "Martin Gammelsæter";
+  };
+  martfont = {
+    name = "Martino Fontana";
+    email = "tinozzo123@tutanota.com";
+    github = "SuperSamus";
+    githubId = 40663462;
   };
   marzipankaiser = {
     email = "nixos@gaisseml.de";
@@ -8243,6 +8258,12 @@
     githubId = 810877;
     name = "Tom Doggett";
   };
+  noisersup = {
+    email = "patryk@kwiatek.xyz";
+    github = "noisersup";
+    githubId = 42322511;
+    name = "Patryk Kwiatek";
+  };
   nomeata = {
     email = "mail@joachim-breitner.de";
     github = "nomeata";
@@ -8770,6 +8791,7 @@
   };
   peterhoeg = {
     email = "peter@hoeg.com";
+    matrix = "@peter:hoeg.com";
     github = "peterhoeg";
     githubId = 722550;
     name = "Peter Hoeg";
@@ -9640,6 +9662,7 @@
   };
   rnhmjoj = {
     email = "rnhmjoj@inventati.org";
+    matrix = "@rnhmjoj:maxwell.ydns.eu";
     github = "rnhmjoj";
     githubId = 2817565;
     name = "Michele Guerini Rocco";
@@ -9741,6 +9764,7 @@
   };
   roosemberth = {
     email = "roosembert.palacios+nixpkgs@posteo.ch";
+    matrix = "@roosemberth:orbstheorem.ch";
     github = "roosemberth";
     githubId = 3621083;
     name = "Roosembert (Roosemberth) Palacios";
@@ -9881,6 +9905,7 @@
   };
   ryantm = {
     email = "ryan@ryantm.com";
+    matrix = "@ryantm:matrix.org";
     github = "ryantm";
     githubId = 4804;
     name = "Ryan Mulligan";
@@ -12048,6 +12073,22 @@
     githubId = 9002575;
     name = "Weihua Lu";
   };
+  welteki = {
+    email = "welteki@pm.me";
+    github = "welteki";
+    githubId = 16267532;
+    name = "Han Verstraete";
+    keys = [{
+      longkeyid = "rsa4096/0x11F7BAEA856743FF";
+      fingerprint = "2145 955E 3F5E 0C95 3458  41B5 11F7 BAEA 8567 43FF";
+    }];
+  };
+  wentasah = {
+    name = "Michal Sojka";
+    email = "wsh@2x.cz";
+    github = "wentasah";
+    githubId = 140542;
+  };
   wheelsandmetal = {
     email = "jakob@schmutz.co.uk";
     github = "wheelsandmetal";
@@ -12393,6 +12434,12 @@
     github = "yrashk";
     githubId = 452;
     name = "Yurii Rashkovskii";
+  };
+  yrd = {
+    name = "Yannik Rödel";
+    email = "nix@yannik.info";
+    github = "yrd";
+    githubId = 1820447;
   };
   ysndr = {
     email = "me@ysndr.de";
