@@ -1,4 +1,4 @@
-{ lib, stdenv, makeWrapper, dotnetCorePackages, dotnetPackages, cacert, linkFarmFromDrvs, fetchurl }:
+{ lib, stdenvNoCC, linkFarmFromDrvs, makeWrapper, fetchurl, xml2, dotnetCorePackages, dotnetPackages, cacert }:
 
 { name ? "${args.pname}-${args.version}"
 , enableParallelBuilding ? true
@@ -50,8 +50,35 @@ let
     };
   });
 
-  package = stdenv.mkDerivation (args // {
-    nativeBuildInputs = args.nativeBuildInputs or [] ++ [ dotnet-sdk dotnetPackages.Nuget cacert makeWrapper ];
+  nuget-source = stdenvNoCC.mkDerivation rec {
+    name = "${args.pname}-nuget-source";
+    meta.description = "A Nuget source with the dependencies for ${args.pname}";
+
+    nativeBuildInputs = [ dotnetPackages.Nuget xml2 ];
+    buildCommand = ''
+      export HOME=$(mktemp -d)
+      mkdir -p $out/{lib,share}
+
+      nuget sources Add -Name nixos -Source "$out/lib"
+      nuget init "${_nugetDeps}" "$out/lib"
+
+      # Generates a list of all unique licenses' spdx ids.
+      find "$out/lib" -name "*.nuspec" -exec sh -c \
+        "xml2 < {} | grep "license=" | cut -d'=' -f2" \; | sort -u > $out/share/licenses
+    '';
+  } // { # This is done because we need data from `$out` for `meta`. We have to use overrides as to not hit infinite recursion.
+    meta.licence = let
+      depLicenses = lib.splitString "\n" (builtins.readFile "${nuget-source}/share/licenses");
+      getLicence = spdx: lib.filter (license: license.spdxId or null == spdx) (builtins.attrValues lib.licenses);
+    in (lib.flatten (lib.forEach depLicenses (spdx:
+      if (getLicence spdx) != [] then (getLicence spdx) else [] ++ lib.optional (spdx != "") spdx
+    )));
+  };
+
+  package = stdenvNoCC.mkDerivation (args // {
+    inherit buildType;
+
+    nativeBuildInputs = args.nativeBuildInputs or [] ++ [ dotnet-sdk cacert makeWrapper ];
 
     # Stripping breaks the executable
     dontStrip = true;
@@ -64,18 +91,11 @@ let
 
       export HOME=$(mktemp -d)
 
-      nuget sources Add -Name nixos -Source "$PWD/nixos"
-      nuget init "${_nugetDeps}" "$PWD/nixos"
-
-      # This is required due to https://github.com/NuGet/Home/issues/4413.
-      mkdir -p $HOME/.nuget/NuGet
-      cp $HOME/.config/NuGet/NuGet.Config $HOME/.nuget/NuGet
-
-      dotnet restore ${lib.escapeShellArg projectFile} \
+      dotnet restore "$projectFile" \
         ${lib.optionalString (!enableParallelBuilding) "--disable-parallel"} \
         -p:ContinuousIntegrationBuild=true \
         -p:Deterministic=true \
-        --source "$PWD/nixos" \
+        --source "${nuget-source}/lib" \
         "''${dotnetRestoreFlags[@]}" \
         "''${dotnetFlags[@]}"
 
@@ -85,13 +105,13 @@ let
     buildPhase = args.buildPhase or ''
       runHook preBuild
 
-      dotnet build ${lib.escapeShellArg projectFile} \
+      dotnet build "$projectFile" \
         -maxcpucount:${if enableParallelBuilding then "$NIX_BUILD_CORES" else "1"} \
         -p:BuildInParallel=${if enableParallelBuilding then "true" else "false"} \
         -p:ContinuousIntegrationBuild=true \
         -p:Deterministic=true \
         -p:Version=${args.version} \
-        --configuration ${buildType} \
+        --configuration "$buildType" \
         --no-restore \
         "''${dotnetBuildFlags[@]}"  \
         "''${dotnetFlags[@]}"
@@ -102,17 +122,17 @@ let
     installPhase = args.installPhase or ''
       runHook preInstall
 
-      dotnet publish ${lib.escapeShellArg projectFile} \
+      dotnet publish "$projectFile" \
         -p:ContinuousIntegrationBuild=true \
         -p:Deterministic=true \
         --output $out/lib/${args.pname} \
-        --configuration ${buildType} \
+        --configuration "$buildType" \
         --no-build \
         --no-self-contained \
         "''${dotnetInstallFlags[@]}"  \
         "''${dotnetFlags[@]}"
     '' + (if executables != null then ''
-      for executable in ''${executables}; do
+      for executable in $executables; do
         execPath="$out/lib/${args.pname}/$executable"
 
         if [[ -f "$execPath" && -x "$execPath" ]]; then
@@ -120,7 +140,7 @@ let
             --set DOTNET_ROOT "${dotnet-runtime}" \
             --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath runtimeDeps}" \
             "''${gappsWrapperArgs[@]}" \
-            ''${makeWrapperArgs}
+            "''${makeWrapperArgs[@]}"
         else
           echo "Specified binary \"$executable\" is either not an executable, or does not exist!"
           exit 1
@@ -133,7 +153,7 @@ let
             --set DOTNET_ROOT "${dotnet-runtime}" \
             --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath runtimeDeps}" \
             "''${gappsWrapperArgs[@]}" \
-            ''${makeWrapperArgs}
+            "''${makeWrapperArgs[@]}"
         fi
       done
     '') + ''

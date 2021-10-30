@@ -48,6 +48,7 @@
   ./hardware/corectrl.nix
   ./hardware/digitalbitbox.nix
   ./hardware/device-tree.nix
+  ./hardware/gkraken.nix
   ./hardware/i2c.nix
   ./hardware/sensor/hddtemp.nix
   ./hardware/sensor/iio.nix
@@ -583,6 +584,7 @@
   ./services/misc/safeeyes.nix
   ./services/misc/sdrplay.nix
   ./services/misc/sickbeard.nix
+  ./services/misc/signald.nix
   ./services/misc/siproxd.nix
   ./services/misc/snapper.nix
   ./services/misc/sonarr.nix
@@ -755,6 +757,7 @@
   ./services/networking/iscsi/root-initiator.nix
   ./services/networking/iscsi/target.nix
   ./services/networking/iwd.nix
+  ./services/networking/jibri/default.nix
   ./services/networking/jicofo.nix
   ./services/networking/jitsi-videobridge.nix
   ./services/networking/kea.nix
@@ -836,6 +839,7 @@
   ./services/networking/rpcbind.nix
   ./services/networking/rxe.nix
   ./services/networking/sabnzbd.nix
+  ./services/networking/seafile.nix
   ./services/networking/searx.nix
   ./services/networking/skydns.nix
   ./services/networking/shadowsocks.nix
@@ -998,6 +1002,7 @@
   ./services/web-apps/nexus.nix
   ./services/web-apps/node-red.nix
   ./services/web-apps/pict-rs.nix
+  ./services/web-apps/peertube.nix
   ./services/web-apps/plantuml-server.nix
   ./services/web-apps/plausible.nix
   ./services/web-apps/pgpkeyserver-lite.nix
