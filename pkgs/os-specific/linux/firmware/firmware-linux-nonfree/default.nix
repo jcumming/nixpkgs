@@ -11,13 +11,13 @@ stdenvNoCC.mkDerivation rec {
   };
 
   #  8.307821] brcmfmac 0000:04:00.0: Direct firmware load for brcm/brcmfmac4366c-pcie.Supermicro-Super Server.txt failed with error -2
-  postInstall = ''
-    mkdir -p $out/lib/firmware/brcm/
-    cp ${brcm4366c} $out/lib/firmware/brcm/brcmfmac4366c-pcie.bin
-  '';
+ # postInstall = ''
+ #   mkdir -p $out/lib/firmware/brcm/
+ #   cp ${brcm4366c} $out/lib/firmware/brcm/brcmfmac4366c-pcie.bin
+ # '';
 
   # http://forums.fedoraforum.org/showthread.php?t=310626
-  brcm4366c = ./brcmfmac4366c-pcie.bin;
+ # brcm4366c = ./brcmfmac4366c-pcie.bin;
 
   installFlags = [ "DESTDIR=$(out)" ];
 
