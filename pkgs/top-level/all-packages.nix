@@ -2121,6 +2121,8 @@ with pkgs;
 
   butane = callPackage ../development/tools/butane { };
 
+  buttercup-desktop = callPackage ../tools/security/buttercup-desktop { };
+
   charles = charles4;
   inherit (callPackage ../applications/networking/charles {})
     charles3
@@ -3410,7 +3412,9 @@ with pkgs;
 
   pn = callPackage ../tools/text/pn { };
 
-  pocket-casts = callPackage ../applications/audio/pocket-casts { };
+  pocket-casts = callPackage ../applications/audio/pocket-casts {
+    electron = electron_12;
+  };
 
   poweralertd = callPackage ../tools/misc/poweralertd { };
 
@@ -5046,7 +5050,11 @@ with pkgs;
 
   fcitx5-chinese-addons = libsForQt5.callPackage ../tools/inputmethods/fcitx5/fcitx5-chinese-addons.nix { };
 
-  fcitx5-mozc = libsForQt5.callPackage ../tools/inputmethods/fcitx5/fcitx5-mozc.nix { };
+  fcitx5-mozc = libsForQt5.callPackage ../tools/inputmethods/fcitx5/fcitx5-mozc.nix {
+    abseil-cpp = abseil-cpp.override {
+      cxxStandard = "17";
+    };
+  };
 
   fcitx5-configtool = libsForQt5.callPackage ../tools/inputmethods/fcitx5/fcitx5-configtool.nix { };
 
@@ -5846,7 +5854,9 @@ with pkgs;
 
   govc = callPackage ../tools/virtualization/govc { };
 
-  goverlay = callPackage ../tools/graphics/goverlay { };
+  goverlay = callPackage ../tools/graphics/goverlay {
+    inherit (qt5) wrapQtAppsHook;
+  };
 
   gpart = callPackage ../tools/filesystems/gpart { };
 
@@ -6401,6 +6411,11 @@ with pkgs;
 
   intermodal = callPackage ../tools/misc/intermodal { };
 
+  invidious = callPackage ../servers/invidious {
+    # needs a specific version of lsquic
+    lsquic = callPackage ../servers/invidious/lsquic.nix { };
+  };
+
   invoice2data  = callPackage ../tools/text/invoice2data  { };
 
   inxi = callPackage ../tools/system/inxi { };
@@ -6665,7 +6680,7 @@ with pkgs;
   keyfuzz = callPackage ../tools/inputmethods/keyfuzz { };
 
   keyscope = callPackage ../tools/security/keyscope {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation IOKit Security;
   };
 
   keystore-explorer = callPackage ../applications/misc/keystore-explorer {
@@ -8500,7 +8515,9 @@ with pkgs;
 
   pinnwand = callPackage ../servers/pinnwand { };
 
-  piping-server-rust = callPackage ../servers/piping-server-rust { };
+  piping-server-rust = callPackage ../servers/piping-server-rust {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   pirate-get = callPackage ../tools/networking/pirate-get { };
 
@@ -9888,6 +9905,8 @@ with pkgs;
   thin-provisioning-tools = callPackage ../tools/misc/thin-provisioning-tools {  };
 
   thinkpad-scripts = python3.pkgs.callPackage ../tools/misc/thinkpad-scripts { };
+
+  threema-desktop = callPackage ../applications/networking/instant-messengers/threema-desktop { };
 
   tidy-viewer = callPackage ../tools/text/tidy-viewer { };
 
@@ -13500,6 +13519,7 @@ with pkgs;
   pipenv = callPackage ../development/tools/pipenv {};
 
   pipewire = callPackage ../development/libraries/pipewire {};
+  pipewire-media-session = callPackage ../development/libraries/pipewire/media-session.nix {};
   pipewire_0_2 = callPackage ../development/libraries/pipewire/0.2.nix {};
 
   pyradio = callPackage ../applications/audio/pyradio {};
@@ -16803,10 +16823,6 @@ with pkgs;
 
   hunspellWithDicts = dicts: callPackage ../development/libraries/hunspell/wrapper.nix { inherit dicts; };
 
-  hunter = callPackage ../applications/misc/hunter {
-    inherit (darwin.apple_sdk.frameworks) CoreServices IOKit Security;
-  };
-
   hwloc = callPackage ../development/libraries/hwloc {};
 
   inherit (callPackage ../development/tools/misc/hydra { })
@@ -19870,6 +19886,8 @@ with pkgs;
                                           CoreText IOSurface ImageIO OpenGL GLUT;
   };
 
+  vtk_8_withQt5 = vtk_8.override { enableQt = true; };
+
   vtk_9 = libsForQt515.callPackage ../development/libraries/vtk/9.x.nix {
     inherit (darwin) libobjc;
     inherit (darwin.apple_sdk.libs) xpc;
@@ -19878,8 +19896,10 @@ with pkgs;
                                           CoreText IOSurface ImageIO OpenGL GLUT;
   };
 
+  vtk_9_withQt5 = vtk_9.override { enableQt = true; };
+
   vtk = vtk_8;
-  vtkWithQt5 = vtk.override { enableQt = true; };
+  vtkWithQt5 = vtk_8_withQt5;
 
   vulkan-extension-layer = callPackage ../tools/graphics/vulkan-extension-layer { };
   vulkan-headers = callPackage ../development/libraries/vulkan-headers { };
@@ -20703,7 +20723,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  lemmy-ui = callPackage ../servers/web-apps/lemmy/ui.nix { };
+  lemmy-ui = callPackage ../servers/web-apps/lemmy/ui.nix {
+    nodejs = nodejs-14_x;
+  };
 
   lighttpd = callPackage ../servers/http/lighttpd { };
 
@@ -21756,6 +21778,8 @@ with pkgs;
 
   ebtables = callPackage ../os-specific/linux/ebtables { };
 
+  error-inject = callPackages ../os-specific/linux/error-inject { };
+
   extrace = callPackage ../os-specific/linux/extrace { };
 
   facetimehd-firmware = callPackage ../os-specific/linux/firmware/facetimehd-firmware { };
@@ -22148,6 +22172,8 @@ with pkgs;
   musl-fts = callPackage ../os-specific/linux/musl-fts { };
   musl-obstack = callPackage ../os-specific/linux/musl-obstack { };
 
+  nsh = callPackage ../shells/nsh { };
+
   nushell = callPackage ../shells/nushell {
     inherit (darwin.apple_sdk.frameworks) AppKit Security;
   };
@@ -22388,6 +22414,8 @@ with pkgs;
   radeontools = callPackage ../os-specific/linux/radeontools { };
 
   radeontop = callPackage ../os-specific/linux/radeontop { };
+
+  rasdaemon = callPackage ../os-specific/linux/rasdaemon { };
 
   raspberrypifw = callPackage ../os-specific/linux/firmware/raspberrypi {};
   raspberrypiWirelessFirmware = callPackage ../os-specific/linux/firmware/raspberrypi-wireless { };
@@ -23379,6 +23407,8 @@ with pkgs;
 
   shades-of-gray-theme = callPackage ../data/themes/shades-of-gray { };
 
+  sierra-breeze-enhanced = libsForQt5.callPackage ../data/themes/kwin-decorations/sierra-breeze-enhanced { };
+
   sjasmplus = callPackage ../development/compilers/sjasmplus { };
 
   skeu = callPackage ../data/themes/skeu { };
@@ -23818,6 +23848,8 @@ with pkgs;
   audacity = audacity-gtk2;
 
   audio-recorder = callPackage ../applications/audio/audio-recorder { };
+
+  auto-multiple-choice = callPackage ../applications/misc/auto-multiple-choice { };
 
   autokey = callPackage ../applications/office/autokey { };
 
@@ -24544,6 +24576,10 @@ with pkgs;
   inherit (gnome) empathy;
 
   enhanced-ctorrent = callPackage ../applications/networking/enhanced-ctorrent { };
+
+  entangle = callPackage ../applications/video/entangle {
+    inherit (gst_all_1) gstreamer gst-plugins-base;
+  };
 
   eolie = callPackage ../applications/networking/browsers/eolie { };
 
@@ -26313,7 +26349,9 @@ with pkgs;
 
   lscolors = callPackage ../applications/misc/lscolors { };
 
-  lucky-commit = callPackage ../applications/version-management/git-and-tools/lucky-commit { };
+  lucky-commit = callPackage ../applications/version-management/git-and-tools/lucky-commit {
+    inherit (darwin.apple_sdk.frameworks) OpenCL;
+  };
 
   luddite = with python3Packages; toPythonApplication luddite;
 
@@ -26382,6 +26420,10 @@ with pkgs;
   mark = callPackage ../tools/text/mark { };
 
   markets = callPackage ../applications/misc/markets { };
+
+  markmind = callPackage ../applications/misc/markmind {
+    electron = electron_9;
+  };
 
   marp = callPackage ../applications/office/marp { };
 
@@ -28812,6 +28854,10 @@ with pkgs;
 
   weston = callPackage ../applications/window-managers/weston { pipewire = pipewire_0_2; };
 
+  whalebird = callPackage ../applications/misc/whalebird {
+    electron = electron_12;
+  };
+
   wio = callPackage ../applications/window-managers/wio { };
 
   whitebox-tools = callPackage ../applications/gis/whitebox-tools {
@@ -31167,7 +31213,12 @@ with pkgs;
 
   or-tools = callPackage ../development/libraries/science/math/or-tools {
     python = python3;
-    abseil-cpp = abseil-cpp.override { static = true; };
+    # or-tools builds with -std=c++17, so abseil-cpp must
+    # also be built that way
+    abseil-cpp = abseil-cpp.override {
+      static = true;
+      cxxStandard = "17";
+    };
   };
 
   rubiks = callPackage ../development/libraries/science/math/rubiks { };
@@ -31878,6 +31929,8 @@ with pkgs;
   cups-pk-helper = callPackage ../misc/cups/cups-pk-helper.nix { };
 
   cups-kyocera = callPackage ../misc/cups/drivers/kyocera {};
+
+  cups-kyocera-ecosys-m2x35-40-p2x35-40dnw = callPackage ../misc/cups/drivers/kyocera-ecosys-m2x35-40-p2x35-40dnw {};
 
   cups-kyocera-ecosys-m552x-p502x = callPackage ../misc/cups/drivers/kyocera-ecosys-m552x-p502x {};
 

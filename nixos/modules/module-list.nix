@@ -420,6 +420,7 @@
   ./services/hardware/pcscd.nix
   ./services/hardware/pommed.nix
   ./services/hardware/power-profiles-daemon.nix
+  ./services/hardware/rasdaemon.nix
   ./services/hardware/ratbagd.nix
   ./services/hardware/sane.nix
   ./services/hardware/sane_extra_backends/brscan4.nix
@@ -992,6 +993,7 @@
   ./services/web-apps/jitsi-meet.nix
   ./services/web-apps/keycloak.nix
   ./services/web-apps/lemmy.nix
+  ./services/web-apps/invidious.nix
   ./services/web-apps/limesurvey.nix
   ./services/web-apps/mastodon.nix
   ./services/web-apps/mattermost.nix

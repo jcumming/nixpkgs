@@ -26,13 +26,11 @@ in
   agda = handleTest ./agda.nix {};
   airsonic = handleTest ./airsonic.nix {};
   amazon-init-shell = handleTest ./amazon-init-shell.nix {};
-  ammonite = handleTest ./ammonite.nix {};
   apparmor = handleTest ./apparmor.nix {};
   atd = handleTest ./atd.nix {};
   atop = handleTest ./atop.nix {};
   avahi = handleTest ./avahi.nix {};
   avahi-with-resolved = handleTest ./avahi.nix { networkd = true; };
-  awscli = handleTest ./awscli.nix { };
   babeld = handleTest ./babeld.nix {};
   bazarr = handleTest ./bazarr.nix {};
   bcachefs = handleTestOn ["x86_64-linux"] ./bcachefs.nix {}; # linux-4.18.2018.10.12 is unsupported on aarch64
@@ -173,6 +171,7 @@ in
   hedgedoc = handleTest ./hedgedoc.nix {};
   herbstluftwm = handleTest ./herbstluftwm.nix {};
   installed-tests = pkgs.recurseIntoAttrs (handleTest ./installed-tests {});
+  invidious = handleTest ./invidious.nix {};
   oci-containers = handleTestOn ["x86_64-linux"] ./oci-containers.nix {};
   # 9pnet_virtio used to mount /nix partition doesn't support
   # hibernation. This test happens to work on x86_64-linux but
@@ -190,7 +189,7 @@ in
   i3wm = handleTest ./i3wm.nix {};
   icingaweb2 = handleTest ./icingaweb2.nix {};
   iftop = handleTest ./iftop.nix {};
-  ihatemoney = handleTest ./ihatemoney.nix {};
+  ihatemoney = handleTest ./ihatemoney {};
   incron = handleTest ./incron.nix {};
   influxdb = handleTest ./influxdb.nix {};
   initrd-network-openvpn = handleTest ./initrd-network-openvpn {};
@@ -236,7 +235,6 @@ in
   locate = handleTest ./locate.nix {};
   login = handleTest ./login.nix {};
   loki = handleTest ./loki.nix {};
-  lsd = handleTest ./lsd.nix {};
   lxd = handleTest ./lxd.nix {};
   lxd-nftables = handleTest ./lxd-nftables.nix {};
   #logstash = handleTest ./logstash.nix {};
@@ -369,6 +367,7 @@ in
   postgresql = handleTest ./postgresql.nix {};
   postgresql-wal-receiver = handleTest ./postgresql-wal-receiver.nix {};
   powerdns = handleTest ./powerdns.nix {};
+  power-profiles-daemon = handleTest ./power-profiles-daemon.nix {};
   pppd = handleTest ./pppd.nix {};
   predictable-interface-names = handleTest ./predictable-interface-names.nix {};
   printing = handleTest ./printing.nix {};
@@ -386,6 +385,7 @@ in
   rabbitmq = handleTest ./rabbitmq.nix {};
   radarr = handleTest ./radarr.nix {};
   radicale = handleTest ./radicale.nix {};
+  rasdaemon = handleTest ./rasdaemon.nix {};
   redis = handleTest ./redis.nix {};
   redmine = handleTest ./redmine.nix {};
   restartByActivationScript = handleTest ./restart-by-activation-script.nix {};
@@ -418,7 +418,6 @@ in
   sonarr = handleTest ./sonarr.nix {};
   spacecookie = handleTest ./spacecookie.nix {};
   spark = handleTestOn ["x86_64-linux"] ./spark {};
-  spike = handleTest ./spike.nix {};
   sslh = handleTest ./sslh.nix {};
   sssd = handleTestOn ["x86_64-linux"] ./sssd.nix {};
   sssd-ldap = handleTestOn ["x86_64-linux"] ./sssd-ldap.nix {};
@@ -451,8 +450,8 @@ in
   tinc = handleTest ./tinc {};
   tinydns = handleTest ./tinydns.nix {};
   tor = handleTest ./tor.nix {};
-  # traefik test relies on docker-containers
   trac = handleTest ./trac.nix {};
+  # traefik test relies on docker-containers
   traefik = handleTestOn ["x86_64-linux"] ./traefik.nix {};
   trafficserver = handleTest ./trafficserver.nix {};
   transmission = handleTest ./transmission.nix {};
@@ -464,7 +463,6 @@ in
   turbovnc-headless-server = handleTest ./turbovnc-headless-server.nix {};
   tuxguitar = handleTest ./tuxguitar.nix {};
   ucarp = handleTest ./ucarp.nix {};
-  ucg = handleTest ./ucg.nix {};
   udisks2 = handleTest ./udisks2.nix {};
   unbound = handleTest ./unbound.nix {};
   unit-php = handleTest ./web-servers/unit-php.nix {};
