@@ -1334,6 +1334,8 @@ in {
 
   build = callPackage ../development/python-modules/build { };
 
+  buildcatrust = callPackage ../development/python-modules/buildcatrust { };
+
   bumps = callPackage ../development/python-modules/bumps { };
 
   bunch = callPackage ../development/python-modules/bunch { };
@@ -1716,6 +1718,8 @@ in {
   confluent-kafka = callPackage ../development/python-modules/confluent-kafka { };
 
   confuse = callPackage ../development/python-modules/confuse { };
+
+  confight = callPackage ../development/python-modules/confight { };
 
   connexion = callPackage ../development/python-modules/connexion { };
 
@@ -2136,6 +2140,8 @@ in {
 
   django-formtools = callPackage ../development/python-modules/django-formtools { };
 
+  django-graphiql-debug-toolbar = callPackage ../development/python-modules/django-graphiql-debug-toolbar { };
+
   django-gravatar2 = callPackage ../development/python-modules/django-gravatar2 { };
 
   django_guardian = callPackage ../development/python-modules/django_guardian { };
@@ -2151,6 +2157,8 @@ in {
 
   django-jinja = callPackage ../development/python-modules/django-jinja2 { };
 
+  django-js-asset = callPackage ../development/python-modules/django-js-asset { };
+
   django-logentry-admin = callPackage ../development/python-modules/django-logentry-admin { };
 
   django-mailman3 = callPackage ../development/python-modules/django-mailman3 { };
@@ -2160,6 +2168,8 @@ in {
   django-multiselectfield = callPackage ../development/python-modules/django-multiselectfield { };
 
   django-maintenance-mode = callPackage ../development/python-modules/django-maintenance-mode { };
+
+  django-mptt = callPackage ../development/python-modules/django-mptt { };
 
   django_nose = callPackage ../development/python-modules/django_nose { };
 
@@ -2175,6 +2185,8 @@ in {
 
   django-postgresql-netfields = callPackage ../development/python-modules/django-postgresql-netfields { };
 
+  django-prometheus = callPackage ../development/python-modules/django-prometheus { };
+
   django-q = callPackage ../development/python-modules/django-q { };
 
   djangoql = callPackage ../development/python-modules/djangoql { };
@@ -2183,9 +2195,11 @@ in {
 
   django-raster = callPackage ../development/python-modules/django-raster { };
 
-  django_redis = callPackage ../development/python-modules/django_redis { };
+  django-redis = callPackage ../development/python-modules/django-redis { };
 
   django-rest-auth = callPackage ../development/python-modules/django-rest-auth { };
+
+  django-rq = callPackage ../development/python-modules/django-rq { };
 
   djangorestframework = callPackage ../development/python-modules/djangorestframework { };
 
@@ -2209,9 +2223,13 @@ in {
 
   django-storages = callPackage ../development/python-modules/django-storages { };
 
+  django-tables2 = callPackage ../development/python-modules/django-tables2 { };
+
   django_tagging = callPackage ../development/python-modules/django_tagging { };
 
-  django_taggit = callPackage ../development/python-modules/django_taggit { };
+  django-taggit = callPackage ../development/python-modules/django-taggit { };
+
+  django-timezone-field = callPackage ../development/python-modules/django-timezone-field { };
 
   django_treebeard = callPackage ../development/python-modules/django_treebeard { };
 
@@ -2365,6 +2383,8 @@ in {
 
   easywatch = callPackage ../development/python-modules/easywatch { };
 
+  ebaysdk = callPackage ../development/python-modules/ebaysdk { };
+
   ec2instanceconnectcli = callPackage ../tools/virtualization/ec2instanceconnectcli { };
 
   eccodes = toPythonModule (pkgs.eccodes.override {
@@ -2449,6 +2469,8 @@ in {
   entrance-with-router-features = callPackage ../development/python-modules/entrance {
     routerFeatures = true;
   };
+
+  entry-points-txt = callPackage ../development/python-modules/entry-points-txt { };
 
   entrypoint2 = callPackage ../development/python-modules/entrypoint2 { };
 
@@ -2710,6 +2732,8 @@ in {
   flake8-blind-except = callPackage ../development/python-modules/flake8-blind-except { };
 
   flake8 = callPackage ../development/python-modules/flake8 { };
+
+  flake8-length = callPackage ../development/python-modules/flake8-length { };
 
   flake8-debugger = callPackage ../development/python-modules/flake8-debugger { };
 
@@ -3289,6 +3313,8 @@ in {
 
   graphene = callPackage ../development/python-modules/graphene { };
 
+  graphene-django = callPackage ../development/python-modules/graphene-django { };
+
   graphqlclient= callPackage ../development/python-modules/graphqlclient { };
 
   graphql-core = callPackage ../development/python-modules/graphql-core { };
@@ -3418,6 +3444,8 @@ in {
 
   hdate = callPackage ../development/python-modules/hdate { };
 
+  ha-av = callPackage ../development/python-modules/ha-av { };
+
   ha-ffmpeg = callPackage ../development/python-modules/ha-ffmpeg { };
 
   ha-philipsjs = callPackage ../development/python-modules/ha-philipsjs{ };
@@ -3449,6 +3477,8 @@ in {
   hdlparse = callPackage ../development/python-modules/hdlparse { };
 
   hdmedians = callPackage ../development/python-modules/hdmedians { };
+
+  headerparser = callPackage ../development/python-modules/headerparser { };
 
   heapdict = callPackage ../development/python-modules/heapdict { };
 
@@ -3759,6 +3789,8 @@ in {
   injector = callPackage ../development/python-modules/injector { };
 
   inkex = callPackage ../development/python-modules/inkex { };
+
+  inotify = callPackage ../development/python-modules/inotify { };
 
   inotify-simple = callPackage ../development/python-modules/inotify-simple { };
 
@@ -4579,6 +4611,8 @@ in {
 
   markdown = callPackage ../development/python-modules/markdown { };
 
+  markdown-include = callPackage ../development/python-modules/markdown-include { };
+
   markdown-it-py = callPackage ../development/python-modules/markdown-it-py { };
 
   markdown-macros = callPackage ../development/python-modules/markdown-macros { };
@@ -4857,6 +4891,8 @@ in {
   };
 
   mpyq = callPackage ../development/python-modules/mpyq { };
+
+  mrkd = callPackage ../development/python-modules/mrkd { };
 
   ms-cv = callPackage ../development/python-modules/ms-cv { };
 
@@ -7284,6 +7320,8 @@ in {
 
   pytest-doctestplus = callPackage ../development/python-modules/pytest-doctestplus { };
 
+  pytest-dotenv = callPackage ../development/python-modules/pytest-dotenv { };
+
   pytest-env = callPackage ../development/python-modules/pytest-env { };
 
   pytest-error-for-skips = callPackage ../development/python-modules/pytest-error-for-skips { };
@@ -8551,7 +8589,7 @@ in {
 
   simplekml = callPackage ../development/python-modules/simplekml { };
 
-  simple_di = callPackage ../development/python-modules/simple_di { };
+  simple-di = callPackage ../development/python-modules/simple_di { };
 
   simple-rest-client = callPackage ../development/python-modules/simple-rest-client { };
 
@@ -8912,6 +8950,8 @@ in {
   starkbank-ecdsa = callPackage ../development/python-modules/starkbank-ecdsa { };
 
   starline = callPackage ../development/python-modules/starline { };
+
+  stashy = callPackage ../development/python-modules/stashy { };
 
   staticjinja = callPackage ../development/python-modules/staticjinja { };
 
@@ -9848,6 +9888,8 @@ in {
 
   werkzeug = callPackage ../development/python-modules/werkzeug { };
 
+  werkzeug1 = callPackage ../development/python-modules/werkzeug/1.nix { };
+
   west = callPackage ../development/python-modules/west { };
 
   wfuzz = callPackage ../development/python-modules/wfuzz { };
@@ -9855,6 +9897,10 @@ in {
   wget = callPackage ../development/python-modules/wget { };
 
   wheel = callPackage ../development/python-modules/wheel { };
+
+  wheel-filename = callPackage ../development/python-modules/wheel-filename { };
+
+  wheel-inspect = callPackage ../development/python-modules/wheel-inspect { };
 
   whichcraft = callPackage ../development/python-modules/whichcraft { };
 
