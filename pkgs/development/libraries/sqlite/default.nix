@@ -1,9 +1,7 @@
-{ lib, stdenv, fetchurl, zlib, interactive ? false, readline ? null, ncurses ? null
+{ lib, stdenv, fetchurl, zlib, interactive ? false, readline, ncurses
 , python3Packages
 , enableDeserialize ? false
 }:
-
-assert interactive -> readline != null && ncurses != null;
 
 with lib;
 
@@ -94,6 +92,7 @@ stdenv.mkDerivation rec {
     downloadPage = "https://sqlite.org/download.html";
     homepage = "https://www.sqlite.org/";
     license = licenses.publicDomain;
+    mainProgram = "sqlite3";
     maintainers = with maintainers; [ eelco np ];
     platforms = platforms.unix ++ platforms.windows;
   };

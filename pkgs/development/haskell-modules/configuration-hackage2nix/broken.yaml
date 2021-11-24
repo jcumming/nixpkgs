@@ -100,6 +100,7 @@ broken-packages:
   - AhoCorasick
   - aig
   - airbrake
+  - airship
   - airtable-api
   - air-th
   - ajhc
@@ -618,6 +619,7 @@ broken-packages:
   - cg
   - cgen
   - cgi-utils
+  - cgroup-rts-threads
   - chalkboard
   - chalmers-lava2000
   - character-cases
@@ -745,6 +747,7 @@ broken-packages:
   - compact-list
   - compact-map
   - compact-mutable-vector
+  - compact-sequences
   - compact-socket
   - compact-string
   - compact-string-fix
@@ -831,6 +834,7 @@ broken-packages:
   - contstuff-monads-tf
   - contstuff-transformers
   - convert-annotation
+  - copilot-core
   - copilot-sbv
   - copr
   - COrdering
@@ -1131,6 +1135,7 @@ broken-packages:
   - dotfs
   - dot-linker
   - doublify-toolkit
+  - dovetail
   - downloader
   - dozenal
   - dozens
@@ -1298,6 +1303,7 @@ broken-packages:
   - event-driven
   - eventful-dynamodb
   - eventful-sql-common
+  - eventlog2html
   - eventloop
   - eventstore
   - ewe
@@ -1323,6 +1329,7 @@ broken-packages:
   - explicit-constraint-lens
   - explicit-determinant
   - explicit-iomodes
+  - exploring-interpreters
   - exposed-containers
   - expression-parser
   - expressions
@@ -1658,15 +1665,19 @@ broken-packages:
   - ghc-usage
   - gh-labeler
   - giak
+  - gi-cogl
   - Gifcurry
   - gi-graphene
   - gi-gsttag
+  - gi-gtk-layer-shell
   - gi-gtkosxapplication
   - gi-gtksheet
   - gi-handy
+  - gi-json
   - ginsu
   - gipeda
   - giphy-api
+  - gi-rsvg
   - gist
   - GiST
   - git
@@ -1716,6 +1727,7 @@ broken-packages:
   - goal-core
   - gochan
   - godot-haskell
+  - godot-megaparsec
   - gofer-prelude
   - gogol-admin-emailmigration
   - gogol-affiliates
@@ -2503,6 +2515,7 @@ broken-packages:
   - IcoGrid
   - iconv-typed
   - ideas
+  - ide-backend-common
   - idempotent
   - identifiers
   - idiii
@@ -2643,6 +2656,7 @@ broken-packages:
   - join-api
   - joinlist
   - jonathanscard
+  - jordan
   - jort
   - jpeg
   - jsaddle-hello
@@ -2652,6 +2666,7 @@ broken-packages:
   - json-alt
   - json-assertions
   - json-ast-quickcheck
+  - JSONb
   - json-builder
   - json-encoder
   - jsonextfilter
@@ -2740,7 +2755,10 @@ broken-packages:
   - lambda-bridge
   - lambda-canvas
   - lambdacms-core
+  - lambdacube-core
+  - lambdacube-engine
   - lambdacube-ir
+  - LambdaDesigner
   - Lambdajudge
   - LambdaNet
   - lambdatex
@@ -2778,6 +2796,7 @@ broken-packages:
   - language-typescript
   - language-vhdl
   - language-webidl
+  - lapack-hmatrix
   - LargeCardinalHierarchy
   - Lastik
   - latest-npm-version
@@ -2905,10 +2924,8 @@ broken-packages:
   - llsd
   - llvm-base
   - llvm-ffi
-  - llvm-ffi-tools
   - llvm-general-pure
   - llvm-ht
-  - llvm-pkg-config
   - llvm-pretty
   - lmonad
   - load-balancing
@@ -3192,9 +3209,11 @@ broken-packages:
   - morfette
   - morfeusz
   - morpheus-graphql-cli
+  - morpheus-graphql-code-gen
   - morphisms-functors
   - morphisms-objects
   - morte
+  - mortred
   - moto-postgresql
   - motor-reflection
   - mount
@@ -3443,6 +3462,7 @@ broken-packages:
   - onama
   - ONC-RPC
   - on-demand-ssh-tunnel
+  - one-line-aeson-text
   - one-liner-instances
   - oneormore
   - onpartitions
@@ -3771,6 +3791,7 @@ broken-packages:
   - polydata-core
   - polynom
   - polynomial
+  - polysemy-mocks
   - polysemy-plugin
   - polysemy-zoo
   - polytypeable
@@ -3797,6 +3818,7 @@ broken-packages:
   - postgres-embedded
   - PostgreSQL
   - postgresql-lo-stream
+  - postgresql-migration
   - postgresql-named
   - postgresql-resilient
   - postgresql-simple-bind
@@ -3903,6 +3925,7 @@ broken-packages:
   - proxy-kindness
   - proxy-mapping
   - prune-juice
+  - psc-ide
   - pseudo-trie
   - PTQ
   - publicsuffixlistcreate
@@ -3916,7 +3939,7 @@ broken-packages:
   - Pup-Events-Server
   - pure-io
   - pure-priority-queue
-  - purescript-cst
+  - purescript-tsd-gen
   - pure-zlib
   - pusher-haskell
   - pusher-ws
@@ -4018,6 +4041,7 @@ broken-packages:
   - read-bounded
   - read-ctags
   - read-io
+  - readline-in-other-words
   - readline-statevar
   - readme-lhs
   - readshp
@@ -4706,6 +4730,7 @@ broken-packages:
   - stripe-http-streams
   - stripe-signature
   - stripe-tests
+  - stripe-wreq
   - strong-path
   - strongswan-sql
   - structural-traversal
@@ -4776,7 +4801,6 @@ broken-packages:
   - syntax-trees
   - syntax-trees-fork-bairyn
   - synthesizer
-  - synthesizer-alsa
   - Sysmon
   - sys-process
   - system-canonicalpath
@@ -4884,6 +4908,7 @@ broken-packages:
   - text-and-plots
   - text-ascii
   - text-containers
+  - text-display
   - text-format-heavy
   - text-generic-pretty
   - text-icu-normalized
@@ -4897,6 +4922,7 @@ broken-packages:
   - text-register-machine
   - text-replace
   - text-time
+  - text-trie
   - textual
   - text-utf8
   - text-xml-qq
@@ -5323,6 +5349,7 @@ broken-packages:
   - wavefront-obj
   - weak-bag
   - weather-api
+  - webapi
   - webapp
   - WebBits
   - webby
@@ -5335,6 +5362,7 @@ broken-packages:
   - web-encodings
   - WeberLogic
   - webfinger-client
+  - webkitgtk3
   - webkit-javascriptcore
   - webmention
   - web-output
@@ -5461,6 +5489,7 @@ broken-packages:
   - yall
   - yam-app
   - yam-config
+  - yaml-config
   - yamlkeysdiff
   - yaml-pretty-extras
   - YamlReference
@@ -5556,6 +5585,7 @@ broken-packages:
   - zendesk-api
   - zenhack-prelude
   - zeno
+  - zephyr
   - zeromq4-clone-pattern
   - zeromq4-conduit
   - zeromq4-patterns

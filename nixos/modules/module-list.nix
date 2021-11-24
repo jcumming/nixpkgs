@@ -129,6 +129,7 @@
   ./programs/cdemu.nix
   ./programs/chromium.nix
   ./programs/clickshare.nix
+  ./programs/cnping.nix
   ./programs/command-not-found/command-not-found.nix
   ./programs/criu.nix
   ./programs/dconf.nix
@@ -485,6 +486,9 @@
   ./services/mail/roundcube.nix
   ./services/mail/sympa.nix
   ./services/mail/nullmailer.nix
+  ./services/matrix/mjolnir.nix
+  ./services/matrix/pantalaimon.nix
+  ./services/misc/ananicy.nix
   ./services/misc/airsonic.nix
   ./services/misc/ankisyncd.nix
   ./services/misc/apache-kafka.nix
@@ -607,6 +611,7 @@
   ./services/misc/uhub.nix
   ./services/misc/weechat.nix
   ./services/misc/xmr-stak.nix
+  ./services/misc/xmrig.nix
   ./services/misc/zigbee2mqtt.nix
   ./services/misc/zoneminder.nix
   ./services/misc/zookeeper.nix
@@ -679,6 +684,7 @@
   ./services/network-filesystems/tahoe.nix
   ./services/network-filesystems/diod.nix
   ./services/network-filesystems/u9fs.nix
+  ./services/network-filesystems/webdav.nix
   ./services/network-filesystems/yandex-disk.nix
   ./services/network-filesystems/xtreemfs.nix
   ./services/network-filesystems/ceph.nix
@@ -1015,6 +1021,7 @@
   ./services/web-apps/pgpkeyserver-lite.nix
   ./services/web-apps/matomo.nix
   ./services/web-apps/moinmoin.nix
+  ./services/web-apps/openwebrx.nix
   ./services/web-apps/restya-board.nix
   ./services/web-apps/sogo.nix
   ./services/web-apps/rss-bridge.nix

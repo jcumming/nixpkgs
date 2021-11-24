@@ -12,6 +12,7 @@ aklt/plantuml-syntax
 allendang/nvim-expand-expr@main
 altercation/vim-colors-solarized
 alvan/vim-closetag
+alvarosevilla95/luatab.nvim
 alx741/vim-hindent
 alx741/vim-stylishask
 amiorin/ctrlp-z
@@ -47,6 +48,7 @@ bhurlow/vim-parinfer
 bitc/vim-hdevtools
 bkad/camelcasemotion
 bling/vim-bufferline
+blueballs-theme/blueballs-neovim
 blueyed/vim-diminactive
 bogado/file-line
 bohlender/vim-smt2
@@ -343,6 +345,7 @@ kbenzie/vim-spirv
 kchmck/vim-coffee-script
 kdheepak/cmp-latex-symbols@main
 kdheepak/lazygit.nvim
+kdheepak/tabline.nvim@main
 KeitaNakamura/neodark.vim
 keith/investigate.vim
 keith/rspec.vim
@@ -454,6 +457,7 @@ metalelf0/jellybeans-nvim@main
 mfukar/robotframework-vim
 mfussenegger/nvim-dap
 mfussenegger/nvim-jdtls
+mfussenegger/nvim-lint
 mg979/vim-visual-multi
 mg979/vim-xtabline
 mhartington/formatter.nvim
@@ -532,6 +536,7 @@ norcalli/snippets.nvim
 ntpeters/vim-better-whitespace
 numirias/semshi
 numtostr/comment.nvim
+numToStr/FTerm.nvim
 nvie/vim-flake8
 nvim-lua/completion-nvim
 nvim-lua/diagnostic-nvim

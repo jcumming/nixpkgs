@@ -18,11 +18,12 @@
 , xenSupport ? false, xen
 , cephSupport ? false, ceph
 , glusterfsSupport ? false, glusterfs, libuuid
-, openGLSupport ? sdlSupport, mesa, epoxy, libdrm
+, openGLSupport ? sdlSupport, mesa, libepoxy, libdrm
 , virglSupport ? openGLSupport, virglrenderer
 , libiscsiSupport ? true, libiscsi
 , smbdSupport ? false, samba
 , tpmSupport ? true
+, uringSupport ? stdenv.isLinux, liburing
 , hostCpuOnly ? false
 , hostCpuTargets ? (if hostCpuOnly
                     then (lib.optional stdenv.isx86_64 "i386-softmmu"
@@ -74,10 +75,11 @@ stdenv.mkDerivation rec {
     ++ lib.optionals xenSupport [ xen ]
     ++ lib.optionals cephSupport [ ceph ]
     ++ lib.optionals glusterfsSupport [ glusterfs libuuid ]
-    ++ lib.optionals openGLSupport [ mesa epoxy libdrm ]
+    ++ lib.optionals openGLSupport [ mesa libepoxy libdrm ]
     ++ lib.optionals virglSupport [ virglrenderer ]
     ++ lib.optionals libiscsiSupport [ libiscsi ]
-    ++ lib.optionals smbdSupport [ samba ];
+    ++ lib.optionals smbdSupport [ samba ]
+    ++ lib.optionals uringSupport [ liburing ];
 
   dontUseMesonConfigure = true; # meson's configurePhase isn't compatible with qemu build
 
@@ -109,6 +111,12 @@ stdenv.mkDerivation rec {
       name = "fix-aio-discard-return-value.patch";
       url = "https://gitlab.com/qemu-project/qemu/-/commit/13a028336f2c05e7ff47dfdaf30dfac7f4883e80.patch";
       sha256 = "sha256-23xVixVl+JDBNdhe5j5WY8CB4MsnUo+sjrkAkG+JS6M=";
+    })
+    # Fixes managedsave (snapshot creation) with QXL video device. Remove with next release.
+    (fetchpatch {
+      name = "qxl-fix-pre-save-logic.patch";
+      url = "https://gitlab.com/qemu-project/qemu/-/commit/eb94846280df3f1e2a91b6179fc05f9890b7e384.patch";
+      sha256 = "sha256-p31fd47RTSw928DOMrubQQybnzDAGm23z4Yhe+hGJQ8=";
     })
   ] ++ lib.optional nixosTestRunner ./force-uid0-on-9p.patch
     ++ lib.optionals stdenv.hostPlatform.isMusl [
@@ -187,7 +195,8 @@ stdenv.mkDerivation rec {
     ++ lib.optional virglSupport "--enable-virglrenderer"
     ++ lib.optional tpmSupport "--enable-tpm"
     ++ lib.optional libiscsiSupport "--enable-libiscsi"
-    ++ lib.optional smbdSupport "--smbd=${samba}/bin/smbd";
+    ++ lib.optional smbdSupport "--smbd=${samba}/bin/smbd"
+    ++ lib.optional uringSupport "--enable-linux-io-uring";
 
   doCheck = false; # tries to access /dev
   dontWrapGApps = true;

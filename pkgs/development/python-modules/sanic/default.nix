@@ -5,7 +5,6 @@
 , buildPythonPackage
 , doCheck ? true
 , fetchFromGitHub
-, fetchpatch
 , gunicorn
 , httptools
 , multidict
@@ -68,8 +67,8 @@ buildPythonPackage rec {
   inherit doCheck;
 
   preCheck = ''
-    # Some tests depends on executables on PATH
-    PATH="$out/bin:${gunicorn}/bin:$PATH"
+    # Some tests depends on sanic on PATH
+    PATH="$out/bin:$PATH"
   '';
 
   disabledTests = [
@@ -84,9 +83,16 @@ buildPythonPackage rec {
     "test_create_server_main_convenience"
     "test_debug"
     "test_auto_reload"
-  ] ++ lib.optionals stdenv.isDarwin [
-    # https://github.com/sanic-org/sanic/issues/2298
     "test_no_exceptions_when_cancel_pending_request"
+    "test_ipv6_address_is_not_wrapped"
+    # These appear to be very sensitive to output of commands
+    "test_access_logs"
+    "test_auto_reload"
+    "test_host_port"
+    "test_no_exceptions_when_cancel_pending_request"
+    "test_num_workers"
+    "test_server_run"
+    "test_version"
   ];
 
   # avoid usage of nixpkgs-review in darwin since tests will compete usage

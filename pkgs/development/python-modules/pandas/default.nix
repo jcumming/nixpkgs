@@ -3,16 +3,9 @@
 , buildPythonPackage
 , fetchPypi
 , python
-, isPy38
-, beautifulsoup4
-, bottleneck
 , cython
+, numpy
 , python-dateutil
-, html5lib
-, jinja2
-, lxml
-, numexpr
-, openpyxl
 , pytz
 , scipy
 , sqlalchemy
@@ -22,6 +15,7 @@
 # Test inputs
 , glibcLocales
 , hypothesis
+, jinja2
 , pytestCheckHook
 , pytest-xdist
 , pytest-asyncio
@@ -45,19 +39,9 @@ buildPythonPackage rec {
   buildInputs = lib.optional stdenv.isDarwin libcxx;
 
   propagatedBuildInputs = [
-    beautifulsoup4
-    bottleneck
+    numpy
     python-dateutil
-    html5lib
-    numexpr
-    lxml
-    openpyxl
     pytz
-    scipy
-    sqlalchemy
-    tables
-    xlrd
-    xlwt
   ];
 
   checkInputs = [
