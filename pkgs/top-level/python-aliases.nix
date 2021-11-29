@@ -92,10 +92,15 @@ mapAliases ({
   scikitlearn = scikit-learn; # added 2021-07-21
   selectors34 = throw "selectors34 has been removed: functionality provided by Python itself; archived by upstream."; # added 2021-06-10
   setuptools_scm = setuptools-scm; # added 2021-06-03
+  ROPGadget = ropgadget; # added 2021-07-06
   smart_open = smart-open; # added 2021-03-14
   smmap2 = throw "smmap2 has been deprecated, use smmap instead."; # added 2020-03-14
   sphinxcontrib_plantuml = sphinxcontrib-plantuml; # added 2021-08-02
   sqlalchemy_migrate = sqlalchemy-migrate; # added 2021-10-28
+  tensorflow-bin_2 = tensorflow-bin; # added 2021-11-25
+  tensorflow-build_2 = tensorflow-build; # added 2021-11-25
+  tensorflow-estimator_2 = tensorflow-estimator; # added 2021-11-25
+  tensorflow-tensorboard_2 = tensorflow-tensorboard; # added 2021-11-25
   topydo = throw "topydo was moved to pkgs.topydo"; # added 2017-09-22
   tvnamer = throw "tvnamer was moved to pkgs.tvnamer"; # added 2021-07-05
   WazeRouteCalculator = wazeroutecalculator; # added 2021-09-29
