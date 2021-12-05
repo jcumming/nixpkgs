@@ -685,6 +685,7 @@
   ./services/network-filesystems/diod.nix
   ./services/network-filesystems/u9fs.nix
   ./services/network-filesystems/webdav.nix
+  ./services/network-filesystems/webdav-server-rs.nix
   ./services/network-filesystems/yandex-disk.nix
   ./services/network-filesystems/xtreemfs.nix
   ./services/network-filesystems/ceph.nix
@@ -897,6 +898,7 @@
   ./services/networking/unbound.nix
   ./services/networking/unifi.nix
   ./services/video/unifi-video.nix
+  ./services/video/rtsp-simple-server.nix
   ./services/networking/v2ray.nix
   ./services/networking/vsftpd.nix
   ./services/networking/wasabibackend.nix

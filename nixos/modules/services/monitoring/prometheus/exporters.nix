@@ -62,6 +62,7 @@ let
     "rtl_433"
     "script"
     "snmp"
+    "smartctl"
     "smokeping"
     "sql"
     "surfboard"

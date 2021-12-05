@@ -133,7 +133,12 @@ in {
       collectd = {
         isSystemUser = true;
         extraGroups = [ "disk" "ipmi" ];
+        group = "collectd";
       };
+    };
+
+    users.groups = optionalAttrs (cfg.user == "collectd") {
+      collectd = {};
     };
   };
 }
