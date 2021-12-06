@@ -5060,6 +5060,8 @@ in {
 
   mygpoclient = callPackage ../development/python-modules/mygpoclient { };
 
+  myhome = callPackage ../development/python-modules/myhome { };
+
   myjwt = callPackage ../development/python-modules/myjwt { };
 
   mypy = callPackage ../development/python-modules/mypy { };
@@ -7945,6 +7947,8 @@ in {
   pytwitchapi = callPackage ../development/python-modules/pytwitchapi { };
 
   pytz = callPackage ../development/python-modules/pytz { };
+
+  pytz-deprecation-shim = callPackage ../development/python-modules/pytz-deprecation-shim { };
 
   pytzdata = callPackage ../development/python-modules/pytzdata { };
 
