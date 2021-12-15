@@ -45,11 +45,13 @@
   ./hardware/ckb-next.nix
   ./hardware/cpu/amd-microcode.nix
   ./hardware/cpu/intel-microcode.nix
+  ./hardware/cpu/intel-sgx.nix
   ./hardware/corectrl.nix
   ./hardware/digitalbitbox.nix
   ./hardware/device-tree.nix
   ./hardware/gkraken.nix
   ./hardware/flirc.nix
+  ./hardware/gpgsmartcards.nix
   ./hardware/i2c.nix
   ./hardware/sensor/hddtemp.nix
   ./hardware/sensor/iio.nix
@@ -467,6 +469,7 @@
   ./services/mail/dovecot.nix
   ./services/mail/dspam.nix
   ./services/mail/exim.nix
+  ./services/mail/maddy.nix
   ./services/mail/mail.nix
   ./services/mail/mailcatcher.nix
   ./services/mail/mailhog.nix
@@ -926,6 +929,7 @@
   ./services/search/kibana.nix
   ./services/search/meilisearch.nix
   ./services/search/solr.nix
+  ./services/security/aesmd.nix
   ./services/security/certmgr.nix
   ./services/security/cfssl.nix
   ./services/security/clamav.nix
@@ -1191,8 +1195,7 @@
   ./virtualisation/kvmgt.nix
   ./virtualisation/openvswitch.nix
   ./virtualisation/parallels-guest.nix
-  ./virtualisation/podman.nix
-  ./virtualisation/podman-network-socket-ghostunnel.nix
+  ./virtualisation/podman/default.nix
   ./virtualisation/qemu-guest-agent.nix
   ./virtualisation/railcar.nix
   ./virtualisation/spice-usb-redirection.nix

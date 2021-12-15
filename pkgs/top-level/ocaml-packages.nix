@@ -359,8 +359,6 @@ let
 
     erm_xmpp = callPackage ../development/ocaml-modules/erm_xmpp { };
 
-    estring = callPackage ../development/ocaml-modules/estring { };
-
     ethernet = callPackage ../development/ocaml-modules/ethernet { };
 
     ezjsonm = callPackage ../development/ocaml-modules/ezjsonm { };
@@ -368,8 +366,6 @@ let
     ezxmlm = callPackage ../development/ocaml-modules/ezxmlm { };
 
     facile = callPackage ../development/ocaml-modules/facile { };
-
-    faillib = callPackage ../development/ocaml-modules/faillib { };
 
     faraday = callPackage ../development/ocaml-modules/faraday { };
 
@@ -1129,10 +1125,6 @@ let
     ocb-stubblr = callPackage ../development/ocaml-modules/ocb-stubblr { };
 
     ocurl = callPackage ../development/ocaml-modules/ocurl { };
-
-    pa_ounit = callPackage ../development/ocaml-modules/pa_ounit { };
-
-    pa_bench = callPackage ../development/ocaml-modules/pa_bench { };
 
     parany = callPackage ../development/ocaml-modules/parany { };
 
