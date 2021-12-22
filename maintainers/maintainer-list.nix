@@ -3481,9 +3481,9 @@
     githubId = 5493775;
     name = "Ente";
   };
-  enzime = {
+  Enzime = {
     email = "enzime@users.noreply.github.com";
-    github = "enzime";
+    github = "Enzime";
     githubId = 10492681;
     name = "Michael Hoang";
   };
@@ -9044,6 +9044,12 @@
     githubId = 116740;
     name = "Paweł Pacana";
   };
+  pb- = {
+    email = "pbaecher@gmail.com";
+    github = "pb-";
+    githubId = 84886;
+    name = "Paul Baecher";
+  };
   pbogdan = {
     email = "ppbogdan@gmail.com";
     github = "pbogdan";
@@ -9177,12 +9183,6 @@
     github = "photex";
     githubId = 301903;
     name = "Chip Collier";
-  };
-  phreedom = {
-    email = "phreedom@yandex.ru";
-    github = "phreedom";
-    githubId = 62577;
-    name = "Evgeny Egorochkin";
   };
   phryneas = {
     email = "mail@lenzw.de";
@@ -12124,6 +12124,12 @@
     githubId = 122319;
     name = "Renato Alves";
   };
+  unrooted = {
+    name = "Konrad Klawikowski";
+    email = "konrad.root.klawikowski@gmail.com";
+    github = "unrooted";
+    githubId = 30440603;
+  };
   uralbash = {
     email = "root@uralbash.ru";
     github = "uralbash";
@@ -12573,6 +12579,12 @@
     githubId = 78392041;
     name = "Winter";
   };
+  wintrmvte = {
+    name = "Jakub Lutczyn";
+    email = "kubalutczyn@gmail.com";
+    github = "wintrmvte";
+    githubId = 41823252;
+  };
   wirew0rm = {
     email = "alex@wirew0rm.de";
     github = "wirew0rm";
@@ -12650,6 +12662,12 @@
     github = "worldofpeace";
     githubId = 28888242;
     name = "WORLDofPEACE";
+  };
+  wr0belj = {
+    name = "Jakub Wróbel";
+    email = "wrobel.jakub@protonmail.com";
+    github = "wr0belj";
+    githubId = 40501814;
   };
   wscott = {
     email = "wsc9tt@gmail.com";
@@ -12827,6 +12845,12 @@
     github = "linyinfeng";
     githubId = 11229748;
     name = "Lin Yinfeng";
+  };
+  ylecornec = {
+    email = "yves.stan.lecornec@tweag.io";
+    github = "ylecornec";
+    githubId = 5978566;
+    name = "Yves-Stan Le Cornec";
   };
   ylwghst = {
     email = "ylwghst@onionmail.info";
@@ -13401,5 +13425,11 @@
     email = "contact@jeremypage.me";
     github = "jpagex";
     githubId = 635768;
+  };
+  pwoelfel = {
+    name = "Philipp Woelfel";
+    email = "philipp.woelfel@gmail.com";
+    github = "PhilippWoelfel";
+    githubId = 19400064;
   };
 }

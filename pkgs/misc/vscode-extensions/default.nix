@@ -135,8 +135,8 @@ let
           mktplcRef = {
             publisher = "antfu";
             name = "slidev";
-            version = "0.3.2";
-            sha256 = "sha256-vzmByEiKZIkd707Bs4RGQrMII5sghYlkQI6aAJOHFcY=";
+            version = "0.3.3";
+            sha256 = "0pqiwcvn5c8kwqlmz4ribwwra69gbiqvz41ig4fh29hkyh078rfk";
           };
           meta = with lib; {
             license = licenses.mit;
@@ -363,8 +363,8 @@ let
         mktplcRef = {
           name = "bracket-pair-colorizer-2";
           publisher = "CoenraadS";
-          version = "0.2.1";
-          sha256 = "0bfvzs4ac537zqhnqaa38jf4lhiy1fmqcv6lq89nnx8k963380z7";
+          version = "0.2.2";
+          sha256 = "0zcbs7h801agfs2cggk1cz8m8j0i2ypmgznkgw17lcx3zisll9ad";
         };
         meta = with lib; {
           license = licenses.mit;
@@ -529,8 +529,8 @@ let
         mktplcRef = {
           name = "gitlens";
           publisher = "eamodio";
-          version = "11.6.0";
-          sha256 = "sha256-JxCNE/IL/v94xWmhebsRZo1Gw+nSSpDgZ41ZGongGVI=";
+          version = "11.7.0";
+          sha256 = "0apjjlfdwljqih394ggz2d8m599pyyjrb0b4cfcz83601b7hk3x6";
         };
         meta = with lib; {
           changelog = "https://marketplace.visualstudio.com/items/eamodio.gitlens/changelog";
@@ -617,8 +617,8 @@ let
         mktplcRef = {
           name = "prettier-vscode";
           publisher = "esbenp";
-          version = "8.0.1";
-          sha256 = "017lqpmzjxq5f1zr49akcm9gfki0qq8v7pj7gks6a3szjdx16mnl";
+          version = "9.0.0";
+          sha256 = "1nak1hg46wxkl0kb0zhc343kq2f4nd5q1fqscb29jybd4qdb8lgn";
         };
       };
 
@@ -792,8 +792,8 @@ let
           mktplcRef = {
             publisher = "github";
             name = "copilot";
-            version = "1.4.2678";
-            sha256 = "sha256-NryXLuMIZJngp2dBsGbNhBiblEthckw1Zk2vqMXIzFM=";
+            version = "1.7.4421";
+            sha256 = "1wvzf8rq8ligj079f1m74zzna2mfmhcbgvvrsw6w0wxw9x8fn4wy";
           };
           meta = { license = lib.licenses.unfree; };
         };
@@ -1191,6 +1191,18 @@ let
       };
 
       ms-toolsai.jupyter = callPackage ./ms-toolsai-jupyter {};
+
+      ms-toolsai.jupyter-renderers = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "jupyter-renderers";
+          publisher = "ms-toolsai";
+          version = "1.0.4";
+          sha256 = "sha256-aKWu0Gp0f28DCv2akF/G8UDaGfTN410CcH8CAmW7mgU=";
+        };
+        meta = {
+          license = lib.licenses.mit;
+        };
+      };
 
       mvllow.rose-pine = buildVscodeMarketplaceExtension {
         mktplcRef = {
