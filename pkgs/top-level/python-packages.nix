@@ -137,6 +137,11 @@ in {
   # it should not override the version of pytest that is used for say
   # Python 2. This is an ugly hack that is needed now because the hook
   # propagates the package.
+  pytestCheckHook_5 = if isPy3k then
+    self.pytestCheckHook.override { pytest = self.pytest_5; }
+  else
+    self.pytestCheckHook;
+
   pytestCheckHook_6_1 = if isPy3k then
     self.pytestCheckHook.override { pytest = self.pytest_6_1; }
   else
@@ -548,6 +553,8 @@ in {
   anytree = callPackage ../development/python-modules/anytree {
     inherit (pkgs) graphviz;
   };
+
+  aocd = callPackage ../development/python-modules/aocd { };
 
   apache-airflow = callPackage ../development/python-modules/apache-airflow { };
 
@@ -1272,6 +1279,11 @@ in {
   # Build boost for this specific Python version
   # TODO: use separate output for libboost_python.so
   boost = toPythonModule (pkgs.boost.override {
+    inherit (self) python numpy;
+    enablePython = true;
+  });
+
+  boost169 = toPythonModule (pkgs.boost169.override {
     inherit (self) python numpy;
     enablePython = true;
   });
@@ -3467,6 +3479,8 @@ in {
 
   grpcio-gcp = callPackage ../development/python-modules/grpcio-gcp { };
 
+  grpcio-status = callPackage ../development/python-modules/grpcio-status { };
+
   grpcio-tools = callPackage ../development/python-modules/grpcio-tools { };
 
   gruut = callPackage ../development/python-modules/gruut { };
@@ -4035,6 +4049,8 @@ in {
 
   jaraco_collections = callPackage ../development/python-modules/jaraco_collections { };
 
+  jaraco-context = callPackage ../development/python-modules/jaraco-context { };
+
   jaraco_functools = callPackage ../development/python-modules/jaraco_functools { };
 
   jaraco_itertools = callPackage ../development/python-modules/jaraco_itertools { };
@@ -4112,6 +4128,8 @@ in {
   };
 
   jsbeautifier = callPackage ../development/python-modules/jsbeautifier { };
+
+  jschema-to-python = callPackage ../development/python-modules/jschema-to-python { };
 
   jsmin = callPackage ../development/python-modules/jsmin { };
 
@@ -4343,6 +4361,8 @@ in {
   langcodes = callPackage ../development/python-modules/langcodes { };
 
   langdetect = callPackage ../development/python-modules/langdetect { };
+
+  language-data = callPackage ../development/python-modules/language-data { };
 
   lark-parser = callPackage ../development/python-modules/lark-parser { };
 
@@ -4753,6 +4773,8 @@ in {
 
   mapbox = callPackage ../development/python-modules/mapbox { };
 
+  mariadb = callPackage ../development/python-modules/mariadb { };
+
   marisa-trie = callPackage ../development/python-modules/marisa-trie { };
 
   markdown2 = callPackage ../development/python-modules/markdown2 { };
@@ -4794,6 +4816,8 @@ in {
   matchpy = callPackage ../development/python-modules/matchpy { };
 
   mathlibtools = callPackage ../development/python-modules/mathlibtools { };
+
+  matlink-gpapi = callPackage ../development/python-modules/matlink-gpapi { };
 
   matplotlib = callPackage ../development/python-modules/matplotlib {
     stdenv = if stdenv.isDarwin then pkgs.clangStdenv else pkgs.stdenv;
@@ -5836,7 +5860,11 @@ in {
 
   netmap = callPackage ../development/python-modules/netmap { };
 
+  openai = callPackage ../development/python-modules/openai { };
+
   openapi-core = callPackage ../development/python-modules/openapi-core { };
+
+  pandas-stubs = callPackage ../development/python-modules/pandas-stubs { };
 
   parameterizedtestcase = callPackage ../development/python-modules/parameterizedtestcase { };
 
@@ -6290,6 +6318,8 @@ in {
   pushover-complete = callPackage ../development/python-modules/pushover-complete { };
 
   pvlib = callPackage ../development/python-modules/pvlib { };
+
+  pvo = callPackage ../development/python-modules/pvo { };
 
   Pweave = callPackage ../development/python-modules/pweave { };
 
@@ -7647,6 +7677,8 @@ in {
 
   pytest-raisesregexp = callPackage ../development/python-modules/pytest-raisesregexp { };
 
+  pytest-raisin = callPackage ../development/python-modules/pytest-raisin { };
+
   pytest-randomly = callPackage ../development/python-modules/pytest-randomly { };
 
   pytest-random-order = callPackage ../development/python-modules/pytest-random-order { };
@@ -8662,6 +8694,8 @@ in {
   sanic-testing = callPackage ../development/python-modules/sanic-testing { };
 
   sapi-python-client = callPackage ../development/python-modules/sapi-python-client { };
+
+  sarif-om = callPackage ../development/python-modules/sarif-om { };
 
   sarge = callPackage ../development/python-modules/sarge { };
 
@@ -10447,6 +10481,8 @@ in {
   yalexs = callPackage ../development/python-modules/yalexs { };
 
   yamale = callPackage ../development/python-modules/yamale { };
+
+  yamlfix = callPackage ../development/python-modules/yamlfix { };
 
   yamllint = callPackage ../development/python-modules/yamllint { };
 
