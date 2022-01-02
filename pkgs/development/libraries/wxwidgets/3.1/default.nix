@@ -41,10 +41,10 @@ stdenv.mkDerivation rec {
   pname = "wxwidgets";
 
   src = fetchFromGitHub {
-    owner = "wxWidgets";
+    owner = "prusa3d";
     repo = "wxWidgets";
-    rev = "v${version}";
-    sha256 = "1fwzrk6w5k0vs8kqdq5lpzdbp5c09hx740wg6mi6vgmc1r67dv67";
+    rev = "cff5fb5f60999e00e1447f1481b1910ff9c03790";
+    sha256 = "sha256-zOqIo3aeAjBeXr2gBDjjeSWg3faW9YguJ8eLmSE+QfQ=";
     fetchSubmodules = true;
   };
 
