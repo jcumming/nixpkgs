@@ -30,6 +30,14 @@
           PHP 8.1 is now available
         </para>
       </listitem>
+      <listitem>
+        <para>
+          Mattermost has been updated to version 6.2. Migrations may
+          take a while, see the
+          <link xlink:href="https://docs.mattermost.com/install/self-managed-changelog.html#release-v6.2-feature-release">upgrade
+          notes</link>.
+        </para>
+      </listitem>
     </itemizedlist>
   </section>
   <section xml:id="sec-release-22.05-new-services">
@@ -64,6 +72,21 @@
           <link xlink:href="https://github.com/ngoduykhanh/PowerDNS-Admin">PowerDNS-Admin</link>,
           a web interface for the PowerDNS server. Available at
           <link xlink:href="options.html#opt-services.powerdns-admin.enable">services.powerdns-admin</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://maddy.email">maddy</link>, a
+          composable all-in-one mail server. Available as
+          <link xlink:href="options.html#opt-services.maddy.enable">services.maddy</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://tetrd.app">tetrd</link>, share your
+          internet connection from your device to your PC and vice versa
+          through a USB cable. Available at
+          <link linkend="opt-services.tetrd.enable">services.tetrd</link>.
         </para>
       </listitem>
     </itemizedlist>
@@ -101,6 +124,19 @@
           <literal>pkgs.emacsPackages.elpaPackages</literal> and
           <literal>pkgs.emacsPackages.nongnuPackages</literal> where the
           new versions will release.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>services.kubernetes.addons.dashboard</literal> was
+          removed due to it being an outdated version.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The MoinMoin wiki engine
+          (<literal>services.moinmoin</literal>) has been removed,
+          because Python 2 is being retired from nixpkgs.
         </para>
       </listitem>
       <listitem>
@@ -147,6 +183,34 @@
           config file, check
           <link xlink:href="https://autorestic.vercel.app/migration/1.4_1.5">their
           migration guide</link> for more details.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          For <literal>pkgs.python3.pkgs.ipython</literal>, its direct
+          dependency
+          <literal>pkgs.python3.pkgs.matplotlib-inline</literal> (which
+          is really an adapter to integrate matplotlib in ipython if it
+          is installed) does not depend on
+          <literal>pkgs.python3.pkgs.matplotlib</literal> anymore. This
+          is closer to a non-Nix install of ipython. This has the added
+          benefit to reduce the closure size of
+          <literal>ipython</literal> from ~400MB to ~160MB (including
+          ~100MB for python itself).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>documentation.man</literal> has been refactored to
+          support choosing a man implementation other than GNU’s
+          <literal>man-db</literal>. For this,
+          <literal>documentation.man.manualPages</literal> has been
+          renamed to
+          <literal>documentation.man.man-db.manualPages</literal>. If
+          you want to use the new alternative man implementation
+          <literal>mandoc</literal>, add
+          <literal>documentation.man = { enable = true; man-db.enable = false; mandoc.enable = true; }</literal>
+          to your configuration.
         </para>
       </listitem>
     </itemizedlist>
@@ -237,6 +301,13 @@
           a
           <link xlink:href="https://github.com/NixOS/rfcs/blob/master/rfcs/0042-config-option.md">settings-style</link>
           configuration.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The option <literal>services.duplicati.dataDir</literal> has
+          been added to allow changing the location of duplicati’s
+          files.
         </para>
       </listitem>
     </itemizedlist>

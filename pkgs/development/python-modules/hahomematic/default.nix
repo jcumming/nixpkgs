@@ -10,16 +10,16 @@
 
 buildPythonPackage rec {
   pname = "hahomematic";
-  version = "0.0.17";
+  version = "0.9.1";
   format = "setuptools";
 
-  disabled = pythonOlder "3.8";
+  disabled = pythonOlder "3.9";
 
   src = fetchFromGitHub {
     owner = "danielperna84";
     repo = pname;
     rev = version;
-    sha256 = "sha256-XUlg3zuLJwWJCi2qx1f8eBK3Li94QxXz82G0zEgUztc=";
+    sha256 = "sha256-sxYa0SCsX1NZlCRMIpwyU1KPEteVH5HGLx1dFsbiu/E=";
   };
 
   propagatedBuildInputs = [
@@ -27,7 +27,7 @@ buildPythonPackage rec {
     voluptuous
   ];
 
-  # Project has no tests
+  # Module has no tests
   doCheck = false;
 
   pythonImportsCheck = [
