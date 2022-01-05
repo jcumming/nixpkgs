@@ -2052,6 +2052,8 @@ in {
 
   debugpy = callPackage ../development/python-modules/debugpy { };
 
+  decli = callPackage ../development/python-modules/decli { };
+
   decorator = callPackage ../development/python-modules/decorator { };
 
   decopatch = callPackage ../development/python-modules/decopatch { };
@@ -6612,6 +6614,8 @@ in {
 
   py-desmume = callPackage ../development/python-modules/py-desmume { };
 
+  pydevccu = callPackage ../development/python-modules/pydevccu { };
+
   pydexcom = callPackage ../development/python-modules/pydexcom { };
 
   pydicom = callPackage ../development/python-modules/pydicom { };
@@ -9772,6 +9776,8 @@ in {
   toml = callPackage ../development/python-modules/toml { };
 
   tomli = callPackage ../development/python-modules/tomli { };
+
+  tomli-w = callPackage ../development/python-modules/tomli-w { };
 
   tomlkit = callPackage ../development/python-modules/tomlkit { };
 

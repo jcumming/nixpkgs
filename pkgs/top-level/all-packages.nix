@@ -244,7 +244,7 @@ with pkgs;
 
   castxml = callPackage ../development/tools/castxml {
     inherit (llvmPackages) libclang llvm;
-    inherit (python3Packages) sphinx;
+    inherit (python3.pkgs) sphinx;
   };
 
   catatonit = callPackage ../applications/virtualization/catatonit { };
@@ -378,8 +378,6 @@ with pkgs;
   onesixtyone = callPackage ../tools/security/onesixtyone {};
 
   oletools = with python3.pkgs; toPythonApplication oletools;
-
-  creddump = callPackage ../tools/security/creddump {};
 
   credential-detector = callPackage ../tools/security/credential-detector { };
 
@@ -910,6 +908,8 @@ with pkgs;
   aether-lv2 = callPackage ../applications/audio/aether-lv2 { };
 
   acme-client = callPackage ../tools/networking/acme-client { stdenv = gccStdenv; };
+
+  adrgen = callPackage ../tools/misc/adrgen { };
 
   adriconf = callPackage ../tools/graphics/adriconf { };
 
@@ -2552,7 +2552,7 @@ with pkgs;
 
   colpack = callPackage ../applications/science/math/colpack { };
 
-  commitizen = callPackage ../applications/version-management/commitizen {};
+  cz-cli = callPackage ../applications/version-management/cz-cli {};
 
   common-licenses = callPackage ../data/misc/common-licenses {};
 
@@ -2873,8 +2873,6 @@ with pkgs;
   dsvpn = callPackage ../applications/networking/dsvpn { };
 
   dtools = callPackage ../development/tools/dtools { };
-
-  dtrx = callPackage ../tools/compression/dtrx { };
 
   dua = callPackage ../tools/misc/dua {
     inherit (darwin.apple_sdk.frameworks) Foundation;
@@ -3599,8 +3597,6 @@ with pkgs;
 
   pyCA = python3Packages.callPackage ../applications/video/pyca {};
 
-  pyrit = callPackage ../tools/security/pyrit {};
-
   pyznap = python3Packages.callPackage ../tools/backup/pyznap {};
 
   procs = callPackage ../tools/admin/procs {
@@ -3939,8 +3935,6 @@ with pkgs;
 
   birdfont = callPackage ../tools/misc/birdfont { };
   xmlbird = callPackage ../tools/misc/birdfont/xmlbird.nix { stdenv = gccStdenv; };
-
-  blastem = callPackage ../misc/emulators/blastem { };
 
   blahtexml = callPackage ../tools/typesetting/tex/blahtexml { };
 
@@ -5135,8 +5129,6 @@ with pkgs;
 
   ettercap = callPackage ../applications/networking/sniffers/ettercap { };
 
-  euca2ools = callPackage ../tools/virtualization/euca2ools { };
-
   eventstat = callPackage ../os-specific/linux/eventstat { };
 
   evillimiter = python3Packages.callPackage ../tools/networking/evillimiter { };
@@ -5627,7 +5619,7 @@ with pkgs;
 
   gexiv2 = callPackage ../development/libraries/gexiv2 { };
 
-  gftp = callPackage ../applications/networking/gftp {
+  gftp = callPackage ../applications/networking/ftp/gftp {
     gtk = gtk2;
   };
 
@@ -5712,9 +5704,6 @@ with pkgs;
   inherit (haskellPackages) git-brunch;
 
   git-bug = callPackage ../applications/version-management/git-and-tools/git-bug { };
-
-  # support for bugzilla
-  git-bz = callPackage ../applications/version-management/git-and-tools/git-bz { };
 
   git-chglog = callPackage ../applications/version-management/git-and-tools/git-chglog { };
 
@@ -6211,8 +6200,6 @@ with pkgs;
   gkraken = callPackage ../tools/system/gkraken { };
 
   gtkdatabox = callPackage ../development/libraries/gtkdatabox {};
-
-  gtklick = callPackage ../applications/audio/gtklick {};
 
   gtdialog = callPackage ../development/libraries/gtdialog {};
 
@@ -6919,8 +6906,6 @@ with pkgs;
 
   klystrack = callPackage ../applications/audio/klystrack { };
 
-  knockknock = callPackage ../tools/security/knockknock { };
-
   knockpy = callPackage ../tools/security/knockpy { };
 
   kore = callPackage ../development/web/kore { };
@@ -7116,6 +7101,8 @@ with pkgs;
   mask = callPackage ../development/tools/mask { };
 
   mathpix-snipping-tool = callPackage ../tools/misc/mathpix-snipping-tool { };
+
+  matrix-conduit = callPackage ../servers/matrix-conduit { };
 
   /* Python 3.8 is currently broken with matrix-synapse since `python38Packages.bleach` fails
     (https://github.com/NixOS/nixpkgs/issues/76093) */
@@ -8380,6 +8367,8 @@ with pkgs;
     opendylan-bootstrap = opendylan_bin;
   };
 
+  openfec = callPackage ../development/libraries/openfec { };
+
   ophis = python3Packages.callPackage ../development/compilers/ophis { };
 
   opendylan_bin = callPackage ../development/compilers/opendylan/bin.nix { };
@@ -8682,8 +8671,6 @@ with pkgs;
 
   pdf2odt = callPackage ../tools/typesetting/pdf2odt { };
 
-  pdf-redact-tools = callPackage ../tools/graphics/pdfredacttools { };
-
   pdfcrack = callPackage ../tools/security/pdfcrack { };
 
   pdfsandwich = callPackage ../tools/typesetting/pdfsandwich { };
@@ -8872,8 +8859,6 @@ with pkgs;
   polkit_gnome = callPackage ../tools/security/polkit-gnome { };
 
   poly2tri-c = callPackage ../development/libraries/poly2tri-c { };
-
-  polysh = callPackage ../tools/networking/polysh { };
 
   ponysay = callPackage ../tools/misc/ponysay { };
 
@@ -9160,8 +9145,6 @@ with pkgs;
 
   ratools = callPackage ../tools/networking/ratools { };
 
-  rawdog = callPackage ../applications/networking/feedreaders/rawdog { };
-
   rc = callPackage ../shells/rc { };
 
   rcon = callPackage ../tools/networking/rcon { };
@@ -9323,6 +9306,8 @@ with pkgs;
 
   rmtrash = callPackage ../tools/misc/rmtrash { };
 
+  roc-toolkit = callPackage ../development/libraries/audio/roc-toolkit { };
+
   rockbox_utility = libsForQt5.callPackage ../tools/misc/rockbox-utility { };
 
   rosegarden = libsForQt514.callPackage ../applications/audio/rosegarden { };
@@ -9383,6 +9368,8 @@ with pkgs;
   rund = callPackage ../development/tools/rund { };
 
   runzip = callPackage ../tools/archivers/runzip { };
+
+  unzoo = callPackage ../tools/archivers/unzoo { };
 
   ruplacer = callPackage ../tools/text/ruplacer {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -9621,6 +9608,8 @@ with pkgs;
   sieve-connect = callPackage ../applications/networking/sieve-connect {};
 
   sigal = callPackage ../applications/misc/sigal { };
+
+  sigi = callPackage ../applications/misc/sigi { };
 
   sigil = libsForQt5.callPackage ../applications/editors/sigil { };
 
@@ -10296,8 +10285,6 @@ with pkgs;
   top-git = callPackage ../applications/version-management/git-and-tools/topgit { };
 
   tor = callPackage ../tools/security/tor { };
-
-  tor-arm = callPackage ../tools/security/tor/tor-arm.nix { };
 
   tor-browser-bundle-bin = callPackage ../applications/networking/browsers/tor-browser-bundle-bin { };
 
@@ -12315,6 +12302,10 @@ with pkgs;
 
   remarkable2-toolchain = callPackage ../development/tools/misc/remarkable/remarkable2-toolchain { };
 
+  t-rex = callPackage ../servers/t-rex {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   tacacsplus = callPackage ../servers/tacacsplus { };
 
   tamarin-prover =
@@ -12825,7 +12816,7 @@ with pkgs;
     ocamlformat_0_11_0 ocamlformat_0_12 ocamlformat_0_13_0 ocamlformat_0_14_0
     ocamlformat_0_14_1 ocamlformat_0_14_2 ocamlformat_0_14_3 ocamlformat_0_15_0
     ocamlformat_0_15_1 ocamlformat_0_16_0 ocamlformat_0_17_0 ocamlformat_0_18_0
-    ocamlformat_0_19_0;
+    ocamlformat_0_19_0 ocamlformat_0_20_0 ocamlformat_0_20_1;
 
   orc = callPackage ../development/compilers/orc { };
 
@@ -13589,6 +13580,8 @@ with pkgs;
   mujs = callPackage ../development/interpreters/mujs { };
 
   ngn-k = callPackage ../development/interpreters/ngn-k { };
+
+  obb = callPackage ../development/interpreters/clojure/obb.nix { };
 
   octave = callPackage ../development/interpreters/octave {
     python = python3;
@@ -20901,7 +20894,7 @@ with pkgs;
     erlang = erlangR22;
   };
 
-  couchpotato = callPackage ../servers/couchpotato {};
+  dcnnt = python3Packages.callPackage ../servers/dcnnt { };
 
   dendrite = callPackage ../servers/dendrite { };
 
@@ -21796,11 +21789,7 @@ with pkgs;
       # see also openssl, which has/had this same trick
   };
 
-  sickbeard = callPackage ../servers/sickbeard { };
-
   sickgear = callPackage ../servers/sickbeard/sickgear.nix { };
-
-  sickrage = callPackage ../servers/sickbeard/sickrage.nix { };
 
   sigurlx = callPackage ../tools/security/sigurlx { };
 
@@ -22901,7 +22890,9 @@ with pkgs;
 
   sdparm = callPackage ../os-specific/linux/sdparm { };
 
-  sdrangel = libsForQt5.callPackage ../applications/radio/sdrangel {  };
+  sdrangel = libsForQt5.callPackage ../applications/radio/sdrangel {
+    boost = boost172;
+  };
 
   setools = callPackage ../os-specific/linux/setools { };
 
@@ -25025,8 +25016,6 @@ with pkgs;
 
   electrum = libsForQt5.callPackage ../applications/misc/electrum { };
 
-  electrum-dash = callPackage ../applications/misc/electrum/dash.nix { };
-
   electrum-ltc = libsForQt5.callPackage ../applications/misc/electrum/ltc.nix { };
 
   elementary-planner = callPackage ../applications/office/elementary-planner { };
@@ -26164,8 +26153,6 @@ with pkgs;
 
   smooth = callPackage ../development/libraries/smooth { };
 
-  smos = callPackage ../applications/misc/smos { };
-
   spectrwm = callPackage ../applications/window-managers/spectrwm { };
 
   spot = callPackage ../applications/audio/spot { };
@@ -26474,6 +26461,8 @@ with pkgs;
   jackmix = libsForQt5.callPackage ../applications/audio/jackmix { };
   jackmix_jack1 = jackmix.override { jack = jack1; };
 
+  jaeles = callPackage ../tools/security/jaeles { };
+
   jalv = callPackage ../applications/audio/jalv { };
 
   jameica = callPackage ../applications/office/jameica {
@@ -26561,8 +26550,6 @@ with pkgs;
   };
 
   kdevelop = libsForQt5.callPackage ../applications/editors/kdevelop5/wrapper.nix { };
-
-  keepnote = callPackage ../applications/office/keepnote { };
 
   kega-fusion = pkgsi686Linux.callPackage ../misc/emulators/kega-fusion { };
 
@@ -26756,8 +26743,6 @@ with pkgs;
   lazpaint = callPackage ../applications/graphics/lazpaint { };
 
   caps = callPackage ../applications/audio/caps { };
-
-  lastfmsubmitd = callPackage ../applications/audio/lastfmsubmitd { };
 
   lbdb = callPackage ../tools/misc/lbdb { abook = null; gnupg = null; goobook = null; khard = null; mu = null; };
 
@@ -27114,8 +27099,6 @@ with pkgs;
 
   mimic = callPackage ../applications/audio/mimic { };
 
-  mimms = callPackage ../applications/audio/mimms {};
-
   meh = callPackage ../applications/graphics/meh {};
 
   mixxx = libsForQt5.callPackage ../applications/audio/mixxx { };
@@ -27201,6 +27184,7 @@ with pkgs;
     mopidy-mopify
     mopidy-mpd
     mopidy-mpris
+    mopidy-muse
     mopidy-musicbox-webclient
     mopidy-podcast
     mopidy-scrobbler
@@ -27994,9 +27978,7 @@ with pkgs;
 
   pinpoint = callPackage ../applications/office/pinpoint { };
 
-  pinta = callPackage ../applications/graphics/pinta {
-    gtksharp = gtk-sharp-2_0;
-  };
+  pinta = callPackage ../applications/graphics/pinta { };
 
   pistol = callPackage ../tools/misc/pistol { };
 
@@ -28094,8 +28076,6 @@ with pkgs;
   pure-maps = libsForQt5.callPackage ../applications/misc/pure-maps { };
 
   pwdsafety = callPackage ../tools/security/pwdsafety { };
-
-  pybitmessage = callPackage ../applications/networking/instant-messengers/pybitmessage { };
 
   qbittorrent = libsForQt5.callPackage ../applications/networking/p2p/qbittorrent { };
   qbittorrent-nox = qbittorrent.override {
@@ -28570,7 +28550,9 @@ with pkgs;
 
   ly = callPackage ../applications/display-managers/ly { };
 
-  slic3r = callPackage ../applications/misc/slic3r { };
+  slic3r = callPackage ../applications/misc/slic3r {
+    boost = boost172; # Building fails with Boost >1.72 due to boost/detail/endian.hpp missing
+  };
 
   curaengine_stable = callPackage ../applications/misc/curaengine/stable.nix { };
   cura_stable = callPackage ../applications/misc/cura/stable.nix {
@@ -29320,7 +29302,12 @@ with pkgs;
 
   vkeybd = callPackage ../applications/audio/vkeybd {};
 
-  vlc = libsForQt5.callPackage ../applications/video/vlc {};
+  vlc = libsForQt5.callPackage ../applications/video/vlc {
+    # Newest libcaca changed the API, and libvlc didn't catch it. Until next
+    # version arrives, it is safer to disable it.
+    # Upstream thread: https://code.videolan.org/videolan/vlc/-/issues/26389
+    libcaca = null;
+  };
 
   vlc_qt5 = vlc;
 
@@ -30170,7 +30157,7 @@ with pkgs;
 
   wasabiwallet = callPackage ../applications/blockchains/wasabiwallet { };
 
-  wasabibackend = callPackage ../applications/blockchains/wasabibackend { Nuget = dotnetPackages.Nuget; };
+  wasabibackend = callPackage ../applications/blockchains/wasabibackend { };
 
   wownero = callPackage ../applications/blockchains/wownero {
     boost = boost175;
@@ -30787,6 +30774,8 @@ with pkgs;
   openmw-tes3mp = libsForQt5.callPackage ../games/openmw/tes3mp.nix { };
 
   portmod = callPackage ../games/portmod { };
+
+  tlauncher = callPackage ../games/tlauncher {};
 
   tr-patcher = callPackage ../games/tr-patcher { };
 
@@ -33231,9 +33220,7 @@ with pkgs;
 
   fsuae = callPackage ../misc/emulators/fs-uae { };
 
-  fsuae-launcher = callPackage ../misc/emulators/fs-uae-launcher {
-    inherit (python3Packages) pyqt5 setuptools requests;
-  };
+  fsuae-launcher = callPackage ../misc/emulators/fs-uae/launcher.nix { };
 
   putty = callPackage ../applications/networking/remote/putty {
     gtk2 = gtk2-x11;
