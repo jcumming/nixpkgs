@@ -254,6 +254,8 @@ let
 
     data-encoding = callPackage ../development/ocaml-modules/data-encoding { };
 
+    dbf =  callPackage ../development/ocaml-modules/dbf { };
+
     decompress =  callPackage ../development/ocaml-modules/decompress { };
 
     diet =  callPackage ../development/ocaml-modules/diet { };
@@ -511,8 +513,6 @@ let
 
     graphql_ppx = callPackage ../development/ocaml-modules/graphql_ppx { };
 
-    gtktop = callPackage ../development/ocaml-modules/gtktop { };
-
     hex = callPackage ../development/ocaml-modules/hex { };
 
     httpaf = callPackage ../development/ocaml-modules/httpaf { };
@@ -598,10 +598,10 @@ let
     lablgtk3-sourceview3 = callPackage ../development/ocaml-modules/lablgtk3/sourceview3.nix { };
 
     lablgtk_2_14 = callPackage ../development/ocaml-modules/lablgtk/2.14.0.nix {
-      inherit (pkgs.gnome2) libgnomecanvas libglade gtksourceview;
+      inherit (pkgs.gnome2) libgnomecanvas gtksourceview;
     };
     lablgtk = callPackage ../development/ocaml-modules/lablgtk {
-      inherit (pkgs.gnome2) libgnomecanvas libglade gtksourceview;
+      inherit (pkgs.gnome2) libgnomecanvas gtksourceview;
     };
 
     lablgtk-extras =
@@ -1279,6 +1279,8 @@ let
 
     tcslib = callPackage ../development/ocaml-modules/tcslib { };
 
+    terminal = callPackage ../development/ocaml-modules/terminal { };
+
     terminal_size = callPackage ../development/ocaml-modules/terminal_size { };
 
     tezos-010-PtGRANAD-test-helpers = callPackage ../development/ocaml-modules/tezos/010-PtGRANAD-test-helpers.nix { };
@@ -1369,6 +1371,8 @@ let
     uuuu = callPackage ../development/ocaml-modules/uuuu { };
 
     vchan = callPackage ../development/ocaml-modules/vchan { };
+
+    vector = callPackage ../development/ocaml-modules/vector { };
 
     vg = callPackage ../development/ocaml-modules/vg { };
 

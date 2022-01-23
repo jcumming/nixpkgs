@@ -1,4 +1,4 @@
-{ stdenv, config, requireFile
+{ stdenv, lib, config, requireFile
 , curl, SDL, SDL_image, libpng12, libjpeg, libvorbis, libogg, openal, libGLU
 , libX11, libXext, libXft, fontconfig, zlib, makeDesktopItem }:
 
@@ -34,10 +34,10 @@ stdenv.mkDerivation rec {
   phases = "unpackPhase installPhase";
 
   # XXX: stdenv.lib.makeLibraryPath doesn't pick up /lib64
-  libPath = stdenv.lib.makeLibraryPath [ stdenv.cc.cc stdenv.cc.libc ] 
-    + ":" + stdenv.lib.makeLibraryPath [ SDL SDL_image libjpeg libpng12 libGLU ]
-    + ":" + stdenv.lib.makeLibraryPath [ curl openal libvorbis libogg ]
-    + ":" + stdenv.lib.makeLibraryPath [ libX11 libXext libXft fontconfig zlib ]
+  libPath = lib.makeLibraryPath [ stdenv.cc.cc stdenv.cc.libc ] 
+    + ":" + lib.makeLibraryPath [ SDL SDL_image libjpeg libpng12 libGLU ]
+    + ":" + lib.makeLibraryPath [ curl openal libvorbis libogg ]
+    + ":" + lib.makeLibraryPath [ libX11 libXext libXft fontconfig zlib ]
     + ":" + stdenv.cc.cc + "/lib64";
 
   installPhase = ''
@@ -69,7 +69,7 @@ stdenv.mkDerivation rec {
     ln -s ${desktopItem}/share/applications/* $out/share/applications
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Gratuitous Space Battles";
     longDescription = ''
       a strategy / management / simulation game that does away with all the

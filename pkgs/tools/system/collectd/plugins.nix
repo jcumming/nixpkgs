@@ -32,7 +32,7 @@
 , perl
 , postgresql
 , protobufc
-, python
+, python2
 , rabbitmq-c
 , rdkafka
 , riemann_c_client
@@ -104,7 +104,7 @@ let
     pinba.buildInputs = [ protobufc ];
     ping.buildInputs = [ liboping ];
     postgresql.buildInputs = [ postgresql ];
-    python.buildInputs = [ python ];
+    python.buildInputs = [ python2 ];
     redis.buildInputs = [ hiredis ];
     rrdcached.buildInputs = [ rrdtool libxml2 ];
     rrdtool.buildInputs = [ rrdtool libxml2 ];
