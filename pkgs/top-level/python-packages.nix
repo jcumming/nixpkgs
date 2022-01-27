@@ -534,6 +534,8 @@ in {
 
   ansiconv = callPackage ../development/python-modules/ansiconv { };
 
+  ansimarkup = callPackage ../development/python-modules/ansimarkup { };
+
   ansiwrap = callPackage ../development/python-modules/ansiwrap { };
 
   antlr4-python3-runtime = callPackage ../development/python-modules/antlr4-python3-runtime {
@@ -1501,6 +1503,8 @@ in {
 
   coqpit = callPackage ../development/python-modules/coqpit { };
 
+  cepa = callPackage ../development/python-modules/cepa { };
+
   cerberus = callPackage ../development/python-modules/cerberus { };
 
   cert-chain-resolver = callPackage ../development/python-modules/cert-chain-resolver { };
@@ -2003,6 +2007,8 @@ in {
   datadiff = callPackage ../development/python-modules/datadiff { };
 
   datadog = callPackage ../development/python-modules/datadog { };
+
+  datafusion = callPackage ../development/python-modules/datafusion { };
 
   datamodeldict = callPackage ../development/python-modules/datamodeldict { };
 
@@ -3519,6 +3525,8 @@ in {
   growattserver = callPackage ../development/python-modules/growattserver { };
 
   grip = callPackage ../development/python-modules/grip { };
+
+  groestlcoin_hash = callPackage ../development/python-modules/groestlcoin_hash { };
 
   grpc-google-iam-v1 = callPackage ../development/python-modules/grpc-google-iam-v1 { };
 
@@ -5047,6 +5055,8 @@ in {
 
   mizani = callPackage ../development/python-modules/mizani { };
 
+  mkdocs = callPackage ../development/python-modules/mkdocs { };
+
   mkl-service = callPackage ../development/python-modules/mkl-service { };
 
   ml-collections = callPackage ../development/python-modules/ml-collections { };
@@ -5409,6 +5419,8 @@ in {
 
   nix-prefetch-github = callPackage ../development/python-modules/nix-prefetch-github { };
 
+  nkdfu = callPackage ../development/python-modules/nkdfu { };
+
   nltk = callPackage ../development/python-modules/nltk { };
 
   nmapthon2 = callPackage ../development/python-modules/nmapthon2 { };
@@ -5579,6 +5591,10 @@ in {
   onetimepass = callPackage ../development/python-modules/onetimepass { };
 
   onkyo-eiscp = callPackage ../development/python-modules/onkyo-eiscp { };
+
+  online-judge-api-client = callPackage ../development/python-modules/online-judge-api-client { };
+
+  online-judge-tools = callPackage ../development/python-modules/online-judge-tools { };
 
   onlykey-solo-python = callPackage ../development/python-modules/onlykey-solo-python { };
 
@@ -6126,6 +6142,8 @@ in {
 
   python-kasa = callPackage ../development/python-modules/python-kasa { };
 
+  python-keycloak = callPackage ../development/python-modules/python-keycloak { };
+
   python-keystoneclient = callPackage ../development/python-modules/python-keystoneclient { };
 
   python-lsp-black = callPackage ../development/python-modules/python-lsp-black { };
@@ -6628,6 +6646,8 @@ in {
 
   pycryptodome = callPackage ../development/python-modules/pycryptodome { };
 
+  pycryptodome-test-vectors = callPackage ../development/python-modules/pycryptodome-test-vectors { };
+
   pycryptodomex = callPackage ../development/python-modules/pycryptodomex { };
 
   pyct = callPackage ../development/python-modules/pyct { };
@@ -6824,6 +6844,8 @@ in {
   pygdbmi = callPackage ../development/python-modules/pygdbmi { };
 
   pygeoip = callPackage ../development/python-modules/pygeoip { };
+
+  pygeos = callPackage ../development/python-modules/pygeos { };
 
   pygetwindow = callPackage ../development/python-modules/pygetwindow { };
 
@@ -7050,6 +7072,8 @@ in {
   pymc3 = callPackage ../development/python-modules/pymc3 { };
 
   pymdstat = callPackage ../development/python-modules/pymdstat { };
+
+  pymdown-extensions = callPackage ../development/python-modules/pymdown-extensions { };
 
   pymediainfo = callPackage ../development/python-modules/pymediainfo { };
 
@@ -8310,9 +8334,7 @@ in {
 
   pywizlight = callPackage ../development/python-modules/pywizlight { };
 
-  pywlroots = callPackage ../development/python-modules/pywlroots {
-    wlroots = pkgs.wlroots_0_14;
-  };
+  pywlroots = callPackage ../development/python-modules/pywlroots { };
 
   pyxattr = callPackage ../development/python-modules/pyxattr { };
 

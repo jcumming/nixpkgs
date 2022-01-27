@@ -157,6 +157,7 @@ mapAliases ({
   couchdb = throw "couchdb was removed from nixpkgs, use couchdb3 instead"; # added 2021-03-03
   couchdb2 = throw "couchdb2 was removed from nixpkgs, use couchdb3 instead"; # added 2021-03-03
   coredumper = throw "coredumper has been removed: abandoned by upstream."; # added 2019-11-16
+  corsmisc = throw "corsmisc has been removed (upstream is gone)"; # added 2022-01-24
   cpp_ethereum = throw "cpp_ethereum has been removed; abandoned upstream."; # added 2020-11-30
   cpuminer-multi = throw "cpuminer-multi has been removed: deleted by upstream"; # added 2022-01-07
   crafty = throw "crafty has been removed: deleted by upstream"; # 2022-01-07
@@ -283,6 +284,7 @@ mapAliases ({
   flutter-beta = throw "Non-stable versions of Flutter have been removed. You can use flutterPackages.mkFlutter to generate a package for other Flutter versions."; # added 2020-01-15
   flutter-dev = throw "Non-stable versions of Flutter have been removed. You can use flutterPackages.mkFlutter to generate a package for other Flutter versions."; # added 2020-01-15
   flvtool2 = throw "flvtool2 has been removed."; # added 2020-11-03
+  fme = throw "fme was removed, because it is old and uses Glade, a discontinued library."; # added 2022-01-26
   foldingathome = fahclient; # added 2020-09-03
   font-awesome-ttf = font-awesome; # 2018-02-25
   # 2019-10-31
@@ -411,6 +413,7 @@ mapAliases ({
   inotifyTools = inotify-tools;
   inter-ui = inter; # added 2021-03-27
   iproute = iproute2; # moved from top-level 2021-03-14
+  ipsecTools = throw "ipsecTools has benn removed, because it was no longer maintained upstream"; # added 2021-12-15
   i-score = throw "i-score has been removed: abandoned upstream."; # added 2020-11-21
   jack2Full = jack2; # moved from top-level 2021-03-14
   jamomacore = throw "jamomacore has been removed: abandoned upstream."; # added 2020-11-21
@@ -630,6 +633,7 @@ mapAliases ({
   module_init_tools = kmod; # added 2016-04-22
   mozart = mozart2-binary; # added 2019-09-23
   mozart-binary = mozart2-binary; # added 2019-09-23
+  mpc_cli = mpc-cli; # moved from top-level 2022-01-24
   mpd_clientlib = libmpdclient; # added 2021-02-11
   mpich2 = mpich;  # added 2018-08-06
   msf = metasploit; # added 2018-04-25
@@ -924,6 +928,7 @@ mapAliases ({
   shared_mime_info = shared-mime-info; # added 2018-02-25
   sickbeard = throw "sickbeard has been removed from nixpkgs, as it was unmaintained."; # added 2022-01-01
   sickrage = throw "sickbeard has been removed from nixpkgs, as it was unmaintained."; # added 2022-01-01
+  sigurlx = throw "sigurlx has been removed (upstream is gone)"; # added 2022-01-24
   skrooge2 = skrooge; # added 2017-02-18
   sky = throw "sky has been removed from nixpkgs (2020-09-16)";
   skype = skypeforlinux; # added 2017-07-27
@@ -1025,6 +1030,7 @@ mapAliases ({
   tftp_hpa = tftp-hpa; # added 2015-04-03
   timescale-prometheus = promscale; # added 2020-09-29
   timetable = throw "timetable has been removed, as the upstream project has been abandoned"; # added 2021-09-05
+  tomboy = throw "tomboy is not actively developed anymore and was removed."; # added 2022-01-27
   tomcat7 = throw "tomcat7 has been removed from nixpkgs as it has reached end of life."; # added 2021-06-16
   tomcat8 = throw "tomcat8 has been removed from nixpkgs as it has reached end of life."; # added 2021-06-16
   tomcat85 = throw "tomcat85 has been removed from nixpkgs as it has reached end of life."; # added 2020-03-11
@@ -1083,6 +1089,7 @@ mapAliases ({
   weechat-matrix-bridge = weechatScripts.weechat-matrix-bridge; # added 2018-09-06
   wicd = throw "wicd has been removed as it is abandoned."; # added 2021-09-11
   wineStaging = wine-staging; # added 2018-01-08
+  wineWayland = wine-wayland;
   winusb = woeusb; # added 2017-12-22
   winswitch = throw "winswitch has been removed from nixpkgs."; # added 2019-12-10
   wireshark-gtk = throw "wireshark-gtk is not supported anymore. Use wireshark-qt or wireshark-cli instead."; # added 2019-11-18

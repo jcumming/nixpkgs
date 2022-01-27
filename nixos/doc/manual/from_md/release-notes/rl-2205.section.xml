@@ -358,6 +358,19 @@
       </listitem>
       <listitem>
         <para>
+          The iputils package, which is installed by default, no longer
+          provides the legacy tools <literal>tftpd</literal> and
+          <literal>traceroute6</literal>. More tools
+          (<literal>ninfod</literal>, <literal>rarpd</literal>, and
+          <literal>rdisc</literal>) are going to be removed in the next
+          release. See
+          <link xlink:href="https://github.com/iputils/iputils/releases/tag/20211215">upstream’s
+          release notes</link> for more details and available
+          replacements.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>services.thelounge.private</literal> was removed in
           favor of <literal>services.thelounge.public</literal>, to
           follow with upstream changes.
@@ -395,6 +408,24 @@
           file’s path has also moved from
           <literal>~/.local/share/multimc/multimc.cfg</literal> to
           <literal>~/.local/share/polymc/polymc.cfg</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The terraform 0.12 compatibility has been removed and the
+          <literal>terraform.withPlugins</literal> and
+          <literal>terraform-providers.mkProvider</literal>
+          implementations simplified. Providers now need to be stored
+          under
+          <literal>$out/libexec/terraform-providers/&lt;registry&gt;/&lt;owner&gt;/&lt;name&gt;/&lt;version&gt;/&lt;os&gt;_&lt;arch&gt;/terraform-provider-&lt;name&gt;_v&lt;version&gt;</literal>
+          (which mkProvider does).
+        </para>
+        <para>
+          This breaks back-compat so it’s not possible to mix-and-match
+          with previous versions of nixpkgs. In exchange, it now becomes
+          possible to use the providers from
+          <link xlink:href="https://github.com/numtide/nixpkgs-terraform-providers-bin">nixpkgs-terraform-providers-bin</link>
+          directly.
         </para>
       </listitem>
       <listitem>
@@ -502,6 +533,29 @@
       </listitem>
       <listitem>
         <para>
+          The configuration portion of the <literal>nix-daemon</literal>
+          module has been reworked and exposed as
+          <link xlink:href="options.html#opt-nix-settings">nix.settings</link>:
+        </para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para>
+              Legacy options have been mapped to the corresponding
+              options under under
+              <link xlink:href="options.html#opt-nix.settings">nix.settings</link>
+              but may be deprecated in the future.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link xlink:href="options.html#opt-nix.buildMachines.publicHostKey">nix.buildMachines.publicHostKey</link>
+              has been added.
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
           The
           <literal>writers.writePyPy2</literal>/<literal>writers.writePyPy3</literal>
           and corresponding
@@ -591,6 +645,14 @@
       </listitem>
       <listitem>
         <para>
+          A new option
+          <literal>boot.initrd.extraModprobeConfig</literal> has been
+          added which can be used to configure kernel modules that are
+          loaded in the initrd.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>fetchFromSourcehut</literal> now allows fetching
           repositories recursively using <literal>fetchgit</literal> or
           <literal>fetchhg</literal> if the argument
@@ -671,6 +733,15 @@
           Reason is that the old name has been deprecated upstream.
           Using the old option name will still work, but produce a
           warning.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>programs.tmux</literal> has a new option
+          <literal>plugins</literal> that accepts a list of packages
+          from the <literal>tmuxPlugins</literal> group. The specified
+          packages are added to the system and loaded by
+          <literal>tmux</literal>.
         </para>
       </listitem>
     </itemizedlist>
