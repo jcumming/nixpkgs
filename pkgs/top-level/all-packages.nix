@@ -200,6 +200,8 @@ with pkgs;
 
   fission = callPackage ../development/tools/fission { };
 
+  appthreat-depscan = callPackage ../development/tools/appthreat-depscan { };
+
   authy = callPackage ../applications/misc/authy { };
 
   avro-tools = callPackage ../development/tools/avro-tools { };
@@ -1083,6 +1085,8 @@ with pkgs;
 
   archi = callPackage ../tools/misc/archi { };
 
+  breitbandmessung = callPackage ../applications/networking/breitbandmessung { };
+
   contour = libsForQt5.callPackage ../applications/terminal-emulators/contour { };
 
   cool-retro-term = libsForQt5.callPackage ../applications/terminal-emulators/cool-retro-term { };
@@ -1762,7 +1766,7 @@ with pkgs;
   genymotion = callPackage ../development/mobile/genymotion { };
 
   galene = callPackage ../servers/web-apps/galene {
-    buildGoModule = buildGo115Module;
+    buildGoModule = buildGo117Module;
   };
 
   gamecube-tools = callPackage ../development/tools/gamecube-tools { };
@@ -2929,9 +2933,10 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
     electron = electron_13;
   };
-  element-desktop-wayland = element-desktop.override {
-    useWayland = true;
-  };
+  element-desktop-wayland = writeScript "element-desktop-wayland" ''
+    #!/bin/sh
+    NIXOS_OZONE_WL=1 exec ${element-desktop}/bin/element-desktop "$@"
+  '';
 
   element-web = callPackage ../applications/networking/instant-messengers/element/element-web.nix {
     conf = config.element-web.conf or {};
@@ -2974,6 +2979,8 @@ with pkgs;
   ejson = callPackage ../development/tools/ejson {};
 
   eternal-terminal = callPackage ../tools/networking/eternal-terminal {};
+
+  extrude = callPackage ../tools/security/extrude { };
 
   f3 = callPackage ../tools/filesystems/f3 { };
 
@@ -3365,6 +3372,8 @@ with pkgs;
   maliit-framework = libsForQt5.callPackage ../applications/misc/maliit-framework { };
 
   maliit-keyboard = libsForQt5.callPackage ../applications/misc/maliit-keyboard { };
+
+  mandown = callPackage ../tools/misc/mandown { };
 
   mapcidr = callPackage ../tools/misc/mapcidr { };
 
@@ -4923,9 +4932,10 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
     electron = electron_13;
   };
-  schildichat-desktop-wayland = schildichat-desktop.override {
-    useWayland = true;
-  };
+  schildichat-desktop-wayland = writeScript "schildichat-desktop-wayland" ''
+    #!/bin/sh
+    NIXOS_OZONE_WL=1 exec ${schildichat-desktop}/bin/schildichat-desktop "$@"
+  '';
 
   schildichat-web = callPackage ../applications/networking/instant-messengers/schildichat/schildichat-web.nix {
     conf = config.schildichat-web.conf or {};
@@ -5895,6 +5905,8 @@ with pkgs;
   };
 
   gnirehtet = callPackage ../tools/networking/gnirehtet { };
+
+  gnome-2048 = callPackage ../desktops/gnome/games/gnome-2048 { };
 
   gnome-builder = callPackage ../applications/editors/gnome-builder { };
 
@@ -8078,11 +8090,6 @@ with pkgs;
   # with different versions we pin Go for all versions.
   # Upstream partially documents used Go versions here
   # https://github.com/hashicorp/nomad/blob/master/contributing/golang.md
-  nomad_1_0 = callPackage ../applications/networking/cluster/nomad/1.0.nix {
-    buildGoPackage = buildGo115Package;
-    inherit (linuxPackages) nvidia_x11;
-    nvidiaGpuSupport = config.cudaSupport or false;
-  };
   nomad_1_1 = callPackage ../applications/networking/cluster/nomad/1.1.nix {
     buildGoModule = buildGo116Module;
     inherit (linuxPackages) nvidia_x11;
@@ -14443,6 +14450,8 @@ with pkgs;
 
   cfr = callPackage ../development/tools/java/cfr { };
 
+  cfripper = callPackage ../tools/security/cfripper { };
+
   checkra1n = callPackage ../development/mobile/checkra1n { };
 
   checkstyle = callPackage ../development/tools/analysis/checkstyle { };
@@ -19028,9 +19037,7 @@ with pkgs;
     ogre = ogre1_9;
   };
 
-  mysocketw = callPackage ../development/libraries/mysocketw {
-    openssl = openssl_1_0_2;
-  };
+  mysocketw = callPackage ../development/libraries/mysocketw { };
 
   mythes = callPackage ../development/libraries/mythes { };
 
@@ -19858,6 +19865,8 @@ with pkgs;
 
   skaffold = callPackage ../development/tools/skaffold { };
 
+  skjold = callPackage ../development/tools/skjold { };
+
   skalibs = skawarePackages.skalibs;
   skalibs_2_10 = skawarePackages.skalibs_2_10;
 
@@ -20223,7 +20232,7 @@ with pkgs;
   triehash = callPackage ../tools/misc/triehash { };
 
   trillian = callPackage ../tools/misc/trillian {
-    buildGoModule = buildGo115Module;
+    buildGoModule = buildGo117Module;
   };
 
   twolame = callPackage ../development/libraries/twolame { };
@@ -21100,6 +21109,12 @@ with pkgs;
     buildGoModule = buildGo116Module;
   };
 
+  promtail = grafana-loki.overrideAttrs (o: {
+    pname = "promtail";
+    subPackages = ["clients/cmd/promtail"];
+    CGO_ENABLED = 1;
+  });
+
   grafana_reporter = callPackage ../servers/monitoring/grafana-reporter { };
 
   grafana-image-renderer = callPackage ../servers/monitoring/grafana-image-renderer { };
@@ -21644,7 +21659,6 @@ with pkgs;
 
   openfire = callPackage ../servers/xmpp/openfire { };
 
-  softether_4_25 = callPackage ../servers/softether/4.25.nix { openssl = openssl_1_0_2; };
   softether_4_29 = callPackage ../servers/softether/4.29.nix { };
   softether = softether_4_29;
 
@@ -22612,6 +22626,8 @@ with pkgs;
   lm_sensors = callPackage ../os-specific/linux/lm-sensors { };
 
   lockdep = callPackage ../os-specific/linux/lockdep { };
+
+  lsirec = callPackage ../os-specific/linux/lsirec { };
 
   lsiutil = callPackage ../os-specific/linux/lsiutil { };
 
@@ -24941,7 +24957,7 @@ with pkgs;
   darcs-to-git = callPackage ../applications/version-management/git-and-tools/darcs-to-git { };
 
   darktable = callPackage ../applications/graphics/darktable {
-    lua = lua5_3;
+    lua = lua5_4;
     pugixml = pugixml.override { shared = true; };
   };
 
@@ -26535,9 +26551,6 @@ with pkgs;
 
   imgp = python3Packages.callPackage ../applications/graphics/imgp { };
 
-  # Impressive, formerly known as "KeyJNote".
-  impressive = callPackage ../applications/office/impressive { };
-
   index-fm = libsForQt5.callPackage ../applications/misc/index-fm { };
 
   inkcut = libsForQt5.callPackage ../applications/misc/inkcut { };
@@ -26778,7 +26791,7 @@ with pkgs;
   kubebuilder = callPackage ../applications/networking/cluster/kubebuilder { };
 
   kuttl = callPackage ../applications/networking/cluster/kuttl {
-    buildGoModule = buildGo115Module;
+    buildGoModule = buildGo117Module;
   };
 
   kubectl-doctor = callPackage ../applications/networking/cluster/kubectl-doctor { };
@@ -29763,6 +29776,8 @@ with pkgs;
     gtk = gtk2;
   };
 
+  xxh = with python3Packages; toPythonApplication xxh;
+
   kodiPackages = recurseIntoAttrs (kodi.packages);
 
   kodi = callPackage ../applications/video/kodi {
@@ -31125,9 +31140,14 @@ with pkgs;
 
   pong3d = callPackage ../games/pong3d { };
 
-  pokerth = libsForQt5.callPackage ../games/pokerth { };
+  pokerth = libsForQt5.callPackage ../games/pokerth {
+    boost = boost16x;
+  };
 
-  pokerth-server = libsForQt5.callPackage ../games/pokerth { target = "server"; };
+  pokerth-server = libsForQt5.callPackage ../games/pokerth {
+    boost = boost16x;
+    target = "server";
+  };
 
   powermanga = callPackage ../games/powermanga { };
 
@@ -33134,18 +33154,13 @@ with pkgs;
 
   neo = callPackage ../applications/misc/neo { };
 
-  inherit (callPackage ../tools/package-management/nix {
-      storeDir = config.nix.storeDir or "/nix/store";
-      stateDir = config.nix.stateDir or "/nix/var";
-      inherit (darwin.apple_sdk.frameworks) Security;
-      })
-    nix
-    nixStable
-    nix_2_3
-    nix_2_4
-    nix_2_5
-    nix_2_6
-    nixUnstable;
+  nixVersions = recurseIntoAttrs (callPackage ../tools/package-management/nix {
+    storeDir = config.nix.storeDir or "/nix/store";
+    stateDir = config.nix.stateDir or "/nix/var";
+    inherit (darwin.apple_sdk.frameworks) Security;
+  });
+
+  nix = nixVersions.stable;
 
   nixStatic = pkgsStatic.nix;
 
@@ -33318,7 +33333,7 @@ with pkgs;
 
   nix-linter = haskell.lib.compose.justStaticExecutables (haskellPackages.nix-linter);
 
-  nixos-option = callPackage ../tools/nix/nixos-option { nix = nix_2_3; };
+  nixos-option = callPackage ../tools/nix/nixos-option { nix = nixVersions.nix_2_3; };
 
   nix-pin = callPackage ../tools/package-management/nix-pin { };
 
