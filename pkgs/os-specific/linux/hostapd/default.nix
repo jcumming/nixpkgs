@@ -24,6 +24,7 @@ stdenv.mkDerivation rec {
   outputs = [ "out" "man" ];
 
   extraConfig = ''
+    CONFIG_AIRTIME_POLICY=y
     CONFIG_DRIVER_WIRED=y
     CONFIG_LIBNL32=y
     CONFIG_EAP_SIM=y
