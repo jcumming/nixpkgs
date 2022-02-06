@@ -1055,8 +1055,6 @@ let
 
     ppx_bitstring = callPackage ../development/ocaml-modules/bitstring/ppx.nix { };
 
-    ppxfind = callPackage ../development/ocaml-modules/ppxfind { };
-
     ppxlib = callPackage ../development/ocaml-modules/ppxlib { };
 
     psmt2-frontend = callPackage ../development/ocaml-modules/psmt2-frontend { };
@@ -1178,6 +1176,8 @@ let
     prettym = callPackage ../development/ocaml-modules/prettym { };
 
     printbox = callPackage ../development/ocaml-modules/printbox { };
+
+    printbox-text = callPackage ../development/ocaml-modules/printbox/text.nix { };
 
     process = callPackage ../development/ocaml-modules/process { };
 
