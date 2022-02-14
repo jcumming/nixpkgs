@@ -10,7 +10,7 @@
 
 buildPythonPackage rec {
   pname = "intellifire4py";
-  version = "0.5";
+  version = "0.9.7";
   format = "setuptools";
 
   disabled = pythonOlder "3.7";
@@ -19,7 +19,7 @@ buildPythonPackage rec {
     owner = "jeeftor";
     repo = pname;
     rev = version;
-    hash = "sha256-ESNFTlzwxv0SZA/vVU3aIjkt5nCX3D4VbwIRNSzMIK4=";
+    hash = "sha256-cNWsKwXVlnZgPjkll1IaEhDHfHNvWCBY6U3B34IdHd0=";
   };
 
   propagatedBuildInputs = [
@@ -30,6 +30,11 @@ buildPythonPackage rec {
 
   checkInputs = [
     pytestCheckHook
+  ];
+
+  disabledTests = [
+    # Test file is missing
+    "test_json_files"
   ];
 
   pythonImportsCheck = [

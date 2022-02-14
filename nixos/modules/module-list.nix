@@ -595,6 +595,7 @@
   ./services/misc/redmine.nix
   ./services/misc/rippled.nix
   ./services/misc/ripple-data-api.nix
+  ./services/misc/rmfakecloud.nix
   ./services/misc/serviio.nix
   ./services/misc/safeeyes.nix
   ./services/misc/sdrplay.nix
@@ -682,6 +683,7 @@
   ./services/network-filesystems/litestream/default.nix
   ./services/network-filesystems/netatalk.nix
   ./services/network-filesystems/nfsd.nix
+  ./services/network-filesystems/moosefs.nix
   ./services/network-filesystems/openafs/client.nix
   ./services/network-filesystems/openafs/server.nix
   ./services/network-filesystems/orangefs/server.nix
@@ -758,7 +760,6 @@
   ./services/networking/go-neb.nix
   ./services/networking/go-shadowsocks2.nix
   ./services/networking/gobgpd.nix
-  ./services/networking/gogoclient.nix
   ./services/networking/gvpe.nix
   ./services/networking/hans.nix
   ./services/networking/haproxy.nix
@@ -913,6 +914,7 @@
   ./services/networking/vsftpd.nix
   ./services/networking/wasabibackend.nix
   ./services/networking/websockify.nix
+  ./services/networking/wg-netmanager.nix
   ./services/networking/wg-quick.nix
   ./services/networking/wireguard.nix
   ./services/networking/wpa_supplicant.nix
@@ -1073,7 +1075,6 @@
   ./services/web-servers/phpfpm/default.nix
   ./services/web-servers/pomerium.nix
   ./services/web-servers/unit/default.nix
-  ./services/web-servers/shellinabox.nix
   ./services/web-servers/tomcat.nix
   ./services/web-servers/traefik.nix
   ./services/web-servers/trafficserver/default.nix
