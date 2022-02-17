@@ -195,6 +195,30 @@ final: prev:
     meta.homepage = "https://github.com/prabirshrestha/asyncomplete.vim/";
   };
 
+  asyncrun-vim = buildVimPluginFrom2Nix {
+    pname = "asyncrun.vim";
+    version = "2022-02-03";
+    src = fetchFromGitHub {
+      owner = "skywind3000";
+      repo = "asyncrun.vim";
+      rev = "fc6d524b9d81850c15b9b374a1b4a1374e243ec3";
+      sha256 = "/144rx2txz+VnPI8y4w1z9DY5nBEmp64arApRGiHQXU=";
+    };
+    meta.homepage = "https://github.com/skywind3000/asyncrun.vim";
+  };
+
+  asynctasks-vim = buildVimPluginFrom2Nix {
+    pname = "asynctasks.vim";
+    version = "2022-01-12";
+    src = fetchFromGitHub {
+      owner = "skywind3000";
+      repo = "asynctasks.vim";
+      rev = "dfecf57c79ded5ead2911e32caff46d8cede8c5c";
+      sha256 = "cw61N5K6GHwdT011oeFV+jzFw9tk4xahPcTnx5jwqPA=";
+    };
+    meta.homepage = "https://github.com/skywind3000/asynctasks.vim";
+  };
+
   ats-vim = buildVimPluginFrom2Nix {
     pname = "ats-vim";
     version = "2020-09-04";
@@ -5625,6 +5649,18 @@ final: prev:
       sha256 = "0mb0sx85j1k59b1zz95r4vkq4kxlb4krhncq70mq7fxrs5bnhq8g";
     };
     meta.homepage = "https://github.com/vim-scripts/ReplaceWithRegister/";
+  };
+
+  rest-nvim = buildVimPluginFrom2Nix {
+    pname = "rest.nvim";
+    version = "2022-01-26";
+    src = fetchFromGitHub {
+      owner = "NTBBloodbath";
+      repo = "rest.nvim";
+      rev = "2826f6960fbd9adb1da9ff0d008aa2819d2d06b3";
+      sha256 = "0lb3rcc41rb9yhylmkpsj141yfk1kki1xkd4q2i9y0ld0mlwjjv8";
+    };
+    meta.homepage = "https://github.com/NTBBloodbath/rest.nvim/";
   };
 
   riv-vim = buildVimPluginFrom2Nix {
@@ -11672,6 +11708,18 @@ final: prev:
       sha256 = "15gikqmpaf5c6687kgc5ib57pw7gyvxaihdv5549s7p2xkkbcl24";
     };
     meta.homepage = "https://github.com/gcmt/wildfire.vim/";
+  };
+
+  winshift-nvim = buildVimPluginFrom2Nix {
+    pname = "winshift.vim";
+    version = "2021-11-15";
+    src = fetchFromGitHub {
+      owner = "sindrets";
+      repo = "winshift.vim";
+      rev = "aaa04b97640165eb0877bfc04943f4282887470b";
+      sha256 = "g5v/qd1FNg7mMZif7Liga3BAnZV7Mi7hkqnCUEFk52U=";
+    };
+    meta.homepage = "https://github.com/sindrets/winshift.nvim";
   };
 
   wmgraphviz-vim = buildVimPluginFrom2Nix {

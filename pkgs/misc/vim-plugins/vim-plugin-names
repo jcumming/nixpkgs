@@ -563,6 +563,7 @@ norcalli/nvim-colorizer.lua
 norcalli/nvim-terminal.lua
 norcalli/snippets.nvim
 NTBBloodbath/galaxyline.nvim
+NTBBloodbath/rest.nvim
 ntpeters/vim-better-whitespace
 numirias/semshi
 numtostr/comment.nvim
@@ -755,10 +756,13 @@ simnalamburt/vim-mundo
 simrat39/rust-tools.nvim
 simrat39/symbols-outline.nvim
 sindrets/diffview.nvim
+sindrets/winshift.nvim
 SirVer/ultisnips
 sjl/gundo.vim
 sjl/splice.vim
 sk1418/last256
+skywind3000/asyncrun.vim
+skywind3000/asynctasks.vim
 slashmili/alchemist.vim
 smiteshp/nvim-gps
 sodapopcan/vim-twiggy

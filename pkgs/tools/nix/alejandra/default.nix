@@ -1,25 +1,31 @@
 { lib
 , rustPlatform
 , fetchFromGitHub
+, testVersion
+, alejandra
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "alejandra";
-  version = "unstable-2022-02-12";
+  version = "0.2.0";
 
   src = fetchFromGitHub {
     owner = "kamadorueda";
     repo = "alejandra";
-    rev = "bfda2490bcb6f7dab2d15f033f65441af283d48d";
-    hash = "sha256-D7dCtwwQcrSnC7MjoqB0ogCsCmrthqy+TqbqbJUT6zE=";
+    rev = version;
+    sha256 = "sha256-bM+z3s7oG0+8P7TVmyw7NW3eavN109zgsw9exUSQCaQ=";
   };
 
-  cargoSha256 = "sha256-Gos0ku4wR0jP1FQLYBVMqZN4qW0Tx45qpIL99s6a+t8=";
+  cargoSha256 = "sha256-GxQxyUyrDKTf+7cye0Ob/le06GnAI+FMGCUB5dts+k0=";
 
   meta = with lib; {
     description = "The Uncompromising Nix Code Formatter";
     homepage = "https://github.com/kamadorueda/alejandra";
     license = licenses.unlicense;
     maintainers = with maintainers; [ _0x4A6F kamadorueda ];
+  };
+
+  passthru.tests = {
+    version = testVersion { package = alejandra; };
   };
 }
