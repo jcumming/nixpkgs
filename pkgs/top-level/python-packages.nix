@@ -8637,9 +8637,6 @@ in {
 
   remarshal = callPackage ../development/python-modules/remarshal { };
 
-
-  remotecv = callPackage ../development/python-modules/remotecv { };
-
   renault-api = callPackage ../development/python-modules/renault-api { };
 
   rencode = callPackage ../development/python-modules/rencode { };
