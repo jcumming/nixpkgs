@@ -100,7 +100,7 @@ let
   # CUDA-related packages that are compatible with the currently packaged version
   # of TensorFlow, used to keep these versions in sync in related packages like `jaxlib`.
   tensorflow_compat_cudatoolkit = pkgs.cudatoolkit_11_2;
-  tensorflow_compat_cudnn = pkgs.cudnn_cudatoolkit_11_2;
+  tensorflow_compat_cudnn = pkgs.cudnn_8_1_cudatoolkit_11_2;
   tensorflow_compat_nccl = pkgs.nccl_cudatoolkit_11;
 
 in {
@@ -677,6 +677,8 @@ in {
   aspy-yaml = callPackage ../development/python-modules/aspy.yaml { };
 
   assertpy = callPackage ../development/python-modules/assertpy { };
+
+  asterisk-mbox = callPackage ../development/python-modules/asterisk-mbox { };
 
   asteval = callPackage ../development/python-modules/asteval { };
 
@@ -1292,6 +1294,8 @@ in {
 
   blurhash = callPackage ../development/python-modules/blurhash { };
 
+  bme280spi = callPackage ../development/python-modules/bme280spi { };
+
   bme680 = callPackage ../development/python-modules/bme680 { };
 
   bokeh = callPackage ../development/python-modules/bokeh { };
@@ -1607,6 +1611,8 @@ in {
 
   chirpstack-api = callPackage ../development/python-modules/chirpstack-api { };
 
+  chispa = callPackage ../development/python-modules/chispa { };
+
   ci-info = callPackage ../development/python-modules/ci-info { };
 
   ci-py = callPackage ../development/python-modules/ci-py { };
@@ -1630,6 +1636,8 @@ in {
   cirq-pasqal = callPackage ../development/python-modules/cirq-pasqal { };
 
   cirq-web = callPackage ../development/python-modules/cirq-web { };
+
+  ciscoconfparse = callPackage ../development/python-modules/ciscoconfparse { };
 
   ciscomobilityexpress = callPackage ../development/python-modules/ciscomobilityexpress { };
 
@@ -1943,7 +1951,7 @@ in {
 
   cupy = callPackage ../development/python-modules/cupy {
     cudatoolkit = pkgs.cudatoolkit_11;
-    cudnn = pkgs.cudnn_cudatoolkit_11;
+    cudnn = pkgs.cudnn_8_1_cudatoolkit_11;
     nccl = pkgs.nccl_cudatoolkit_11;
     cutensor = pkgs.cutensor_cudatoolkit_11;
   };
@@ -2500,6 +2508,8 @@ in {
 
   dyn = callPackage ../development/python-modules/dyn { };
 
+  dynalite-devices = callPackage ../development/python-modules/dynalite-devices { };
+
   dynd = callPackage ../development/python-modules/dynd { };
 
   easydict = callPackage ../development/python-modules/easydict { };
@@ -2834,6 +2844,8 @@ in {
   fenics = callPackage ../development/libraries/science/math/fenics {
     hdf5 = pkgs.hdf5_1_10;
   };
+
+  ffcv = callPackage ../development/python-modules/ffcv { };
 
   ffmpeg-python = callPackage ../development/python-modules/ffmpeg-python { };
 
@@ -3185,6 +3197,8 @@ in {
 
   gdown = callPackage ../development/python-modules/gdown { };
 
+  gdtoolkit = callPackage ../development/python-modules/gdtoolkit { };
+
   ge25519 = callPackage ../development/python-modules/ge25519 { };
 
   geant4 = toPythonModule (pkgs.geant4.override {
@@ -3203,6 +3217,8 @@ in {
   genanki = callPackage ../development/python-modules/genanki { };
 
   generic = callPackage ../development/python-modules/generic { };
+
+  geniushub-client = callPackage ../development/python-modules/geniushub-client { };
 
   genome-collector = callPackage ../development/python-modules/genome-collector { };
 
@@ -3884,6 +3900,8 @@ in {
     inherit (pkgs) i2c-tools;
   };
 
+  i2csense = callPackage ../development/python-modules/i2csense { };
+
   i3ipc = callPackage ../development/python-modules/i3ipc { };
 
   i3-py = callPackage ../development/python-modules/i3-py { };
@@ -4055,6 +4073,8 @@ in {
   iotawattpy = callPackage ../development/python-modules/iotawattpy { };
 
   iowait = callPackage ../development/python-modules/iowait { };
+
+  ipaddr = callPackage ../development/python-modules/ipaddr { };
 
   ipaddress = callPackage ../development/python-modules/ipaddress { };
 
@@ -5336,6 +5356,10 @@ in {
 
   nanotime = callPackage ../development/python-modules/nanotime { };
 
+  napalm = callPackage ../development/python-modules/napalm { };
+
+  napalm-hp-procurve = callPackage ../development/python-modules/napalm/hp-procurve.nix { };
+
   napari = callPackage ../development/python-modules/napari {
     inherit (pkgs.libsForQt5) mkDerivationWith wrapQtAppsHook;
   };
@@ -5415,6 +5439,8 @@ in {
   netdisco = callPackage ../development/python-modules/netdisco { };
 
   netifaces = callPackage ../development/python-modules/netifaces { };
+
+  netmiko = callPackage ../development/python-modules/netmiko { };
 
   netio = callPackage ../development/python-modules/netio { };
 
@@ -8257,6 +8283,8 @@ in {
     inherit (pkgs.llvmPackages) openmp;
   };
 
+  pyeapi = callPackage ../development/python-modules/pyeapi { };
+
   pyeverlights = callPackage ../development/python-modules/pyeverlights { };
 
   pytibber = callPackage ../development/python-modules/pytibber { };
@@ -8284,6 +8312,8 @@ in {
   pytorch-lightning = callPackage ../development/python-modules/pytorch-lightning { };
 
   pytorch-metric-learning = callPackage ../development/python-modules/pytorch-metric-learning { };
+
+  pytorch-pfn-extras = callPackage ../development/python-modules/pytorch-pfn-extras { };
 
   pytorchWithCuda = self.pytorch.override {
     cudaSupport = true;
@@ -9411,6 +9441,8 @@ in {
   sphinxcontrib-plantuml = callPackage ../development/python-modules/sphinxcontrib-plantuml {
     inherit (pkgs) plantuml;
   };
+
+  sphinxcontrib-programoutput = callPackage ../development/python-modules/sphinxcontrib-programoutput { };
 
   sphinxcontrib-qthelp = callPackage ../development/python-modules/sphinxcontrib-qthelp { };
 

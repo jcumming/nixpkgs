@@ -1089,6 +1089,8 @@ with pkgs;
 
   xcd = callPackage ../tools/misc/xcd { };
 
+  xrootd = callPackage ../tools/networking/xrootd { };
+
   xtrt = callPackage ../tools/archivers/xtrt { };
 
   yabridge = callPackage ../tools/audio/yabridge {
@@ -1233,7 +1235,7 @@ with pkgs;
   lilo = callPackage ../tools/misc/lilo { };
 
   logseq = callPackage ../applications/misc/logseq {
-    electron = electron_16;
+    electron = electron_15;
   };
 
   natls = callPackage ../tools/misc/natls { };
@@ -1792,6 +1794,8 @@ with pkgs;
 
   fspy = callPackage ../applications/misc/fspy { };
 
+  fluffychat = callPackage  ../applications/networking/instant-messengers/fluffychat { };
+
   fxlinuxprintutil = callPackage ../tools/misc/fxlinuxprintutil { };
 
   genann = callPackage ../development/libraries/genann { };
@@ -1875,6 +1879,10 @@ with pkgs;
   };
 
   gremlin-console = callPackage ../applications/misc/gremlin-console {
+    openjdk = openjdk11;
+  };
+
+  gremlin-server = callPackage ../applications/misc/gremlin-server {
     openjdk = openjdk11;
   };
 
@@ -2273,7 +2281,7 @@ with pkgs;
   libtensorflow-bin = callPackage ../development/libraries/science/math/tensorflow/bin.nix {
     cudaSupport = config.cudaSupport or false;
     cudatoolkit = cudatoolkit_10_0;
-    cudnn = cudnn_cudatoolkit_10_0;
+    cudnn = cudnn_7_4_cudatoolkit_10_0;
   };
 
   libtensorflow =
@@ -2650,6 +2658,8 @@ with pkgs;
 
   swayr = callPackage ../tools/wayland/swayr { };
 
+  swaytools = callPackage ../tools/wayland/swaytools { };
+
   wayland-utils = callPackage ../tools/wayland/wayland-utils { };
 
   wayland-proxy-virtwl = callPackage ../tools/wayland/wayland-proxy-virtwl { };
@@ -2876,7 +2886,10 @@ with pkgs;
 
   ditaa = callPackage ../tools/graphics/ditaa { };
 
-  dino = callPackage ../applications/networking/instant-messengers/dino { };
+  dino = callPackage ../applications/networking/instant-messengers/dino {
+    inherit (gst_all_1) gstreamer gst-plugins-base;
+    gst-plugins-good = gst_all_1.gst-plugins-good.override { gtkSupport = true; };
+  };
 
   djv = callPackage ../applications/graphics/djv { };
 
@@ -2921,7 +2934,7 @@ with pkgs;
   duf = callPackage ../tools/misc/duf { };
 
   inherit (ocaml-ng.ocamlPackages_4_10) dune_1;
-  inherit (ocamlPackages) dune_2 dune-release;
+  inherit (ocamlPackages) dune_2 dune_3 dune-release;
 
   duperemove = callPackage ../tools/filesystems/duperemove { };
 
@@ -3751,6 +3764,8 @@ with pkgs;
 
   syscall_limiter = callPackage ../os-specific/linux/syscall_limiter {};
 
+  skeema = callPackage ../tools/system/skeema {};
+
   syslogng = callPackage ../tools/system/syslog-ng { };
 
   syslogng_incubator = callPackage ../tools/system/syslog-ng-incubator { };
@@ -4508,18 +4523,22 @@ with pkgs;
 
   cudnnPackages = callPackages ../development/libraries/science/math/cudnn { };
   inherit (cudnnPackages)
-    cudnn_cudatoolkit_10
-    cudnn_cudatoolkit_10_0
-    cudnn_cudatoolkit_10_1
-    cudnn_cudatoolkit_10_2
-    cudnn_cudatoolkit_11
-    cudnn_cudatoolkit_11_0
-    cudnn_cudatoolkit_11_1
-    cudnn_cudatoolkit_11_2
-    cudnn_cudatoolkit_11_3
-    cudnn_cudatoolkit_11_4;
+    cudnn_7_4_cudatoolkit_10_0
+    cudnn_7_6_cudatoolkit_10_2
+    cudnn_7_6_cudatoolkit_10
+    cudnn_8_1_cudatoolkit_11_0
+    cudnn_8_1_cudatoolkit_11_1
+    cudnn_8_1_cudatoolkit_11_2
+    cudnn_8_1_cudatoolkit_11
+    cudnn_8_3_cudatoolkit_11_0
+    cudnn_8_3_cudatoolkit_11_1
+    cudnn_8_3_cudatoolkit_11_2
+    cudnn_8_3_cudatoolkit_11_3
+    cudnn_8_3_cudatoolkit_11_4
+    cudnn_8_3_cudatoolkit_11_5
+    cudnn_8_3_cudatoolkit_11;
 
-  cudnn = cudnn_cudatoolkit_10;
+  cudnn = cudnn_7_6_cudatoolkit_10;
 
   cutensorPackages = callPackages ../development/libraries/science/math/cutensor { };
   inherit (cutensorPackages)
@@ -7062,6 +7081,8 @@ with pkgs;
 
   libcsptr = callPackage ../development/libraries/libcsptr { };
 
+  libgovirt = callPackage ../applications/virtualization/libgovirt { };
+
   libscrypt = callPackage ../development/libraries/libscrypt { };
 
   libcloudproviders = callPackage ../development/libraries/libcloudproviders { };
@@ -7331,6 +7352,8 @@ with pkgs;
   ninka = callPackage ../development/tools/misc/ninka { };
 
   nixnote2 = libsForQt514.callPackage ../applications/misc/nixnote2 { };
+
+  nodenv = callPackage ../development/tools/nodenv { };
 
   nodejs = hiPrio nodejs-16_x;
 
@@ -10515,6 +10538,8 @@ with pkgs;
   tryton = callPackage ../applications/office/tryton { };
 
   trytond = with python3Packages; toPythonApplication trytond;
+
+  tuntox = callPackage ../tools/networking/tuntox { };
 
   omapd = callPackage ../tools/security/omapd { };
 
@@ -19216,6 +19241,8 @@ with pkgs;
 
   nvidia-texture-tools = callPackage ../development/libraries/nvidia-texture-tools { };
 
+  nvidia-vaapi-driver = callPackage ../development/libraries/nvidia-vaapi-driver { };
+
   nvidia-video-sdk = callPackage ../development/libraries/nvidia-video-sdk { };
 
   nvidia-optical-flow-sdk = callPackage ../development/libraries/nvidia-optical-flow-sdk { };
@@ -21313,7 +21340,6 @@ with pkgs;
   mod_timestamp = apacheHttpdPackages.mod_timestamp;
 
   inherit (callPackages ../servers/mpd {
-    stdenv = if (with stdenv; cc.isClang && isx86_64) then llvmPackages_8.stdenv else stdenv;
     inherit (darwin.apple_sdk.frameworks) AudioToolbox AudioUnit;
   }) mpd mpd-small mpdWithFeatures;
 
@@ -21344,6 +21370,15 @@ with pkgs;
   };
 
   myserver = callPackage ../servers/http/myserver { };
+
+  napalm = with python3Packages; toPythonApplication (
+    napalm.overridePythonAttrs (attrs: {
+      # add community frontends that depend on the napalm python package
+      propagatedBuildInputs = attrs.propagatedBuildInputs ++ [
+        napalm-hp-procurve
+      ];
+    })
+  );
 
   nas = callPackage ../servers/nas { };
 
@@ -22307,6 +22342,8 @@ with pkgs;
   fwupd-efi = callPackage ../os-specific/linux/firmware/fwupd-efi { };
 
   firmware-manager = callPackage ../os-specific/linux/firmware/firmware-manager { };
+
+  firmware-updater = callPackage ../os-specific/linux/firmware/firmware-updater { };
 
   fwts = callPackage ../os-specific/linux/fwts { };
 
@@ -25656,6 +25693,8 @@ with pkgs;
   guitarix = callPackage ../applications/audio/guitarix {
     fftw = fftwSinglePrec;
   };
+
+  gurk-rs = callPackage ../applications/networking/instant-messengers/gurk-rs { };
 
   gjay = callPackage ../applications/audio/gjay { };
 
@@ -30960,7 +30999,7 @@ with pkgs;
 
   katagoWithCuda = katago.override {
     enableCuda = true;
-    cudnn = cudnn_cudatoolkit_11;
+    cudnn = cudnn_8_3_cudatoolkit_11;
     cudatoolkit = cudatoolkit_11;
   };
 
