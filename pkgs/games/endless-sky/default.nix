@@ -5,18 +5,8 @@
 stdenv.mkDerivation rec {
   pname = "endless-sky";
   version = "0.9.14";
-
-  desktopItem = makeDesktopItem { 
-    name = "endless-sky";
-    exec = "endless-sky";
-    comment = "Elite like space exploration";
-    desktopName = "Endless Skey";
-    genericName = "endless-sky";
-    categories = "Game;";
-  };
-
-
-  src = fetchFromGitHub {
+  
+src = fetchFromGitHub {
     owner = "endless-sky";
     repo = "endless-sky";
     rev = "v${version}";

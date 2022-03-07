@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
     comment = meta.description;
     desktopName = meta.description;
     genericName = "gsb";
-    categories = "Game;";
+    categories = [ "Game" ] ;
   };
 
   src = requireFile {
