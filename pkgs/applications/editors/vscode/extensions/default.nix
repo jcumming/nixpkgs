@@ -536,6 +536,19 @@ let
         };
       };
 
+      daohong-emilio.yash = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          publisher = "daohong-emilio";
+          name = "yash";
+          version = "0.2.8";
+          sha256 = "ummOEBSXUI78hBb1AUh+x339T7ocB/evOVaz79geHRM=";
+        };
+        meta = {
+          license = lib.licenses.mit;
+          maintainers = with lib.maintainers; [ kamadorueda ];
+        };
+      };
+
       davidanson.vscode-markdownlint = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "vscode-markdownlint";
@@ -684,8 +697,8 @@ let
         mktplcRef = {
           name = "gitlens";
           publisher = "eamodio";
-          version = "12.0.1";
-          sha256 = "1xv1vzx643qa8jhjpnpv2wrymz38w130vm0idkcl77lh209r5i8x";
+          version = "12.0.3";
+          sha256 = "sha256-PHQXfk0JggkEBRflHp+OAUOCVuymCubaszfDCYbpfG0=";
         };
         meta = with lib; {
           changelog = "https://marketplace.visualstudio.com/items/eamodio.gitlens/changelog";
@@ -776,8 +789,8 @@ let
         mktplcRef = {
           name = "prettier-vscode";
           publisher = "esbenp";
-          version = "9.2.0";
-          sha256 = "sha256-ROI312MPMUY1q6IV4qVCW8DD0MQPA/hVW7rfamo/IbI=";
+          version = "9.3.0";
+          sha256 = "sha256-hJgPjWf7a8+ltjmXTK8U/MwqgIZqBjmcCfHsAk2G3PA=";
         };
         meta = with lib; {
           changelog = "https://marketplace.visualstudio.com/items/esbenp.prettier-vscode/changelog";
@@ -874,8 +887,8 @@ let
         mktplcRef = {
           name = "auto-close-tag";
           publisher = "formulahendry";
-          version = "0.5.13";
-          sha256 = "0swyxhcibv6cl54gmfpnbz6bqidjzc77nx369wndhlq264idnwkw";
+          version = "0.5.14";
+          sha256 = "sha256-XYYHS2QTy8WYjtUYYWsIESzmH4dRQLlXQpJq78BolMw=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -886,8 +899,8 @@ let
         mktplcRef = {
           name = "auto-rename-tag";
           publisher = "formulahendry";
-          version = "0.1.9";
-          sha256 = "1xk8rzda16qgdxhq8bz6f8w09fd9044qczx1wfhszd6w3r4q9262";
+          version = "0.1.10";
+          sha256 = "sha256-uXqWebxnDwaUVLFG6MUh4bZ7jw5d2rTHRm5NoR2n0Vs=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -1216,8 +1229,8 @@ let
         mktplcRef = {
           name = "svg";
           publisher = "jock";
-          version = "1.4.15";
-          sha256 = "0a5w6qxvsdzcmgc0yfiagpmz25y90pmzgrxz9899na5qy3pjcbmz";
+          version = "1.4.17";
+          sha256 = "sha256-CDxh/YRyDGocxG4qOcyLXA0zHCg0YJ7XUu3OjFFjleI=";
         };
         meta = with lib; {
           license = licenses.mit;
@@ -1413,8 +1426,8 @@ let
         mktplcRef = {
           name = "vscode-docker";
           publisher = "ms-azuretools";
-          version = "1.19.0";
-          sha256 = "sha256-buIAbsyKUvX3blO1AbCq/tJ1KAcqaFpciqQovmOZ5GE=";
+          version = "1.20.0";
+          sha256 = "sha256-i3gYTP76YEDItG2oXR9pEXuGv0qmyf1Xv6HQvDBEOyg=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -1577,8 +1590,8 @@ let
         mktplcRef = {
           name = "java";
           publisher = "redhat";
-          version = "1.3.0";
-          sha256 = "sha256-Y5hP/Rq9BsFwbCRQWOfiLHKoYkKBpZx8blg9o74obfk=";
+          version = "1.4.0";
+          sha256 = "sha256-9q3ilNukx3sQ6Fr1LhuQdjHHS251SDoHxC33w+qrfAI=";
         };
         buildInputs = [ jdk ];
         meta = {
@@ -1591,8 +1604,8 @@ let
         mktplcRef = {
           name = "vscode-yaml";
           publisher = "redhat";
-          version = "1.3.0";
-          sha256 = "sha256-Tz6bLcBUATn8cYIzGoLJwgaJZGbBVr1CISmJHz+iM60=";
+          version = "1.5.1";
+          sha256 = "sha256-JXhmgBFZdKNjgX6K7U+M/T7HEmIOBQOzQEJ5957TUuM=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -1646,8 +1659,8 @@ let
         mktplcRef = {
           name = "material-icon-theme";
           publisher = "PKief";
-          version = "4.12.1";
-          sha256 = "sha256-pmWnnZrdk6zb8YFG5ESgK4k875hgeseWyzkA9YUjg7A=";
+          version = "4.14.1";
+          sha256 = "sha256-OHXi0EfeyKMeFiMU5yg0aDoWds4ED0lb+l6T12XZ3LQ=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -1784,6 +1797,23 @@ let
         };
         meta = {
           license = lib.licenses.mit;
+        };
+      };
+
+      skellock.just = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "just";
+          publisher = "skellock";
+          version = "2.0.0";
+          sha256 = "sha256-FOp/dcW0+07rADEpUMzx+SGYjhvE4IhcCOqUQ38yCN4=";
+        };
+        meta = with lib; {
+          changelog = "https://github.com/skellock/vscode-just/blob/master/CHANGELOG.md";
+          description = "Provides syntax and recipe launcher for Just scripts";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=skellock.just";
+          homepage = "https://github.com/skellock/vscode-just";
+          license = licenses.mit;
+          maintainers = with maintainers; [ maximsmol ];
         };
       };
 
