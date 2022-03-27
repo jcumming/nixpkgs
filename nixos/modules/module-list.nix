@@ -118,6 +118,7 @@
   ./misc/version.nix
   ./misc/wordlist.nix
   ./misc/nixops-autoluks.nix
+  ./programs/_1password-gui.nix
   ./programs/adb.nix
   ./programs/appgate-sdp.nix
   ./programs/atop.nix
@@ -181,8 +182,10 @@
   ./programs/mtr.nix
   ./programs/nano.nix
   ./programs/nbd.nix
+  ./programs/nix-ld.nix
   ./programs/neovim.nix
   ./programs/nm-applet.nix
+  ./programs/nncp.nix
   ./programs/npm.nix
   ./programs/noisetorch.nix
   ./programs/oblogout.nix
@@ -302,6 +305,7 @@
   ./services/backup/znapzend.nix
   ./services/blockchain/ethereum/geth.nix
   ./services/backup/zrepl.nix
+  ./services/cluster/corosync/default.nix
   ./services/cluster/hadoop/default.nix
   ./services/cluster/k3s/default.nix
   ./services/cluster/kubernetes/addons/dns.nix
@@ -314,6 +318,7 @@
   ./services/cluster/kubernetes/pki.nix
   ./services/cluster/kubernetes/proxy.nix
   ./services/cluster/kubernetes/scheduler.nix
+  ./services/cluster/pacemaker/default.nix
   ./services/cluster/spark/default.nix
   ./services/computing/boinc/client.nix
   ./services/computing/foldingathome/client.nix
@@ -774,6 +779,7 @@
   ./services/networking/headscale.nix
   ./services/networking/hostapd.nix
   ./services/networking/htpdate.nix
+  ./services/networking/https-dns-proxy.nix
   ./services/networking/hylafax/default.nix
   ./services/networking/i2pd.nix
   ./services/networking/i2p.nix
@@ -1166,7 +1172,12 @@
   ./system/boot/stage-1.nix
   ./system/boot/stage-2.nix
   ./system/boot/systemd.nix
-  ./system/boot/systemd-nspawn.nix
+  ./system/boot/systemd/coredump.nix
+  ./system/boot/systemd/journald.nix
+  ./system/boot/systemd/logind.nix
+  ./system/boot/systemd/nspawn.nix
+  ./system/boot/systemd/tmpfiles.nix
+  ./system/boot/systemd/user.nix
   ./system/boot/timesyncd.nix
   ./system/boot/tmp.nix
   ./system/etc/etc-activation.nix

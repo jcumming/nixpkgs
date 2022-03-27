@@ -359,7 +359,7 @@ let
 
       src = fetchurl {
         url = "https://registry.npmjs.org/prisma/-/prisma-${version}.tgz";
-        sha512 = "sha512-dAld12vtwdz9Rz01nOjmnXe+vHana5PSog8t0XGgLemKsUVsaupYpr74AHaS3s78SaTS5s2HOghnJF+jn91ZrA==";
+        sha512 = "sha512-8SdsLPhKR3mOfoo2o73h9mNn3v5kA/RqGA26Sv6qDS78Eh2uepPqt5e8/nwj5EOblYm5HEGuitaXQrOCLb6uTw==";
       };
       postInstall = with pkgs; ''
         wrapProgram "$out/bin/prisma" \
@@ -430,6 +430,18 @@ let
         makeWrapper '${nodejs}/bin/node' "$out/bin/tedicross" \
           --add-flags "$out/lib/node_modules/tedicross/main.js"
       '';
+    };
+
+    thelounge-plugin-closepms = super.thelounge-plugin-closepms.override {
+      nativeBuildInputs = [ self.node-pre-gyp ];
+    };
+
+    thelounge-theme-flat-blue = super.thelounge-theme-flat-blue.override {
+      nativeBuildInputs = [ self.node-pre-gyp ];
+    };
+
+    thelounge-theme-flat-dark = super.thelounge-theme-flat-dark.override {
+      nativeBuildInputs = [ self.node-pre-gyp ];
     };
 
     tsun = super.tsun.overrideAttrs (oldAttrs: {

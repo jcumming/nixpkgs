@@ -709,8 +709,6 @@ let
 
     magic-mime = callPackage ../development/ocaml-modules/magic-mime { };
 
-    magick = callPackage ../development/ocaml-modules/magick { };
-
     mariadb = callPackage ../development/ocaml-modules/mariadb {
       inherit (pkgs) mariadb;
     };
@@ -887,8 +885,6 @@ let
     null;
 
     ocaml_cryptgps = callPackage ../development/ocaml-modules/cryptgps { };
-
-    ocaml_data_notation = callPackage ../development/ocaml-modules/odn { };
 
     ocaml_expat =
     if lib.versionAtLeast ocaml.version "4.02"
