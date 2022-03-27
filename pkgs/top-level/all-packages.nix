@@ -2045,7 +2045,9 @@ with pkgs;
 
   go-audit = callPackage ../tools/system/go-audit { };
 
-  gopass = callPackage ../tools/security/gopass { };
+  gopass = callPackage ../tools/security/gopass {
+    buildGoModule = buildGo118Module;
+  };
 
   gopass-jsonapi = callPackage ../tools/security/gopass/jsonapi.nix { };
 
@@ -2758,6 +2760,8 @@ with pkgs;
   wtype = callPackage ../tools/wayland/wtype { };
 
   ydotool = callPackage ../tools/wayland/ydotool { };
+
+  cambalache = callPackage ../development/tools/cambalache { };
 
   clipster = callPackage ../tools/misc/clipster { };
 
@@ -4095,8 +4099,6 @@ with pkgs;
   bsdiff = callPackage ../tools/compression/bsdiff { };
 
   btar = callPackage ../tools/backup/btar { };
-
-  bud = callPackage ../tools/networking/bud { };
 
   bump2version = python3Packages.callPackage ../applications/version-management/git-and-tools/bump2version { };
 
@@ -7528,6 +7530,8 @@ with pkgs;
     nodejs = nodejs-14_x;
   };
 
+  node2nix = nodePackages.node2nix;
+
   np2kai = callPackage ../applications/emulators/np2kai { };
 
   openipmi = callPackage ../tools/system/openipmi { };
@@ -8380,6 +8384,8 @@ with pkgs;
 
   pandoc-imagine = python3Packages.callPackage ../tools/misc/pandoc-imagine { };
 
+  pandoc-include = python3Packages.callPackage ../tools/misc/pandoc-include { };
+
   pandoc-drawio-filter = python3Packages.callPackage ../tools/misc/pandoc-drawio-filter { };
 
   pandoc-plantuml-filter = python3Packages.callPackage ../tools/misc/pandoc-plantuml-filter { };
@@ -8902,6 +8908,8 @@ with pkgs;
   patch = gnupatch;
 
   patchage = callPackage ../applications/audio/patchage { };
+
+  patatt = callPackage ../development/tools/patatt { };
 
   pcapfix = callPackage ../tools/networking/pcapfix { };
 
@@ -10169,6 +10177,8 @@ with pkgs;
 
   srtrelay = callPackage ../applications/video/srtrelay { };
 
+  srsran = callPackage ../applications/radio/srsran {  };
+
   sourcehut = callPackage ../applications/version-management/sourcehut { };
 
   sshfs-fuse = callPackage ../tools/filesystems/sshfs-fuse { };
@@ -10550,6 +10560,8 @@ with pkgs;
   tinyemu = callPackage ../applications/emulators/tinyemu { };
 
   tinyfecvpn = callPackage ../tools/networking/tinyfecvpn { };
+
+  tinygltf = callPackage ../development/libraries/tinygltf { };
 
   tinyobjloader = callPackage ../development/libraries/tinyobjloader { };
 
@@ -14129,9 +14141,10 @@ with pkgs;
 
   pew = callPackage ../development/tools/pew {};
 
-  poetry = callPackage ../development/tools/poetry2nix/poetry2nix/pkgs/poetry {
-    python = python3;
-  };
+  poetry = with python3Packages; toPythonApplication (callPackage ../development/tools/poetry2nix/poetry2nix/pkgs/poetry {
+    inherit python;
+  });
+
   poetry2nix = callPackage ../development/tools/poetry2nix/poetry2nix {
     inherit pkgs lib;
   };
@@ -15071,6 +15084,8 @@ with pkgs;
   eweb = callPackage ../development/tools/literate-programming/eweb { };
 
   funnelweb = callPackage ../development/tools/literate-programming/funnelweb { };
+
+  license_finder = callPackage ../development/tools/license_finder { };
 
   Literate = callPackage ../development/tools/literate-programming/Literate { };
 
@@ -16749,9 +16764,6 @@ with pkgs;
 
   linbox = callPackage ../development/libraries/linbox { };
 
-  ffmpeg_3_4 = callPackage ../development/libraries/ffmpeg/3.4.nix {
-    inherit (darwin.apple_sdk.frameworks) Cocoa CoreMedia;
-  };
   ffmpeg_4 = callPackage ../development/libraries/ffmpeg/4.nix {
     inherit (darwin.apple_sdk.frameworks) Cocoa CoreMedia VideoToolbox;
   };
@@ -16760,7 +16772,6 @@ with pkgs;
   };
 
   # Aliases
-  ffmpeg_3 = ffmpeg_3_4;
   # Please make sure this is updated to the latest version on the next major
   # update to ffmpeg
   # Packages which use ffmpeg as a library, should pin to the relevant major
@@ -16784,8 +16795,6 @@ with pkgs;
   };
 
   ffmpegthumbnailer = callPackage ../development/libraries/ffmpegthumbnailer { };
-
-  ffmpeg-sixel = callPackage ../development/libraries/ffmpeg-sixel { };
 
   ffmpeg-normalize = python3Packages.callPackage ../applications/video/ffmpeg-normalize { };
 
@@ -21202,6 +21211,7 @@ with pkgs;
 
   archiveopteryx = callPackage ../servers/mail/archiveopteryx { };
 
+  atlassian-bamboo = callPackage ../servers/atlassian/bamboo.nix { };
   atlassian-confluence = callPackage ../servers/atlassian/confluence.nix { };
   atlassian-crowd = callPackage ../servers/atlassian/crowd.nix { };
   atlassian-jira = callPackage ../servers/atlassian/jira.nix { };
@@ -21465,6 +21475,8 @@ with pkgs;
   inspircdMinimal = inspircd.override { extraModules = []; };
 
   imgproxy = callPackage ../servers/imgproxy { };
+
+  irccat = callPackage ../servers/irc/irccat { };
 
   ircdog = callPackage ../applications/networking/irc/ircdog { };
 
@@ -23097,7 +23109,9 @@ with pkgs;
 
   gotest = callPackage ../development/tools/gotest { };
 
-  gotools = callPackage ../development/tools/gotools { };
+  gotools = callPackage ../development/tools/gotools {
+    buildGoModule = buildGo118Module;
+  };
 
   gotop = callPackage ../tools/system/gotop { };
 
@@ -24340,6 +24354,8 @@ with pkgs;
   solarc-gtk-theme = callPackage ../data/themes/solarc { };
 
   soundfont-fluid = callPackage ../data/soundfonts/fluid { };
+
+  soundfont-generaluser = callPackage ../data/soundfonts/generaluser { };
 
   soundfont-ydp-grand = callPackage ../data/soundfonts/ydp-grand { };
 
@@ -27942,6 +27958,8 @@ with pkgs;
 
   ocenaudio = callPackage ../applications/audio/ocenaudio { };
 
+  ocm = callPackage ../applications/networking/cluster/ocm { };
+
   odo = callPackage ../applications/networking/cluster/odo { };
 
   onlyoffice-bin = callPackage ../applications/office/onlyoffice-bin { };
@@ -27998,6 +28016,8 @@ with pkgs;
     { stdenv = stdenv_32bit; };
 
   pleroma-bot = python3Packages.callPackage ../development/python-modules/pleroma-bot { };
+
+  pluto = callPackage ../applications/networking/cluster/pluto { };
 
   polybar = callPackage ../applications/misc/polybar { };
 
@@ -28308,6 +28328,8 @@ with pkgs;
   };
 
   orca-c = callPackage ../applications/audio/orca-c {};
+
+  organicmaps = libsForQt5.callPackage ../applications/misc/organicmaps { };
 
   osm2xmap = callPackage ../applications/misc/osm2xmap {
     libyamlcpp = libyamlcpp_0_3;
