@@ -536,6 +536,8 @@ in {
 
   ansible-core = callPackage ../development/python-modules/ansible/core.nix { };
 
+  ansible-doctor = callPackage ../development/python-modules/ansible-doctor { };
+
   ansible-kernel = callPackage ../development/python-modules/ansible-kernel { };
 
   ansible-later = callPackage ../development/python-modules/ansible-later { };
@@ -677,6 +679,8 @@ in {
   asn1crypto = callPackage ../development/python-modules/asn1crypto { };
 
   aspell-python = callPackage ../development/python-modules/aspell-python { };
+
+  aspy-refactor-imports = callPackage ../development/python-modules/aspy-refactor-imports { };
 
   aspy-yaml = callPackage ../development/python-modules/aspy.yaml { };
 
@@ -4101,6 +4105,8 @@ in {
   intervaltree = callPackage ../development/python-modules/intervaltree { };
 
   intreehooks = callPackage ../development/python-modules/intreehooks { };
+
+  invocations = callPackage ../development/python-modules/invocations { };
 
   invoke = callPackage ../development/python-modules/invoke { };
 
@@ -8756,13 +8762,18 @@ in {
 
   relatorio = callPackage ../development/python-modules/relatorio { };
 
+
   remind = callPackage ../development/python-modules/remind { };
+
+  releases = callPackage ../development/python-modules/releases { };
 
   remarshal = callPackage ../development/python-modules/remarshal { };
 
   renault-api = callPackage ../development/python-modules/renault-api { };
 
   rencode = callPackage ../development/python-modules/rencode { };
+
+  reorder-python-imports = callPackage ../development/python-modules/reorder-python-imports { };
 
   reolink = callPackage ../development/python-modules/reolink { };
 
@@ -9003,6 +9014,8 @@ in {
   s3fs = callPackage ../development/python-modules/s3fs { };
 
   s3transfer = callPackage ../development/python-modules/s3transfer { };
+
+  s3-credentials = callPackage ../development/python-modules/s3-credentials { };
 
   sabyenc3 = callPackage ../development/python-modules/sabyenc3 { };
 
@@ -10399,6 +10412,8 @@ in {
   unicorn = callPackage ../development/python-modules/unicorn {
     unicorn-emu = pkgs.unicorn;
   };
+
+  unicrypto = callPackage ../development/python-modules/unicrypto { };
 
   unidecode = callPackage ../development/python-modules/unidecode { };
 
