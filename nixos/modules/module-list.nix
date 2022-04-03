@@ -118,6 +118,7 @@
   ./misc/version.nix
   ./misc/wordlist.nix
   ./misc/nixops-autoluks.nix
+  ./programs/_1password.nix
   ./programs/_1password-gui.nix
   ./programs/adb.nix
   ./programs/appgate-sdp.nix
@@ -849,7 +850,6 @@
   ./services/networking/ofono.nix
   ./services/networking/oidentd.nix
   ./services/networking/onedrive.nix
-  ./services/networking/openfire.nix
   ./services/networking/openvpn.nix
   ./services/networking/ostinato.nix
   ./services/networking/owamp.nix
@@ -976,6 +976,7 @@
   ./services/security/shibboleth-sp.nix
   ./services/security/sks.nix
   ./services/security/sshguard.nix
+  ./services/security/sslmate-agent.nix
   ./services/security/step-ca.nix
   ./services/security/tor.nix
   ./services/security/torify.nix
@@ -1047,6 +1048,7 @@
   ./services/web-apps/mediawiki.nix
   ./services/web-apps/miniflux.nix
   ./services/web-apps/moodle.nix
+  ./services/web-apps/netbox.nix
   ./services/web-apps/nextcloud.nix
   ./services/web-apps/nexus.nix
   ./services/web-apps/node-red.nix
@@ -1178,6 +1180,7 @@
   ./system/boot/systemd/nspawn.nix
   ./system/boot/systemd/tmpfiles.nix
   ./system/boot/systemd/user.nix
+  ./system/boot/systemd/initrd.nix
   ./system/boot/timesyncd.nix
   ./system/boot/tmp.nix
   ./system/etc/etc-activation.nix

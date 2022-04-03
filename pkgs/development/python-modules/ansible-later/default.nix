@@ -21,7 +21,7 @@
 
 buildPythonPackage rec {
   pname = "ansible-later";
-  version = "2.0.6";
+  version = "2.0.9";
   format = "pyproject";
 
   disabled = pythonOlder "3.8";
@@ -30,7 +30,7 @@ buildPythonPackage rec {
     owner = "thegeeklab";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-vg9ryzl9ZeOGuFLL1yeJ3vGNPdo3ONmCQozY6DK6miY=";
+    hash = "sha256-g7/RClQB+6HsDbe/VjjKka97LcwRTKO0OD0RlCG9lWY=";
   };
 
   nativeBuildInputs = [

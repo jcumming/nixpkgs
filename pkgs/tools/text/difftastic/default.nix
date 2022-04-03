@@ -2,16 +2,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "difftastic";
-  version = "0.23.0";
+  version = "0.25.0";
 
   src = fetchFromGitHub {
     owner = "wilfred";
     repo = pname;
     rev = version;
-    sha256 = "sha256-y1rwuZlkrxO1iOSN2o8pIewbNENs0xsntzLEZgfUgZ4=";
+    sha256 = "sha256-TJMMy1fMwqUMVhztMOlN4yQhW5IF36yahOhDTJ9kadA=";
   };
 
-  cargoSha256 = "sha256-mH6pkfWc8xXLXV/07LQ1jgk9hgt8WcIGdaNPpk7deLQ=";
+  cargoSha256 = "sha256-crH2SodT+Wy3auk3uli253rIrHyKsibQcYGtpxwbJJQ=";
 
   meta = with lib; {
     description = "A syntax-aware diff";

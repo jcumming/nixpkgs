@@ -697,6 +697,15 @@
     "vendorSha256": "0kkkrdbapyvfzmnbh5kmhlcz5l8g8gf0mfwbya66iy1bb6f6w4mz",
     "version": "1.3.0"
   },
+  "namecheap": {
+    "owner": "namecheap",
+    "provider-source-address": "registry.terraform.io/namecheap/namecheap",
+    "repo": "terraform-provider-namecheap",
+    "rev": "v2.1.0",
+    "sha256": "sha256-cms8YUL+SjTeYyIOQibksi8ZHEBYq2JlgTEpOO1uMZE=",
+    "vendorSha256": null,
+    "version": "2.1.0"
+  },
   "ncloud": {
     "owner": "NaverCloudPlatform",
     "provider-source-address": "registry.terraform.io/NaverCloudPlatform/ncloud",
@@ -1140,6 +1149,15 @@
     "sha256": "0maiqxrr1xl2q4lgpv0d78znsrrl95qi2bgpr5jd14w1kvw2bj73",
     "vendorSha256": null,
     "version": "1.31.0"
+  },
+  "utils": {
+    "owner": "cloudposse",
+    "provider-source-address": "registry.terraform.io/cloudposse/utils",
+    "repo": "terraform-provider-utils",
+    "rev": "0.17.17",
+    "sha256": "sha256-QJtdCEw8bnVku4fqAX5MBU9tkPv5jwjra9lGPfUPGQw=",
+    "vendorSha256": "sha256-5EelFIfHVLRiRJig6EeJG6KGJuQ05LX3M5CNxUxQAas=",
+    "version": "0.17.17"
   },
   "vault": {
     "owner": "hashicorp",
