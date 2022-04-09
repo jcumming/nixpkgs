@@ -2,6 +2,10 @@
 
 with haskellLib;
 
+let
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+in
+
 self: super: {
 
   llvmPackages = pkgs.lib.dontRecurseIntoAttrs self.ghc.llvmPackages;
@@ -209,7 +213,9 @@ self: super: {
   regex-rure = doDistribute (markUnbroken super.regex-rure);
   jacinda = doDistribute super.jacinda;
   some = doJailbreak super.some;
-  fourmolu = super.fourmolu_0_5_0_1;
+  fourmolu = super.fourmolu_0_6_0_0;
+  # hls-fourmolu-plugin in this version has a to strict upper bound of fourmolu <= 0.5.0.0
+  hls-fourmolu-plugin = assert super.hls-fourmolu-plugin.version == "1.0.2.0"; doJailbreak super.hls-fourmolu-plugin;
   implicit-hie-cradle = doJailbreak super.implicit-hie-cradle;
   # 1.3 introduced support for GHC 9.2.x, so when this assert fails, the jailbreak can be removed
   hashtables = assert super.hashtables.version == "1.2.4.2"; doJailbreak super.hashtables;
@@ -236,4 +242,9 @@ self: super: {
     hls-retrie-plugin = null;
     hls-splice-plugin = null;
   }));
+
+  # https://github.com/fpco/inline-c/pull/131
+  inline-c-cpp =
+    (if isDarwin then appendConfigureFlags ["--ghc-option=-fcompact-unwind"] else x: x)
+    super.inline-c-cpp;
 }

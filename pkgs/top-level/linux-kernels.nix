@@ -317,6 +317,8 @@ in {
 
     ena = callPackage ../os-specific/linux/ena {};
 
+    kvdo = callPackage ../os-specific/linux/kvdo {};
+
     liquidtux = callPackage ../os-specific/linux/liquidtux {};
 
     v4l2loopback = callPackage ../os-specific/linux/v4l2loopback { };
@@ -402,7 +404,7 @@ in {
 
     oci-seccomp-bpf-hook = if lib.versionAtLeast kernel.version "5.4" then callPackage ../os-specific/linux/oci-seccomp-bpf-hook { } else null;
 
-    perf = if lib.versionAtLeast kernel.version "3.12" then callPackage ../os-specific/linux/kernel/perf.nix { } else null;
+    perf = callPackage ../os-specific/linux/kernel/perf.nix { };
 
     phc-intel = if lib.versionAtLeast kernel.version "4.10" then callPackage ../os-specific/linux/phc-intel { } else null;
 
@@ -476,7 +478,7 @@ in {
 
     can-isotp = callPackage ../os-specific/linux/can-isotp { };
 
-  } // lib.optionalAttrs (config.allowAliases or false) {
+  } // lib.optionalAttrs config.allowAliases {
     ati_drivers_x11 = throw "ati drivers are no longer supported by any kernel >=4.1"; # added 2021-05-18;
   });
 

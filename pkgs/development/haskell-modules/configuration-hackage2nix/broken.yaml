@@ -453,6 +453,7 @@ broken-packages:
   - botpp
   - bottom
   - boundingboxes
+  - bower-json
   - bowntz
   - bpath
   - braid
@@ -1318,6 +1319,7 @@ broken-packages:
   - ert
   - escape-artist
   - escoger
+  - espial
   - esqueleto-pgcrypto
   - ess
   - essence-of-live-coding-gloss-example
@@ -1392,6 +1394,7 @@ broken-packages:
   - fast-nats
   - fastpbkdf2
   - FastPush
+  - fast-tags
   - FastxPipe
   - fathead-util
   - fb
@@ -1924,6 +1927,7 @@ broken-packages:
   - haquery
   - harchive
   - HARM
+  - HarmTrace-Base
   - haroonga
   - harp
   - harpy
@@ -2107,6 +2111,7 @@ broken-packages:
   - heidi
   - hein
   - heist-async
+  - heist-emanote
   - helic
   - helisp
   - hell
@@ -2732,6 +2737,7 @@ broken-packages:
   - json-extra
   - json-fu
   - json-litobj
+  - jsonlogic
   - jsonnet
   - json-pointer
   - json-pointy
@@ -2952,6 +2958,7 @@ broken-packages:
   - lifetimes
   - lifted-protolude
   - lifter
+  - lifx-lan
   - ligature
   - light
   - lilypond
@@ -3959,6 +3966,7 @@ broken-packages:
   - powerdns
   - powermate
   - powerpc
+  - powerqueue-levelmem
   - pprecord
   - PPrinter
   - pqc
@@ -4666,6 +4674,7 @@ broken-packages:
   - smtps-gmail
   - smuggler
   - smuggler2
+  - snack
   - snake
   - snake-game
   - snap-accept
@@ -4705,6 +4714,7 @@ broken-packages:
   - socketio
   - sockets-and-pipes
   - socket-sctp
+  - socketson
   - socket-unix
   - sodium
   - soegtk
@@ -5205,6 +5215,7 @@ broken-packages:
   - trial-tomland
   - trigger
   - trim
+  - tripLL
   - trivia
   - tropical
   - true-name
@@ -5591,7 +5602,6 @@ broken-packages:
   - wsdl
   - wsedit
   - wsjtx-udp
-  - wstunnel
   - wtk
   - wumpus-core
   - wxdirect

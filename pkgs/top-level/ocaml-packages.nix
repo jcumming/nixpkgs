@@ -982,6 +982,14 @@ let
 
     ocsigen-toolkit = callPackage ../development/ocaml-modules/ocsigen-toolkit { };
 
+    ocsipersist = callPackage ../development/ocaml-modules/ocsipersist {};
+
+    ocsipersist-lib = callPackage ../development/ocaml-modules/ocsipersist/lib.nix { };
+
+    ocsipersist-pgsql = callPackage ../development/ocaml-modules/ocsipersist/pgsql.nix { };
+
+    ocsipersist-sqlite = callPackage ../development/ocaml-modules/ocsipersist/sqlite.nix { };
+
     octavius = callPackage ../development/ocaml-modules/octavius { };
 
     odate = callPackage ../development/ocaml-modules/odate { };
@@ -1284,8 +1292,6 @@ let
     sodium = callPackage ../development/ocaml-modules/sodium { };
 
     spelll = callPackage ../development/ocaml-modules/spelll { };
-
-    sqlite3EZ = callPackage ../development/ocaml-modules/sqlite3EZ { };
 
     srt = callPackage ../development/ocaml-modules/srt {
       inherit (pkgs) srt;
