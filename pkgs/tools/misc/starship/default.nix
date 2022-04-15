@@ -9,22 +9,29 @@
 , nixosTests
 , Security
 , Foundation
+, Cocoa
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "starship";
-  version = "1.3.0";
+  # unstable was used for a quick fix for darwin
+  # revert to stable for the release after 1.5.4
+  version = "unstable-2022-04-12";
 
   src = fetchFromGitHub {
     owner = "starship";
     repo = pname;
-    rev = "v${version}";
-    sha256 = "sha256-mqUE4JzNBhvtDpT2LM23eHX8q93wtPqA+/zr/PxEDiE=";
+    rev = "a02e87833d6a0e0da3c239d0bbbf3b485356a655";
+    sha256 = "sha256-oe/dKFgM8h+ur8E9/dw4byBl9vD6foUXyKX19HDozYU=";
   };
 
   nativeBuildInputs = [ installShellFiles pkg-config ];
 
-  buildInputs = [ libgit2 ] ++ lib.optionals stdenv.isDarwin [ libiconv Security Foundation ];
+  buildInputs = [ libgit2 ] ++ lib.optionals stdenv.isDarwin [ libiconv Security Foundation Cocoa ];
+
+  buildNoDefaultFeatures = true;
+  # the "notify" feature is currently broken on darwin
+  buildFeatures = if stdenv.isDarwin then [ "battery" ] else [ "default" ];
 
   postInstall = ''
     for shell in bash fish zsh; do
@@ -33,7 +40,7 @@ rustPlatform.buildRustPackage rec {
     done
   '';
 
-  cargoSha256 = "sha256-hQNDiayVT4UgbxcxdXssi/evPvwgyvG/UOFyEHj7jpo=";
+  cargoSha256 = "sha256-lku+K1Y5HIt4gDHqudhDMVs7XGoKw8HcMjXMGDu1vkg=";
 
   preCheck = ''
     HOME=$TMPDIR

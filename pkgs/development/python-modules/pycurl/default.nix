@@ -77,6 +77,6 @@ buildPythonPackage rec {
     homepage = "http://pycurl.io/";
     description = "Python Interface To The cURL library";
     license = with licenses; [ lgpl2Only mit ];
-    maintainers = with maintainers; [];
+    maintainers = with maintainers; [ SuperSandro2000 ];
   };
 }
