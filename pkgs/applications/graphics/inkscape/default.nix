@@ -50,6 +50,7 @@ let
       pillow
       scour
       pygobject3
+      pyserial
     ]);
 in
 stdenv.mkDerivation rec {
