@@ -175,7 +175,7 @@ stdenv.mkDerivation ((lib.optionalAttrs (buildScript != null) {
     done
   '';
 
-  enableParallelBuilding = true;
+  enableParallelBuilding = false;
 
   # https://bugs.winehq.org/show_bug.cgi?id=43530
   # https://github.com/NixOS/nixpkgs/issues/31989
