@@ -25,16 +25,10 @@ let
     ctrl_interface_group=${cfg.group}
 
     interface=${ifName}
-    ssid=${ifCfg.ssid}
 
     ${optionalString (cfg.countryCode != null) ''country_code=${cfg.countryCode}''}
     ${optionalString (cfg.countryCode != null) ''ieee80211d=1''}
 
-    ${optionalString ifCfg.wpa ''
-      wpa=2
-      wpa_passphrase=${ifCfg.wpaPassphrase}
-      wpa_pairwise=TKIP CCMP 
-    ''}
     ${optionalString ifCfg.noScan "noscan=1"}
 
     ${if ifCfg.bridge != "" then "bridge=${cfg.bridge}" else ""}
