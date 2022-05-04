@@ -745,6 +745,8 @@ in {
         Type = "notify";
         User = "matrix-synapse";
         Group = "matrix-synapse";
+        TimeoutStartSec = 1800;
+        TimeoutStopSec = 1800;
         WorkingDirectory = cfg.dataDir;
         ExecStartPre = [ ("+" + (pkgs.writeShellScript "matrix-synapse-fix-permissions" ''
           chown matrix-synapse:matrix-synapse ${cfg.dataDir}/homeserver.signing.key
