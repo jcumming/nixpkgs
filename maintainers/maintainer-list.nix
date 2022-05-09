@@ -822,6 +822,16 @@
     githubId = 1771266;
     name = "Vo Anh Duy";
   };
+  Anillc = {
+    name = "Anillc";
+    email = "i@anillc.cn";
+    github = "Anillc";
+    githubId = 23411248;
+    keys = [{
+      longkeyid = "ed25519/0x0BE8A88F47B2145C";
+      fingerprint = "6141 1E4F FE10 CE7B 2E14  CD76 0BE8 A88F 47B2 145C";
+    }];
+  };
   anirrudh = {
     email = "anik597@gmail.com";
     github = "anirrudh";
@@ -9025,6 +9035,12 @@
   nfjinjing = {
     email = "nfjinjing@gmail.com";
     name = "Jinjing Wang";
+  };
+  ngiger = {
+    email = "niklaus.giger@member.fsf.org";
+    github = "ngiger";
+    githubId = 265800;
+    name = "Niklaus Giger";
   };
   nh2 = {
     email = "mail@nh2.me";
