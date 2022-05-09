@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs =
     [ pkg-config autoconf automake gettext intltool
-      wrapGAppsHook bash doxygen
+      wrapGAppsHook doxygen
     ];
 
   buildInputs = [

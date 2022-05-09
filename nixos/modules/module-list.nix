@@ -196,7 +196,6 @@
   ./programs/partition-manager.nix
   ./programs/plotinus.nix
   ./programs/proxychains.nix
-  ./programs/phosh.nix
   ./programs/qt5ct.nix
   ./programs/screen.nix
   ./programs/sedutil.nix
@@ -737,6 +736,7 @@
   ./services/networking/blocky.nix
   ./services/networking/charybdis.nix
   ./services/networking/cjdns.nix
+  ./services/networking/cloudflare-dyndns.nix
   ./services/networking/cntlm.nix
   ./services/networking/connman.nix
   ./services/networking/consul.nix
@@ -974,6 +974,7 @@
   ./services/security/hockeypuck.nix
   ./services/security/hologram-server.nix
   ./services/security/hologram-agent.nix
+  ./services/security/kanidm.nix
   ./services/security/munge.nix
   ./services/security/nginx-sso.nix
   ./services/security/oauth2_proxy.nix
@@ -1255,6 +1256,7 @@
   ./virtualisation/virtualbox-guest.nix
   ./virtualisation/virtualbox-host.nix
   ./virtualisation/vmware-guest.nix
+  ./virtualisation/vmware-host.nix
   ./virtualisation/waydroid.nix
   ./virtualisation/xen-dom0.nix
   ./virtualisation/xe-guest-utilities.nix

@@ -17146,7 +17146,6 @@ let
       sha256 = "0xl8lcv9gfv0nn8vrrxa4az359whqdhmzw4r51nn3add8pn3s9ip";
     };
     buildInputs = [ pkgs.zookeeper_mt ];
-    nativeBuildInputs = [ pkgs.gnused ];
     # fix "error: format not a string literal and no format arguments [-Werror=format-security]"
     hardeningDisable = [ "format" ];
     # Make the async API accessible
@@ -18987,6 +18986,20 @@ let
     src = fetchurl {
       url = "mirror://cpan/authors/id/K/KW/KWILLIAMS/Probe-Perl-0.03.tar.gz";
       sha256 = "0c9wiaz0mqqknafr4jdr0g2gdzxnn539182z0icqaqvp5qgd5r6r";
+    };
+  };
+
+  POSIXAtFork = buildPerlPackage {
+    pname = "POSIX-AtFork";
+    version = "0.04";
+    src = fetchurl {
+      url = "mirror://cpan/authors//id/N/NI/NIKOLAS/POSIX-AtFork-0.04.tar.gz";
+      sha256 = "sha256-wuIpOobUhxRLyPe6COfEt2sRsOTf3EGAmEXTDvoH5g4=";
+    };
+    buildInputs = [ TestSharedFork ];
+    meta = {
+      description = "Hook registrations at fork(2)";
+      license = with lib.licenses; [ artistic1 gpl1Plus ];
     };
   };
 
