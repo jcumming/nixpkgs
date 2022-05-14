@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2022.5.3";
+  version = "2022.5.4";
   components = {
     "abode" = ps: with ps; [
       abodepy
@@ -1558,7 +1558,8 @@
       pymeteoclimatic
     ];
     "metoffice" = ps: with ps; [
-    ]; # missing inputs: datapoint
+      datapoint
+    ];
     "mfi" = ps: with ps; [
     ]; # missing inputs: mficlient
     "microsoft" = ps: with ps; [
@@ -2245,7 +2246,8 @@
     "russound_rnet" = ps: with ps; [
     ]; # missing inputs: russound
     "sabnzbd" = ps: with ps; [
-    ]; # missing inputs: pysabnzbd
+      pysabnzbd
+    ];
     "safe_mode" = ps: with ps; [
       pyturbojpeg
       aiohttp-cors
@@ -2824,7 +2826,7 @@
     "uk_transport" = ps: with ps; [
     ];
     "ukraine_alarm" = ps: with ps; [
-      ukrainealarm
+      uasiren
     ];
     "unifi" = ps: with ps; [
       aiounifi
@@ -3467,6 +3469,7 @@
     "met_eireann"
     "meteo_france"
     "meteoclimatic"
+    "metoffice"
     "microsoft_face"
     "microsoft_face_detect"
     "microsoft_face_identify"
@@ -3594,6 +3597,7 @@
     "rss_feed_template"
     "rtsp_to_webrtc"
     "ruckus_unleashed"
+    "sabnzbd"
     "safe_mode"
     "samsungtv"
     "scene"

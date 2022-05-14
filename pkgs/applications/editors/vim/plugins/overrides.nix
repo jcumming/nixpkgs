@@ -41,6 +41,8 @@
 , ycmd
 , zoxide
 , nodejs
+, xdotool
+, xorg
 
 # test dependencies
 , neovim-unwrapped
@@ -291,6 +293,10 @@ self: super: {
     '';
   });
 
+  fzf-lua = super.fzf-lua.overrideAttrs (old: {
+    propagatedBuildInputs = [ fzf ];
+  });
+
   fzf-vim = super.fzf-vim.overrideAttrs (old: {
     dependencies = with self; [ fzfWrapper ];
   });
@@ -321,6 +327,9 @@ self: super: {
       sed -Ei lua/plenary/curl.lua \
           -e 's@(command\s*=\s*")curl(")@\1${curl}/bin/curl\2@'
     '';
+
+    doInstallCheck = true;
+    nvimRequireCheck = "plenary";
   });
 
   gruvbox-nvim = super.gruvbox-nvim.overrideAttrs (old: {
@@ -605,6 +614,14 @@ self: super: {
       substituteInPlace plugin/statix.vim --replace statix ${statix}/bin/statix
     '';
   };
+
+  stylish-nvim = super.stylish-nvim.overrideAttrs (old: {
+      postPatch = ''
+        substituteInPlace lua/stylish/common/mouse_hover_handler.lua --replace xdotool ${xdotool}/bin/xdotool
+        substituteInPlace lua/stylish/components/menu.lua --replace xdotool ${xdotool}/bin/xdotool
+        substituteInPlace lua/stylish/components/menu.lua --replace xwininfo ${xorg.xwininfo}/bin/xwininfo
+      '';
+  });
 
   sved =
     let
