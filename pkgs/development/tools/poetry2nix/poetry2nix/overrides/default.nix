@@ -1891,7 +1891,7 @@ lib.composeManyExtensions [
 
           # Fix library paths
           postPatch = old.postPatch or "" + ''
-            ${self.python.pythonForBuild.interpreter} ${./shapely-rewrite.py} shapely/geos.py
+            ${pkgs.python3.interpreter} ${./shapely-rewrite.py} shapely/geos.py
           '';
         }
       );
@@ -2346,7 +2346,7 @@ lib.composeManyExtensions [
       });
 
       wtforms = super.wtforms.overridePythonAttrs (old: {
-        buildInputs = (old.buildInputs or [ ]) ++ [ self.Babel ];
+        buildInputs = (old.buildInputs or [ ]) ++ [ self.babel ];
       });
 
     }

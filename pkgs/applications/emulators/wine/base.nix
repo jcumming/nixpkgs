@@ -175,6 +175,8 @@ stdenv.mkDerivation ((lib.optionalAttrs (buildScript != null) {
     done
   '';
 
+  # Until https://github.com/NixOS/nixpkgs/pull/172617 is applied,
+  # parallel builds do not always work because of a bug in dlltool.
   enableParallelBuilding = false;
 
   # https://bugs.winehq.org/show_bug.cgi?id=43530

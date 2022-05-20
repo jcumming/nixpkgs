@@ -209,8 +209,6 @@ in {
 
   addict = callPackage ../development/python-modules/addict { };
 
-  addic7ed-cli = callPackage ../development/python-modules/addic7ed-cli { };
-
   adext = callPackage ../development/python-modules/adext { };
 
   adguardhome = callPackage ../development/python-modules/adguardhome { };
@@ -1113,7 +1111,7 @@ in {
 
   b2sdk = callPackage ../development/python-modules/b2sdk { };
 
-  Babel = callPackage ../development/python-modules/Babel { };
+  babel = callPackage ../development/python-modules/babel { };
 
   babelfish = callPackage ../development/python-modules/babelfish { };
 
@@ -1420,6 +1418,8 @@ in {
   BTrees = callPackage ../development/python-modules/btrees { };
 
   btrfs = callPackage ../development/python-modules/btrfs { };
+
+  btrfsutil = toPythonModule (pkgs.btrfs-progs.override { python3 = self.python; });
 
   bugsnag = callPackage ../development/python-modules/bugsnag { };
 
@@ -3248,6 +3248,8 @@ in {
 
   ftputil = callPackage ../development/python-modules/ftputil { };
 
+  func-timeout = callPackage ../development/python-modules/func-timeout { };
+
   funcparserlib = callPackage ../development/python-modules/funcparserlib { };
 
   funcsigs = callPackage ../development/python-modules/funcsigs { };
@@ -5012,6 +5014,8 @@ in {
 
   losant-rest = callPackage ../development/python-modules/losant-rest { };
 
+  lrcalc-python = callPackage ../development/python-modules/lrcalc-python { };
+
   lru-dict = callPackage ../development/python-modules/lru-dict { };
 
   lsassy = callPackage ../development/python-modules/lsassy { };
@@ -5733,6 +5737,10 @@ in {
 
   nltk = callPackage ../development/python-modules/nltk { };
 
+  nnpdf = toPythonModule (pkgs.nnpdf.override {
+    python3 = python;
+  });
+
   nmapthon2 = callPackage ../development/python-modules/nmapthon2 { };
 
   amaranth-boards = callPackage ../development/python-modules/amaranth-boards { };
@@ -6392,6 +6400,8 @@ in {
   pipdeptree = callPackage ../development/python-modules/pipdeptree { };
 
   pipenv-poetry-migrate = callPackage ../development/python-modules/pipenv-poetry-migrate { };
+
+  pip-api = callPackage ../development/python-modules/pip-api { };
 
   pip-tools = callPackage ../development/python-modules/pip-tools { };
 
@@ -7236,6 +7246,10 @@ in {
 
   pyfxa = callPackage ../development/python-modules/pyfxa { };
 
+  pyfzf = callPackage ../development/python-modules/pyfzf {
+    inherit (pkgs) fzf;
+  };
+
   pygal = callPackage ../development/python-modules/pygal { };
 
   pygame = callPackage ../development/python-modules/pygame {
@@ -7272,7 +7286,7 @@ in {
 
   pygments-better-html = callPackage ../development/python-modules/pygments-better-html { };
 
-  pygments = callPackage ../development/python-modules/Pygments { };
+  pygments = callPackage ../development/python-modules/pygments { };
 
   pygments-markdown-lexer = callPackage ../development/python-modules/pygments-markdown-lexer { };
 
@@ -9035,6 +9049,8 @@ in {
 
   repocheck = callPackage ../development/python-modules/repocheck { };
 
+  reportengine = callPackage ../development/python-modules/reportengine { };
+
   reportlab = callPackage ../development/python-modules/reportlab { };
 
   repoze_lru = callPackage ../development/python-modules/repoze_lru { };
@@ -10244,6 +10260,8 @@ in {
 
   tern = callPackage ../development/python-modules/tern { };
 
+  tesla-powerwall = callPackage ../development/python-modules/tesla-powerwall { };
+
   tesla-wall-connector = callPackage ../development/python-modules/tesla-wall-connector { };
 
   teslajsonpy = callPackage ../development/python-modules/teslajsonpy { };
@@ -10823,6 +10841,10 @@ in {
 
   validobj = callPackage ../development/python-modules/validobj { };
 
+  validphys2 = callPackage ../development/python-modules/validphys2 { };
+
+  vallox-websocket-api = callPackage ../development/python-modules/vallox-websocket-api { };
+
   variants = callPackage ../development/python-modules/variants { };
 
   varint = callPackage ../development/python-modules/varint { };
@@ -10988,6 +11010,8 @@ in {
   wavinsentio = callPackage ../development/python-modules/wavinsentio { };
 
   wazeroutecalculator = callPackage ../development/python-modules/wazeroutecalculator { };
+
+  wcag-contrast-ratio = callPackage ../development/python-modules/wcag-contrast-ratio { };
 
   wcmatch = callPackage ../development/python-modules/wcmatch { };
 
