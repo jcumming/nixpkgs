@@ -258,6 +258,8 @@ with pkgs;
 
   bingo = callPackage ../development/tools/bingo {};
 
+  bootstrap-studio = callPackage ../development/web/bootstrap-studio {};
+
   breakpad = callPackage ../development/misc/breakpad { };
 
   buf = callPackage ../development/tools/buf { };
@@ -9316,7 +9318,9 @@ with pkgs;
 
   pgcenter = callPackage ../tools/misc/pgcenter { };
 
-  pgmetrics = callPackage ../tools/misc/pgmetrics { };
+  pgmetrics = callPackage ../tools/misc/pgmetrics {
+    buildGoModule = buildGo118Module;
+  };
 
   pgsync = callPackage ../development/tools/database/pgsync { };
 
@@ -11728,6 +11732,8 @@ with pkgs;
   wgpu-utils = callPackage ../tools/graphics/wgpu-utils { };
 
   wg-bond = callPackage ../applications/networking/wg-bond { };
+
+  wgcf = callPackage ../applications/networking/wgcf { };
 
   which = callPackage ../tools/system/which { };
 
@@ -18440,6 +18446,7 @@ with pkgs;
 
   inherit (callPackage ../development/libraries/libdwarf { })
     libdwarf dwarfdump;
+  libdwarf_0_4 = callPackage ../development/libraries/libdwarf/0.4.nix { };
 
   libe57format = callPackage ../development/libraries/libe57format { };
 
@@ -18581,8 +18588,6 @@ with pkgs;
   libe-book = callPackage ../development/libraries/libe-book {
     icu = icu67;
   };
-
-  libechonest = callPackage ../development/libraries/libechonest { };
 
   libemf2svg = callPackage ../development/libraries/libemf2svg { };
 
@@ -20170,8 +20175,6 @@ with pkgs;
 
   qimageblitz = callPackage ../development/libraries/qimageblitz {};
 
-  qjson = callPackage ../development/libraries/qjson { };
-
   qolibri = libsForQt5.callPackage ../applications/misc/qolibri { };
 
   qt4 = qt48;
@@ -20441,12 +20444,16 @@ with pkgs;
     autoreconfHook = buildPackages.autoreconfHook269;
   };
 
-  SDL = callPackage ../development/libraries/SDL ({
+  SDL_classic = callPackage ../development/libraries/SDL ({
     inherit (darwin.apple_sdk.frameworks) OpenGL CoreAudio CoreServices AudioUnit Kernel Cocoa GLUT;
   } // lib.optionalAttrs stdenv.hostPlatform.isAndroid {
     # libGLU doesn’t work with Android’s SDL
     libGLU = null;
   });
+
+  SDL_compat = callPackage ../development/libraries/SDL_compat { };
+
+  SDL = SDL_classic;
 
   SDL_audiolib = callPackage ../development/libraries/SDL_audiolib { };
 
@@ -29445,11 +29452,12 @@ with pkgs;
 
   scli = callPackage ../applications/misc/scli { };
 
-  scribus = callPackage ../applications/office/scribus {
+  scribus_1_4 = callPackage ../applications/office/scribus/1_4.nix {
     inherit (gnome2) libart_lgpl;
   };
 
-  scribusUnstable = libsForQt5.callPackage ../applications/office/scribus/unstable.nix { };
+  scribus_1_5 = libsForQt5.callPackage ../applications/office/scribus/default.nix { };
+  scribus = scribus_1_5;
 
   seafile-client = libsForQt5.callPackage ../applications/networking/seafile-client { };
 
@@ -32040,7 +32048,7 @@ with pkgs;
 
   opentyrian = callPackage ../games/opentyrian { };
 
-  openxcom = callPackage ../games/openxcom { };
+  openxcom = callPackage ../games/openxcom { SDL = SDL_compat; };
 
   openxray = callPackage ../games/openxray { };
 
@@ -32144,7 +32152,7 @@ with pkgs;
 
   rocksndiamonds = callPackage ../games/rocksndiamonds { };
 
-  rott = callPackage ../games/rott { };
+  rott = callPackage ../games/rott { SDL = SDL_compat; };
 
   rott-shareware = rott.override {
     buildShareware = true;
