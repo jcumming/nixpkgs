@@ -61,7 +61,7 @@ stdenv.mkDerivation {
       gst.gstreamer gst.gst-plugins-base gst.gst-plugins-good gst.gst-plugins-bad gst.gst-plugins-ugly gst.gst-libav
       gavl
       ocamlPackages.fdkaac
-      ocamlPackages.srt ocamlPackages.sedlex_2 ocamlPackages.menhir ocamlPackages.menhirLib
+      ocamlPackages.srt ocamlPackages.sedlex ocamlPackages.menhir ocamlPackages.menhirLib
     ];
 
   postInstall = ''
