@@ -417,6 +417,8 @@ in {
 
   aioshelly = callPackage ../development/python-modules/aioshelly { };
 
+  aioshutil = callPackage ../development/python-modules/aioshutil { };
+
   aiosignal = callPackage ../development/python-modules/aiosignal { };
 
   aioslimproto = callPackage ../development/python-modules/aioslimproto { };
@@ -424,6 +426,8 @@ in {
   aiosmb = callPackage ../development/python-modules/aiosmb { };
 
   aiosmtpd = callPackage ../development/python-modules/aiosmtpd { };
+
+  aiosmtplib = callPackage ../development/python-modules/aiosmtplib { };
 
   aiosqlite = callPackage ../development/python-modules/aiosqlite { };
 
@@ -2928,6 +2932,8 @@ in {
   faraday-plugins = callPackage ../development/python-modules/faraday-plugins { };
 
   fastapi = callPackage ../development/python-modules/fastapi { };
+
+  fastapi-mail = callPackage ../development/python-modules/fastapi-mail { };
 
   fastavro = callPackage ../development/python-modules/fastavro { };
 
@@ -8811,6 +8817,8 @@ in {
 
   pyunifi = callPackage ../development/python-modules/pyunifi { };
 
+  pyunifiprotect = callPackage ../development/python-modules/pyunifiprotect { };
+
   pyupdate = callPackage ../development/python-modules/pyupdate { };
 
   pyupgrade = callPackage ../development/python-modules/pyupgrade { };
@@ -10830,6 +10838,8 @@ in {
   unidiff = callPackage ../development/python-modules/unidiff { };
 
   unifi = callPackage ../development/python-modules/unifi { };
+
+  unifi-discovery = callPackage ../development/python-modules/unifi-discovery { };
 
   unify = callPackage ../development/python-modules/unify { };
 

@@ -262,7 +262,9 @@ with pkgs;
 
   breakpad = callPackage ../development/misc/breakpad { };
 
-  buf = callPackage ../development/tools/buf { };
+  buf = callPackage ../development/tools/buf {
+    buildGoModule = buildGo118Module;
+  };
 
   cfn-nag = callPackage ../development/tools/cfn-nag { };
 
@@ -408,6 +410,8 @@ with pkgs;
   };
 
   pridecat = callPackage ../tools/misc/pridecat { };
+
+  pridefetch = callPackage ../tools/misc/pridefetch { };
 
   proto-contrib = callPackage ../development/tools/proto-contrib { };
 
@@ -908,8 +912,6 @@ with pkgs;
 
   useOldCXXAbi = makeSetupHook { } ../build-support/setup-hooks/use-old-cxx-abi.sh;
 
-  ical2org = callPackage ../tools/misc/ical2org {};
-
   iconConvTools = callPackage ../build-support/icon-conv-tools {};
 
   validatePkgConfig = makeSetupHook
@@ -1068,6 +1070,8 @@ with pkgs;
   aircrack-ng = callPackage ../tools/networking/aircrack-ng { };
 
   airfield = callPackage ../tools/networking/airfield { };
+
+  airgeddon = callPackage ../tools/networking/airgeddon { };
 
   apache-airflow = with python3.pkgs; toPythonApplication apache-airflow;
 
@@ -2762,8 +2766,6 @@ with pkgs;
   bmon = callPackage ../tools/misc/bmon { };
 
   bmake = callPackage ../development/tools/build-managers/bmake { };
-
-  go-mk = callPackage ../development/tools/build-managers/go-mk { };
 
   boca = callPackage ../development/libraries/boca { };
 
@@ -4635,20 +4637,16 @@ with pkgs;
 
   circus = callPackage ../tools/networking/circus { };
 
-  citrix_workspace = citrix_workspace_21_12_0;
+  citrix_workspace = citrix_workspace_22_05_0;
 
   inherit (callPackage ../applications/networking/remote/citrix-workspace { })
-    citrix_workspace_20_04_0
-    citrix_workspace_20_06_0
-    citrix_workspace_20_09_0
-    citrix_workspace_20_10_0
-    citrix_workspace_20_12_0
     citrix_workspace_21_01_0
     citrix_workspace_21_03_0
     citrix_workspace_21_06_0
     citrix_workspace_21_08_0
     citrix_workspace_21_09_0
     citrix_workspace_21_12_0
+    citrix_workspace_22_05_0
   ;
 
   cmigemo = callPackage ../tools/text/cmigemo { };
@@ -5030,8 +5028,6 @@ with pkgs;
   curlMinimal = callPackage ../tools/networking/curl { };
 
   curlWithGnuTls = curl.override { gnutlsSupport = true; opensslSupport = false; };
-
-  curl_unix_socket = callPackage ../tools/networking/curl-unix-socket { };
 
   curlie = callPackage ../tools/networking/curlie { };
 
@@ -5578,7 +5574,7 @@ with pkgs;
   # The latest version used by elasticsearch, logstash, kibana and the the beats from elastic.
   # When updating make sure to update all plugins or they will break!
   elk6Version = "6.8.21";
-  elk7Version = "7.16.1";
+  elk7Version = "7.17.4";
 
   elasticsearch6 = callPackage ../servers/search/elasticsearch/6.x.nix {
     util-linux = util-linuxMinimal;
@@ -6132,8 +6128,6 @@ with pkgs;
 
   gawkInteractive = gawk.override { interactive = true; };
 
-  gawp = callPackage ../tools/misc/gawp { };
-
   gbdfed = callPackage ../tools/misc/gbdfed {
     gtk = gtk2-x11;
   };
@@ -6304,8 +6298,6 @@ with pkgs;
 
   git-lfs = lowPrio (callPackage ../applications/version-management/git-lfs { });
 
-  git-lfs1 = callPackage ../applications/version-management/git-lfs/1.nix { };
-
   git-ftp = callPackage ../development/tools/git-ftp { };
 
   git-machete = python3Packages.callPackage ../applications/version-management/git-and-tools/git-machete { };
@@ -6406,6 +6398,10 @@ with pkgs;
   gitlab-workhorse = callPackage ../applications/version-management/gitlab/gitlab-workhorse { };
 
   gitleaks = callPackage ../tools/security/gitleaks { };
+
+  gitsign = callPackage ../tools/security/gitsign {
+    buildGoModule = buildGo118Module;
+  };
 
   gitaly = callPackage ../applications/version-management/gitlab/gitaly { };
 
@@ -6532,8 +6528,6 @@ with pkgs;
   godot-headless = callPackage ../development/tools/godot/headless.nix { };
 
   godot-server = callPackage ../development/tools/godot/server.nix { };
-
-  goklp = callPackage ../tools/networking/goklp {};
 
   go-mtpfs = callPackage ../tools/filesystems/go-mtpfs { };
 
@@ -8729,6 +8723,8 @@ with pkgs;
   pandoc-fignos = python3Packages.callPackage ../tools/misc/pandoc-fignos { };
   pandoc-secnos = python3Packages.callPackage ../tools/misc/pandoc-secnos { };
   pandoc-tablenos = python3Packages.callPackage ../tools/misc/pandoc-tablenos { };
+
+  panoply = callPackage ../tools/misc/panoply { };
 
   patray = callPackage ../tools/audio/patray { };
 
@@ -18411,10 +18407,6 @@ with pkgs;
 
   libdecor = callPackage ../development/libraries/libdecor { };
 
-  libdigidoc = callPackage ../development/libraries/libdigidoc {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   libdigidocpp = callPackage ../development/libraries/libdigidocpp { };
 
   libdiscid = callPackage ../development/libraries/libdiscid { };
@@ -19357,6 +19349,10 @@ with pkgs;
 
   libversion = callPackage ../development/libraries/libversion { };
 
+  libvgm = callPackage ../development/libraries/libvgm {
+    inherit (darwin.apple_sdk.frameworks) CoreAudio AudioToolbox;
+  };
+
   libvirt = callPackage ../development/libraries/libvirt {
     inherit (darwin.apple_sdk.frameworks) Carbon AppKit;
   };
@@ -19730,6 +19726,8 @@ with pkgs;
   nanomsg = callPackage ../development/libraries/nanomsg { };
 
   nanovna-saver = libsForQt5.callPackage ../applications/science/electronics/nanovna-saver { };
+
+  nanotts = callPackage ../tools/audio/nanotts { };
 
   ncnn = callPackage ../development/libraries/ncnn { };
 
@@ -26175,6 +26173,8 @@ with pkgs;
 
   faircamp = callPackage ../applications/misc/faircamp { };
 
+  famistudio = callPackage ../applications/audio/famistudio { };
+
   fasttext = callPackage ../applications/science/machine-learning/fasttext { };
 
   fbmenugen = callPackage ../applications/misc/fbmenugen { };
@@ -26574,6 +26574,8 @@ with pkgs;
   };
 
   firefox_decrypt = python3Packages.callPackage ../tools/security/firefox_decrypt { };
+
+  fmtoy = callPackage ../tools/audio/fmtoy { };
 
   flac = callPackage ../applications/audio/flac { };
 
@@ -27210,6 +27212,8 @@ with pkgs;
 
   swaynotificationcenter = callPackage ../applications/misc/swaynotificationcenter { };
 
+  swaynag-battery = callPackage ../applications/misc/swaynag-battery {};
+
   tiramisu = callPackage ../applications/misc/tiramisu { };
 
   rootbar = callPackage ../applications/misc/rootbar {};
@@ -27249,8 +27253,6 @@ with pkgs;
   i3blocks = callPackage ../applications/window-managers/i3/blocks.nix { };
 
   i3blocks-gaps = callPackage ../applications/window-managers/i3/blocks-gaps.nix { };
-
-  i3cat = callPackage ../tools/misc/i3cat { };
 
   i3ipc-glib = callPackage ../applications/window-managers/i3/i3ipc-glib.nix { };
 
@@ -28165,6 +28167,17 @@ with pkgs;
     };
   };
 
+  mmlgui = callPackage ../applications/audio/mmlgui {
+    inherit (darwin.apple_sdk.frameworks) Carbon Cocoa;
+    libvgm = libvgm.override {
+      withAllEmulators = false;
+      emulators = [
+        "_PRESET_SMD"
+      ];
+      enableLibplayer = false;
+    };
+  };
+
   mmsd = callPackage ../tools/networking/mmsd { };
 
   mmtc = callPackage ../applications/audio/mmtc { };
@@ -28836,6 +28849,10 @@ with pkgs;
   osmium-tool = callPackage ../applications/misc/osmium-tool { };
 
   owamp = callPackage ../applications/networking/owamp { };
+
+  vgmplay-libvgm = callPackage ../applications/audio/vgmplay-libvgm { };
+
+  vgmtools = callPackage ../tools/audio/vgmtools { };
 
   vieb = callPackage ../applications/networking/browsers/vieb { };
 
@@ -30877,8 +30894,6 @@ with pkgs;
   };
 
   xmountains = callPackage ../applications/graphics/xmountains { };
-
-  xmpp-client = callPackage ../applications/networking/instant-messengers/xmpp-client { };
 
   libxpdf = callPackage ../applications/misc/xpdf/libxpdf.nix { };
 

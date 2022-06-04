@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2022.6.0";
+  version = "2022.6.1";
   components = {
     "abode" = ps: with ps; [
       abodepy
@@ -2876,7 +2876,9 @@
     ];
     "unifiprotect" = ps: with ps; [
       aiohttp-cors
-    ]; # missing inputs: pyunifiprotect unifi-discovery
+      pyunifiprotect
+      unifi-discovery
+    ];
     "universal" = ps: with ps; [
     ];
     "upb" = ps: with ps; [
@@ -3779,6 +3781,7 @@
     "ukraine_alarm"
     "unifi"
     "unifi_direct"
+    "unifiprotect"
     "universal"
     "upb"
     "upcloud"
