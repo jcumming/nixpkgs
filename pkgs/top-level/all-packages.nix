@@ -386,6 +386,8 @@ with pkgs;
 
   eclipse-mat = callPackage ../development/tools/eclipse-mat { };
 
+  efficient-compression-tool = callPackage ../tools/compression/efficient-compression-tool { };
+
   evans = callPackage ../development/tools/evans { };
 
   firefly-desktop = callPackage ../applications/misc/firefly-desktop { };
@@ -4757,6 +4759,8 @@ with pkgs;
 
   evdevremapkeys = callPackage ../tools/inputmethods/evdevremapkeys { };
 
+  persistent-evdev = python3Packages.callPackage ../servers/persistent-evdev { };
+
   evscript = callPackage ../tools/inputmethods/evscript { };
 
   gebaar-libinput = callPackage ../tools/inputmethods/gebaar-libinput { stdenv = gcc10StdenvCompat; };
@@ -7468,13 +7472,8 @@ with pkgs;
 
   kfctl = callPackage ../applications/networking/cluster/kfctl { };
 
-  kibana6 = callPackage ../development/tools/misc/kibana/6.x.nix { };
-  kibana6-oss = callPackage ../development/tools/misc/kibana/6.x.nix {
-    enableUnfree = false;
-  };
   kibana7 = callPackage ../development/tools/misc/kibana/7.x.nix { };
-  kibana = kibana6;
-  kibana-oss = kibana6-oss;
+  kibana = kibana7;
 
   kibi = callPackage ../applications/editors/kibi { };
 
@@ -7855,14 +7854,6 @@ with pkgs;
 
   nodejs-slim = nodejs-slim-16_x;
 
-
-  nodejs-10_x = callPackage ../development/web/nodejs/v10.nix {
-    icu = icu67;
-  };
-  nodejs-slim-10_x = callPackage ../development/web/nodejs/v10.nix {
-    enableNpm = false;
-    icu = icu67;
-  };
   nodejs-12_x = callPackage ../development/web/nodejs/v12.nix { };
   nodejs-slim-12_x = callPackage ../development/web/nodejs/v12.nix {
     enableNpm = false;
@@ -9612,6 +9603,10 @@ with pkgs;
 
   pwndbg = callPackage ../development/tools/misc/pwndbg { };
 
+  pwninit = callPackage ../development/tools/misc/pwninit {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   pycflow2dot = with python3.pkgs; toPythonApplication pycflow2dot;
 
   pydf = callPackage ../applications/misc/pydf { };
@@ -10104,8 +10099,6 @@ with pkgs;
   saldl = callPackage ../tools/networking/saldl { };
 
   salt = callPackage ../tools/admin/salt {};
-
-  salut_a_toi = callPackage ../applications/networking/instant-messengers/salut-a-toi {};
 
   samim-fonts = callPackage ../data/fonts/samim-fonts {};
 
@@ -11286,8 +11279,6 @@ with pkgs;
   vcs_query = callPackage ../tools/misc/vcs_query { };
 
   vcstool = callPackage ../development/tools/vcstool { };
-
-  vend = callPackage ../development/tools/vend { };
 
   verco = callPackage ../applications/version-management/verco { };
 
@@ -13025,6 +13016,8 @@ with pkgs;
   gleam = callPackage ../development/compilers/gleam {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
+
+  gmqcc = callPackage ../development/compilers/gmqcc {};
 
   gtk-server = callPackage ../development/interpreters/gtk-server {};
 
@@ -22456,6 +22449,7 @@ with pkgs;
   prometheus-minio-exporter = callPackage ../servers/monitoring/prometheus/minio-exporter { };
   prometheus-modemmanager-exporter = callPackage ../servers/monitoring/prometheus/modemmanager-exporter.nix { };
   prometheus-mysqld-exporter = callPackage ../servers/monitoring/prometheus/mysqld-exporter.nix { };
+  prometheus-nats-exporter = callPackage ../servers/monitoring/prometheus/nats-exporter.nix { };
   prometheus-nextcloud-exporter = callPackage ../servers/monitoring/prometheus/nextcloud-exporter.nix { };
   prometheus-nginx-exporter = callPackage ../servers/monitoring/prometheus/nginx-exporter.nix { };
   prometheus-nginxlog-exporter = callPackage ../servers/monitoring/prometheus/nginxlog-exporter.nix { };
@@ -25249,9 +25243,7 @@ with pkgs;
 
   atlassian-cli = callPackage ../applications/office/atlassian-cli { };
 
-  atomEnv = callPackage ../applications/editors/atom/env.nix {
-    gconf = gnome2.GConf;
-  };
+  atomEnv = callPackage ../applications/editors/atom/env.nix { };
 
   atomPackages = dontRecurseIntoAttrs (callPackage ../applications/editors/atom { });
 
@@ -25876,6 +25868,8 @@ with pkgs;
   doodle = callPackage ../applications/search/doodle { };
 
   dr14_tmeter = callPackage ../applications/audio/dr14_tmeter { };
+
+  dragonflydb = callPackage ../servers/nosql/dragonflydb { };
 
   dragonfly-reverb = callPackage ../applications/audio/dragonfly-reverb { };
 
@@ -27594,8 +27588,6 @@ with pkgs;
 
   kn = callPackage ../applications/networking/cluster/kn { };
 
-  kodestudio = callPackage ../applications/editors/kodestudio { };
-
   kondo = callPackage ../applications/misc/kondo { };
 
   konversation = libsForQt5.callPackage ../applications/networking/irc/konversation { };
@@ -27902,6 +27894,8 @@ with pkgs;
   lrzsz = callPackage ../tools/misc/lrzsz { };
 
   lsp-plugins = callPackage ../applications/audio/lsp-plugins { php = php74; };
+
+  ltex-ls = callPackage ../tools/text/ltex-ls { };
 
   luminanceHDR = libsForQt5.callPackage ../applications/graphics/luminance-hdr { };
 
@@ -29581,9 +29575,13 @@ with pkgs;
 
   sptlrx = callPackage ../applications/audio/sptlrx { };
 
+  sptk = callPackage ../development/libraries/sptk { };
+
   squishyball = callPackage ../applications/audio/squishyball {
     ncurses = ncurses5;
   };
+
+  stw = callPackage ../applications/misc/stw { };
 
   styx = callPackage ../applications/misc/styx { };
 
@@ -29663,9 +29661,6 @@ with pkgs;
   };
 
   curaengine_stable = callPackage ../applications/misc/curaengine/stable.nix { };
-  cura_stable = callPackage ../applications/misc/cura/stable.nix {
-    curaengine = curaengine_stable;
-  };
 
   curaengine = callPackage ../applications/misc/curaengine { inherit (python3.pkgs) libarcus; };
 
@@ -30082,8 +30077,6 @@ with pkgs;
   todoman = callPackage ../applications/office/todoman { };
 
   topydo = callPackage ../applications/misc/topydo {};
-
-  torchat = callPackage ../applications/networking/instant-messengers/torchat { };
 
   torrential = callPackage ../applications/networking/p2p/torrential { };
 
@@ -32300,7 +32293,7 @@ with pkgs;
   stt = callPackage ../tools/audio/stt { };
 
   stuntrally = callPackage ../games/stuntrally
-    { stdenv = gcc10StdenvCompat; ogre = ogre1_9; mygui = mygui.override { withOgre = true; }; };
+    { ogre = ogre1_9; mygui = mygui.override { withOgre = true; }; };
 
   superTux = callPackage ../games/supertux { };
 
@@ -33264,6 +33257,7 @@ with pkgs;
     coqPackages_8_13 coq_8_13
     coqPackages_8_14 coq_8_14
     coqPackages_8_15 coq_8_15
+    coqPackages_8_16 coq_8_16
     coqPackages      coq
   ;
 
