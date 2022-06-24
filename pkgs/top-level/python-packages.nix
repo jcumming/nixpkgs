@@ -1370,11 +1370,6 @@ in {
     enablePython = true;
   });
 
-  boost169 = toPythonModule (pkgs.boost169.override {
-    inherit (self) python numpy;
-    enablePython = true;
-  });
-
   boschshcpy = callPackage ../development/python-modules/boschshcpy { };
 
   boost-histogram = callPackage ../development/python-modules/boost-histogram {
@@ -7571,7 +7566,7 @@ in {
 
   pylaunches = callPackage ../development/python-modules/pylaunches { };
 
-  PyLD = callPackage ../development/python-modules/PyLD { };
+  pyld = callPackage ../development/python-modules/pyld { };
 
   pylev = callPackage ../development/python-modules/pylev { };
 
@@ -10068,6 +10063,8 @@ in {
   sphinx-argparse = callPackage ../development/python-modules/sphinx-argparse { };
 
   sphinx-autobuild = callPackage ../development/python-modules/sphinx-autobuild { };
+
+  sphinx-basic-ng = callPackage ../development/python-modules/sphinx-basic-ng { };
 
   sphinx-copybutton = callPackage ../development/python-modules/sphinx-copybutton { };
 
