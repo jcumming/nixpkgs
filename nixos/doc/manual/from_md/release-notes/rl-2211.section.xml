@@ -191,6 +191,18 @@
       </listitem>
       <listitem>
         <para>
+          <literal>i18n.supportedLocales</literal> is now by default
+          only generated with the locales set in
+          <literal>i18n.defaultLocale</literal> and
+          <literal>i18n.extraLocaleSettings</literal>. This got
+          partially copied over from the minimal profile and reduces the
+          final system size by up to 200MB. If you require all locales
+          installed set the option to
+          <literal>[ &quot;all&quot; ]</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>isPowerPC</literal> predicate, found on
           <literal>platform</literal> attrsets
           (<literal>hostPlatform</literal>,
@@ -202,6 +214,14 @@
           a broader set of systems. If you were using this predicate,
           you can replace <literal>foo.isPowerPC</literal> with
           <literal>(with foo; isPower &amp;&amp; is32bit &amp;&amp; isBigEndian)</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>bsp-layout</literal> no longer uses the command
+          <literal>cycle</literal> to switch to other window layouts, as
+          it got replaced by the commands <literal>previous</literal>
+          and <literal>next</literal>.
         </para>
       </listitem>
       <listitem>
@@ -221,6 +241,13 @@
         <para>
           PHP 7.4 is no longer supported due to upstream not supporting
           this version for the entire lifecycle of the 22.11 release.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          riak package removed along with
+          <literal>services.riak</literal> module, due to lack of
+          maintainer to update the package.
         </para>
       </listitem>
       <listitem>
@@ -271,15 +298,28 @@
       </listitem>
       <listitem>
         <para>
-          <literal>zfs</literal> was updated from 2.1.4 to 2.1.5,
-          enabling it to be used with Linux kernel 5.18.
+          memtest86+ was updated from 5.00-coreboot-002 to 6.00-beta2.
+          It is now the upstream version from https://www.memtest.org/,
+          as coreboot’s fork is no longer available.
         </para>
       </listitem>
       <listitem>
         <para>
-          memtest86+ was updated from 5.00-coreboot-002 to 6.00-beta2.
-          It is now the upstream version from https://www.memtest.org/,
-          as coreboot’s fork is no longer available.
+          There is a new module for the <literal>thunar</literal>
+          program (the Xfce file manager), which depends on the
+          <literal>xfconf</literal> dbus service, and also has a dbus
+          service and a systemd unit. The option
+          <literal>services.xserver.desktopManager.xfce.thunarPlugins</literal>
+          has been renamed to
+          <literal>programs.thunar.plugins</literal>, and in a future
+          release it may be removed.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          There is a new module for the <literal>xfconf</literal>
+          program (the Xfce configuration storage system), which has a
+          dbus service.
         </para>
       </listitem>
     </itemizedlist>

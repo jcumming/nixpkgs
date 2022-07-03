@@ -14,14 +14,14 @@
 
 buildPythonPackage rec {
   pname = "dremel3dpy";
-  version = "1.0.1";
+  version = "2.1.1";
   format = "setuptools";
 
   disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-wqfCzS9dhRN/zerrC6g/O8tn0k1IC0wBdZMfWumtBds=";
+    hash = "sha256-ioZwvbdPhO2kY10TqGR427mRUJBUZ5bmpiWVOV92OkI=";
   };
 
   propagatedBuildInputs = [
@@ -34,11 +34,6 @@ buildPythonPackage rec {
     validators
     yarl
   ];
-
-  postPatch = ''
-    # Ignore the pinning
-    sed -i -e "s/==[0-9.]*//" setup.py
-  '';
 
   # Module has no tests
   doCheck = false;
