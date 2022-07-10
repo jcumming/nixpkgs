@@ -255,11 +255,15 @@ in {
 
   aio-geojson-nsw-rfs-incidents = callPackage ../development/python-modules/aio-geojson-nsw-rfs-incidents { };
 
+  aio-geojson-usgs-earthquakes = callPackage ../development/python-modules/aio-geojson-usgs-earthquakes { };
+
   aio-georss-client = callPackage ../development/python-modules/aio-georss-client { };
 
   aio-georss-gdacs = callPackage ../development/python-modules/aio-georss-gdacs { };
 
   aioairzone = callPackage ../development/python-modules/aioairzone { };
+
+  aioaladdinconnect = callPackage ../development/python-modules/aioaladdinconnect { };
 
   aioambient = callPackage ../development/python-modules/aioambient { };
 
@@ -784,6 +788,8 @@ in {
   atomiclong = callPackage ../development/python-modules/atomiclong { };
 
   atomicwrites = callPackage ../development/python-modules/atomicwrites { };
+
+  atomicwrites-homeassistant = callPackage ../development/python-modules/atomicwrites-homeassistant { };
 
   atomman = callPackage ../development/python-modules/atomman { };
 
@@ -1632,6 +1638,8 @@ in {
 
   cgroup-utils = callPackage ../development/python-modules/cgroup-utils { };
 
+  chacha20poly1305-reuseable = callPackage ../development/python-modules/chacha20poly1305-reuseable { };
+
   chai = callPackage ../development/python-modules/chai { };
 
   chainer = callPackage ../development/python-modules/chainer {
@@ -2218,6 +2226,8 @@ in {
 
   deeptoolsintervals = callPackage ../development/python-modules/deeptoolsintervals { };
 
+  deepwave = callPackage ../development/python-modules/deepwave { };
+
   deep-translator = callPackage ../development/python-modules/deep-translator { };
 
   deezer-py = callPackage ../development/python-modules/deezer-py { };
@@ -2659,9 +2669,13 @@ in {
 
   durus = callPackage ../development/python-modules/durus {  };
 
-  dvclive = callPackage ../development/python-modules/dvclive {  };
+  dvc-data = callPackage ../development/python-modules/dvc-data {  };
+
+  dvc-objects = callPackage ../development/python-modules/dvc-objects {  };
 
   dvc-render = callPackage ../development/python-modules/dvc-render {  };
+
+  dvclive = callPackage ../development/python-modules/dvclive {  };
 
   dwdwfsapi = callPackage ../development/python-modules/dwdwfsapi { };
 
@@ -3276,7 +3290,9 @@ in {
 
   fontmake = callPackage ../development/python-modules/fontmake { };
 
-  skia-pathops = callPackage ../development/python-modules/skia-pathops { };
+  skia-pathops = callPackage ../development/python-modules/skia-pathops {
+    inherit (pkgs.darwin.apple_sdk.frameworks) ApplicationServices OpenGL;
+  };
 
   openstep-plist = callPackage ../development/python-modules/openstep-plist { };
 
@@ -3756,10 +3772,6 @@ in {
   grandalf = callPackage ../development/python-modules/grandalf { };
 
   grapheme = callPackage ../development/python-modules/grapheme { };
-
-  graphite_api = callPackage ../development/python-modules/graphite-api { };
-
-  graphite_beacon = callPackage ../development/python-modules/graphite_beacon { };
 
   graphite-web = callPackage ../development/python-modules/graphite-web { };
 
@@ -4282,8 +4294,6 @@ in {
 
   influxdb-client = callPackage ../development/python-modules/influxdb-client { };
 
-  influxgraph = callPackage ../development/python-modules/influxgraph { };
-
   inform = callPackage ../development/python-modules/inform { };
 
   iniconfig = callPackage ../development/python-modules/iniconfig { };
@@ -4621,7 +4631,11 @@ in {
 
   jupyter = callPackage ../development/python-modules/jupyter { };
 
+  jupyter-book = callPackage ../development/python-modules/jupyter-book { };
+
   jupyter-c-kernel = callPackage ../development/python-modules/jupyter-c-kernel { };
+
+  jupyter-cache = callPackage ../development/python-modules/jupyter-cache { };
 
   jupyter-client = callPackage ../development/python-modules/jupyter-client { };
 
@@ -5685,6 +5699,10 @@ in {
   mysqlclient = callPackage ../development/python-modules/mysqlclient { };
 
   mysql-connector = callPackage ../development/python-modules/mysql-connector { };
+
+  myst-docutils = callPackage ../development/python-modules/myst-docutils { };
+
+  myst-nb = callPackage ../development/python-modules/myst-nb { };
 
   myst-parser = callPackage ../development/python-modules/myst-parser { };
 
@@ -7263,6 +7281,8 @@ in {
 
   pydash = callPackage ../development/python-modules/pydash { };
 
+  pydata-sphinx-theme = callPackage ../development/python-modules/pydata-sphinx-theme { };
+
   pydbus = callPackage ../development/python-modules/pydbus { };
 
   pydeck = callPackage ../development/python-modules/pydeck { };
@@ -7516,8 +7536,6 @@ in {
   pyi2cflash = callPackage ../development/python-modules/pyi2cflash { };
 
   pyialarm = callPackage ../development/python-modules/pyialarm { };
-
-  pyialarmxr-homeassistant = callPackage ../development/python-modules/pyialarmxr-homeassistant { };
 
   pyicloud = callPackage ../development/python-modules/pyicloud { };
 
@@ -9456,6 +9474,8 @@ in {
 
   rstcheck = callPackage ../development/python-modules/rstcheck { };
 
+  rstcheck-core = callPackage ../development/python-modules/rstcheck-core { };
+
   rtmidi-python = callPackage ../development/python-modules/rtmidi-python {
     inherit (pkgs.darwin.apple_sdk.frameworks) CoreAudio CoreMIDI CoreServices;
   };
@@ -10031,7 +10051,23 @@ in {
 
   sphinx-better-theme = callPackage ../development/python-modules/sphinx-better-theme { };
 
+  sphinx-book-theme = callPackage ../development/python-modules/sphinx-book-theme { };
+
+  sphinx-comments = callPackage ../development/python-modules/sphinx-comments { };
+
+  sphinx-design = callPackage ../development/python-modules/sphinx-design { };
+
+  sphinx-external-toc = callPackage ../development/python-modules/sphinx-external-toc { };
+
+  sphinx-jupyterbook-latex = callPackage ../development/python-modules/sphinx-jupyterbook-latex { };
+
+  sphinx-multitoc-numbering = callPackage ../development/python-modules/sphinx-multitoc-numbering { };
+
   sphinx-pytest = callPackage ../development/python-modules/sphinx-pytest { };
+
+  sphinx-thebe = callPackage ../development/python-modules/sphinx-thebe { };
+
+  sphinx-togglebutton = callPackage ../development/python-modules/sphinx-togglebutton { };
 
   sphinxcontrib-actdiag = callPackage ../development/python-modules/sphinxcontrib-actdiag { };
 
@@ -10679,7 +10715,7 @@ in {
   # Used by circus and grab-site, 2020-08-29
   tornado_4 = callPackage ../development/python-modules/tornado/4.nix { };
 
-  # Used by streamlit, graphite_beacon, 2021-01-29
+  # Used by streamlit, 2021-01-29
   tornado_5 = callPackage ../development/python-modules/tornado/5.nix { };
 
   torrequest = callPackage ../development/python-modules/torrequest { };
