@@ -2294,6 +2294,8 @@ in {
 
   dicttoxml = callPackage ../development/python-modules/dicttoxml { };
 
+  dicttoxml2 = callPackage ../development/python-modules/dicttoxml2 { };
+
   diff-cover = callPackage ../development/python-modules/diff-cover { };
 
   diff-match-patch = callPackage ../development/python-modules/diff-match-patch { };
@@ -10432,6 +10434,8 @@ in {
   taskw = callPackage ../development/python-modules/taskw { };
 
   tatsu = callPackage ../development/python-modules/tatsu { };
+
+  taxi = callPackage ../development/python-modules/taxi { };
 
   tblib = callPackage ../development/python-modules/tblib { };
 
