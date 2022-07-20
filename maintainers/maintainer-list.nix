@@ -893,6 +893,13 @@
     githubId = 661909;
     name = "Antonio Nuno Monteiro";
   };
+  anoa = {
+    matrix = "@andrewm:amorgan.xyz";
+    email = "andrew@amorgan.xyz";
+    github = "anoadragon453";
+    githubId = 1342360;
+    name = "Andrew Morgan";
+  };
   anpryl = {
     email = "anpryl@gmail.com";
     github = "anpryl";
@@ -5405,6 +5412,13 @@
     githubId = 40234257;
     name = "ilkecan bozdogan";
   };
+  ihatethefrench =  {
+    email = "michal@tar.black";
+    matrix = "@michal:tar.black";
+    github = "ihatethefrench";
+    githubId = 30374463;
+    name = "Michal S.";
+  };
   illegalprime = {
     email = "themichaeleden@gmail.com";
     github = "illegalprime";
@@ -7884,6 +7898,12 @@
     githubId = 26470037;
     name = "Markus Kowalewski";
   };
+  mariaa144 = {
+    email = "speechguard_intensivist@aleeas.com";
+    github = "mariaa144";
+    githubId = 105451387;
+    name = "Maria";
+  };
   marijanp = {
     name = "Marijan Petričević";
     email = "marijan.petricevic94@gmail.com";
@@ -9736,12 +9756,12 @@
     githubId = 71795;
     name = "Mica Semrick";
   };
-  papojari = {
-    email = "papojari-git.ovoid@aleeas.com";
+  annaaurora = {
+    email = "anna@annaaurora.eu";
     matrix = "@papojari:artemislena.eu";
     github = "auroraanna";
     githubId = 81317317;
-    name = "papojari";
+    name = "Anna Aurora";
   };
   paraseba = {
     email = "paraseba@gmail.com";
@@ -14693,5 +14713,11 @@
     name = "Patsakula Nikita";
     github = "npatsakula";
     githubId = 23001619;
+  };
+  dfithian = {
+    email = "daniel.m.fithian@gmail.com";
+    name = "Daniel Fithian";
+    github = "dfithian";
+    githubId = 8409320;
   };
 }
