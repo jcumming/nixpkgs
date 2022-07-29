@@ -6,7 +6,7 @@
 , bsd-finger
 , withAbook ? true, abook
 , withGnupg ? true, gnupg
-, withGoobook ? true, goobook
+, withGoobook ? false, goobook
 , withKhard ? true, khard
 , withMu ? true, mu
 }:
