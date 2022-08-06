@@ -51,13 +51,13 @@ in
       enable = mkOption {
         type = types.bool;
         default = false;
-        description = ''
+        description = lib.mdDoc ''
           Enable putting a wireless interface into infrastructure mode,
           allowing other wireless devices to associate with the wireless
           interface and do wireless networking. A simple access point will
-          <option>enable hostapd.wpa</option>,
-          <option>hostapd.wpaPassphrase</option>, and
-          <option>hostapd.ssid</option>, as well as DHCP on the wireless
+          {option}`enable hostapd.wpa`,
+          {option}`hostapd.wpaPassphrase`, and
+          {option}`hostapd.ssid`, as well as DHCP on the wireless
           interface to provide IP addresses to the associated stations, and
           NAT (from the wireless interface to an upstream interface).
         '';
@@ -67,15 +67,15 @@ in
         default = "wheel";
         example = "network";
         type = types.str;
-        description = ''
-          Members of this group can control <command>hostapd</command>.
+        description = lib.mdDoc ''
+          Members of this group can control {command}`hostapd`.
         '';
       };
 
       logLevel = mkOption {
         default = 2;
         type = types.int;
-        description = ''
+        description = lib.mdDoc ''
           Levels (minimum value for logged events):
           0 = verbose debugging
           1 = debugging
@@ -89,7 +89,7 @@ in
         default = null;
         example = "US";
         type = with types; nullOr str;
-        description = ''
+        description = lib.mdDoc ''
           Country code (ISO/IEC 3166-1). Used to set regulatory domain.
           Set as needed to indicate country in which device is operating.
           This can limit available channels and transmit power.
@@ -114,7 +114,7 @@ in
             '';
           };
         };
-        description = ''
+        description = lib.mdDoc ''
           Wireless interfaces hostapd will run in infrastructure mode. A dual
           band Access Point is 2 different interfaces running on different frequency
           bands (different hwMode). The hostapd shall be configured to bind to the same
@@ -127,7 +127,7 @@ in
               default = "";
               example = "br0";
               type = types.str;
-              description = ''
+              description = lib.mdDoc ''
                 More complex AP setups may wish have hostapd add the wireless interfaces to a bridge
               '';
             };
@@ -136,7 +136,7 @@ in
               default = 7;
               example = 11;
               type = types.int;
-              description = ''
+              description = lib.mdDoc ''
                 Channel number (IEEE 802.11)
                 Please note that some drivers do not use this value from
                 <command>hostapd</command> and the channel will need to be configured
@@ -148,7 +148,7 @@ in
               default = "nl80211";
               example = "hostapd";
               type = types.str;
-              description = ''
+              description = lib.mdDoc ''
                 Which driver <command>hostapd</command> will use.
                 Most applications will probably use the default.
               '';
@@ -157,7 +157,7 @@ in
             hwMode = mkOption {
               default = "g";
               type = types.enum [ "a" "b" "g" ];
-              description = ''
+              description = lib.mdDoc ''
                 Operation mode.
                 (a = IEEE 802.11a/ac, b = IEEE 802.11b, g = IEEE 802.11g).
               '';
@@ -166,7 +166,7 @@ in
             noScan = mkOption {
               type = types.bool;
               default = false;
-              description = ''
+              description = lib.mdDoc ''
                 Do not scan for overlapping BSSs in HT40+/- mode.
                 Caution: turning this on will violate regulatory requirements!
               '';
@@ -176,13 +176,13 @@ in
               default = "nixos";
               example = "mySpecialSSID";
               type = types.str;
-              description = "SSID to be used in IEEE 802.11 management frames.";
+              description = lib.mdDoc "SSID to be used in IEEE 802.11 management frames.";
             };
 
             wpa = mkOption {
               type = types.bool;
               default = true;
-              description = ''
+              description = lib.mdDoc ''
                 Enable WPA2 (IEEE 802.11i/RSN) to authenticate with the access point.
               '';
             };
@@ -191,7 +191,7 @@ in
               default = "my_sekret";
               example = "any_64_char_string";
               type = types.str;
-              description = ''
+              description = lib.mdDoc ''
                 WPA-PSK (pre-shared-key) passphrase. Clients will need this
                 passphrase to associate with this access point.
                 Warning: This passphrase will get put into a world-readable file in
@@ -207,7 +207,7 @@ in
                 ht_capab=[HT41-][SHORT-GI-40][DSSS_CCK-40]
                 '';
               type = types.lines;
-              description = "Extra configuration options to put in hostapd.conf.";
+              description = lib.mdDoc "Extra configuration options to put in hostapd.conf.";
             };
           };
         }));
