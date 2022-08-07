@@ -5896,6 +5896,8 @@ in {
 
   nextcord = callPackage ../development/python-modules/nextcord { };
 
+  nextdns = callPackage ../development/python-modules/nextdns { };
+
   nftables = toPythonModule (pkgs.nftables.override {
     python3 = python;
     withPython = true;
@@ -11547,7 +11549,7 @@ in {
 
   xapp = callPackage ../development/python-modules/xapp {
     inherit (pkgs) gtk3 gobject-introspection polkit;
-    inherit (pkgs.cinnamon) xapps;
+    inherit (pkgs.cinnamon) xapp;
   };
 
   xarray = callPackage ../development/python-modules/xarray { };
