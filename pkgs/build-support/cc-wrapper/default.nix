@@ -480,7 +480,7 @@ stdenv.mkDerivation {
       hardening_unsupported_flags+=" stackprotector fortify"
     '' + optionalString targetPlatform.isAvr ''
       hardening_unsupported_flags+=" stackprotector pic"
-    '' + optionalString (targetPlatform.libc == "newlib") ''
+    '' + optionalString (targetPlatform.libc == "newlib" || targetPlatform.libc == "newlib-nano") ''
       hardening_unsupported_flags+=" stackprotector fortify pie pic"
     '' + optionalString targetPlatform.isi686 ''
       hardening_unsupported_flags+=" stackprotector"

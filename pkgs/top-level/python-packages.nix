@@ -301,6 +301,8 @@ in {
 
   aioeagle = callPackage ../development/python-modules/aioeagle { };
 
+  aioecowitt = callPackage ../development/python-modules/aioecowitt { };
+
   aioemonitor = callPackage ../development/python-modules/aioemonitor { };
 
   aioesphomeapi = callPackage ../development/python-modules/aioesphomeapi { };
@@ -1363,6 +1365,8 @@ in {
 
   bluetooth-adapters = callPackage ../development/python-modules/bluetooth-adapters { };
 
+  bluetooth-sensor-state-data = callPackage ../development/python-modules/bluetooth-sensor-state-data { };
+
   blurhash = callPackage ../development/python-modules/blurhash { };
 
   bme280spi = callPackage ../development/python-modules/bme280spi { };
@@ -1540,6 +1544,8 @@ in {
 
   caldav = callPackage ../development/python-modules/caldav { };
 
+  callee = callPackage ../development/python-modules/callee { };
+
   calmjs-parse = callPackage ../development/python-modules/calmjs-parse { };
 
   can = callPackage ../development/python-modules/can { };
@@ -1713,6 +1719,8 @@ in {
   ci-info = callPackage ../development/python-modules/ci-info { };
 
   ci-py = callPackage ../development/python-modules/ci-py { };
+
+  cinemagoer = callPackage ../development/python-modules/cinemagoer { };
 
   circuit-webhook = callPackage ../development/python-modules/circuit-webhook { };
 
@@ -1906,6 +1914,8 @@ in {
 
   colorthief = callPackage ../development/python-modules/colorthief { };
 
+  colorzero = callPackage ../development/python-modules/colorzero { };
+
   colour = callPackage ../development/python-modules/colour { };
 
   cometblue-lite = callPackage ../development/python-modules/cometblue-lite { };
@@ -2042,6 +2052,10 @@ in {
     inherit (pkgs.darwin) libiconv;
     inherit (pkgs.darwin.apple_sdk.frameworks) Security;
   };
+
+  cryptolyzer = callPackage ../development/python-modules/cryptolyzer { };
+
+  cryptoparser = callPackage ../development/python-modules/cryptoparser { };
 
   crytic-compile = callPackage ../development/python-modules/crytic-compile { };
 
@@ -2714,6 +2728,8 @@ in {
   dvc-objects = callPackage ../development/python-modules/dvc-objects {  };
 
   dvc-render = callPackage ../development/python-modules/dvc-render {  };
+
+  dvc-task = callPackage ../development/python-modules/dvc-task {  };
 
   dvclive = callPackage ../development/python-modules/dvclive {  };
 
@@ -3774,9 +3790,13 @@ in {
 
   gorilla = callPackage ../development/python-modules/gorilla { };
 
+  govee-ble = callPackage ../development/python-modules/govee-ble { };
+
   goveelights = callPackage ../development/python-modules/goveelights { };
 
   gpapi = callPackage ../development/python-modules/gpapi { };
+
+  gpiozero = callPackage ../development/python-modules/gpiozero { };
 
   gplaycli = callPackage ../development/python-modules/gplaycli { };
 
@@ -4294,8 +4314,6 @@ in {
 
   imbalanced-learn = callPackage ../development/python-modules/imbalanced-learn { };
 
-  imdbpy = callPackage ../development/python-modules/imdbpy { };
-
   img2pdf = callPackage ../development/python-modules/img2pdf { };
 
   imgaug = callPackage ../development/python-modules/imgaug { };
@@ -4349,6 +4367,8 @@ in {
   iniparse = callPackage ../development/python-modules/iniparse { };
 
   injector = callPackage ../development/python-modules/injector { };
+
+  inkbird-ble = callPackage ../development/python-modules/inkbird-ble { };
 
   inkex = callPackage ../development/python-modules/inkex { };
 
@@ -5467,6 +5487,8 @@ in {
 
   meteoalertapi = callPackage ../development/python-modules/meteoalertapi { };
 
+  meteocalc = callPackage ../development/python-modules/meteocalc { };
+
   meteofrance-api = callPackage ../development/python-modules/meteofrance-api { };
 
   mezzanine = callPackage ../development/python-modules/mezzanine { };
@@ -5568,6 +5590,8 @@ in {
   mne-python = callPackage ../development/python-modules/mne-python { };
 
   mnist = callPackage ../development/python-modules/mnist { };
+
+  moat-ble = callPackage ../development/python-modules/moat-ble { };
 
   mocket = callPackage ../development/python-modules/mocket { };
 
@@ -7129,6 +7153,8 @@ in {
 
   py-tes = callPackage ../development/python-modules/py-tes { };
 
+  py-tree-sitter = callPackage ../development/python-modules/py-tree-sitter { };
+
   py-ubjson = callPackage ../development/python-modules/py-ubjson { };
 
   py-zabbix = callPackage ../development/python-modules/py-zabbix { };
@@ -8239,6 +8265,12 @@ in {
   pysideTools = callPackage ../development/python-modules/pyside/tools.nix { };
 
   pysigma = callPackage ../development/python-modules/pysigma { };
+
+  pysigma-backend-elasticsearch = callPackage ../development/python-modules/pysigma-backend-elasticsearch { };
+
+  pysigma-backend-opensearch = callPackage ../development/python-modules/pysigma-backend-opensearch { };
+
+  pysigma-backend-qradar = callPackage ../development/python-modules/pysigma-backend-qradar { };
 
   pysigma-backend-splunk = callPackage ../development/python-modules/pysigma-backend-splunk { };
 
@@ -9751,6 +9783,10 @@ in {
   sendgrid = callPackage ../development/python-modules/sendgrid { };
 
   sense-energy = callPackage ../development/python-modules/sense-energy { };
+
+  sensor-state-data = callPackage ../development/python-modules/sensor-state-data { };
+
+  sensorpush-ble = callPackage ../development/python-modules/sensorpush-ble { };
 
   sentencepiece = callPackage ../development/python-modules/sentencepiece {
     inherit (pkgs) sentencepiece;
@@ -11578,6 +11614,8 @@ in {
 
   xhtml2pdf = callPackage ../development/python-modules/xhtml2pdf { };
 
+  xiaomi-ble = callPackage ../development/python-modules/xiaomi-ble { };
+
   xkbcommon = callPackage ../development/python-modules/xkbcommon { };
 
   xkcdpass = callPackage ../development/python-modules/xkcdpass { };
@@ -11741,6 +11779,8 @@ in {
   z3 = (toPythonModule (pkgs.z3.override {
     inherit python;
   })).python;
+
+  zadnegoale = callPackage ../development/python-modules/zadnegoale { };
 
   zake = callPackage ../development/python-modules/zake { };
 
