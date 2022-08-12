@@ -151,6 +151,8 @@ in {
 
   aafigure = callPackage ../development/python-modules/aafigure { };
 
+  aardwolf = callPackage ../development/python-modules/aardwolf { };
+
   abodepy = callPackage ../development/python-modules/abodepy { };
 
   abook = buildPythonPackage rec {
@@ -343,6 +345,8 @@ in {
 
   aioitertools = callPackage ../development/python-modules/aioitertools { };
 
+  aiobiketrax = callPackage ../development/python-modules/aiobiketrax { };
+
   aiobotocore = callPackage ../development/python-modules/aiobotocore { };
 
   aiobroadlink = callPackage ../development/python-modules/aiobroadlink { };
@@ -379,6 +383,8 @@ in {
 
   aiomusiccast = callPackage ../development/python-modules/aiomusiccast { };
 
+  aiomysensors = callPackage ../development/python-modules/aiomysensors { };
+
   aiomysql = callPackage ../development/python-modules/aiomysql { };
 
   aionanoleaf = callPackage ../development/python-modules/aionanoleaf { };
@@ -388,6 +394,8 @@ in {
   aionotion = callPackage ../development/python-modules/aionotion { };
 
   aiooncue = callPackage ../development/python-modules/aiooncue { };
+
+  aioopenexchangerates = callPackage ../development/python-modules/aioopenexchangerates { };
 
   aiopg = callPackage ../development/python-modules/aiopg { };
 
@@ -414,6 +422,8 @@ in {
   aioridwell = callPackage ../development/python-modules/aioridwell { };
 
   aiorpcx = callPackage ../development/python-modules/aiorpcx { };
+
+  aiortm = callPackage ../development/python-modules/aiortm { };
 
   aiorun = callPackage ../development/python-modules/aiorun { };
 
@@ -638,6 +648,8 @@ in {
   aqualogic = callPackage ../development/python-modules/aqualogic { };
 
   arabic-reshaper = callPackage ../development/python-modules/arabic-reshaper { };
+
+  arc4 = callPackage ../development/python-modules/arc4 { };
 
   arcam-fmj = callPackage ../development/python-modules/arcam-fmj { };
 
@@ -3024,6 +3036,11 @@ in {
 
   factory_boy = callPackage ../development/python-modules/factory_boy { };
 
+  faiss = toPythonModule (pkgs.faiss.override {
+    pythonSupport = true;
+    pythonPackages = self;
+  });
+
   fake-useragent = callPackage ../development/python-modules/fake-useragent { };
 
   faker = callPackage ../development/python-modules/faker { };
@@ -3455,6 +3472,8 @@ in {
     enablePython = true;
     pythonPackages = self;
   });
+
+  galois = callPackage ../development/python-modules/galois { };
 
   gamble = callPackage ../development/python-modules/gamble { };
 
@@ -7828,6 +7847,8 @@ in {
 
   pymetno = callPackage ../development/python-modules/pymetno { };
 
+  pymicrobot = callPackage ../development/python-modules/pymicrobot { };
+
   pymitv = callPackage ../development/python-modules/pymitv { };
 
   pymfy = callPackage ../development/python-modules/pymfy { };
@@ -9158,6 +9179,8 @@ in {
 
   qimage2ndarray = callPackage ../development/python-modules/qimage2ndarray { };
 
+  qingping-ble = callPackage ../development/python-modules/qingping-ble { };
+
   qiskit = callPackage ../development/python-modules/qiskit { };
 
   qiskit-aer = callPackage ../development/python-modules/qiskit-aer { };
@@ -10160,6 +10183,8 @@ in {
   sphinx-design = callPackage ../development/python-modules/sphinx-design { };
 
   sphinx-external-toc = callPackage ../development/python-modules/sphinx-external-toc { };
+
+  sphinx-fortran = callPackage ../development/python-modules/sphinx-fortran { };
 
   sphinx-jupyterbook-latex = callPackage ../development/python-modules/sphinx-jupyterbook-latex { };
 
@@ -11691,6 +11716,8 @@ in {
   yalesmartalarmclient = callPackage ../development/python-modules/yalesmartalarmclient { };
 
   yalexs = callPackage ../development/python-modules/yalexs { };
+
+  yalexs-ble = callPackage ../development/python-modules/yalexs-ble { };
 
   yamale = callPackage ../development/python-modules/yamale { };
 
