@@ -267,6 +267,11 @@ in
           or 'services.prometheus.exporters.mail.configFile'.
       '';
     } {
+      assertion = cfg.iw.enable -> config.services.hostapd.enable;
+      message = ''
+        Please enable 'services.hostapd' before enabbling 'services.prometheus.exporters.iw_hostapd'.
+      '';
+    } {
       assertion = cfg.sql.enable -> (
         (cfg.sql.configFile == null) != (cfg.sql.configuration == null)
       );
