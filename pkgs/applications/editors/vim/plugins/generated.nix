@@ -7673,6 +7673,18 @@ final: prev:
     meta.homepage = "https://github.com/tremor-rs/tremor-vim/";
   };
 
+  trim-nvim = buildVimPluginFrom2Nix {
+    pname = "trim.nvim";
+    version = "2022-06-16";
+    src = fetchFromGitHub {
+      owner = "cappyzawa";
+      repo = "trim.nvim";
+      rev = "ab366eb0dd7b3faeaf90a0ec40c993ff18d8c068";
+      sha256 = "0lxc593rys5yi35iabqgqxi18lsk2jp78f3wdksmkxclf9j7xmbw";
+    };
+    meta.homepage = "https://github.com/cappyzawa/trim.nvim/";
+  };
+
   trouble-nvim = buildVimPluginFrom2Nix {
     pname = "trouble.nvim";
     version = "2022-05-09";
@@ -11538,18 +11550,6 @@ final: prev:
       sha256 = "1vq2jrn75g3gd8vfgbnkn0w2qc4gbnrn2lg0wmzsvvxdvj8m9lii";
     };
     meta.homepage = "https://github.com/christoomey/vim-sort-motion/";
-  };
-
-  vim-sourcetrail = buildVimPluginFrom2Nix {
-    pname = "vim-sourcetrail";
-    version = "2021-02-16";
-    src = fetchFromGitHub {
-      owner = "CoatiSoftware";
-      repo = "vim-sourcetrail";
-      rev = "c9c621a7ab81c52a661457ccf33a64fd7c56fd9d";
-      sha256 = "192f69yz1hh2k0b2kcvfvv1jirjcvnbxvjkagmlkkqcg8w32nmlg";
-    };
-    meta.homepage = "https://github.com/CoatiSoftware/vim-sourcetrail/";
   };
 
   vim-speeddating = buildVimPluginFrom2Nix {
