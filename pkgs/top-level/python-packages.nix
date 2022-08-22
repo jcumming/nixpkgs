@@ -271,6 +271,8 @@ in {
 
   aioairzone = callPackage ../development/python-modules/aioairzone { };
 
+  aioairq = callPackage ../development/python-modules/aioairq { };
+
   aioaladdinconnect = callPackage ../development/python-modules/aioaladdinconnect { };
 
   aioambient = callPackage ../development/python-modules/aioambient { };
@@ -535,6 +537,8 @@ in {
 
   altair = callPackage ../development/python-modules/altair { };
 
+  amarna = callPackage ../development/python-modules/amarna { };
+
   amazon-ion = callPackage ../development/python-modules/amazon-ion { };
 
   amazon_kclpy = callPackage ../development/python-modules/amazon_kclpy { };
@@ -707,6 +711,8 @@ in {
 
   aria2p = callPackage ../development/python-modules/aria2p { };
 
+  arnparse = callPackage ../development/python-modules/arnparse { };
+
   arrayqueues = callPackage ../development/python-modules/arrayqueues { };
 
   arris-tg2492lg = callPackage ../development/python-modules/arris-tg2492lg { };
@@ -824,6 +830,8 @@ in {
   asyncwhois = callPackage ../development/python-modules/asyncwhois { };
 
   asysocks = callPackage ../development/python-modules/asysocks { };
+
+  atc-ble = callPackage ../development/python-modules/atc-ble { };
 
   atenpdu = callPackage ../development/python-modules/atenpdu { };
 
@@ -1379,6 +1387,8 @@ in {
 
   blebox-uniapi = callPackage ../development/python-modules/blebox-uniapi { };
 
+  bless = callPackage ../development/python-modules/bless { };
+
   blessed = callPackage ../development/python-modules/blessed { };
 
   blessings = callPackage ../development/python-modules/blessings { };
@@ -1406,6 +1416,8 @@ in {
   bluepy-devices = callPackage ../development/python-modules/bluepy-devices { };
 
   bluetooth-adapters = callPackage ../development/python-modules/bluetooth-adapters { };
+
+  bluetooth-auto-recovery = callPackage ../development/python-modules/bluetooth-auto-recovery { };
 
   bluetooth-data-tools= callPackage ../development/python-modules/bluetooth-data-tools { };
 
@@ -1510,6 +1522,8 @@ in {
 
   btchip = callPackage ../development/python-modules/btchip { };
 
+  bthome-ble = callPackage ../development/python-modules/bthome-ble { };
+
   bt-proximity = callPackage ../development/python-modules/bt-proximity { };
 
   BTrees = callPackage ../development/python-modules/btrees { };
@@ -1517,6 +1531,10 @@ in {
   btrfs = callPackage ../development/python-modules/btrfs { };
 
   btrfsutil = toPythonModule (pkgs.btrfs-progs.override { python3 = self.python; });
+
+  btsocket = callPackage ../development/python-modules/btsocket { };
+
+  bucketstore = callPackage ../development/python-modules/bucketstore { };
 
   bugsnag = callPackage ../development/python-modules/bugsnag { };
 
@@ -1650,6 +1668,8 @@ in {
 
   censys = callPackage ../development/python-modules/censys { };
 
+  cexprtk = callPackage ../development/python-modules/cexprtk { };
+
   coincurve = callPackage ../development/python-modules/coincurve {
     inherit (pkgs) secp256k1;
   };
@@ -1731,6 +1751,8 @@ in {
   charset-normalizer = callPackage ../development/python-modules/charset-normalizer { };
 
   chart-studio = callPackage ../development/python-modules/chart-studio { };
+
+  chat-downloader = callPackage ../development/python-modules/chat-downloader { };
 
   check-manifest = callPackage ../development/python-modules/check-manifest { };
 
@@ -2402,6 +2424,8 @@ in {
 
   dingz = callPackage ../development/python-modules/dingz { };
 
+  dinghy = callPackage ../development/python-modules/dinghy { };
+
   diofant = callPackage ../development/python-modules/diofant { };
 
   dipy = callPackage ../development/python-modules/dipy { };
@@ -2481,6 +2505,8 @@ in {
   django-discover-runner = callPackage ../development/python-modules/django-discover-runner { };
 
   django-dynamic-preferences = callPackage ../development/python-modules/django-dynamic-preferences { };
+
+  django-encrypted-model-fields = callPackage ../development/python-modules/django-encrypted-model-fields { };
 
   django-environ = callPackage ../development/python-modules/django_environ { };
 
@@ -5242,6 +5268,8 @@ in {
   livestreamer = callPackage ../development/python-modules/livestreamer { };
 
   livestreamer-curses = callPackage ../development/python-modules/livestreamer-curses { };
+
+  lizard = callPackage ../development/python-modules/lizard { };
 
   llfuse = callPackage ../development/python-modules/llfuse {
     inherit (pkgs) fuse;
@@ -8256,6 +8284,8 @@ in {
 
   pyres = callPackage ../development/python-modules/pyres { };
 
+  pyric = callPackage ../development/python-modules/pyric { };
+
   pyrisco = callPackage ../development/python-modules/pyrisco { };
 
   pyrituals = callPackage ../development/python-modules/pyrituals { };
@@ -9551,6 +9581,8 @@ in {
   rig = callPackage ../development/python-modules/rig { };
 
   ring-doorbell = callPackage ../development/python-modules/ring-doorbell { };
+
+  ripe-atlas-cousteau = callPackage ../development/python-modules/ripe-atlas-cousteau { };
 
   riprova = callPackage ../development/python-modules/riprova { };
 
@@ -11037,6 +11069,8 @@ in {
   tumpa = callPackage ../development/python-modules/tumpa {
     inherit (pkgs.libsForQt5) wrapQtAppsHook;
   };
+
+  turnt = callPackage ../development/python-modules/turnt { };
 
   tuya-iot-py-sdk = callPackage ../development/python-modules/tuya-iot-py-sdk { };
 
