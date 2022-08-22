@@ -2,20 +2,14 @@
 
 with lib;
 
-let 
-  cfg = config.services.prometheus.exporters.iw;
-in 
+let cfg = config.services.prometheus.exporters.iw;
 
-assert config.services.hostapd.enabled # otherwise don't bother
-{
+in {
   port = 6798;
 
   serviceOpts = {
-    after = [ "hostapd-wlp4s0.service" "hostapd-wlp8s0.service" ]; # XXX: need to pull these from config.hostapd
-     #  mapAttrsToList
-     #   (ifName: ifCfg: nameValuePair "hostapd-${ifName}" (hostapdService ifName ifCfg))
-     #  cfg.interfaces
-    
+    after = [ "hostapd-wlp4s0.service" "hostapd-wlp8s0.service" ];
+
     path = [ pkgs.iw ];
 
     serviceConfig = {
@@ -24,7 +18,9 @@ assert config.services.hostapd.enabled # otherwise don't bother
       ];
 
       ExecStart = ''
-        ${pkgs.prometheus-iw-exporter}/bin/iw_exporter -http ${cfg.listenAddress}:${toString cfg.port}
+        ${pkgs.prometheus-iw-exporter}/bin/iw_exporter -http ${cfg.listenAddress}:${
+          toString cfg.port
+        }
       '';
     };
   };
