@@ -12,9 +12,9 @@ assert config.services.hostapd.enabled # otherwise don't bother
 
   serviceOpts = {
     after = [ "hostapd-wlp4s0.service" "hostapd-wlp8s0.service" ]; # XXX: need to pull these from config.hostapd
-      mapAttrsToList
-        (ifName: ifCfg: nameValuePair "hostapd-${ifName}" (hostapdService ifName ifCfg))
-        cfg.interfaces
+     #  mapAttrsToList
+     #   (ifName: ifCfg: nameValuePair "hostapd-${ifName}" (hostapdService ifName ifCfg))
+     #  cfg.interfaces
     
     path = [ pkgs.iw ];
 
