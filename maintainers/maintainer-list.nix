@@ -816,6 +816,12 @@
     githubId = 7112447;
     name = "Andre S. Ramos";
   };
+  andrevmatos = {
+    email = "andrevmatos@gmail.com";
+    github = "andrevmatos";
+    githubId = 587021;
+    name = "André V L Matos";
+  };
   andrew-d = {
     email = "andrew@du.nham.ca";
     github = "andrew-d";
@@ -6534,6 +6540,12 @@
     githubId = 705123;
     name = "Jan Tojnar";
   };
+  jtrees = {
+    email = "me@jtrees.io";
+    github = "jtrees";
+    githubId = 5802758;
+    name = "Joshua Trees";
+  };
   juaningan = {
     email = "juaningan@gmail.com";
     github = "uningan";
@@ -9686,6 +9698,12 @@
     githubId = 3359345;
     name = "obadz";
   };
+  oberblastmeister = {
+    email = "littlebubu.shu@gmail.com";
+    github = "oberblastmeister";
+    githubId = 61095988;
+    name = "Brian Shu";
+  };
   obsidian-systems-maintenance = {
     name = "Obsidian Systems Maintenance";
     email = "maintainer@obsidian.systems";
@@ -10941,6 +10959,12 @@
     github = "thufschmitt";
     githubId = 7226587;
     name = "Théophane Hufschmitt";
+  };
+  rehno-lindeque = {
+    email = "rehno.lindeque+code@gmail.com";
+    github = "rehno-lindeque";
+    githubId = 337811;
+    name = "Rehno Lindeque";
   };
   relrod = {
     email = "ricky@elrod.me";
@@ -13049,6 +13073,12 @@
     githubId = 3268082;
     name = "Thibaut Marty";
   };
+  thyol = {
+    name = "thyol";
+    email = "thyol@pm.me";
+    github = "thyol";
+    githubId = 81481634;
+  };
   thmzlt = {
     email = "git@thomazleite.com";
     github = "thmzlt";
@@ -13498,6 +13528,15 @@
     githubId = 799353;
     keys = [{
       fingerprint = "EE59 5E29 BB5B F2B3 5ED2  3F1C D276 FF74 6700 7335";
+    }];
+  };
+  unhammer = {
+    email = "unhammer@fsfe.org";
+    github = "unhammer";
+    githubId = 56868;
+    name = "Kevin Brubeck Unhammer";
+    keys = [{
+      fingerprint = "50D4 8796 0B86 3F05 4B6A  12F9 7426 06DE 766A C60C";
     }];
   };
   uniquepointer = {
