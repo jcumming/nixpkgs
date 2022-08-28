@@ -80,7 +80,7 @@ stdenv.mkDerivation rec {
       give your ships orders of engagement and then hope they emerge victorious from
       battle (or at least blow to bits in aesthetically pleasing ways).
     '';
-    homepage = http://www.positech.co.uk/gratuitousspacebattles/index.html;
+    homepage = "http://www.positech.co.uk/gratuitousspacebattles/index.html";
     license = licenses.unfree;
     maintainers = with maintainers; [ jcumming ];
     platforms = [ "x86_64-linux" "i686-linux" ] ;

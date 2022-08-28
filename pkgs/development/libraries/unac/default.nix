@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
       that removes accents from a input flow or a string given in argument (unaccent
       command).
     '';
-    homepage = http://savannah.nongnu.org/projects/unac;
+    homepage = "http://savannah.nongnu.org/projects/unac";
     maintainers = with lib.maintainers; [ jcumming ];
     license = lib.licenses.gpl2Plus;
   };

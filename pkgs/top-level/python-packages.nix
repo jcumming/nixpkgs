@@ -156,20 +156,6 @@ in {
 
   abodepy = callPackage ../development/python-modules/abodepy { };
 
-  abook = buildPythonPackage rec {
-    name = "abook-${version}";
-    version = "v0.3.0";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "jspricke";
-      repo = "python-abook";
-      rev = version;
-      sha256 = "1pv5bjxqpgq36kvx8rplbf0ihsklrc1izagi19cg03qzm6zhra2i";
-    };
-
-    propagatedBuildInputs = with self; [ configobj pycardme ];
-  };
-
   absl-py = callPackage ../development/python-modules/absl-py { };
 
   accuweather = callPackage ../development/python-modules/accuweather { };
@@ -8005,44 +7991,6 @@ in {
   pymupdf = callPackage ../development/python-modules/pymupdf { };
 
   PyMVGLive = callPackage ../development/python-modules/pymvglive { };
-
-  pythonpam = buildPythonPackage rec {
-    version = "1.8.2";
-    name = "python-pam-${version}";
-
-    src = pkgs.fetchurl {
-      url = "mirror://pypi/p/python-pam/${name}.tar.gz";
-      sha256 = "0b41f70cj221bfblwdl627a58kjan2xsdi6qgkwi16w6kgky9vr6";
-    };
-
-    propagatedBuildInputs = [ pkgs.pam ];
-
-    patchPhase = ''
-      substituteInPlace pam.py --replace \
-        "find_library(\"pam\")" "'${pkgs.pam}/lib/libpam.so'"
-    '';
-
-    meta = {
-      description = "Auth against system PAM libraryes";
-      homepage = https://github.com/FirefighterBlu3/python-pam;
-    };
-  };
-
-  radicale_auth_pam = buildPythonPackage rec {
-    name = "radical_auth_pam-2017-06-07-${version}";
-    version = "16791e4ea501e8fca9e1facfc68bf9ee3c6348d7";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "lpirl";
-      repo = "radicale_auth_pam";
-      rev = version;
-      sha256 = "0rf28s5vmp2q75b94d76hp7822zpnfhg87m7bnr5slzcs8s8dpg1";
-    };
-
-    propagatedBuildInputs = 
-        (with self; [ pythonpam ]) ++ 
-        (with pkgs; [ radicale ]);
-  };
 
   pymyq = callPackage ../development/python-modules/pymyq { };
 

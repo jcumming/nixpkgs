@@ -21,7 +21,7 @@ stdenv.mkDerivation rec {
       flactag uses the embedded CUE sheet to create a musicbrainz 'discid', and
       queries the musicbrainz server for track lists, and other album metadata. 
     '';
-    homepage = http://flactag.sourceforge.net/;
+    homepage = "http://flactag.sourceforge.net/";
     license = lib.licenses.gpl3;
     maintainers = with lib.maintainers; [ jcumming ];
   };

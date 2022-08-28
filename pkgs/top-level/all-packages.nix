@@ -8042,7 +8042,6 @@ with pkgs;
   lesspipe = callPackage ../tools/misc/lesspipe { };
 
   liquidsoap = callPackage ../tools/audio/liquidsoap/full.nix {
-    gst = gst_all_1;
     ffmpeg = ffmpeg-full;
   };
 
@@ -23299,7 +23298,6 @@ with pkgs;
   prometheus-fritzbox-exporter = callPackage ../servers/monitoring/prometheus/fritzbox-exporter.nix { };
   prometheus-gitlab-ci-pipelines-exporter = callPackage ../servers/monitoring/prometheus/gitlab-ci-pipelines-exporter.nix { };
   prometheus-haproxy-exporter = callPackage ../servers/monitoring/prometheus/haproxy-exporter.nix { };
-  prometheus-hostapd-exporter = callPackage ../servers/monitoring/prometheus/hostapd-exporter.nix { };
   prometheus-influxdb-exporter = callPackage ../servers/monitoring/prometheus/influxdb-exporter.nix { };
   prometheus-iw-exporter = callPackage ../servers/monitoring/prometheus/iw-exporter.nix { };
   prometheus-jitsi-exporter = callPackage ../servers/monitoring/prometheus/jitsi-exporter.nix { };
