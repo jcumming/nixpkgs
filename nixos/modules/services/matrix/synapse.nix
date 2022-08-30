@@ -773,7 +773,7 @@ in {
         ProcSubset = "pid";
         ProtectClock = true;
         ProtectControlGroups = true;
-        ProtectHome = true;
+        ProtectHome = false;
         ProtectHostname = true;
         ProtectKernelLogs = true;
         ProtectKernelModules = true;
