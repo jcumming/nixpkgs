@@ -230,6 +230,8 @@ with pkgs;
     python3 = python39;
   };
 
+  mov-cli = callPackage ../applications/video/mov-cli { };
+
   ani-cli = callPackage ../applications/video/ani-cli { };
 
   anime-downloader = callPackage ../applications/video/anime-downloader { };
@@ -5940,7 +5942,9 @@ with pkgs;
 
   wallutils = callPackage ../tools/graphics/wallutils { };
 
-  worker-build = callPackage ../development/tools/worker-build { };
+  worker-build = callPackage ../development/tools/worker-build {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   wrangler = callPackage ../development/tools/wrangler {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation CoreServices Security;
@@ -12738,6 +12742,8 @@ with pkgs;
 
   mksh = callPackage ../shells/mksh { };
 
+  murex = callPackage ../shells/murex { };
+
   oh = callPackage ../shells/oh { };
 
   oil = callPackage ../shells/oil { };
@@ -14501,6 +14507,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices Foundation;
   };
   cargo-wipe = callPackage ../development/tools/rust/cargo-wipe { };
+  cargo-workspaces = callPackage ../development/tools/rust/cargo-workspaces {
+    inherit (darwin.apple_sdk.frameworks) IOKit Security CoreFoundation AppKit System;
+  };
   cargo-xbuild = callPackage ../development/tools/rust/cargo-xbuild { };
   cargo-generate = callPackage ../development/tools/rust/cargo-generate {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -15657,6 +15666,17 @@ with pkgs;
     runJdk = jdk11_headless;
     stdenv = if stdenv.cc.isClang then llvmPackages.stdenv else stdenv;
     bazel_self = bazel_5;
+  };
+
+  bazel_6 = darwin.apple_sdk_11_0.callPackage ../development/tools/build-managers/bazel/bazel_6 {
+    inherit (darwin) cctools;
+    inherit (darwin.apple_sdk_11_0.frameworks) CoreFoundation CoreServices Foundation;
+    buildJdk = jdk11_headless;
+    runJdk = jdk11_headless;
+    stdenv = if stdenv.isDarwin then
+      darwin.apple_sdk_11_0.stdenv else
+      if stdenv.cc.isClang then llvmPackages.stdenv else stdenv;
+    bazel_self = bazel_6;
   };
 
   bazel-buildtools = callPackage ../development/tools/build-managers/bazel/buildtools { };
@@ -26967,7 +26987,9 @@ with pkgs;
 
   dunst = callPackage ../applications/misc/dunst { };
 
-  du-dust = callPackage ../tools/misc/dust { };
+  du-dust = callPackage ../tools/misc/dust {
+    inherit (darwin.apple_sdk.frameworks) AppKit;
+  };
 
   dutree = callPackage ../tools/misc/dutree { };
 
@@ -27001,6 +27023,8 @@ with pkgs;
   };
 
   dwmblocks = callPackage ../applications/misc/dwmblocks { };
+
+  dwmbar = callPackage ../applications/misc/dwmbar { };
 
   dwm-status = callPackage ../applications/window-managers/dwm/dwm-status.nix { };
 
@@ -31413,7 +31437,7 @@ with pkgs;
 
   utox = callPackage ../applications/networking/instant-messengers/utox { };
 
-  valentina = libsForQt512.callPackage ../applications/misc/valentina { };
+  valentina = libsForQt5.callPackage ../applications/misc/valentina { };
 
   vbindiff = callPackage ../applications/editors/vbindiff { };
 
