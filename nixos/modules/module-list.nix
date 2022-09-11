@@ -128,6 +128,7 @@
   ./programs/adb.nix
   ./programs/appgate-sdp.nix
   ./programs/atop.nix
+  ./programs/ausweisapp.nix
   ./programs/autojump.nix
   ./programs/bandwhich.nix
   ./programs/bash/bash.nix
@@ -1065,6 +1066,7 @@
   ./services/web-apps/discourse.nix
   ./services/web-apps/documize.nix
   ./services/web-apps/dokuwiki.nix
+  ./services/web-apps/dolibarr.nix
   ./services/web-apps/engelsystem.nix
   ./services/web-apps/ethercalc.nix
   ./services/web-apps/fluidd.nix
