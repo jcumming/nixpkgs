@@ -26,6 +26,7 @@ stdenv.mkDerivation rec {
   extraConfig = ''
     CONFIG_AIRTIME_POLICY=y
     CONFIG_DRIVER_WIRED=y
+    CONFIG_DRIVER_NL80211_BRCM=y
     CONFIG_LIBNL32=y
     CONFIG_EAP_SIM=y
     CONFIG_EAP_AKA=y
