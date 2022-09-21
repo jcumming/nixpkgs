@@ -1,12 +1,18 @@
-{ stdenvNoCC, fetchzip, lib }:
+let
+  source = import ./source.nix;
+in {
+  stdenvNoCC,
+  fetchzip,
+  lib,
+}:
 
 stdenvNoCC.mkDerivation rec {
   pname = "linux-firmware";
-  version = "20220815";
+  version = source.version;
 
   src = fetchzip {
     url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-${version}.tar.gz";
-    sha256 = "sha256-StPlnwn4KOvOf4fRblDzJQqyI8iIz8e9fo/BsTyCKjI=";
+    hash = source.sourceHash;
   };
 
   #  8.307821] brcmfmac 0000:04:00.0: Direct firmware load for brcm/brcmfmac4366c-pcie.Supermicro-Super Server.txt failed with error -2
@@ -25,7 +31,7 @@ stdenvNoCC.mkDerivation rec {
 
   outputHashMode = "recursive";
   outputHashAlgo = "sha256";
-  outputHash = "sha256-VTRrOOkdWepUCKAkziO/0egb3oaQEOJCtsuDEgs/W78=";
+  outputHash = source.outputHash;
 
   meta = with lib; {
     description = "Binary firmware collection packaged by kernel.org";
