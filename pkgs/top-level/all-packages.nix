@@ -424,6 +424,8 @@ with pkgs;
 
   crackle = callPackage ../tools/networking/crackle { };
 
+  crackql = callPackage ../tools/security/crackql { };
+
   crow-translate = libsForQt5.callPackage ../applications/misc/crow-translate { };
 
   cryptowatch-desktop = callPackage ../applications/finance/cryptowatch { };
@@ -2856,6 +2858,8 @@ with pkgs;
 
   apprise = with python3Packages; toPythonApplication apprise;
 
+  aptdec = callPackage ../development/libraries/aptdec {};
+
   aria2 = callPackage ../tools/networking/aria2 {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -2894,8 +2898,6 @@ with pkgs;
   avro-c = callPackage ../development/libraries/avro-c { };
 
   avro-cpp = callPackage ../development/libraries/avro-c++ { };
-
-  aws = callPackage ../tools/virtualization/aws { };
 
   aws_mturk_clt = callPackage ../tools/misc/aws-mturk-clt { };
 
@@ -3247,7 +3249,7 @@ with pkgs;
   keystone = callPackage ../development/libraries/keystone { };
 
   casync = callPackage ../applications/networking/sync/casync {
-    sphinx = python3Packages.sphinx;
+    sphinx = buildPackages.python3Packages.sphinx;
   };
 
   cataract          = callPackage ../applications/misc/cataract { };
@@ -3305,7 +3307,9 @@ with pkgs;
 
   cinny = callPackage ../applications/networking/instant-messengers/cinny { stdenv = stdenvNoCC; };
 
-  cinny-desktop = callPackage ../applications/networking/instant-messengers/cinny-desktop { };
+  cinny-desktop = callPackage ../applications/networking/instant-messengers/cinny-desktop {
+    openssl = openssl_1_1;
+  };
 
   ckbcomp = callPackage ../tools/X11/ckbcomp { };
 
@@ -3552,6 +3556,8 @@ with pkgs;
 
   cutemarked-ng = libsForQt5.callPackage ../applications/office/cutemarked-ng { };
 
+  dab_lib = callPackage ../development/libraries/dab_lib {};
+
   dabet = callPackage ../tools/misc/dabet { };
 
   dabtools = callPackage ../applications/radio/dabtools { };
@@ -3717,6 +3723,8 @@ with pkgs;
   dozenal = callPackage ../applications/misc/dozenal { };
 
   dpic = callPackage ../tools/graphics/dpic { };
+
+  dsdcc = callPackage ../development/libraries/dsdcc {};
 
   dstp = callPackage ../development/tools/dstp { };
 
@@ -4443,6 +4451,8 @@ with pkgs;
 
   nfstrace = callPackage ../tools/networking/nfstrace { };
 
+  nitch = callPackage ../tools/misc/nitch { };
+
   nix-direnv = callPackage ../tools/misc/nix-direnv { };
 
   nixel = callPackage ../tools/nix/nixel { };
@@ -4630,6 +4640,8 @@ with pkgs;
   s2png = callPackage ../tools/graphics/s2png { };
 
   sfz = callPackage ../tools/misc/sfz { };
+
+  sgp4 = callPackage ../development/libraries/sgp4 {};
 
   shab = callPackage ../tools/text/shab { };
 
@@ -5724,6 +5736,8 @@ with pkgs;
   wgetpaste = callPackage ../tools/text/wgetpaste { };
 
   dismap = callPackage ../tools/security/dismap { };
+
+  dismember = callPackage ../tools/security/dismember { };
 
   dirvish  = callPackage ../tools/backup/dirvish { };
 
@@ -8327,6 +8341,10 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  mdbook-open-on-gh = callPackage ../tools/text/mdbook-open-on-gh { };
+
+  mdbook-man = callPackage ../tools/text/mdbook-man { };
+
   mdbook-mermaid = callPackage ../tools/text/mdbook-mermaid {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
@@ -8514,6 +8532,8 @@ with pkgs;
   lcdf-typetools = callPackage ../tools/misc/lcdf-typetools { };
 
   ldapmonitor = callPackage ../tools/security/ldapmonitor { };
+
+  ldapnomnom = callPackage ../tools/security/ldapnomnom { };
 
   ldapvi = callPackage ../tools/misc/ldapvi { };
 
@@ -9805,7 +9825,7 @@ with pkgs;
   pakcs = callPackage ../development/compilers/pakcs {
     # Doesn't compile with GHC 9.0 due to whitespace syntax changes
     # see also https://github.com/NixOS/nixpkgs/issues/166108
-    haskellPackages = haskell.packages.ghc8107;
+    haskellPackages = haskell.packages.ghc810;
   };
 
   pal = callPackage ../tools/misc/pal { };
@@ -11011,6 +11031,8 @@ with pkgs;
   sile = callPackage ../tools/typesetting/sile {
     lua = lua5_3;
   };
+
+  silenthound = callPackage ../tools/security/silenthound { };
 
   silice = callPackage ../development/compilers/silice { };
 
@@ -12723,7 +12745,7 @@ with pkgs;
 
   # To expose more packages for Yi, override the extraPackages arg.
   yi = callPackage ../applications/editors/yi/wrapper.nix {
-    haskellPackages = haskell.packages.ghc8107;
+    haskellPackages = haskell.packages.ghc810;
   };
 
   yj = callPackage ../development/tools/yj { };
@@ -13905,8 +13927,8 @@ with pkgs;
   haskellPackages = dontRecurseIntoAttrs
     # Prefer native-bignum to avoid linking issues with gmp
     (if stdenv.hostPlatform.isStatic
-       then haskell.packages.native-bignum.ghc902
-       else haskell.packages.ghc902);
+       then haskell.packages.native-bignum.ghc90
+       else haskell.packages.ghc90);
 
   # haskellPackages.ghc is build->host (it exposes the compiler used to build the
   # set, similarly to stdenv.cc), but pkgs.ghc should be host->target to be more
@@ -13919,8 +13941,8 @@ with pkgs;
   ghc = targetPackages.haskellPackages.ghc or
     # Prefer native-bignum to avoid linking issues with gmp
     (if stdenv.targetPlatform.isStatic
-       then haskell.compiler.native-bignum.ghc902
-       else haskell.compiler.ghc902);
+       then haskell.compiler.native-bignum.ghc90
+       else haskell.compiler.ghc90);
 
   cabal-install = haskell.lib.compose.justStaticExecutables haskellPackages.cabal-install;
 
@@ -14727,10 +14749,17 @@ with pkgs;
   cargo-udeps = callPackage ../development/tools/rust/cargo-udeps {
     inherit (darwin.apple_sdk.frameworks) CoreServices Security SystemConfiguration;
   };
+  cargo-ui = callPackage ../development/tools/rust/cargo-ui {
+    inherit (xorg) libX11 libXcursor libXi libXrandr libxcb;
+    inherit (darwin.apple_sdk.frameworks);
+  };
 
   cargo-tauri = callPackage ../development/tools/rust/cargo-tauri { };
 
   cargo-valgrind = callPackage ../development/tools/rust/cargo-valgrind { };
+  cargo-vet = callPackage ../development/tools/rust/cargo-vet {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
   cargo-wasi = callPackage ../development/tools/rust/cargo-wasi {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -15200,7 +15229,7 @@ with pkgs;
     stdenv = clangStdenv;
   };
 
-  jacinda = haskell.lib.compose.justStaticExecutables haskell.packages.ghc924.jacinda;
+  jacinda = haskell.lib.compose.justStaticExecutables haskell.packages.ghc92.jacinda;
 
   janet = callPackage ../development/interpreters/janet {};
 
@@ -17157,7 +17186,6 @@ with pkgs;
   rolespec = callPackage ../development/tools/misc/rolespec { };
 
   rr = callPackage ../development/tools/analysis/rr { };
-  rr-unstable = callPackage ../development/tools/analysis/rr/unstable.nix { }; # This is a temporary attribute, please see the corresponding file for details.
 
   rufo = callPackage ../development/tools/rufo { };
 
@@ -17838,7 +17866,9 @@ with pkgs;
 
   ccrtp = callPackage ../development/libraries/ccrtp { };
 
-  cctz = callPackage ../development/libraries/cctz { };
+  cctz = callPackage ../development/libraries/cctz {
+    inherit (darwin.apple_sdk.frameworks) Foundation;
+  };
 
   celt = callPackage ../development/libraries/celt {};
   celt_0_7 = callPackage ../development/libraries/celt/0.7.nix {};
@@ -17919,6 +17949,8 @@ with pkgs;
   codecserver = callPackage ../applications/audio/codecserver { };
 
   coeurl = callPackage ../development/libraries/coeurl { };
+
+  coercer = callPackage ../tools/security/coercer { };
 
   cogl = callPackage ../development/libraries/cogl { };
 
@@ -18344,6 +18376,8 @@ with pkgs;
 
   gamenetworkingsockets = callPackage ../development/libraries/gamenetworkingsockets { };
 
+  game-music-emu = callPackage ../development/libraries/audio/game-music-emu { };
+
   gamin = callPackage ../development/libraries/gamin { };
   fam = gamin; # added 2018-04-25
 
@@ -18444,6 +18478,10 @@ with pkgs;
     # Using gcc 10 because this fails to build with gcc 11
     # Error similar to this https://github.com/RPCS3/rpcs3/issues/10291
     stdenv = gcc10Stdenv;
+  };
+
+  graphinder = callPackage ../tools/security/graphinder {
+    python3 = python310;
   };
 
   icon-lang = callPackage ../development/interpreters/icon-lang { };
@@ -19906,8 +19944,6 @@ with pkgs;
   libresample = callPackage ../development/libraries/libresample {};
 
   librevenge = callPackage ../development/libraries/librevenge {};
-
-  librevisa = callPackage ../development/libraries/librevisa { };
 
   librime = callPackage ../development/libraries/librime {
     boost = boost174;
@@ -22842,7 +22878,7 @@ with pkgs;
 
   sabnzbd = callPackage ../servers/sabnzbd { };
 
-  baserow = python3Packages.callPackage ../servers/baserow { };
+  baserow = callPackage ../servers/baserow { };
 
   bftpd = callPackage ../servers/ftp/bftpd {};
 
@@ -23055,7 +23091,7 @@ with pkgs;
 
   hashi-ui = callPackage ../servers/hashi-ui {};
 
-  hasura-graphql-engine = haskell.lib.compose.justStaticExecutables haskell.packages.ghc8107.graphql-engine;
+  hasura-graphql-engine = haskell.lib.compose.justStaticExecutables haskell.packages.ghc810.graphql-engine;
 
   hasura-cli = callPackage ../servers/hasura/cli.nix { };
 
@@ -28136,8 +28172,6 @@ with pkgs;
 
   g933-utils = callPackage ../tools/misc/g933-utils { };
 
-  game-music-emu = callPackage ../applications/audio/game-music-emu { };
-
   gavrasm = callPackage ../development/compilers/gavrasm { };
 
   gcalcli = callPackage ../applications/misc/gcalcli { };
@@ -29976,7 +30010,6 @@ with pkgs;
   notion = callPackage ../applications/window-managers/notion { };
 
   nootka = qt5.callPackage ../applications/audio/nootka { };
-  nootka-unstable = qt5.callPackage ../applications/audio/nootka/unstable.nix { };
 
   novnc = callPackage ../applications/networking/novnc { };
 
@@ -31451,7 +31484,7 @@ with pkgs;
   # Use GHC 9.0 when this asserts starts to fire
   taffybar = assert haskellPackages.taffybar.version == "3.3.0";
   callPackage ../applications/window-managers/taffybar {
-    inherit (haskell.packages.ghc8107) ghcWithPackages taffybar;
+    inherit (haskell.packages.ghc810) ghcWithPackages taffybar;
   };
 
   tagainijisho = libsForQt5.callPackage ../applications/office/tagainijisho {};
@@ -32806,11 +32839,13 @@ with pkgs;
     miniupnpc = miniupnpc_2;
     withGui = true;
     boost = boost175;
+    inherit (darwin) autoSignDarwinBinariesHook;
   };
   elementsd = callPackage ../applications/blockchains/elements {
     miniupnpc = miniupnpc_2;
     withGui = false;
     boost = boost175;
+    inherit (darwin) autoSignDarwinBinariesHook;
   };
 
   ergo = callPackage ../applications/blockchains/ergo { };
@@ -33515,6 +33550,8 @@ with pkgs;
 
   icbm3d = callPackage ../games/icbm3d { };
 
+  infra = callPackage ../tools/admin/infra { };
+
   infra-arcana = callPackage ../games/infra-arcana { };
 
   ingen = callPackage ../applications/audio/ingen { };
@@ -33558,6 +33595,18 @@ with pkgs;
   };
 
   koules = callPackage ../games/koules { };
+
+  ldmud = callPackage ../games/ldmud { };
+
+  ldmud-full = callPackage ../games/ldmud {
+    ipv6Support = true;
+    mccpSupport = true;
+    mysqlSupport = true;
+    postgresSupport = true;
+    sqliteSupport = true;
+    tlsSupport = true;
+    pythonSupport = true;
+  };
 
   leela-zero = libsForQt5.callPackage ../games/leela-zero { };
 
@@ -36475,6 +36524,8 @@ with pkgs;
   prow = callPackage ../applications/networking/cluster/prow { };
 
   tagref = callPackage ../tools/misc/tagref { };
+
+  tcat = callPackage ../tools/misc/tcat { };
 
   tellico = libsForQt5.callPackage ../applications/misc/tellico { };
 

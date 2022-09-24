@@ -603,6 +603,12 @@
     githubId = 782180;
     name = "Alex Vorobiev";
   };
+  alexwinter = {
+    email = "git@alexwinter.net";
+    github = "lxwntr";
+    githubId = 50754358;
+    name = "Alex Winter";
+  };
   alexeyre = {
     email = "A.Eyre@sms.ed.ac.uk";
     github = "alexeyre";
@@ -4782,6 +4788,12 @@
     githubId = 16470252;
     name = "Gemini Lasswell";
   };
+  gbpdt = {
+    email = "nix@pdtpartners.com";
+    github = "gbpdt";
+    githubId = 25106405;
+    name = "Graham Bennett";
+  };
   gbtb = {
     email = "goodbetterthebeast3@gmail.com";
     github = "gbtb";
@@ -6834,12 +6846,6 @@
     name = "Mario Hros";
     github = "k3a";
     githubId = 966992;
-  };
-  k4leg = {
-    name = "k4leg";
-    email = "python.bogdan@gmail.com";
-    github = "k4leg";
-    githubId = 39882583;
   };
   k900 = {
     name = "Ilya K.";
@@ -15400,5 +15406,11 @@
     name = "Andrei Boar";
     github = "zuzuleinen";
     githubId = 944919;
+  };
+  quasigod-io = {
+    email = "quasigod-io@protonmail.com";
+    name = "Michael Belsanti";
+    github = "quasigod-io";
+    githubId = 62124625;
   };
 }
