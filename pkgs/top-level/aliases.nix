@@ -78,6 +78,7 @@ mapAliases ({
   ansible_2_10 = throw "Ansible 2.10 went end of life in 2022/05 and has subsequently been dropped"; # Added 2022-03-30
   ansible_2_9 = throw "Ansible 2.9 went end of life in 2022/05 and has subsequently been dropped"; # Added 2022-03-30
   antimicroX = antimicrox; # Added 2021-10-31
+  apple-music-electron = throw "'apple-music-electron' is end of life and has been removed, you can use 'cider' instead"; # Added 2022-10-02
   ardour_5 = throw "ardour_5 has been removed. see https://github.com/NixOS/nixpkgs/issues/139549"; # Added 2021-09-28
   arduino_core = throw "'arduino_core' has been renamed to/replaced by 'arduino-core'"; # Converted to throw 2022-02-22
   asciidocFull = throw "'asciidocFull' has been renamed to/replaced by 'asciidoc-full'"; # Converted to throw 2022-02-22
@@ -515,6 +516,10 @@ mapAliases ({
   interfacer = throw "interfacer is deprecated and archived by upstream"; # Added 2022-04-05
   inter-ui = throw "'inter-ui' has been renamed to/replaced by 'inter'"; # Converted to throw 2022-09-24
   iops = throw "iops was removed: upstream is gone"; # Added 2022-02-06
+  ipfs = kubo; # Added 2022-09-27
+  ipfs-migrator-all-fs-repo-migrations = kubo-migrator-all-fs-repo-migrations; # Added 2022-09-27
+  ipfs-migrator-unwrapped = kubo-migrator-unwrapped; # Added 2022-09-27
+  ipfs-migrator = kubo-migrator; # Added 2022-09-27
   iproute = throw "'iproute' has been renamed to/replaced by 'iproute2'"; # Converted to throw 2022-09-24
   ipsecTools = throw "ipsecTools has benn removed, because it was no longer maintained upstream"; # Added 2021-12-15
   itch-setup = throw "itch-setup has benn removed, use itch instead"; # Added 2022-06-02
@@ -651,6 +656,7 @@ mapAliases ({
   linuxPackages_5_18 = linuxKernel.packages.linux_5_18;
   linuxPackages_5_19 = linuxKernel.packages.linux_5_19;
   linuxPackages_5_4 = linuxKernel.packages.linux_5_4;
+  linuxPackages_6_0 = linuxKernel.packages.linux_6_0;
   linuxPackages_hardkernel_4_14 = linuxKernel.packages.hardkernel_4_14;
   linuxPackages_rpi0 = linuxKernel.packages.linux_rpi1;
   linuxPackages_rpi02w = linuxKernel.packages.linux_rpi3;
@@ -671,6 +677,7 @@ mapAliases ({
   linux_5_18 = linuxKernel.kernels.linux_5_18;
   linux_5_19 = linuxKernel.kernels.linux_5_19;
   linux_5_4 = linuxKernel.kernels.linux_5_4;
+  linux_6_0 = linuxKernel.kernels.linux_6_0;
   linux_mptcp_95 = linuxKernel.kernels.linux_mptcp_95;
   linux_rpi0 = linuxKernel.kernels.linux_rpi1;
   linux_rpi02w = linuxKernel.kernels.linux_rpi3;
@@ -743,7 +750,7 @@ mapAliases ({
   mumble_git = throw "'mumble_git' has been renamed to/replaced by 'pkgs.mumble'"; # Converted to throw 2022-09-24
   murmur_git = throw "'murmur_git' has been renamed to/replaced by 'pkgs.murmur'"; # Converted to throw 2022-09-24
   mutt-with-sidebar = mutt; # Added 2022-09-17
-  mysql-client = throw "'mysql-client' has been renamed to/replaced by 'hiPrio'"; # Converted to throw 2022-09-24
+  mysql-client = throw "'mysql-client' has been renamed to/replaced by 'mariadb.client'"; # Converted to throw 2022-09-24
   mysql = throw "'mysql' has been renamed to/replaced by 'mariadb'"; # Converted to throw 2022-09-24
 
   mesa_drivers = throw "'mesa_drivers' has been renamed to/replaced by 'mesa.drivers'"; # Converted to throw 2022-09-24
@@ -847,6 +854,7 @@ mapAliases ({
   pbis-open = throw "pbis-open has been removed, because it is no longer maintained upstream"; # added 2021-12-15
   pdf-redact-tools = throw "pdf-redact-tools has been removed from nixpkgs because the upstream has abandoned the project"; # Added 2022-01-01
   pdfmod = throw "pdfmod has been removed"; # Added 2022-01-15
+  pdfstudio = throw "'pdfstudio' has been replaced with 'pdfstudio<year>', where '<year>' is the year from the PDF Studio version number, because each license is specific to a given year"; # Added 2022-09-04
   peach = asouldocs; # Added 2022-08-28
   pentablet-driver = xp-pen-g430-driver; # Added 2022-06-23
   perlXMLParser = throw "'perlXMLParser' has been renamed to/replaced by 'perlPackages.XMLParser'"; # Converted to throw 2022-02-22
