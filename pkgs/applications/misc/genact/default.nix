@@ -1,32 +1,17 @@
-{ lib, rustPlatform, fetchFromGitHub, jq }:
+{ lib, rustPlatform, fetchFromGitHub }:
 
 rustPlatform.buildRustPackage rec {
   pname = "genact";
-  version = "1.1.1";
+  version = "1.2.0";
 
   src = fetchFromGitHub {
     owner = "svenstaro";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-Mw6mPOxiWnYu2QgqL4VccwwJhdxZ7zLJyX/oJWfGUhw=";
+    sha256 = "sha256-POOXawhxrPT2UgbSZE3r0br7cqJ0ao7MpycrPYa/oCc=";
   };
 
-  cargoSha256 = "sha256-ygQklcRjdffGl0s77MwKsyHVJWqWJZHq4SU38cSMVug=";
-
-  depsExtraArgs = {
-    nativeBuildInputs = [ jq ];
-    postBuild = ''
-      pushd $name/humansize
-
-      [ -d feature-tests ] && rm -r feature-tests
-
-      jq '.files |= with_entries(select(.key | startswith("feature-tests") | not))' \
-        -c .cargo-checksum.json > .cargo-checksum.json.new
-      mv .cargo-checksum.json{.new,}
-
-      popd
-    '';
-  };
+  cargoSha256 = "sha256-2c34YarMFw2CK+7zn41GL5tXfXfnw3NvGtgSlPH5d64=";
 
   meta = with lib; {
     description = "A nonsense activity generator";
