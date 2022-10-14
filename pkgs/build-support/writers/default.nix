@@ -126,8 +126,8 @@ let
   #     echo hello world
   #   ''
   writeFish = makeScriptWriter {
-    interpreter = "${pkgs.fish}/bin/fish";
-    check = "${pkgs.fish}/bin/fish --no-execute";  # syntax check only
+    interpreter = "${pkgs.fish}/bin/fish --no-config";
+    check = "${pkgs.fish}/bin/fish --no-config --no-execute";  # syntax check only
   };
 
   # Like writeScriptBin but the first line is a shebang to fish
@@ -207,7 +207,7 @@ let
     };
   in writeDash name ''
     export NODE_PATH=${node-env}/lib/node_modules
-    exec ${pkgs.nodejs}/bin/node ${pkgs.writeText "js" content}
+    exec ${pkgs.nodejs}/bin/node ${pkgs.writeText "js" content} "$@"
   '';
 
   # writeJSBin takes the same arguments as writeJS but outputs a directory (like writeScriptBin)
