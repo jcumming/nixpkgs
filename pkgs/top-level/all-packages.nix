@@ -3506,6 +3506,8 @@ with pkgs;
 
   wayland-proxy-virtwl = callPackage ../tools/wayland/wayland-proxy-virtwl { };
 
+  waynergy = callPackage ../tools/wayland/waynergy { };
+
   wayout = callPackage ../tools/wayland/wayout { };
 
   way-displays = callPackage ../tools/wayland/way-displays { };
@@ -3991,6 +3993,8 @@ with pkgs;
 
   frangipanni = callPackage ../tools/text/frangipanni { };
 
+  frawk = callPackage ../tools/text/frawk { };
+
   fselect = callPackage ../tools/misc/fselect { };
 
   fsmon = callPackage ../tools/misc/fsmon { };
@@ -4300,6 +4304,8 @@ with pkgs;
   jwx = callPackage ../tools/security/jwx { } ;
 
   kapacitor = callPackage ../servers/monitoring/kapacitor { };
+
+  karma = callPackage ../servers/monitoring/karma { };
 
   kaldi = callPackage ../tools/audio/kaldi { };
 
@@ -17640,6 +17646,10 @@ with pkgs;
 
   tflint = callPackage ../development/tools/analysis/tflint { };
 
+  tflint-plugins = recurseIntoAttrs (
+    callPackage ../development/tools/analysis/tflint-plugins { }
+  );
+
   tfsec = callPackage ../development/tools/analysis/tfsec { };
 
   todoist = callPackage ../applications/misc/todoist { };
@@ -19561,8 +19571,6 @@ with pkgs;
   libappindicator-gtk3 = libappindicator.override { gtkVersion = "3"; };
   libappindicator = callPackage ../development/libraries/libappindicator { };
 
-  libayatana-appindicator-gtk2 = libayatana-appindicator.override { gtkVersion = "2"; };
-  libayatana-appindicator-gtk3 = libayatana-appindicator.override { gtkVersion = "3"; };
   libayatana-appindicator = callPackage ../development/libraries/libayatana-appindicator { };
 
   libargs = callPackage ../development/libraries/libargs { };
@@ -20088,8 +20096,6 @@ with pkgs;
   libindicator-gtk3 = libindicator.override { gtkVersion = "3"; };
   libindicator = callPackage ../development/libraries/libindicator { };
 
-  libayatana-indicator-gtk2 = libayatana-indicator.override { gtkVersion = "2"; };
-  libayatana-indicator-gtk3 = libayatana-indicator.override { gtkVersion = "3"; };
   libayatana-indicator = callPackage ../development/libraries/libayatana-indicator { };
 
   libinotify-kqueue = callPackage ../development/libraries/libinotify-kqueue { };
@@ -22396,6 +22402,8 @@ with pkgs;
 
   tomlcpp = callPackage ../development/libraries/tomlcpp { };
 
+  tomlplusplus = callPackage ../development/libraries/tomlplusplus { };
+
   tokyocabinet = callPackage ../development/libraries/tokyo-cabinet { };
 
   tokyotyrant = callPackage ../development/libraries/tokyo-tyrant { };
@@ -24296,6 +24304,8 @@ with pkgs;
   virtualenv = with python3Packages; toPythonApplication virtualenv;
 
   virtualenv-clone = with python3Packages; toPythonApplication virtualenv-clone;
+
+  vmagent = callPackage ../servers/monitoring/vmagent { };
 
   vsftpd = callPackage ../servers/ftp/vsftpd { };
 
@@ -26496,7 +26506,9 @@ with pkgs;
 
   session-desktop = callPackage ../applications/networking/instant-messengers/session-desktop { };
 
-  shaderc = callPackage ../development/compilers/shaderc { };
+  shaderc = callPackage ../development/compilers/shaderc {
+    inherit (darwin) autoSignDarwinBinariesHook cctools;
+  };
 
   shades-of-gray-theme = callPackage ../data/themes/shades-of-gray { };
 
@@ -28200,7 +28212,9 @@ with pkgs;
     };
   };
 
-  grandorgue = callPackage ../applications/audio/grandorgue { };
+  grandorgue = callPackage ../applications/audio/grandorgue {
+    inherit (darwin.apple_sdk.frameworks) Cocoa;
+  };
 
   greetd = recurseIntoAttrs {
     dlm = callPackage ../applications/display-managers/greetd/dlm.nix { };
@@ -34681,6 +34695,7 @@ with pkgs;
     gnome40Extensions
     gnome41Extensions
     gnome42Extensions
+    gnome43Extensions
   ;
 
   gnome-connections = callPackage ../desktops/gnome/apps/gnome-connections { };
