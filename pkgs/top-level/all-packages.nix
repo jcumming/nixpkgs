@@ -34221,6 +34221,8 @@ with pkgs;
 
   powermanga = callPackage ../games/powermanga { };
 
+  prismlauncher = libsForQt5.callPackage ../games/prismlauncher { };
+
   prboom-plus = callPackage ../games/prboom-plus { };
 
   pysolfc = python3Packages.callPackage ../games/pysolfc { };
