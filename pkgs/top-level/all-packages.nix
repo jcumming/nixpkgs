@@ -4234,6 +4234,8 @@ with pkgs;
 
   hunt = callPackage ../tools/misc/hunt { };
 
+  hypr = callPackage ../applications/window-managers/hyprwm/hypr { };
+
   hyprland = callPackage ../applications/window-managers/hyprwm/hyprland { };
 
   hyprpaper = callPackage ../applications/window-managers/hyprwm/hyprpaper { };
@@ -8789,6 +8791,8 @@ with pkgs;
   libint = callPackage ../development/libraries/libint {};
 
   libipfix = callPackage ../development/libraries/libipfix { };
+
+  libirc = libsForQt5.callPackage ../development/libraries/libirc { };
 
   libircclient = callPackage ../development/libraries/libircclient { };
 
@@ -28963,6 +28967,8 @@ with pkgs;
 
   haunt = callPackage ../applications/misc/haunt { };
 
+  huggle = libsForQt5.callPackage ../applications/misc/huggle {};
+
   hugo = callPackage ../applications/misc/hugo {
     buildGoModule = buildGo119Module;
   };
@@ -32291,6 +32297,8 @@ with pkgs;
 
   unison-ucm = callPackage ../development/compilers/unison { };
 
+  upnp-router-control = callPackage ../applications/networking/upnp-router-control { };
+
   urh = callPackage ../applications/radio/urh { };
 
   uroboros = callPackage ../tools/system/uroboros { };
@@ -33983,6 +33991,8 @@ with pkgs;
   hedgewars = libsForQt5.callPackage ../games/hedgewars {
     inherit (haskellPackages) ghcWithPackages;
   };
+
+  hikounomizu = callPackage ../games/hikounomizu { };
 
   hyperrogue = callPackage ../games/hyperrogue { };
 
@@ -36662,6 +36672,8 @@ with pkgs;
   nut = callPackage ../applications/misc/nut { };
 
   nhentai = callPackage ../applications/misc/nhentai { };
+
+  nsncd = callPackage ../os-specific/linux/nsncd { };
 
   nvd = callPackage ../tools/package-management/nvd { };
 
