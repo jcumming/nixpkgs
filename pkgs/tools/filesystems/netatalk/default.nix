@@ -1,7 +1,6 @@
-{ fetchurl, lib, stdenv, autoreconfHook, pkg-config, perl, python3
-, db, libgcrypt, avahi, libiconv, pam, openssl, acl
-, ed, libtirpc, libevent, fetchpatch
-}:
+{ fetchurl, lib, stdenv, autoreconfHook, pkg-config, perl, python3, db
+, libgcrypt, avahi, libiconv, pam, openssl, acl, ed, libtirpc, libevent
+, fetchpatch }:
 
 stdenv.mkDerivation rec {
   pname = "netatalk";
@@ -19,7 +18,8 @@ stdenv.mkDerivation rec {
     ./omitLocalstatedirCreation.patch
     (fetchpatch {
       name = "make-afpstats-python3-compatible.patch";
-      url = "https://github.com/Netatalk/Netatalk/commit/916b515705cf7ba28dc53d13202811c6e1fe6a9e.patch";
+      url =
+        "https://github.com/Netatalk/Netatalk/commit/916b515705cf7ba28dc53d13202811c6e1fe6a9e.patch";
       sha256 = "sha256-DAABpYjQPJLsQBhmtP30gA357w0Qn+AsnFgAeyDC/Rg=";
     })
   ];
@@ -28,54 +28,64 @@ stdenv.mkDerivation rec {
     # https://bugs.freebsd.org/263123
     (fetchpatch {
       name = "patch-etc_afpd_directory.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-etc_afpd_directory.c";
-      sha256 = "03zgijjaxpqdsrhavmsingx7i8a5v5869nqxrxyczkzknr20fw55";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-etc_afpd_directory.c";
+      sha256 = "sha256-07YAJs+EtqGcFXbYHDLbILved1Ebtd8ukQepvzy6et0=";
     })
     (fetchpatch {
       name = "patch-etc_afpd_file.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-etc_afpd_file.c";
-      sha256 = "1i3blw41sm1a70mpy08qy329gp8nzsn1y64w92wchlalffmqbksz";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-etc_afpd_file.c";
+      sha256 = "sha256-T1WTNa2G6wxKtvMa/MCX3Vx6XZBHtU6w3enkdGuIWus=";
     })
     (fetchpatch {
       name = "patch-etc_afpd_volume.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-etc_afpd_volume.c";
-      sha256 = "053pci9m3kpbvk2hshq0c92js2pxv6dcxp6yk8nxcp0ak9lvkbfw";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-etc_afpd_volume.c";
+      sha256 = "sha256-NOZNZGzA0hxrNkoLTvN64h40yApPbMH4qIfBTpQoI0s=";
     })
     (fetchpatch {
       name = "patch-etc_cnid__dbd_cmd__dbd__scanvol.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-etc_cnid__dbd_cmd__dbd__scanvol.c";
-      sha256 = "0k8h0fhv29dx1ddgsqrg66nm4xhfyr10hpbnzlainkhrh5wxiknl";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-etc_cnid__dbd_cmd__dbd__scanvol.c";
+      sha256 = "sha256-5QV+tQDo8/XeKwH/e5+Ne+kEOl2uvRDbHMaWysIB6YU=";
     })
     (fetchpatch {
       name = "patch-libatalk_adouble_ad__attr.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__attr.c";
-      sha256 = "1fjrnh1n7rnh0l6dn26xgwbv5fyyj36r8i4rjax1hh39mqd59avp";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__attr.c";
+      sha256 = "sha256-Ose6BdilwBOmoYpm8Jat1B3biOXJj4y3U4T49zE0G7Y=";
     })
     (fetchpatch {
       name = "patch-libatalk_adouble_ad__conv.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__conv.c";
-      sha256 = "1n6h3j3pid4xzi5ip1f8wa9iwwwkb807hrajj28d5za27fxskhz0";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__conv.c";
+      sha256 = "sha256-T27WlKVXosv4bX5Gek2bR2cVDYEee5qrH4mnL9ghbP8=";
     })
     (fetchpatch {
       name = "patch-libatalk_adouble_ad__date.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__date.c";
-      sha256 = "0ci88l5yjgasvic992wvh17sv41qpaxkz0s8wb2x52x2ylcrcsyv";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__date.c";
+      sha256 = "sha256-fkW5A+7R5fT3bukRfZaOwFo7AsyPaYajc1hIlDMZMnc=";
     })
     (fetchpatch {
       name = "patch-libatalk_adouble_ad__flush.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__flush.c";
-      sha256 = "0nhxndb50d6fw8pwl0dzs8a8nw8r9imj8xkjhwqqwy9hz94h93f8";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__flush.c";
+      sha256 = "sha256-k2zTx35tAlsFHym83bZGoWXRomwFV9xT3r2fzr3Zvbk=";
     })
     (fetchpatch {
       name = "patch-libatalk_adouble_ad__open.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__open.c";
-      sha256 = "0r5zwwwjqp9052cy3qg33w99cyisfm65ymgrpm162y8jripah6wa";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__open.c";
+      sha256 = "sha256-uV4wwft2IH54+4k5YR+Gz/BpRZBanxX/Ukp8BkohInU=";
     })
     # https://bugs.freebsd.org/251203
     (fetchpatch {
       name = "patch-libatalk_vfs_extattr.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_vfs_extattr.c";
-      sha256 = "0m9p6qm8iza7la3vnms5ifxjwf0brh4cdphqyj1lf8xl7d6a9i3l";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_vfs_extattr.c";
+      sha256 = "sha256-lFWF0Qo8PJv7QKvnMn0Fc9Ruzb+FTEWgOMpxc789jWs=";
     })
   ];
 
@@ -86,7 +96,8 @@ stdenv.mkDerivation rec {
     done
   '';
 
-  nativeBuildInputs = [ autoreconfHook pkg-config perl python3 python3.pkgs.wrapPython ];
+  nativeBuildInputs =
+    [ autoreconfHook pkg-config perl python3 python3.pkgs.wrapPython ];
 
   buildInputs = [ db libgcrypt avahi libiconv pam openssl acl libevent ];
 

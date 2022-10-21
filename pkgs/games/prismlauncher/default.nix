@@ -14,50 +14,69 @@
 , quazip
 , glfw
 , openal
+, extra-cmake-modules
+, tomlplusplus
+, ghc_filesystem
 , msaClientID ? ""
 , jdks ? [ jdk jdk8 ]
-, extra-cmake-modules
+,
 }:
-
+let
+  libnbtplusplus = fetchFromGitHub {
+    owner = "PrismLauncher";
+    repo = "libnbtplusplus";
+    rev = "2203af7eeb48c45398139b583615134efd8d407f";
+    sha256 = "sha256-TvVOjkUobYJD9itQYueELJX3wmecvEdCbJ0FinW2mL4=";
+  };
+in
 stdenv.mkDerivation rec {
   pname = "prismlauncher";
-  version = "1.4.2+2022_10_18";
+  version = "5.0";
 
   src = fetchFromGitHub {
     owner = "PrismLauncher";
     repo = "PrismLauncher";
-    rev = "325e58d98c26fb802956de75e8ddfcfe0d9e3782";
-    sha256 = "sha256-BO+FlzOnYXqysXscEbBotqzPhM30X4bbgznGsQZM5v0=";
-    fetchSubmodules = true;
+    rev = version;
+    sha256 = "sha256-oN+DpJ08N/ar5wLAahgpBV9DeHtMTwSrE7uOwT3A+Yo=";
   };
 
-  nativeBuildInputs = [ extra-cmake-modules cmake file jdk wrapQtAppsHook ];
-  buildInputs = [ qtbase zlib quazip ];
+  nativeBuildInputs = [ extra-cmake-modules ghc_filesystem cmake file jdk wrapQtAppsHook ];
+  buildInputs = [ qtbase zlib quazip tomlplusplus ];
 
   cmakeFlags = lib.optionals (msaClientID != "") [ "-DLauncher_MSA_CLIENT_ID=${msaClientID}" ];
-
   dontWrapQtApps = true;
 
-  postInstall = let
-    libpath = with xorg; lib.makeLibraryPath [
-      libX11
-      libXext
-      libXcursor
-      libXrandr
-      libXxf86vm
-      libpulseaudio
-      libGL
-      glfw
-      openal
-      stdenv.cc.cc.lib
-    ];
-  in ''
-    # xorg.xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
-    wrapQtApp $out/bin/prismlauncher \
-      --set LD_LIBRARY_PATH /run/opengl-driver/lib:${libpath} \
-      --prefix POLYMC_JAVA_PATHS : ${lib.makeSearchPath "bin/java" jdks} \
-      --prefix PATH : ${lib.makeBinPath [ xorg.xrandr ]}
+  postUnpack = ''
+    rm -rf source/libraries/libnbtplusplus
+    mkdir source/libraries/libnbtplusplus
+    ln -s ${libnbtplusplus}/* source/libraries/libnbtplusplus
+    chmod -R +r+w source/libraries/libnbtplusplus
+    chown -R $USER: source/libraries/libnbtplusplus
   '';
+
+  postInstall =
+    let
+      libpath = with xorg;
+        lib.makeLibraryPath [
+          libX11
+          libXext
+          libXcursor
+          libXrandr
+          libXxf86vm
+          libpulseaudio
+          libGL
+          glfw
+          openal
+          stdenv.cc.cc.lib
+        ];
+    in
+    ''
+      # xorg.xrandr needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
+      wrapQtApp $out/bin/prismlauncher \
+        --set LD_LIBRARY_PATH /run/opengl-driver/lib:${libpath} \
+        --prefix PRISMLAUNCHER_JAVA_PATHS : ${lib.makeSearchPath "bin/java" jdks} \
+        --prefix PATH : ${lib.makeBinPath [xorg.xrandr]}
+    '';
 
   meta = with lib; {
     homepage = "https://prismlauncher.org/";
@@ -68,8 +87,8 @@ stdenv.mkDerivation rec {
       their associated options with a simple interface.
     '';
     platforms = platforms.linux;
-    changelog = "https://github.com/PrismLaunger/PrismLaunger/releases/tag/${version}";
+    changelog = "https://github.com/PrismLauncher/PrismLauncher/releases/tag/${version}";
     license = licenses.gpl3Only;
-    maintainers = with maintainers; [ cleverca22 starcraft66 ];
+    maintainers = with maintainers; [ minion3665 Scrumplex ];
   };
 }
