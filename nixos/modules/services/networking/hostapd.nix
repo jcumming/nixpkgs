@@ -222,7 +222,7 @@ in
 
     environment.systemPackages =  [ pkgs.hostapd ];
 
-    services.udev.packages = optional (cfg.countryCode != null) [ pkgs.crda ];
+    services.udev.packages = optionals (cfg.countryCode != null) [ pkgs.crda ];
 
     systemd.services = 
     let 
