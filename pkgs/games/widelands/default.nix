@@ -7,7 +7,6 @@
 , SDL2_mixer
 , SDL2_net
 , SDL2_ttf
-, boost
 , cmake
 , curl
 , doxygen
@@ -20,27 +19,23 @@
 , lua
 , python3
 , zlib
+, minizip
+, asio
+, libSM
+, libICE
+, libXext
 }:
 
 stdenv.mkDerivation rec {
   pname = "widelands";
-  version = "1.0";
+  version = "1.1";
 
   src = fetchFromGitHub {
     owner = "widelands";
     repo = "widelands";
     rev = "v${version}";
-    sha256 = "sha256-gNumYoeKePaxiAzrqEPKibMxFwv9vyBrCSoua+MKhcM=";
+    sha256 = "sha256-fe1fey34b6T1+kqMa22STROu7dagQJtg24nW2jhVix8=";
   };
-
-  patches = [
-    ./bincmake.patch
-    # fix for building with Boost 1.77, https://github.com/widelands/widelands/pull/5025
-    (fetchpatch {
-      url = "https://github.com/widelands/widelands/commit/33981fda8c319c9feafc958f5f0b1670c48666ef.patch";
-      sha256 = "sha256-FjxxCTPpg/Zp01XpNfgRXMMLJBfxAptkLpsLmnFXm2Q=";
-    })
-  ];
 
   postPatch = ''
     substituteInPlace xdg/org.widelands.Widelands.desktop \
@@ -62,7 +57,6 @@ stdenv.mkDerivation rec {
     SDL2_mixer
     SDL2_net
     SDL2_ttf
-    boost
     curl
     glew
     icu
@@ -70,6 +64,11 @@ stdenv.mkDerivation rec {
     lua
     python3
     zlib
+    minizip
+    asio
+    libSM  # XXX: these should be propagated by SDL2? 
+    libICE
+    libXext
   ];
 
   postInstall = ''
