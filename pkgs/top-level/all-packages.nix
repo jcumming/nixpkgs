@@ -15929,6 +15929,8 @@ with pkgs;
 
   guile-commonmark = callPackage ../development/guile-modules/guile-commonmark { };
 
+  guile-config = callPackage ../development/guile-modules/guile-config { };
+
   guile-fibers = callPackage ../development/guile-modules/guile-fibers { };
 
   guile-gcrypt = callPackage ../development/guile-modules/guile-gcrypt { };
@@ -16928,6 +16930,8 @@ with pkgs;
   gtranslator = callPackage ../tools/text/gtranslator { };
 
   guff = callPackage ../tools/graphics/guff { };
+
+  guile-hall = callPackage ../development/tools/guile/guile-hall { };
 
   guile-lint = callPackage ../development/tools/guile/guile-lint {
     guile = guile_1_8;
@@ -18744,6 +18748,8 @@ with pkgs;
     drvName = "geoip-tools";
     geoipDatabase = geolite-legacy;
   };
+
+  geographiclib = callPackage ../development/libraries/geographiclib { };
 
   geoip = callPackage ../development/libraries/geoip { };
 
