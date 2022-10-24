@@ -2,6 +2,7 @@
 , stdenv
 , fetchFromGitHub
 , fetchpatch
+, pkg-config # needed to find minizip
 , SDL2
 , SDL2_image
 , SDL2_mixer
@@ -44,12 +45,12 @@ stdenv.mkDerivation rec {
 
   cmakeFlags = [
     "-Wno-dev" # dev warnings are only needed for upstream development
-    "-DWL_INSTALL_BASEDIR=${placeholder "out"}"
-    "-DWL_INSTALL_DATADIR=${placeholder "out"}/share/widelands"
-    "-DWL_INSTALL_BINARY=${placeholder "out"}/bin"
+    "-DWL_INSTALL_BASEDIR=${placeholder "out"}/share/widelands" # for COPYING, Changelog, etc.
+    "-DWL_INSTALL_DATADIR=${placeholder "out"}/share/widelands" # for game data
+    "-DWL_INSTALL_BINDIR=${placeholder "out"}/bin"
   ];
 
-  nativeBuildInputs = [ cmake doxygen gettext graphviz installShellFiles ];
+  nativeBuildInputs = [ cmake doxygen gettext graphviz installShellFiles pkg-config ];
 
   buildInputs = [
     SDL2
@@ -66,7 +67,7 @@ stdenv.mkDerivation rec {
     zlib
     minizip
     asio
-    libSM  # XXX: these should be propagated by SDL2? 
+    libSM  # XXX: these should be propagated by SDL2?
     libICE
     libXext
   ];
@@ -89,6 +90,8 @@ stdenv.mkDerivation rec {
       Settlers II". It has a single player campaign mode, as well as a networked
       multiplayer mode.
     '';
+    changelog = "https://github.com/widelands/widelands/releases/tag/v1.1";
+    mainProgram = "widelands";
     license = licenses.gpl2Plus;
     maintainers = with maintainers; [ raskin jcumming ];
     platforms = platforms.linux;
