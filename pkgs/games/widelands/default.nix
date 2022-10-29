@@ -50,9 +50,9 @@ stdenv.mkDerivation rec {
     "-DWL_INSTALL_BINDIR=${placeholder "out"}/bin"
   ];
 
-  nativeBuildInputs = [ cmake doxygen gettext graphviz installShellFiles pkg-config ];
-
   enableParallelBuilding = true;
+
+  nativeBuildInputs = [ cmake doxygen gettext graphviz installShellFiles pkg-config ];
 
   buildInputs = [
     SDL2
