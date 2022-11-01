@@ -1481,6 +1481,12 @@
     githubId = 35324;
     name = "Badi' Abdul-Wahid";
   };
+  baduhai = {
+    email = "baduhai@pm.me";
+    github = "baduhai";
+    githubId = 31864305;
+    name = "William";
+  };
   baitinq = {
     email = "manuelpalenzuelamerino@gmail.com";
     name = "Baitinq";
@@ -5884,6 +5890,12 @@
     githubId = 54999;
     name = "Ariel Nunez";
   };
+  iopq = {
+    email = "iop_jr@yahoo.com";
+    github = "iopq";
+    githubId = 1817528;
+    name = "Igor Polyakov";
+  };
   irenes = {
     name = "Irene Knapp";
     email = "ireneista@gmail.com";
@@ -5999,6 +6011,12 @@
     email = "johannes.arnold@stud.uni-hannover.de";
     github = "j0hax";
     githubId = 3802620;
+  };
+  j0lol = {
+    name = "Jo";
+    email = "me@j0.lol";
+    github = "j0lol";
+    githubId = 24716467;
   };
   j4m3s = {
     name = "James Landrein";
@@ -7374,6 +7392,12 @@
     github = "koslambrou";
     githubId = 2037002;
     name = "Konstantinos";
+  };
+  kototama = {
+    email = "kototama@posteo.jp";
+    github = "kototama";
+    githubId = 128620;
+    name = "Kototama";
   };
   kouyk = {
     email = "skykinetic@stevenkou.xyz";
@@ -13292,6 +13316,12 @@
     github = "tasmo";
     githubId = 102685;
     name = "Thomas Friese";
+  };
+  taylor1791 = {
+    email = "nixpkgs@tayloreverding.com";
+    github = "taylor1791";
+    githubId = 555003;
+    name = "Taylor Everding";
   };
   tazjin = {
     email = "mail@tazj.in";

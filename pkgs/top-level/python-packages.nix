@@ -1446,6 +1446,8 @@ self: super: with self; {
 
   bunch = callPackage ../development/python-modules/bunch { };
 
+  bundlewrap = callPackage ../development/python-modules/bundlewrap { };
+
   bx-python = callPackage ../development/python-modules/bx-python { };
 
   bwapy = callPackage ../development/python-modules/bwapy { };
@@ -1895,6 +1897,8 @@ self: super: with self; {
   concurrent-log-handler = callPackage ../development/python-modules/concurrent-log-handler { };
 
   conda = callPackage ../development/python-modules/conda { };
+
+  confection = callPackage ../development/python-modules/confection { };
 
   configargparse = callPackage ../development/python-modules/configargparse { };
 
@@ -4311,6 +4315,8 @@ self: super: with self; {
 
   hydrawiser = callPackage ../development/python-modules/hydrawiser { };
 
+  hydrus-api = callPackage ../development/python-modules/hydrus-api { };
+
   hypchat = callPackage ../development/python-modules/hypchat { };
 
   hypercorn = callPackage ../development/python-modules/hypercorn { };
@@ -5702,6 +5708,8 @@ self: super: with self; {
 
   mitmproxy = callPackage ../development/python-modules/mitmproxy { };
 
+  mitmproxy-wireguard = callPackage ../development/python-modules/mitmproxy-wireguard { };
+
   mitogen = callPackage ../development/python-modules/mitogen { };
 
   mixpanel = callPackage ../development/python-modules/mixpanel { };
@@ -5987,6 +5995,8 @@ self: super: with self; {
 
   napari-svg = callPackage ../development/python-modules/napari-svg { };
 
+  nasdaq-data-link = callPackage ../development/python-modules/nasdaq-data-link { };
+
   nats-py = callPackage ../development/python-modules/nats-py { };
 
   nats-python = callPackage ../development/python-modules/nats-python { };
@@ -6067,9 +6077,9 @@ self: super: with self; {
 
   networkx = callPackage ../development/python-modules/networkx { };
 
-  neuron-mpi = pkgs.neuron-mpi.override { inherit python; };
+  neuron-mpi = toPythonModule (pkgs.neuron-mpi.override { inherit python; });
 
-  neuron = pkgs.neuron.override { inherit python; };
+  neuron = toPythonModule (pkgs.neuron.override { inherit python; });
 
   neuronpy = callPackage ../development/python-modules/neuronpy { };
 
@@ -7477,7 +7487,7 @@ self: super: with self; {
 
   pyblake2 = callPackage ../development/python-modules/pyblake2 { };
 
-  pyblock = callPackage ../development/python-modules/pyblock { };
+  pyblock = toPythonModule (callPackage ../development/python-modules/pyblock { });
 
   pybluez = callPackage ../development/python-modules/pybluez {
     inherit (pkgs) bluez;
@@ -8618,6 +8628,8 @@ self: super: with self; {
     inherit (pkgs) bash subversion apr aprutil expat neon openssl;
   };
 
+  pyswitchbee = callPackage ../development/python-modules/pyswitchbee { };
+
   pyswitchbot = callPackage ../development/python-modules/pyswitchbot { };
 
   pysychonaut = callPackage ../development/python-modules/pysychonaut { };
@@ -9234,7 +9246,7 @@ self: super: with self; {
     inherit (pkgs) udev;
   };
 
-  pyunbound = callPackage ../tools/networking/unbound/python.nix { };
+  pyunbound = toPythonModule (callPackage ../tools/networking/unbound/python.nix { });
 
   pyunifi = callPackage ../development/python-modules/pyunifi { };
 
@@ -11912,7 +11924,7 @@ self: super: with self; {
 
   wxPython_4_1 = callPackage ../development/python-modules/wxPython/4.1.nix {
     inherit (pkgs.darwin.apple_sdk.frameworks) AGL AudioToolbox AVFoundation AVKit Carbon Cocoa CoreMedia CoreFoundation IOKit Kernel OpenGL Security WebKit;
-    wxGTK = pkgs.wxGTK31-gtk3.override {
+    wxGTK = pkgs.wxGTK31.override {
       withWebKit = true;
     };
   };

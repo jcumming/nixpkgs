@@ -1423,6 +1423,8 @@ with pkgs;
 
   tnat64 = callPackage ../tools/networking/tnat64 { };
 
+  toast = callPackage ../development/tools/toast { };
+
   topicctl = callPackage ../tools/misc/topicctl { };
 
   ttchat = callPackage ../tools/misc/ttchat { };
@@ -1500,6 +1502,8 @@ with pkgs;
   cdemu-client = callPackage ../applications/emulators/cdemu/client.nix { };
 
   cdemu-daemon = callPackage ../applications/emulators/cdemu/daemon.nix { };
+
+  cemu = callPackage ../applications/emulators/cemu { };
 
   cen64 = callPackage ../applications/emulators/cen64 { };
 
@@ -1581,7 +1585,7 @@ with pkgs;
 
   maiko = callPackage ../applications/emulators/maiko { };
 
-  mame = libsForQt514.callPackage ../applications/emulators/mame {
+  mame = libsForQt5.callPackage ../applications/emulators/mame {
     inherit (darwin.apple_sdk.frameworks) CoreAudioKit ForceFeedback;
   };
 
@@ -1724,10 +1728,7 @@ with pkgs;
 
   ### APPLICATIONS/EMULATORS/RETROARCH
 
-  retroarchBare = callPackage ../applications/emulators/retroarch {
-    inherit (darwin) libobjc;
-    inherit (darwin.apple_sdk.frameworks) AppKit Foundation;
-  };
+  retroarchBare = callPackage ../applications/emulators/retroarch { };
 
   retroarchFull = retroarch.override {
     cores = builtins.filter
@@ -1746,6 +1747,8 @@ with pkgs;
     (callPackage ../applications/emulators/retroarch/cores.nix {
       retroarch = retroarchBare;
     });
+
+  libretro-core-info = callPackage ../applications/emulators/retroarch/libretro-core-info.nix { };
 
   kodi-retroarch-advanced-launchers =
     callPackage ../applications/emulators/retroarch/kodi-advanced-launchers.nix { };
@@ -4017,6 +4020,8 @@ with pkgs;
 
   frawk = callPackage ../tools/text/frawk { };
 
+  frei = callPackage ../tools/misc/frei { };
+
   fselect = callPackage ../tools/misc/fselect { };
 
   fsmon = callPackage ../tools/misc/fsmon { };
@@ -4043,15 +4048,21 @@ with pkgs;
 
   # Keep the old PGF since some documents don't render properly with
   # the new one.
-  pgf1 = callPackage ../tools/typesetting/tex/pgf/1.x.nix { };
+  pgf1 = callPackage ../tools/typesetting/tex/pgf-tikz/pgf-1.x.nix { };
 
-  pgf2 = callPackage ../tools/typesetting/tex/pgf/2.x.nix { };
+  pgf2 = callPackage ../tools/typesetting/tex/pgf-tikz/pgf-2.x.nix { };
 
-  pgf3 = callPackage ../tools/typesetting/tex/pgf/3.x.nix { };
+  pgf3 = callPackage ../tools/typesetting/tex/pgf-tikz/pgf-3.x.nix { };
 
   pgf = pgf2;
 
-  pgfplots = callPackage ../tools/typesetting/tex/pgfplots { };
+  pgf-pie = callPackage ../tools/typesetting/tex/pgf-tikz/pgf-pie.nix { };
+
+  pgf-umlcd = callPackage ../tools/typesetting/tex/pgf-tikz/pgf-umlcd.nix { };
+
+  pgf-umlsd = callPackage ../tools/typesetting/tex/pgf-tikz/pgf-umlsd.nix { };
+
+  pgfplots = callPackage ../tools/typesetting/tex/pgf-tikz/pgfplots.nix { };
 
   pplatex = callPackage ../tools/typesetting/tex/pplatex { };
 
@@ -4475,6 +4486,9 @@ with pkgs;
   mandown = callPackage ../tools/misc/mandown { };
 
   mapcidr = callPackage ../tools/misc/mapcidr { };
+
+  maple-mono = (callPackage ../data/fonts/maple-font { }).Mono-v5;
+  maple-mono-NF = (callPackage ../data/fonts/maple-font { }).Mono-NF-v5;
 
   marl = callPackage ../development/libraries/marl {};
 
@@ -5205,9 +5219,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Carbon IOKit;
   };
 
-  cemu = qt5.callPackage ../applications/science/math/cemu {
-    stdenv = gcc9Stdenv;
-  };
+  cemu-ti = qt5.callPackage ../applications/science/math/cemu-ti { };
 
   cider = callPackage ../applications/audio/cider { };
 
@@ -8102,6 +8114,8 @@ with pkgs;
 
   jc = with python3Packages; toPythonApplication jc;
 
+  jd-cli = callPackage ../tools/security/jd-cli { };
+
   jd-diff-patch = callPackage ../development/tools/jd-diff-patch { };
 
   jd-gui = callPackage ../tools/security/jd-gui { };
@@ -9300,6 +9314,8 @@ with pkgs;
 
   monit = callPackage ../tools/system/monit { };
 
+  monocraft = callPackage ../data/fonts/monocraft { };
+
   monolith = callPackage ../tools/backup/monolith {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -10106,6 +10122,8 @@ with pkgs;
 
   pamtester = callPackage ../tools/security/pamtester { };
 
+  paper-note = callPackage ../applications/office/paper-note { };
+
   paperless-ngx = callPackage ../applications/office/paperless-ngx { };
 
   paperoni = callPackage ../tools/text/paperoni {
@@ -10155,13 +10173,11 @@ with pkgs;
 
   percona-xtrabackup = percona-xtrabackup_8_0;
   percona-xtrabackup_2_4 = callPackage ../tools/backup/percona-xtrabackup/2_4.nix {
-    stdenv = gcc10StdenvCompat;
     boost = boost159;
     openssl = openssl_1_1;
   };
   percona-xtrabackup_8_0 = callPackage ../tools/backup/percona-xtrabackup/8_0.nix {
-    stdenv = gcc10StdenvCompat;
-    boost = boost170;
+    boost = boost177;
     openssl = openssl_1_1;
   };
 
@@ -12570,6 +12586,8 @@ with pkgs;
 
   xplr = callPackage ../applications/misc/xplr {};
 
+  xray = callPackage ../tools/networking/xray { };
+
   testdisk = libsForQt5.callPackage ../tools/system/testdisk { };
 
   testdisk-qt = testdisk.override { enableQt = true; };
@@ -13049,6 +13067,8 @@ with pkgs;
   };
 
   yj = callPackage ../development/tools/yj { };
+
+  zarchive = callPackage ../tools/archivers/zarchive { };
 
   zprint = callPackage ../development/tools/zprint { };
 
@@ -13623,6 +13643,11 @@ with pkgs;
   fasm-bin = callPackage ../development/compilers/fasm/bin.nix { };
 
   fasmg = callPackage ../development/compilers/fasmg { };
+
+  fbc = if stdenv.hostPlatform.isDarwin then
+    callPackage ../development/compilers/fbc/mac-bin.nix { }
+  else
+    callPackage ../development/compilers/fbc { };
 
   filecheck = with python3Packages; toPythonApplication filecheck;
 
@@ -14971,6 +14996,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
   cargo-insta = callPackage ../development/tools/rust/cargo-insta { };
+  cargo-lambda = callPackage ../development/tools/rust/cargo-lambda {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
   cargo-limit = callPackage ../development/tools/rust/cargo-limit { };
   cargo-make = callPackage ../development/tools/rust/cargo-make {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
@@ -15222,6 +15250,8 @@ with pkgs;
   };
 
   tinyscheme = callPackage ../development/interpreters/tinyscheme { };
+
+  inherit (nodePackages) typescript;
 
   bupc = callPackage ../development/compilers/bupc { };
 
@@ -16416,6 +16446,8 @@ with pkgs;
   # until more issues are fixed default to libbpf 0.x
   libbpf = libbpf_0;
 
+  bundlewrap = with python3.pkgs; toPythonApplication bundlewrap;
+
   bpftools = callPackage ../os-specific/linux/bpftools { };
 
   bcc = callPackage ../os-specific/linux/bcc {
@@ -17334,7 +17366,6 @@ with pkgs;
     patchelf_0_13
   else
     patchelf_0_14;
-  patchelf_0_9 = callPackage ../development/tools/misc/patchelf/0.9.nix { };
   patchelf_0_13 = callPackage ../development/tools/misc/patchelf/0.13.nix {
     patchelf = patchelf_0_14;
   };
@@ -18172,6 +18203,8 @@ with pkgs;
 
   # justStaticExecutables is needed due to https://github.com/NixOS/nix/issues/2990
   cachix = haskell.lib.compose.justStaticExecutables haskellPackages.cachix;
+
+  cubeb = callPackage ../development/libraries/audio/cubeb { };
 
   hercules-ci-agent = callPackage ../development/tools/continuous-integration/hercules-ci-agent { };
 
@@ -21051,6 +21084,8 @@ with pkgs;
 
   luabind_luajit = luabind.override { lua = luajit; };
 
+  luabridge = callPackage ../development/libraries/luabridge { };
+
   luksmeta = callPackage ../development/libraries/luksmeta {
     asciidoc = asciidoc-full;
   };
@@ -21230,6 +21265,8 @@ with pkgs;
   };
 
   mueval = callPackage ../development/tools/haskell/mueval { };
+
+  mujoco = callPackage ../applications/science/robotics/mujoco { };
 
   muparser = callPackage ../development/libraries/muparser {
     inherit (darwin.stubs) setfile;
@@ -21604,7 +21641,7 @@ with pkgs;
   pe-parse = callPackage ../development/libraries/pe-parse { };
 
   inherit (callPackage ../development/libraries/physfs {
-    inherit (darwin.apple_sdk.frameworks) Foundation Carbon;
+    inherit (darwin.apple_sdk.frameworks) Foundation;
   })
     physfs_2
     physfs;
@@ -22815,8 +22852,6 @@ with pkgs;
     inherit (darwin.stubs) setfile;
     inherit (darwin.apple_sdk.frameworks) AGL Carbon Cocoa Kernel QTKit AVFoundation AVKit WebKit;
   };
-  wxGTK31-gtk2 = wxGTK31.override { withGtk2 = true; };
-  wxGTK31-gtk3 = wxGTK31.override { withGtk2 = false; };
 
   wxGTK32 = callPackage ../development/libraries/wxwidgets/wxGTK32.nix {
     inherit (darwin.stubs) setfile;
@@ -23685,6 +23720,8 @@ with pkgs;
   mattermost-desktop = callPackage ../applications/networking/instant-messengers/mattermost-desktop { };
 
   memcached = callPackage ../servers/memcached {};
+
+  merecat = callPackage ../servers/http/merecat { };
 
   meteor = callPackage ../servers/meteor { };
 
@@ -31805,14 +31842,14 @@ with pkgs;
   prusa-slicer = callPackage ../applications/misc/prusa-slicer { };
 
   super-slicer = callPackage ../applications/misc/prusa-slicer/super-slicer.nix {
-    wxGTK31-gtk3 = wxGTK31-gtk3.override {
+    wxGTK31 = wxGTK31.override {
       # https://github.com/supermerill/SuperSlicer/issues/1093
       withEGL = false;
     };
   };
 
   super-slicer-latest = (callPackage ../applications/misc/prusa-slicer/super-slicer.nix {
-    wxGTK31-gtk3 = wxGTK31-gtk3.override {
+    wxGTK31 = wxGTK31.override {
       # https://github.com/supermerill/SuperSlicer/issues/1093
       withEGL = false;
     };
@@ -32005,10 +32042,8 @@ with pkgs;
     # customConfig = builtins.readFile ./tabbed.config.h;
   };
 
-  # Use GHC 9.0 when this asserts starts to fire
-  taffybar = assert haskellPackages.taffybar.version == "3.3.0";
-  callPackage ../applications/window-managers/taffybar {
-    inherit (haskell.packages.ghc810) ghcWithPackages taffybar;
+  taffybar = callPackage ../applications/window-managers/taffybar {
+    inherit (haskellPackages) ghcWithPackages taffybar;
   };
 
   tagainijisho = libsForQt5.callPackage ../applications/office/tagainijisho {};
@@ -32096,7 +32131,7 @@ with pkgs;
 
   temporal-cli = callPackage ../applications/networking/cluster/temporal-cli { };
 
-  tenacity = callPackage ../applications/audio/tenacity { wxGTK = wxGTK31-gtk3; };
+  tenacity = callPackage ../applications/audio/tenacity { };
 
   tendermint = callPackage ../tools/networking/tendermint { };
 
@@ -33518,7 +33553,8 @@ with pkgs;
   };
 
   zcash = callPackage ../applications/blockchains/zcash {
-    stdenv = if stdenv.isDarwin then stdenv else llvmPackages_13.stdenv;
+    inherit (darwin.apple_sdk.frameworks) Security;
+    stdenv = llvmPackages_14.stdenv;
   };
 
   zecwallet-lite = callPackage ../applications/blockchains/zecwallet-lite { };
@@ -34415,6 +34451,8 @@ with pkgs;
   racer = callPackage ../games/racer { };
 
   randtype = callPackage ../games/randtype { };
+
+  raylib-games = callPackage ../games/raylib-games { };
 
   redeclipse = callPackage ../games/redeclipse { };
 
@@ -35701,6 +35739,8 @@ with pkgs;
 
   monosat = callPackage ../applications/science/logic/monosat {};
 
+  nusmv = callPackage ../applications/science/logic/nusmv { };
+
   nuXmv = callPackage ../applications/science/logic/nuXmv {};
 
   opensmt = callPackage ../applications/science/logic/opensmt { };
@@ -36410,7 +36450,7 @@ with pkgs;
 
   hplipWithPlugin = hplip.override { withPlugin = true; };
 
-  hyfetch = python3Packages.callPackage ../tools/misc/hyfetch { };
+  hyfetch = callPackage ../tools/misc/hyfetch { };
 
   hyperfine = callPackage ../tools/misc/hyperfine {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -37207,6 +37247,8 @@ with pkgs;
   vaultwarden-vault = callPackage ../tools/security/vaultwarden/vault.nix { };
 
   vazir-fonts = callPackage ../data/fonts/vazir-fonts { };
+
+  vhs = callPackage ../applications/misc/vhs { };
 
   vgmstream = callPackage ../applications/audio/vgmstream { };
 
