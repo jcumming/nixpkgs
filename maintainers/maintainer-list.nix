@@ -2673,6 +2673,16 @@
     githubId = 5561189;
     name = "Cody Opel";
   };
+  cofob = {
+    name = "Egor Ternovoy";
+    email = "cofob@riseup.net";
+    matrix = "@cofob:matrix.org";
+    github = "cofob";
+    githubId = 49928332;
+    keys = [{
+      fingerprint = "5F3D 9D3D ECE0 8651 DE14  D29F ACAD 4265 E193 794D";
+    }];
+  };
   Cogitri = {
     email = "oss@cogitri.dev";
     github = "Cogitri";
@@ -3467,6 +3477,12 @@
     github = "DIzFer";
     githubId = 8852888;
     name = "David Izquierdo";
+  };
+  djacu = {
+    email = "daniel.n.baker@gmail.com";
+    github = "djacu";
+    githubId = 7043297;
+    name = "Daniel Baker";
   };
   djanatyn = {
     email = "djanatyn@gmail.com";
@@ -4439,6 +4455,13 @@
     github = "fehnomenal";
     githubId = 9959940;
     name = "Andreas Fehn";
+  };
+  felipeqq2 = {
+    name = "Felipe Silva";
+    email = "felipeqq2@outlook.com";
+    github = "felipeqq2";
+    githubId = 71830138;
+    keys = [{ fingerprint = "F5F0 2BCE 3580 BF2B 707A  AA8C 2FD3 4A9E 2671 91B8"; }];
   };
   felixscheinost = {
     name = "Felix Scheinost";
@@ -9411,6 +9434,12 @@
     github = "mtesseract";
     githubId = 11706080;
     name = "Moritz Clasmeier";
+  };
+  mtoohey = {
+    name = "Matthew Toohey";
+    email = "contact@mtoohey.com";
+    github = "mtoohey31";
+    githubId = 36740602;
   };
   MtP = {
     email = "marko.nixos@poikonen.de";
