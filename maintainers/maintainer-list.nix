@@ -281,6 +281,13 @@
     githubId = 124545;
     name = "Anthony Cowley";
   };
+  adamcstephens = {
+    email = "happy.plan4249@valkor.net";
+    matrix = "@adam:valkor.net";
+    github = "adamcstephens";
+    githubId = 2071575;
+    name = "Adam C. Stephens";
+  };
   adamlwgriffiths = {
     email = "adam.lw.griffiths@gmail.com";
     github = "adamlwgriffiths";
@@ -1647,6 +1654,15 @@
     github = "bendlas";
     githubId = 214787;
     name = "Herwig Hochleitner";
+  };
+  benesim = {
+    name = "Benjamin Isbarn";
+    email = "benjamin.isbarn@gmail.com";
+    github = "benesim";
+    githubId = 29384538;
+    keys = [{
+      fingerprint = "D35E C9CE E631 638F F1D8  B401 6F0E 410D C3EE D02";
+    }];
   };
   benley = {
     email = "benley@gmail.com";
