@@ -560,6 +560,8 @@ with pkgs;
 
   riot-redis = callPackage ../development/tools/riot-redis { };
 
+  r3ctl = qt5.callPackage ../tools/misc/r3ctl { };
+
   ptouch-print = callPackage ../misc/ptouch-print { };
 
   demoit = callPackage ../servers/demoit { };
@@ -983,6 +985,10 @@ with pkgs;
   octant-desktop = callPackage ../applications/networking/cluster/octant/desktop.nix { };
   starboard-octant-plugin = callPackage ../applications/networking/cluster/octant/plugins/starboard-octant-plugin.nix { };
 
+  inherit (
+    callPackages ../build-support/setup-hooks/patch-rc-path-hooks { }
+  ) patchRcPathBash patchRcPathCsh patchRcPathFish patchRcPathPosix;
+
   pathsFromGraph = ../build-support/kernel/paths-from-graph.pl;
 
   pruneLibtoolFiles = makeSetupHook { name = "prune-libtool-files"; }
@@ -1285,7 +1291,9 @@ with pkgs;
 
   asleap = callPackage ../tools/networking/asleap { };
 
-  butler = callPackage ../games/itch/butler.nix { };
+  butler = callPackage ../games/itch/butler.nix {
+    inherit (darwin.apple_sdk.frameworks) Cocoa;
+  };
 
   cf-vault = callPackage ../tools/admin/cf-vault { };
 
@@ -1591,11 +1599,15 @@ with pkgs;
 
   libmirage = callPackage ../applications/emulators/cdemu/libmirage.nix { };
 
+  ludusavi = callPackage ../applications/backup/ludusavi { };
+
   maiko = callPackage ../applications/emulators/maiko { };
 
   mame = libsForQt5.callPackage ../applications/emulators/mame {
     inherit (darwin.apple_sdk.frameworks) CoreAudioKit ForceFeedback;
   };
+
+  mame-tools = (lib.getOutput "tools" mame);
 
   mednafen = callPackage ../applications/emulators/mednafen {
     inherit (darwin) libiconv;
@@ -2098,10 +2110,7 @@ with pkgs;
 
   arandr = callPackage ../tools/X11/arandr { };
 
-  inherit (callPackages ../servers/nosql/arangodb {
-    stdenv = gcc8Stdenv;
-  }) arangodb_3_3 arangodb_3_4 arangodb_3_5;
-  arangodb = arangodb_3_4;
+  arangodb = callPackage ../servers/nosql/arangodb { };
 
   # arcanist currently crashes with some workflows on php8.1, use 8.0
   arcanist = callPackage ../development/tools/misc/arcanist { php = php80; };
@@ -2121,7 +2130,7 @@ with pkgs;
 
   apio = python3Packages.callPackage ../development/embedded/fpga/apio { };
 
-  apitrace = libsForQt514.callPackage ../applications/graphics/apitrace {};
+  apitrace = libsForQt5.callPackage ../applications/graphics/apitrace {};
 
   argagg = callPackage ../development/libraries/argagg { };
 
@@ -2172,7 +2181,6 @@ with pkgs;
 
   asymptote = callPackage ../tools/graphics/asymptote {
     texLive = texlive.combine { inherit (texlive) scheme-small epsf cm-super texinfo media9 ocgx2; };
-    gsl = gsl_1;
   };
 
   async = callPackage ../development/tools/async {};
@@ -2773,6 +2781,8 @@ with pkgs;
   ipgrep = callPackage ../tools/networking/ipgrep { };
 
   itch = callPackage ../games/itch {};
+
+  itd = callPackage ../applications/misc/itd { };
 
   lastpass-cli = callPackage ../tools/security/lastpass-cli { };
 
@@ -3447,7 +3457,7 @@ with pkgs;
 
   clingo = callPackage ../applications/science/logic/potassco/clingo.nix { };
 
-  clingcon = callPackage ../applications/science/logic/potassco/clingcon.nix { stdenv = gcc10StdenvCompat; };
+  clingcon = callPackage ../applications/science/logic/potassco/clingcon.nix { };
 
   clprover = callPackage ../applications/science/logic/clprover/clprover.nix { };
 
@@ -3810,7 +3820,7 @@ with pkgs;
     gst-plugins-good = gst_all_1.gst-plugins-good.override { gtkSupport = true; };
   };
 
-  djv = callPackage ../applications/graphics/djv { stdenv = gcc10StdenvCompat; };
+  djv = callPackage ../applications/graphics/djv { };
 
   dnschef = python3Packages.callPackage ../tools/networking/dnschef { };
 
@@ -4135,10 +4145,7 @@ with pkgs;
 
   gdu = callPackage ../tools/system/gdu { };
 
-  go-chromecast = callPackage ../applications/video/go-chromecast {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  go-chromecast = callPackage ../applications/video/go-chromecast { };
 
   go-containerregistry = callPackage ../development/tools/go-containerregistry { };
   inherit (go-containerregistry) crane gcrane;
@@ -4778,10 +4785,7 @@ with pkgs;
 
   pixiecore = callPackage ../tools/networking/pixiecore {};
 
-  waitron = callPackage ../tools/networking/waitron {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  waitron = callPackage ../tools/networking/waitron { };
 
   pyCA = python3Packages.callPackage ../applications/video/pyca {};
 
@@ -4833,7 +4837,9 @@ with pkgs;
 
   shab = callPackage ../tools/text/shab { };
 
-  sheldon = callPackage ../tools/misc/sheldon { };
+  sheldon = callPackage ../tools/misc/sheldon {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   shell-hist = callPackage ../tools/misc/shell-hist { };
 
@@ -4856,6 +4862,10 @@ with pkgs;
   siglo = callPackage ../applications/misc/siglo { };
 
   simg2img = callPackage ../tools/filesystems/simg2img { };
+
+  smokegen = callPackage ../development/libraries/smokegen {};
+
+  smokeqt = callPackage ../development/libraries/smokeqt {};
 
   snazy = callPackage ../development/tools/snazy { };
 
@@ -5203,7 +5213,9 @@ with pkgs;
 
   cadaver = callPackage ../tools/networking/cadaver { };
 
-  davix = callPackage ../tools/networking/davix { };
+  davix = callPackage ../tools/networking/davix {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   davix-copy = davix.override { enableThirdPartyCopy = true; };
 
@@ -5355,19 +5367,17 @@ with pkgs;
 
   conspy = callPackage ../os-specific/linux/conspy {};
 
-  inherit (callPackage ../tools/networking/connman {})
+  connmanPackages =
+    recurseIntoAttrs (callPackage ../tools/networking/connman { });
+  inherit (connmanPackages)
     connman
     connmanFull
     connmanMinimal
+    connman_dmenu
+    connman-gtk
+    connman-ncurses
+    connman-notify
   ;
-
-  connman-gtk = callPackage ../tools/networking/connman/connman-gtk { };
-
-  connman-ncurses = callPackage ../tools/networking/connman/connman-ncurses { };
-
-  connman-notify = callPackage ../tools/networking/connman/connman-notify { };
-
-  connman_dmenu = callPackage ../tools/networking/connman/connman_dmenu  { };
 
   convertlit = callPackage ../tools/text/convertlit { };
 
@@ -5387,10 +5397,6 @@ with pkgs;
   };
 
   ethash = callPackage ../development/libraries/ethash { };
-
-  ethminer = callPackage ../tools/misc/ethminer { cudaSupport = config.cudaSupport or true; };
-  ethminer-cuda = ethminer.override { cudaSupport = true; };
-  ethminer-free = ethminer.override { cudaSupport = false; };
 
   cuetools = callPackage ../tools/cd-dvd/cuetools { };
 
@@ -6321,6 +6327,8 @@ with pkgs;
 
   conform = callPackage ../applications/version-management/git-and-tools/conform { };
 
+  easeprobe = callPackage ../tools/misc/easeprobe { };
+
   emscripten = callPackage ../development/compilers/emscripten {
     llvmPackages = llvmPackages_14;
   };
@@ -7082,10 +7090,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  git-hound = callPackage ../tools/security/git-hound {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  git-hound = callPackage ../tools/security/git-hound { };
 
   git-hub = callPackage ../applications/version-management/git-and-tools/git-hub { };
 
@@ -7355,6 +7360,8 @@ with pkgs;
   godot-headless = callPackage ../development/tools/godot/3/headless.nix { };
 
   godot-server = callPackage ../development/tools/godot/3/server.nix { };
+
+  goeland = callPackage ../applications/networking/feedreaders/goeland { };
 
   go-mtpfs = callPackage ../tools/filesystems/go-mtpfs { };
 
@@ -7850,10 +7857,7 @@ with pkgs;
 
   httpdirfs = callPackage ../tools/filesystems/httpdirfs { };
 
-  httpdump = callPackage ../tools/security/httpdump {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  httpdump = callPackage ../tools/security/httpdump { };
 
   httpie = with python3Packages; toPythonApplication httpie;
 
@@ -8301,6 +8305,8 @@ with pkgs;
 
   kakoune-cr = callPackage ../tools/misc/kakoune-cr { };
 
+  katana = callPackage ../tools/security/katana { };
+
   kbdd = callPackage ../applications/window-managers/kbdd { };
 
   kbs2 = callPackage ../tools/security/kbs2 {
@@ -8352,10 +8358,7 @@ with pkgs;
     jdk = jdk11;
   };
 
-  kfctl = callPackage ../applications/networking/cluster/kfctl {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kfctl = callPackage ../applications/networking/cluster/kfctl { };
 
   kluctl = callPackage ../applications/networking/cluster/kluctl { };
 
@@ -8790,6 +8793,14 @@ with pkgs;
   # Update this when adding the newest nodejs major version!
   nodejs_latest = nodejs-19_x;
   nodejs-slim_latest = nodejs-slim-19_x;
+
+  buildNpmPackage = callPackage ../build-support/node/build-npm-package { };
+
+  npmHooks = callPackage ../build-support/node/build-npm-package/hooks { };
+
+  inherit (callPackage ../build-support/node/fetch-npm-deps {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  }) fetchNpmDeps prefetch-npm-deps;
 
   nodePackages_latest = dontRecurseIntoAttrs nodejs_latest.pkgs;
 
@@ -9846,10 +9857,7 @@ with pkgs;
 
   openfortivpn = callPackage ../tools/networking/openfortivpn { };
 
-  opensnitch = callPackage ../tools/networking/opensnitch/daemon.nix {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  opensnitch = callPackage ../tools/networking/opensnitch/daemon.nix { };
 
   opensnitch-ui = libsForQt5.callPackage ../tools/networking/opensnitch/ui.nix { };
 
@@ -10227,7 +10235,13 @@ with pkgs;
 
   prism = callPackage ../applications/video/prism { };
 
-  pulumi-bin = callPackage ../tools/admin/pulumi { };
+  pulumi = callPackage ../tools/admin/pulumi { };
+
+  pulumiPackages = recurseIntoAttrs (
+    callPackage ../tools/admin/pulumi-packages { }
+  );
+
+  pulumi-bin = callPackage ../tools/admin/pulumi-bin { };
 
   p0f = callPackage ../tools/security/p0f { };
 
@@ -11155,7 +11169,7 @@ with pkgs;
 
   safe-rm = callPackage ../tools/system/safe-rm { };
 
-  safeeyes = with python3.pkgs; toPythonApplication safeeyes;
+  safeeyes = callPackage ../applications/misc/safeeyes { };
 
   sagoin = callPackage ../tools/misc/sagoin { };
 
@@ -11687,10 +11701,7 @@ with pkgs;
 
   svgcleaner = callPackage ../tools/graphics/svgcleaner { };
 
-  ssb = callPackage ../tools/security/ssb {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  ssb = callPackage ../tools/security/ssb { };
 
   ssb-patchwork = callPackage ../applications/networking/ssb-patchwork { };
 
@@ -12111,6 +12122,8 @@ with pkgs;
 
   trackma-qt = trackma.override { withQT = true; };
 
+  tran = callPackage ../tools/networking/tran { };
+
   tpmmanager = libsForQt5.callPackage ../applications/misc/tpmmanager { };
 
   tpm-quote-tools = callPackage ../tools/security/tpm-quote-tools { };
@@ -12297,6 +12310,8 @@ with pkgs;
   ucspi-tcp = callPackage ../tools/networking/ucspi-tcp { };
 
   udftools = callPackage ../tools/filesystems/udftools {};
+
+  udpreplay = callPackage ../tools/networking/udpreplay { };
 
   udpt = callPackage ../servers/udpt { };
 
@@ -12735,6 +12750,7 @@ with pkgs;
 
   unicorn = callPackage ../development/libraries/unicorn {
     inherit (darwin.apple_sdk.frameworks) IOKit;
+    inherit (darwin) cctools;
   };
 
   units = callPackage ../tools/misc/units {
@@ -12832,11 +12848,11 @@ with pkgs;
   valum = callPackage ../development/web/valum { };
 
   inherit (callPackages ../servers/varnish { })
-    varnish60 varnish71 varnish72;
+    varnish60 varnish72;
   inherit (callPackages ../servers/varnish/packages.nix { })
-    varnish60Packages varnish71Packages varnish72Packages;
+    varnish60Packages varnish72Packages;
 
-  varnishPackages = varnish71Packages;
+  varnishPackages = varnish72Packages;
   varnish = varnishPackages.varnish;
 
   hitch = callPackage ../servers/hitch { };
@@ -12938,10 +12954,7 @@ with pkgs;
 
   wpgtk = callPackage ../tools/X11/wpgtk { };
 
-  wrap = callPackage ../tools/text/wrap {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  wrap = callPackage ../tools/text/wrap { };
 
   wring = nodePackages.wring;
 
@@ -12949,10 +12962,7 @@ with pkgs;
 
   wrk2 = callPackage ../tools/networking/wrk2 { };
 
-  wuzz = callPackage ../tools/networking/wuzz {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  wuzz = callPackage ../tools/networking/wuzz { };
 
   wv = callPackage ../tools/misc/wv { };
 
@@ -13628,7 +13638,9 @@ with pkgs;
 
   copper = callPackage ../development/compilers/copper {};
 
-  cotton = callPackage ../development/tools/cotton { };
+  cotton = callPackage ../development/tools/cotton {
+    inherit (darwin.apple_sdk.frameworks) CoreServices;
+  };
 
   inherit (callPackages ../development/compilers/crystal {
     llvmPackages = if stdenv.system == "aarch64-darwin" then llvmPackages_11 else llvmPackages_10;
@@ -14304,7 +14316,37 @@ with pkgs;
 
   fsharp = callPackage ../development/compilers/fsharp { };
 
-  fstar = callPackage ../development/compilers/fstar { };
+  fstar = callPackage ../development/compilers/fstar {
+    # Work around while compatibility with ppxlib >= 0.26 is unavailable
+    # Should be removed when a fix is availaible
+    # See https://github.com/FStarLang/FStar/issues/2681
+    ocamlPackages =
+      ocamlPackages.overrideScope' (self: super: {
+        ppxlib = super.ppxlib.override {
+          version = if lib.versionAtLeast self.ocaml.version "4.07"
+                    then if lib.versionAtLeast self.ocaml.version "4.08"
+                         then "0.24.0" else "0.15.0" else "0.13.0";
+        };
+        ppx_deriving_yojson = super.ppx_deriving_yojson.overrideAttrs (oldAttrs: rec {
+          version = "3.6.1";
+          src = fetchFromGitHub {
+            owner = "ocaml-ppx";
+            repo = "ppx_deriving_yojson";
+            rev = "v${version}";
+            sha256 = "1icz5h6p3pfj7my5gi7wxpflrb8c902dqa17f9w424njilnpyrbk";
+          };
+        });
+        sedlex = super.sedlex.overrideAttrs (oldAttrs: rec {
+          version = "2.5";
+          src = fetchFromGitHub {
+            owner = "ocaml-community";
+            repo = "sedlex";
+            rev = "v${version}";
+            sha256 = "sha256:062a5dvrzvb81l3a9phljrhxfw9nlb61q341q0a6xn65hll3z2wy";
+          };
+        });
+      });
+  };
 
   dotnetPackages = recurseIntoAttrs (callPackage ./dotnet-packages.nix {});
 
@@ -15113,6 +15155,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices Security SystemConfiguration;
   };
   cargo-ui = darwin.apple_sdk_11_0.callPackage ../development/tools/rust/cargo-ui { };
+  cargo-unused-features = callPackage ../development/tools/rust/cargo-unused-features { };
 
   cargo-tauri = callPackage ../development/tools/rust/cargo-tauri { };
 
@@ -15728,7 +15771,7 @@ with pkgs;
   php81 = callPackage ../development/interpreters/php/8.1.nix {
     stdenv = if stdenv.cc.isClang then llvmPackages.stdenv else stdenv;
     pcre2 = pcre2.override {
-      withJitSealloc = false; # Needed to avoid crashes, see https://bugs.php.net/bug.php?id=78630
+      withJitSealloc = !stdenv.isDarwin;
     };
   };
   php81Extensions = recurseIntoAttrs php81.extensions;
@@ -15738,7 +15781,7 @@ with pkgs;
   php80 = callPackage ../development/interpreters/php/8.0.nix {
     stdenv = if stdenv.cc.isClang then llvmPackages.stdenv else stdenv;
     pcre2 = pcre2.override {
-      withJitSealloc = false; # Needed to avoid crashes, see https://bugs.php.net/bug.php?id=78630
+      withJitSealloc = !stdenv.isDarwin;
     };
   };
   php80Extensions = recurseIntoAttrs php80.extensions;
@@ -15979,6 +16022,8 @@ with pkgs;
   spark = spark3;
 
   sparkleshare = callPackage ../applications/version-management/sparkleshare { };
+
+  spark2014 = callPackage ../development/libraries/ada/spark2014 { };
 
   spidermonkey_78 = callPackage ../development/interpreters/spidermonkey/78.nix {
     inherit (darwin) libobjc;
@@ -16535,8 +16580,6 @@ with pkgs;
 
   cadre = callPackage ../development/tools/cadre { };
 
-  cask = callPackage ../development/tools/cask { };
-
   cbrowser = callPackage ../development/tools/misc/cbrowser { };
 
   cc-tool = callPackage ../development/embedded/cc-tool { };
@@ -16624,6 +16667,8 @@ with pkgs;
   clpm = callPackage ../development/tools/clpm {};
 
   coan = callPackage ../development/tools/analysis/coan { };
+
+  coder = callPackage ../development/tools/coder { };
 
   compile-daemon = callPackage ../development/tools/compile-daemon { };
 
@@ -16730,6 +16775,8 @@ with pkgs;
   dprint = callPackage ../development/tools/dprint {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
+
+  devbox = callPackage ../development/tools/devbox { };
 
   libcxx = llvmPackages.libcxx;
   libcxxabi = llvmPackages.libcxxabi;
@@ -16919,6 +16966,8 @@ with pkgs;
   eztrace = callPackage ../development/tools/profiling/EZTrace { };
 
   faas-cli = callPackage ../development/tools/faas-cli { };
+
+  fastddsgen = callPackage ../development/tools/fastddsgen { };
 
   findbugs = callPackage ../development/tools/analysis/findbugs { };
 
@@ -17150,6 +17199,8 @@ with pkgs;
   iozone = callPackage ../development/tools/misc/iozone { };
 
   itstool = callPackage ../development/tools/misc/itstool { };
+
+  jacoco = callPackage ../development/tools/analysis/jacoco { };
 
   inherit (callPackage ../development/tools/build-managers/jam { })
     jam
@@ -18199,6 +18250,10 @@ with pkgs;
 
   belr = callPackage ../development/libraries/belr { };
 
+  bencode = callPackage ../development/libraries/bencode {
+    stdenv = gcc10StdenvCompat;
+  };
+
   bencodetools = callPackage ../development/libraries/bencodetools { };
 
   beignet = callPackage ../development/libraries/beignet {
@@ -18413,7 +18468,9 @@ with pkgs;
 
   coercer = callPackage ../tools/security/coercer { };
 
-  cogl = callPackage ../development/libraries/cogl { };
+  cogl = callPackage ../development/libraries/cogl {
+    inherit (darwin.apple_sdk.frameworks) OpenGL;
+  };
 
   coin3d = callPackage ../development/libraries/coin3d { };
 
@@ -18551,6 +18608,8 @@ with pkgs;
     fltk = fltk13;
   };
 
+  dillong = callPackage ../applications/networking/browsers/dillong { };
+
   directfb = callPackage ../development/libraries/directfb { };
 
   discordchatexporter-cli = callPackage ../tools/backup/discordchatexporter-cli { };
@@ -18625,6 +18684,8 @@ with pkgs;
   };
 
   elfio = callPackage ../development/libraries/elfio { };
+
+  emanote = haskell.lib.compose.justStaticExecutables haskellPackages.emanote;
 
   enchant1 = callPackage ../development/libraries/enchant/1.x.nix { };
 
@@ -18753,10 +18814,7 @@ with pkgs;
 
   filter-audio = callPackage ../development/libraries/filter-audio {};
 
-  filtron = callPackage ../servers/filtron {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  filtron = callPackage ../servers/filtron { };
 
   flann = callPackage ../development/libraries/flann { };
 
@@ -19536,8 +19594,11 @@ with pkgs;
   icu71 = callPackage ../development/libraries/icu/71.nix ({
     nativeBuildRoot = buildPackages.icu71.override { buildRootOnly = true; };
   });
+  icu72 = callPackage ../development/libraries/icu/72.nix ({
+    nativeBuildRoot = buildPackages.icu72.override { buildRootOnly = true; };
+  });
 
-  icu = icu71;
+  icu = icu72;
 
   id3lib = callPackage ../development/libraries/id3lib { };
 
@@ -20261,7 +20322,10 @@ with pkgs;
     inherit (darwin) libobjc;
   };
 
-  libftdi = callPackage ../development/libraries/libftdi { };
+  libftdi = callPackage ../development/libraries/libftdi {
+    inherit (darwin) libobjc;
+    inherit (darwin.apple_sdk.frameworks) IOKit Security;
+  };
 
   libftdi1 = callPackage ../development/libraries/libftdi/1.x.nix { };
 
@@ -20396,9 +20460,7 @@ with pkgs;
 
   libmysofa = callPackage ../development/libraries/audio/libmysofa { };
 
-  libmysqlconnectorcpp = callPackage ../development/libraries/libmysqlconnectorcpp {
-    openssl = openssl_1_1;
-  };
+  libmysqlconnectorcpp = callPackage ../development/libraries/libmysqlconnectorcpp {};
 
   libnatpmp = callPackage ../development/libraries/libnatpmp { };
 
@@ -21143,6 +21205,8 @@ with pkgs;
 
   liquidfun = callPackage ../development/libraries/liquidfun { };
 
+  litehtml = callPackage ../development/libraries/litehtml { };
+
   live555 = callPackage ../development/libraries/live555 { };
 
   log4cpp = callPackage ../development/libraries/log4cpp { };
@@ -21304,6 +21368,8 @@ with pkgs;
   moserial = callPackage ../tools/misc/moserial { };
 
   mosquitto = callPackage ../servers/mqtt/mosquitto { };
+
+  nanomq = callPackage ../servers/mqtt/nanomq { };
 
   mps = callPackage ../development/libraries/mps { stdenv = gcc10StdenvCompat; };
 
@@ -21962,7 +22028,7 @@ with pkgs;
       inherit newScope;
       inherit lib stdenv fetchurl fetchpatch fetchgit fetchFromGitHub makeSetupHook makeWrapper writeText;
       inherit bison cups dconf harfbuzz libGL perl gtk3 ninja;
-      inherit (gst_all_1) gstreamer gst-plugins-base;
+      inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-good gst-libav gst-vaapi;
       inherit buildPackages;
       cmake = cmake.overrideAttrs (attrs: {
         patches = attrs.patches ++ [
@@ -22234,10 +22300,7 @@ with pkgs;
 
   sfsexp = callPackage ../development/libraries/sfsexp {};
 
-  shhgit = callPackage ../tools/security/shhgit {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  shhgit = callPackage ../tools/security/shhgit { };
 
   shhmsg = callPackage ../development/libraries/shhmsg { };
 
@@ -22905,15 +22968,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Cocoa;
   };
 
-  wxGTK = wxGTK28;
-
-  wxGTK28 = callPackage ../development/libraries/wxwidgets/wxGTK28.nix { };
-
-  wxGTK29 = callPackage ../development/libraries/wxwidgets/wxGTK29.nix {
-    inherit (darwin.stubs) setfile;
-    inherit (darwin.apple_sdk.frameworks) AGL Carbon Cocoa Kernel QuickTime;
-  };
-
   wxGTK30 = callPackage ../development/libraries/wxwidgets/wxGTK30.nix {
     withGtk2 = true;
     inherit (darwin.stubs) setfile;
@@ -23191,19 +23245,6 @@ with pkgs;
   go = go_1_19;
   buildGoModule = buildGo119Module;
   buildGoPackage = buildGo119Package;
-
-  go_1_17 = callPackage ../development/compilers/go/1.17.nix ({
-    inherit (darwin.apple_sdk.frameworks) Foundation Security;
-  } // lib.optionalAttrs (stdenv.cc.isGNU && stdenv.isAarch64) {
-    stdenv = gcc8Stdenv;
-    buildPackages = buildPackages // { stdenv = buildPackages.gcc8Stdenv; };
-  });
-  buildGo117Module = callPackage ../build-support/go/module.nix {
-    go = buildPackages.go_1_17;
-  };
-  buildGo117Package = callPackage ../build-support/go/package.nix {
-    go = buildPackages.go_1_17;
-  };
 
   # requires a newer Apple SDK
   go_1_18 = darwin.apple_sdk_11_0.callPackage ../development/compilers/go/1.18.nix {
@@ -23631,10 +23672,7 @@ with pkgs;
 
   gerbera = callPackage ../servers/gerbera {};
 
-  gobetween = callPackage ../servers/gobetween {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  gobetween = callPackage ../servers/gobetween { };
 
   gobgpd = callPackage ../servers/misc/gobgpd { };
 
@@ -23678,8 +23716,6 @@ with pkgs;
 
   hyprspace = callPackage ../applications/networking/hyprspace {
     inherit (darwin) iproute2mac;
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
   };
 
   ic-keysmith = callPackage ../tools/security/ic-keysmith { };
@@ -24493,6 +24529,8 @@ with pkgs;
 
   tailscale = callPackage ../servers/tailscale { };
 
+  tailspin = callPackage ../tools/misc/tailspin { };
+
   thanos = callPackage ../servers/monitoring/thanos { };
 
   trafficserver = callPackage ../servers/http/trafficserver { };
@@ -24597,19 +24635,41 @@ with pkgs;
     inherit (darwin.apple_sdk.libs) Xplugin;
   };
 
-  # Use `lib.callPackageWith __splicedPackages` rather than plain `callPackage`
-  # so as not to have the newly bound xorg items already in scope,  which would
-  # have created a cycle.
-  xorg = recurseIntoAttrs ((lib.callPackageWith __splicedPackages ../servers/x11/xorg {
-  }).overrideScope' (lib.callPackageWith __splicedPackages ../servers/x11/xorg/overrides.nix {
-    inherit (darwin.apple_sdk.frameworks) ApplicationServices Carbon Cocoa;
-    inherit (darwin.apple_sdk.libs) Xplugin;
-    inherit (buildPackages.darwin) bootstrap_cmds;
-    udev = if stdenv.isLinux then udev else null;
-    libdrm = if stdenv.isLinux then libdrm else null;
-    abiCompat = config.xorg.abiCompat # `config` because we have no `xorg.override`
-      or (if stdenv.isDarwin then "1.18" else null); # 1.19 needs fixing on Darwin
-  }));
+  xorg = let
+    otherSplices = {
+      selfBuildBuild = pkgsBuildBuild.xorg;
+      selfBuildHost = pkgsBuildHost.xorg;
+      selfBuildTarget = pkgsBuildTarget.xorg;
+      selfHostHost = pkgsHostHost.xorg;
+      selfTargetTarget = pkgsTargetTarget.xorg or { };
+    };
+    keep = _self: { };
+    extra = _spliced0: { };
+
+    # Use `lib.callPackageWith __splicedPackages` rather than plain `callPackage`
+    # so as not to have the newly bound xorg items already in scope,  which would
+    # have created a cycle.
+    overrides = lib.callPackageWith __splicedPackages ../servers/x11/xorg/overrides.nix {
+      inherit (darwin.apple_sdk.frameworks) ApplicationServices Carbon Cocoa;
+      inherit (darwin.apple_sdk.libs) Xplugin;
+      inherit (buildPackages.darwin) bootstrap_cmds;
+      udev = if stdenv.isLinux then udev else null;
+      libdrm = if stdenv.isLinux then libdrm else null;
+      abiCompat = config.xorg.abiCompat # `config` because we have no `xorg.override`
+        or (if stdenv.isDarwin then "1.18" else null); # 1.19 needs fixing on Darwin
+    };
+
+    generatedPackages = lib.callPackageWith __splicedPackages ../servers/x11/xorg/default.nix {};
+
+    xorgPackages = lib.makeScopeWithSplicing
+      splicePackages
+      newScope
+      otherSplices
+      keep
+      extra
+      (lib.extends overrides generatedPackages);
+
+  in recurseIntoAttrs xorgPackages;
 
   xorg-autoconf = callPackage ../development/tools/misc/xorg-autoconf { };
 
@@ -24656,10 +24716,7 @@ with pkgs;
 
   mbtileserver = callPackage ../servers/geospatial/mbtileserver { };
 
-  pg_featureserv = callPackage ../servers/geospatial/pg_featureserv {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  pg_featureserv = callPackage ../servers/geospatial/pg_featureserv { };
 
   pg_tileserv = callPackage ../servers/geospatial/pg_tileserv { };
 
@@ -24689,10 +24746,7 @@ with pkgs;
 
   alfred = callPackage ../os-specific/linux/batman-adv/alfred.nix { };
 
-  alertmanager-bot = callPackage ../servers/monitoring/alertmanager-bot {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  alertmanager-bot = callPackage ../servers/monitoring/alertmanager-bot { };
 
   alertmanager-irc-relay = callPackage ../servers/monitoring/alertmanager-irc-relay { };
 
@@ -24985,7 +25039,9 @@ with pkgs;
 
   htop-vim = callPackage ../tools/system/htop/htop-vim.nix { };
 
-  humility = callPackage ../development/tools/rust/humility {};
+  humility = callPackage ../development/tools/rust/humility {
+    inherit (darwin.apple_sdk.frameworks) AppKit;
+  };
 
   btop = callPackage ../tools/system/btop {
     stdenv = gcc11Stdenv;
@@ -25132,7 +25188,7 @@ with pkgs;
   lkl = callPackage ../applications/virtualization/lkl { };
   lklWithFirewall = callPackage ../applications/virtualization/lkl { firewallSupport = true; };
 
-  inherit (callPackages ../os-specific/linux/kernel-headers { })
+  inherit (callPackages ../os-specific/linux/kernel-headers { inherit (pkgsBuildBuild) elf-header; })
     linuxHeaders makeLinuxHeaders;
 
   linuxHeaders_5_19 = linuxHeaders.overrideAttrs (_: rec {
@@ -25336,6 +25392,8 @@ with pkgs;
   mdadm = mdadm4;
   mdadm4 = callPackage ../os-specific/linux/mdadm { };
 
+  mdevctl = callPackage ../os-specific/linux/mdevctl { };
+
   metastore = callPackage ../os-specific/linux/metastore { };
 
   mingetty = callPackage ../os-specific/linux/mingetty { };
@@ -25474,8 +25532,7 @@ with pkgs;
   go-migrate = callPackage ../development/tools/go-migrate { };
 
   go-mockery = callPackage ../development/tools/go-mockery {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
+    buildGoModule = buildGo118Module; # tests fail with 1.19
   };
 
   gomacro = callPackage ../development/tools/gomacro { };
@@ -25558,10 +25615,7 @@ with pkgs;
 
   pam_usb = callPackage ../os-specific/linux/pam_usb { };
 
-  pam_ussh = callPackage ../os-specific/linux/pam_ussh {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  pam_ussh = callPackage ../os-specific/linux/pam_ussh { };
 
   paxctl = callPackage ../os-specific/linux/paxctl { };
 
@@ -25755,6 +25809,7 @@ with pkgs;
       enableMinimal = true;
       guiSupport = false;
     };
+    libbpf = libbpf_1;
   };
   systemdMinimal = systemd.override {
     pname = "systemd-minimal";
@@ -26345,6 +26400,8 @@ with pkgs;
 
   hermit = callPackage ../data/fonts/hermit { };
 
+  hubot-sans = callPackage ../data/fonts/hubot-sans { };
+
   humanity-icon-theme = callPackage ../data/icons/humanity-icon-theme { };
 
   hyperscrypt-font = callPackage ../data/fonts/hyperscrypt { };
@@ -26561,6 +26618,8 @@ with pkgs;
   };
 
   moka-icon-theme = callPackage ../data/icons/moka-icon-theme { };
+
+  mona-sans = callPackage ../data/fonts/mona-sans { };
 
   monoid = callPackage ../data/fonts/monoid { };
 
@@ -26843,6 +26902,8 @@ with pkgs;
 
   stix-two = callPackage ../data/fonts/stix-two { };
 
+  super-tiny-icons = callPackage ../data/icons/super-tiny-icons { };
+
   inherit (callPackages ../data/fonts/gdouros { })
     aegan aegyptus akkadian assyrian eemusic maya symbola textfonts unidings;
 
@@ -26932,7 +26993,9 @@ with pkgs;
 
   theano = callPackage ../data/fonts/theano { };
 
-  tela-circle-icon-theme = callPackage ../data/icons/tela-circle-icon-theme { };
+  tela-circle-icon-theme = callPackage ../data/icons/tela-circle-icon-theme {
+    inherit (gnome) adwaita-icon-theme;
+  };
 
   tela-icon-theme = callPackage ../data/icons/tela-icon-theme { };
 
@@ -27254,6 +27317,7 @@ with pkgs;
 
   aqemu = libsForQt5.callPackage ../applications/virtualization/aqemu { };
 
+  ardour_6 = callPackage ../applications/audio/ardour/6.nix { };
   ardour = callPackage ../applications/audio/ardour { };
 
   arelle = with python3Packages; toPythonApplication arelle;
@@ -27350,6 +27414,8 @@ with pkgs;
   jnetmap = callPackage ../applications/networking/jnetmap {};
 
   join-desktop = callPackage ../applications/misc/join-desktop { };
+
+  json-plot = callPackage ../applications/graphics/json-plot {};
 
   libbitcoin = callPackage ../tools/misc/libbitcoin/libbitcoin.nix {
     boost = boost175; # fatal error: 'boost/interprocess/detail/posix_time_types_wrk.hpp' file not found
@@ -27563,7 +27629,7 @@ with pkgs;
       inherit (gnome2) libglade;
   };
 
-  calcmysky = libsForQt5.callPackage ../applications/science/astronomy/calcmysky { };
+  calcmysky = qt6Packages.callPackage ../applications/science/astronomy/calcmysky { };
 
   calcurse = callPackage ../applications/misc/calcurse { };
 
@@ -28000,6 +28066,8 @@ with pkgs;
 
   dwm-status = callPackage ../applications/window-managers/dwm/dwm-status.nix { };
 
+  emoji-picker = callPackage ../applications/misc/emoji-picker {};
+
   exploitdb = callPackage ../tools/security/exploitdb { };
 
   evilwm = callPackage ../applications/window-managers/evilwm {
@@ -28111,9 +28179,9 @@ with pkgs;
 
   inherit (gnome) empathy;
 
-  endeavour = callPackage ../applications/misc/endeavour { };
+  endeavour = callPackage ../applications/office/endeavour { };
 
-  enhanced-ctorrent = callPackage ../applications/networking/enhanced-ctorrent { };
+  enhanced-ctorrent = callPackage ../applications/networking/p2p/enhanced-ctorrent { };
 
   entangle = callPackage ../applications/video/entangle {
     inherit (gst_all_1) gstreamer gst-plugins-base;
@@ -29093,10 +29161,6 @@ with pkgs;
 
   hdhomerun-config-gui = callPackage ../applications/video/hdhomerun-config-gui { };
 
-  hdr-plus = callPackage ../applications/graphics/hdr-plus {
-    stdenv = clangStdenv;
-  };
-
   hedgedoc-cli = callPackage ../tools/admin/hedgedoc-cli { };
 
   heimer = libsForQt5.callPackage ../applications/misc/heimer { };
@@ -29232,6 +29296,8 @@ with pkgs;
   marker = callPackage ../applications/editors/marker { };
 
   meerk40t = callPackage ../applications/misc/meerk40t { };
+
+  meerk40t-camera = callPackage ../applications/misc/meerk40t/camera.nix { };
 
   musikcube = callPackage ../applications/audio/musikcube {
     inherit (darwin.apple_sdk.frameworks) Cocoa SystemConfiguration;
@@ -29545,6 +29611,8 @@ with pkgs;
 
   imhex = callPackage ../applications/editors/imhex { };
 
+  inframap = callPackage ../applications/networking/cluster/inframap {};
+
   inkcut = libsForQt5.callPackage ../applications/misc/inkcut { };
 
   inklingreader = callPackage ../tools/misc/inklingreader { };
@@ -29791,10 +29859,7 @@ with pkgs;
   kubectl = callPackage ../applications/networking/cluster/kubernetes/kubectl.nix { };
   kubectl-convert = kubectl.convert;
 
-  kubemqctl = callPackage ../applications/networking/cluster/kubemqctl {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kubemqctl = callPackage ../applications/networking/cluster/kubemqctl { };
 
   kubent = callPackage ../applications/networking/cluster/kubent { };
 
@@ -30011,6 +30076,8 @@ with pkgs;
 
   lingot = callPackage ../applications/audio/lingot { };
 
+  litebrowser = callPackage ../applications/networking/browsers/litebrowser { };
+
   littlegptracker = callPackage ../applications/audio/littlegptracker {
     inherit (darwin.apple_sdk.frameworks) Foundation;
   };
@@ -30038,6 +30105,8 @@ with pkgs;
   llpp = callPackage ../applications/misc/llpp {
     inherit (ocaml-ng.ocamlPackages_4_09) ocaml;
   };
+
+  lls = callPackage ../applications/networking/lls { };
 
   lmms = libsForQt5.callPackage ../applications/audio/lmms {
     lame = null;
@@ -30246,7 +30315,6 @@ with pkgs;
   merkaartor = libsForQt5.callPackage ../applications/misc/merkaartor { };
 
   mepo = callPackage ../applications/misc/mepo { };
-  mepo-x11 = callPackage ../applications/misc/mepo { withX11 = true; };
 
   meshcentral = callPackage ../tools/admin/meshcentral { };
 
@@ -30602,7 +30670,7 @@ with pkgs;
 
   ninjas2 = callPackage ../applications/audio/ninjas2 {};
 
-  nncp = callPackage ../tools/misc/nncp { };
+  nncp = darwin.apple_sdk_11_0.callPackage ../tools/misc/nncp { };
 
   notion = callPackage ../applications/window-managers/notion { };
 
@@ -30854,6 +30922,8 @@ with pkgs;
 
   navipowm = callPackage ../applications/misc/navipowm { };
 
+  nc4nix = callPackage ../development/tools/nc4nix { };
+
   netbeans = callPackage ../applications/editors/netbeans {
     jdk = jdk17;
   };
@@ -30921,9 +30991,10 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Foundation;
   };
 
-  obs-studio = libsForQt5.callPackage ../applications/video/obs-studio {
+  obs-studio = qt6Packages.callPackage ../applications/video/obs-studio {
     ffmpeg_4 = ffmpeg-full;
   };
+
   obs-studio-plugins = recurseIntoAttrs (callPackage ../applications/video/obs-studio/plugins {});
   wrapOBS = callPackage ../applications/video/obs-studio/wrapper.nix {};
 
@@ -31721,6 +31792,8 @@ with pkgs;
 
   semiphemeral = callPackage ../tools/misc/semiphemeral { };
 
+  semver = callPackage ../applications/misc/semver { };
+
   sent = callPackage ../applications/misc/sent { };
 
   seq24 = callPackage ../applications/audio/seq24 { };
@@ -31735,10 +31808,7 @@ with pkgs;
 
   sfxr-qt = libsForQt5.callPackage ../applications/audio/sfxr-qt { };
 
-  shadowfox = callPackage ../tools/networking/shadowfox {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  shadowfox = callPackage ../tools/networking/shadowfox { };
 
   shfmt = callPackage ../tools/text/shfmt { };
 
@@ -31895,6 +31965,8 @@ with pkgs;
   lightdm-slick-greeter = callPackage ../applications/display-managers/lightdm-slick-greeter { };
 
   lightdm-mini-greeter = callPackage ../applications/display-managers/lightdm-mini-greeter { };
+
+  lightdm-mobile-greeter = callPackage ../applications/display-managers/lightdm-mobile-greeter { };
 
   lightdm-tiny-greeter = callPackage ../applications/display-managers/lightdm-tiny-greeter {
     conf = config.lightdm-tiny-greeter.conf or "";
@@ -32353,6 +32425,10 @@ with pkgs;
   topydo = callPackage ../applications/misc/topydo {};
 
   torrential = callPackage ../applications/networking/p2p/torrential { };
+
+  torrenttools = callPackage ../tools/misc/torrenttools {
+    fmt = fmt_8;
+  };
 
   tortoisehg = callPackage ../applications/version-management/tortoisehg { };
 
@@ -33234,10 +33310,6 @@ with pkgs;
 
   xnotify = callPackage ../tools/X11/xnotify { };
 
-  xvidcap = callPackage ../applications/video/xvidcap {
-    inherit (gnome2) scrollkeeper libglade;
-  };
-
   xygrib = libsForQt514.callPackage ../applications/misc/xygrib {};
 
   xzgv = callPackage ../applications/graphics/xzgv { };
@@ -33271,6 +33343,8 @@ with pkgs;
   youtube-dl = with python3Packages; toPythonApplication youtube-dl;
 
   youtube-dl-light = with python3Packages; toPythonApplication youtube-dl-light;
+
+  youtube-music = callPackage ../applications/audio/youtube-music { };
 
   yt-dlp = with python3Packages; toPythonApplication yt-dlp;
 
@@ -33400,6 +33474,8 @@ with pkgs;
     withGui = false;
     inherit (darwin) autoSignDarwinBinariesHook;
   };
+
+  btcd = callPackage ../applications/blockchains/btcd { };
 
   cgminer = callPackage ../applications/blockchains/cgminer { };
 
@@ -33534,10 +33610,7 @@ with pkgs;
   };
   litecoind = litecoin.override { withGui = false; };
 
-  livedl = callPackage ../tools/misc/livedl {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  livedl = callPackage ../tools/misc/livedl { };
 
   lnd = callPackage ../applications/blockchains/lnd { };
 
@@ -33671,6 +33744,8 @@ with pkgs;
   confd = callPackage ../tools/system/confd { };
 
   conmon = callPackage ../applications/virtualization/conmon { };
+
+  conmon-rs = callPackage ../applications/virtualization/conmon-rs { };
 
   digikam = libsForQt5.callPackage ../applications/graphics/digikam {};
 
@@ -34684,7 +34759,7 @@ with pkgs;
     inherit winetricks steam-run yad;
   };
 
-  protonup = with python3Packages; toPythonApplication protonup;
+  protonup-ng = with python3Packages; toPythonApplication protonup-ng;
 
   steam-rom-manager = callPackage ../tools/games/steam-rom-manager {};
 
@@ -35188,10 +35263,7 @@ with pkgs;
 
   deepdiff = with python3Packages; toPythonApplication deepdiff;
 
-  deepsea = callPackage ../tools/security/deepsea {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  deepsea = callPackage ../tools/security/deepsea { };
 
   deeptools = callPackage ../applications/science/biology/deeptools { python = python3; };
 
@@ -36194,7 +36266,7 @@ with pkgs;
 
   sq = callPackage ../development/tools/sq { };
 
-  stellarium = libsForQt5.callPackage ../applications/science/astronomy/stellarium { };
+  stellarium = qt6Packages.callPackage ../applications/science/astronomy/stellarium { };
 
   stellarsolver = libsForQt5.callPackage ../development/libraries/science/astronomy/stellarsolver { };
 
@@ -37005,7 +37077,7 @@ with pkgs;
     gtk2 = gtk2-x11;
   };
 
-  qMasterPassword = libsForQt5.callPackage ../applications/misc/qMasterPassword { };
+  qMasterPassword = qt6Packages.callPackage ../applications/misc/qMasterPassword { };
 
   qtrvsim = libsForQt5.callPackage ../applications/science/computer-architecture/qtrvsim { };
 
@@ -37855,9 +37927,7 @@ with pkgs;
 
   zfs-replicate = python3Packages.callPackage ../tools/backup/zfs-replicate { };
 
-  zrepl = callPackage ../tools/backup/zrepl {
-    buildGoModule = buildGo118Module; # nixosTests.zrepl fails with 1.19
-  };
+  zrepl = callPackage ../tools/backup/zrepl { };
 
   uhubctl = callPackage ../tools/misc/uhubctl {};
 
@@ -37899,10 +37969,7 @@ with pkgs;
 
   kaf = callPackage ../development/tools/kaf { };
 
-  kcli = callPackage ../development/tools/kcli {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kcli = callPackage ../development/tools/kcli { };
 
   pxlib = callPackage ../development/libraries/pxlib {};
 

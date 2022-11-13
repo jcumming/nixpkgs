@@ -143,6 +143,7 @@ in {
   containers-reloadable = handleTest ./containers-reloadable.nix {};
   containers-restart_networking = handleTest ./containers-restart_networking.nix {};
   containers-tmpfs = handleTest ./containers-tmpfs.nix {};
+  containers-unified-hierarchy = handleTest ./containers-unified-hierarchy.nix {};
   convos = handleTest ./convos.nix {};
   corerad = handleTest ./corerad.nix {};
   coturn = handleTest ./coturn.nix {};
@@ -671,7 +672,6 @@ in {
   uwsgi = handleTest ./uwsgi.nix {};
   v2ray = handleTest ./v2ray.nix {};
   varnish60 = handleTest ./varnish.nix { package = pkgs.varnish60; };
-  varnish71 = handleTest ./varnish.nix { package = pkgs.varnish71; };
   varnish72 = handleTest ./varnish.nix { package = pkgs.varnish72; };
   vault = handleTest ./vault.nix {};
   vault-dev = handleTest ./vault-dev.nix {};
