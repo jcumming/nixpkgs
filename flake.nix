@@ -55,8 +55,5 @@
       # information rich.
       legacyPackages = forAllSystems (system: import ./. { inherit system; });
 
-      nixosModules = {
-        notDetected = ./nixos/modules/installer/scan/not-detected.nix;
-      };
     };
 }
