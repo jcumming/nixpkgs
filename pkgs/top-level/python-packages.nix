@@ -518,8 +518,6 @@ self: super: with self; {
 
   appdirs = callPackage ../development/python-modules/appdirs { };
 
-  appleseed = toPythonModule (pkgs.appleseed.override { python3 = self.python; });
-
   applicationinsights = callPackage ../development/python-modules/applicationinsights { };
 
   appnope = callPackage ../development/python-modules/appnope { };
@@ -687,6 +685,8 @@ self: super: with self; {
   asyncio-throttle = callPackage ../development/python-modules/asyncio-throttle { };
 
   asyncpg = callPackage ../development/python-modules/asyncpg { };
+
+  asyncserial = callPackage ../development/python-modules/asyncserial { };
 
   asyncsleepiq = callPackage ../development/python-modules/asyncsleepiq { };
 
@@ -1580,8 +1580,6 @@ self: super: with self; {
 
   coqpit = callPackage ../development/python-modules/coqpit { };
 
-  coqui-trainer = callPackage ../development/python-modules/coqui-trainer {};
-
   cepa = callPackage ../development/python-modules/cepa { };
 
   cerberus = callPackage ../development/python-modules/cerberus { };
@@ -1738,6 +1736,8 @@ self: super: with self; {
 
   clf = callPackage ../development/python-modules/clf { };
 
+  clip = callPackage ../development/python-modules/clip { };
+
   cock = callPackage ../development/python-modules/cock { };
 
   click = callPackage ../development/python-modules/click { };
@@ -1797,8 +1797,6 @@ self: super: with self; {
   clldutils = callPackage ../development/python-modules/clldutils { };
 
   cloudflare = callPackage ../development/python-modules/cloudflare { };
-
-  cloudflare-dyndns = callPackage ../applications/networking/cloudflare-dyndns { };
 
   cloudpickle = callPackage ../development/python-modules/cloudpickle { };
 
@@ -3230,8 +3228,6 @@ self: super: with self; {
 
   filelock = callPackage ../development/python-modules/filelock { };
 
-  filemagic = callPackage ../development/python-modules/filemagic { };
-
   filetype = callPackage ../development/python-modules/filetype { };
 
   filterpy = callPackage ../development/python-modules/filterpy { };
@@ -3564,6 +3560,8 @@ self: super: with self; {
 
   fx2 = callPackage ../development/python-modules/fx2 { };
 
+  g2pkk = callPackage ../development/python-modules/g2pkk { };
+
   galario = toPythonModule (pkgs.galario.override {
     enablePython = true;
     pythonPackages = self;
@@ -3601,7 +3599,7 @@ self: super: with self; {
 
   gcsfs = callPackage ../development/python-modules/gcsfs { };
 
-  gdal = toPythonModule (pkgs.gdal.override { pythonPackages = self; });
+  gdal = toPythonModule (pkgs.gdal.override { python3 = python; });
 
   gdata = callPackage ../development/python-modules/gdata { };
 
@@ -4655,6 +4653,8 @@ self: super: with self; {
 
   jaeger-client = callPackage ../development/python-modules/jaeger-client { };
 
+  jamo = callPackage ../development/python-modules/jamo { };
+
   janus = callPackage ../development/python-modules/janus { };
 
   jaraco_classes = callPackage ../development/python-modules/jaraco_classes { };
@@ -5056,6 +5056,8 @@ self: super: with self; {
   lark = callPackage ../development/python-modules/lark { };
 
   latexcodec = callPackage ../development/python-modules/latexcodec { };
+
+  latexify-py = callPackage ../development/python-modules/latexify-py { };
 
   launchpadlib = callPackage ../development/python-modules/launchpadlib { };
 
@@ -5734,6 +5736,8 @@ self: super: with self; {
 
   misaka = callPackage ../development/python-modules/misaka { };
 
+  misoc = callPackage ../development/python-modules/misoc { };
+
   mistletoe = callPackage ../development/python-modules/mistletoe { };
 
   mistune = callPackage ../development/python-modules/mistune { };
@@ -5962,6 +5966,10 @@ self: super: with self; {
   myfitnesspal = callPackage ../development/python-modules/myfitnesspal { };
 
   mygpoclient = callPackage ../development/python-modules/mygpoclient { };
+
+  myhdl = callPackage ../development/python-modules/myhdl {
+    inherit (pkgs) ghdl verilog;
+  };
 
   myhome = callPackage ../development/python-modules/myhome { };
 
@@ -7135,6 +7143,8 @@ self: super: with self; {
 
   plone-testing = callPackage ../development/python-modules/plone-testing { };
 
+  plotext = callPackage ../development/python-modules/plotext { };
+
   plotly = callPackage ../development/python-modules/plotly { };
 
   plotnine = callPackage ../development/python-modules/plotnine { };
@@ -8060,6 +8070,8 @@ self: super: with self; {
 
   pylsp-mypy = callPackage ../development/python-modules/pylsp-mypy { };
 
+  pylpsd = callPackage ../development/python-modules/pylpsd { };
+
   PyLTI = callPackage ../development/python-modules/pylti { };
 
   pylutron = callPackage ../development/python-modules/pylutron { };
@@ -8829,6 +8841,8 @@ self: super: with self; {
 
   pytest-param-files = callPackage ../development/python-modules/pytest-param-files { };
 
+  pytest-plt = callPackage ../development/python-modules/pytest-plt { };
+
   pytest-pylint = callPackage ../development/python-modules/pytest-pylint { };
 
   pytest-qt = callPackage ../development/python-modules/pytest-qt { };
@@ -9060,16 +9074,17 @@ self: super: with self; {
 
   python-manilaclient = callPackage ../development/python-modules/python-manilaclient { };
 
-  python-mapnik = let
-    boost = pkgs.boost175.override {
+  python-mapnik = callPackage ../development/python-modules/python-mapnik rec {
+    inherit (pkgs) pkg-config cairo icu libjpeg libpng libtiff libwebp proj zlib;
+    boost = pkgs.boost.override {
       enablePython = true;
       inherit python;
     };
-  in callPackage ../development/python-modules/python-mapnik {
-    inherit (pkgs) pkg-config cairo harfbuzz icu libjpeg libpng libtiff libwebp proj zlib;
-    inherit boost;
+    harfbuzz = pkgs.harfbuzz.override {
+      withIcu = true;
+    };
     mapnik = pkgs.mapnik.override {
-      inherit python boost;
+      inherit boost harfbuzz;
     };
   };
 
@@ -9639,6 +9654,8 @@ self: super: with self; {
   reolink = callPackage ../development/python-modules/reolink { };
 
   reparser = callPackage ../development/python-modules/reparser { };
+
+  repeated-test = callPackage ../development/python-modules/repeated-test { };
 
   repocheck = callPackage ../development/python-modules/repocheck { };
 
@@ -10975,6 +10992,8 @@ self: super: with self; {
 
   termcolor = callPackage ../development/python-modules/termcolor { };
 
+  termgraph = callPackage ../development/python-modules/termgraph { };
+
   terminado = callPackage ../development/python-modules/terminado { };
 
   terminaltables = callPackage ../development/python-modules/terminaltables { };
@@ -11237,6 +11256,8 @@ self: super: with self; {
   tracing = callPackage ../development/python-modules/tracing { };
 
   trackpy = callPackage ../development/python-modules/trackpy { };
+
+  trainer = callPackage ../development/python-modules/trainer {};
 
   traitlets = callPackage ../development/python-modules/traitlets { };
 
@@ -11780,7 +11801,7 @@ self: super: with self; {
 
   wallbox = callPackage ../development/python-modules/wallbox { };
 
-  Wand = callPackage ../development/python-modules/Wand { };
+  wand = callPackage ../development/python-modules/wand { };
 
   wandb = callPackage ../development/python-modules/wandb { };
 

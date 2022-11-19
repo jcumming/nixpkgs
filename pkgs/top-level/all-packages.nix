@@ -262,6 +262,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
+  automatic-timezoned = callPackage ../tools/system/automatic-timezoned { };
+
   cve = with python3Packages; toPythonApplication cvelib;
 
   fiche = callPackage ../servers/fiche { };
@@ -481,6 +483,8 @@ with pkgs;
   evans = callPackage ../development/tools/evans { };
 
   expressvpn = callPackage ../applications/networking/expressvpn { };
+
+  figma-linux = callPackage ../applications/graphics/figma-linux {};
 
   firefly-desktop = callPackage ../applications/misc/firefly-desktop { };
 
@@ -1005,6 +1009,8 @@ with pkgs;
   singularity-tools = callPackage ../build-support/singularity-tools { };
 
   sirula = callPackage ../tools/wayland/sirula { };
+
+  sitelen-seli-kiwen = callPackage ../data/fonts/sitelen-seli-kiwen {};
 
   srcOnly = callPackage ../build-support/src-only { };
 
@@ -1547,7 +1553,7 @@ with pkgs;
 
   dosbox-staging = callPackage ../applications/emulators/dosbox-staging { };
 
-  duckstation = libsForQt5.callPackage ../applications/emulators/duckstation {};
+  duckstation = qt6Packages.callPackage ../applications/emulators/duckstation {};
 
   dynamips = callPackage ../applications/emulators/dynamips { };
 
@@ -1555,7 +1561,10 @@ with pkgs;
 
   emulationstation = callPackage ../applications/emulators/emulationstation { };
 
-  fceux = libsForQt5.callPackage ../applications/emulators/fceux { };
+  fceux = callPackage ../applications/emulators/fceux {
+    lua = lua5_1;
+    inherit (libsForQt5) wrapQtAppsHook;
+  };
 
   firebird-emu = libsForQt5.callPackage ../applications/emulators/firebird-emu { };
 
@@ -1599,7 +1608,9 @@ with pkgs;
 
   libmirage = callPackage ../applications/emulators/cdemu/libmirage.nix { };
 
-  ludusavi = callPackage ../applications/backup/ludusavi { };
+  ludusavi = callPackage ../applications/backup/ludusavi {
+    inherit (plasma5Packages) kdialog;
+  };
 
   maiko = callPackage ../applications/emulators/maiko { };
 
@@ -3449,7 +3460,7 @@ with pkgs;
 
   cloudflared = callPackage ../applications/networking/cloudflared { };
 
-  cloudflare-dyndns = python3Packages.cloudflare-dyndns;
+  cloudflare-dyndns = callPackage ../applications/networking/cloudflare-dyndns { };
 
   cloudmonkey = callPackage ../tools/virtualization/cloudmonkey { };
 
@@ -4577,6 +4588,8 @@ with pkgs;
 
   mmctl = callPackage ../tools/misc/mmctl { };
 
+  moar = callPackage ../tools/misc/moar { };
+
   molly-brown = callPackage ../servers/gemini/molly-brown { };
 
   monetdb = callPackage ../servers/sql/monetdb { };
@@ -4757,9 +4770,7 @@ with pkgs;
 
   pn = callPackage ../tools/text/pn { };
 
-  pocket-casts = callPackage ../applications/audio/pocket-casts {
-    electron = electron_14;
-  };
+  pocket-casts = callPackage ../applications/audio/pocket-casts { };
 
   pouf = callPackage ../tools/misc/pouf { };
 
@@ -5036,8 +5047,6 @@ with pkgs;
   antigen = callPackage ../shells/zsh/antigen { };
 
   apparix = callPackage ../tools/misc/apparix { };
-
-  appleseed = callPackage ../tools/graphics/appleseed { };
 
   apc-temp-fetch = with python3.pkgs; callPackage ../tools/networking/apc-temp-fetch { };
 
@@ -6459,7 +6468,6 @@ with pkgs;
 
   exempi = callPackage ../development/libraries/exempi {
     stdenv = if stdenv.isDarwin then stdenv
-             else if stdenv.isi686 then gcc6Stdenv
              else gcc9Stdenv;
     boost  = if stdenv.isDarwin then boost else boost15x;
   };
@@ -7071,6 +7079,10 @@ with pkgs;
   git-cola = callPackage ../applications/version-management/git-and-tools/git-cola { };
 
   git-credential-1password = callPackage ../applications/version-management/git-and-tools/git-credential-1password { };
+
+  git-credential-keepassxc = callPackage ../applications/version-management/git-and-tools/git-credential-keepassxc {
+    inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation;
+  };
 
   git-crecord = callPackage ../applications/version-management/git-crecord { };
 
@@ -9591,6 +9603,16 @@ with pkgs;
   inherit (callPackage ../servers/nextcloud {})
     nextcloud23 nextcloud24 nextcloud25;
 
+  nextcloud23Packages = ( callPackage ../servers/nextcloud/packages {
+    apps = lib.importJSON ../servers/nextcloud/packages/23.json;
+  });
+  nextcloud24Packages = ( callPackage ../servers/nextcloud/packages {
+    apps = lib.importJSON ../servers/nextcloud/packages/24.json;
+  });
+  nextcloud25Packages = ( callPackage ../servers/nextcloud/packages {
+    apps = lib.importJSON ../servers/nextcloud/packages/25.json;
+  });
+
   nextcloud-client = libsForQt5.callPackage ../applications/networking/nextcloud-client { };
 
   nextcloud-news-updater = callPackage ../servers/nextcloud/news-updater.nix { };
@@ -11296,6 +11318,10 @@ with pkgs;
 
   sftpman = callPackage ../tools/filesystems/sftpman { };
 
+  sftpgo = callPackage ../servers/sftpgo {
+    buildGoModule = buildGo119Module;
+  };
+
   screenfetch = callPackage ../tools/misc/screenfetch { };
 
   sg3_utils = callPackage ../tools/system/sg3_utils { };
@@ -12698,6 +12724,8 @@ with pkgs;
     openssl = openssl_1_1;
   };
 
+  tremor-language-server = callPackage ../tools/misc/tremor-rs/ls.nix { };
+
   truecrack = callPackage ../tools/security/truecrack { };
   truecrack-cuda = truecrack.override { cudaSupport = true; };
 
@@ -12945,8 +12973,6 @@ with pkgs;
   };
 
   wml = callPackage ../development/web/wml { };
-
-  wmc-mpris = callPackage ../applications/misc/web-media-controller { };
 
   wol = callPackage ../tools/networking/wol { };
 
@@ -13253,6 +13279,8 @@ with pkgs;
   zstd = callPackage ../tools/compression/zstd {
     cmake = buildPackages.cmakeMinimal;
   };
+
+  zsv = callPackage ../development/tools/zsv { };
 
   zsync = callPackage ../tools/compression/zsync { };
 
@@ -13856,7 +13884,7 @@ with pkgs;
     profiledCompiler = false;
 
     libcCross = if stdenv.targetPlatform != stdenv.buildPlatform then libcCross else null;
-    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else null;
+    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else {};
 
     isl = if !stdenv.isDarwin then isl_0_14 else null;
     cloog = if !stdenv.isDarwin then cloog else null;
@@ -13870,7 +13898,7 @@ with pkgs;
     profiledCompiler = false;
 
     libcCross = if stdenv.targetPlatform != stdenv.buildPlatform then libcCross else null;
-    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else null;
+    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else {};
 
     isl = if !stdenv.isDarwin then isl_0_11 else null;
 
@@ -13887,7 +13915,7 @@ with pkgs;
     profiledCompiler = false;
 
     libcCross = if stdenv.targetPlatform != stdenv.buildPlatform then libcCross else null;
-    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else null;
+    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else {};
 
     # gcc 10 is too strict to cross compile gcc <= 8
     stdenv = if (stdenv.targetPlatform != stdenv.buildPlatform) && stdenv.cc.isGNU then gcc7Stdenv else stdenv;
@@ -13906,7 +13934,7 @@ with pkgs;
     profiledCompiler = false;
 
     libcCross = if stdenv.targetPlatform != stdenv.buildPlatform then libcCross else null;
-    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else null;
+    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else {};
 
     # gcc 10 is too strict to cross compile gcc <= 8
     stdenv = if (stdenv.targetPlatform != stdenv.buildPlatform) && stdenv.cc.isGNU then gcc7Stdenv else stdenv;
@@ -13921,7 +13949,7 @@ with pkgs;
     profiledCompiler = false;
 
     libcCross = if stdenv.targetPlatform != stdenv.buildPlatform then libcCross else null;
-    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else null;
+    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else {};
 
     # gcc 10 is too strict to cross compile gcc <= 8
     stdenv = if (stdenv.targetPlatform != stdenv.buildPlatform) && stdenv.cc.isGNU then gcc7Stdenv else stdenv;
@@ -13936,7 +13964,7 @@ with pkgs;
     profiledCompiler = false;
 
     libcCross = if stdenv.targetPlatform != stdenv.buildPlatform then libcCross else null;
-    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else null;
+    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else {};
 
     isl = if !stdenv.isDarwin then isl_0_20 else null;
   }));
@@ -13948,7 +13976,7 @@ with pkgs;
     profiledCompiler = false;
 
     libcCross = if stdenv.targetPlatform != stdenv.buildPlatform then libcCross else null;
-    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else null;
+    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else {};
 
     isl = if !stdenv.isDarwin then isl_0_20 else null;
   }));
@@ -13960,7 +13988,7 @@ with pkgs;
     profiledCompiler = false;
 
     libcCross = if stdenv.targetPlatform != stdenv.buildPlatform then libcCross else null;
-    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else null;
+    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else {};
 
     isl = if !stdenv.isDarwin then isl_0_20 else null;
   }));
@@ -13972,7 +14000,7 @@ with pkgs;
     profiledCompiler = false;
 
     libcCross = if stdenv.targetPlatform != stdenv.buildPlatform then libcCross else null;
-    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else null;
+    threadsCross = if stdenv.targetPlatform != stdenv.buildPlatform then threadsCross else {};
 
     isl = if !stdenv.isDarwin then isl_0_20 else null;
   }));
@@ -14638,7 +14666,7 @@ with pkgs;
     # assumption is that or any later version is good.
     choose = platform:
       /**/ if platform.isDarwin then 11
-      else if platform.isFreeBSD then 7
+      else if platform.isFreeBSD then 12
       else if platform.isAndroid then 12
       else if platform.system == "armv6l-linux" then 7  # This fixes armv6 cross-compilation
       else if platform.isLinux then 11
@@ -15129,7 +15157,6 @@ with pkgs;
   cargo-profiler = callPackage ../development/tools/rust/cargo-profiler {};
   cargo-raze = callPackage ../development/tools/rust/cargo-raze {
     inherit (darwin.apple_sdk.frameworks) Security;
-    openssl = openssl_1_1;
   };
   cargo-readme = callPackage ../development/tools/rust/cargo-readme {};
   cargo-semver-checks = callPackage ../development/tools/rust/cargo-semver-checks {
@@ -15233,6 +15260,7 @@ with pkgs;
   };
   rustup-toolchain-install-master = callPackage ../development/tools/rust/rustup-toolchain-install-master {
     inherit (darwin.apple_sdk.frameworks) Security;
+    openssl = openssl_1_1;
   };
   rusty-man = callPackage ../development/tools/rust/rusty-man { };
 
@@ -15413,7 +15441,7 @@ with pkgs;
       # want the C++ library to be explicitly chosen by the caller, and null by
       # default.
       libcxx ? null
-    , extraPackages ? lib.optional (cc.isGNU or false && stdenv.targetPlatform.isMinGW) threadsCross
+    , extraPackages ? lib.optional (cc.isGNU or false && stdenv.targetPlatform.isMinGW) threadsCross.package
     , nixSupport ? {}
     , ...
     } @ extraArgs:
@@ -16224,6 +16252,8 @@ with pkgs;
 
   anybadge = with python3Packages; toPythonApplication anybadge;
 
+  apgdiff = callPackage ../development/tools/database/apgdiff { };
+
   apkg = callPackage ../tools/package-management/apkg { };
 
   augeas = callPackage ../tools/system/augeas { };
@@ -16801,13 +16831,7 @@ with pkgs;
     python = python3;
   };
 
-  libsigrokdecode = callPackage ../development/tools/libsigrokdecode {
-    python3 = python38;
-  };
-
-  # special forks used for dsview
-  libsigrok4dsl = callPackage ../applications/science/electronics/dsview/libsigrok4dsl.nix { };
-  libsigrokdecode4dsl = callPackage ../applications/science/electronics/dsview/libsigrokdecode4dsl.nix { };
+  libsigrokdecode = callPackage ../development/tools/libsigrokdecode { };
 
   sigrok-firmware-fx2lafw = callPackage ../development/tools/sigrok-firmware-fx2lafw { };
 
@@ -18273,7 +18297,11 @@ with pkgs;
     else callPackage ../os-specific/linux/bionic-prebuilt { };
 
 
-  bobcat = callPackage ../development/libraries/bobcat { };
+  bobcat = callPackage ../development/libraries/bobcat
+    (lib.optionalAttrs (with stdenv.hostPlatform; isAarch64 && isLinux) {
+      # C++20 is required, aarch64-linux has gcc 9 by default
+      stdenv = gcc10Stdenv;
+    });
 
   boehmgc = callPackage ../development/libraries/boehm-gc { };
 
@@ -18314,6 +18342,8 @@ with pkgs;
   box2d = callPackage ../development/libraries/box2d { };
 
   boxfort = callPackage ../development/libraries/boxfort { };
+
+  brunsli = callPackage ../development/libraries/brunsli { };
 
   buddy = callPackage ../development/libraries/buddy { };
 
@@ -18997,10 +19027,7 @@ with pkgs;
     libXpm = null;
   };
 
-  gdal = callPackage ../development/libraries/gdal {
-    pythonPackages = python3Packages;
-    autoreconfHook = buildPackages.autoreconfHook269;
-  };
+  gdal = callPackage ../development/libraries/gdal { };
 
   gdcm = callPackage ../development/libraries/gdcm {
     inherit (darwin.apple_sdk.frameworks) ApplicationServices Cocoa;
@@ -19129,6 +19156,7 @@ with pkgs;
       if stdenv.targetPlatform.useiOSPrebuilt
       then targetPackages.darwin.iosSdkPkgs.libraries or darwin.iosSdkPkgs.libraries
       else targetPackages.darwin.LibsystemCross or (throw "don't yet have a `targetPackages.darwin.LibsystemCross for ${stdenv.targetPlatform.config}`")
+    else if name == "fblibc" then targetPackages.freebsdCross.libc or freebsdCross.libc
     else if name == "nblibc" then targetPackages.netbsdCross.libc or netbsdCross.libc
     else if name == "wasilibc" then targetPackages.wasilibc or wasilibc
     else if name == "relibc" then targetPackages.relibc or relibc
@@ -19137,10 +19165,13 @@ with pkgs;
 
   libcCross = assert stdenv.targetPlatform != stdenv.buildPlatform; libcCrossChooser stdenv.targetPlatform.libc;
 
-  threadsCross =
-    if stdenv.targetPlatform.isMinGW && !(stdenv.targetPlatform.useLLVM or false)
-    then targetPackages.windows.mcfgthreads or windows.mcfgthreads
-    else null;
+  threadsCross = if stdenv.targetPlatform.isMinGW && !(stdenv.targetPlatform.useLLVM or false)
+    then {
+      # other possible values: win32 or posix
+      model = "mcf";
+      # For win32 or posix set this to null
+      package = targetPackages.windows.mcfgthreads or windows.mcfgthreads;
+    } else {};
 
   wasilibc = callPackage ../development/libraries/wasilibc {
     stdenv = crossLibcStdenv;
@@ -19717,11 +19748,7 @@ with pkgs;
 
   jbigkit = callPackage ../development/libraries/jbigkit { };
 
-  jemalloc = callPackage ../development/libraries/jemalloc {
-    # tests fail with LLVM 11+
-    # https://github.com/jemalloc/jemalloc/issues/2091
-    stdenv = if stdenv.cc.isClang then llvmPackages_10.stdenv else stdenv;
-  };
+  jemalloc = callPackage ../development/libraries/jemalloc { };
 
   jose = callPackage ../development/libraries/jose { };
 
@@ -19823,6 +19850,8 @@ with pkgs;
   levmar = callPackage ../development/libraries/levmar { };
 
   leptonica = callPackage ../development/libraries/leptonica { };
+
+  lerc = callPackage ../development/libraries/lerc { };
 
   lib2geom = callPackage ../development/libraries/lib2geom { };
 
@@ -20381,6 +20410,10 @@ with pkgs;
   libhttpseverywhere = callPackage ../development/libraries/libhttpseverywhere { };
 
   libhugetlbfs = callPackage ../development/libraries/libhugetlbfs { };
+
+  libhv = callPackage ../development/libraries/libhv {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   libhwy = callPackage ../development/libraries/libhwy { };
 
@@ -21240,13 +21273,9 @@ with pkgs;
   opencl-clang = callPackage ../development/libraries/opencl-clang { };
 
   mapnik = callPackage ../development/libraries/mapnik {
-    gdal = gdal.override {
-      libgeotiff = libgeotiff.override { proj = proj_7; };
-      libspatialite = libspatialite.override { proj = proj_7; };
-      proj = proj_7;
+    harfbuzz = harfbuzz.override {
+      withIcu = true;
     };
-    proj = proj_7;
-    boost = boost175;
   };
 
   manticoresearch = callPackage ../servers/search/manticoresearch { };
@@ -22904,7 +22933,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa;
   };
   vulkan-tools-lunarg = callPackage ../tools/graphics/vulkan-tools-lunarg { };
-  vulkan-utils = haskell.lib.compose.justStaticExecutables haskellPackages.vulkan-utils;
   vulkan-validation-layers = callPackage ../development/tools/vulkan-validation-layers { };
 
   vxl = callPackage ../development/libraries/vxl { };
@@ -23690,9 +23718,8 @@ with pkgs;
 
   hasura-cli = callPackage ../servers/hasura/cli.nix { };
 
-  inherit (callPackage ../servers/hbase {}) hbase_1_7 hbase_2_4 hbase_3_0;
-  hbase1 = hbase_1_7;
-  hbase2 = hbase_2_4;
+  inherit (callPackage ../servers/hbase {}) hbase_2_4 hbase_2_5 hbase_3_0;
+  hbase2 = hbase_2_5;
   hbase3 = hbase_3_0;
   hbase = hbase2; # when updating, point to the latest stable release
 
@@ -24439,6 +24466,8 @@ with pkgs;
 
   roon-server = callPackage ../servers/roon-server { };
 
+  rustic-rs = callPackage ../tools/backup/rustic-rs { };
+
   supervise = callPackage ../tools/system/supervise { };
 
   spamassassin = callPackage ../servers/mail/spamassassin { };
@@ -24516,6 +24545,10 @@ with pkgs;
   thttpd = callPackage ../servers/http/thttpd { };
 
   storm = callPackage ../servers/computing/storm { };
+
+  surrealdb = callPackage ../servers/nosql/surrealdb {
+    inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
+  };
 
   switcheroo-control = callPackage ../os-specific/linux/switcheroo-control { };
 
@@ -26529,6 +26562,8 @@ with pkgs;
 
   line-awesome = callPackage ../data/fonts/line-awesome { };
 
+  linja-pi-pu-lukin = callPackage ../data/fonts/linja-pi-pu-lukin {};
+
   linux-manual = callPackage ../data/documentation/linux-manual { };
 
   lklug-sinhala = callPackage ../data/fonts/lklug-sinhala {};
@@ -26995,6 +27030,7 @@ with pkgs;
 
   tela-circle-icon-theme = callPackage ../data/icons/tela-circle-icon-theme {
     inherit (gnome) adwaita-icon-theme;
+    inherit (plasma5Packages) breeze-icons;
   };
 
   tela-icon-theme = callPackage ../data/icons/tela-icon-theme { };
@@ -28680,11 +28716,9 @@ with pkgs;
   firefox-esr-unwrapped = firefoxPackages.firefox-esr-102;
 
   firefox = wrapFirefox firefox-unwrapped { };
-  firefox-wayland = wrapFirefox firefox-unwrapped { forceWayland = true; };
 
   firefox-esr = firefox-esr-102;
   firefox-esr-102 = wrapFirefox firefox-esr-102-unwrapped { };
-  firefox-esr-wayland = wrapFirefox firefox-esr-102-unwrapped { forceWayland = true; };
 
   firefox-bin-unwrapped = callPackage ../applications/networking/browsers/firefox-bin {
     inherit (gnome) adwaita-icon-theme;
@@ -28724,10 +28758,6 @@ with pkgs;
   librewolf = wrapFirefox librewolf-unwrapped {
     inherit (librewolf-unwrapped) extraPrefsFiles extraPoliciesFiles;
     libName = "librewolf";
-  };
-
-  librewolf-wayland = librewolf.override {
-    forceWayland = true;
   };
 
   firefox_decrypt = python3Packages.callPackage ../tools/security/firefox_decrypt { };
@@ -29507,8 +29537,6 @@ with pkgs;
   ii = callPackage ../applications/networking/irc/ii {
     stdenv = gccStdenv;
   };
-
-  ike = callPackage ../applications/networking/ike { };
 
   ikiwiki = callPackage ../applications/misc/ikiwiki {
     python = python3;
@@ -30814,7 +30842,7 @@ with pkgs;
 
   smplayer = libsForQt5.callPackage ../applications/video/smplayer { };
 
-  smtube = libsForQt514.callPackage ../applications/video/smtube {};
+  smtube = libsForQt5.callPackage ../applications/video/smtube {};
 
   softmaker-office = callPackage ../applications/office/softmaker/softmaker_office.nix {};
 
@@ -31054,10 +31082,7 @@ with pkgs;
 
   openscad = libsForQt5.callPackage ../applications/graphics/openscad {};
 
-  open-stage-control = callPackage ../applications/audio/open-stage-control {
-    electron = electron_15;
-    nodejs = nodejs-16_x;
-  };
+  open-stage-control = callPackage ../applications/audio/open-stage-control { };
 
   opentimestamps-client = python3Packages.callPackage ../tools/misc/opentimestamps-client {};
 
@@ -31751,6 +31776,10 @@ with pkgs;
     inherit (gnome) zenity;
   };
 
+  rymdport = callPackage ../applications/networking/rymdport {
+    inherit (darwin.apple_sdk.frameworks) Carbon Cocoa;
+  };
+
   uade = callPackage ../applications/audio/uade {};
 
   udevil = callPackage ../applications/misc/udevil {};
@@ -32336,7 +32365,6 @@ with pkgs;
 
   thunderbird-unwrapped = thunderbirdPackages.thunderbird;
   thunderbird = wrapThunderbird thunderbird-unwrapped { };
-  thunderbird-wayland = wrapThunderbird thunderbird-unwrapped { forceWayland = true; };
 
   thunderbird-bin = wrapThunderbird thunderbird-bin-unwrapped {
     applicationName = "thunderbird";
@@ -34384,16 +34412,12 @@ with pkgs;
 
   methane = callPackage ../games/methane { };
 
-  mindustry = callPackage ../games/mindustry {
-    jdk = adoptopenjdk-hotspot-bin-15;
-  };
+  mindustry = callPackage ../games/mindustry { };
   mindustry-wayland = callPackage ../games/mindustry {
-    jdk = adoptopenjdk-hotspot-bin-15;
     glew = glew-egl;
   };
 
   mindustry-server = callPackage ../games/mindustry {
-    jdk = adoptopenjdk-hotspot-bin-15;
     enableClient = false;
     enableServer = true;
   };
@@ -36224,6 +36248,9 @@ with pkgs;
 
   gplates = libsForQt5.callPackage ../applications/science/misc/gplates {
     boost = boost175;
+    # build with Python 3.10 fails, because boost <= 1.78 can't find
+    # pythons with double digits in minor versions, like X.YZ
+    python3 = python39;
   };
 
   gravit = callPackage ../applications/science/astronomy/gravit { };
@@ -37006,10 +37033,8 @@ with pkgs;
 
   mysql-workbench = callPackage ../applications/misc/mysql-workbench (let mysql = mysql80; in {
     gdal = gdal.override {
-      libmysqlclient = mysql // {
-        lib = { dev = mysql; }
-      ;}
-    ;};
+      libmysqlclient = mysql;
+    };
     mysql = mysql;
     pcre = pcre-cpp;
     jre = jre8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
@@ -37017,7 +37042,7 @@ with pkgs;
 
   r128gain = callPackage ../applications/audio/r128gain { };
 
-  redis-desktop-manager = libsForQt5.callPackage ../applications/misc/redis-desktop-manager { };
+  resp-app = libsForQt5.callPackage ../applications/misc/resp-app { };
 
   robin-map = callPackage ../development/libraries/robin-map { };
 
@@ -37865,6 +37890,11 @@ with pkgs;
     name = "bsd-setup-hook";
   } ../os-specific/bsd/setup-hook.sh;
 
+  freebsd = callPackage ../os-specific/bsd/freebsd {};
+  freebsdCross = callPackage ../os-specific/bsd/freebsd {
+    stdenv = crossLibcStdenv;
+  };
+
   netbsd = callPackage ../os-specific/bsd/netbsd {};
   netbsdCross = callPackage ../os-specific/bsd/netbsd {
     stdenv = crossLibcStdenv;
@@ -37998,9 +38028,7 @@ with pkgs;
   };
   inherit (jami) jami-daemon jami-client-qt;
 
-  jitsi-meet-electron = callPackage ../applications/networking/instant-messengers/jitsi-meet-electron {
-    electron = electron_17;
-  };
+  jitsi-meet-electron = callPackage ../applications/networking/instant-messengers/jitsi-meet-electron { };
 
   zenstates = callPackage ../os-specific/linux/zenstates {};
 
