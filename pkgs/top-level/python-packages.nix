@@ -799,6 +799,8 @@ self: super: with self; {
 
   avro-python3 = callPackage ../development/python-modules/avro-python3 { };
 
+  awacs = callPackage ../development/python-modules/awacs { };
+
   awesome-slugify = callPackage ../development/python-modules/awesome-slugify { };
 
   awesomeversion = callPackage ../development/python-modules/awesomeversion { };
@@ -3558,6 +3560,8 @@ self: super: with self; {
 
   fuzzywuzzy = callPackage ../development/python-modules/fuzzywuzzy { };
 
+  fvs = callPackage ../development/python-modules/fvs { };
+
   fx2 = callPackage ../development/python-modules/fx2 { };
 
   g2pkk = callPackage ../development/python-modules/g2pkk { };
@@ -4151,6 +4155,8 @@ self: super: with self; {
 
   heapdict = callPackage ../development/python-modules/heapdict { };
 
+  heatshrink2 = callPackage ../development/python-modules/heatshrink2 { };
+
   heatzypy = callPackage ../development/python-modules/heatzypy { };
 
   helpdev = callPackage ../development/python-modules/helpdev { };
@@ -4400,6 +4406,8 @@ self: super: with self; {
   ics = callPackage ../development/python-modules/ics { };
 
   idasen = callPackage ../development/python-modules/idasen { };
+
+  icoextract = callPackage ../development/python-modules/icoextract { };
 
   icontract = callPackage ../development/python-modules/icontract { };
 
@@ -6969,6 +6977,8 @@ self: super: with self; {
 
   ppdeep = callPackage ../development/python-modules/ppdeep { };
 
+  prodict = callPackage ../development/python-modules/prodict { };
+
   proxy_tools = callPackage ../development/python-modules/proxy_tools { };
 
   py-nextbusnext = callPackage ../development/python-modules/py-nextbusnext { };
@@ -7054,6 +7064,8 @@ self: super: with self; {
   pysqlitecipher = callPackage ../development/python-modules/pysqlitecipher { };
 
   pysyncthru = callPackage ../development/python-modules/pysyncthru { };
+
+  pytest-mockito = callPackage ../development/python-modules/pytest-mockito { };
 
   python-codon-tables = callPackage ../development/python-modules/python-codon-tables { };
 
@@ -7590,8 +7602,6 @@ self: super: with self; {
   pychannels = callPackage ../development/python-modules/pychannels { };
 
   pychart = callPackage ../development/python-modules/pychart { };
-
-  pychef = callPackage ../development/python-modules/pychef { };
 
   pychm = callPackage ../development/python-modules/pychm { };
 
@@ -8139,6 +8149,8 @@ self: super: with self; {
   pymetno = callPackage ../development/python-modules/pymetno { };
 
   pymicrobot = callPackage ../development/python-modules/pymicrobot { };
+
+  pymilter = callPackage ../development/python-modules/pymilter { };
 
   pymitv = callPackage ../development/python-modules/pymitv { };
 
@@ -9813,6 +9825,8 @@ self: super: with self; {
 
   robotframework-databaselibrary = callPackage ../development/python-modules/robotframework-databaselibrary { };
 
+  robotframework-pythonlibcore = callPackage ../development/python-modules/robotframework-pythonlibcore { };
+
   robotframework-requests = callPackage ../development/python-modules/robotframework-requests { };
 
   robotframework-selenium2library = callPackage ../development/python-modules/robotframework-selenium2library { };
@@ -11311,6 +11325,8 @@ self: super: with self; {
 
   trio-websocket = callPackage ../development/python-modules/trio-websocket { };
 
+  troposphere = callPackage ../development/python-modules/troposphere { };
+
   trueskill = callPackage ../development/python-modules/trueskill { };
 
   trustme = callPackage ../development/python-modules/trustme { };
@@ -11328,10 +11344,6 @@ self: super: with self; {
   tunigo = callPackage ../development/python-modules/tunigo { };
 
   tubeup = callPackage ../development/python-modules/tubeup { };
-
-  tumpa = callPackage ../development/python-modules/tumpa {
-    inherit (pkgs.libsForQt5) wrapQtAppsHook;
-  };
 
   turnt = callPackage ../development/python-modules/turnt { };
 

@@ -582,6 +582,7 @@ mapAliases ({
   gr-rds = gnuradio3_7.pkgs.rds; # Added 2019-05-27, changed 2020-10-16
   grv = throw "grv has been dropped due to the lack of maintanence from upstream since 2019"; # Added 2022-06-01
   gsettings_desktop_schemas = throw "'gsettings_desktop_schemas' has been renamed to/replaced by 'gsettings-desktop-schemas'"; # Converted to throw 2022-02-22
+  gsl_1 = throw "'gsl_1' has been renamed to/replaced by 'gsl'"; # Added 2022-11-19
   gtk_doc = throw "'gtk_doc' has been renamed to/replaced by 'gtk-doc'"; # Converted to throw 2022-02-22
   gtklick = throw "gtklick has been removed from nixpkgs as the project is stuck on python2"; # Added 2022-01-01
   gtmess = throw "gtmess has been removed, because it was a MSN client."; # add 2021-12-15
@@ -675,8 +676,10 @@ mapAliases ({
   # Julia
   julia_07 = throw "julia_07 has been deprecated in favor of the latest LTS version"; # Added 2020-09-15
   julia_1 = throw "julia_1 has been deprecated in favor of julia_10 as it was ambiguous"; # Added 2021-03-13
+  julia_10 = throw "julia_10 has been deprecated in favor of the latest stable version"; # Added 2022-11-15
   julia_11 = throw "julia_11 has been deprecated in favor of the latest stable version"; # Added 2020-09-15
   julia_13 = throw "julia_13 has been deprecated in favor of the latest stable version"; # Added 2021-03-13
+  julia_15 = throw "julia_15 has been deprecated in favor of the latest stable version"; # Added 2022-11-15
   julia_10-bin = throw "julia_10-bin has been deprecated in favor of the latest LTS version"; # Added 2021-12-02
   julia_17-bin = throw "julia_17-bin has been deprecated in favor of the latest stable version"; # Added 2022-09-04
 
@@ -756,6 +759,7 @@ mapAliases ({
   libgpgerror = libgpg-error; # Added 2021-09-04
   libgroove = throw "libgroove has been removed, because it depends on an outdated and insecure version of ffmpeg"; # Added 2022-01-21
   libgumbo = throw "'libgumbo' has been renamed to/replaced by 'gumbo'"; # Converted to throw 2022-02-22
+  libheimdal = heimdal; # Added 2022-11-18
   libintlOrEmpty = lib.optional (!stdenv.isLinux || stdenv.hostPlatform.libc != "glibc") gettext; # Added 2018-03-14
   libixp_hg = libixp;
   libjpeg_drop = libjpeg_original; # Added 2020-06-05
@@ -1230,6 +1234,7 @@ mapAliases ({
   pyload = throw "pyload has been removed from nixpkgs, as it was unmaintained"; # Added 2021-03-21
   pynagsystemd = throw "pynagsystemd was removed as it was unmaintained and incompatible with recent systemd versions. Instead use its fork check_systemd"; # Added 2020-10-24
   pyo3-pack = maturin;
+  pypolicyd-spf = spf-engine; # Added 2022-10-09
   pyrex = throw "pyrex has been removed from nixpkgs as the project is still stuck on python2"; # Added 2022-01-12
   pyrex095 = throw "pyrex has been removed from nixpkgs as the project is still stuck on python2"; # Added 2022-01-12
   pyrex096 = throw "pyrex has been removed from nixpkgs as the project is still stuck on python2"; # Added 2022-01-12
@@ -1353,6 +1358,7 @@ mapAliases ({
   skype4pidgin = throw "skype4pidgin has been remove from nixpkgs, because it stopped working when classic Skype was retired"; # Added 2021-07-14
   skype_call_recorder = throw "skype_call_recorder has been removed from nixpkgs, because it stopped working when classic Skype was retired"; # Added 2020-10-31
   slack-dark = slack; # Added 2020-03-27
+  sleepyhead = throw "'sleepyhead' has been renamed to/replaced by 'OSCAR'"; # Added 2022-11-20
   slic3r-prusa3d = throw "'slic3r-prusa3d' has been renamed to/replaced by 'prusa-slicer'"; # Converted to throw 2022-02-22
   slurm-full = throw "'slurm-full' has been renamed to/replaced by 'slurm'"; # Converted to throw 2022-02-22
   slurm-llnl = slurm; # renamed July 2017

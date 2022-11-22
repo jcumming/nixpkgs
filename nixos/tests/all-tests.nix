@@ -198,6 +198,7 @@ in {
   etebase-server = handleTest ./etebase-server.nix {};
   etesync-dav = handleTest ./etesync-dav.nix {};
   extra-python-packages = handleTest ./extra-python-packages.nix {};
+  evcc = handleTest ./evcc.nix {};
   fancontrol = handleTest ./fancontrol.nix {};
   fcitx = handleTest ./fcitx {};
   fenics = handleTest ./fenics.nix {};
@@ -495,6 +496,7 @@ in {
   php = handleTest ./php {};
   php80 = handleTest ./php { php = pkgs.php80; };
   php81 = handleTest ./php { php = pkgs.php81; };
+  php82 = handleTest ./php { php = pkgs.php82; };
   phylactery = handleTest ./web-apps/phylactery.nix {};
   pict-rs = handleTest ./pict-rs.nix {};
   pinnwand = handleTest ./pinnwand.nix {};
