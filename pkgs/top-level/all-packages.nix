@@ -950,6 +950,8 @@ with pkgs;
 
   makeAutostartItem = callPackage ../build-support/make-startupitem { };
 
+  makeImpureTest = callPackage ../build-support/make-impure-test.nix;
+
   makeInitrd = callPackage ../build-support/kernel/make-initrd.nix; # Args intentionally left out
 
   makeInitrdNG = callPackage ../build-support/kernel/make-initrd-ng.nix;
@@ -1476,7 +1478,6 @@ with pkgs;
 
   winbox = callPackage ../tools/admin/winbox {
     wine = wineWowPackages.staging;
-    use64 = true;
   };
 
   wwcd = callPackage ../tools/misc/wwcd { };
@@ -4340,9 +4341,13 @@ with pkgs;
 
   hypr = callPackage ../applications/window-managers/hyprwm/hypr { };
 
-  hyprland = callPackage ../applications/window-managers/hyprwm/hyprland { };
+  hyprland = callPackage ../applications/window-managers/hyprwm/hyprland {
+    stdenv = gcc11Stdenv;
+  };
 
-  hyprpaper = callPackage ../applications/window-managers/hyprwm/hyprpaper { };
+  hyprpaper = callPackage ../applications/window-managers/hyprwm/hyprpaper {
+    stdenv = gcc11Stdenv;
+  };
 
   hysteria = callPackage ../tools/networking/hysteria { };
 
@@ -9313,9 +9318,7 @@ with pkgs;
 
   minissdpd = callPackage ../tools/networking/minissdpd { };
 
-  miniupnpc = callPackage ../tools/networking/miniupnpc {
-    inherit (darwin) cctools;
-  };
+  miniupnpc = callPackage ../tools/networking/miniupnpc { };
 
   miniupnpd = callPackage ../tools/networking/miniupnpd { };
 
@@ -11714,7 +11717,7 @@ with pkgs;
 
   subgit = callPackage ../applications/version-management/git-and-tools/subgit { };
 
-  subsurface = libsForQt514.callPackage ../applications/misc/subsurface { };
+  subsurface = libsForQt5.callPackage ../applications/misc/subsurface { };
 
   sudo = callPackage ../tools/security/sudo { };
 
@@ -12030,6 +12033,8 @@ with pkgs;
   thin-provisioning-tools = callPackage ../tools/misc/thin-provisioning-tools {  };
 
   thinkpad-scripts = python3.pkgs.callPackage ../tools/misc/thinkpad-scripts { };
+
+  threatest = callPackage ../tools/security/threatest {  };
 
   threema-desktop = callPackage ../applications/networking/instant-messengers/threema-desktop { };
 
@@ -12476,6 +12481,8 @@ with pkgs;
 
   versus = callPackage ../applications/networking/versus { };
 
+  vexctl = callPackage ../tools/security/vexctl { };
+
   vgrep = callPackage ../tools/text/vgrep { };
 
   vhd2vl = callPackage ../applications/science/electronics/vhd2vl { };
@@ -12898,6 +12905,8 @@ with pkgs;
     wxGTK = wxGTK32;
   };
 
+  veryfasttree = callPackage ../applications/science/biology/veryfasttree { };
+
   vlan = callPackage ../tools/networking/vlan { };
 
   vmtouch = callPackage ../tools/misc/vmtouch { };
@@ -13296,6 +13305,8 @@ with pkgs;
   zxing = callPackage ../tools/graphics/zxing {};
 
   zkar = callPackage ../tools/security/zkar { };
+
+  zlint = callPackage ../tools/security/zlint { };
 
   zmap = callPackage ../tools/security/zmap { };
 
@@ -14182,7 +14193,7 @@ with pkgs;
     gnatboot =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
-      then buildPackages.gnatboot
+      then buildPackages.gnatboot11
       else buildPackages.gnat11;
   });
 
@@ -14198,11 +14209,13 @@ with pkgs;
     gnatboot =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
-      then buildPackages.gnatboot
+      then buildPackages.gnatboot12
       else buildPackages.gnat12;
   });
 
-  gnatboot = wrapCC (callPackage ../development/compilers/gnatboot { });
+  gnatboot = gnatboot12;
+  gnatboot11 = wrapCC (callPackage ../development/compilers/gnatboot { majorVersion = "11"; });
+  gnatboot12 = wrapCC (callPackage ../development/compilers/gnatboot { majorVersion = "12"; });
 
   gnu-smalltalk = callPackage ../development/compilers/gnu-smalltalk { };
 
@@ -14237,7 +14250,7 @@ with pkgs;
   gcc-arm-embedded-9 = callPackage ../development/compilers/gcc-arm-embedded/9 {};
   gcc-arm-embedded-10 = callPackage ../development/compilers/gcc-arm-embedded/10 {};
   gcc-arm-embedded-11 = callPackage ../development/compilers/gcc-arm-embedded/11 {};
-  gcc-arm-embedded = gcc-arm-embedded-10;
+  gcc-arm-embedded = gcc-arm-embedded-11;
 
   # Has to match the default gcc so that there are no linking errors when
   # using C/C++ libraries in D packages
@@ -15047,6 +15060,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
   cargo-criterion = callPackage ../development/tools/rust/cargo-criterion { };
+  cargo-cyclonedx = callPackage ../development/tools/rust/cargo-cyclonedx {
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration CoreFoundation;
+  };
   cargo-deadlinks = callPackage ../development/tools/rust/cargo-deadlinks {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -18205,6 +18221,8 @@ with pkgs;
   asio_1_10 = callPackage ../development/libraries/asio/1.10.nix { };
   asio = callPackage ../development/libraries/asio { };
 
+  asmjit = callPackage ../development/libraries/asmjit { };
+
   aspell = callPackage ../development/libraries/aspell { };
 
   aspellDicts = recurseIntoAttrs (callPackages ../development/libraries/aspell/dictionaries.nix {});
@@ -20790,7 +20808,9 @@ with pkgs;
 
   libow = callPackage ../development/libraries/libow { };
 
-  libp11 = callPackage ../development/libraries/libp11 { };
+  libp11 = callPackage ../development/libraries/libp11 {
+    openssl = openssl_1_1;
+  };
 
   libpam-wrapper = callPackage ../development/libraries/libpam-wrapper { };
 
@@ -23117,8 +23137,6 @@ with pkgs;
 
   yojimbo = callPackage ../development/libraries/yojimbo { };
 
-  yubioath-desktop = libsForQt5.callPackage ../applications/misc/yubioath-desktop { };
-
   yubico-pam = callPackage ../development/libraries/yubico-pam { };
 
   yubico-piv-tool = callPackage ../tools/misc/yubico-piv-tool {
@@ -24474,7 +24492,7 @@ with pkgs;
 
   roon-server = callPackage ../servers/roon-server { };
 
-  rustic-rs = callPackage ../tools/backup/rustic-rs { };
+  rustic-rs = callPackage ../tools/backup/rustic-rs { inherit (darwin) Security; };
 
   supervise = callPackage ../tools/system/supervise { };
 
@@ -25642,9 +25660,7 @@ with pkgs;
 
   pam_mysql = callPackage ../os-specific/linux/pam_mysql { };
 
-  pam_p11 = callPackage ../os-specific/linux/pam_p11 {
-    openssl = openssl_1_1;
-  };
+  pam_p11 = callPackage ../os-specific/linux/pam_p11 { };
 
   pam_pgsql = callPackage ../os-specific/linux/pam_pgsql { };
 
@@ -27333,7 +27349,7 @@ with pkgs;
 
   antfs-cli = callPackage ../applications/misc/antfs-cli {};
 
-  antimony = libsForQt514.callPackage ../applications/graphics/antimony {};
+  antimony = libsForQt5.callPackage ../applications/graphics/antimony {};
 
   antiword = callPackage ../applications/office/antiword {};
 
@@ -28296,6 +28312,8 @@ with pkgs;
   furnace = callPackage ../applications/audio/furnace {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
   };
+
+  furtherance = callPackage ../applications/misc/furtherance { };
 
   gg-scm = callPackage ../applications/version-management/git-and-tools/gg { };
 
@@ -30359,6 +30377,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) ApplicationServices;
   };
 
+  sapling = callPackage ../applications/version-management/sapling { };
+
   mercurialFull = mercurial.override { fullBuild = true; };
 
   merkaartor = libsForQt5.callPackage ../applications/misc/merkaartor { };
@@ -31809,7 +31829,7 @@ with pkgs;
 
   sacc = callPackage ../applications/networking/gopher/sacc { };
 
-  sayonara = libsForQt514.callPackage ../applications/audio/sayonara { };
+  sayonara = libsForQt5.callPackage ../applications/audio/sayonara { };
 
   sbagen = callPackage ../applications/misc/sbagen { };
 
@@ -33552,30 +33572,12 @@ with pkgs;
     withGui = false;
   };
 
-  bitcoin-unlimited  = libsForQt514.callPackage ../applications/blockchains/bitcoin-unlimited {
+  bitcoin-unlimited  = libsForQt5.callPackage ../applications/blockchains/bitcoin-unlimited {
     inherit (darwin.apple_sdk.frameworks) Foundation ApplicationServices AppKit;
     withGui = true;
   };
   bitcoind-unlimited = callPackage ../applications/blockchains/bitcoin-unlimited {
     inherit (darwin.apple_sdk.frameworks) Foundation ApplicationServices AppKit;
-    withGui = false;
-  };
-
-  bitcoin-classic  = libsForQt514.callPackage ../applications/blockchains/bitcoin-classic {
-    boost = boost165;
-    withGui = true;
-  };
-  bitcoind-classic = callPackage ../applications/blockchains/bitcoin-classic {
-    boost = boost165;
-    withGui = false;
-  };
-
-  bitcoin-gold = libsForQt514.callPackage ../applications/blockchains/bitcoin-gold {
-    boost = boost165;
-    withGui = true;
-  };
-  bitcoind-gold = callPackage ../applications/blockchains/bitcoin-gold {
-    boost = boost165;
     withGui = false;
   };
 
@@ -33587,15 +33589,6 @@ with pkgs;
 
   dcrd = callPackage ../applications/blockchains/dcrd { };
   dcrwallet = callPackage ../applications/blockchains/dcrwallet { };
-
-  digibyte = libsForQt514.callPackage ../applications/blockchains/digibyte {
-    withGui = true;
-    boost = boost170;
-  };
-  digibyted = callPackage ../applications/blockchains/digibyte {
-    withGui = false;
-    boost = boost170;
-  };
 
   dogecoin  = libsForQt5.callPackage ../applications/blockchains/dogecoin {
     boost = boost165;
@@ -33741,7 +33734,7 @@ with pkgs;
 
   tessera = callPackage ../applications/blockchains/tessera { };
 
-  vertcoin  = libsForQt514.callPackage ../applications/blockchains/vertcoin {
+  vertcoin  = libsForQt5.callPackage ../applications/blockchains/vertcoin {
     boost = boost165;
     withGui = true;
   };
