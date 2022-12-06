@@ -372,6 +372,8 @@ self: super: with self; {
 
   alarmdecoder = callPackage ../development/python-modules/alarmdecoder { };
 
+  ale-py = callPackage ../development/python-modules/ale-py { };
+
   alectryon = callPackage ../development/python-modules/alectryon { };
 
   alembic = callPackage ../development/python-modules/alembic { };
@@ -8976,6 +8978,8 @@ self: super: with self; {
   python3-gnutls = callPackage ../development/python-modules/python3-gnutls { };
 
   python3-openid = callPackage ../development/python-modules/python3-openid { };
+
+  python-arango = callPackage ../development/python-modules/python-arango { };
 
   python-awair = callPackage ../development/python-modules/python-awair { };
 

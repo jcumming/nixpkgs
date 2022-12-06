@@ -13307,6 +13307,7 @@ with pkgs;
   zbackup = callPackage ../tools/backup/zbackup {};
 
   zbar = libsForQt5.callPackage ../tools/graphics/zbar {
+    inherit (darwin.apple_sdk.frameworks) Foundation;
     autoreconfHook = buildPackages.autoreconfHook269;
   };
 
@@ -16462,6 +16463,8 @@ with pkgs;
   }));
 
   ansible-doctor = with python3.pkgs; toPythonApplication ansible-doctor;
+
+  ansible-language-server = callPackage ../development/tools/ansible-language-server { };
 
   ansible-later = with python3.pkgs; toPythonApplication ansible-later;
 
@@ -26996,6 +26999,8 @@ with pkgs;
 
   sierra-breeze-enhanced = libsForQt5.callPackage ../data/themes/kwin-decorations/sierra-breeze-enhanced { };
 
+  simp1e-cursors = callPackage ../data/icons/simp1e-cursors { };
+
   sjasmplus = callPackage ../development/compilers/sjasmplus { };
 
   skeu = callPackage ../data/themes/skeu { };
@@ -31942,6 +31947,8 @@ with pkgs;
 
   slrn = callPackage ../applications/networking/newsreaders/slrn { };
 
+  sniffnet = callPackage ../applications/networking/sniffnet { };
+
   sniproxy = callPackage ../applications/networking/sniproxy { };
 
   snixembed = callPackage ../applications/misc/snixembed { };
@@ -32780,9 +32787,7 @@ with pkgs;
 
   gnvim = callPackage ../applications/editors/neovim/gnvim/wrapper.nix { };
 
-  neovide = callPackage ../applications/editors/neovim/neovide {
-    inherit (darwin.apple_sdk.frameworks) Security ApplicationServices Carbon AppKit;
-  };
+  neovide = callPackage ../applications/editors/neovim/neovide { };
 
   neovim-remote = callPackage ../applications/editors/neovim/neovim-remote.nix { };
 
@@ -36476,7 +36481,7 @@ with pkgs;
 
   cups-kyocera-ecosys-m552x-p502x = callPackage ../misc/cups/drivers/kyocera-ecosys-m552x-p502x {};
 
-  cups-kyodialog3 = callPackage ../misc/cups/drivers/kyodialog3 {};
+  cups-kyodialog = callPackage ../misc/cups/drivers/kyodialog {};
 
   cups-dymo = callPackage ../misc/cups/drivers/dymo {};
 
