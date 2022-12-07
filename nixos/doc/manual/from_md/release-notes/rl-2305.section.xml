@@ -72,6 +72,46 @@
       </listitem>
       <listitem>
         <para>
+          The
+          <link linkend="opt-services.snapserver.openFirewall">services.snapserver.openFirewall</link>
+          module option default value has been changed from
+          <literal>true</literal> to <literal>false</literal>. You will
+          need to explicitely set this option to
+          <literal>true</literal>, or configure your firewall.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The
+          <link linkend="opt-services.avahi.openFirewall">services.avahi.openFirewall</link>
+          module option default value has been changed from
+          <literal>true</literal> to <literal>false</literal>. You will
+          need to explicitely set this option to
+          <literal>true</literal>, or configure your firewall.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The
+          <link linkend="opt-services.tmate-ssh-server.openFirewall">services.tmate-ssh-server.openFirewall</link>
+          module option default value has been changed from
+          <literal>true</literal> to <literal>false</literal>. You will
+          need to explicitely set this option to
+          <literal>true</literal>, or configure your firewall.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The
+          <link linkend="opt-services.unifi-video.openFirewall">services.unifi-video.openFirewall</link>
+          module option default value has been changed from
+          <literal>true</literal> to <literal>false</literal>. You will
+          need to explicitely set this option to
+          <literal>true</literal>, or configure your firewall.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The EC2 image module previously detected and automatically
           mounted ext3-formatted instance store devices and partitions
           in stage-1 (initramfs), storing <literal>/tmp</literal> on the
@@ -88,6 +128,15 @@
           swap-formatted instance store devices and partitions in
           stage-1 (initramfs). This behaviour has been removed. Users
           relying on this should provide their own implementation.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Qt 5.12 and 5.14 have been removed, as the corresponding
+          branches have been EOL upstream for a long time. This affected
+          under 10 packages in nixpkgs, largely unmaintained upstream as
+          well, however, out-of-tree package expressions may need to be
+          updated manually.
         </para>
       </listitem>
       <listitem>
@@ -112,6 +161,15 @@
       </listitem>
       <listitem>
         <para>
+          <literal>services.mastodon</literal> gained a tootctl wrapped
+          named <literal>mastodon-tootctl</literal> similar to
+          <literal>nextcloud-occ</literal> which can be executed from
+          any user and switches to the configured mastodon user with
+          sudo and sources the environment variables.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           A new <literal>virtualisation.rosetta</literal> module was
           added to allow running <literal>x86_64</literal> binaries
           through
@@ -128,6 +186,13 @@
           Resilio sync secret keys can now be provided using a secrets
           file at runtime, preventing these secrets from ending up in
           the Nix store.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <literal>unifi-poller</literal> package and corresponding
+          NixOS module have been renamed to <literal>unpoller</literal>
+          to match upstream.
         </para>
       </listitem>
     </itemizedlist>

@@ -3646,6 +3646,15 @@
     githubId = 126339;
     name = "Domen Kozar";
   };
+  DomesticMoth = {
+    name = "Andrew";
+    email = "silkmoth@protonmail.com";
+    github = "DomesticMoth";
+    githubId = 91414737;
+    keys = [{
+      fingerprint = "7D6B AE0A A98A FDE9 3396  E721 F87E 15B8 3AA7 3087";
+    }];
+  };
   dominikh = {
     email = "dominik@honnef.co";
     github = "dominikh";
@@ -9433,6 +9442,15 @@
     githubId = 249317;
     name = "montag451";
   };
+  montchr = {
+    name = "Chris Montgomery";
+    email = "chris@cdom.io";
+    github = "montchr";
+    githubId = 1757914;
+    keys = [{
+      fingerprint = "6460 4147 C434 F65E C306  A21F 135E EDD0 F719 34F3";
+    }];
+  };
   moosingin3space = {
     email = "moosingin3space@gmail.com";
     github = "moosingin3space";
@@ -10869,6 +10887,16 @@
       fingerprint = "5D69 CF04 B7BC 2BC1 A567  9267 00BC F29B 3208 0700";
     }];
   };
+  phdcybersec = {
+    name = "Léo Lavaur";
+    email = "phdcybersec@pm.me";
+
+    github = "phdcybersec";
+    githubId = 82591009;
+    keys = [{
+      fingerprint = "7756 E88F 3C6A 47A5 C5F0  CDFB AB54 6777 F93E 20BF";
+    }];
+  };
   phfroidmont = {
     name = "Paul-Henri Froidmont";
     email = "nix.contact-j9dw4d@froidmont.org";
@@ -11975,6 +12003,12 @@
     github = "roconnor";
     githubId = 852967;
     name = "Russell O'Connor";
+  };
+  rodrgz = {
+    email = "rodrgz@proton.me";
+    github = "rodrgz";
+    githubId = 53882428;
+    name = "Erik Rodriguez";
   };
   roelvandijk = {
     email = "roel@lambdacube.nl";
@@ -14093,6 +14127,12 @@
     githubId = 8794235;
     name = "Tom Siewert";
   };
+  tonyshkurenko = {
+    email = "support@twingate.com";
+    github = "tonyshkurenko";
+    githubId = 8597964;
+    name = "Anton Shkurenko";
+  };
   toonn = {
     email = "nixpkgs@toonn.io";
     matrix = "@toonn:matrix.org";
@@ -16017,5 +16057,11 @@
     email = "wuyoli@tilde.team";
     github = "wuyoli";
     githubId = 104238274;
+  };
+  ziguana = {
+    name = "Zig Uana";
+    email = "git@ziguana.dev";
+    github = "ziguana";
+    githubId = 45833444;
   };
 }

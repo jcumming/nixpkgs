@@ -389,7 +389,7 @@ let
       substituteInPlace Build.PL \
         --replace "gtk+-2.0" "gtk+-3.0"
     '';
-    propagatedBuildInputs = [ pkgs.pkg-config pkgs.gtk3 pkgs.wxGTK30-gtk3 ModulePluggable ];
+    propagatedBuildInputs = [ pkgs.pkg-config pkgs.gtk3 pkgs.wxGTK30 ModulePluggable ];
     buildInputs = [ LWPProtocolHttps ];
     meta = {
       description = "Building, finding and using wxWidgets binaries";
@@ -12507,11 +12507,11 @@ let
 
   ImageExifTool = buildPerlPackage rec {
     pname = "Image-ExifTool";
-    version = "12.50";
+    version = "12.51";
 
     src = fetchurl {
       url = "https://exiftool.org/Image-ExifTool-${version}.tar.gz";
-      hash = "sha256-vOhB/FwQMC8PPvdnjDvxRpU6jAZcC6GMQfc0AH4uwKg=";
+      hash = "sha256-76meNQp9c0Z+81gNSMnDTtJmd/qOGu4uqeHsGhTnDkQ=";
     };
 
     nativeBuildInputs = lib.optional stdenv.isDarwin shortenPerlShebang;
