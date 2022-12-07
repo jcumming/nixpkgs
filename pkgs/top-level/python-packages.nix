@@ -3736,18 +3736,19 @@ self: super: with self; {
 
   git-filter-repo = callPackage ../development/python-modules/git-filter-repo { };
 
-  gitdb = callPackage ../development/python-modules/gitdb { };
+  git-revise = callPackage ../development/python-modules/git-revise { };
 
-  github3_py = callPackage ../development/python-modules/github3_py { };
+  git-sweep = callPackage ../development/python-modules/git-sweep { };
+
+  gitdb = callPackage ../development/python-modules/gitdb { };
 
   github-to-sqlite = callPackage ../development/python-modules/github-to-sqlite { };
 
   github-webhook = callPackage ../development/python-modules/github-webhook { };
-  GitPython = callPackage ../development/python-modules/GitPython { };
 
-  git-revise = callPackage ../development/python-modules/git-revise { };
+  github3_py = callPackage ../development/python-modules/github3_py { };
 
-  git-sweep = callPackage ../development/python-modules/git-sweep { };
+  gitpython = callPackage ../development/python-modules/gitpython { };
 
   glad =  callPackage ../development/python-modules/glad { };
 
@@ -7818,8 +7819,6 @@ self: super: with self; {
   pyexcel-ods = callPackage ../development/python-modules/pyexcel-ods { };
 
   pyexcel-xls = callPackage ../development/python-modules/pyexcel-xls { };
-
-  pyext = callPackage ../development/python-modules/pyext { };
 
   pyezviz = callPackage ../development/python-modules/pyezviz { };
 
@@ -12047,7 +12046,7 @@ self: super: with self; {
 
   wxPython_4_0 = callPackage ../development/python-modules/wxPython/4.0.nix {
     inherit (pkgs.darwin.apple_sdk.frameworks) AudioToolbox Carbon Cocoa CoreFoundation IOKit OpenGL;
-    wxGTK = pkgs.wxGTK30-gtk3.override {
+    wxGTK = pkgs.wxGTK30.override {
       withWebKit = true;
     };
   };
