@@ -79,8 +79,8 @@ in {
               {
                 options = {
                   port = mkOption {
-                    type = types.int;
-                    description = lib.mdDoc "port to listen on";
+                    type = types.port;
+                    description = lib.mdDoc "TCP port that will be used to accept client connections.";
                   };
                   ip = mkOption {
                     type = types.str;
