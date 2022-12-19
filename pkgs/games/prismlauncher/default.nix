@@ -43,7 +43,7 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-Kwj1GvlT12jRcf84WMSnD4xkgGL3X9AVqdGDCxMmS4E=";
   };
 
-  nativeBuildInputs = [ extra-cmake-modules cmake file jdk wrapQtAppsHook ];
+  nativeBuildInputs = [ extra-cmake-modules cmake file jdk17 wrapQtAppsHook ];
   buildInputs = [
     qtbase
     qtsvg
