@@ -3,7 +3,7 @@
 , fetchFromGitHub
 , cmake
 , jdk8
-, jdk
+, jdk17
 , zlib
 , file
 , wrapQtAppsHook
