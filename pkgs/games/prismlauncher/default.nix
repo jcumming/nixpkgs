@@ -20,7 +20,7 @@
 , tomlplusplus
 , ghc_filesystem
 , msaClientID ? ""
-, jdks ? [ jdk jdk8 ]
+, jdks ? [ jdk17 jdk8 ]
 }:
 
 let
