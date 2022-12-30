@@ -8,6 +8,13 @@ let
   cfg = config.services.xserver;
   xorg = pkgs.xorg;
 
+  # like mkEnableOption, but with opposite default
+  mkEmitSection = msg: mkOption {
+    type = types.bool;
+    default = true;
+    example = false;
+    description = lib.mdDoc "Whether to emit ${msg} section from the automatically generated  X server config. This is useful if the section will be added by services.xserver.extraConfig.";
+  };
 
   # Map video driver names to driver packages. FIXME: move into card-specific modules.
   knownVideoDrivers = {
@@ -194,6 +201,14 @@ in
           Whether to symlink the X server configuration under
           {file}`/etc/X11/xorg.conf`.
         '';
+      };
+
+      generateConfigSection = {
+        ServerFlags = mkEmitSection "ServerFlags";
+        Module = mkEmitSection "Module";
+        Monitor = mkEmitSection "Monitor";
+        InputClass = mkEmitSection "InputClass";
+        ServerLayout = mkEmitSection "ServerLayout";
       };
 
       enableTCP = mkOption {
@@ -755,30 +770,40 @@ in
     '');
 
     services.xserver.config =
-      ''
+    let
+      sections = cfg.generateConfigSection;
+
+      ServerFlags = if sections.ServerFlags then ''
         Section "ServerFlags"
           Option "AllowMouseOpenFail" "on"
           Option "DontZap" "${if cfg.enableCtrlAltBackspace then "off" else "on"}"
         ${indent cfg.serverFlagsSection}
         EndSection
+      '' else "";
 
+      Module = if sections.Module then ''
         Section "Module"
         ${indent cfg.moduleSection}
         EndSection
+      '' else "";
 
+      Monitor = if sections.Monitor then ''
         Section "Monitor"
           Identifier "Monitor[0]"
         ${indent cfg.monitorSection}
         EndSection
+      '' else "";
 
+      InputClass = if sections.InputClass then ''
         # Additional "InputClass" sections
         ${flip (concatMapStringsSep "\n") cfg.inputClassSections (inputClassSection: ''
           Section "InputClass"
           ${indent inputClassSection}
           EndSection
         '')}
+      '' else "";
 
-
+      serverLayout = if sections.ServerLayout then ''
         Section "ServerLayout"
           Identifier "Layout[all]"
         ${indent cfg.serverLayoutSection}
@@ -843,11 +868,15 @@ in
             EndSection
           ''}
         '')}
-
-        ${xrandrMonitorSections}
-
-        ${cfg.extraConfig}
-      '';
+      '' else "";
+    in
+      ServerFlags
+      + Module
+      + Monitor
+      + InputClass
+      + serverLayout
+      + xrandrMonitorSections
+      + cfg.extraConfig;
 
     fonts.enableDefaultFonts = mkDefault true;
 
