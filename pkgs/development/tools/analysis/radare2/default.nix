@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, fetchpatch
 , buildPackages
 , pkg-config
 , meson
@@ -55,6 +56,19 @@ stdenv.mkDerivation rec {
     rev = version;
     hash = "sha256-9bDwtMNru7tG0L735y+Vrcg7Htk/TV9SVZn7WP4Ap4c=";
   };
+
+  patches = [
+    (fetchpatch {
+      name = "CVE-2022-4843.patch";
+      url = "https://github.com/radareorg/radare2/commit/842f809d4ec6a12af2906f948657281c9ebc8a24.patch";
+      sha256 = "sha256-asEXW9Ox48w9WQhOA9tleXIvynIjsWb6ItKmFTojgbQ=";
+    })
+    (fetchpatch {
+      name = "CVE-2023-0302.patch";
+      url = "https://github.com/radareorg/radare2/commit/961f0e723903011d4f54c2396e44efa91fcc74ce.patch";
+      hash = "sha256-QinRQDIY4p3P+M3Hh9w3Dv3N/2XTaf3N0nUluHPpAvg=";
+    })
+  ];
 
   preBuild = ''
     pushd ../libr/arch/p/arm/v35arm64

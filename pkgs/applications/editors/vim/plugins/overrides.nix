@@ -711,6 +711,13 @@ self: super: {
 
   inherit parinfer-rust;
 
+  playground = super.playground.overrideAttrs (old: {
+    dependencies = with self; [
+      # we need the 'query' grammer to make
+      (nvim-treesitter.withPlugins (p: [ p.query ]))
+    ];
+  });
+
   plenary-nvim = super.plenary-nvim.overrideAttrs (old: {
     postPatch = ''
       sed -Ei lua/plenary/curl.lua \
@@ -1045,7 +1052,7 @@ self: super: {
             libiconv
           ];
 
-          cargoSha256 = "sha256-MzacdTuCaBIAyWxH+Uza1KToGZgGPcwMCe5JtQ+68/M=";
+          cargoSha256 = "sha256-ls4WZQees78SNJilXoL3CSXAaILxX1/WUMCyO7+14IM=";
         };
       in
       ''

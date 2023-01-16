@@ -4,22 +4,24 @@
 , pkg-config
 , openssl
 , stdenv
+, darwin
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "cargo-public-api";
-  version = "0.24.1";
+  version = "0.27.0";
 
   src = fetchCrate {
     inherit pname version;
-    sha256 = "sha256-xXwJ6MXnSgqIQ5IuqfDm/TUXgkppKCPG3TB7veza/H8=";
+    sha256 = "sha256-NpOufmqaNsJeWv0I0PYRMs60rvWnUA3CrwsJ9U/t8Ps=";
   };
 
-  cargoSha256 = "sha256-1sSvK8oZspIxDcMAl2MyAQzuijAxj1kpiZf1QwwyYDs=";
+  cargoSha256 = "sha256-eFCqUV5P4QSvxqCjj4Esb/E0PosU5wJK31O92pRt1XA=";
 
   nativeBuildInputs = [ pkg-config ];
 
-  buildInputs = [ openssl ];
+  buildInputs = [ openssl ]
+    ++ lib.optionals stdenv.isDarwin [ darwin.apple_sdk.frameworks.Security ];
 
   # Tests fail
   doCheck = false;

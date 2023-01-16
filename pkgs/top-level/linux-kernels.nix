@@ -151,6 +151,14 @@ in {
       ];
     };
 
+    linux_rt_5_15 = callPackage ../os-specific/linux/kernel/linux-rt-5.15.nix {
+      kernelPatches = [
+        kernelPatches.bridge_stp_helper
+        kernelPatches.request_key_helper
+        kernelPatches.export-rt-sched-migrate
+      ];
+    };
+
     linux_5_17 = throw "linux 5.17 was removed because it has reached its end of life upstream";
 
     linux_5_18 = throw "linux 5.18 was removed because it has reached its end of life upstream";
@@ -241,6 +249,7 @@ in {
     linux_5_18_hardened = throw "linux 5.18 was removed because it has reached its end of life upstream";
     linux_5_19_hardened = throw "linux 5.19 was removed because it has reached its end of life upstream";
     linux_6_0_hardened = hardenedKernelFor kernels.linux_6_0 { };
+    linux_6_1_hardened = hardenedKernelFor kernels.linux_6_1 { };
 
   }));
   /*  Linux kernel modules are inherently tied to a specific kernel.  So
@@ -534,6 +543,7 @@ in {
      # realtime kernel packages
      linux_rt_5_4 = packagesFor kernels.linux_rt_5_4;
      linux_rt_5_10 = packagesFor kernels.linux_rt_5_10;
+     linux_rt_5_15 = packagesFor kernels.linux_rt_5_15;
   };
 
   rpiPackages = {
@@ -568,6 +578,7 @@ in {
     linux_5_18_hardened = throw "linux 5.18 was removed because it has reached its end of life upstream";
     linux_5_19_hardened = throw "linux 5.19 was removed because it has reached its end of life upstream";
     linux_6_0_hardened = recurseIntoAttrs (hardenedPackagesFor kernels.linux_6_0 { });
+    linux_6_1_hardened = recurseIntoAttrs (hardenedPackagesFor kernels.linux_6_1 { });
 
     linux_zen = recurseIntoAttrs (packagesFor kernels.linux_zen);
     linux_lqx = recurseIntoAttrs (packagesFor kernels.linux_lqx);
