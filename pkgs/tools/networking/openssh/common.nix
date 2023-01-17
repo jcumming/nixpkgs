@@ -145,9 +145,7 @@ stdenv.mkDerivation rec {
   # integration tests hard to get working on darwin with its shaky
   # sandbox
   # t-exec tests fail on musl
-  checkTarget = optional (!stdenv.isDarwin && !stdenv.hostPlatform.isMusl) "t-exec"
-    # other tests are less demanding of the environment
-    ++ [ "unit" "file-tests" "interop-tests" ];
+  checkTarget = [ "unit" "file-tests" "interop-tests" ];
 
   postInstall = ''
     # Install ssh-copy-id, it's very useful.
