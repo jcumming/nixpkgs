@@ -389,6 +389,7 @@ in {
   memcached = handleTest ./memcached.nix {};
   merecat = handleTest ./merecat.nix {};
   metabase = handleTest ./metabase.nix {};
+  mindustry = handleTest ./mindustry.nix {};
   minecraft = handleTest ./minecraft.nix {};
   minecraft-server = handleTest ./minecraft-server.nix {};
   minidlna = handleTest ./minidlna.nix {};
@@ -618,6 +619,7 @@ in {
   strongswan-swanctl = handleTest ./strongswan-swanctl.nix {};
   stunnel = handleTest ./stunnel.nix {};
   sudo = handleTest ./sudo.nix {};
+  swap-file-btrfs = handleTest ./swap-file-btrfs.nix {};
   swap-partition = handleTest ./swap-partition.nix {};
   sway = handleTest ./sway.nix {};
   switchTest = handleTest ./switch-test.nix {};

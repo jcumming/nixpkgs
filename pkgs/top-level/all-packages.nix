@@ -1350,6 +1350,8 @@ with pkgs;
 
   clematis = callPackage ../tools/misc/clematis { };
 
+  colorless = callPackage ../tools/misc/colorless { };
+
   cope = callPackage ../tools/misc/cope { };
 
   ejson2env = callPackage ../tools/admin/ejson2env { };
@@ -3031,11 +3033,6 @@ with pkgs;
 
   dpt-rp1-py = callPackage ../tools/misc/dpt-rp1-py { };
 
-  dot-http = callPackage ../development/tools/dot-http {
-    openssl = openssl_1_1;
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   doona = callPackage ../tools/security/doona { };
 
   dotter = callPackage ../tools/misc/dotter {
@@ -3349,6 +3346,8 @@ with pkgs;
   };
 
   kjv = callPackage ../applications/misc/kjv { };
+
+  lukesmithxyz-bible-kjv = callPackage ../applications/misc/lukesmithxyz-bible/kjv.nix { };
 
   luigi = callPackage ../applications/networking/cluster/luigi { };
 
@@ -6219,6 +6218,12 @@ with pkgs;
   cudaPackages_11_7 = callPackage ./cuda-packages.nix { cudaVersion = "11.7"; };
   cudaPackages_11_8 = callPackage ./cuda-packages.nix { cudaVersion = "11.8"; };
   cudaPackages_11 = cudaPackages_11_7;
+
+  cudaPackages_12_0 = callPackage ./cuda-packages.nix { cudaVersion = "12.0"; };
+  cudaPackages_12 = cudaPackages_12_0;
+
+  # TODO: try upgrading once there is a cuDNN release supporting CUDA 12. No
+  # such cuDNN release as of 2023-01-10.
   cudaPackages = recurseIntoAttrs cudaPackages_11;
 
   # TODO: move to alias
@@ -12450,7 +12455,7 @@ with pkgs;
 
   toxvpn = callPackage ../tools/networking/toxvpn { };
 
-  toybox = callPackage ../tools/misc/toybox { };
+  toybox = darwin.apple_sdk_11_0.callPackage ../tools/misc/toybox { };
 
   trackma = callPackage ../tools/misc/trackma { };
 
@@ -23999,9 +24004,7 @@ with pkgs;
 
   codeowners = callPackage ../development/tools/codeowners { };
 
-  couchdb3 = callPackage ../servers/http/couchdb/3.nix {
-    erlang = buildPackages.erlangR22;
-  };
+  couchdb3 = callPackage ../servers/http/couchdb/3.nix { };
 
   dcnnt = python3Packages.callPackage ../servers/dcnnt { };
 
@@ -24063,7 +24066,7 @@ with pkgs;
   etcd_3_4 = callPackage ../servers/etcd/3.4.nix { };
   etcd_3_5 = callPackage ../servers/etcd/3.5.nix { };
 
-  ejabberd = callPackage ../servers/xmpp/ejabberd { };
+  ejabberd = callPackage ../servers/xmpp/ejabberd { erlang = erlangR24; };
 
   exhibitor = callPackage ../servers/exhibitor { };
 
@@ -25984,6 +25987,8 @@ with pkgs;
   gotags = callPackage ../development/tools/gotags { };
 
   go-task = callPackage ../development/tools/go-task { };
+
+  golines = callPackage ../development/tools/golines { };
 
   golint = callPackage ../development/tools/golint { };
 
@@ -28529,6 +28534,8 @@ with pkgs;
   doodle = callPackage ../applications/search/doodle { };
 
   dr14_tmeter = callPackage ../applications/audio/dr14_tmeter { };
+
+  dracut = callPackage ../os-specific/linux/dracut { };
 
   dragonflydb = callPackage ../servers/nosql/dragonflydb { };
 
@@ -32459,6 +32466,8 @@ with pkgs;
 
   synology-cloud-sync-decryption-tool = callPackage ../applications/networking/synology-cloud-sync-decryption-tool { };
 
+  litemdview = callPackage ../applications/graphics/litemdview { };
+
   maestral = with python3Packages; toPythonApplication maestral;
 
   maestral-gui = libsForQt5.callPackage ../applications/networking/maestral-qt { };
@@ -33060,9 +33069,7 @@ with pkgs;
 
   uhhyou.lv2 = callPackage ../applications/audio/uhhyou.lv2 { };
 
-  umurmur = callPackage ../applications/networking/umurmur {
-    openssl = openssl_1_1;
-  };
+  umurmur = callPackage ../applications/networking/umurmur { };
 
   udocker = callPackage ../tools/virtualization/udocker { };
 
@@ -33999,6 +34006,8 @@ with pkgs;
   cgminer = callPackage ../applications/blockchains/cgminer { };
 
   chia = callPackage ../applications/blockchains/chia { };
+
+  chia-dev-tools = callPackage ../applications/blockchains/chia-dev-tools { };
 
   chia-plotter = callPackage ../applications/blockchains/chia-plotter { };
 
@@ -38595,4 +38604,8 @@ with pkgs;
   jfrog-cli = callPackage ../tools/misc/jfrog-cli { };
 
   ov = callPackage ../tools/text/ov { };
+
+  tubekit = callPackage ../applications/networking/cluster/tubekit/wrapper.nix { };
+
+  tubekit-unwrapped = callPackage ../applications/networking/cluster/tubekit { };
 }

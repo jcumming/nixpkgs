@@ -13577,6 +13577,12 @@
     githubId = 16734772;
     name = "Sumner Evans";
   };
+  suominen = {
+    email = "kimmo@suominen.com";
+    github = "suominen";
+    githubId = 1939855;
+    name = "Kimmo Suominen";
+  };
   superbo = {
     email = "supernbo@gmail.com";
     github = "SuperBo";
@@ -16302,6 +16308,15 @@
     githubId = 36118348;
     keys = [{
       fingerprint = "69C9 876B 5797 1B2E 11C5  7C39 80A1 F76F C9F9 54AE";
+    }];
+  };
+  WhiteBlackGoose = {
+    email = "wbg@angouri.org";
+    github = "WhiteBlackGoose";
+    githubId = 31178401;
+    name = "WhiteBlackGoose";
+    keys = [{
+      fingerprint = "640B EDDE 9734 310A BFA3  B257 52ED AE6A 3995 AFAB";
     }];
   };
   wuyoli = {
