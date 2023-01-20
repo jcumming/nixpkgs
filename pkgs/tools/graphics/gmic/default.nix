@@ -25,15 +25,15 @@
 
 stdenv.mkDerivation rec {
   pname = "gmic";
-  version = "3.1.6";
+  version = "3.2.0";
 
   outputs = [ "out" "lib" "dev" "man" ];
 
   src = fetchFromGitHub {
     owner = "dtschump";
     repo = "gmic";
-    rev = "326ea9b7dc320b3624fe660d7b7d81669ca12e6d";
-    sha256 = "RRCzYMN/IXViiUNnacJV3DNpku3hIHQkHbIrtixExT0=";
+    rev = "96f489f03ab6334209d95d4032a55837a53517a8";
+    sha256 = "sha256-lrIlzxXWqv046G5uRkBQnjvysaIcv+iDKxjuUEJWqcs=";
   };
 
   # TODO: build this from source
