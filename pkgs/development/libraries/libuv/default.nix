@@ -42,8 +42,6 @@ stdenv.mkDerivation rec {
         "fs_event_watch_dir_recursive" "fs_event_watch_file"
         "fs_event_watch_file_current_dir" "fs_event_watch_file_exact_path"
         "process_priority" "udp_create_early_bad_bind"
-        # XXX
-        "tcp_bind_error_addrinuse_connect"
     ] ++ lib.optionals stdenv.isAarch32 [
       # I observe this test failing with some regularity on ARMv7:
       # https://github.com/libuv/libuv/issues/1871
