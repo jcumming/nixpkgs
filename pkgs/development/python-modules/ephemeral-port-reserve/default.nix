@@ -24,8 +24,8 @@ buildPythonPackage {
     pytestCheckHook
   ];
 
-  disabledTests = [
-    "test_localhost"
+  disabledTests = lib.optionals stdenv.isDarwin [
+    # can't find hostname in our darwin build environment
     "test_fqdn"
   ];
 
