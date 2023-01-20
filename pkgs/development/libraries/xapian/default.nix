@@ -25,7 +25,7 @@ let
     buildInputs = [ libuuid zlib ];
     nativeBuildInputs = [ autoreconfHook ];
 
-    doCheck = false; # XXX: binding TCP isn't working (!!!)
+    doCheck = true;
     env.AUTOMATED_TESTING = true; # https://trac.xapian.org/changeset/8be35f5e1/git
 
     patches = lib.optionals stdenv.isDarwin [ ./skip-flaky-darwin-test.patch ];
