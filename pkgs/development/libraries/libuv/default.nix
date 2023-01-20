@@ -21,8 +21,6 @@ stdenv.mkDerivation rec {
       "get_passwd" # passed on NixOS but failed on other Linuxes
       "tcp_writealot" "udp_multicast_join" "udp_multicast_join6" # times out sometimes
       "fs_fstat" # https://github.com/libuv/libuv/issues/2235#issuecomment-1012086927
-       # XXX
-      "tcp_bind_error_addrinuse_connect" "tcp_bind6_error_addrinuse" "tcp_bind_error_addrinuse_listen"
     ] ++ lib.optionals stdenv.isDarwin [
         # Sometimes: timeout (no output), failed uv_listen. Someone
         # should report these failures to libuv team. There tests should
@@ -44,6 +42,8 @@ stdenv.mkDerivation rec {
         "fs_event_watch_dir_recursive" "fs_event_watch_file"
         "fs_event_watch_file_current_dir" "fs_event_watch_file_exact_path"
         "process_priority" "udp_create_early_bad_bind"
+        # XXX
+        "tcp_bind_error_addrinuse_connect"
     ] ++ lib.optionals stdenv.isAarch32 [
       # I observe this test failing with some regularity on ARMv7:
       # https://github.com/libuv/libuv/issues/1871
