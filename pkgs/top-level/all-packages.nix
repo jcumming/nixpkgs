@@ -20694,7 +20694,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) OpenGL;
   };
 
-  libdevil-nox = libdevil.override {
+  libdevil-nox = callPackage ../development/libraries/libdevil {
     inherit (darwin.apple_sdk.frameworks) OpenGL;
     withXorg = false;
   };
@@ -37486,7 +37486,9 @@ with pkgs;
 
   dnadd = callPackage ../tools/nix/dnadd { };
 
-  nix-eval-jobs = callPackage ../tools/package-management/nix-eval-jobs { };
+  nix-eval-jobs = callPackage ../tools/package-management/nix-eval-jobs {
+    nix = nixVersions.nix_2_12; # fails to build with 2.13
+  };
 
   nix-doc = callPackage ../tools/package-management/nix-doc { };
 
