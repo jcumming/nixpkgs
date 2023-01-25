@@ -1212,6 +1212,8 @@ self: super: with self; {
 
   bellows = callPackage ../development/python-modules/bellows { };
 
+  bencoder = callPackage ../development/python-modules/bencoder { };
+
   beniget = callPackage ../development/python-modules/beniget { };
 
   bespon = callPackage ../development/python-modules/bespon { };
@@ -4801,9 +4803,6 @@ self: super: with self; {
 
   jaxlib-build = callPackage ../development/python-modules/jaxlib rec {
     inherit (pkgs.darwin) cctools;
-    buildBazelPackage = pkgs.buildBazelPackage.override {
-      stdenv = if stdenv.isDarwin then pkgs.darwin.apple_sdk_11_0.stdenv else stdenv;
-    };
     # Some platforms don't have `cudaSupport` defined, hence the need for 'or false'.
     cudaSupport = pkgs.config.cudaSupport or false;
     IOKit = pkgs.darwin.apple_sdk_11_0.IOKit;
