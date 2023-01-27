@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "maestro";
-  version = "1.19.5";
+  version = "1.21.0";
 
   src = fetchurl {
     url = "https://github.com/mobile-dev-inc/maestro/releases/download/cli-${version}/maestro.zip";
-    sha256 = "1chrfwpxbnbn6k6ciwbflz1b8d7sd3r945m5g2d9gz1r1nn6d4v1";
+    sha256 = "13b2ykphc7szdanlkk34agf7p0lx78mavk5pjfls48d1k5hllslc";
   };
 
   dontUnpack = true;

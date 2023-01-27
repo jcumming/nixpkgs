@@ -2381,6 +2381,8 @@ self: super: with self; {
 
   dicom2nifti = callPackage ../development/python-modules/dicom2nifti { };
 
+  dicom-numpy = callPackage ../development/python-modules/dicom-numpy { };
+
   dict2xml = callPackage ../development/python-modules/dict2xml { };
 
   dictdiffer = callPackage ../development/python-modules/dictdiffer { };
@@ -5538,6 +5540,8 @@ self: super: with self; {
 
   lsassy = callPackage ../development/python-modules/lsassy { };
 
+  lsprotocol = callPackage ../development/python-modules/lsprotocol { };
+
   luddite = callPackage ../development/python-modules/luddite { };
 
   ludios_wpull = callPackage ../development/python-modules/ludios_wpull { };
@@ -6159,6 +6163,8 @@ self: super: with self; {
   nanoleaf = callPackage ../development/python-modules/nanoleaf { };
 
   nomadnet = callPackage ../development/python-modules/nomadnet { };
+
+  nox = callPackage ../development/python-modules/nox { };
 
   nanomsg-python = callPackage ../development/python-modules/nanomsg-python {
     inherit (pkgs) nanomsg;
@@ -8896,6 +8902,8 @@ self: super: with self; {
 
   pytenable = callPackage ../development/python-modules/pytenable { };
 
+  pytensor = callPackage ../development/python-modules/pytensor { };
+
   pytelegrambotapi = callPackage ../development/python-modules/pyTelegramBotAPI { };
 
   pytesseract = callPackage ../development/python-modules/pytesseract { };
@@ -10505,6 +10513,8 @@ self: super: with self; {
   sip = callPackage ../development/python-modules/sip { };
 
   sip_4 = callPackage ../development/python-modules/sip/4.x.nix { };
+
+  siuba = callPackage ../development/python-modules/siuba { };
 
   six = callPackage ../development/python-modules/six { };
 

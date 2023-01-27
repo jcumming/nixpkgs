@@ -296,6 +296,14 @@
       </listitem>
       <listitem>
         <para>
+          <literal>tut</literal> has been updated from 1.0.34 to 2.0.0,
+          and now uses the TOML format for the configuration file
+          instead of INI. Additional information can be found
+          <link xlink:href="https://github.com/RasmusLindroth/tut/releases/tag/2.0.0">here</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>llvmPackages_rocm.llvm</literal> will not contain
           <literal>clang</literal> or <literal>compiler-rt</literal>.
           <literal>llvmPackages_rocm.clang</literal> will not contain
@@ -513,6 +521,17 @@
       </listitem>
       <listitem>
         <para>
+          The <literal>ghcWithPackages</literal> and
+          <literal>ghcWithHoogle</literal> wrappers will now also
+          symlink GHC’s and all included libraries’ documentation to
+          <literal>$out/share/doc</literal> for convenience. If
+          undesired, the old behavior can be restored by overriding the
+          builders with
+          <literal>{ installDocumentation = false; }</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>mastodon</literal> now supports connection to a
           remote <literal>PostgreSQL</literal> database.
         </para>
@@ -726,6 +745,15 @@
           The option
           <literal>services.nomad.extraSettingsPlugins</literal> has
           been fixed to allow more than one plugin in the path.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          A new option was added to the virtualisation module that
+          enables specifying explicitly named network interfaces in QEMU
+          VMs. The existing <literal>virtualisation.vlans</literal> is
+          still supported for cases where the name of the network
+          interface is irrelevant.
         </para>
       </listitem>
     </itemizedlist>
