@@ -6779,8 +6779,6 @@ self: super: with self; {
 
   packvers = callPackage ../development/python-modules/packvers { };
 
-  pafy = callPackage ../development/python-modules/pafy { };
-
   pagelabels = callPackage ../development/python-modules/pagelabels { };
 
   paho-mqtt = callPackage ../development/python-modules/paho-mqtt { };
@@ -10189,6 +10187,8 @@ self: super: with self; {
 
   safe = callPackage ../development/python-modules/safe { };
 
+  safe-pysha3 = callPackage ../development/python-modules/safe-pysha3 { };
+
   safeio = callPackage ../development/python-modules/safeio { };
 
   safety = callPackage ../development/python-modules/safety { };
@@ -11886,6 +11886,8 @@ self: super: with self; {
   uproot = callPackage ../development/python-modules/uproot { };
 
   uptime = callPackage ../development/python-modules/uptime { };
+
+  uptime-kuma-api = callPackage ../development/python-modules/uptime-kuma-api { };
 
   uptime-kuma-monitor = callPackage ../development/python-modules/uptime-kuma-monitor { };
 

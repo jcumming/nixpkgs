@@ -329,7 +329,7 @@ in
   );
 
   meta = {
-    doc = ./exporters.xml;
+    doc = ./exporters.md;
     maintainers = [ maintainers.willibutz ];
   };
 }
