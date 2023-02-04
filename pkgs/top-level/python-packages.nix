@@ -120,6 +120,8 @@ self: super: with self; {
 
   aio-georss-gdacs = callPackage ../development/python-modules/aio-georss-gdacs { };
 
+  aio-pika = callPackage ../development/python-modules/aio-pika { };
+
   aioairzone = callPackage ../development/python-modules/aioairzone { };
 
   aioairq = callPackage ../development/python-modules/aioairq { };
@@ -299,6 +301,8 @@ self: super: with self; {
   aioresponses = callPackage ../development/python-modules/aioresponses { };
 
   aioridwell = callPackage ../development/python-modules/aioridwell { };
+
+  aiormq = callPackage ../development/python-modules/aiormq { };
 
   aiorpcx = callPackage ../development/python-modules/aiorpcx { };
 
@@ -5255,6 +5259,10 @@ self: super: with self; {
     inherit (pkgs.darwin.apple_sdk.frameworks) AppKit;
   };
 
+  leidenalg = callPackage ../development/python-modules/leidenalg {
+    igraph-c = pkgs.igraph;
+  };
+
   lektor = callPackage ../development/python-modules/lektor { };
 
   leveldb = callPackage ../development/python-modules/leveldb { };
@@ -6971,6 +6979,8 @@ self: super: with self; {
 
   peewee = callPackage ../development/python-modules/peewee { };
 
+  peewee-migrate = callPackage ../development/python-modules/peewee-migrate { };
+
   pefile = callPackage ../development/python-modules/pefile { };
 
   pelican = callPackage ../development/python-modules/pelican {
@@ -8616,6 +8626,8 @@ self: super: with self; {
 
   pyqvrpro = callPackage ../development/python-modules/pyqvrpro { };
 
+  pyqwikswitch = callPackage ../development/python-modules/pyqwikswitch { };
+
   pyrabbit2 = callPackage ../development/python-modules/pyrabbit2 { };
 
   pyrad = callPackage ../development/python-modules/pyrad { };
@@ -9720,6 +9732,8 @@ self: super: with self; {
   qnap-qsw = callPackage ../development/python-modules/qnap-qsw{ };
 
   qnapstats = callPackage ../development/python-modules/qnapstats { };
+
+  qpageview = callPackage ../development/python-modules/qpageview { };
 
   qrcode = callPackage ../development/python-modules/qrcode { };
 

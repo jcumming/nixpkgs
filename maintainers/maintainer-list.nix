@@ -2325,6 +2325,12 @@
     githubId = 3212452;
     name = "Cameron Nemo";
   };
+  camillemndn = {
+    email = "camillemondon@free.fr";
+    github = "camillemndn";
+    githubId = 26444818;
+    name = "Camille M.";
+  };
   campadrenalin = {
     email = "campadrenalin@gmail.com";
     github = "campadrenalin";
@@ -12880,6 +12886,12 @@
     githubId = 6022042;
     name = "Sam Parkinson";
   };
+  samhug = {
+    email = "s@m-h.ug";
+    github = "samhug";
+    githubId = 171470;
+    name = "Sam Hug";
+  };
   samlich = {
     email = "nixos@samli.ch";
     github = "samlich";
@@ -13098,7 +13110,7 @@
     github = "Scrumplex";
     githubId = 11587657;
     keys = [{
-      fingerprint = "AF1F B107 E188 CB97 9A94  FD7F C104 1129 4912 A422";
+      fingerprint = "E173 237A C782 296D 98F5  ADAC E13D FD4B 4712 7951";
     }];
   };
   scubed2 = {
@@ -13845,6 +13857,12 @@
     github = "Steell";
     githubId = 1699155;
     name = "Steve Elliott";
+  };
+  stefanfehrenbach = {
+    email = "stefan.fehrenbach@gmail.com";
+    github = "fehrenbach";
+    githubId = 203168;
+    name = "Stefan Fehrenbach";
   };
   stehessel = {
     email = "stephan@stehessel.de";

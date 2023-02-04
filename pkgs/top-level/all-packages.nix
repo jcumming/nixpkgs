@@ -508,6 +508,8 @@ with pkgs;
 
   frece = callPackage ../development/tools/frece { };
 
+  frink = callPackage ../development/tools/frink { };
+
   frugal = callPackage ../development/tools/frugal { };
 
   glade = callPackage ../development/tools/glade { };
@@ -1601,12 +1603,7 @@ with pkgs;
 
   xpaste = callPackage ../tools/text/xpaste { };
 
-  xrootd = callPackage ../tools/networking/xrootd {
-    fuse =
-      if hostPlatform.isDarwin then osxfuse
-      else if hostPlatform.isLinux then fuse
-      else null;
-  };
+  xrootd = callPackage ../tools/networking/xrootd { };
 
   xtrt = callPackage ../tools/archivers/xtrt { };
 
@@ -1885,11 +1882,6 @@ with pkgs;
   git-stree = callPackage ../applications/version-management/git-stree { };
 
   git-subrepo = callPackage ../applications/version-management/git-subrepo { };
-
-  git-subset = callPackage ../applications/version-management/git-subset {
-    openssl = openssl_1_1;
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
 
   git-subtrac = callPackage ../applications/version-management/git-subtrac { };
 
@@ -2489,6 +2481,8 @@ with pkgs;
   };
 
   sakura = callPackage ../applications/terminal-emulators/sakura { };
+
+  scriv = callPackage ../applications/version-management/scriv { };
 
   st = callPackage ../applications/terminal-emulators/st {
     conf = config.st.conf or null;
@@ -4104,6 +4098,8 @@ with pkgs;
 
   swayr = callPackage ../tools/wayland/swayr { };
 
+  swayrbar = callPackage ../tools/wayland/swayrbar { };
+
   swaysome = callPackage ../tools/wayland/swaysome { };
 
   swayimg = callPackage ../tools/wayland/swayimg { };
@@ -4495,7 +4491,7 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_20;
+    electron = electron_22;
   };
   element-desktop-wayland = writeScriptBin "element-desktop" ''
     #!/bin/sh
@@ -5097,8 +5093,9 @@ with pkgs;
 
   mapcidr = callPackage ../tools/misc/mapcidr { };
 
-  maple-mono = (callPackage ../data/fonts/maple-font { }).Mono-v5;
-  maple-mono-NF = (callPackage ../data/fonts/maple-font { }).Mono-NF-v5;
+  maple-mono = (callPackage ../data/fonts/maple-font { }).Mono;
+  maple-mono-NF = (callPackage ../data/fonts/maple-font { }).NF;
+  maple-mono-SC-NF = (callPackage ../data/fonts/maple-font { }).SC-NF;
 
   marl = callPackage ../development/libraries/marl {};
 
@@ -6811,7 +6808,7 @@ with pkgs;
 
   schildichat-desktop = callPackage ../applications/networking/instant-messengers/schildichat/schildichat-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_20;
+    electron = electron_22;
   };
   schildichat-desktop-wayland = writeScriptBin "schildichat-desktop" ''
     #!/bin/sh
@@ -6994,6 +6991,8 @@ with pkgs;
   embree2 = callPackage ../development/libraries/embree/2.x.nix { };
 
   emborg = python3Packages.callPackage ../development/python-modules/emborg { };
+
+  emblem = callPackage ../applications/graphics/emblem { };
 
   emem = callPackage ../applications/misc/emem { };
 
@@ -9025,6 +9024,8 @@ with pkgs;
   mdbook = callPackage ../tools/text/mdbook {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
+
+  mdbook-emojicodes = callPackage ../tools/text/mdbook-emojicodes { };
 
   mdbook-epub = callPackage ../tools/text/mdbook-epub {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
@@ -12730,7 +12731,6 @@ with pkgs;
 
   tunnelto = callPackage ../tools/networking/tunnelto {
     inherit (darwin.apple_sdk.frameworks) Security;
-    openssl = openssl_1_1;
   };
 
   tuptime = callPackage ../tools/system/tuptime { };
@@ -14842,37 +14842,7 @@ with pkgs;
 
   fsharp = callPackage ../development/compilers/fsharp { };
 
-  fstar = callPackage ../development/compilers/fstar {
-    # Work around while compatibility with ppxlib >= 0.26 is unavailable
-    # Should be removed when a fix is available
-    # See https://github.com/FStarLang/FStar/issues/2681
-    ocamlPackages =
-      ocamlPackages.overrideScope' (self: super: {
-        ppxlib = super.ppxlib.override {
-          version = if lib.versionAtLeast self.ocaml.version "4.07"
-                    then if lib.versionAtLeast self.ocaml.version "4.08"
-                         then "0.24.0" else "0.15.0" else "0.13.0";
-        };
-        ppx_deriving_yojson = super.ppx_deriving_yojson.overrideAttrs (oldAttrs: rec {
-          version = "3.6.1";
-          src = fetchFromGitHub {
-            owner = "ocaml-ppx";
-            repo = "ppx_deriving_yojson";
-            rev = "v${version}";
-            sha256 = "1icz5h6p3pfj7my5gi7wxpflrb8c902dqa17f9w424njilnpyrbk";
-          };
-        });
-        sedlex = super.sedlex.overrideAttrs (oldAttrs: rec {
-          version = "2.5";
-          src = fetchFromGitHub {
-            owner = "ocaml-community";
-            repo = "sedlex";
-            rev = "v${version}";
-            sha256 = "sha256:062a5dvrzvb81l3a9phljrhxfw9nlb61q341q0a6xn65hll3z2wy";
-          };
-        });
-      });
-  };
+  fstar = callPackage ../development/compilers/fstar { };
 
   dotnetPackages = recurseIntoAttrs (callPackage ./dotnet-packages.nix {});
 
@@ -15799,6 +15769,9 @@ with pkgs;
   cargo-msrv = callPackage ../development/tools/rust/cargo-msrv {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
+
+  cargo-ndk = callPackage ../development/tools/rust/cargo-ndk { };
+
   cargo-nextest = callPackage ../development/tools/rust/cargo-nextest {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -15863,11 +15836,6 @@ with pkgs;
 
   convco = callPackage ../development/tools/convco {
     inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
-  devserver = callPackage ../development/tools/rust/devserver {
-    inherit (darwin.apple_sdk.frameworks) CoreServices;
-    openssl = openssl_1_1;
   };
 
   devspace = callPackage ../development/tools/misc/devspace { };
@@ -16611,6 +16579,8 @@ with pkgs;
   pew = callPackage ../development/tools/pew {};
 
   poetry = callPackage ../tools/package-management/poetry { };
+
+  poetryPlugins = recurseIntoAttrs poetry.plugins;
 
   poetry2nix = callPackage ../development/tools/poetry2nix/poetry2nix {
     inherit pkgs lib;
@@ -19259,7 +19229,6 @@ with pkgs;
 
   coinlive = callPackage ../tools/misc/coinlive {
     inherit (darwin.apple_sdk.frameworks) Security;
-    openssl = openssl_1_1;
   };
 
   cointop = callPackage ../applications/misc/cointop { };
@@ -24941,6 +24910,8 @@ with pkgs;
 
   mir = callPackage ../servers/mir { };
 
+  miriway = callPackage ../applications/window-managers/miriway { };
+
   icinga2 = callPackage ../servers/monitoring/icinga2 { };
 
   icinga2-agent = callPackage ../servers/monitoring/icinga2 {
@@ -27401,6 +27372,8 @@ with pkgs;
 
   material-icons = callPackage ../data/fonts/material-icons { };
 
+  material-symbols = callPackage ../data/fonts/material-symbols { };
+
   material-kwin-decoration = libsForQt5.callPackage ../data/themes/material-kwin-decoration { };
 
   meslo-lg = callPackage ../data/fonts/meslo-lg {};
@@ -29202,7 +29175,6 @@ with pkgs;
 
   finalfrontier = callPackage ../applications/science/machine-learning/finalfrontier {
     inherit (darwin.apple_sdk.frameworks) Security;
-    openssl = openssl_1_1;
   };
 
   finalfusion-utils = callPackage ../applications/science/machine-learning/finalfusion-utils {
@@ -30338,11 +30310,6 @@ with pkgs;
   };
 
   avalonia-ilspy = callPackage ../applications/misc/avalonia-ilspy { };
-
-  imag = callPackage ../applications/misc/imag {
-    inherit (darwin.apple_sdk.frameworks) Security;
-    openssl = openssl_1_1;
-  };
 
   image-roll = callPackage ../applications/graphics/image-roll { };
 
@@ -31860,7 +31827,9 @@ with pkgs;
   obs-studio-plugins = recurseIntoAttrs (callPackage ../applications/video/obs-studio/plugins {});
   wrapOBS = callPackage ../applications/video/obs-studio/wrapper.nix {};
 
-  obsidian = callPackage ../applications/misc/obsidian { };
+  obsidian = callPackage ../applications/misc/obsidian {
+    electron = electron_21;
+  };
 
   octoprint = callPackage ../applications/misc/octoprint { };
 
@@ -32232,6 +32201,8 @@ with pkgs;
   };
 
   ponymix = callPackage ../applications/audio/ponymix { };
+
+  pop-launcher = callPackage ../applications/misc/pop-launcher { };
 
   popcorntime = callPackage ../applications/video/popcorntime {};
 
@@ -34550,6 +34521,8 @@ with pkgs;
 
   tessera = callPackage ../applications/blockchains/tessera { };
 
+  ton = callPackage ../applications/blockchains/ton { };
+
   torq = callPackage ../applications/blockchains/torq { };
 
   vertcoin  = libsForQt5.callPackage ../applications/blockchains/vertcoin {
@@ -35763,6 +35736,10 @@ with pkgs;
 
   voxelands = callPackage ../games/voxelands {
     libpng = libpng12;
+  };
+
+  vvvvvv = callPackage ../games/vvvvvv {
+    inherit (darwin.apple_sdk.frameworks) Foundation IOKit;
   };
 
   wargus = callPackage ../games/wargus { };
