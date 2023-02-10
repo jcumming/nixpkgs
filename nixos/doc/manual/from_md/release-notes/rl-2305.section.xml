@@ -116,8 +116,8 @@
       <listitem>
         <para>
           <link xlink:href="https://dm3mat.darc.de/qdmr/">QDMR</link>, a
-          gui application and command line tool for programming cheap
-          DMR radios
+          GUI application and command line tool for programming DMR
+          radios
           <link linkend="opt-programs.qdmr.enable">programs.qdmr</link>
         </para>
       </listitem>
@@ -150,6 +150,15 @@
           <link xlink:href="https://github.com/languitar/autosuspend">autosuspend</link>,
           a python daemon that suspends a system if certain conditions
           are met, or not met.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://github.com/parvardegr/sharing">sharing</link>,
+          a command-line tool to share directories and files from the
+          CLI to iOS and Android devices without the need of an extra
+          client app. Available as
+          <link linkend="opt-programs.sharing.enable">programs.sharing</link>.
         </para>
       </listitem>
     </itemizedlist>
@@ -414,6 +423,16 @@
       </listitem>
       <listitem>
         <para>
+          Nebula now runs as a system user and group created for each
+          nebula network, using the <literal>CAP_NET_ADMIN</literal>
+          ambient capability on launch rather than starting as root.
+          Ensure that any files each Nebula instance needs to access are
+          owned by the correct user and group, by default
+          <literal>nebula-${networkName}</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           In <literal>mastodon</literal> it is now necessary to specify
           location of file with <literal>PostgreSQL</literal> database
           password. In
@@ -503,19 +522,72 @@
         <para>
           A few openssh options have been moved from extraConfig to the
           new freeform option <literal>settings</literal> and renamed as
-          follow:
-          <literal>services.openssh.kbdInteractiveAuthentication</literal>
-          to
-          <literal>services.openssh.settings.KbdInteractiveAuthentication</literal>,
-          <literal>services.openssh.passwordAuthentication</literal> to
-          <literal>services.openssh.settings.PasswordAuthentication</literal>,
-          <literal>services.openssh.useDns</literal> to
-          <literal>services.openssh.settings.UseDns</literal>,
-          <literal>services.openssh.permitRootLogin</literal> to
-          <literal>services.openssh.settings.PermitRootLogin</literal>,
-          <literal>services.openssh.logLevel</literal> to
-          <literal>services.openssh.settings.LogLevel</literal>.
+          follows:
         </para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para>
+              <literal>services.openssh.forwardX11</literal> to
+              <literal>services.openssh.settings.X11Forwarding</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>services.openssh.kbdInteractiveAuthentication</literal>
+              -&gt;
+              <literal>services.openssh.settings.KbdInteractiveAuthentication</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>services.openssh.passwordAuthentication</literal>
+              to
+              <literal>services.openssh.settings.PasswordAuthentication</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>services.openssh.useDns</literal> to
+              <literal>services.openssh.settings.UseDns</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>services.openssh.permitRootLogin</literal> to
+              <literal>services.openssh.settings.PermitRootLogin</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>services.openssh.logLevel</literal> to
+              <literal>services.openssh.settings.LogLevel</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>services.openssh.kexAlgorithms</literal> to
+              <literal>services.openssh.settings.KexAlgorithms</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>services.openssh.macs</literal> to
+              <literal>services.openssh.settings.Macs</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>services.openssh.ciphers</literal> to
+              <literal>services.openssh.settings.Ciphers</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>services.openssh.gatewayPorts</literal> to
+              <literal>services.openssh.settings.GatewayPorts</literal>
+            </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
       <listitem>
         <para>
@@ -796,6 +868,18 @@
       </listitem>
       <listitem>
         <para>
+          Nebula now supports the
+          <literal>services.nebula.networks.&lt;name&gt;.isRelay</literal>
+          and
+          <literal>services.nebula.networks.&lt;name&gt;.relays</literal>
+          configuration options for setting up or allowing traffic
+          relaying. See the
+          <link xlink:href="https://www.defined.net/blog/announcing-relay-support-in-nebula/">announcement</link>
+          for more details about relays.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>hip</literal> has been separated into
           <literal>hip</literal>, <literal>hip-common</literal> and
           <literal>hipcc</literal>.
@@ -832,6 +916,68 @@
       </listitem>
       <listitem>
         <para>
+          <literal>services.xserver.desktopManager.plasma5.phononBackend</literal>
+          now defaults to vlc according to
+          <link xlink:href="https://community.kde.org/Distributions/Packaging_Recommendations#Non-Plasma_packages">upstrean
+          recommendation</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <literal>zramSwap</literal> is now implemented with
+          <literal>zram-generator</literal>, and the option
+          <literal>zramSwap.numDevices</literal> for using ZRAM devices
+          as general purpose ephemeral block devices has been removed.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          As Singularity has renamed to
+          <link xlink:href="https://apptainer.org/news/community-announcement-20211130">Apptainer</link>
+          to distinguish from
+          <link xlink:href="https://sylabs.io/2021/05/singularity-community-edition">an
+          un-renamed fork by Sylabs Inc.</link>, there are now two
+          packages of Singularity/Apptainer:
+        </para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para>
+              <literal>apptainer</literal>: From
+              <literal>github.com/apptainer/apptainer</literal>, which
+              is the new repo after renaming.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>singularity</literal>: From
+              <literal>github.com/sylabs/singularity</literal>, which is
+              the fork by Sylabs Inc..
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para>
+          <literal>programs.singularity</literal> got a new
+          <literal>package</literal> option to specify which package to
+          use.
+        </para>
+        <para>
+          <literal>singularity-tools.buildImage</literal> got a new
+          input argument <literal>singularity</literal> to specify which
+          package to use.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The new option
+          <literal>programs.singularity.enableFakeroot</literal>, if set
+          to <literal>true</literal>, provides
+          <literal>--fakeroot</literal> support for
+          <literal>apptainer</literal> and
+          <literal>singularity</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>unifi-poller</literal> package and corresponding
           NixOS module have been renamed to <literal>unpoller</literal>
           to match upstream.
@@ -860,6 +1006,12 @@
       </listitem>
       <listitem>
         <para>
+          <literal>tvbrowser-bin</literal> was removed, and now
+          <literal>tvbrowser</literal> is built from source.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>nixos-version</literal> now accepts
           <literal>--configuration-revision</literal> to display more
           information about the current generation revision
@@ -870,6 +1022,13 @@
           The option
           <literal>services.nomad.extraSettingsPlugins</literal> has
           been fixed to allow more than one plugin in the path.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The option
+          <literal>services.prometheus.exporters.pihole.interval</literal>
+          does not exist anymore and has been removed.
         </para>
       </listitem>
     </itemizedlist>
