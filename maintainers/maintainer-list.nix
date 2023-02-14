@@ -169,6 +169,12 @@
     githubId = 12578560;
     name = "Quinn Bohner";
   };
+  _9999years = {
+    email = "rbt@fastmail.com";
+    github = "9999years";
+    githubId = 15312184;
+    name = "Rebecca Turner";
+  };
   a1russell = {
     email = "adamlr6+pub@gmail.com";
     github = "a1russell";
@@ -3848,6 +3854,12 @@
     github = "dominikh";
     githubId = 39825;
     name = "Dominik Honnef";
+  };
+  doriath = {
+    email = "tomasz.zurkowski@gmail.com";
+    github = "doriath";
+    githubId = 150959;
+    name = "Tomasz Zurkowski";
   };
   doronbehar = {
     email = "me@doronbehar.com";
@@ -12815,6 +12827,12 @@
     githubId = 5236428;
     name = "Gaëtan André";
   };
+  rvnstn = {
+    email = "github@rvnstn.de";
+    github = "rvnstn";
+    githubId = 2364742;
+    name = "Tobias Ravenstein";
+  };
   rvolosatovs = {
     email = "rvolosatovs@riseup.net";
     github = "rvolosatovs";
@@ -16478,7 +16496,7 @@
     name = "zimbatm";
   };
   Zimmi48 = {
-    email = "theo.zimmermann@univ-paris-diderot.fr";
+    email = "theo.zimmermann@telecom-paris.fr";
     github = "Zimmi48";
     githubId = 1108325;
     name = "Théo Zimmermann";
