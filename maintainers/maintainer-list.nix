@@ -1417,6 +1417,12 @@
     githubId = 12958979;
     name = "Mika Naylor";
   };
+  avakhrenev = {
+    email = "avakhrenev@gmail.com";
+    github = "avakhrenev";
+    githubId = 1060224;
+    name = "Alexey Vakhrenev";
+  };
   avaq = {
     email = "nixpkgs@account.avaq.it";
     github = "Avaq";
@@ -3756,12 +3762,6 @@
     githubId = 14034137;
     name = "Mostly Void";
   };
-  dizfer = {
-    email = "david@izquierdofernandez.com";
-    github = "DIzFer";
-    githubId = 8852888;
-    name = "David Izquierdo";
-  };
   djacu = {
     email = "daniel.n.baker@gmail.com";
     github = "djacu";
@@ -5187,6 +5187,12 @@
     github = "gabesoft";
     githubId = 606000;
     name = "Gabriel Adomnicai";
+  };
+  garaiza-93 = {
+    email = "araizagustavo93@gmail.com";
+    github = "garaiza-93";
+    githubId = 57430880;
+    name = "Gustavo Araiza";
   };
   Gabriel439 = {
     email = "Gabriel439@gmail.com";
@@ -7287,6 +7293,12 @@
     github = "jorsn";
     githubId = 4646725;
   };
+  joshniemela = {
+    name = "Joshua Niemelä";
+    email = "josh@jniemela.dk";
+    github = "joshniemela";
+    githubId = 88747315;
+  };
   joshuafern = {
     name = "Joshua Fern";
     email = "joshuafern@protonmail.com";
@@ -8566,6 +8578,12 @@
     github = "Luis-Hebendanz";
     githubId = 22085373;
     name = "Luis Hebendanz";
+  };
+  luizirber = {
+    email = "nixpkgs@luizirber.org";
+    github = "luizirber";
+    githubId = 6642;
+    name = "Luiz Irber";
   };
   luizribeiro = {
     email = "nixpkgs@l9o.dev";
@@ -10523,6 +10541,12 @@
     github = "nikstur";
     githubId = 61635709;
   };
+  nintron = {
+    email = "nintron@sent.com";
+    github = "Nintron27";
+    githubId = 47835714;
+    name = "Nintron";
+  };
   ngerstle = {
     name = "Nicholas Gerstle";
     email = "ngerstle@gmail.com";
@@ -11304,6 +11328,12 @@
     github = "patternspandemic";
     githubId = 15645854;
     name = "Brad Christensen";
+  };
+  paveloom = {
+    email = "paveloom@riseup.net";
+    github = "paveloom";
+    githubId = 49961859;
+    name = "Pavel Sobolev";
   };
   payas = {
     email = "relekarpayas@gmail.com";
