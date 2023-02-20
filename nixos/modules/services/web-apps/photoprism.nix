@@ -1,155 +1,226 @@
-{ config, pkgs, lib, ... }:
 let
-  cfg = config.services.photoprism;
-
-  env = {
-    PHOTOPRISM_ORIGINALS_PATH = cfg.originalsPath;
-    PHOTOPRISM_STORAGE_PATH = cfg.storagePath;
-    PHOTOPRISM_IMPORT_PATH = cfg.importPath;
-    PHOTOPRISM_HTTP_HOST = cfg.address;
-    PHOTOPRISM_HTTP_PORT = toString cfg.port;
-  } // (
-    lib.mapAttrs (_: toString) cfg.settings
-  );
-
-  manage =
-    let
-      setupEnv = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: val: "export ${name}=${lib.escapeShellArg val}") env);
-    in
-    pkgs.writeShellScript "manage" ''
-      ${setupEnv}
-      exec ${cfg.package}/bin/photoprism "$@"
-    '';
+  defaultSettings = {
+    DEBUG = "true";
+    DETECT_NSFW = "true";
+    EXPERIMENTAL = "true";
+    HTTP_HOST = "127.0.0.1";
+    HTTP_MODE = "release";
+    HTTP_PORT = 2342;
+    JPEG_QUALITY = 92;
+    JPEG_SIZE = 7680;
+    ORIGINALS_LIMIT = 1000000;
+    PUBLIC = "false";
+    READONLY = "false";
+    SETTINGS_HIDDEN = "false";
+    SIDECAR_JSON = "true";
+    SIDECAR_YAML = "true";
+    SITE_CAPTION = "Browse Your Life";
+    SITE_TITLE = "PhotoPrism";
+    SITE_URL = "http://127.0.0.1:2342/";
+    THUMB_FILTER = "linear";
+    THUMB_SIZE = 2048;
+    THUMB_SIZE_UNCACHED = 7680;
+    THUMB_UNCACHED = "true";
+    UPLOAD_NSFW = "true";
+    WORKERS = 16;
+  };
 in
-{
-  meta.maintainers = with lib.maintainers; [ stunkymonkey ];
+  {
+    lib,
+    pkgs,
+    config,
+    ...
+  }: let
+    cfg = config.services.photoprism;
+  in {
+    options = with lib; {
+      services.photoprism = {
+        enable = mkOption {
+          type = types.bool;
+          default = false;
+        };
 
-  options.services.photoprism = {
+        mysql = mkOption {
+          type = types.bool;
+          default = false;
+        };
 
-    enable = lib.mkEnableOption (lib.mdDoc "Photoprism web server");
+        settings = mkOption {
+          type = types.attrs;
+          description = lib.mdDoc ''
+            [Environment variable](https://docs.photoprism.app/getting-started/config-options/) set before executing photoprism.
+            The resultant environment variable will have `PHOTOPRISM_` prepended. (i.e. WORKERS = 8 sets PHOTOPRISM_WORKERS = 8).
+          '';
+          default = defaultSettings;
+        };
 
-    passwordFile = lib.mkOption {
-      type = lib.types.nullOr lib.types.path;
-      default = null;
-      description = lib.mdDoc ''
-        Admin password file.
-      '';
-    };
+        keyFile = mkOption {
+          type = types.bool;
+          default = false;
+          description = ''
+            for sops path
+             sops.secrets.photoprism-password = {
+               owner = "photoprism";
+               sopsFile = ../../secrets/secrets.yaml;
+               path = "/var/lib/photoprism/keyFile";
+             };
+             #PHOTOPRISM_ADMIN_PASSWORD=<yourpassword>
+          '';
+        };
 
-    address = lib.mkOption {
-      type = lib.types.str;
-      default = "localhost";
-      description = lib.mdDoc ''
-        Web interface address.
-      '';
-    };
+        adminPassword = mkOption {
+          type = types.str;
+          default = "photoprism";
+          description = ''
+            Password for admin account. Please use "keyfile" instead. This field will be visible to all users who have access to the store!
+          '';
+        };
 
-    port = lib.mkOption {
-      type = lib.types.port;
-      default = 2342;
-      description = lib.mdDoc ''
-        Web interface port.
-      '';
-    };
+        dataDir = mkOption {
+          type = types.path;
+          default = "/var/lib/photoprism";
+          description = ''
+            Data directory for photoprism
+          '';
+        };
 
-    originalsPath = lib.mkOption {
-      type = lib.types.path;
-      default = null;
-      example = "/data/photos";
-      description = lib.mdDoc ''
-        Storage path of your original media files (photos and videos).
-      '';
-    };
+        originalsDir = mkOption {
+          type = types.path;
+          default = "/var/lib/photoprism";
+          description = ''
+            Original Media directory for photoprism
+          '';
+        };
 
-    importPath = lib.mkOption {
-      type = lib.types.str;
-      default = "import";
-      description = lib.mdDoc ''
-        Relative or absolute to the `originalsPath` from where the files should be imported.
-      '';
-    };
-
-    storagePath = lib.mkOption {
-      type = lib.types.path;
-      default = "/var/lib/photoprism";
-      description = lib.mdDoc ''
-        Location for sidecar, cache, and database files.
-      '';
-    };
-
-    package = lib.mkPackageOptionMD pkgs "photoprism" { };
-
-    settings = lib.mkOption {
-      type = lib.types.attrsOf lib.types.str;
-      default = { };
-      description = lib.mdDoc ''
-        See [the getting-started guide](https://docs.photoprism.app/getting-started/config-options/) for available options.
-      '';
-      example = {
-        PHOTOPRISM_DEFAULT_LOCALE = "de";
-        PHOTOPRISM_ADMIN_USER = "root";
+        package = mkOption {
+          type = types.package;
+          default = self.outputs.packages."${pkgs.system}".photoprism;
+          description = "The photoprism package.";
+        };
       };
     };
-  };
 
-  config = lib.mkIf cfg.enable {
-    systemd.services.photoprism = {
-      description = "Photoprism server";
+    config = with lib;
+      mkIf cfg.enable {
+        users.users.photoprism = {
+          isSystemUser = true;
+          group = "photoprism";
+        };
 
-      serviceConfig = {
-        Restart = "on-failure";
-        User = "photoprism";
-        Group = "photoprism";
-        DynamicUser = true;
-        StateDirectory = "photoprism";
-        WorkingDirectory = "/var/lib/photoprism";
-        RuntimeDirectory = "photoprism";
+        users.groups.photoprism = {};
 
-        LoadCredential = lib.optionalString (cfg.passwordFile != null)
-          "PHOTOPRISM_ADMIN_PASSWORD:${cfg.passwordFile}";
+        services.mysql = mkIf cfg.mysql {
+          enable = true;
+          package = mkDefault pkgs.mysql;
+          ensureDatabases = ["photoprism"];
+          ensureUsers = [
+            {
+              name = "photoprism";
+              ensurePermissions = {"photoprism.*" = "ALL PRIVILEGES";};
+            }
+          ];
+        };
 
-        CapabilityBoundingSet = "";
-        LockPersonality = true;
-        PrivateDevices = true;
-        PrivateUsers = true;
-        ProtectClock = true;
-        ProtectControlGroups = true;
-        ProtectHome = true;
-        ProtectHostname = true;
-        ProtectKernelLogs = true;
-        ProtectKernelModules = true;
-        ProtectKernelTunables = true;
-        RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
-        RestrictNamespaces = true;
-        RestrictRealtime = true;
-        SystemCallArchitectures = "native";
-        SystemCallFilter = [ "@system-service" "~@privileged @setuid @keyring" ];
-        UMask = "0066";
-      } // lib.optionalAttrs (cfg.port < 1024) {
-        AmbientCapabilities = [ "CAP_NET_BIND_SERVICE" ];
-        CapabilityBoundingSet = [ "CAP_NET_BIND_SERVICE" ];
+        systemd.services.photoprism = {
+          enable = true;
+          after =
+            [
+              "network-online.target"
+            ]
+            ++ lib.optional cfg.mysql "mysql.service";
+
+          wantedBy = ["multi-user.target"];
+
+          confinement = {
+            enable = true;
+            binSh = null;
+            packages = [
+              pkgs.darktable
+              pkgs.ffmpeg
+              pkgs.exiftool
+              cfg.package
+              pkgs.cacert
+            ];
+          };
+
+          path = [
+            pkgs.darktable
+            pkgs.ffmpeg
+            pkgs.exiftool
+          ];
+
+          script = ''
+            exec ${cfg.package}/bin/photoprism start
+          '';
+
+          serviceConfig = {
+            User = "photoprism";
+            BindPaths =
+              [
+                cfg.dataDir
+                cfg.originalsDir
+              ]
+              ++ lib.optionals cfg.mysql [
+                "-/run/mysqld"
+                "-/var/run/mysqld"
+              ];
+            RuntimeDirectory = "photoprism";
+            CacheDirectory = "photoprism";
+            StateDirectory = "photoprism";
+            SyslogIdentifier = "photoprism";
+            # Sops secrets PHOTOPRISM_ADMIN_PASSWORD= /****/
+            PrivateTmp = true;
+            PrivateUsers = true;
+            PrivateDevices = true;
+            ProtectClock = true;
+            ProtectKernelLogs = true;
+            SystemCallArchitectures = "native";
+            RestrictNamespaces = true;
+            MemoryDenyWriteExecute = false;
+            RestrictAddressFamilies = "AF_UNIX AF_INET AF_INET6";
+            RestrictSUIDSGID = true;
+            NoNewPrivileges = true;
+            RemoveIPC = true;
+            LockPersonality = true;
+            ProtectHome = true;
+            ProtectHostname = true;
+            RestrictRealtime = true;
+            SystemCallFilter = ["@system-service" "~@privileged" "~@resources"];
+            SystemCallErrorNumber = "EPERM";
+            EnvironmentFile = mkIf cfg.keyFile "${cfg.dataDir}/keyFile";
+          };
+
+          environment = (
+            lib.mapAttrs' (n: v: lib.nameValuePair "PHOTOPRISM_${n}" (toString v))
+            (defaultSettings
+              // {
+                #HOME = "${cfg.dataDir}";
+                SSL_CERT_DIR = "${pkgs.cacert}/etc/ssl/certs";
+
+                DARKTABLE_PRESETS = "false";
+
+                DATABASE_DRIVER =
+                  if !cfg.mysql
+                  then "sqlite"
+                  else "mysql";
+                DATABASE_DSN =
+                  if !cfg.mysql
+                  then "${cfg.dataDir}/photoprism.sqlite"
+                  else "photoprism@unix(/run/mysqld/mysqld.sock)/photoprism?charset=utf8mb4,utf8&parseTime=true";
+                STORAGE_PATH = "${cfg.dataDir}/storage";
+                ORIGINALS_PATH = "${cfg.originalsDir}";
+                IMPORT_PATH = "${cfg.dataDir}/import";
+                SIDECAR_PATH = "${cfg.dataDir}/sidecar";
+              }
+              // (
+                if !cfg.keyFile
+                then {
+                  ADMIN_PASSWORD = cfg.adminPassword;
+                }
+                else {}
+              )
+              // cfg.settings)
+          );
+        };
       };
-
-      wantedBy = [ "multi-user.target" ];
-      environment = env;
-
-      # reminder: easier password configuration will come in https://github.com/photoprism/photoprism/pull/2302
-      preStart = ''
-        ln -sf ${manage} photoprism-manage
-
-        ${lib.optionalString (cfg.passwordFile != null) ''
-          export PHOTOPRISM_ADMIN_PASSWORD=$(cat "$CREDENTIALS_DIRECTORY/PHOTOPRISM_ADMIN_PASSWORD")
-        ''}
-        exec ${cfg.package}/bin/photoprism migrations run -f
-      '';
-
-      script = ''
-        ${lib.optionalString (cfg.passwordFile != null) ''
-          export PHOTOPRISM_ADMIN_PASSWORD=$(cat "$CREDENTIALS_DIRECTORY/PHOTOPRISM_ADMIN_PASSWORD")
-        ''}
-        exec ${cfg.package}/bin/photoprism start
-      '';
-    };
-  };
-}
-
+  }
