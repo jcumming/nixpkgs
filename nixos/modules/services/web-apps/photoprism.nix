@@ -1,11 +1,10 @@
 let
   defaultSettings = {
+    DARKTABLE_PRESETS = "false";
     DEBUG = "true";
     DETECT_NSFW = "true";
     EXPERIMENTAL = "true";
-    HTTP_HOST = "127.0.0.1";
     HTTP_MODE = "release";
-    HTTP_PORT = 2342;
     JPEG_QUALITY = 92;
     JPEG_SIZE = 7680;
     ORIGINALS_LIMIT = 1000000;
@@ -16,7 +15,6 @@ let
     SIDECAR_YAML = "true";
     SITE_CAPTION = "Browse Your Life";
     SITE_TITLE = "PhotoPrism";
-    SITE_URL = "http://127.0.0.1:2342/";
     THUMB_FILTER = "linear";
     THUMB_SIZE = 2048;
     THUMB_SIZE_UNCACHED = 7680;
@@ -36,11 +34,6 @@ in
     options = with lib; {
       services.photoprism = {
         enable = mkOption {
-          type = types.bool;
-          default = false;
-        };
-
-        mysql = mkOption {
           type = types.bool;
           default = false;
         };
@@ -68,14 +61,6 @@ in
           '';
         };
 
-        adminPassword = mkOption {
-          type = types.str;
-          default = "photoprism";
-          description = ''
-            Password for admin account. Please use "keyfile" instead. This field will be visible to all users who have access to the store!
-          '';
-        };
-
         dataDir = mkOption {
           type = types.path;
           default = "/var/lib/photoprism";
@@ -94,7 +79,7 @@ in
 
         package = mkOption {
           type = types.package;
-          default = self.outputs.packages."${pkgs.system}".photoprism;
+          default = pkgs.photoprism;
           description = "The photoprism package.";
         };
       };
@@ -109,25 +94,9 @@ in
 
         users.groups.photoprism = {};
 
-        services.mysql = mkIf cfg.mysql {
-          enable = true;
-          package = mkDefault pkgs.mysql;
-          ensureDatabases = ["photoprism"];
-          ensureUsers = [
-            {
-              name = "photoprism";
-              ensurePermissions = {"photoprism.*" = "ALL PRIVILEGES";};
-            }
-          ];
-        };
-
         systemd.services.photoprism = {
           enable = true;
-          after =
-            [
-              "network-online.target"
-            ]
-            ++ lib.optional cfg.mysql "mysql.service";
+          after = [ "network-online.target" ];
 
           wantedBy = ["multi-user.target"];
 
@@ -159,10 +128,6 @@ in
               [
                 cfg.dataDir
                 cfg.originalsDir
-              ]
-              ++ lib.optionals cfg.mysql [
-                "-/run/mysqld"
-                "-/var/run/mysqld"
               ];
             RuntimeDirectory = "photoprism";
             CacheDirectory = "photoprism";
@@ -196,29 +161,13 @@ in
               // {
                 #HOME = "${cfg.dataDir}";
                 SSL_CERT_DIR = "${pkgs.cacert}/etc/ssl/certs";
-
-                DARKTABLE_PRESETS = "false";
-
-                DATABASE_DRIVER =
-                  if !cfg.mysql
-                  then "sqlite"
-                  else "mysql";
-                DATABASE_DSN =
-                  if !cfg.mysql
-                  then "${cfg.dataDir}/photoprism.sqlite"
-                  else "photoprism@unix(/run/mysqld/mysqld.sock)/photoprism?charset=utf8mb4,utf8&parseTime=true";
+                DATABASE_DRIVER = "sqlite"
+                DATABASE_DSN = "${cfg.dataDir}/photoprism.sqlite"
                 STORAGE_PATH = "${cfg.dataDir}/storage";
                 ORIGINALS_PATH = "${cfg.originalsDir}";
                 IMPORT_PATH = "${cfg.dataDir}/import";
                 SIDECAR_PATH = "${cfg.dataDir}/sidecar";
               }
-              // (
-                if !cfg.keyFile
-                then {
-                  ADMIN_PASSWORD = cfg.adminPassword;
-                }
-                else {}
-              )
               // cfg.settings)
           );
         };
