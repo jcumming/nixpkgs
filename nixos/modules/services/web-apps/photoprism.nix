@@ -161,8 +161,8 @@ in
               // {
                 #HOME = "${cfg.dataDir}";
                 SSL_CERT_DIR = "${pkgs.cacert}/etc/ssl/certs";
-                DATABASE_DRIVER = "sqlite"
-                DATABASE_DSN = "${cfg.dataDir}/photoprism.sqlite"
+                DATABASE_DRIVER = "sqlite";
+                DATABASE_DSN = "${cfg.dataDir}/photoprism.sqlite";
                 STORAGE_PATH = "${cfg.dataDir}/storage";
                 ORIGINALS_PATH = "${cfg.originalsDir}";
                 IMPORT_PATH = "${cfg.dataDir}/import";
