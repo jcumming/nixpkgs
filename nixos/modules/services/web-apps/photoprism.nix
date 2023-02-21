@@ -124,16 +124,10 @@ in
 
           serviceConfig = {
             User = "photoprism";
-            BindPaths =
-              [
-                cfg.dataDir
-                cfg.originalsDir
-              ];
             RuntimeDirectory = "photoprism";
             CacheDirectory = "photoprism";
             StateDirectory = "photoprism";
             SyslogIdentifier = "photoprism";
-            # Sops secrets PHOTOPRISM_ADMIN_PASSWORD= /****/
             PrivateTmp = true;
             PrivateUsers = true;
             PrivateDevices = true;
