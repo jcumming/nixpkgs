@@ -1,4 +1,4 @@
-{ gcc11Stdenv, lib, fetchFromGitHub, wrapQtAppsHook, cmake, pkg-config, git
+{ gcc12Stdenv, lib, fetchFromGitHub, wrapQtAppsHook, cmake, pkg-config, git
 , qtbase, qtquickcontrols, qtmultimedia, openal, glew, vulkan-headers, vulkan-loader, libpng
 , ffmpeg, libevdev, libusb1, zlib, curl, wolfssl, python3, pugixml, faudio, flatbuffers
 , sdl2Support ? true, SDL2
@@ -9,10 +9,10 @@
 
 let
   # Keep these separate so the update script can regex them
-  rpcs3GitVersion = "14241-92b08a4fa";
-  rpcs3Version = "0.0.24-14241-92b08a4fa";
-  rpcs3Revision = "92b08a4fafb1e36ccc23ac7e2a9b10e91a9b6df7";
-  rpcs3Sha256 = "01h9m4cdywdfhiv5kjd7cv53spv3g2ixk3dvji14vi28zac8jcxb";
+  rpcs3GitVersion = "14757-3388c8ed0";
+  rpcs3Version = "0.0.26-14757-3388c8ed0";
+  rpcs3Revision = "3388c8ed090afb216f40c1d00361c6f6f1e7a9ba";
+  rpcs3Sha256 = "0w2qsk91dxp0lxy6bdz4yyf79wqfnzyxswrg1kxwm0s7iwwch2pj";
 
   ittapi = fetchFromGitHub {
     owner = "intel";
@@ -21,7 +21,7 @@ let
     sha256 = "0c3g30rj1y8fbd2q4kwlpg1jdy02z4w5ryhj3yr9051pdnf4kndz";
   };
 in
-gcc11Stdenv.mkDerivation {
+gcc12Stdenv.mkDerivation {
   pname = "rpcs3";
   version = rpcs3Version;
 
@@ -82,6 +82,6 @@ gcc11Stdenv.mkDerivation {
     homepage = "https://rpcs3.net/";
     maintainers = with maintainers; [ abbradar neonfuz ilian zane ];
     license = licenses.gpl2Only;
-    platforms = [ "x86_64-linux" ];
+    platforms = [ "x86_64-linux" "aarch64-linux" ];
   };
 }

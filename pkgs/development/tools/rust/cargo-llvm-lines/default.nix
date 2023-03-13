@@ -2,16 +2,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "cargo-llvm-lines";
-  version = "0.4.18";
+  version = "0.4.25";
 
   src = fetchFromGitHub {
     owner = "dtolnay";
     repo = pname;
     rev = version;
-    sha256 = "sha256-MQ+T/BwDXPm9xTsujAGrWnIuhJBbij2VaXiRYpNj6ZM=";
+    sha256 = "sha256-KTSp4pbxKkSX1Kh7CILtTVq2mjOpn4SKxO16l+I+i7k=";
   };
 
-  cargoSha256 = "sha256-EeUXRcK/4Xl25Q30RnNNF/eAv4zCu6epwrAorfIu21k=";
+  cargoSha256 = "sha256-A+vUn/TLpp2dVOA5CAjFlviG+SPTd4BstOb0/NHCpdE=";
 
   meta = with lib; {
     description = "Count the number of lines of LLVM IR across all instantiations of a generic function";

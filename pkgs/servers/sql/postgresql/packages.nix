@@ -24,6 +24,8 @@ self: super: {
 
     pg_similarity = super.callPackage ./ext/pg_similarity.nix { };
 
+    pgaudit = super.callPackage ./ext/pgaudit.nix { };
+
     pgroonga = super.callPackage ./ext/pgroonga.nix { };
 
     pgvector = super.callPackage ./ext/pgvector.nix { };
@@ -32,9 +34,7 @@ self: super: {
 
     plr = super.callPackage ./ext/plr.nix { };
 
-    plv8 = super.callPackage ./ext/plv8 {
-      v8 = self.v8_8_x;
-    };
+    plv8 = super.callPackage ./ext/plv8 { };
 
     pgjwt = super.callPackage ./ext/pgjwt.nix { };
 
@@ -56,6 +56,8 @@ self: super: {
 
     timescaledb = super.callPackage ./ext/timescaledb.nix { };
 
+    timescaledb_toolkit = super.callPackage ./ext/timescaledb_toolkit.nix { };
+
     tsearch_extras = super.callPackage ./ext/tsearch_extras.nix { };
 
     tds_fdw = super.callPackage ./ext/tds_fdw.nix { };
@@ -63,6 +65,8 @@ self: super: {
     pgrouting = super.callPackage ./ext/pgrouting.nix { };
 
     pg_partman = super.callPackage ./ext/pg_partman.nix { };
+
+    pg_relusage = super.callPackage ./ext/pg_relusage.nix { };
 
     pg_safeupdate = super.callPackage ./ext/pg_safeupdate.nix { };
 

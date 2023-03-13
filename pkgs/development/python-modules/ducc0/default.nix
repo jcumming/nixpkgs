@@ -2,7 +2,7 @@
 
 buildPythonPackage rec {
   pname = "ducc0";
-  version = "0.26.0";
+  version = "0.28.0";
 
   disabled = pythonOlder "3.7";
 
@@ -11,13 +11,13 @@ buildPythonPackage rec {
     owner = "mtr";
     repo = "ducc";
     rev = "ducc0_${lib.replaceStrings ["."] ["_"] version}";
-    sha256 = "p5TW8utFDlN80zD6hvWPcmM2DfKqvEuOzRUtTvLwNT0=";
+    sha256 = "sha256-yh7L87s3STL2usGBXgIhCS7GKQuau/PV6US3T06bb0M=";
   };
 
   buildInputs = [ pybind11 ];
   propagatedBuildInputs = [ numpy ];
 
-  checkInputs = [ pytestCheckHook ];
+  nativeCheckInputs = [ pytestCheckHook ];
   pytestFlagsArray = [ "python/test" ];
   pythonImportsCheck = [ "ducc0" ];
 

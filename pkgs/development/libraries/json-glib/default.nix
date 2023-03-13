@@ -45,11 +45,9 @@ stdenv.mkDerivation rec {
     libxslt
     gobject-introspection
     gi-docgen
-  ] ++ lib.optional stdenv.hostPlatform.isDarwin [
+  ] ++ lib.optionals stdenv.hostPlatform.isDarwin [
     fixDarwinDylibNames
   ];
-
-  buildInputs = [ gobject-introspection ];
 
   propagatedBuildInputs = [
     glib

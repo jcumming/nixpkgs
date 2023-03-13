@@ -2,7 +2,7 @@
 , lib
 , buildPackages
 , fetchFromGitLab
-, removeReferencesTo
+, fetchpatch
 , python3
 , meson
 , ninja
@@ -19,20 +19,18 @@
 , libjack2
 , libusb1
 , udev
-, libva
 , libsndfile
 , vulkan-headers
 , vulkan-loader
 , webrtc-audio-processing
 , ncurses
-, readline81 # meson can't find <7 as those versions don't have a .pc file
+, readline # meson can't find <7 as those versions don't have a .pc file
 , lilv
 , makeFontsConf
 , callPackage
 , nixosTests
 , withValgrind ? lib.meta.availableOn stdenv.hostPlatform valgrind
 , valgrind
-, withMediaSession ? true
 , libcameraSupport ? true
 , libcamera
 , libdrm
@@ -45,6 +43,7 @@
 , sbc
 , libfreeaptx
 , ldacbt
+, liblc3
 , fdk_aac
 , libopus
 , nativeHspSupport ? true
@@ -62,15 +61,16 @@
 , x11Support ? true
 , libcanberra
 , xorg
+, mysofaSupport ? true
+, libmysofa
 }:
 
 let
   mesonEnableFeature = b: if b then "enabled" else "disabled";
-  mesonList = l: "[" + lib.concatStringsSep "," l + "]";
 
   self = stdenv.mkDerivation rec {
     pname = "pipewire";
-    version = "0.3.58";
+    version = "0.3.66";
 
     outputs = [
       "out"
@@ -88,7 +88,7 @@ let
       owner = "pipewire";
       repo = "pipewire";
       rev = version;
-      sha256 = "sha256-r8sDXyXwtA2o2xqglOI8XflttSScrqJ57cj1//k2tZ8=";
+      sha256 = "sha256-qx4mgNRhMdha+8ap+FhVfxpsHE9TcTx29uwQIHLyMHA=";
     };
 
     patches = [
@@ -106,6 +106,7 @@ let
       ./0095-spa-data-dir.patch
     ];
 
+    strictDeps = true;
     nativeBuildInputs = [
       docutils
       doxygen
@@ -114,6 +115,7 @@ let
       ninja
       pkg-config
       python3
+      glib
     ];
 
     buildInputs = [
@@ -125,7 +127,7 @@ let
       libsndfile
       lilv
       ncurses
-      readline81
+      readline
       udev
       vulkan-headers
       vulkan-loader
@@ -134,15 +136,16 @@ let
     ++ lib.optionals gstreamerSupport [ gst_all_1.gst-plugins-base gst_all_1.gstreamer ]
     ++ lib.optionals libcameraSupport [ libcamera libdrm ]
     ++ lib.optional ffmpegSupport ffmpeg
-    ++ lib.optionals bluezSupport [ bluez libfreeaptx ldacbt sbc fdk_aac libopus ]
+    ++ lib.optionals bluezSupport [ bluez libfreeaptx ldacbt liblc3 sbc fdk_aac libopus ]
     ++ lib.optional pulseTunnelSupport libpulseaudio
     ++ lib.optional zeroconfSupport avahi
     ++ lib.optional raopSupport openssl
     ++ lib.optional rocSupport roc-toolkit
-    ++ lib.optionals x11Support [ libcanberra xorg.libX11 xorg.libXfixes ];
+    ++ lib.optionals x11Support [ libcanberra xorg.libX11 xorg.libXfixes ]
+    ++ lib.optional mysofaSupport libmysofa;
 
     # Valgrind binary is required for running one optional test.
-    checkInputs = lib.optional withValgrind valgrind;
+    nativeCheckInputs = lib.optional withValgrind valgrind;
 
     mesonFlags = [
       "-Ddocs=enabled"
@@ -167,13 +170,16 @@ let
       "-Dbluez5-backend-ofono=${mesonEnableFeature ofonoSupport}"
       "-Dbluez5-backend-hsphfpd=${mesonEnableFeature hsphfpdSupport}"
       "-Dbluez5-codec-lc3plus=disabled"
+      "-Dbluez5-codec-lc3=${mesonEnableFeature bluezSupport}"
       "-Dsysconfdir=/etc"
       "-Dpipewire_confdata_dir=${placeholder "lib"}/share/pipewire"
       "-Draop=${mesonEnableFeature raopSupport}"
       "-Dsession-managers="
       "-Dvulkan=enabled"
       "-Dx11=${mesonEnableFeature x11Support}"
+      "-Dlibmysofa=${mesonEnableFeature mysofaSupport}"
       "-Dsdl2=disabled" # required only to build examples, causes dependency loop
+      "-Drlimits-install=false" # installs to /etc, we won't use this anyway
     ];
 
     # Fontconfig error: Cannot load default config file
@@ -224,6 +230,7 @@ let
             "nix-support/jack.conf.json"
             "nix-support/minimal.conf.json"
             "nix-support/pipewire.conf.json"
+            "nix-support/pipewire-aes67.conf.json"
             "nix-support/pipewire-pulse.conf.json"
           ];
           paths-lib = [
@@ -239,7 +246,7 @@ let
       homepage = "https://pipewire.org/";
       license = licenses.mit;
       platforms = platforms.linux;
-      maintainers = with maintainers; [ jtojnar kranzes ];
+      maintainers = with maintainers; [ jtojnar kranzes k900 ];
     };
   };
 

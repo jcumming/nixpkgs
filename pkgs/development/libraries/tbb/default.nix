@@ -9,6 +9,8 @@ stdenv.mkDerivation rec {
   pname = "tbb";
   version = "2020.3";
 
+  outputs = [ "out" "dev" ];
+
   src = fetchFromGitHub {
     owner = "oneapi-src";
     repo = "oneTBB";
@@ -51,7 +53,10 @@ stdenv.mkDerivation rec {
 
   makeFlags = lib.optionals stdenv.cc.isClang [
     "compiler=clang"
-  ];
+  ] ++ (lib.optional (stdenv.buildPlatform != stdenv.hostPlatform)
+    (if stdenv.hostPlatform.isAarch64 then "arch=arm64"
+    else if stdenv.hostPlatform.isx86_64 then "arch=intel64"
+    else throw "Unsupported cross architecture"));
 
   enableParallelBuilding = true;
 
@@ -96,6 +101,6 @@ stdenv.mkDerivation rec {
       details and threading mechanisms for scalability and performance.
     '';
     platforms = platforms.unix;
-    maintainers = with maintainers; [ thoughtpolice dizfer ];
+    maintainers = with maintainers; [ thoughtpolice ];
   };
 }

@@ -1,22 +1,37 @@
-{ fetchurl, lib, stdenv, autoreconfHook, pkg-config, perl, python3
-, db, libgcrypt, avahi, libiconv, pam, openssl, acl
-, ed, libtirpc, libevent, fetchpatch
+{ lib
+, stdenv
+, fetchurl
+, fetchpatch
+, acl
+, autoreconfHook
+, avahi
+, db
+, ed
+, libevent
+, libgcrypt
+, libiconv
+, libtirpc
+, openssl
+, pam
+, perl
+, pkg-config
+, python3
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "netatalk";
   release = "3.1.13";
   patch = "3";
   version = "${release}_${patch}";
 
   src = fetchurl {
-    url = "mirror://sourceforge/netatalk/netatalk/netatalk-${release}.tar.bz2";
-    sha256 = "0pg0slvvvq3l6f5yjz9ybijg4i6rs5a6c8wcynaasf8vzsyadbc9";
+    url = "mirror://sourceforge/netatalk/netatalk/netatalk-${finalAttrs.version}.tar.bz2";
+    hash = "sha256-ia2mvP4bOa2U9YwjZlTR2UTyZFw+femLM3TgvTfV4F0=";
   };
 
   patches = [
-    ./no-suid.patch
-    ./omitLocalstatedirCreation.patch
+    ./000-no-suid.patch
+    ./001-omit-localstatedir-creation.patch
     (fetchpatch {
       name = "make-afpstats-python3-compatible.patch";
       url = "https://github.com/Netatalk/Netatalk/commit/916b515705cf7ba28dc53d13202811c6e1fe6a9e.patch";
@@ -48,7 +63,8 @@ stdenv.mkDerivation rec {
     })
     (fetchpatch {
       name = "patch-libatalk_adouble_ad__attr.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__attr.c";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__attr.c";
       sha256 = "sha256-Ose6BdilwBOmoYpm8Jat1B3biOXJj4y3U4T49zE0G7Y=";
     })
     (fetchpatch {
@@ -86,9 +102,24 @@ stdenv.mkDerivation rec {
     done
   '';
 
-  nativeBuildInputs = [ autoreconfHook pkg-config perl python3 python3.pkgs.wrapPython ];
+  nativeBuildInputs = [
+    autoreconfHook
+    pkg-config
+    perl
+    python3
+    python3.pkgs.wrapPython
+  ];
 
-  buildInputs = [ db libgcrypt avahi libiconv pam openssl acl libevent ];
+  buildInputs = [
+    acl
+    avahi
+    db
+    libevent
+    libgcrypt
+    libiconv
+    openssl
+    pam
+  ];
 
   configureFlags = [
     "--with-bdb=${db.dev}"
@@ -121,11 +152,11 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  meta = {
+  meta = with lib; {
     description = "Apple Filing Protocol Server";
     homepage = "http://netatalk.sourceforge.net/";
-    license = lib.licenses.gpl3;
-    platforms = lib.platforms.linux;
-    maintainers = with lib.maintainers; [ jcumming ];
+    license = licenses.gpl2Plus;
+    platforms = platforms.linux;
+    maintainers = with maintainers; [ jcumming ];
   };
-}
+})

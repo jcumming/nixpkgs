@@ -5,12 +5,12 @@
 
 buildPythonPackage rec {
   pname = "types-urllib3";
-  version = "1.26.25";
+  version = "1.26.25.8";
   format = "setuptools";
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-Wu8OZjck7vkkr6izILYv/vLBc2wfpsrs/JvGyK4sPe8=";
+    hash = "sha256-7PQ8QtjuQ51zKhEQtJAekBenmjjayibwjkLIRgBpOSw=";
   };
 
   # Module doesn't have tests

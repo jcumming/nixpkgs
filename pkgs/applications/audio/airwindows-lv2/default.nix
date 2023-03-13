@@ -2,12 +2,12 @@
 
 stdenv.mkDerivation rec {
   pname = "airwindows-lv2";
-  version = "11.0";
+  version = "16.0";
   src = fetchFromGitHub {
     owner = "hannesbraun";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-IMVcspdWotNbdIZ2IpsNhI0k3+ZdXHEHVxrgOMoROEQ=";
+    sha256 = "sha256-jdeJ/VAJTDeiR9pyYps82F2Ty16r+a/FK+XV5L3rWco=";
   };
 
   nativeBuildInputs = [ meson ninja pkg-config ];

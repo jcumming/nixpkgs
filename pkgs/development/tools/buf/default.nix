@@ -10,16 +10,16 @@
 
 buildGoModule rec {
   pname = "buf";
-  version = "1.8.0";
+  version = "1.15.1";
 
   src = fetchFromGitHub {
     owner = "bufbuild";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-yU1xPOnSQXrYdF24EsXb/x+IfoQFjIbW1KEt//7Fl5Q=";
+    hash = "sha256-XiB8ZlbtzU66abM9zJotaMCrbYScqWmDv4ulEeQS6+g=";
   };
 
-  vendorSha256 = "sha256-zEcKfMib/4/GfQC7M3f8R3v/hGh9F/KtjFs+pXDzbFk=";
+  vendorHash = "sha256-bQKpy5xjUItgQ79r8TrMUOjo0Ze9E25glvOv312W1k0=";
 
   patches = [
     # Skip a test that requires networking to be available to work.
@@ -32,7 +32,7 @@ buildGoModule rec {
 
   ldflags = [ "-s" "-w" ];
 
-  checkInputs = [
+  nativeCheckInputs = [
     git # Required for TestGitCloner
     protobuf # Required for buftesting.GetProtocFilePaths
   ];
@@ -73,6 +73,6 @@ buildGoModule rec {
     changelog = "https://github.com/bufbuild/buf/releases/tag/v${version}";
     description = "Create consistent Protobuf APIs that preserve compatibility and comply with design best-practices";
     license = licenses.asl20;
-    maintainers = with maintainers; [ raboof jk lrewega ];
+    maintainers = with maintainers; [ jk lrewega ];
   };
 }

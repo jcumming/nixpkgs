@@ -1,5 +1,6 @@
 { lib
 , stdenv
+, appdirs
 , azure-core
 , bokeh
 , buildPythonPackage
@@ -8,7 +9,7 @@
 , fetchFromGitHub
 , flask
 , git
-, GitPython
+, gitpython
 , jsonref
 , jsonschema
 , matplotlib
@@ -23,7 +24,6 @@
 , pytest-mock
 , pytest-xdist
 , pytestCheckHook
-, python-dateutil
 , pythonOlder
 , pythonRelaxDepsHook
 , torch
@@ -40,16 +40,16 @@
 
 buildPythonPackage rec {
   pname = "wandb";
-  version = "0.12.21";
+  version = "0.13.9";
   format = "setuptools";
 
   disabled = pythonOlder "3.6";
 
   src = fetchFromGitHub {
     owner = pname;
-    repo = "client";
+    repo = pname;
     rev = "refs/tags/v${version}";
-    hash = "sha256-jKb2pNmCW4MYz6ncsMNg7o5giCI2bpKER/kb8lfJekI=";
+    hash = "sha256-BpFLN4WLT+fm5+50NDOU4bM73WjeGEhD6P8XKE9n9cI=";
   };
 
   patches = [
@@ -66,14 +66,14 @@ buildPythonPackage rec {
 
   # setuptools is necessary since pkg_resources is required at runtime.
   propagatedBuildInputs = [
+    appdirs
     click
     docker_pycreds
-    GitPython
+    gitpython
     pathtools
     promise
     protobuf
     psutil
-    python-dateutil
     pyyaml
     requests
     sentry-sdk
@@ -82,7 +82,7 @@ buildPythonPackage rec {
     shortuuid
   ];
 
-  checkInputs = [
+  nativeCheckInputs = [
     azure-core
     bokeh
     flask
@@ -101,55 +101,56 @@ buildPythonPackage rec {
     tqdm
   ];
 
+  # Set BOKEH_CDN_VERSION to stop bokeh throwing an exception in tests
   preCheck = ''
     export HOME=$(mktemp -d)
+    export BOKEH_CDN_VERSION=${bokeh.version}
   '';
 
   pythonRelaxDeps = [ "protobuf" ];
 
   disabledTestPaths = [
     # Tests that try to get chatty over sockets or spin up servers, not possible in the nix build environment.
-    "tests/unit_tests/integrations/test_keras.py"
-    "tests/unit_tests/integrations/test_torch.py"
+    "tests/unit_tests_old/test_cli.py"
+    "tests/unit_tests_old/test_data_types.py"
+    "tests/unit_tests_old/test_file_stream.py"
+    "tests/unit_tests_old/test_file_upload.py"
+    "tests/unit_tests_old/test_footer.py"
+    "tests/unit_tests_old/test_internal_api.py"
+    "tests/unit_tests_old/test_keras.py"
+    "tests/unit_tests_old/test_logging.py"
+    "tests/unit_tests_old/test_metric_internal.py"
+    "tests/unit_tests_old/test_public_api.py"
+    "tests/unit_tests_old/test_runtime.py"
+    "tests/unit_tests_old/test_sender.py"
+    "tests/unit_tests_old/test_summary.py"
+    "tests/unit_tests_old/test_tb_watcher.py"
+    "tests/unit_tests_old/test_time_resolution.py"
+    "tests/unit_tests_old/test_wandb.py"
+    "tests/unit_tests_old/test_wandb_agent.py"
+    "tests/unit_tests_old/test_wandb_artifacts.py"
+    "tests/unit_tests_old/test_wandb_integration.py"
+    "tests/unit_tests_old/test_wandb_run.py"
     "tests/unit_tests/test_cli.py"
     "tests/unit_tests/test_data_types.py"
-    "tests/unit_tests/test_file_stream.py"
     "tests/unit_tests/test_file_upload.py"
     "tests/unit_tests/test_footer.py"
     "tests/unit_tests/test_internal_api.py"
     "tests/unit_tests/test_label_full.py"
     "tests/unit_tests/test_login.py"
-    "tests/unit_tests/test_meta.py"
     "tests/unit_tests/test_metric_full.py"
     "tests/unit_tests/test_metric_internal.py"
     "tests/unit_tests/test_mode_disabled.py"
     "tests/unit_tests/test_model_workflows.py"
     "tests/unit_tests/test_mp_full.py"
+    "tests/unit_tests/test_plots.py"
     "tests/unit_tests/test_public_api.py"
-    "tests/unit_tests/test_redir.py"
     "tests/unit_tests/test_runtime.py"
     "tests/unit_tests/test_sender.py"
     "tests/unit_tests/test_start_method.py"
     "tests/unit_tests/test_tb_watcher.py"
     "tests/unit_tests/test_telemetry_full.py"
     "tests/unit_tests/test_util.py"
-    "tests/unit_tests/wandb_agent_test.py"
-    "tests/unit_tests/wandb_artifacts_test.py"
-    "tests/unit_tests/wandb_integration_test.py"
-    "tests/unit_tests/wandb_run_test.py"
-    "tests/unit_tests/wandb_settings_test.py"
-    "tests/unit_tests/wandb_sweep_test.py"
-    "tests/unit_tests/wandb_tensorflow_test.py"
-    "tests/unit_tests/wandb_verify_test.py"
-    "tests/unit_tests/test_tpu.py"
-    "tests/unit_tests/test_plots.py"
-    "tests/unit_tests/test_report_api.py"
-
-    # Requires metaflow, which is not yet packaged.
-    "tests/unit_tests/integrations/test_metaflow.py"
-
-    # Fails and borks the pytest runner as well.
-    "tests/unit_tests/wandb_test.py"
 
     # Tries to access /homeless-shelter
     "tests/unit_tests/test_tables.py"
@@ -157,7 +158,7 @@ buildPythonPackage rec {
 
   # Disable test that fails on darwin due to issue with python3Packages.psutil:
   # https://github.com/giampaolo/psutil/issues/1219
-  disabledTests = lib.optional stdenv.isDarwin [
+  disabledTests = lib.optionals stdenv.isDarwin [
     "test_tpu_system_stats"
   ];
 

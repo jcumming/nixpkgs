@@ -15,6 +15,7 @@
 , pciutils
 , sndio
 , libjack2
+, speechd
 }:
 
 ## configurability of the wrapper itself
@@ -30,10 +31,9 @@ let
       (lib.toUpper (lib.substring 0 1 applicationName) + lib.substring 1 (-1) applicationName)
     , nameSuffix ? ""
     , icon ? applicationName
-    , wmClass ? null
+    , wmClass ? applicationName
     , extraNativeMessagingHosts ? []
     , pkcs11Modules ? []
-    , forceWayland ? false
     , useGlvnd ? true
     , cfg ? config.${applicationName} or {}
 
@@ -61,7 +61,7 @@ let
       smartcardSupport = cfg.smartcardSupport or false;
 
       nativeMessagingHosts =
-        ([ ]
+        [ ]
           ++ lib.optional (cfg.enableBrowserpass or false) (lib.getBin browserpass)
           ++ lib.optional (cfg.enableBukubrow or false) bukubrow
           ++ lib.optional (cfg.enableTridactylNative or false) tridactyl-native
@@ -70,7 +70,7 @@ let
           ++ lib.optional (cfg.enablePlasmaBrowserIntegration or false) plasma5Packages.plasma-browser-integration
           ++ lib.optional (cfg.enableFXCastBridge or false) fx_cast_bridge
           ++ extraNativeMessagingHosts
-        );
+        ;
       libs =   lib.optionals stdenv.isLinux [ udev libva mesa libnotify xorg.libXScrnSaver cups pciutils ]
             ++ lib.optional pipewireSupport pipewire
             ++ lib.optional ffmpegSupport ffmpeg_5
@@ -83,6 +83,7 @@ let
             ++ lib.optional sndioSupport sndio
             ++ lib.optional jackSupport libjack2
             ++ lib.optional smartcardSupport opensc
+            ++ lib.optional (cfg.speechSynthesisSupport or false) speechd
             ++ pkcs11Modules;
       gtk_modules = [ libcanberra-gtk3 ];
 
@@ -97,7 +98,7 @@ let
 
       usesNixExtensions = nixExtensions != null;
 
-      nameArray = builtins.map(a: a.name) (if usesNixExtensions then nixExtensions else []);
+      nameArray = builtins.map(a: a.name) (lib.optionals usesNixExtensions nixExtensions);
 
       requiresSigning = browser ? MOZ_REQUIRE_SIGNING
                      -> toString browser.MOZ_REQUIRE_SIGNING != "";
@@ -113,7 +114,7 @@ let
         throw "nixExtensions has an invalid entry. Missing extid attribute. Please use fetchfirefoxaddon"
         else
         a
-      ) (if usesNixExtensions then nixExtensions else []);
+      ) (lib.optionals usesNixExtensions nixExtensions);
 
       enterprisePolicies =
       {
@@ -166,38 +167,64 @@ let
     in stdenv.mkDerivation {
       inherit pname version;
 
-      desktopItem = makeDesktopItem {
-        name = applicationName;
-        exec = "${launcherName} %U";
+      desktopItem = makeDesktopItem ({
+        name = launcherName;
+        exec = "${launcherName} --name ${wmClass} %U";
         inherit icon;
-        desktopName = "${desktopName}${nameSuffix}${lib.optionalString forceWayland " (Wayland)"}";
-        genericName = "Web Browser";
-        categories = [ "Network" "WebBrowser" ];
-        mimeTypes = [
-          "text/html"
-          "text/xml"
-          "application/xhtml+xml"
-          "application/vnd.mozilla.xul+xml"
-          "x-scheme-handler/http"
-          "x-scheme-handler/https"
-          "x-scheme-handler/ftp"
-        ];
+        inherit desktopName;
+        startupNotify = true;
         startupWMClass = wmClass;
-        actions = {
-          new-window = {
-            name = "New Window";
-            exec = "${launcherName} --new-window %U";
-          };
-          new-private-window = {
-            name = "New Private Window";
-            exec = "${launcherName} --private-window %U";
-          };
-          profile-manager-window = {
-            name = "Profile Manager";
-            exec = "${launcherName} --ProfileManger";
-          };
-        };
-      };
+        terminal = false;
+      } // (if libName == "thunderbird"
+            then {
+              genericName = "Email Client";
+              comment = "Read and write e-mails or RSS feeds, or manage tasks on calendars.";
+              categories = [
+                "Network" "Chat" "Email" "Feed" "GTK" "News"
+              ];
+              keywords = [
+                "mail" "email" "e-mail" "messages" "rss" "calendar"
+                "address book" "addressbook" "chat"
+              ];
+              mimeTypes = [
+                "message/rfc822"
+                "x-scheme-handler/mailto"
+                "text/calendar"
+                "text/x-vcard"
+              ];
+              actions = {
+                profile-manager-window = {
+                  name = "Profile Manager";
+                  exec = "${launcherName} --ProfileManager";
+                };
+              };
+            }
+            else {
+              genericName = "Web Browser";
+              categories = [ "Network" "WebBrowser" ];
+              mimeTypes = [
+                "text/html"
+                "text/xml"
+                "application/xhtml+xml"
+                "application/vnd.mozilla.xul+xml"
+                "x-scheme-handler/http"
+                "x-scheme-handler/https"
+              ];
+              actions = {
+                new-window = {
+                  name = "New Window";
+                  exec = "${launcherName} --new-window %U";
+                };
+                new-private-window = {
+                  name = "New Private Window";
+                  exec = "${launcherName} --private-window %U";
+                };
+                profile-manager-window = {
+                  name = "Profile Manager";
+                  exec = "${launcherName} --ProfileManager";
+                };
+              };
+            }));
 
       nativeBuildInputs = [ makeWrapper lndir jq ];
       buildInputs = [ browser.gtk3 ];
@@ -283,7 +310,7 @@ let
             --set MOZ_ALLOW_DOWNGRADE 1 \
             --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH" \
             --suffix XDG_DATA_DIRS : '${gnome.adwaita-icon-theme}/share' \
-            ${lib.optionalString forceWayland "--set MOZ_ENABLE_WAYLAND 1"} \
+            --set-default MOZ_ENABLE_WAYLAND 1 \
             "''${oldWrapperArgs[@]}"
         #############################
         #                           #
@@ -376,7 +403,7 @@ let
       disallowedRequisites = [ stdenv.cc ];
 
       meta = browser.meta // {
-        description = browser.meta.description;
+        inherit (browser.meta) description;
         hydraPlatforms = [];
         priority = (browser.meta.priority or 0) - 1; # prefer wrapper over the package
       };

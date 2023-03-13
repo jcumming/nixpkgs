@@ -4,21 +4,21 @@ let
   # comments with variant added for update script
   # ./update-zen.py zen
   zenVariant = {
-    version = "6.0.2"; #zen
+    version = "6.2.5"; #zen
     suffix = "zen1"; #zen
-    sha256 = "1x80ah2cszj3fbxfpdnlr30r1fblgrhydslfh9vrk48l0z3z80a7"; #zen
+    sha256 = "0ilkb8rqww30nl4sa01jy97s8gs67y96qwf9r0z0z7xy3w05s8bl"; #zen
     isLqx = false;
   };
   # ./update-zen.py lqx
   lqxVariant = {
-    version = "5.19.16"; #lqx
-    suffix = "lqx2"; #lqx
-    sha256 = "1n4hbkb1af9gzdvk7cp73i004j2slb0im9yk1b869h27pxs4il6s"; #lqx
+    version = "6.2.5"; #lqx
+    suffix = "lqx3"; #lqx
+    sha256 = "0njzx2wkdiimp4lp7sl22ldsma65kcvz287z2dj46l0sssgh3830"; #lqx
     isLqx = true;
   };
   zenKernelsFor = { version, suffix, sha256, isLqx }: buildLinux (args // {
     inherit version;
-    modDirVersion = "${lib.concatStringsSep "." (lib.take 3 (lib.splitVersion version ++ [ "0" "0" ]))}-${suffix}";
+    modDirVersion = lib.versions.pad 3 "${version}-${suffix}";
     isZen = true;
 
     src = fetchFromGitHub {
@@ -32,7 +32,7 @@ let
 
     extraMeta = {
       branch = lib.versions.majorMinor version + "/master";
-      maintainers = with lib.maintainers; [ andresilva pedrohlc ];
+      maintainers = with lib.maintainers; [ pedrohlc ];
       description = "Built using the best configuration and kernel sources for desktop, multimedia, and gaming workloads." +
         lib.optionalString isLqx " (Same as linux_zen but less aggressive release schedule)";
     };

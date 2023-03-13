@@ -1,36 +1,36 @@
 { stdenv
 , lib
 , fetchFromGitHub
+, fetchpatch
 , cmake
 , python3
 , enableModTool ? true
 , removeReferencesTo
-, fetchpatch
 }:
 
 stdenv.mkDerivation rec {
   pname = "volk";
-  # Version 2.5.1 seems to cause a build issue for aarch64-darwin, see:
-  # https://github.com/NixOS/nixpkgs/pull/160152#issuecomment-1043380478A
-  version = "2.5.0";
+  version = "3.0.0";
 
   src = fetchFromGitHub {
     owner = "gnuradio";
     repo = pname;
     rev = "v${version}";
-    sha256 = "XvX6emv30bSB29EFm6aC+j8NGOxWqHCNv0Hxtdrq/jc=";
+    hash = "sha256-kI4IuO6TLplo5lLAGIPWQWtePcjIEWB9XaJDA6WlqSg=";
     fetchSubmodules = true;
   };
-
   patches = [
+    # Remove a failing test
     (fetchpatch {
-      url = "https://raw.githubusercontent.com/macports/macports-ports/e83a55ef196d4283be438c052295b2fc44f3df5b/science/volk/files/patch-cpu_features-add-support-for-ARM64.diff";
-      sha256 = "sha256-MNUntVvKZC4zuQsxGQCItaUaaQ1d31re2qjyPFbySmI=";
-      extraPrefix = "";
+      url = "https://github.com/gnuradio/volk/commit/fe2e4a73480bf2ac2e566052ea682817dddaf61f.patch";
+      hash = "sha256-Vko/Plk7u6UAr32lieU+T9G34Dkg9EW3Noi/NArpRL4=";
     })
   ];
 
-  cmakeFlags = lib.optionals (!enableModTool) [ "-DENABLE_MODTOOL=OFF" ];
+  cmakeFlags = lib.optionals (!enableModTool) [
+    "-DENABLE_MODTOOL=OFF"
+  ];
+
   postInstall = lib.optionalString (!stdenv.isDarwin) ''
     ${removeReferencesTo}/bin/remove-references-to -t ${stdenv.cc} $(readlink -f $out/lib/libvolk.so)
   '';

@@ -11,23 +11,25 @@
 , wrapGAppsHook4
 , gtksourceview5
 , libadwaita
+, libpanel
+, vte-gtk4
 }:
 
 stdenv.mkDerivation rec {
   pname = "pods";
-  version = "1.0.0-beta.5";
+  version = "1.0.6";
 
   src = fetchFromGitHub {
     owner = "marhkb";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-Bp/ILQY5Xa8wrq7v9O9QohWzlevdN3MwMjjnlimt6HM=";
+    sha256 = "sha256-ZryzNlEj/2JTp5FJiDzXN9v1DvczfebqEOrJP+dKaRw=";
   };
 
   cargoDeps = rustPlatform.fetchCargoTarball {
     inherit src;
     name = "${pname}-${version}";
-    sha256 = "sha256-iToznqaNXArVrSdDXGPJol3OeFdM3J8VgYSs+mjM0SE=";
+    sha256 = "sha256-OgvlRnii4T4HcFPiGkcLcagyHCg+lWXCXQ9XdXjHDbQ=";
   };
 
   nativeBuildInputs = [
@@ -47,11 +49,14 @@ stdenv.mkDerivation rec {
     gtk4
     gtksourceview5
     libadwaita
+    libpanel
+    vte-gtk4
   ];
 
   meta = with lib; {
     description = "A podman desktop application";
     homepage = "https://github.com/marhkb/pods";
+    changelog = "https://github.com/marhkb/pods/releases/tag/v${version}";
     license = licenses.gpl3Only;
     maintainers = with maintainers; [ figsoda ];
     platforms = platforms.linux;

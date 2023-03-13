@@ -905,9 +905,11 @@ in
         { assertion = config.boot.initrd.systemd.enable -> !luks.gpgSupport;
           message = "systemd stage 1 does not support GPG smartcards yet.";
         }
-        # TODO
         { assertion = config.boot.initrd.systemd.enable -> !luks.fido2Support;
-          message = "systemd stage 1 does not support FIDO2 yet.";
+          message = ''
+            systemd stage 1 does not support configuring FIDO2 unlocking through `boot.initrd.luks.devices.<name>.fido2`.
+            Use systemd-cryptenroll(1) to configure FIDO2 support.
+          '';
         }
         # TODO
         { assertion = config.boot.initrd.systemd.enable -> !luks.yubikeySupport;
@@ -927,7 +929,14 @@ in
       ++ (if builtins.elem "xts" luks.cryptoModules then ["ecb"] else []);
 
     # copy the cryptsetup binary and it's dependencies
-    boot.initrd.extraUtilsCommands = mkIf (!config.boot.initrd.systemd.enable) ''
+    boot.initrd.extraUtilsCommands = let
+      pbkdf2-sha512 = pkgs.runCommandCC "pbkdf2-sha512" { buildInputs = [ pkgs.openssl ]; } ''
+        mkdir -p "$out/bin"
+        cc -O3 -lcrypto ${./pbkdf2-sha512.c} -o "$out/bin/pbkdf2-sha512"
+        strip -s "$out/bin/pbkdf2-sha512"
+      '';
+    in
+    mkIf (!config.boot.initrd.systemd.enable) ''
       copy_bin_and_libs ${pkgs.cryptsetup}/bin/cryptsetup
       copy_bin_and_libs ${askPass}/bin/cryptsetup-askpass
       sed -i s,/bin/sh,$out/bin/sh, $out/bin/cryptsetup-askpass
@@ -937,9 +946,7 @@ in
         copy_bin_and_libs ${pkgs.yubikey-personalization}/bin/ykinfo
         copy_bin_and_libs ${pkgs.openssl.bin}/bin/openssl
 
-        cc -O3 -I${pkgs.openssl.dev}/include -L${lib.getLib pkgs.openssl}/lib ${./pbkdf2-sha512.c} -o pbkdf2-sha512 -lcrypto
-        strip -s pbkdf2-sha512
-        copy_bin_and_libs pbkdf2-sha512
+        copy_bin_and_libs ${pbkdf2-sha512}/bin/pbkdf2-sha512
 
         mkdir -p $out/etc/ssl
         cp -pdv ${pkgs.openssl.out}/etc/ssl/openssl.cnf $out/etc/ssl

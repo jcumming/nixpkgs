@@ -1,14 +1,18 @@
 { lib
 , mkDerivation
+, gcc12Stdenv
+, srcs
 
 , cmake
 , extra-cmake-modules
+, wrapQtAppsHook
 
 , c-ares
 , curl
 , kcontacts
 , ki18n
 , kio
+, kirigami-addons
 , kirigami2
 , knotifications
 , kpeople
@@ -20,12 +24,15 @@
 , qtquickcontrols2
 }:
 
-mkDerivation rec {
+# Workaround for AArch64 still using GCC9.
+gcc12Stdenv.mkDerivation rec {
   pname = "spacebar";
+  inherit (srcs.spacebar) version src;
 
   nativeBuildInputs = [
     cmake
     extra-cmake-modules
+    wrapQtAppsHook
   ];
 
   buildInputs = [
@@ -34,6 +41,7 @@ mkDerivation rec {
     kcontacts
     ki18n
     kio
+    kirigami-addons
     kirigami2
     knotifications
     kpeople

@@ -177,6 +177,23 @@ let
 
         dune = dontConfigure super.dune;
 
+        emacsql = super.emacsql.overrideAttrs (old: {
+          buildInputs = old.buildInputs ++ [ pkgs.sqlite ];
+
+          postBuild = ''
+            cd source/sqlite
+            make
+            cd -
+          '';
+
+          postInstall = (old.postInstall or "") + "\n" + ''
+            install -m=755 -D source/sqlite/emacsql-sqlite \
+              $out/share/emacs/site-lisp/elpa/emacsql-${old.version}/sqlite/emacsql-sqlite
+          '';
+
+          stripDebugList = [ "share" ];
+        });
+
         emacsql-sqlite = super.emacsql-sqlite.overrideAttrs (old: {
           buildInputs = old.buildInputs ++ [ pkgs.sqlite ];
 
@@ -192,6 +209,13 @@ let
           '';
 
           stripDebugList = [ "share" ];
+        });
+
+        epkg = super.epkg.overrideAttrs (old: {
+          postPatch = ''
+            substituteInPlace lisp/epkg.el \
+              --replace '(call-process "sqlite3"' '(call-process "${pkgs.sqlite}/bin/sqlite3"'
+          '';
         });
 
         erlang = super.erlang.overrideAttrs (attrs: {
@@ -259,7 +283,7 @@ let
 
         irony = super.irony.overrideAttrs (old: {
           cmakeFlags = old.cmakeFlags or [ ] ++ [ "-DCMAKE_INSTALL_BINDIR=bin" ];
-          NIX_CFLAGS_COMPILE = "-UCLANG_RESOURCE_DIR";
+          env.NIX_CFLAGS_COMPILE = "-UCLANG_RESOURCE_DIR";
           preConfigure = ''
             cd server
           '';
@@ -277,9 +301,10 @@ let
             rm -rf $out/share/emacs/site-lisp/elpa/*/server
           '';
           dontUseCmakeBuildDir = true;
-          doCheck = true;
+          doCheck = pkgs.stdenv.isLinux;
           packageRequires = [ self.emacs ];
-          nativeBuildInputs = [ pkgs.cmake pkgs.llvmPackages.llvm pkgs.llvmPackages.libclang ];
+          buildInputs = [ pkgs.llvmPackages.libclang self.emacs ];
+          nativeBuildInputs = [ pkgs.cmake pkgs.llvmPackages.llvm ];
         });
 
         # tries to write a log file to $HOME
@@ -400,6 +425,18 @@ let
 
         rtags-xref = dontConfigure super.rtags;
 
+        rime = super.rime.overrideAttrs (old: {
+          buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.librime ];
+          preBuild = (old.preBuild or "") + ''
+            make lib
+            mkdir -p /build/rime-lib
+            cp *.so /build/rime-lib
+          '';
+          postInstall = (old.postInstall or "") + ''
+            install -m444 -t $out/share/emacs/site-lisp/elpa/rime-* /build/rime-lib/*.so
+          '';
+        });
+
         shm = super.shm.overrideAttrs (attrs: {
           propagatedUserEnvPkgs = [ pkgs.haskellPackages.structured-haskell-mode ];
         });
@@ -506,6 +543,16 @@ let
           packageRequires = with self; [ evil highlight ];
         });
 
+        hamlet-mode = super.hamlet-mode.overrideAttrs (attrs: {
+          patches = [
+            # Fix build; maintainer email fails to parse
+            (pkgs.fetchpatch {
+              url = "https://github.com/lightquake/hamlet-mode/commit/253495d1330d6ec88d97fac136c78f57c650aae0.patch";
+              sha256 = "dSxS5yuXzCW96CUyvJWwjkhf1FMGBfiKKoBxeDVdz9Y=";
+            })
+          ];
+        });
+
         helm-rtags = fix-rtags super.helm-rtags;
 
         # tries to write to $HOME
@@ -552,6 +599,13 @@ let
                 'defcustom w3m-command "${w3m}"'
               '';
           });
+        });
+
+        wordnut = super.wordnut.overrideAttrs (attrs: {
+          postPatch = attrs.postPatch or "" + ''
+            substituteInPlace wordnut.el \
+              --replace 'wordnut-cmd "wn"' 'wordnut-cmd "${lib.getExe pkgs.wordnet}"'
+          '';
         });
 
         mozc = super.mozc.overrideAttrs (attrs: {

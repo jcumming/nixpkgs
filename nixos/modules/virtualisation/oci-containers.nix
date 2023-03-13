@@ -230,7 +230,10 @@ let
     escapedName = escapeShellArg name;
   in {
     wantedBy = [] ++ optional (container.autoStart) "multi-user.target";
-    after = lib.optionals (cfg.backend == "docker") [ "docker.service" "docker.socket" ] ++ dependsOn;
+    after = lib.optionals (cfg.backend == "docker") [ "docker.service" "docker.socket" ]
+            # if imageFile is not set, the service needs the network to download the image from the registry
+            ++ lib.optionals (container.imageFile == null) [ "network-online.target" ]
+            ++ dependsOn;
     requires = dependsOn;
     environment = proxy_env;
 
@@ -304,12 +307,13 @@ let
       # ExecReload = ...;
       ###
 
-      Environment=if cfg.backend == "podman" then "PODMAN_SYSTEMD_UNIT=podman-${name}.service" else {};
-      Type=if cfg.backend == "podman" then "notify" else {};
-      NotifyAccess=if cfg.backend == "podman" then "all" else {};
       TimeoutStartSec = 0;
       TimeoutStopSec = 120;
       Restart = "always";
+    } // optionalAttrs (cfg.backend == "podman") {
+      Environment="PODMAN_SYSTEMD_UNIT=podman-${name}.service";
+      Type="notify";
+      NotifyAccess="all";
     };
   };
 

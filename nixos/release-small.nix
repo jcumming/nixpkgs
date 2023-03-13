@@ -31,6 +31,7 @@ in rec {
     inherit (nixos') channel manual options iso_minimal amazonImage dummy;
     tests = {
       inherit (nixos'.tests)
+        acme
         containers-imperative
         containers-ip
         firewall
@@ -38,8 +39,7 @@ in rec {
         login
         misc
         nat
-        # fails with kernel >= 5.15 https://github.com/NixOS/nixpkgs/pull/152505#issuecomment-1005049314
-        #nfs3
+        nfs3
         openssh
         php
         predictable-interface-names
@@ -110,6 +110,7 @@ in rec {
         "nixos.iso_minimal"
         "nixos.amazonImage"
         "nixos.manual"
+        "nixos.tests.acme"
         "nixos.tests.boot.uefiCdrom"
         "nixos.tests.containers-imperative"
         "nixos.tests.containers-ip"
@@ -117,11 +118,9 @@ in rec {
         "nixos.tests.ipv6"
         "nixos.tests.login"
         "nixos.tests.misc"
-        "nixos.tests.nat.firewall-conntrack"
         "nixos.tests.nat.firewall"
         "nixos.tests.nat.standalone"
-        # fails with kernel >= 5.15 https://github.com/NixOS/nixpkgs/pull/152505#issuecomment-1005049314
-        #"nixos.tests.nfs3.simple"
+        "nixos.tests.nfs3.simple"
         "nixos.tests.openssh"
         "nixos.tests.php.fpm"
         "nixos.tests.php.pcre"

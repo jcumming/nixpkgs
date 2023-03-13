@@ -19,23 +19,26 @@ let
 in
 buildGoModule rec {
   pname = "tracee";
-  version = "0.8.3";
+  version = "0.11.0";
 
   src = fetchFromGitHub {
     owner = "aquasecurity";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-VxTJcl7gHRZEXpFbxU4iMwqxuR1r0BNSseWQ5ijWHU4=";
+    sha256 = "sha256-fAbii/DEXx9WJpolc7amqF9TQj4oE5x0TCiNOtVasGo=";
   };
-  vendorSha256 = "sha256-szPoJUtzya3+8dOnkDxHEs3+a1LTVoMMLjUSrUlfiGg=";
+  vendorSha256 = "sha256-eenhIsiJhPLgwJo2spIGURPkcsec3kO4L5UJ0FWniQc=";
+
+  patches = [
+    ./use-our-libbpf.patch
+  ];
 
   enableParallelBuilding = true;
   # needed to build bpf libs
   hardeningDisable = [ "stackprotector" ];
 
   nativeBuildInputs = [ pkg-config clang ];
-  # ensure libbpf version exactly matches the version added as a submodule
-  buildInputs = [ libbpf zlib elfutils ];
+  buildInputs = [ elfutils libbpf zlib ];
 
   makeFlags = [
     "VERSION=v${version}"
@@ -44,16 +47,9 @@ buildGoModule rec {
     "CMD_GIT=echo"
   ];
 
-  # TODO: patch tracee to take libbpf.a and headers via include path
-  preBuild = ''
-    mkdir -p 3rdparty/libbpf/src
-    mkdir -p ./dist
-    cp -r ${libbpf}/lib ./dist/libbpf
-    chmod +w ./dist/libbpf
-    cp -r ${libbpf}/include/bpf ./dist/libbpf/
-  '';
   buildPhase = ''
     runHook preBuild
+    mkdir -p ./dist
     make $makeFlags ''${enableParallelBuilding:+-j$NIX_BUILD_CORES} bpf-core all
     runHook postBuild
   '';
@@ -68,11 +64,10 @@ buildGoModule rec {
 
     mkdir -p $out/{bin,share/tracee}
 
-    cp ./dist/tracee-ebpf $out/bin
-    cp ./dist/tracee-rules $out/bin
+    mv ./dist/tracee-{ebpf,rules} $out/bin/
 
-    cp -r ./dist/rules $out/share/tracee/
-    cp -r ./cmd/tracee-rules/templates $out/share/tracee/
+    mv ./dist/rules $out/share/tracee/
+    mv ./cmd/tracee-rules/templates $out/share/tracee/
 
     runHook postInstall
   '';
@@ -109,7 +104,12 @@ buildGoModule rec {
       is delivered as a Docker image that monitors the OS and detects suspicious
       behavior based on a pre-defined set of behavioral patterns.
     '';
-    license = licenses.asl20;
+    license = with licenses; [
+      # general license
+      asl20
+      # pkg/ebpf/c/*
+      gpl2Plus
+    ];
     maintainers = with maintainers; [ jk ];
     platforms = [ "x86_64-linux" ];
   };

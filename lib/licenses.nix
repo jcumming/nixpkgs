@@ -78,6 +78,11 @@ in mkLicense lset) ({
     url = "https://aomedia.org/license/patent-license/";
   };
 
+  apsl10 = {
+    spdxId = "APSL-1.0";
+    fullName = "Apple Public Source License 1.0";
+  };
+
   apsl20 = {
     spdxId = "APSL-2.0";
     fullName = "Apple Public Source License 2.0";
@@ -101,6 +106,26 @@ in mkLicense lset) ({
   asl20 = {
     spdxId = "Apache-2.0";
     fullName = "Apache License 2.0";
+  };
+
+  asl20-llvm = {
+    spdxId = "Apache-2.0 WITH LLVM-exception";
+    fullName = "Apache License 2.0 with LLVM Exceptions";
+  };
+
+  bitstreamVera = {
+    spdxId = "Bitstream-Vera";
+    fullName = "Bitstream Vera Font License";
+  };
+
+  bitTorrent10 = {
+     spdxId = "BitTorrent-1.0";
+     fullName = " BitTorrent Open Source License v1.0";
+  };
+
+  bitTorrent11 = {
+    spdxId = "BitTorrent-1.1";
+    fullName = " BitTorrent Open Source License v1.1";
   };
 
   bola11 = {
@@ -141,6 +166,11 @@ in mkLicense lset) ({
   bsd2Patent = {
     spdxId = "BSD-2-Clause-Patent";
     fullName = "BSD-2-Clause Plus Patent License";
+  };
+
+  bsd2WithViews = {
+    spdxId = "BSD-2-Clause-Views";
+    fullName = "BSD 2-Clause with views sentence";
   };
 
   bsd3 = {
@@ -192,6 +222,12 @@ in mkLicense lset) ({
   cc0 = {
     spdxId = "CC0-1.0";
     fullName = "Creative Commons Zero v1.0 Universal";
+  };
+
+  cc-by-nc-nd-30 = {
+    spdxId = "CC-BY-NC-ND-3.0";
+    fullName = "Creative Commons Attribution Non Commercial No Derivative Works 3.0 Unported";
+    free = false;
   };
 
   cc-by-nc-sa-20 = {
@@ -315,6 +351,13 @@ in mkLicense lset) ({
     fullName = "EPSON AVASYS PUBLIC LICENSE";
     url = "https://avasys.jp/hp/menu000000700/hpg000000603.htm";
     free = false;
+  };
+
+  ecl20 = {
+    fullName = "Educational Community License, Version 2.0";
+    url = "https://opensource.org/licenses/ECL-2.0";
+    shortName = "ECL 2.0";
+    spdxId = "ECL-2.0";
   };
 
   efl10 = {
@@ -542,10 +585,26 @@ in mkLicense lset) ({
     redistributable = false;
   };
 
+  fair = {
+    fullName = "Fair License";
+    spdxId = "Fair";
+    free = true;
+  };
+
   issl = {
     fullName = "Intel Simplified Software License";
     url = "https://software.intel.com/en-us/license/intel-simplified-software-license";
     free = false;
+  };
+
+  lal12 = {
+    spdxId = "LAL-1.2";
+    fullName = "Licence Art Libre 1.2";
+  };
+
+  lal13 = {
+    spdxId = "LAL-1.3";
+    fullName = "Licence Art Libre 1.3";
   };
 
   lgpl2Only = {
@@ -606,11 +665,6 @@ in mkLicense lset) ({
   llgpl21 = {
     fullName = "Lisp LGPL; GNU Lesser General Public License version 2.1 with Franz Inc. preamble for clarification of LGPL terms in context of Lisp";
     url = "https://opensource.franz.com/preamble.html";
-  };
-
-  llvm-exception = {
-    spdxId = "LLVM-exception";
-    fullName = "LLVM Exception"; # LLVM exceptions to the Apache 2.0 License
   };
 
   lppl12 = {
@@ -683,7 +737,12 @@ in mkLicense lset) ({
 
   ncsa = {
     spdxId = "NCSA";
-    fullName  = "University of Illinois/NCSA Open Source License";
+    fullName = "University of Illinois/NCSA Open Source License";
+  };
+
+  nlpl = {
+    spdxId = "NLPL";
+    fullName = "No Limit Public License";
   };
 
   nposl3 = {
@@ -816,6 +875,12 @@ in mkLicense lset) ({
     fullName = "SGI Free Software License B v2.0";
   };
 
+  # Gentoo seems to treat it as a license:
+  # https://gitweb.gentoo.org/repo/gentoo.git/tree/licenses/SGMLUG?id=7d999af4a47bf55e53e54713d98d145f935935c1
+  sgmlug = {
+    fullName = "SGML UG SGML Parser Materials license";
+  };
+
   sleepycat = {
     spdxId = "Sleepycat";
     fullName = "Sleepycat License";
@@ -943,6 +1008,11 @@ in mkLicense lset) ({
     fullName = "wxWindows Library Licence, Version 3.1";
   };
 
+  x11 = {
+    spdxId = "X11";
+    fullName = "X11 License";
+  };
+
   xfig = {
     fullName = "xfig";
     url = "http://mcj.sourceforge.net/authors.html#xfig"; # https is broken
@@ -967,21 +1037,6 @@ in mkLicense lset) ({
   agpl3 = {
     spdxId = "AGPL-3.0";
     fullName = "GNU Affero General Public License v3.0";
-    deprecated = true;
-  };
-  fdl11 = {
-    spdxId = "GFDL-1.1";
-    fullName = "GNU Free Documentation License v1.1";
-    deprecated = true;
-  };
-  fdl12 = {
-    spdxId = "GFDL-1.2";
-    fullName = "GNU Free Documentation License v1.2";
-    deprecated = true;
-  };
-  fdl13 = {
-    spdxId = "GFDL-1.3";
-    fullName = "GNU Free Documentation License v1.3";
     deprecated = true;
   };
   gpl2 = {

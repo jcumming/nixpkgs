@@ -2,17 +2,17 @@
 
 buildGoModule rec {
   pname = "lux";
-  version = "0.15.0";
+  version = "0.17.0";
   src = fetchFromGitHub {
     owner = "iawia002";
     repo = "lux";
     rev = "v${version}";
-    sha256 = "sha256-fZR+Q0duITZq3Ynr2WTZAhDnmEkXrT2gXUlpuN0+aFo=";
+    sha256 = "sha256-n6oWItz0tnhpyPBGsf4+fYGnJyeYyhI2owkLrJWu7uw=";
   };
 
   nativeBuildInputs = [ makeWrapper ];
 
-  vendorSha256 = "sha256-SHUtyfGRGriEaESo6th7gGQn6V4REdk3XT0ZlGwky7E=";
+  vendorHash = "sha256-4pn6JKE+VieadhDLkVhbJc6XSm95cNwoNBWYGEZl8iI=";
 
   ldflags = [ "-s" "-w" ];
 

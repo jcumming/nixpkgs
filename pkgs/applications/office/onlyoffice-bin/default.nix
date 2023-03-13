@@ -12,6 +12,7 @@
 , dconf
 , dpkg
 , fontconfig
+, gcc-unwrapped
 , gdk-pixbuf
 , glib
 , glibc
@@ -66,6 +67,7 @@ let
   runtimeLibs = lib.makeLibraryPath [
     curl
     glibc
+    gcc-unwrapped.lib
     libudev0-shim
     pulseaudio
   ];
@@ -73,11 +75,11 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "onlyoffice-desktopeditors";
-  version = "7.1.0";
+  version = "7.2.0";
   minor = null;
   src = fetchurl {
     url = "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v${version}/onlyoffice-desktopeditors_amd64.deb";
-    sha256 = "sha256-40IUAmg7PnfYrdTj7TVbfvb9ey0/zzswu+sJllAIktg=";
+    sha256 = "sha256-O9gC/b5/eZ1YImuXpEZOJhI1rzCNuFrm5IqablnYo9Y=";
   };
 
   nativeBuildInputs = [
@@ -109,6 +111,7 @@ stdenv.mkDerivation rec {
     qt5.qtbase
     qt5.qtdeclarative
     qt5.qtsvg
+    qt5.qtwayland
     xorg.libX11
     xorg.libxcb
     xorg.libXcomposite

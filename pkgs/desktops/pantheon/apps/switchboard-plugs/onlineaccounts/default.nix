@@ -17,21 +17,21 @@
 
 stdenv.mkDerivation rec {
   pname = "switchboard-plug-onlineaccounts";
-  version = "6.5.0";
+  version = "6.5.1";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = pname;
     rev = version;
-    sha256 = "sha256-Q/vvXKyeedn5o7HnL9F5ixSjJS3OWrvvHbzvx2fW2qY=";
+    sha256 = "sha256-7eKbOf5lD2zwmZc0k9PWGwnqaqXmwgJPmij0WtMT7Qk=";
   };
 
   patches = [
     # build: support evolution-data-server 3.45
-    # https://github.com/elementary/switchboard-plug-onlineaccounts/pull/244
+    # https://github.com/elementary/switchboard-plug-onlineaccounts/pull/248
     (fetchpatch {
-      url = "https://github.com/elementary/switchboard-plug-onlineaccounts/commit/b60f0458a23a2f76ad14d399f145e150e1ab82d3.patch";
-      sha256 = "sha256-C7woN4shPrVlSWZeW0Fz+xFi5CTQd2K5BsF5YeI9x0Y=";
+      url = "https://github.com/elementary/switchboard-plug-onlineaccounts/commit/08faf7b4241547b7900596af12a03d816712a808.patch";
+      sha256 = "sha256-QLe+NPHuo3hLM9n1f4hT5IK4nkWtYSe91L1wVSBzw6k=";
     })
   ];
 
@@ -52,9 +52,7 @@ stdenv.mkDerivation rec {
   ];
 
   passthru = {
-    updateScript = nix-update-script {
-      attrPath = "pantheon.${pname}";
-    };
+    updateScript = nix-update-script { };
   };
 
   meta = with lib; {
