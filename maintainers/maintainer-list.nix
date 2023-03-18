@@ -7712,6 +7712,13 @@
     githubId = 87115;
     name = "Wael Nasreddine";
   };
+  kalebpace = {
+    email = "kaleb.pace@pm.me";
+    matrix = "@kalebpace:matrix.org";
+    github = "kalebpace";
+    githubId = 5586615;
+    name = "Kaleb Pace";
+  };
   kalekseev = {
     email = "mail@kalekseev.com";
     github = "kalekseev";
@@ -16719,6 +16726,12 @@
     github = "zachcoyle";
     githubId = 908716;
     name = "Zach Coyle";
+  };
+  Zaechus = {
+    email = "zaechus@proton.me";
+    github = "Zaechus";
+    githubId = 19353212;
+    name = "Maxwell Anderson";
   };
   zagy = {
     email = "cz@flyingcircus.io";

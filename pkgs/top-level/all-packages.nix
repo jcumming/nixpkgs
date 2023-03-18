@@ -29651,6 +29651,8 @@ with pkgs;
 
   kerbrute = callPackage ../tools/security/kerbrute { };
 
+  komikku = callPackage ../applications/graphics/komikku { };
+
   kvmtool = callPackage ../applications/virtualization/kvmtool { };
 
   exrtools = callPackage ../applications/graphics/exrtools { };
@@ -32607,6 +32609,8 @@ with pkgs;
     nodejs = nodejs-16_x;
   };
 
+  peroxide = callPackage ../applications/networking/peroxide { };
+
   pflask = callPackage ../os-specific/linux/pflask { };
 
   pfsshell = callPackage ../tools/misc/pfsshell { };
@@ -35240,6 +35244,8 @@ with pkgs;
   katawa-shoujo = callPackage ../games/katawa-shoujo { };
 
   keeperrl = callPackage ../games/keeperrl { };
+
+  rbdoom-3-bfg = callPackage ../games/rbdoom-3-bfg { };
 
   ### GAMES/LGAMES
 
