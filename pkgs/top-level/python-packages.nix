@@ -4180,7 +4180,8 @@ self: super: with self; {
 
   greeneye-monitor = callPackage ../development/python-modules/greeneye-monitor { };
 
-  greenlet = callPackage ../development/python-modules/greenlet { };
+  # built-in for pypi
+  greenlet = if isPyPy then null else callPackage ../development/python-modules/greenlet { };
 
   grequests = callPackage ../development/python-modules/grequests { };
 
@@ -11704,6 +11705,12 @@ self: super: with self; {
 
   timm = callPackage ../development/python-modules/timm { };
 
+  tiny-cuda-nn = toPythonModule (pkgs.tiny-cuda-nn.override {
+    cudaPackages = self.torch.cudaPackages;
+    python3Packages = self;
+    pythonSupport = true;
+  });
+
   tinycss2 = callPackage ../development/python-modules/tinycss2 { };
 
   tinycss = callPackage ../development/python-modules/tinycss { };
@@ -12597,20 +12604,6 @@ self: super: with self; {
   wtf-peewee = callPackage ../development/python-modules/wtf-peewee { };
 
   wurlitzer = callPackage ../development/python-modules/wurlitzer { };
-
-  wxPython_4_0 = callPackage ../development/python-modules/wxPython/4.0.nix {
-    inherit (pkgs.darwin.apple_sdk.frameworks) AudioToolbox Carbon Cocoa CoreFoundation IOKit OpenGL;
-    wxGTK = pkgs.wxGTK30.override {
-      withWebKit = true;
-    };
-  };
-
-  wxPython_4_1 = callPackage ../development/python-modules/wxPython/4.1.nix {
-    inherit (pkgs.darwin.apple_sdk.frameworks) AGL AudioToolbox AVFoundation AVKit Carbon Cocoa CoreMedia CoreFoundation IOKit Kernel OpenGL Security WebKit;
-    wxGTK = pkgs.wxGTK31.override {
-      withWebKit = true;
-    };
-  };
 
   wxPython_4_2 = callPackage ../development/python-modules/wxPython/4.2.nix {
     wxGTK = pkgs.wxGTK32.override {

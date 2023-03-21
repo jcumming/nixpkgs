@@ -611,6 +611,7 @@ in {
   searx = handleTest ./searx.nix {};
   service-runner = handleTest ./service-runner.nix {};
   sfxr-qt = handleTest ./sfxr-qt.nix {};
+  sgtpuzzles = handleTest ./sgtpuzzles.nix {};
   shadow = handleTest ./shadow.nix {};
   shadowsocks = handleTest ./shadowsocks {};
   shattered-pixel-dungeon = handleTest ./shattered-pixel-dungeon.nix {};
@@ -624,7 +625,6 @@ in {
   soapui = handleTest ./soapui.nix {};
   sogo = handleTest ./sogo.nix {};
   solanum = handleTest ./solanum.nix {};
-  solr = handleTest ./solr.nix {};
   sonarr = handleTest ./sonarr.nix {};
   sourcehut = handleTest ./sourcehut.nix {};
   spacecookie = handleTest ./spacecookie.nix {};
