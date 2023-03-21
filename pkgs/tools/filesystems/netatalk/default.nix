@@ -20,9 +20,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "netatalk";
-  release = "3.1.13";
-  patch = "3";
-  version = "${release}_${patch}";
+  version = "3.1.13_3";
 
   src = fetchurl {
     url = "mirror://sourceforge/netatalk/netatalk/netatalk-${finalAttrs.version}.tar.bz2";
