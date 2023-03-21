@@ -25,8 +25,8 @@ stdenv.mkDerivation (finalAttrs: {
   version = "${release}_${patch}";
 
   src = fetchurl {
-    url = "mirror://sourceforge/netatalk/netatalk/netatalk-${release}.tar.bz2";
-    sha256 = "0pg0slvvvq3l6f5yjz9ybijg4i6rs5a6c8wcynaasf8vzsyadbc9";
+    url = "mirror://sourceforge/netatalk/netatalk/netatalk-${finalAttrs.version}.tar.bz2";
+    hash = "sha256-ia2mvP4bOa2U9YwjZlTR2UTyZFw+femLM3TgvTfV4F0=";
   };
 
   patches = [
@@ -63,7 +63,8 @@ stdenv.mkDerivation (finalAttrs: {
     })
     (fetchpatch {
       name = "patch-libatalk_adouble_ad__attr.c";
-      url = "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__attr.c";
+      url =
+        "https://cgit.freebsd.org/ports/plain/net/netatalk3/files/patch-libatalk_adouble_ad__attr.c";
       sha256 = "sha256-Ose6BdilwBOmoYpm8Jat1B3biOXJj4y3U4T49zE0G7Y=";
     })
     (fetchpatch {
