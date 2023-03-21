@@ -95,7 +95,6 @@
   ./hardware/video/bumblebee.nix
   ./hardware/video/capture/mwprocapture.nix
   ./hardware/video/displaylink.nix
-  ./hardware/video/hidpi.nix
   ./hardware/video/nvidia.nix
   ./hardware/video/switcheroo-control.nix
   ./hardware/video/uvcvideo/default.nix
@@ -220,6 +219,7 @@
   ./programs/proxychains.nix
   ./programs/qdmr.nix
   ./programs/qt5ct.nix
+  ./programs/regreet.nix
   ./programs/rog-control-center.nix
   ./programs/rust-motd.nix
   ./programs/screen.nix
@@ -377,6 +377,8 @@
   ./services/continuous-integration/jenkins/default.nix
   ./services/continuous-integration/jenkins/job-builder.nix
   ./services/continuous-integration/jenkins/slave.nix
+  ./services/continuous-integration/woodpecker/agent.nix
+  ./services/continuous-integration/woodpecker/server.nix
   ./services/databases/aerospike.nix
   ./services/databases/cassandra.nix
   ./services/databases/clickhouse.nix
@@ -665,6 +667,7 @@
   ./services/misc/prowlarr.nix
   ./services/misc/pykms.nix
   ./services/misc/radarr.nix
+  ./services/misc/readarr.nix
   ./services/misc/redmine.nix
   ./services/misc/ripple-data-api.nix
   ./services/misc/rippled.nix
@@ -731,6 +734,7 @@
   ./services/monitoring/nagios.nix
   ./services/monitoring/netdata.nix
   ./services/monitoring/parsedmarc.nix
+  ./services/monitoring/prometheus/alertmanager-irc-relay.nix
   ./services/monitoring/prometheus/alertmanager.nix
   ./services/monitoring/prometheus/default.nix
   ./services/monitoring/prometheus/exporters.nix
@@ -947,6 +951,7 @@
   ./services/networking/owamp.nix
   ./services/networking/pdns-recursor.nix
   ./services/networking/pdnsd.nix
+  ./services/networking/peroxide.nix
   ./services/networking/pixiecore.nix
   ./services/networking/pleroma.nix
   ./services/networking/polipo.nix
@@ -1058,7 +1063,6 @@
   ./services/search/meilisearch.nix
   ./services/search/opensearch.nix
   ./services/search/qdrant.nix
-  ./services/search/solr.nix
   ./services/security/aesmd.nix
   ./services/security/certmgr.nix
   ./services/security/cfssl.nix
@@ -1129,7 +1133,6 @@
   ./services/web-apps/atlassian/confluence.nix
   ./services/web-apps/atlassian/crowd.nix
   ./services/web-apps/atlassian/jira.nix
-  ./services/web-apps/baget.nix
   ./services/web-apps/bookstack.nix
   ./services/web-apps/calibre-web.nix
   ./services/web-apps/coder.nix
@@ -1272,6 +1275,7 @@
   ./services/x11/window-managers/bspwm.nix
   ./services/x11/window-managers/katriawm.nix
   ./services/x11/window-managers/metacity.nix
+  ./services/x11/window-managers/nimdow.nix
   ./services/x11/window-managers/none.nix
   ./services/x11/window-managers/twm.nix
   ./services/x11/window-managers/windowlab.nix
