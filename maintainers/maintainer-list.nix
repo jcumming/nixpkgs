@@ -1469,6 +1469,15 @@
     githubId = 12958979;
     name = "Mika Naylor";
   };
+  autumnal = {
+    name = "Sven Friedrich";
+    email = "sven@autumnal.de";
+    github = "sevenautumns";
+    githubId = 20627275;
+    keys = [{
+      fingerprint = "6A2E 7FDD 1037 11A8 B996  E28E B051 064E 2FCA B71B";
+    }];
+  };
   avakhrenev = {
     email = "avakhrenev@gmail.com";
     github = "avakhrenev";
@@ -8212,6 +8221,12 @@
     github = "kragniz";
     githubId = 735008;
     name = "Louis Taylor";
+  };
+  kranurag7 = {
+    email = "contact.anurag7@gmail.com";
+    github = "kranurag7";
+    githubId = 81210977;
+    name = "Anurag";
   };
   kranzes = {
     email = "personal@ilanjoselevich.com";
