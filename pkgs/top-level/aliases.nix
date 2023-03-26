@@ -511,6 +511,10 @@ mapAliases ({
   fuse2fs = if stdenv.isLinux then e2fsprogs.fuse2fs else null; # Added 2022-03-27 preserve, reason: convenience, arch has a package named fuse2fs too.
   fwupdate = throw "fwupdate was merged into fwupd"; # Added 2020-05-19
 
+  fcitx = throw "fcitx4 is deprecated, please use fcitx5 instead."; # Added 2023-03-13
+  fcitx-engines = throw "fcitx4 is deprecated, please use fcitx5 instead."; # Added 2023-03-13
+  fcitx-configtools = throw "fcitx4 is deprecated, please use fcitx5 instead."; # Added 2023-03-13
+
   ### G ###
 
   g4py = python3Packages.geant4; # Added 2020-06-06
@@ -870,6 +874,7 @@ mapAliases ({
   linux-rt_5_10 = linuxKernel.kernels.linux_rt_5_10;
   linux-rt_5_15 = linuxKernel.kernels.linux_rt_5_15;
   linux-rt_5_4 = linuxKernel.kernels.linux_rt_5_4;
+  linux-rt_6_1 = linuxKernel.kernels.linux_rt_6_1;
   linuxPackages_4_14 = linuxKernel.packages.linux_4_14;
   linuxPackages_4_19 = linuxKernel.packages.linux_4_19;
   linuxPackages_4_9 = linuxKernel.packages.linux_4_9;
@@ -891,6 +896,7 @@ mapAliases ({
   linuxPackages_rt_5_10 = linuxKernel.packages.linux_rt_5_10;
   linuxPackages_rt_5_15 = linuxKernel.packages.linux_rt_5_15;
   linuxPackages_rt_5_4 = linuxKernel.packages.linux_rt_5_4;
+  linuxPackages_rt_6_1 = linuxKernel.packages.linux_rt_6_1;
   linux_4_14 = linuxKernel.kernels.linux_4_14;
   linux_4_19 = linuxKernel.kernels.linux_4_19;
   linux_4_9 = linuxKernel.kernels.linux_4_9;
