@@ -1,4 +1,4 @@
-{stdenv, lib, fetchurl, libmusicbrainz, flac, slang, neon, unac, libjpeg, asciidoc, libdiscid, pkgconfig}:
+{stdenv, lib, fetchurl, libmusicbrainz, flac, slang, neon, unac, libjpeg, asciidoc, libdiscid, pkg-config}:
 
 stdenv.mkDerivation rec {
   ver = "2.0.4";
@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
     sha256 = "c96718ac3ed3a0af494a1970ff64a606bfa54ac78854c5d1c7c19586177335b2";
   };
 
-  buildInputs = [ libmusicbrainz flac slang neon unac libjpeg asciidoc libdiscid pkgconfig ];
+  buildInputs = [ libmusicbrainz flac slang neon unac libjpeg asciidoc libdiscid pkg-config ];
 
   meta = {
     description = "A utility for maintaining single album FLAC file (with embedded CUE sheets) metadata from MusicBrainz. ";
