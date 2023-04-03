@@ -316,6 +316,8 @@ with pkgs;
 
   banana-accounting = callPackage ../applications/office/banana-accounting { };
 
+  beebeep = libsForQt5.callPackage ../applications/office/beebeep {};
+
   bakelite = callPackage ../tools/backup/bakelite { };
 
   benthos = callPackage ../development/tools/benthos { };
@@ -490,6 +492,8 @@ with pkgs;
 
   cryptowatch-desktop = callPackage ../applications/finance/cryptowatch { };
 
+  dae = callPackage ../tools/networking/dae { };
+
   databricks-sql-cli = python3Packages.callPackage ../applications/misc/databricks-sql-cli { };
 
   dhallDirectoryToNix = callPackage ../build-support/dhall/directory-to-nix.nix { };
@@ -545,6 +549,8 @@ with pkgs;
   frink = callPackage ../development/tools/frink { };
 
   frugal = callPackage ../development/tools/frugal { };
+
+  functiontrace-server = callPackage ../development/tools/functiontrace-server { };
 
   glade = callPackage ../development/tools/glade { };
 
@@ -1429,6 +1435,8 @@ with pkgs;
 
   audible-cli = callPackage ../tools/misc/audible-cli { };
 
+  audiobookshelf = callPackage ../servers/audiobookshelf { };
+
   auditwheel = callPackage ../tools/package-management/auditwheel { };
 
   amidst = callPackage ../tools/games/minecraft/amidst { };
@@ -2293,6 +2301,8 @@ with pkgs;
   simh = callPackage ../applications/emulators/simh { };
 
   simplenes = callPackage ../applications/emulators/simplenes { };
+
+  snekim = callPackage ../games/snekim { };
 
   snes9x = callPackage ../applications/emulators/snes9x { };
 
@@ -3219,6 +3229,8 @@ with pkgs;
   dontgo403 = callPackage ../tools/security/dontgo403 { };
 
   dpt-rp1-py = callPackage ../tools/misc/dpt-rp1-py { };
+
+  dooit = callPackage ../tools/misc/dooit { };
 
   doona = callPackage ../tools/security/doona { };
 
@@ -5267,7 +5279,7 @@ with pkgs;
   medusa = callPackage ../tools/security/medusa { };
 
   megasync = libsForQt5.callPackage ../applications/misc/megasync {
-    ffmpeg = ffmpeg-full;
+    ffmpeg = ffmpeg_4;
   };
 
   megacmd = callPackage ../applications/misc/megacmd { };
@@ -8720,6 +8732,8 @@ with pkgs;
 
   jc = with python3Packages; toPythonApplication jc;
 
+  jcli = callPackage ../development/tools/misc/jcli { };
+
   jd-cli = callPackage ../tools/security/jd-cli { };
 
   jd-diff-patch = callPackage ../development/tools/jd-diff-patch { };
@@ -10306,6 +10320,17 @@ with pkgs;
 
   nvfetcher = haskell.lib.compose.justStaticExecutables haskellPackages.nvfetcher;
 
+  nvidia-thrust = callPackage ../development/libraries/nvidia-thrust { };
+
+  nvidia-thrust-intel = callPackage ../development/libraries/nvidia-thrust {
+    hostSystem = "TBB";
+    deviceSystem = if config.cudaSupport or false then "CUDA" else "TBB";
+  };
+
+  nvidia-thrust-cuda = callPackage ../development/libraries/nvidia-thrust {
+    deviceSystem = "CUDA";
+  };
+
   miller = callPackage ../tools/text/miller { };
 
   milu = callPackage ../applications/misc/milu { };
@@ -11105,7 +11130,8 @@ with pkgs;
   };
 
   platformioPackages = dontRecurseIntoAttrs (callPackage ../development/embedded/platformio { });
-  platformio = platformioPackages.platformio-chrootenv;
+  platformio = if stdenv.isLinux then platformioPackages.platformio-chrootenv else platformioPackages.platformio-core;
+  platformio-core = platformioPackages.platformio-core;
 
   platinum-searcher = callPackage ../tools/text/platinum-searcher { };
 
@@ -13814,6 +13840,8 @@ with pkgs;
   };
 
   clipnotify = callPackage ../tools/misc/clipnotify { };
+
+  clipboard-jh = callPackage ../tools/misc/clipboard-jh { };
 
   clipbuzz = callPackage ../tools/misc/clipbuzz { };
 
@@ -18181,7 +18209,8 @@ with pkgs;
   gradleGen = gradle-packages.gen;
   gradle_6 = callPackage gradle-packages.gradle_6 { };
   gradle_7 = callPackage gradle-packages.gradle_7 { };
-  gradle = gradle_7;
+  gradle_8 = callPackage gradle-packages.gradle_8 { };
+  gradle = gradle_8;
 
   grcov = callPackage ../development/tools/misc/grcov { };
 
@@ -28626,6 +28655,7 @@ with pkgs;
   };
 
   aeolus = callPackage ../applications/audio/aeolus { };
+  aeolus-stops = callPackage ../applications/audio/aeolus/stops.nix { };
 
   aewan = callPackage ../applications/editors/aewan { };
 
@@ -30365,7 +30395,7 @@ with pkgs;
 
   linvstmanager = qt5.callPackage ../applications/audio/linvstmanager { };
 
-  deadd-notification-center = callPackage ../applications/misc/deadd-notification-center { };
+  deadd-notification-center = haskell.lib.compose.justStaticExecutables (haskellPackages.callPackage ../applications/misc/deadd-notification-center { });
 
   lollypop = callPackage ../applications/audio/lollypop { };
 
@@ -32010,6 +32040,8 @@ with pkgs;
 
   rofi-vpn = callPackage ../applications/networking/rofi-vpn { };
 
+  seamly2d = libsForQt5.callPackage ../applications/graphics/seamly2d { };
+
   ympd = callPackage ../applications/audio/ympd { };
 
   # a somewhat more maintained fork of ympd
@@ -32215,6 +32247,8 @@ with pkgs;
   };
   p4d = callPackage ../applications/version-management/p4d { };
   p4v = callPackage ../applications/version-management/p4v { };
+
+  parson = callPackage ../development/libraries/parson { };
 
   partio = callPackage ../development/libraries/partio { };
 
@@ -32645,6 +32679,8 @@ with pkgs;
 
   palemoon = callPackage ../applications/networking/browsers/palemoon { };
   palemoon-bin = callPackage ../applications/networking/browsers/palemoon/bin.nix { };
+
+  paleta = callPackage ../applications/graphics/paleta { };
 
   pamix = callPackage ../applications/audio/pamix { };
 
@@ -33962,6 +33998,8 @@ with pkgs;
   };
 
   tortoisehg = callPackage ../applications/version-management/tortoisehg { };
+
+  tone = callPackage ../applications/audio/tone { };
 
   tonelib-gfx = callPackage ../applications/audio/tonelib-gfx { };
 
@@ -37804,6 +37842,11 @@ with pkgs;
     swig = swig4;
   };
 
+  faissWithCuda = faiss.override {
+    cudaSupport = true;
+    nvidia-thrust = nvidia-thrust-cuda;
+  };
+
   fityk = callPackage ../applications/science/misc/fityk { };
 
   galario = callPackage ../development/libraries/galario { };
@@ -39367,6 +39410,8 @@ with pkgs;
   };
 
   golden-cheetah = libsForQt5.callPackage ../applications/misc/golden-cheetah { };
+
+  golden-cheetah-bin = callPackage ../applications/misc/golden-cheetah-bin {};
 
   linkchecker = callPackage ../tools/networking/linkchecker { };
 
