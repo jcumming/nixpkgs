@@ -1544,6 +1544,8 @@ with pkgs;
 
   godspeed = callPackage ../tools/networking/godspeed { };
 
+  gp-saml-gui = python3Packages.callPackage ../tools/networking/gp-saml-gui { };
+
   guestfs-tools = callPackage ../tools/virtualization/guestfs-tools { };
 
   fabs = callPackage ../tools/backup/fabs { };
@@ -2524,6 +2526,8 @@ with pkgs;
   xfe = callPackage ../applications/file-managers/xfe {
     fox = fox_1_6;
   };
+
+  xplr = callPackage ../applications/file-managers/xplr { };
 
   ytree = callPackage ../applications/file-managers/ytree { };
 
@@ -5451,6 +5455,8 @@ with pkgs;
   notify = callPackage ../tools/misc/notify { };
 
   notifymuch = callPackage ../applications/misc/notifymuch { };
+
+  nmh = callPackage ../tools/networking/nmh { };
 
   npins = callPackage ../tools/nix/npins { };
 
@@ -13139,6 +13145,8 @@ with pkgs;
 
   typst = callPackage ../tools/typesetting/typst { };
 
+  typst-fmt = callPackage ../tools/typesetting/typst-fmt { };
+
   tz = callPackage ../tools/misc/tz { };
 
   u9fs = callPackage ../servers/u9fs { };
@@ -13526,7 +13534,6 @@ with pkgs;
 
   xe = callPackage ../tools/system/xe { };
 
-  xplr = callPackage ../applications/misc/xplr { };
 
   xray = callPackage ../tools/networking/xray { };
 
@@ -15637,7 +15644,9 @@ with pkgs;
 
   marst = callPackage ../development/compilers/marst { };
 
-  mercury = callPackage ../development/compilers/mercury { };
+  mercury = callPackage ../development/compilers/mercury {
+    jdk_headless = openjdk8_headless; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
+  };
 
   microscheme = callPackage ../development/compilers/microscheme { };
 
@@ -18858,6 +18867,10 @@ with pkgs;
   rsonpath = callPackage ../development/tools/misc/rsonpath { };
 
   rufo = callPackage ../development/tools/rufo { };
+
+  rye = callPackage ../development/tools/rye {
+    inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
+  };
 
   samurai = callPackage ../development/tools/build-managers/samurai { };
 
@@ -25214,6 +25227,8 @@ with pkgs;
   lemmy-ui = callPackage ../servers/web-apps/lemmy/ui.nix {
     nodejs = nodejs-14_x;
   };
+
+  lightgbm = callPackage ../development/libraries/lightgbm { };
 
   lighttpd = callPackage ../servers/http/lighttpd { };
 
