@@ -2318,6 +2318,8 @@ self: super: with self; {
 
   dateparser = callPackage ../development/python-modules/dateparser { };
 
+  datetime = callPackage ../development/python-modules/datetime { };
+
   dateutils = callPackage ../development/python-modules/dateutils { };
 
   datrie = callPackage ../development/python-modules/datrie { };
@@ -6169,6 +6171,8 @@ self: super: with self; {
     enablePython = true;
   });
 
+  mmcv = callPackage ../development/python-modules/mmcv { };
+
   mmh3 = callPackage ../development/python-modules/mmh3 { };
 
   mmpython = callPackage ../development/python-modules/mmpython { };
@@ -9607,6 +9611,8 @@ self: super: with self; {
 
   python-lsp-jsonrpc = callPackage ../development/python-modules/python-lsp-jsonrpc { };
 
+  python-lsp-ruff = callPackage ../development/python-modules/python-lsp-ruff { };
+
   python-lsp-server = callPackage ../development/python-modules/python-lsp-server { };
 
   python-ly = callPackage ../development/python-modules/python-ly { };
@@ -9716,6 +9722,8 @@ self: super: with self; {
   python-redis-lock = callPackage ../development/python-modules/python-redis-lock { };
 
   python-registry = callPackage ../development/python-modules/python-registry { };
+
+  python-roborock = callPackage ../development/python-modules/python-roborock { };
 
   python-rtmidi = callPackage ../development/python-modules/python-rtmidi {
     inherit (pkgs.darwin.apple_sdk.frameworks) CoreAudio CoreMIDI CoreServices;
@@ -11085,6 +11093,8 @@ self: super: with self; {
   somfy-mylink-synergy = callPackage ../development/python-modules/somfy-mylink-synergy { };
 
   sonarr = callPackage ../development/python-modules/sonarr { };
+
+  sonos-websocket = callPackage ../development/python-modules/sonos-websocket { };
 
   sopel = callPackage ../development/python-modules/sopel { };
 
