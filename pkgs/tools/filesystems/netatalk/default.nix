@@ -58,22 +58,6 @@ stdenv.mkDerivation (finalAttrs: {
     "--localstatedir=/var/lib"
   ];
 
-##  # Expose librpcsvc to the linker for afpd
-##  # Fixes errors that showed up when closure-size was merged:
-##  # afpd-nfsquota.o: In function `callaurpc':
-##  # netatalk-3.1.7/etc/afpd/nfsquota.c:78: undefined reference to `xdr_getquota_args'
-##  # netatalk-3.1.7/etc/afpd/nfsquota.c:78: undefined reference to `xdr_getquota_rslt'
-##  postConfigure = ''
-##    ${ed}/bin/ed -v etc/afpd/Makefile << EOF
-##    /^afpd_LDADD
-##    /am__append_2
-##    a
-##      ${libtirpc}/lib/libtirpc.so \\
-##    .
-##    w
-##    EOF
-##  '';
-
   postInstall = ''
     sed -i -e "s%/usr/bin/env python%${python3}/bin/python3%" $out/bin/afpstats
     buildPythonPath ${python3.pkgs.dbus-python}

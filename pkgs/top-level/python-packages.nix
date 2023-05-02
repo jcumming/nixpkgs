@@ -2462,6 +2462,8 @@ self: super: with self; {
 
   dicom-numpy = callPackage ../development/python-modules/dicom-numpy { };
 
+  dicomweb-client = callPackage ../development/python-modules/dicomweb-client { };
+
   dict2xml = callPackage ../development/python-modules/dict2xml { };
 
   dictdiffer = callPackage ../development/python-modules/dictdiffer { };
@@ -3084,7 +3086,11 @@ self: super: with self; {
 
   elastic-apm = callPackage ../development/python-modules/elastic-apm { };
 
+  elastic-transport = callPackage ../development/python-modules/elastic-transport { };
+
   elasticsearch = callPackage ../development/python-modules/elasticsearch { };
+
+  elasticsearch8 = callPackage ../development/python-modules/elasticsearch8 { };
 
   elasticsearch-dsl = callPackage ../development/python-modules/elasticsearch-dsl { };
 
@@ -3189,6 +3195,8 @@ self: super: with self; {
   epson-projector = callPackage ../development/python-modules/epson-projector { };
 
   eradicate = callPackage ../development/python-modules/eradicate { };
+
+  es-client = callPackage ../development/python-modules/es-client { };
 
   espeak-phonemizer = callPackage ../development/python-modules/espeak-phonemizer { };
 
@@ -3760,6 +3768,8 @@ self: super: with self; {
 
   fsspec = callPackage ../development/python-modules/fsspec { };
 
+  fst-pso = callPackage ../development/python-modules/fst-pso { };
+
   ftfy = callPackage ../development/python-modules/ftfy { };
 
   ftputil = callPackage ../development/python-modules/ftputil { };
@@ -3793,6 +3803,8 @@ self: super: with self; {
   future-typing = callPackage ../development/python-modules/future-typing { };
 
   fuzzyfinder = callPackage ../development/python-modules/fuzzyfinder { };
+
+  fuzzytm = callPackage ../development/python-modules/fuzzytm { };
 
   fuzzywuzzy = callPackage ../development/python-modules/fuzzywuzzy { };
 
@@ -4873,6 +4885,8 @@ self: super: with self; {
 
   ipydatawidgets = callPackage ../development/python-modules/ipydatawidgets { };
 
+  ipyniivue = callPackage ../development/python-modules/ipyniivue { };
+
   ipykernel = callPackage ../development/python-modules/ipykernel { };
 
   ipympl = callPackage ../development/python-modules/ipympl { };
@@ -5185,6 +5199,8 @@ self: super: with self; {
 
   jupyter-server-ydoc = callPackage ../development/python-modules/jupyter-server-ydoc { };
 
+  jupyter-ui-poll = callPackage ../development/python-modules/jupyter-ui-poll { };
+
   jupyter-ydoc = callPackage ../development/python-modules/jupyter-ydoc { };
 
   jupyterhub = callPackage ../development/python-modules/jupyterhub { };
@@ -5279,6 +5295,8 @@ self: super: with self; {
 
   kconfiglib = callPackage ../development/python-modules/kconfiglib { };
 
+  keba-kecontact = callPackage ../development/python-modules/keba-kecontact { };
+
   keep = callPackage ../development/python-modules/keep { };
 
   keepalive = callPackage ../development/python-modules/keepalive { };
@@ -5372,6 +5390,8 @@ self: super: with self; {
 
   labmath = callPackage ../development/python-modules/labmath { };
 
+  lakeside = callPackage ../development/python-modules/lakeside { };
+
   langcodes = callPackage ../development/python-modules/langcodes { };
 
   langdetect = callPackage ../development/python-modules/langdetect { };
@@ -5419,6 +5439,8 @@ self: super: with self; {
   lcgit = callPackage ../development/python-modules/lcgit { };
 
   lcov_cobertura = callPackage ../development/python-modules/lcov_cobertura { };
+
+  ld2410-ble = callPackage ../development/python-modules/ld2410-ble { };
 
   ldap3 = callPackage ../development/python-modules/ldap3 { };
 
@@ -6097,6 +6119,8 @@ self: super: with self; {
   minidb = callPackage ../development/python-modules/minidb { };
 
   minidump = callPackage ../development/python-modules/minidump { };
+
+  miniful = callPackage ../development/python-modules/miniful { };
 
   minikanren = callPackage ../development/python-modules/minikanren { };
 
@@ -8177,6 +8201,8 @@ self: super: with self; {
 
   pydantic = callPackage ../development/python-modules/pydantic { };
 
+  pydantic-scim = callPackage ../development/python-modules/pydantic-scim { };
+
   pydash = callPackage ../development/python-modules/pydash { };
 
   pydata-google-auth = callPackage ../development/python-modules/pydata-google-auth { };
@@ -8338,6 +8364,8 @@ self: super: with self; {
   pyftpdlib = callPackage ../development/python-modules/pyftpdlib { };
 
   pyfttt = callPackage ../development/python-modules/pyfttt { };
+
+  pyfume = callPackage ../development/python-modules/pyfume { };
 
   pyfuse3 = callPackage ../development/python-modules/pyfuse3 { };
 
@@ -9311,6 +9339,8 @@ self: super: with self; {
   pytest-doctestplus = callPackage ../development/python-modules/pytest-doctestplus { };
 
   pytest-dotenv = callPackage ../development/python-modules/pytest-dotenv { };
+
+  pytest-emoji = callPackage ../development/python-modules/pytest-emoji { };
 
   pytest-env = callPackage ../development/python-modules/pytest-env { };
 
@@ -10918,6 +10948,8 @@ self: super: with self; {
 
   simplisafe-python = callPackage ../development/python-modules/simplisafe-python { };
 
+  simpful = callPackage ../development/python-modules/simpful { };
+
   simpy = callPackage ../development/python-modules/simpy { };
 
   single-version = callPackage ../development/python-modules/single-version { };
@@ -10931,6 +10963,8 @@ self: super: with self; {
   sip = callPackage ../development/python-modules/sip { };
 
   sip_4 = callPackage ../development/python-modules/sip/4.x.nix { };
+
+  sipyco = callPackage ../development/python-modules/sipyco { };
 
   siuba = callPackage ../development/python-modules/siuba { };
 
