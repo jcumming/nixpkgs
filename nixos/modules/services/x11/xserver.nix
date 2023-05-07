@@ -128,7 +128,7 @@ let
           fi
         done
 
-        for i in $(find ${toString cfg.modules} -type d); do
+        for i in $(find ${toString cfg.modules} -type d | sort); do
           if test $(echo $i/*.so* | wc -w) -ne 0; then
             echo "  ModulePath \"$i\"" >> $out
           fi
