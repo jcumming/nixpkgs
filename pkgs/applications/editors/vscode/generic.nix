@@ -16,10 +16,12 @@
 # sourceExecutableName is the name of the binary in the source archive, over
 # which we have no control
 , sourceExecutableName ? executableName
+
+, useVSCodeRipgrep ? false
+, ripgrep
 }:
 
 let
-  inherit (stdenv.hostPlatform) system;
   unwrapped = stdenv.mkDerivation {
 
     inherit pname version src sourceRoot dontFixup;
@@ -132,13 +134,17 @@ let
       # and the window immediately closes which renders VSCode unusable
       # see https://github.com/NixOS/nixpkgs/issues/152939 for full log
       ln -rs "$unpacked" "$packed"
-
-      # this fixes bundled ripgrep
-      chmod +x resources/app/node_modules/@vscode/ripgrep/bin/rg
-    '' + lib.optionalString (lib.versionOlder version "1.78.0" && stdenv.isLinux) ''
-      # see https://github.com/gentoo/gentoo/commit/4da5959
-      chmod +x resources/app/node_modules/node-pty/build/Release/spawn-helper
-    '';
+    '' + (let
+      vscodeRipgrep = if stdenv.isDarwin then
+        "Contents/Resources/app/node_modules.asar.unpacked/@vscode/ripgrep/bin/rg"
+      else
+        "resources/app/node_modules/@vscode/ripgrep/bin/rg";
+    in if !useVSCodeRipgrep then ''
+      rm ${vscodeRipgrep}
+      ln -s ${ripgrep}/bin/rg ${vscodeRipgrep}
+    '' else ''
+      chmod +x ${vscodeRipgrep}
+    '');
 
     inherit meta;
   };
@@ -196,7 +202,7 @@ let
 
     meta = meta // {
       description = ''
-        Wrapped variant of ${pname} which launches in a FHS compatible envrionment.
+        Wrapped variant of ${pname} which launches in a FHS compatible environment.
         Should allow for easy usage of extensions without nix-specific modifications.
       '';
     };
