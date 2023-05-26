@@ -326,6 +326,8 @@ self: super: with self; {
 
   aiosasl = callPackage ../development/python-modules/aiosasl { };
 
+  aiosql = callPackage ../development/python-modules/aiosql { };
+
   aiosenseme = callPackage ../development/python-modules/aiosenseme { };
 
   aiosenz = callPackage ../development/python-modules/aiosenz { };
@@ -6080,7 +6082,7 @@ self: super: with self; {
   maya = callPackage ../development/python-modules/maya { };
 
   mayavi = pkgs.libsForQt5.callPackage ../development/python-modules/mayavi {
-    inherit buildPythonPackage pythonOlder fetchPypi;
+    inherit buildPythonPackage pythonOlder;
     inherit (self) pyface pygments numpy packaging vtk traitsui envisage apptools pyqt5;
   };
 
@@ -6298,6 +6300,8 @@ self: super: with self; {
   });
 
   mmcv = callPackage ../development/python-modules/mmcv { };
+
+  mmengine = callPackage ../development/python-modules/mmengine { };
 
   mmh3 = callPackage ../development/python-modules/mmh3 { };
 
@@ -9013,6 +9017,8 @@ self: super: with self; {
   pypeg2 = callPackage ../development/python-modules/pypeg2 { };
 
   pyperclip = callPackage ../development/python-modules/pyperclip { };
+
+  pyperscan = callPackage ../development/python-modules/pyperscan { };
 
   pyperf = callPackage ../development/python-modules/pyperf { };
 
@@ -11794,6 +11800,11 @@ self: super: with self; {
   tabulate = callPackage ../development/python-modules/tabulate { };
 
   tabview = callPackage ../development/python-modules/tabview { };
+
+  taco = toPythonModule (pkgs.taco.override {
+    inherit (self) python;
+    enablePython = true;
+  });
 
   tadasets = callPackage ../development/python-modules/tadasets { };
 

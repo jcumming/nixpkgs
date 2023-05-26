@@ -9012,6 +9012,12 @@
     githubId = 1769386;
     name = "Liam Diprose";
   };
+  liberatys = {
+    email = "liberatys@hey.com";
+    name = "Nick Anthony Flueckiger";
+    github = "liberatys";
+    githubId = 35100156;
+  };
   libjared = {
     email = "jared@perrycode.com";
     github = "libjared";
@@ -15299,6 +15305,13 @@
     githubId = 20063502;
     name = "Sybrand Aarnoutse";
   };
+  syboxez = {
+    email = "syboxez@gmail.com";
+    matrix = "@Syboxez:matrix.org";
+    github = "syboxez";
+    githubId = 12841859;
+    name = "Syboxez Blank";
+  };
   symphorien = {
     email = "symphorien_nixpkgs@xlumurb.eu";
     matrix = "@symphorien:xlumurb.eu";
@@ -15801,6 +15814,12 @@
     email = "nix@henning-thielemann.de";
     github = "thielema";
     githubId = 898989;
+  };
+  thilobillerbeck = {
+    name = "Thilo Billerbeck";
+    email = "thilo.billerbeck@officerent.de";
+    github = "thilobillerbeck";
+    githubId = 7442383;
   };
   thled = {
     name = "Thomas Le Duc";
@@ -17334,10 +17353,10 @@
   };
   yayayayaka = {
     email = "nixpkgs@uwu.is";
-    matrix = "@lara:uwu.is";
+    matrix = "@yaya:uwu.is";
     github = "yayayayaka";
     githubId = 73759599;
-    name = "Lara A.";
+    name = "Yaya";
   };
   ydlr = {
     name = "ydlr";
