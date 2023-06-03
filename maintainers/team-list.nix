@@ -292,6 +292,8 @@ with lib.maintainers; {
     members = [
       imincik
       sikmir
+      nh2
+      willcohen
     ];
     scope = "Maintain geospatial packages.";
     shortName = "Geospatial";
