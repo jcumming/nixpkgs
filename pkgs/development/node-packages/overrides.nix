@@ -17,6 +17,8 @@ let
 in
 
 final: prev: {
+  inherit nodejs;
+
   "@angular/cli" = prev."@angular/cli".override {
     prePatch = ''
       export NG_CLI_ANALYTICS=false
@@ -134,6 +136,15 @@ final: prev: {
     buildInputs = [ final.node-gyp-build pkgs.libtool pkgs.autoconf pkgs.automake ];
     meta = oldAttrs.meta // { broken = since "12"; };
   });
+
+  castnow = prev.castnow.override {
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+
+    postInstall = ''
+      wrapProgram "$out/bin/castnow" \
+          --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.ffmpeg ]}
+    '';
+  };
 
   eask = prev."@emacs-eask/cli".override {
     name = "eask";
@@ -421,26 +432,6 @@ final: prev: {
       ]}
     '';
   };
-
-  readability-cli = prev.readability-cli.override (oldAttrs: {
-    # Wrap src to fix this build error:
-    # > readability-cli/readable.ts: unsupported interpreter directive "#!/usr/bin/env -S deno..."
-    #
-    # Need to wrap the source, instead of patching in patchPhase, because
-    # buildNodePackage only unpacks sources in the installPhase.
-    src = pkgs.srcOnly {
-      src = oldAttrs.src;
-      name = oldAttrs.name;
-      patchPhase = "chmod a-x readable.ts";
-    };
-
-    nativeBuildInputs = [ pkgs.pkg-config ];
-    buildInputs = with pkgs; [
-      pixman
-      cairo
-      pango
-    ];
-  });
 
   reveal-md = prev.reveal-md.override (
     lib.optionalAttrs (!stdenv.isDarwin) {
