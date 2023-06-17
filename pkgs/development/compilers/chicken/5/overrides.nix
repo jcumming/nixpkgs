@@ -1,6 +1,9 @@
 { stdenv, pkgs, lib, chickenEggs }:
 let
   inherit (lib) addMetaAttrs;
+  addToNativeBuildInputs = pkg: old: {
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ lib.toList pkg;
+  };
   addToBuildInputs = pkg: old: {
     buildInputs = (old.buildInputs or [ ]) ++ lib.toList pkg;
   };
@@ -27,6 +30,7 @@ in
   breadline = addToBuildInputs pkgs.readline;
   blas = addToBuildInputsWithPkgConfig pkgs.blas;
   blosc = addToBuildInputs pkgs.c-blosc;
+  botan = addToBuildInputsWithPkgConfig pkgs.botan2;
   cairo = old:
     (addToBuildInputsWithPkgConfig pkgs.cairo old)
     // (addToPropagatedBuildInputs (with chickenEggs; [ srfi-1 srfi-13 ]) old);
@@ -59,7 +63,9 @@ in
   plot = addToBuildInputs pkgs.plotutils;
   postgresql = addToBuildInputsWithPkgConfig pkgs.postgresql;
   rocksdb = addToBuildInputs pkgs.rocksdb;
-  scheme2c-compatibility = addPkgConfig;
+  scheme2c-compatibility = old:
+    addToNativeBuildInputs (lib.optionals (stdenv.system == "x86_64-darwin") [ pkgs.memorymappingHook ])
+      (addPkgConfig old);
   sdl-base = addToBuildInputs pkgs.SDL;
   sdl2 = addToPropagatedBuildInputsWithPkgConfig pkgs.SDL2;
   sdl2-image = addToBuildInputs pkgs.SDL2_image;
