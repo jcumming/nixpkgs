@@ -4,8 +4,12 @@ buildPythonPackage rec {
   pname = "radicale-remind";
   version = "0.5.0";
 
-  buildInputs = [ coverage nose ];
-  propagatedBuildInputs = [ radicale abook icstask remind ];
+  buildInputs = [ coverage nose radicale ];
+
+  # don't propagate radicale, so we can inject radicale_remind back into radicale
+  # as a propagatedBuildInput without causing a loop in _addToPythonPath
+
+  propagatedBuildInputs = [ remind abook icstask ];
 
   src = fetchPypi {
     inherit pname version;
