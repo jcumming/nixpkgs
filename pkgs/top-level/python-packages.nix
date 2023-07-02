@@ -20,6 +20,8 @@ self: super: with self; {
 
   absl-py = callPackage ../development/python-modules/absl-py { };
 
+  abook = callPackage ../development/python-modules/abook { };
+
   accessible-pygments = callPackage ../development/python-modules/accessible-pygments { };
 
   accelerate = callPackage ../development/python-modules/accelerate { };
@@ -4860,6 +4862,8 @@ self: super: with self; {
   icnsutil = callPackage ../development/python-modules/icnsutil { };
 
   ics = callPackage ../development/python-modules/ics { };
+
+  icstask = callPackage ../development/python-modules/icstask { };
 
   idasen = callPackage ../development/python-modules/idasen { };
 
@@ -10507,6 +10511,8 @@ self: super: with self; {
   radicale_infcloud = callPackage ../development/python-modules/radicale_infcloud {
     radicale = pkgs.radicale.override { python3 = python; };
   };
+
+  radicale_remind = callPackage ../development/python-modules/radicale_remind { };
 
   radian = callPackage ../development/python-modules/radian { };
 
