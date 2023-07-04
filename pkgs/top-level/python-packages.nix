@@ -3033,6 +3033,8 @@ self: super: with self; {
     inherit (pkgs) graphviz;
   };
 
+  dotwiz = callPackage ../development/python-modules/dotwiz { };
+
   dotmap = callPackage ../development/python-modules/dotmap { };
 
   downloader-cli = callPackage ../development/python-modules/downloader-cli { };
@@ -5598,6 +5600,8 @@ self: super: with self; {
 
   language-tags = callPackage ../development/python-modules/language-tags { };
 
+  lanms-neo = callPackage ../development/python-modules/lanms-neo { };
+
   lark = callPackage ../development/python-modules/lark { };
 
   laspy = callPackage ../development/python-modules/laspy { };
@@ -6215,6 +6219,16 @@ self: super: with self; {
   md2gemini = callPackage ../development/python-modules/md2gemini { };
 
   mdformat = callPackage ../development/python-modules/mdformat { };
+  mdformat-admon = callPackage ../development/python-modules/mdformat-admon { };
+  mdformat-beautysh = callPackage ../development/python-modules/mdformat-beautysh { };
+  mdformat-footnote = callPackage ../development/python-modules/mdformat-footnote { };
+  mdformat-frontmatter = callPackage ../development/python-modules/mdformat-frontmatter { };
+  mdformat-gfm = callPackage ../development/python-modules/mdformat-gfm { };
+  mdformat-mkdocs = callPackage ../development/python-modules/mdformat-mkdocs { };
+  mdformat-nix-alejandra = callPackage ../development/python-modules/mdformat-nix-alejandra { };
+  mdformat-simple-breaks = callPackage ../development/python-modules/mdformat-simple-breaks { };
+  mdformat-tables = callPackage ../development/python-modules/mdformat-tables { };
+  mdformat-toc = callPackage ../development/python-modules/mdformat-toc { };
 
   mdit-py-plugins = callPackage ../development/python-modules/mdit-py-plugins { };
 
@@ -7835,6 +7849,8 @@ self: super: with self; {
 
   pygti = callPackage ../development/python-modules/pygti { };
 
+  pyheck = callPackage ../development/python-modules/pyheck { };
+
   pyheos = callPackage ../development/python-modules/pyheos { };
 
   pyhiveapi = callPackage ../development/python-modules/pyhiveapi { };
@@ -7900,6 +7916,8 @@ self: super: with self; {
   pyskyqremote = callPackage ../development/python-modules/pyskyqremote { };
 
   pysolcast = callPackage ../development/python-modules/pysolcast { };
+
+  pysubs2 = callPackage ../development/python-modules/pysubs2 { };
 
   pysqlitecipher = callPackage ../development/python-modules/pysqlitecipher { };
 
@@ -8076,6 +8094,8 @@ self: super: with self; {
   policyuniverse = callPackage ../development/python-modules/policyuniverse { };
 
   polyline = callPackage ../development/python-modules/polyline { };
+
+  Polygon3 = callPackage ../development/python-modules/Polygon3 { };
 
   pomegranate = callPackage ../development/python-modules/pomegranate { };
 
@@ -9722,6 +9742,8 @@ self: super: with self; {
   pytest-env = callPackage ../development/python-modules/pytest-env { };
 
   pytest-error-for-skips = callPackage ../development/python-modules/pytest-error-for-skips { };
+
+  pytest-examples = callPackage ../development/python-modules/pytest-examples { };
 
   pytest-expect = callPackage ../development/python-modules/pytest-expect { };
 
@@ -11742,8 +11764,6 @@ self: super: with self; {
   sphinx-markdown-tables = callPackage ../development/python-modules/sphinx-markdown-tables { };
 
   sphinx-material = callPackage ../development/python-modules/sphinx-material { };
-
-  sphinx-navtree = callPackage ../development/python-modules/sphinx-navtree { };
 
   sphinx-mdinclude = callPackage ../development/python-modules/sphinx-mdinclude { };
 
