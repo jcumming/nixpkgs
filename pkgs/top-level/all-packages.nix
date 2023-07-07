@@ -22062,6 +22062,8 @@ with pkgs;
 
   libcue = callPackage ../development/libraries/libcue { };
 
+  libcoverart = callPackage ../development/libraries/libcoverart { };
+
   libcutl = callPackage ../development/libraries/libcutl { };
 
   libcxxrt = callPackage ../development/libraries/libcxxrt {

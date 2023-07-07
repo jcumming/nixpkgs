@@ -1,17 +1,17 @@
-{ lib, stdenv, fetchFromGitHub, cmake, neon, libdiscid, libxml2, pkg-config }:
+{ lib, stdenv, fetchFromGitHub, cmake, neon, libdiscid, libxml2, pkg-config, validatePkgConfig }:
 
 stdenv.mkDerivation rec {
-  version = "5.1.0";
+  version = "5.1.0+220120-f5a31de";
   pname = "libmusicbrainz";
 
-  nativeBuildInputs = [ cmake pkg-config ];
+  nativeBuildInputs = [ cmake pkg-config validatePkgConfig ];
   buildInputs = [ neon libdiscid libxml2 ];
 
   src = fetchFromGitHub {
     owner  = "metabrainz";
     repo   = "libmusicbrainz";
-    sha256 = "0ah9kaf3g3iv1cps2vs1hs33nfbjfx1xscpjgxr1cg28p4ri6jhq";
-    rev    = "release-${version}";
+    sha256 = "sha256-su+7kB5foGMCoVLTZsxt7m1/NT1fEeV6QbIOrtvhz1Q=";
+    rev    = "f5a31ded2d9794e9e27bbdfc197636b3c46b39be";
   };
 
   dontUseCmakeBuildDir=true;

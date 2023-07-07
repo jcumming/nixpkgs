@@ -1,15 +1,20 @@
-{stdenv, lib, fetchurl, libmusicbrainz, flac, slang, neon, unac, libjpeg, asciidoc, libdiscid, pkg-config}:
+{stdenv, lib, fetchFromGitHub, libmusicbrainz, libcoverart, jansson, libxml2, libogg, flac, slang, neon, unac, libjpeg, asciidoc, libdiscid, pkg-config, cmake, imagemagick}:
 
 stdenv.mkDerivation rec {
-  ver = "2.0.4";
+  ver = "3.0.0-230108-cmake";
   name = "flactag-${ver}";
 
-  src = fetchurl {
-    url = "mirror://sourceforge/flactag/v${ver}/${name}.tar.gz";
-    sha256 = "c96718ac3ed3a0af494a1970ff64a606bfa54ac78854c5d1c7c19586177335b2";
+  src = fetchFromGitHub {
+    owner = "adhawkins";
+    repo = "flactag";
+    rev = "1e62eef87acb1b817b3b9f94dbe2fc8f591e2ec3";
+    sha256 = "sha256-2TFgtidIh+znGoOPpL6lgJB6p2Vhv0cINzPR0mTWhJo=";
   };
 
-  buildInputs = [ libmusicbrainz flac slang neon unac libjpeg asciidoc libdiscid pkg-config ];
+  patches = [ ./no_progress_retval.patch ];
+
+  nativeBuildInputs = [ cmake pkg-config ];
+  buildInputs = [ libmusicbrainz libcoverart jansson libxml2 libogg flac slang neon unac libjpeg asciidoc libdiscid imagemagick ];
 
   meta = {
     description = "A utility for maintaining single album FLAC file (with embedded CUE sheets) metadata from MusicBrainz. ";
