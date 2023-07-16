@@ -334,8 +334,6 @@ self: super: with self; {
 
   aiosql = callPackage ../development/python-modules/aiosql { };
 
-  aiosenseme = callPackage ../development/python-modules/aiosenseme { };
-
   aiosenz = callPackage ../development/python-modules/aiosenz { };
 
   aioserial = callPackage ../development/python-modules/aioserial { };
@@ -1167,6 +1165,10 @@ self: super: with self; {
 
   pad4pi = callPackage ../development/python-modules/pad4pi { };
 
+  paddle_bfloat = callPackage ../development/python-modules/paddle_bfloat { };
+
+  paddle2onnx = callPackage ../development/python-modules/paddle2onnx { };
+
   pulumi = callPackage ../development/python-modules/pulumi { inherit (pkgs) pulumi; };
 
   pulumi-aws = callPackage ../development/python-modules/pulumi-aws { };
@@ -1469,6 +1471,8 @@ self: super: with self; {
 
   boschshcpy = callPackage ../development/python-modules/boschshcpy { };
 
+  bottombar = callPackage ../development/python-modules/bottombar { };
+
   boost-histogram = callPackage ../development/python-modules/boost-histogram {
     inherit (pkgs) boost;
   };
@@ -1653,6 +1657,8 @@ self: super: with self; {
 
   can = callPackage ../development/python-modules/can { };
 
+  canals = callPackage ../development/python-modules/canals { };
+
   canmatrix = callPackage ../development/python-modules/canmatrix { };
 
   canonicaljson = callPackage ../development/python-modules/canonicaljson { };
@@ -1708,6 +1714,8 @@ self: super: with self; {
   celery = callPackage ../development/python-modules/celery { };
 
   celery-redbeat = callPackage ../development/python-modules/celery-redbeat { };
+
+  celery-singleton = callPackage ../development/python-modules/celery-singleton { };
 
   cement = callPackage ../development/python-modules/cement { };
 
@@ -2705,6 +2713,8 @@ self: super: with self; {
 
   django-bootstrap4 = callPackage ../development/python-modules/django-bootstrap4 { };
 
+  django-cachalot = callPackage ../development/python-modules/django-cachalot { };
+
   django-cache-url = callPackage ../development/python-modules/django-cache-url { };
 
   django-cacheops = callPackage ../development/python-modules/django-cacheops { };
@@ -3213,6 +3223,8 @@ self: super: with self; {
   };
 
   edward = callPackage ../development/python-modules/edward { };
+
+  effdet = callPackage ../development/python-modules/effdet { };
 
   effect = callPackage ../development/python-modules/effect { };
 
@@ -4851,6 +4863,8 @@ self: super: with self; {
 
   i3-py = callPackage ../development/python-modules/i3-py { };
 
+  iammeter = callPackage ../development/python-modules/iammeter { };
+
   iapws = callPackage ../development/python-modules/iapws { };
 
   iaqualink = callPackage ../development/python-modules/iaqualink { };
@@ -5236,6 +5250,8 @@ self: super: with self; {
   jedi-language-server = callPackage ../development/python-modules/jedi-language-server { };
 
   jeepney = callPackage ../development/python-modules/jeepney { };
+
+  jello = callPackage ../development/python-modules/jello { };
 
   jellyfin-apiclient-python = callPackage ../development/python-modules/jellyfin-apiclient-python { };
 
@@ -6864,6 +6880,8 @@ self: super: with self; {
     enablePython = true; # ... and its Python bindings
   })).python;
 
+  nh3 = callPackage ../development/python-modules/nh3 { };
+
   niaaml = callPackage ../development/python-modules/niaaml { };
 
   nianet = callPackage ../development/python-modules/nianet { };
@@ -8091,8 +8109,6 @@ self: super: with self; {
 
   poetry-dynamic-versioning = callPackage ../development/python-modules/poetry-dynamic-versioning { };
 
-  poetry-plugin-export = callPackage ../development/python-modules/poetry-plugin-export { };
-
   poetry-semver = callPackage ../development/python-modules/poetry-semver { };
 
   poezio = callPackage ../applications/networking/instant-messengers/poezio { };
@@ -8822,6 +8838,10 @@ self: super: with self; {
   pygreat = callPackage ../development/python-modules/pygreat { };
 
   pygrok = callPackage ../development/python-modules/pygrok { };
+
+  pygsl = callPackage ../development/python-modules/pygsl {
+    inherit (pkgs) gsl swig;
+  };
 
   pygtfs = callPackage ../development/python-modules/pygtfs { };
 
@@ -9642,6 +9662,8 @@ self: super: with self; {
 
   pystache = callPackage ../development/python-modules/pystache { };
 
+  pystardict = callPackage ../development/python-modules/pystardict { };
+
   pystemd = callPackage ../development/python-modules/pystemd {
     inherit (pkgs) systemd;
   };
@@ -10155,8 +10177,6 @@ self: super: with self; {
   python-prctl = callPackage ../development/python-modules/python-prctl { };
 
   python-ptrace = callPackage ../development/python-modules/python-ptrace { };
-
-  python-pushover = callPackage ../development/python-modules/pushover { };
 
   python-rapidjson = callPackage ../development/python-modules/python-rapidjson { };
 
@@ -11028,6 +11048,8 @@ self: super: with self; {
   sabyenc = callPackage ../development/python-modules/sabyenc { };
 
   sacn = callPackage ../development/python-modules/sacn { };
+
+  sacrebleu = callPackage ../development/python-modules/sacrebleu { };
 
   sacremoses = callPackage ../development/python-modules/sacremoses { };
 
@@ -12616,6 +12638,8 @@ self: super: with self; {
   trio-asyncio = callPackage ../development/python-modules/trio-asyncio { };
 
   trio-websocket = callPackage ../development/python-modules/trio-websocket { };
+
+  tritonclient = callPackage ../development/python-modules/tritonclient { };
 
   troposphere = callPackage ../development/python-modules/troposphere { };
 

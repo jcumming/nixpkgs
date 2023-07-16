@@ -3,10 +3,8 @@
 # TODO:
 #
 # asserts
+#   ensure that the nl80211 module is loaded/compiled in the kernel
 #   wpa_supplicant and hostapd on the same wireless interface doesn't make any sense
-#
-# support old format (if devices is not set)
-#
 
 with lib;
 
@@ -14,40 +12,47 @@ let
 
   cfg = config.services.hostapd;
 
-  mkConfigFile = ifName: ifCfg: pkgs.writeText "hostapd.conf" ''
+  escapedInterface = utils.escapeSystemdPath cfg.interface;
+
+  configFile = pkgs.writeText "hostapd.conf" ''
+    interface=${cfg.interface}
+    driver=${cfg.driver}
+    ssid=${cfg.ssid}
+    hw_mode=${cfg.hwMode}
+    channel=${toString cfg.channel}
+    ieee80211n=1
+    ieee80211ac=1
+    ${optionalString (cfg.countryCode != null) "country_code=${cfg.countryCode}"}
+    ${optionalString (cfg.countryCode != null) "ieee80211d=1"}
+
     # logging (debug level)
     logger_syslog=-1
     logger_syslog_level=${toString cfg.logLevel}
     logger_stdout=-1
     logger_stdout_level=${toString cfg.logLevel}
 
-    ctrl_interface=/run/hostapd-${ifName}
+    ctrl_interface=/run/hostapd
     ctrl_interface_group=${cfg.group}
 
-    interface=${ifName}
+    ${optionalString cfg.wpa ''
+      wpa=2
+      wpa_pairwise=CCMP
+      wpa_passphrase=${cfg.wpaPassphrase}
+    ''}
+    ${optionalString cfg.noScan "noscan=1"}
 
-    ${optionalString (cfg.countryCode != null) ''country_code=${cfg.countryCode}''}
-    ${optionalString (cfg.countryCode != null) ''ieee80211d=1''}
-
-    ${optionalString ifCfg.noScan "noscan=1"}
-
-    ${if ifCfg.bridge != "" then "bridge=${cfg.bridge}" else ""}
-
-    driver=${ifCfg.driver}
-    hw_mode=${ifCfg.hwMode}
-    channel=${toString ifCfg.channel}
-
-    ${ifCfg.extraConfig}
+    ${cfg.extraConfig}
   '' ;
 
 in
 
 {
   ###### interface
- 
+
   options = {
 
     services.hostapd = {
+
       enable = mkOption {
         type = types.bool;
         default = false;
@@ -63,12 +68,88 @@ in
         '';
       };
 
+      interface = mkOption {
+        example = "wlp2s0";
+        type = types.str;
+        description = lib.mdDoc ''
+          The interfaces {command}`hostapd` will use.
+        '';
+      };
+
+      noScan = mkOption {
+        type = types.bool;
+        default = false;
+        description = lib.mdDoc ''
+          Do not scan for overlapping BSSs in HT40+/- mode.
+          Caution: turning this on will violate regulatory requirements!
+        '';
+      };
+
+      driver = mkOption {
+        default = "nl80211";
+        example = "hostapd";
+        type = types.str;
+        description = lib.mdDoc ''
+          Which driver {command}`hostapd` will use.
+          Most applications will probably use the default.
+        '';
+      };
+
+      ssid = mkOption {
+        default = config.system.nixos.distroId;
+        defaultText = literalExpression "config.system.nixos.distroId";
+        example = "mySpecialSSID";
+        type = types.str;
+        description = lib.mdDoc "SSID to be used in IEEE 802.11 management frames.";
+      };
+
+      hwMode = mkOption {
+        default = "g";
+        type = types.enum [ "a" "b" "g" ];
+        description = lib.mdDoc ''
+          Operation mode.
+          (a = IEEE 802.11a, b = IEEE 802.11b, g = IEEE 802.11g).
+        '';
+      };
+
+      channel = mkOption {
+        default = 7;
+        example = 11;
+        type = types.int;
+        description = lib.mdDoc ''
+          Channel number (IEEE 802.11)
+          Please note that some drivers do not use this value from
+          {command}`hostapd` and the channel will need to be configured
+          separately with {command}`iwconfig`.
+        '';
+      };
+
       group = mkOption {
         default = "wheel";
         example = "network";
         type = types.str;
         description = lib.mdDoc ''
           Members of this group can control {command}`hostapd`.
+        '';
+      };
+
+      wpa = mkOption {
+        type = types.bool;
+        default = true;
+        description = lib.mdDoc ''
+          Enable WPA (IEEE 802.11i/D3.0) to authenticate with the access point.
+        '';
+      };
+
+      wpaPassphrase = mkOption {
+        default = "my_sekret";
+        example = "any_64_char_string";
+        type = types.str;
+        description = lib.mdDoc ''
+          WPA-PSK (pre-shared-key) passphrase. Clients will need this
+          passphrase to associate with this access point.
+          Warning: This passphrase will get put into a world-readable file in
+          the Nix store!
         '';
       };
 
@@ -101,116 +182,15 @@ in
         '';
       };
 
-      interfaces = mkOption {
-        default = {};
-        example = { 
-          wlp2s0 = {
-            hwMode="g";
-            channel=1;
-            extraConfig=''
-              wmm_enabled=1
-              ieee80211n=1
-              ht_capab=[DSSS_CCK-40][LDPC][TX-STBC][RX-STBC1]
-            '';
-          };
-        };
-        description = lib.mdDoc ''
-          Wireless interfaces hostapd will run in infrastructure mode. A dual
-          band Access Point is 2 different interfaces running on different frequency
-          bands (different hwMode). The hostapd shall be configured to bind to the same
-          bridge interface. 
-        '';
-        type = types.attrsOf (types.submodule (
-        {
-          options = { 
-            bridge = mkOption {
-              default = "";
-              example = "br0";
-              type = types.str;
-              description = lib.mdDoc ''
-                More complex AP setups may wish have hostapd add the wireless interfaces to a bridge
-              '';
-            };
-
-            channel = mkOption {
-              default = 7;
-              example = 11;
-              type = types.int;
-              description = lib.mdDoc ''
-                Channel number (IEEE 802.11)
-                Please note that some drivers do not use this value from
-                <command>hostapd</command> and the channel will need to be configured
-                separately with <command>iwconfig</command>.
-              '';
-            };
-
-            driver = mkOption {
-              default = "nl80211";
-              example = "hostapd";
-              type = types.str;
-              description = lib.mdDoc ''
-                Which driver <command>hostapd</command> will use.
-                Most applications will probably use the default.
-              '';
-            };
-
-            hwMode = mkOption {
-              default = "g";
-              type = types.enum [ "a" "b" "g" ];
-              description = lib.mdDoc ''
-                Operation mode.
-                (a = IEEE 802.11a/ac, b = IEEE 802.11b, g = IEEE 802.11g).
-              '';
-            };
-
-            noScan = mkOption {
-              type = types.bool;
-              default = false;
-              description = lib.mdDoc ''
-                Do not scan for overlapping BSSs in HT40+/- mode.
-                Caution: turning this on will violate regulatory requirements!
-              '';
-            };
-
-            ssid = mkOption {
-              default = "nixos";
-              example = "mySpecialSSID";
-              type = types.str;
-              description = lib.mdDoc "SSID to be used in IEEE 802.11 management frames.";
-            };
-
-            wpa = mkOption {
-              type = types.bool;
-              default = true;
-              description = lib.mdDoc ''
-                Enable WPA2 (IEEE 802.11i/RSN) to authenticate with the access point.
-              '';
-            };
-
-            wpaPassphrase = mkOption {
-              default = "my_sekret";
-              example = "any_64_char_string";
-              type = types.str;
-              description = lib.mdDoc ''
-                WPA-PSK (pre-shared-key) passphrase. Clients will need this
-                passphrase to associate with this access point.
-                Warning: This passphrase will get put into a world-readable file in
-                the Nix store!
-              '';
-            };
-
-            extraConfig = mkOption {
-              default = "";
-              example = ''
-                auth_algo=1
-                ieee80211n=1
-                ht_capab=[HT41-][SHORT-GI-40][DSSS_CCK-40]
-                '';
-              type = types.lines;
-              description = lib.mdDoc "Extra configuration options to put in hostapd.conf.";
-            };
-          };
-        }));
+      extraConfig = mkOption {
+        default = "";
+        example = ''
+          auth_algo=0
+          ieee80211n=1
+          ht_capab=[HT40-][SHORT-GI-40][DSSS_CCK-40]
+          '';
+        type = types.lines;
+        description = lib.mdDoc "Extra configuration options to put in hostapd.conf.";
       };
     };
   };
@@ -224,28 +204,19 @@ in
 
     services.udev.packages = optionals (cfg.countryCode != null) [ pkgs.crda ];
 
-    systemd.services = 
-    let 
-      hostapdService = ifName: ifCfg: {
-        description = "hostapd wireless AP - ${ifName}";
+    systemd.services.hostapd =
+      { description = "hostapd wireless AP";
 
         path = [ pkgs.hostapd ];
-
-        after = [ "nat.service" "bind.service" "dhcpd.service" "sys-subsystem-net-devices-${ifName}.device" ];
-        bindsTo = [ "sys-subsystem-net-devices-${ifName}.device" ];
-        requiredBy = [ "network-link-${ifName}.service" ];
+        after = [ "sys-subsystem-net-devices-${escapedInterface}.device" ];
+        bindsTo = [ "sys-subsystem-net-devices-${escapedInterface}.device" ];
+        requiredBy = [ "network-link-${cfg.interface}.service" ];
         wantedBy = [ "multi-user.target" ];
 
-        serviceConfig = { 
-          ExecStart = "${pkgs.hostapd}/bin/hostapd ${mkConfigFile ifName ifCfg }";
-          Restart = "always";
-        };
+        serviceConfig =
+          { ExecStart = "${pkgs.hostapd}/bin/hostapd ${configFile}";
+            Restart = "always";
+          };
       };
-    in
-    listToAttrs (
-      mapAttrsToList
-        (ifName: ifCfg: nameValuePair "hostapd-${ifName}" (hostapdService ifName ifCfg))
-        cfg.interfaces
-    );
   };
 }

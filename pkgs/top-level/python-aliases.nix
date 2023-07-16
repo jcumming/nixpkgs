@@ -36,6 +36,7 @@ mapAliases ({
   abodepy = jaraco-abode; # added 2023-02-01
   acebinf = throw "acebinf has been removed because it is abandoned and broken."; # Added 2023-05-19
   aioh2 = throw "aioh2 has been removed because it is abandoned and broken."; # Added 2022-03-30
+  aiosenseme = throw "aiosenseme has been removed, because it does no longer work with the latest firmware and has become unmaintained"; # Added 2023-07-05
   ansible-base = throw "ansible-base has been removed, because it is end of life"; # added 2022-03-30
   ansible-doctor = throw "ansible-doctor has been promoted to a top-level attribute"; # Added 2023-05-16
   ansible-later = throw "ansible-later has been promoted to a top-level attribute"; # Added 2023-05-16
@@ -270,6 +271,7 @@ mapAliases ({
   python_mimeparse = python-mimeparse; # added 2021-10-31
   python-language-server = throw "python-language-server is no longer maintained, use the python-lsp-server community fork instead."; # Added 2022-08-03
   python-Levenshtein = levenshtein;
+  python-pushover = throw "python-pushover has been removed, since it is unmaintained and is broken"; # added 2023-07-03
   python-subunit = subunit; # added 2021-09-10
   pytest_xdist = pytest-xdist; # added 2021-01-04
   python_simple_hipchat = python-simple-hipchat; # added 2021-07-21
