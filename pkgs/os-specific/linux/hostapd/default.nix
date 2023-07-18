@@ -83,6 +83,7 @@ stdenv.mkDerivation rec {
     CONFIG_IEEE80211N=y
     CONFIG_IEEE80211AC=y
     CONFIG_IEEE80211AX=y
+    CONFIG_IEEE80211BE=y
   '' + lib.optionalString (sqlite != null) ''
     CONFIG_SQLITE=y
   '';
