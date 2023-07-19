@@ -1237,6 +1237,12 @@
     githubId = 30842467;
     name = "April John";
   };
+  aqrln = {
+    email = "nix@aqrln.net";
+    github = "aqrln";
+    githubId = 4923335;
+    name = "Alexey Orlenko";
+  };
   ar1a = {
     email = "aria@ar1as.space";
     github = "ar1a";
@@ -11312,6 +11318,12 @@
     name = "Maxim Schuwalow";
     email = "maxim.schuwalow@gmail.com";
   };
+  mschwaig = {
+    name = "Martin Schwaighofer";
+    github = "mschwaig";
+    githubId = 3856390;
+    email = "mschwaig+nixpkgs@eml.cc";
+  };
   msfjarvis = {
     github = "msfjarvis";
     githubId = 13348378;
@@ -15834,6 +15846,12 @@
     github = "sumnerevans";
     githubId = 16734772;
     name = "Sumner Evans";
+  };
+  sund3RRR = {
+    email = "evenquantity@gmail.com";
+    github = "sund3RRR";
+    githubId = 73298492;
+    name = "Mikhail Kiselev";
   };
   suominen = {
     email = "kimmo@suominen.com";
