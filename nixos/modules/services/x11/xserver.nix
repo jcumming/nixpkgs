@@ -29,7 +29,7 @@ let
   };
 
   fontsForXServer =
-    config.fonts.fonts ++
+    config.fonts.packages ++
     # We don't want these fonts in fonts.conf, because then modern,
     # fontconfig-based applications will get horrible bitmapped
     # Helvetica fonts.  It's better to get a substitution (like Nimbus
@@ -912,8 +912,8 @@ in
       + xrandrMonitorSections
       + cfg.extraConfig;
 
-    fonts.enableDefaultFonts = mkDefault true;
-    fonts.fonts = [
+    fonts.enableDefaultPackages = mkDefault true;
+    fonts.packages = [
       (if cfg.upscaleDefaultCursor then fontcursormisc_hidpi else pkgs.xorg.fontcursormisc)
       pkgs.xorg.fontmiscmisc
     ];

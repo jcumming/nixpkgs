@@ -2,6 +2,7 @@
 , lib
 , fetchFromGitea
 , fetchurl
+, fetchpatch
 , runCommand
 , fcft
 , freetype
@@ -26,7 +27,7 @@
 }:
 
 let
-  version = "1.15.0";
+  version = "1.15.1";
 
   # build stimuli file for PGO build and the script to generate it
   # independently of the foot's build, so we can cache the result
@@ -96,10 +97,21 @@ stdenv.mkDerivation rec {
   src = fetchFromGitea {
     domain = "codeberg.org";
     owner = "dnkl";
-    repo = pname;
+    repo = "foot";
     rev = version;
-    hash = "sha256-ji0e5E2yy0wYbzw38nuQRoRcd83FsJh6E5TabtUP1g8=";
+    hash = "sha256-YCwmPSn+XtF7HkMOFJft7j/2vr+8UE59yu/iGZ1dT8A=";
   };
+
+  patches = [
+    # Check viewporter protocol support before using it, fixes crash under Mir
+    # Remove when https://codeberg.org/dnkl/foot/pulls/1445 in version > 1.15.1
+    (fetchpatch {
+      name = "0001-foot-dont-try-to-use-a-non-existing-viewporter-interface.patch";
+      url = "https://codeberg.org/dnkl/foot/commit/9d75c551465fa3dbb3cd20ae87d6de294fcebce1.patch";
+      excludes = [ "CHANGELOG.md" ];
+      hash = "sha256-sVfGbudsmwh7phbbobBgSXoGe1lKJ8s1UdyBnVLmLYQ=";
+    })
+  ];
 
   depsBuildBuild = [
     pkg-config

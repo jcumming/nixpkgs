@@ -93,21 +93,6 @@ final: prev: {
     '';
   };
 
-  bitwarden-cli = prev."@bitwarden/cli".override {
-    name = "bitwarden-cli";
-    nativeBuildInputs = with pkgs; [
-      pkg-config
-    ] ++ lib.optionals stdenv.isDarwin [
-      darwin.apple_sdk.frameworks.CoreText
-    ];
-    buildInputs = with pkgs; [
-      pixman
-      cairo
-      pango
-      giflib
-    ];
-  };
-
   bower2nix = prev.bower2nix.override {
     nativeBuildInputs = [ pkgs.buildPackages.makeWrapper ];
     postInstall = ''
@@ -188,7 +173,8 @@ final: prev: {
 
   graphite-cli = prev."@withgraphite/graphite-cli".override {
     name = "graphite-cli";
-    nativeBuildInputs = [ pkgs.installShellFiles ];
+    nativeBuildInputs = with pkgs; [ installShellFiles pkg-config ];
+    buildInputs = with pkgs; [ cairo pango pixman ];
     # 'gt completion' auto-detects zshell from environment variables:
     # https://github.com/yargs/yargs/blob/2b6ba3139396b2e623aed404293f467f16590039/lib/completion.ts#L45
     postInstall = ''
