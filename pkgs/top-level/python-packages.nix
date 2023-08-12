@@ -2367,8 +2367,6 @@ self: super: with self; {
 
   cytoolz = callPackage ../development/python-modules/cytoolz { };
 
-  d2to1 = callPackage ../development/python-modules/d2to1 { };
-
   dacite = callPackage ../development/python-modules/dacite { };
 
   daemonize = callPackage ../development/python-modules/daemonize { };
@@ -2424,6 +2422,8 @@ self: super: with self; {
   databricks-connect = callPackage ../development/python-modules/databricks-connect { };
 
   databricks-sql-connector = callPackage ../development/python-modules/databricks-sql-connector { };
+
+  dataclass-wizard = callPackage ../development/python-modules/dataclass-wizard { };
 
   dataclasses-json = callPackage ../development/python-modules/dataclasses-json { };
 

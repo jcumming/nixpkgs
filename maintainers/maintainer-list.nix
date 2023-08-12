@@ -644,6 +644,11 @@
     githubId = 43479487;
     name = "Titouan Biteau";
   };
+  albertchae = {
+    github = "albertchae";
+    githubId = 217050;
+    name = "Albert Chae";
+  };
   aldoborrero = {
     email = "aldoborrero+nixos@pm.me";
     github = "aldoborrero";
@@ -1198,6 +1203,12 @@
     githubId = 20933385;
     name = "Anton Latukha";
   };
+  antonmosich = {
+    email = "anton@mosich.at";
+    github = "antonmosich";
+    githubId = 27223336;
+    name = "Anton Mosich";
+  };
   antono = {
     email = "self@antono.info";
     github = "antono";
@@ -1276,6 +1287,12 @@
     github = "arcadio";
     githubId = 56009;
     name = "Arcadio Rubio García";
+  };
+  arcayr = {
+    email = "nix@arcayr.online";
+    github = "arcayr";
+    githubId = 11192354;
+    name = "Elliot Speck";
   };
   archer-65 = {
     email = "mario.liguori.056@gmail.com";
@@ -1721,6 +1738,11 @@
     github = "aycanirican";
     githubId = 135230;
     name = "Aycan iRiCAN";
+  };
+  aynish = {
+    github = "Chickensoupwithrice";
+    githubId = 22575913;
+    name = "Anish Lakhwara";
   };
   azahi = {
     name = "Azat Bahawi";
@@ -3277,6 +3299,15 @@
     email = "jupiter@m.rdis.dev";
     name = "Scott Little";
   };
+  codifryed = {
+    email = "gb@guyboldon.com";
+    name = "Guy Boldon";
+    github = "codifryed";
+    githubId = 27779510;
+    keys = [{
+      fingerprint = "FDF5 EF67 8CC1 FE22 1845  6A22 CF7B BB5B C756 1BD3";
+    }];
+  };
   codsl = {
     email = "codsl@riseup.net";
     github = "codsl";
@@ -4322,6 +4353,11 @@
     github = "dmalikov";
     githubId = 997543;
     name = "Dmitry Malikov";
+  };
+  DMills27 = {
+    github = "DMills27";
+    githubId = 5251658;
+    name = "Dominic Mills";
   };
   DmitryTsygankov = {
     email = "dmitry.tsygankov@gmail.com";
@@ -17166,6 +17202,12 @@
     githubId = 27586264;
     name = "Tobias Schmidt";
   };
+  totalchaos = {
+    email = "basil.keeler@outlook.com";
+    github = "totalchaos05";
+    githubId = 70387628;
+    name = "Basil Keeler";
+  };
   totoroot = {
     name = "Matthias Thym";
     email = "git@thym.at";
@@ -18553,6 +18595,13 @@
     github = "yorickvP";
     githubId = 647076;
     name = "Yorick van Pelt";
+  };
+  YorikSar = {
+    name = "Yuriy Taraday";
+    email = "yorik.sar@gmail.com";
+    matrix = "@yorik.sar:matrix.org";
+    github = "YorikSar";
+    githubId = 428074;
   };
   yrashk = {
     email = "yrashk@gmail.com";

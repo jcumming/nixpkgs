@@ -1944,7 +1944,9 @@ with pkgs;
 
   tere = callPackage ../tools/misc/tere { };
 
-  termusic = callPackage ../applications/audio/termusic { };
+  termusic = darwin.apple_sdk_11_0.callPackage ../applications/audio/termusic {
+    inherit (darwin.apple_sdk_11_0.frameworks) AppKit CoreAudio CoreGraphics Foundation IOKit MediaPlayer Security;
+  };
 
   tfk8s = callPackage ../tools/misc/tfk8s { };
 
@@ -2610,6 +2612,8 @@ with pkgs;
   nestopia = callPackage ../applications/emulators/nestopia { };
 
   np2kai = callPackage ../applications/emulators/np2kai { };
+
+  nuked-md = callPackage ../applications/emulators/nuked-md { };
 
   oberon-risc-emu = callPackage ../applications/emulators/oberon-risc-emu { };
 
@@ -3546,6 +3550,8 @@ with pkgs;
 
   codux = callPackage ../applications/editors/codux { };
 
+  conjure = callPackage ../applications/graphics/conjure { };
+
   coolreader = libsForQt5.callPackage ../applications/misc/coolreader { };
 
   corsair = with python3Packages; toPythonApplication corsair-scan;
@@ -3593,6 +3599,8 @@ with pkgs;
   cyclonedx-python = callPackage ../tools/misc/cyclonedx-python { };
 
   dcap = callPackage ../tools/networking/dcap { };
+
+  dark-mode-notify = callPackage ../os-specific/darwin/dark-mode-notify { };
 
   deltachat-cursed = callPackage ../applications/networking/instant-messengers/deltachat-cursed { };
 
@@ -4851,6 +4859,8 @@ with pkgs;
   dasel = callPackage ../applications/misc/dasel { };
 
   dasher = callPackage ../applications/accessibility/dasher { };
+
+  dataclass-wizard = with python3Packages; toPythonApplication dataclass-wizard;
 
   datafusion-cli = callPackage ../development/misc/datafusion { };
 
@@ -6174,6 +6184,8 @@ with pkgs;
   ropgadget = with python3Packages; toPythonApplication ropgadget;
 
   scour = with python3Packages; toPythonApplication scour;
+
+  see = callPackage ../tools/misc/see { };
 
   s2png = callPackage ../tools/graphics/s2png { };
 
@@ -9944,6 +9956,8 @@ with pkgs;
 
   ministat = callPackage ../tools/misc/ministat { };
 
+  mitm6 = callPackage ../tools/security/mitm6 { };
+
   mjolnir = callPackage ../servers/mjolnir {
     matrix-sdk-crypto-nodejs = matrix-sdk-crypto-nodejs-0_1_0-beta_3;
   };
@@ -10142,7 +10156,7 @@ with pkgs;
   lact = callPackage ../tools/system/lact { };
 
   ledit = callPackage ../tools/misc/ledit {
-    inherit (ocaml-ng.ocamlPackages_4_12) ocaml camlp5;
+    inherit (ocaml-ng.ocamlPackages_4_11) ocaml camlp5;
   };
 
   ledmon = callPackage ../tools/system/ledmon { };
@@ -17591,6 +17605,8 @@ with pkgs;
     mpi = mpich;
   };
 
+  gpython = callPackage ../development/interpreters/gpython { };
+
   graphql-client = callPackage ../development/tools/graphql-client {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -19772,7 +19788,11 @@ with pkgs;
 
   rizin = pkgs.callPackage ../development/tools/analysis/rizin { };
 
+  rizinPlugins = recurseIntoAttrs rizin.plugins;
+
   cutter = libsForQt5.callPackage ../development/tools/analysis/rizin/cutter.nix { };
+
+  cutterPlugins = recurseIntoAttrs rizin.plugins;
 
   ragel = ragelStable;
 
@@ -20626,6 +20646,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Foundation;
   };
 
+  ceedling = callPackage ../development/tools/ceedling { };
+
   celt = callPackage ../development/libraries/celt { };
   celt_0_7 = callPackage ../development/libraries/celt/0.7.nix { };
   celt_0_5_1 = callPackage ../development/libraries/celt/0.5.1.nix { };
@@ -21193,6 +21215,8 @@ with pkgs;
   frei0r = callPackage ../development/libraries/frei0r { };
 
   fribidi = callPackage ../development/libraries/fribidi { };
+
+  frozen = callPackage ../development/libraries/frozen { };
 
   funambol = callPackage ../development/libraries/funambol { };
 
@@ -24035,6 +24059,8 @@ with pkgs;
   nvidia-video-sdk = callPackage ../development/libraries/nvidia-video-sdk { };
 
   nvidia-optical-flow-sdk = callPackage ../development/libraries/nvidia-optical-flow-sdk { };
+
+  nvidia-system-monitor-qt = libsForQt5.callPackage ../tools/system/nvidia-system-monitor-qt { };
 
   nvitop = callPackage ../tools/system/nvitop { };
 
@@ -27039,6 +27065,8 @@ with pkgs;
 
   radicale = radicale3;
 
+  qcal = callPackage ../tools/networking/qcal/default.nix { };
+
   rake = callPackage ../development/tools/build-managers/rake { };
 
   rakkess = callPackage ../development/tools/rakkess { };
@@ -27549,7 +27577,7 @@ with pkgs;
   criu = callPackage ../os-specific/linux/criu { };
 
   cryptomator = callPackage ../tools/security/cryptomator {
-    jdk = jdk.override { enableJavaFX = true; };
+    jdk = jdk20.override { enableJavaFX = true; };
   };
 
   cryptsetup = callPackage ../os-specific/linux/cryptsetup { };
@@ -36110,6 +36138,8 @@ with pkgs;
 
   watershot = callPackage ../applications/misc/watershot { };
 
+  waypaper = callPackage ../applications/misc/waypaper { };
+
   w3m = callPackage ../applications/networking/browsers/w3m { };
 
   # Should always be the version with the most features
@@ -39263,7 +39293,7 @@ with pkgs;
 
   hol = callPackage ../applications/science/logic/hol { };
 
-  inherit (ocaml-ng.ocamlPackages_4_12) hol_light;
+  inherit (ocamlPackages) hol_light;
 
   hologram = callPackage ../tools/security/hologram { };
 
@@ -39535,7 +39565,7 @@ with pkgs;
 
   caffeWithCuda = caffe.override { cudaSupport = true; };
 
-  caffeine-ng = python3Packages.callPackage ../tools/X11/caffeine-ng { };
+  caffeine-ng = callPackage ../tools/X11/caffeine-ng { };
 
   cntk = callPackage ../applications/science/math/cntk {
     stdenv = gcc7Stdenv;
