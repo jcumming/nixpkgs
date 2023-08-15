@@ -4702,6 +4702,11 @@
     githubId = 7875;
     name = "Rommel Martinez";
   };
+  eclairevoyant = {
+    github = "eclairevoyant";
+    githubId = 848000;
+    name = "éclairevoyant";
+  };
   edanaher = {
     email = "nixos@edanaher.net";
     github = "edanaher";
@@ -7899,6 +7904,11 @@
     githubId = 31008330;
     name = "Jann Marc Villablanca";
   };
+  jgarcia = {
+    github = "chewblacka";
+    githubId = 18430320;
+    name = "John Garcia";
+  };
   jgart = {
     email = "jgart@dismail.de";
     github = "jgarte";
@@ -8714,6 +8724,11 @@
     githubId = 1927188;
     name = "karolchmist";
   };
+  katexochen = {
+    github = "katexochen";
+    githubId = 49727155;
+    name = "Paul Meyer";
+  };
   kayhide = {
     email = "kayhide@gmail.com";
     github = "kayhide";
@@ -9158,12 +9173,6 @@
     github = "koslambrou";
     githubId = 2037002;
     name = "Konstantinos";
-  };
-  kototama = {
-    email = "kototama@posteo.jp";
-    github = "kototama";
-    githubId = 128620;
-    name = "Kototama";
   };
   kouyk = {
     email = "skykinetic@stevenkou.xyz";
@@ -14652,7 +14661,7 @@
     name = "Rahul Butani";
   };
   rs0vere = {
-    email = "rs0vere@outlook.com";
+    email = "rs0vere@proton.me";
     github = "rs0vere";
     githubId = 140035635;
     keys = [{
@@ -15076,6 +15085,13 @@
     keys = [{
       fingerprint = "30BB FF3F AB0B BB3E 0435  F83C 8E8F F66E 2AE8 D970";
     }];
+  };
+  scm2342 = {
+    name = "Sven Mattsen";
+    email = "nix@sven.cc";
+    matrix = "@scm:matrix.sven.cc";
+    github = "scm2342";
+    githubId = 154108;
   };
   scode = {
     email = "peter.schuller@infidyne.com";
@@ -16325,6 +16341,12 @@
     email = "contact@sweenu.xyz";
     github = "sweenu";
     githubId = 7051978;
+  };
+  swesterfeld = {
+    email = "stefan@space.twc.de";
+    github = "swesterfeld";
+    githubId = 14840066;
+    name = "Stefan Westerfeld";
   };
   swflint = {
     email = "swflint@flintfam.org";
@@ -17776,6 +17798,12 @@
     keys = [{
       fingerprint = "5814 50EB 6E17 E715 7C63  E7F1 9879 8C3C 4D68 8D6D";
     }];
+  };
+  viluon = {
+    email = "nix@viluon.me";
+    github = "viluon";
+    githubId = 7235381;
+    name = "Ondřej Kvapil";
   };
   vincentbernat = {
     email = "vincent@bernat.ch";

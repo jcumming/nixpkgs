@@ -458,7 +458,7 @@ self: super: with self; {
 
   amazon-ion = callPackage ../development/python-modules/amazon-ion { };
 
-  amazon_kclpy = callPackage ../development/python-modules/amazon_kclpy { };
+  amazon-kclpy = callPackage ../development/python-modules/amazon-kclpy { };
 
   ambee = callPackage ../development/python-modules/ambee { };
 
@@ -1212,6 +1212,8 @@ self: super: with self; {
   backports_shutil_get_terminal_size = callPackage ../development/python-modules/backports_shutil_get_terminal_size { };
 
   backports-shutil-which = callPackage ../development/python-modules/backports-shutil-which { };
+
+  backports-strenum = callPackage ../development/python-modules/backports-strenum { };
 
   backports-zoneinfo = callPackage ../development/python-modules/backports-zoneinfo { };
 
@@ -7512,6 +7514,8 @@ self: super: with self; {
 
   optax = callPackage ../development/python-modules/optax { };
 
+  optimum = callPackage ../development/python-modules/optimum { };
+
   optuna = callPackage ../development/python-modules/optuna { };
 
   opuslib = callPackage ../development/python-modules/opuslib { };
@@ -11275,6 +11279,8 @@ self: super: with self; {
   s3transfer = callPackage ../development/python-modules/s3transfer { };
 
   s3-credentials = callPackage ../development/python-modules/s3-credentials { };
+
+  sabctools = callPackage ../development/python-modules/sabctools { };
 
   sabyenc3 = callPackage ../development/python-modules/sabyenc3 { };
 
