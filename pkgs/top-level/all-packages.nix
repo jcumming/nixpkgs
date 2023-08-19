@@ -1850,6 +1850,8 @@ with pkgs;
 
   monica = callPackage ../servers/web-apps/monica { };
 
+  mpremote = python3Packages.callPackage ../tools/misc/mpremote { };
+
   mprocs = callPackage ../tools/misc/mprocs { };
 
   mpy-utils = python3Packages.callPackage ../tools/misc/mpy-utils { };
@@ -7743,6 +7745,8 @@ with pkgs;
 
   d2 = callPackage ../tools/text/d2 { };
 
+  ddev = callPackage ../applications/virtualization/ddev { };
+
   easeprobe = callPackage ../tools/misc/easeprobe { };
 
   emscripten = callPackage ../development/compilers/emscripten {
@@ -8547,13 +8551,25 @@ with pkgs;
 
   godot_4 = callPackage ../development/tools/godot/4 { };
 
-  godot = callPackage ../development/tools/godot/3 { };
+  godot3 = callPackage ../development/tools/godot/3 { };
 
-  godot-export-templates = callPackage ../development/tools/godot/3/export-templates.nix { };
+  godot3-export-templates = callPackage ../development/tools/godot/3/export-templates.nix { };
 
-  godot-headless = callPackage ../development/tools/godot/3/headless.nix { };
+  godot3-headless = callPackage ../development/tools/godot/3/headless.nix { };
 
-  godot-server = callPackage ../development/tools/godot/3/server.nix { };
+  godot3-debug-server = callPackage ../development/tools/godot/3/debug-server.nix { };
+
+  godot3-server = callPackage ../development/tools/godot/3/server.nix { };
+
+  godot3-mono = callPackage ../development/tools/godot/3/mono {};
+
+  godot3-mono-export-templates = callPackage ../development/tools/godot/3/mono/export-templates.nix { };
+
+  godot3-mono-headless = callPackage ../development/tools/godot/3/mono/headless.nix { };
+
+  godot3-mono-debug-server = callPackage ../development/tools/godot/3/mono/debug-server.nix { };
+
+  godot3-mono-server = callPackage ../development/tools/godot/3/mono/server.nix { };
 
   goeland = callPackage ../applications/networking/feedreaders/goeland { };
 
@@ -8670,6 +8686,8 @@ with pkgs;
   graylog-4_3 = callPackage ../tools/misc/graylog/4.3.nix { };
 
   graylog-5_0 = callPackage ../tools/misc/graylog/5.0.nix { };
+
+  graylog-5_1 = callPackage ../tools/misc/graylog/5.1.nix { };
 
   graylogPlugins = recurseIntoAttrs (
     callPackage ../tools/misc/graylog/plugins.nix { }
@@ -10172,9 +10190,7 @@ with pkgs;
 
   lact = callPackage ../tools/system/lact { };
 
-  ledit = callPackage ../tools/misc/ledit {
-    inherit (ocaml-ng.ocamlPackages_4_11) ocaml camlp5;
-  };
+  ledit = callPackage ../tools/misc/ledit { };
 
   ledmon = callPackage ../tools/system/ledmon { };
 
@@ -17153,9 +17169,7 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.frameworks) Cocoa CoreServices Foundation;
   };
   cargo-wipe = callPackage ../development/tools/rust/cargo-wipe { };
-  cargo-workspaces = callPackage ../development/tools/rust/cargo-workspaces {
-    inherit (darwin.apple_sdk.frameworks) IOKit Security CoreFoundation AppKit System;
-  };
+  cargo-workspaces = callPackage ../development/tools/rust/cargo-workspaces { };
   cargo-xbuild = callPackage ../development/tools/rust/cargo-xbuild { };
   cargo-generate = callPackage ../development/tools/rust/cargo-generate { };
   cargo-bootimage = callPackage ../development/tools/rust/bootimage { };
@@ -17620,6 +17634,8 @@ with pkgs;
     rebar rebar3 rebar3WithPlugins
     fetchHex beamPackages
     lfe lfe_2_1;
+
+  expr = callPackage ../development/interpreters/expr { };
 
   gnudatalanguage = callPackage ../development/interpreters/gnudatalanguage {
     inherit (llvmPackages) openmp;
@@ -19178,6 +19194,8 @@ with pkgs;
 
   funzzy = callPackage ../development/tools/misc/funzzy { };
 
+  fzf-make = callPackage ../development/tools/misc/fzf-make { };
+
   gede = libsForQt5.callPackage ../development/tools/misc/gede { };
 
   gdbgui = python3Packages.callPackage ../development/tools/misc/gdbgui { };
@@ -19587,6 +19605,8 @@ with pkgs;
   modd = callPackage ../development/tools/modd { };
 
   mold = callPackage ../development/tools/mold { };
+
+  mommy = callPackage ../tools/misc/mommy { };
 
   moon = callPackage ../development/tools/build-managers/moon/default.nix { };
 
@@ -25604,6 +25624,8 @@ with pkgs;
   yubihsm-shell = callPackage ../tools/security/yubihsm-shell { };
 
   yubioath-flutter = callPackage ../applications/misc/yubioath-flutter { };
+
+  yyjson = callPackage ../development/libraries/yyjson { };
 
   zchunk = callPackage ../development/libraries/zchunk { };
 
@@ -32956,7 +32978,7 @@ with pkgs;
 
   klayout = libsForQt5.callPackage ../applications/misc/klayout { };
 
-  klee = callPackage ../applications/science/logic/klee (with llvmPackages_11; {
+  klee = callPackage ../applications/science/logic/klee (with llvmPackages_12; {
     clang = clang;
     llvm = llvm;
     stdenv = stdenv;
@@ -33773,7 +33795,18 @@ with pkgs;
 
   rofi-pulse-select = callPackage ../applications/audio/rofi-pulse-select { };
 
-  rofi-rbw = python3Packages.callPackage ../applications/misc/rofi-rbw { };
+  rofi-rbw = python3Packages.callPackage ../applications/misc/rofi-rbw {
+    waylandSupport = false;
+    x11Support = false;
+  };
+
+  rofi-rbw-wayland = python3Packages.callPackage ../applications/misc/rofi-rbw {
+    waylandSupport = true;
+  };
+
+  rofi-rbw-x11 = python3Packages.callPackage ../applications/misc/rofi-rbw {
+    x11Support = true;
+  };
 
   rofi-screenshot = callPackage ../applications/misc/rofi-screenshot { };
 
@@ -36519,7 +36552,6 @@ with pkgs;
   win-spice = callPackage ../applications/virtualization/driver/win-spice { };
   win-virtio = callPackage ../applications/virtualization/driver/win-virtio { };
   win-pvdrivers = callPackage ../applications/virtualization/driver/win-pvdrivers { };
-  win-signed-gplpv-drivers = callPackage ../applications/virtualization/driver/win-signed-gplpv-drivers { };
 
   xfig = callPackage ../applications/graphics/xfig { };
 
@@ -38685,6 +38717,8 @@ with pkgs;
   astral = callPackage ../applications/science/biology/astral { };
 
   archimedes = callPackage ../applications/science/electronics/archimedes { };
+
+  bamtools = callPackage ../applications/science/biology/bamtools { };
 
   bayescan = callPackage ../applications/science/biology/bayescan { };
 
@@ -41879,4 +41913,6 @@ with pkgs;
   gitrs = callPackage ../tools/misc/gitrs { };
 
   wttrbar = callPackage ../applications/misc/wttrbar { };
+
+  wpm = callPackage ../applications/misc/wpm { };
 }
