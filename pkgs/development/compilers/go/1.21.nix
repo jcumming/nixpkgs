@@ -46,11 +46,11 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "go";
-  version = "1.21rc4";
+  version = "1.21.0";
 
   src = fetchurl {
     url = "https://go.dev/dl/go${version}.src.tar.gz";
-    hash = "sha256-IyTyDxERKuw+XV5CjQRoYaNOT5neCrgqjZFNJrj7Af0=";
+    hash = "sha256-gY1G7ehWgt1VGtN47zek0kcAbxLsWbW3VWAdLOEUNpo=";
   };
 
   strictDeps = true;
@@ -157,7 +157,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
     mkdir -p $GOROOT_FINAL
-    cp -a bin pkg src lib misc api doc $GOROOT_FINAL
+    cp -a bin pkg src lib misc api doc go.env $GOROOT_FINAL
     mkdir -p $out/bin
     ln -s $GOROOT_FINAL/bin/* $out/bin
     runHook postInstall
