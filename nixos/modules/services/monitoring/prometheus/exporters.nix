@@ -51,6 +51,7 @@ let
     "mikrotik"
     "minio"
     "modemmanager"
+    "mysqld"
     "nextcloud"
     "nginx"
     "nginxlog"
@@ -301,6 +302,12 @@ in
       assertion = cfg.iw.enable -> config.services.hostapd.enable;
       message = ''
         Please enable 'services.hostapd' before enabbling 'services.prometheus.exporters.iw_hostapd'.
+      '';
+    } {
+      assertion = cfg.mysqld.runAsLocalSuperUser -> config.services.mysql.enable;
+      message = ''
+        The exporter is configured to run as 'services.mysql.user', but
+          'services.mysql.enable' is set to false.
       '';
     } {
       assertion = cfg.sql.enable -> (

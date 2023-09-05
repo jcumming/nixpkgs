@@ -4273,19 +4273,23 @@ with self; {
     };
   };
 
-  Connector = buildPerlPackage {
+  Connector = buildPerlModule {
     pname = "Connector";
-    version = "1.35";
+    version = "1.47";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/M/MR/MRSCOTTY/Connector-1.35.tar.gz";
-      hash = "sha256-Qdl2bubNdaGcFsdeuQ3GT9/dXbp22NIJdo37FeVm3Eo=";
+      url = "mirror://cpan/authors/id/M/MR/MRSCOTTY/Connector-1.47.tar.gz";
+      hash = "sha256-I2R4pAq53cIVgu4na6krnjgbP8XtljkKLe2o4nSGeoM=";
     };
-    buildInputs = [ ConfigMerge ConfigStd ConfigVersioned DBDSQLite DBI IOSocketSSL JSON LWP LWPProtocolHttps ProcSafeExec TemplateToolkit YAML ];
+    buildInputs = [ ModuleBuildTiny ConfigMerge ConfigStd ConfigVersioned DBDSQLite DBI IOSocketSSL JSON LWP LWPProtocolHttps ProcSafeExec TemplateToolkit YAML ];
     propagatedBuildInputs = [ LogLog4perl Moose ];
     prePatch = ''
       # Attempts to use network.
       rm t/01-proxy-http.t
       rm t/01-proxy-proc-safeexec.t
+
+      # crypt() tests that use DES
+      rm t/01-builtin-password.t
+      rm t/01-builtin-password-scheme.t
     '';
     meta = {
       description = "A generic connection to a hierarchical-structured data set";
@@ -12704,11 +12708,11 @@ with self; {
 
   ImageExifTool = buildPerlPackage rec {
     pname = "Image-ExifTool";
-    version = "12.62";
+    version = "12.65";
 
     src = fetchurl {
       url = "https://exiftool.org/Image-ExifTool-${version}.tar.gz";
-      hash = "sha256-SZCkbGm2VoiNfVcyuvQDnalkaI7d33ocLutRQEmZ7B0=";
+      hash = "sha256-YWynZES+4/MkYueeN8Y3IC7vKGb0wkANUfIKgScDJDI=";
     };
 
     nativeBuildInputs = lib.optional stdenv.isDarwin shortenPerlShebang;

@@ -13,17 +13,17 @@
 , autoreconfHook
 , pkg-config
 , diffutils
-, glibc
+, glibc ? !stdenv.isDarwin
 }:
 
 stdenv.mkDerivation rec {
   pname = "dpkg";
-  version = "1.21.22";
+  version = "1.22.0";
 
   src = fetchgit {
     url = "https://git.launchpad.net/ubuntu/+source/dpkg";
     rev = "applied/${version}";
-    hash = "sha256-tP2PNUrq90CXVDJZM7TG42dSEUVW2iQjaOVRjF7leSc=";
+    hash = "sha256-q+kP0PuQyGKuKahA1/TwtJG380a/sNR433xZhxvGO9M=";
   };
 
   configureFlags = [
@@ -66,6 +66,7 @@ stdenv.mkDerivation rec {
        --replace '"rm"' \"${coreutils}/bin/rm\" \
        --replace '"cat"' \"${coreutils}/bin/cat\" \
        --replace '"diff"' \"${diffutils}/bin/diff\"
+  '' + lib.optionalString (!stdenv.isDarwin) ''
     substituteInPlace src/main/help.c \
        --replace '"ldconfig"' \"${glibc.bin}/bin/ldconfig\"
   '';

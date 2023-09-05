@@ -131,9 +131,15 @@ mapAliases ({
   inherit (super.pkgs) fetchPypi; # added 2023-05-25
   filemagic = throw "inactive since 2014, so use python-magic instead"; # added 2022-11-19
   flaskbabel = flask-babel; # added 2023-01-19
+  flask_assets = flask-assets; # added 2023-08-23
+  flask_elastic = flask-elastic; # added 2023-08-23
   flask_login = flask-login; # added 2022-10-17
+  flask_mail = flask-mail; # added 2023-08-23
   flask_marshmallow = flask-marshmallow; # added 2023-08-16
+  flask_migrate = flask-migrate; # added 2023-08-23
+  flask_principal = flask-principal; # added 2023-08-23
   flask-restplus = throw "flask-restplus is no longer maintained, use flask-restx instead"; # added 2023-02-21
+  flask_script = flask-script; # added 2023-08-23
   flask_sqlalchemy = flask-sqlalchemy; # added 2022-07-20
   flask_testing = flask-testing; # added 2022-04-25
   flask_wtf = flask-wtf; # added 2022-05-24
@@ -268,6 +274,7 @@ mapAliases ({
   pymc3 = pymc; # added 2022-06-05, module was rename starting with 4.0.0
   pymssql = throw "pymssql has been abandoned upstream."; # added 2020-05-04
   PyMVGLive = pymvglive; # added 2023-02-19
+  pyqt4 = throw "pyqt4 has been removed, because it depended on the long EOL qt4"; # added 2022-06-09
   pyramid_hawkauth = throw "pyramid_hawkauth has been removed because it is no longer maintained"; # added 2023-02-2
   pyramid_jinja2 = pyramid-jinja2; # added 2023-06-06
   pyreadability = readability-lxml; # added 2022-05-24
@@ -358,6 +365,7 @@ mapAliases ({
   sphinx-navtree = throw "sphinx-navtree has been removed since it is not compatible with sphinx 3.3 and unmaintained"; # added 2023-07-03
   sqlalchemy_migrate = sqlalchemy-migrate; # added 2021-10-28
   SQLAlchemy-ImageAttach = throw "sqlalchemy-imageattach has been removed as it is incompatible with sqlalchemy 1.4 and unmaintained"; # added 2022-04-23
+  subdownloader = throw "subdownloader has been removed, because it depended on pyqt4"; # added 2022-06-09
   suds-jurko = throw "suds-jurko has been removed, it was using setuptools 2to3 translation feature, which has been removed in setuptools 58"; # added 2023-02-27
   suseapi = throw "suseapi has been removed because it is no longer maintained"; # added 2023-02-27
   tensorflow-bin_2 = tensorflow-bin; # added 2021-11-25

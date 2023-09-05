@@ -29,6 +29,8 @@
 /lib/debug.nix              @edolstra @Profpatsch
 /lib/asserts.nix            @edolstra @Profpatsch
 /lib/path.*                 @infinisil @fricklerhandwerk
+/lib/fileset                @infinisil
+/doc/functions/fileset.section.md @infinisil
 
 # Nixpkgs Internals
 /default.nix                                     @Ericson2314
@@ -46,6 +48,9 @@
 /pkgs/build-support/setup-hooks/auto-patchelf.sh @layus
 /pkgs/build-support/setup-hooks/auto-patchelf.py @layus
 /pkgs/pkgs-lib                                   @infinisil
+
+# pkgs/by-name
+/pkgs/test/nixpkgs-check-by-name @infinisil
 
 # Nixpkgs build-support
 /pkgs/build-support/writers @lassulus @Profpatsch

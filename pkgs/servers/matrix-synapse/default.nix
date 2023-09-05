@@ -16,26 +16,31 @@ let
 in
 python3.pkgs.buildPythonApplication rec {
   pname = "matrix-synapse";
-  version = "1.90.0";
+  version = "1.91.0";
   format = "pyproject";
 
   src = fetchFromGitHub {
     owner = "matrix-org";
     repo = "synapse";
     rev = "v${version}";
-    hash = "sha256-VUbEERQ/UFCroSiz8Y8EsjB+uhFQXLAsK52kM6HTjjY=";
+    hash = "sha256-rLEewCN8OdZ4wIWQRbLkxVF/VOAESTLAVQLfUu/PYsA=";
   };
 
   cargoDeps = rustPlatform.fetchCargoTarball {
     inherit src;
     name = "${pname}-${version}";
-    hash = "sha256-t65rvhkLryzba6eZH1thBMzV7y0y5XMbdbrTxC91blQ=";
+    hash = "sha256-aOoSvT6e2x7JcXoQ2sVTCDvkWupixLzpbk3cTHVQs7I=";
   };
 
   postPatch = ''
     # Remove setuptools_rust from runtime dependencies
     # https://github.com/matrix-org/synapse/blob/v1.69.0/pyproject.toml#L177-L185
     sed -i '/^setuptools_rust =/d' pyproject.toml
+
+    # Remove version pin on build dependencies. Upstream does this on purpose to
+    # be extra defensive, but we don't want to deal with updating this
+    sed -i 's/"poetry-core>=\([0-9.]*\),<=[0-9.]*"/"poetry-core>=\1"/' pyproject.toml
+    sed -i 's/"setuptools_rust>=\([0-9.]*\),<=[0-9.]*"/"setuptools_rust>=\1"/' pyproject.toml
   '';
 
   nativeBuildInputs = with python3.pkgs; [

@@ -12,7 +12,7 @@
 
 buildPythonPackage rec {
   pname = "opower";
-  version = "0.0.31";
+  version = "0.0.33";
   format = "pyproject";
 
   disabled = pythonOlder "3.9";
@@ -21,7 +21,7 @@ buildPythonPackage rec {
     owner = "tronikos";
     repo = "opower";
     rev = "refs/tags/v${version}";
-    hash = "sha256-lJVaQnGfZBjMgWLKZG/LNao8l4Fj3z3AZhnfgJwOcxo=";
+    hash = "sha256-YZ9I+Pdfh7i8gtBYnVwIaJSRSG0uU+8hKSCSk391hzc=";
   };
 
   pythonRemoveDeps = [

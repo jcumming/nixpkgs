@@ -169,6 +169,8 @@ lib.makeScope pkgs.newScope (self: with self; {
   tools = {
     box = callPackage ../development/php-packages/box { };
 
+    castor = callPackage ../development/php-packages/castor { };
+
     composer = callPackage ../development/php-packages/composer { };
 
     deployer = callPackage ../development/php-packages/deployer { };
@@ -253,6 +255,8 @@ lib.makeScope pkgs.newScope (self: with self; {
     msgpack = callPackage ../development/php-packages/msgpack { };
 
     oci8 = callPackage ../development/php-packages/oci8 { };
+
+    opentelemetry = callPackage ../development/php-packages/opentelemetry { };
 
     openswoole = callPackage ../development/php-packages/openswoole { };
 

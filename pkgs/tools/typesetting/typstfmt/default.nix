@@ -1,14 +1,14 @@
 { lib, rustPlatform, fetchFromGitHub }:
 
-rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage rec {
   pname = "typstfmt";
-  version = "unstable-2023-08-15";
+  version = "0.2.1";
 
   src = fetchFromGitHub {
     owner = "astrale-sharp";
     repo = "typstfmt";
-    rev = "0e5cf2769ef46ca8f6627c688cb8f848ee279a88";
-    hash = "sha256-xdmEixbINjVjXlGwdBqDPcd4YHcT/WeswlRNEwpnfx4=";
+    rev = version;
+    hash = "sha256-cxiT8QVioZ7cGdkxsa8ampwNBWcdpAu4fO1ijfviHhI=";
   };
 
   cargoLock = {
@@ -21,6 +21,7 @@ rustPlatform.buildRustPackage {
   meta = with lib; {
     description = "A formatter for the Typst language";
     homepage = "https://github.com/astrale-sharp/typstfmt";
+    changelog = "https://github.com/astrale-sharp/typstfmt/blob/${src.rev}/CHANGELOG.md";
     license = licenses.mit;
     maintainers = with maintainers; [ figsoda geri1701 ];
   };

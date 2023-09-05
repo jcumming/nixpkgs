@@ -55,14 +55,14 @@
 
 buildPythonPackage rec {
   pname = "dvc";
-  version = "3.15.3";
+  version = "3.17.0";
   format = "pyproject";
 
   src = fetchFromGitHub {
     owner = "iterative";
     repo = pname;
     rev = "refs/tags/${version}";
-    hash = "sha256-ceN8wgQRiwz3R98iPH+cJXqPTTxlBgnSGkpuVgWLvwY=";
+    hash = "sha256-MFwmER2BmSKqisgLvnLY3aFoRuzeObE7lr5JOesJdXE=";
   };
 
   pythonRelaxDeps = [

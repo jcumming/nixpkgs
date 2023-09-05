@@ -27,12 +27,12 @@ rec {
   stable = if stdenv.hostPlatform.system == "i686-linux" then legacy_390 else latest;
 
   production = generic {
-    version = "535.98";
-    sha256_64bit = "sha256-E1DAmVLTe+L5DWCONq47BQtE/Rb22akZMHGhK/0FTsM=";
-    sha256_aarch64 = "sha256-ikqj7bvSvCGlkDviaqagyoSZhpf6ZU3TiKKxNDZm3RU=";
-    openSha256 = "sha256-dgc5Z70NSpBARelNy6XaZ4e7Tz9vWJWeNek3TSztJus=";
-    settingsSha256 = "sha256-jCRfeB1w6/dA27gaz6t5/Qo7On0zbAPIi74LYLel34s=";
-    persistencedSha256 = "sha256-WviDU6B50YG8dO64CGvU3xK8WFUX8nvvVYm/fuGyroM=";
+    version = "535.104.05";
+    sha256_64bit = "sha256-L51gnR2ncL7udXY2Y1xG5+2CU63oh7h8elSC4z/L7ck=";
+    sha256_aarch64 = "sha256-J4uEQQ5WK50rVTI2JysBBHLpmBEWQcQ0CihgEM6xuvk=";
+    openSha256 = "sha256-0ng4hyiUt0rHZkNveFTo+dSaqkMFO4UPXh85/js9Zbw=";
+    settingsSha256 = "sha256-pS9W5LMenX0Rrwmpg1cszmpAYPt0Mx+apVQmOmLWTog=";
+    persistencedSha256 = "sha256-uqT++w0gZRNbzyqbvP3GBqgb4g18r6VM3O8AMEfM7GU=";
   };
 
   latest = selectHighestVersion production (generic {
@@ -65,11 +65,11 @@ rec {
   # Vulkan developer beta driver
   # See here for more information: https://developer.nvidia.com/vulkan-driver
   vulkan_beta = generic rec {
-    version = "535.43.08";
+    version = "535.43.09";
     persistencedVersion = "535.98";
     settingsVersion = "535.98";
-    sha256_64bit = "sha256-u9OJ4xaHGDb5iA5+5jwJhWQGRDa5R6piF1c+K2DGaJs=";
-    openSha256 = "sha256-kbH/6yDhh44SB08xcX6+tm70PuUHF0tfbvHfIwx7o/U=";
+    sha256_64bit = "sha256-7QDp+VDgxH7RGW40kbQp4F/luh0DCYb4BS0gU/6wn+c=";
+    openSha256 = "sha256-7MOwKQCTaOo1//8OlSaNdpKeDXejZvmKFFeqhFrhAk8=";
     settingsSha256 = "sha256-jCRfeB1w6/dA27gaz6t5/Qo7On0zbAPIi74LYLel34s=";
     persistencedSha256 = "sha256-WviDU6B50YG8dO64CGvU3xK8WFUX8nvvVYm/fuGyroM=";
     url = "https://developer.nvidia.com/downloads/vulkan-beta-${lib.concatStrings (lib.splitString "." version)}-linux";
