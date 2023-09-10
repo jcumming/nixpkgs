@@ -68,6 +68,7 @@ mapAliases ({
   aircrackng = throw "'aircrackng' has been renamed to/replaced by 'aircrack-ng'"; # Converted to throw 2022-02-22
   airfield = throw "airfield has been removed due to being unmaintained"; # Added 2023-05-19
   airtame = throw "airtame has been removed due to being unmaintained"; # Added 2022-01-19
+  alertmanager-bot = throw "alertmanager-bot is broken and has been archived by upstream" ; # Added 2023-07-28
   aleth = throw "aleth (previously packaged as cpp_ethereum) has been removed; abandoned upstream"; # Added 2020-11-30
   aliza = throw "aliza has been removed, because it depended on qt4 and was unmaintained in nixpkgs"; # Added 2022-05-12
   alsaLib = alsa-lib; # Added 2021-06-09
@@ -83,7 +84,6 @@ mapAliases ({
   amsn = throw "amsn has been removed due to being unmaintained"; # Added 2020-12-09
   amuleGui = throw "amuleGui was renamed to amule-gui"; # Added 2022-02-11
   angelfish = libsForQt5.kdeGear.angelfish; # Added 2021-10-06
-  angryipscanner = ipscan; # Added 2023-08-30
   ansible_2_10 = throw "Ansible 2.10 went end of life in 2022/05 and has subsequently been dropped"; # Added 2022-03-30
   ansible_2_11 = throw "Ansible 2.11 goes end of life in 2022/11 and can't be supported throughout the 22.05 release cycle"; # Added 2022-03-30
   ansible_2_12 = throw "Ansible 2.12 goes end of life in 2023/05 and can't be supported throughout the 23.05 release cycle"; # Added 2023-05-16
@@ -224,6 +224,7 @@ mapAliases ({
   cassandra_2_1 = throw "cassandra_2_1 has been removed, please use cassandra_3_11 instead"; # Added 2022-10-29
   cassandra_2_2 = throw "cassandra_2_2 has been removed, please use cassandra_3_11 instead"; # Added 2022-10-29
   catfish = xfce.catfish; # Added 2019-12-22
+  cawbird = throw "cawbird has been abandoned upstream and is broken anyways due to Twitter closing its API";
   ccloud-cli = throw "ccloud-cli has been removed, please use confluent-cli instead"; # Added 2023-06-09
   ccnet = throw "ccnet has been removed because seafile does not depend on it anymore"; # Added 2021-03-25
   cde-gtk-theme = throw "cde-gtk-theme has been removed from nixpkgs as it shipped with python2 scripts that didn't work anymore"; # Added 2022-01-12
@@ -496,6 +497,7 @@ mapAliases ({
   euca2tools = throw "euca2ools has been removed because it is unmaintained upstream and still uses python2"; # Added 2022-01-01
   evilvte = throw "evilvte has been removed from nixpkgs for being unmaintained with security issues and dependant on an old version of vte which was removed"; # Added 2022-01-14
   evolution_data_server = throw "'evolution_data_server' has been renamed to/replaced by 'evolution-data-server'"; # Converted to throw 2022-02-22
+  exa = throw "'exa' has been removed because it is unmaintained upstream. Consider using 'eza', a maintained fork"; # Added 2023-09-07
   exhibitor = throw "'exhibitor' has been removed because it is unmaintained upstream"; # Added 2023-06-20
   exfat-utils = throw "'exfat-utils' has been renamed to/replaced by 'exfat'"; # Converted to throw 2022-02-22
 
@@ -1219,6 +1221,8 @@ mapAliases ({
   nodejs-slim-18_x = nodejs-slim_18; # Added 2022-11-06
   nologin = throw "'nologin' has been renamed to/replaced by 'shadow'"; # Converted to throw 2022-02-22
   nomad_1_1 = throw "nomad_1_1 has been removed because it's outdated. Use a a newer version instead"; # Added 2022-05-22
+  nomad_1_2 = throw "nomad_1_2 has been removed because it's outdated. Use a a newer version instead"; # Added 2023-09-02
+  nomad_1_3 = throw "nomad_1_3 has been removed because it's outdated. Use a a newer version instead"; # Added 2023-09-02
   nordic-polar = throw "nordic-polar was removed on 2021-05-27, now integrated in nordic"; # Added 2021-05-27
   noto-fonts-cjk = noto-fonts-cjk-sans; # Added 2021-12-16
   noto-fonts-extra = noto-fonts; # Added 2023-04-08
@@ -1301,6 +1305,8 @@ mapAliases ({
   percona-server = percona-server56; # Added 2022-11-01
   percona-server56 = throw "'percona-server56' has been dropped due to lack of maintenance, no upstream support and security issues"; # Added 2022-11-01
   percona-xtrabackup_2_4 = throw "'percona-xtrabackup_2_4' has been renamed to/replaced by 'percona-xtrabackup'"; # Added 2022-12-23
+  perldevel = throw "'perldevel' has been dropped due to lack of updates in nixpkgs and lack of consistent support for devel versions by 'perl-cross' releases, use 'perl' instead";
+  perldevelPackages = perldevel;
   perlXMLParser = throw "'perlXMLParser' has been renamed to/replaced by 'perlPackages.XMLParser'"; # Converted to throw 2022-02-22
   perlArchiveCpio = throw "'perlArchiveCpio' has been renamed to/replaced by 'perlPackages.ArchiveCpio'"; # Converted to throw 2022-02-22
   pgadmin = pgadmin4;
@@ -1862,7 +1868,7 @@ mapAliases ({
   inherit (libsForQt5.mauiPackages) vvave; # added 2022-05-17
 
   ### W ###
-
+  wafHook = waf.hook; # Added 2023-08-23
   wavesurfer = throw "wavesurfer has been removed: depended on snack which has been removed"; # Added 2022-04-21
   waybar-hyprland = throw "waybar-hyprland has been removed: hyprland support is now built into waybar by default."; # Added 2023-08-21
   way-cooler = throw "way-cooler is abandoned by its author: https://way-cooler.org/blog/2020/01/09/way-cooler-post-mortem.html"; # Added 2020-01-13
@@ -1966,8 +1972,7 @@ mapAliases ({
   zinc = zincsearch; # Added 2023-05-28
   zq = zed.overrideAttrs (old: { meta = old.meta // { mainProgram = "zq"; }; }); # Added 2023-02-06
 
-  # TODO(ekleog): add ‘wasm’ alias to ‘ocamlPackages.wasm’ after 19.03
-  # branch-off
+  ### UNSORTED ###
 
   ocamlPackages_latest = throw "'ocamlPackages_latest' has been renamed to/replaced by 'ocaml-ng.ocamlPackages_latest'"; # Converted to throw 2022-02-22
 
