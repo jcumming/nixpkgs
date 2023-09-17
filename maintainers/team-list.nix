@@ -287,7 +287,7 @@ with lib.maintainers; {
   };
 
   flutter = {
-    members = [ gilice mkg20001 RossComputerGuy FlafyDev hacker1024 ];
+    members = [ mkg20001 RossComputerGuy FlafyDev hacker1024 ];
     scope = "Maintain Flutter and Dart-related packages and build tools";
     shortName = "flutter";
     enableFeatureFreezePing = false;
@@ -365,7 +365,7 @@ with lib.maintainers; {
       hedning
       jtojnar
       dasj19
-      maxeaubrey
+      amaxine
     ];
     githubTeams = [
       "gnome"
@@ -916,6 +916,18 @@ with lib.maintainers; {
     ];
     scope = "Maintain the vim and neovim text editors and related packages.";
     shortName = "Vim/Neovim";
+  };
+
+  wdz = {
+    members = [
+      n0emis
+      netali
+      vidister
+      johannwagner
+      yuka
+    ];
+    scope = "Group registration for WDZ GmbH team members who collectively maintain packages.";
+    shortName = "WDZ GmbH";
   };
 
   xfce = {

@@ -4,6 +4,11 @@
 
   mdadm_conf = config.environment.etc."mdadm.conf";
 
+  enable_implicitly_for_old_state_versions = lib.versionOlder config.system.stateVersion "23.11";
+
+  minimum_config_is_set = config_text:
+    (builtins.match ".*(MAILADDR|PROGRAM).*" mdadm_conf.text) != null;
+
 in {
   imports = [
     (lib.mkRenamedOptionModule [ "boot" "initrd" "services" "swraid" "enable" ] [ "boot" "swraid" "enable" ])
@@ -26,7 +31,7 @@ in {
         should detect it correctly in the standard installation
         procedure.
       '';
-      default = lib.versionOlder config.system.stateVersion "23.11";
+      default = enable_implicitly_for_old_state_versions;
       defaultText = lib.mdDoc "`true` if stateVersion is older than 23.11";
     };
 
@@ -39,7 +44,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     warnings = lib.mkIf
-        ((builtins.match ".*(MAILADDR|PROGRAM).*" mdadm_conf.text) == null)
+        ( !enable_implicitly_for_old_state_versions && !minimum_config_is_set mdadm_conf)
         [ "mdadm: Neither MAILADDR nor PROGRAM has been set. This will cause the `mdmon` service to crash." ];
 
     environment.systemPackages = [ pkgs.mdadm ];
@@ -67,7 +72,7 @@ in {
         $out/bin/mdadm --version
       '';
 
-      extraFiles."/etc/mdadm.conf" = mdadm_conf;
+      extraFiles."/etc/mdadm.conf".source = pkgs.writeText "mdadm.conf" mdadm_conf.text;
 
       systemd = {
         contents."/etc/mdadm.conf".text = mdadm_conf.text;

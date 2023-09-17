@@ -284,12 +284,13 @@ in {
   fluentd = handleTest ./fluentd.nix {};
   fluidd = handleTest ./fluidd.nix {};
   fontconfig-default-fonts = handleTest ./fontconfig-default-fonts.nix {};
-  forgejo = handleTest ./gitea.nix { giteaPackage = pkgs.forgejo; };
+  forgejo = handleTest ./forgejo.nix { };
   freenet = handleTest ./freenet.nix {};
   freeswitch = handleTest ./freeswitch.nix {};
   freshrss-sqlite = handleTest ./freshrss-sqlite.nix {};
   freshrss-pgsql = handleTest ./freshrss-pgsql.nix {};
   frigate = handleTest ./frigate.nix {};
+  frp = handleTest ./frp.nix {};
   frr = handleTest ./frr.nix {};
   fsck = handleTest ./fsck.nix {};
   fsck-systemd-stage-1 = handleTest ./fsck.nix { systemdStage1 = true; };

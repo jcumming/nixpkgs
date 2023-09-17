@@ -11,7 +11,7 @@
 }:
 
 stdenvNoCC.mkDerivation rec {
-  version = "1.0.0";
+  version = "1.0.2";
   pname = "bun";
 
   src = passthru.sources.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
@@ -35,19 +35,19 @@ stdenvNoCC.mkDerivation rec {
     sources = {
       "aarch64-darwin" = fetchurl {
         url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-darwin-aarch64.zip";
-        hash = "sha256-Bd8KL1IbWBRiMZq4YPhNLdhBOqRReCFeUPAilLfk0TM=";
+        hash = "sha256-QvoEakfR5wmP10d6MDpfS8THke975bVyZc5pLVliUbQ=";
       };
       "aarch64-linux" = fetchurl {
         url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-aarch64.zip";
-        hash = "sha256-CHOiQ47wXjkFyJG9ElE9gBpmWpylMEUf6c+Sm+YCpGc=";
+        hash = "sha256-izVtW28QE7Tty6DfQDKmw1oqD5GOolTzCeIUmtgI1Uw=";
       };
       "x86_64-darwin" = fetchurl {
         url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-darwin-x64.zip";
-        hash = "sha256-0AT58hjawS60q5YAQd/upVz0vOIs11JM+lc3c1mGyOE=";
+        hash = "sha256-e/VXNCq2CwNsM7ruk8IGSwU/swkVhcvvQRv/yiIQtCU=";
       };
       "x86_64-linux" = fetchurl {
         url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64.zip";
-        hash = "sha256-1ju7ZuW82wRfXEiU24Lx9spCoIhhddJ2p4dTTQmsa7A=";
+        hash = "sha256-kHv8PU48Le4lG3pf304hXggAtx/I5uBeu4aHmLsbdgw=";
       };
     };
     updateScript = writeShellScript "update-bun" ''
@@ -66,7 +66,7 @@ stdenvNoCC.mkDerivation rec {
   };
   meta = with lib; {
     homepage = "https://bun.sh";
-    changelog = "https://bun.sh/blog/bun-v1.0"; # 1.0 changelog does not use the full version name, please change this to ${version} in the following releases
+    changelog = "https://bun.sh/blog/bun-v${version}";
     description = "Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one";
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
     longDescription = ''

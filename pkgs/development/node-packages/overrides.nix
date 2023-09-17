@@ -204,14 +204,6 @@ final: prev: {
     '';
   });
 
-  near-cli = prev.near-cli.override {
-    nativeBuildInputs = with pkgs; [
-      libusb1
-      final.prebuild-install
-      final.node-gyp-build
-      pkg-config
-    ];
-  };
 
   node-gyp = prev.node-gyp.override {
     nativeBuildInputs = [ pkgs.buildPackages.makeWrapper ];
@@ -358,14 +350,6 @@ final: prev: {
   teck-programmer = prev.teck-programmer.override {
     nativeBuildInputs = [ final.node-gyp-build ];
     buildInputs = [ pkgs.libusb1 ];
-  };
-
-  tedicross = prev."tedicross-git+https://github.com/TediCross/TediCross.git#v0.8.7".override {
-    nativeBuildInputs = with pkgs; [ makeWrapper libtool autoconf ];
-    postInstall = ''
-      makeWrapper '${nodejs}/bin/node' "$out/bin/tedicross" \
-        --add-flags "$out/lib/node_modules/tedicross/main.js"
-    '';
   };
 
   thelounge-plugin-closepms = prev.thelounge-plugin-closepms.override {
