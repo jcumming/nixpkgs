@@ -80,6 +80,7 @@ in
         package = mkOption {
           type = types.package;
           default = pkgs.photoprism;
+          defaultText = literalExpression "pkgs.photoprism";
           description = "The photoprism package.";
         };
       };
