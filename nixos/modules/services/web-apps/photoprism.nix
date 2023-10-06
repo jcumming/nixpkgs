@@ -33,7 +33,7 @@ in
   in {
     options = with lib; {
       services.photoprism = {
-        enable = mkOption {
+        enable = mkEnableOption {
           type = types.bool;
           default = false;
         };
