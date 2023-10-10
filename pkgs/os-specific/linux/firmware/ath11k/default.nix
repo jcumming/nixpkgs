@@ -20,14 +20,11 @@ stdenv.mkDerivation (finalAttrs: {
 
   installPhase = ''
     runHook preInstall
-    mkdir -p $out/lib/firmware/ath11k/QCN9074/hw1.0
+    d=$out/lib/firmware/ath11k/QCN9074/hw1.0
 
-    cp $src/QCN9074/hw1.0/2.7.0.1/WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1/* .
-    cp $src/QCN9074/hw1.0/board-2.bin . 
-
-    xz * 
-
-    cp *.xz $out/lib/firmware/ath11k/QCN9074/hw1.0
+    mkdir -p $d
+    cp $src/QCN9074/hw1.0/2.7.0.1/WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1/* $d
+    cp $src/QCN9074/hw1.0/board-2.bin $d 
 
     runHook postInstall
   '';
