@@ -27828,6 +27828,8 @@ with pkgs;
   ath9k-htc-blobless-firmware-unstable =
     callPackage ../os-specific/linux/firmware/ath9k { enableUnstable = true; };
 
+  ath11k-firmware = callPackage ../os-specific/linux/firmware/ath11k { };
+
   bartender = callPackage ../os-specific/darwin/bartender { };
 
   b43Firmware_5_1_138 = callPackage ../os-specific/linux/firmware/b43-firmware/5.1.138.nix { };
