@@ -77,6 +77,7 @@ in {
         '';
       }];
       hardware.firmware = with pkgs; [
+        ath11k-firmware
         broadcom-bt-firmware
         b43Firmware_5_1_138
         b43Firmware_6_30_163_46
