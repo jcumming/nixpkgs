@@ -1440,7 +1440,7 @@ self: super: with self; {
 
   biplist = callPackage ../development/python-modules/biplist { };
 
-  bip_utils = callPackage ../development/python-modules/bip_utils { };
+  bip-utils = callPackage ../development/python-modules/bip-utils { };
 
   bitarray = callPackage ../development/python-modules/bitarray { };
 
@@ -4897,6 +4897,8 @@ self: super: with self; {
 
   heatzypy = callPackage ../development/python-modules/heatzypy { };
 
+  help2man = callPackage ../development/python-modules/help2man { };
+
   helpdev = callPackage ../development/python-modules/helpdev { };
 
   helper = callPackage ../development/python-modules/helper { };
@@ -5416,7 +5418,7 @@ self: super: with self; {
 
   ipytablewidgets = callPackage ../development/python-modules/ipytablewidgets { };
 
-  ipython_genutils = callPackage ../development/python-modules/ipython_genutils { };
+  ipython-genutils = callPackage ../development/python-modules/ipython-genutils { };
 
   ipython = callPackage ../development/python-modules/ipython { };
 
@@ -12652,6 +12654,8 @@ self: super: with self; {
   setupmeta = callPackage ../development/python-modules/setupmeta { };
 
   setuptools-declarative-requirements = callPackage ../development/python-modules/setuptools-declarative-requirements { };
+
+  setuptools-generate = callPackage ../development/python-modules/setuptools-generate { };
 
   setuptools-gettext = callPackage ../development/python-modules/setuptools-gettext { };
 

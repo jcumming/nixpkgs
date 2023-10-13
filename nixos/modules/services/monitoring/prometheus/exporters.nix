@@ -37,6 +37,7 @@ let
     "fritzbox"
     "graphite"
     "idrac"
+    "imap-mailstat"
     "influxdb"
     "iw"
     "ipmi"
