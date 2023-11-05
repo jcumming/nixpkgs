@@ -13,6 +13,8 @@ in
   # supporting the most important parts of HW like drives.
   boot.initrd.availableKernelModules =
     [ # SATA/PATA support.
+      "ahci"
+
       "ata_piix"
 
       "sata_inic162x" "sata_nv" "sata_promise" "sata_qstor"

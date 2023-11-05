@@ -261,6 +261,7 @@ in
             # compatibility.
 
             # Some SATA/PATA stuff.
+            "ahci"
             "sata_nv"
             "sata_via"
             "sata_sis"
