@@ -13,6 +13,24 @@ in
   # supporting the most important parts of HW like drives.
   boot.initrd.availableKernelModules =
     [ # SATA/PATA support.
+
+      # USB support, especially for booting from USB CD-ROM
+      # drives.
+      "uas"
+
+      # NVMe drives
+      "nvme"
+
+      # Virtio (QEMU, KVM etc.) support.
+      "virtio_net" "virtio_mmio" "virtio_blk" "virtio_scsi" "virtio_balloon" "virtio_console"
+
+      # VMware support.
+      "vsock"
+    ] ++ lib.optional platform.isx86 "vmw_balloon"
+    ++ lib.optionals (pkgs.stdenv.isi686 || pkgs.stdenv.isx86_64) [
+
+      "ahci"
+
       "ata_piix"
 
       "sata_inic162x" "sata_nv" "sata_promise" "sata_qstor"
@@ -27,34 +45,23 @@ in
       "pata_serverworks" "pata_sil680" "pata_sis"
       "pata_sl82c105" "pata_triflex" "pata_via"
       "pata_winbond"
+      "vmw_vmci" "vmwgfx" "vmw_vsock_vmci_transport"
 
       # SCSI support (incomplete).
       "3w-9xxx" "3w-xxxx" "aic79xx" "aic7xxx" "arcmsr" "hpsa"
 
-      # USB support, especially for booting from USB CD-ROM
-      # drives.
-      "uas"
-
       # SD cards.
       "sdhci_pci"
-
-      # NVMe drives
-      "nvme"
 
       # Firewire support.  Not tested.
       "ohci1394" "sbp2"
 
-      # Virtio (QEMU, KVM etc.) support.
-      "virtio_net" "virtio_pci" "virtio_mmio" "virtio_blk" "virtio_scsi" "virtio_balloon" "virtio_console"
+      # Hyper-V support.
+      "virtio_pci" 
+      "hv_storvsc"
 
       # VMware support.
-      "mptspi" "vmxnet3" "vsock"
-    ] ++ lib.optional platform.isx86 "vmw_balloon"
-    ++ lib.optionals (pkgs.stdenv.isi686 || pkgs.stdenv.isx86_64) [
-      "vmw_vmci" "vmwgfx" "vmw_vsock_vmci_transport"
-
-      # Hyper-V support.
-      "hv_storvsc"
+      "mptspi" "vmxnet3"
     ] ++ lib.optionals pkgs.stdenv.hostPlatform.isAarch [
       # Most of the following falls into two categories:
       #  - early KMS / early display
