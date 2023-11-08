@@ -15,7 +15,7 @@
 
 buildPythonPackage rec {
   pname = "edk2-pytool-library";
-  version = "0.19.2";
+  version = "0.19.4";
   pyproject = true;
 
   disabled = pythonOlder "3.10";
@@ -24,7 +24,7 @@ buildPythonPackage rec {
     owner = "tianocore";
     repo = "edk2-pytool-library";
     rev = "v${version}";
-    hash = "sha256-EoBv7mxdT6G1n9as0V8Ad5QckMkqgC2GvcjRDc1+RzA=";
+    hash = "sha256-7pTi3pDD7245hbWqINchZNImv53a4afzaydE7vTtbVw=";
   };
 
   nativeBuildInputs = [
@@ -65,5 +65,6 @@ buildPythonPackage rec {
     changelog = "https://github.com/tianocore/edk2-pytool-library/releases/tag/v${version}";
     license = licenses.bsd2Patent;
     maintainers = with maintainers; [ nickcao ];
+    platforms = platforms.linux;
   };
 }
