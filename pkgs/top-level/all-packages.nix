@@ -24637,7 +24637,7 @@ with pkgs;
     });
 
   libsForQt5 = recurseIntoAttrs (import ./qt5-packages.nix {
-    inherit lib __splicedPackages makeScopeWithSplicing' generateSplicesForMkScope pkgsBuildHost;
+    inherit lib __splicedPackages makeScopeWithSplicing' generateSplicesForMkScope pkgsHostTarget;
   });
 
   # plasma5Packages maps to the Qt5 packages set that is used to build the plasma5 desktop
@@ -30152,6 +30152,8 @@ with pkgs;
   utterly-nord-plasma = callPackage ../data/themes/utterly-nord-plasma {
     inherit (libsForQt5) breeze-icons kdeclarative kirigami2 plasma-framework plasma-workspace;
   };
+
+  utterly-round-plasma-style = callPackage ../data/themes/utterly-round-plasma-style { };
 
   uw-ttyp0 = callPackage ../data/fonts/uw-ttyp0 { };
 
