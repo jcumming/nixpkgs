@@ -1,10 +1,12 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, fetchpatch
 , Security
 , autoreconfHook
 , util-linux
 , openssl
+, cacert
 # The primary --enable-XXX variant. 'all' enables most features, but causes build-errors for some software,
 # requiring to build a special variant for that software. Example: 'haproxy'
 , variant ? "all"
@@ -13,14 +15,22 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "wolfssl-${variant}";
-  version = "5.6.3";
+  version = "5.6.4";
 
   src = fetchFromGitHub {
     owner = "wolfSSL";
     repo = "wolfssl";
     rev = "refs/tags/v${finalAttrs.version}-stable";
-    hash = "sha256-UN4zs+Rxh/bsLD1BQA+f1YN/UOJ6OB2HduhoetEp10Y=";
+    hash = "sha256-a9a3ca4Zb/XTS5YfPJwnXPYbDjmgD8qylhPQg5pjzJM=";
   };
+
+  patches = [
+    (fetchpatch {
+      name = "fix-expected-test-response.patch";
+      url = "https://github.com/wolfSSL/wolfssl/commit/ca694938fd053a8557f9f08b1b4265292d8bef65.patch";
+      hash = "sha256-ETxszjjEMk0WdYgXHWTxTaWZPpyDs9jdko0jtkjzgwI=";
+    })
+  ];
 
   postPatch = ''
     patchShebangs ./scripts
@@ -83,6 +93,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeCheckInputs = [
     openssl
+    cacert
   ];
 
   postInstall = ''

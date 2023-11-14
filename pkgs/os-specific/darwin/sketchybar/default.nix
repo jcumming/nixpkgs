@@ -22,13 +22,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "sketchybar";
-  version = "2.18.0";
+  version = "2.19.3";
 
   src = fetchFromGitHub {
     owner = "FelixKratz";
     repo = "SketchyBar";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-GeFB+eE/NW9ZopwVSmSfMK3WiJLCJNXOdmQpYc3m8WE=";
+    hash = "sha256-QT926AnV9jLc1KvYks6ukIAcMbVHOupTJWQ6vBHpcxc=";
   };
 
   buildInputs = [
