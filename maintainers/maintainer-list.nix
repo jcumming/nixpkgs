@@ -2545,6 +2545,12 @@
     githubId = 4621;
     name = "Brad Ediger";
   };
+  brahyerr = {
+    name = "Bryant Pham";
+    email = "bp@1829847@gmail.com";
+    github = "brahyerr";
+    githubId = 120991075;
+  };
   brainrape = {
     email = "martonboros@gmail.com";
     github = "brainrake";
@@ -5996,13 +6002,6 @@
     github = "ForNeVeR";
     githubId = 92793;
     name = "Friedrich von Never";
-  };
-  fortuneteller2k = {
-    email = "lythe1107@gmail.com";
-    matrix = "@fortuneteller2k:matrix.org";
-    github = "fortuneteller2k";
-    githubId = 20619776;
-    name = "fortuneteller2k";
   };
   fpletz = {
     email = "fpletz@fnordicwalking.de";
@@ -12089,6 +12088,13 @@
     github = "ribosomerocker";
     githubId = 46468162;
   };
+  moni = {
+    email = "lythe1107@gmail.com";
+    matrix = "@fortuneteller2k:matrix.org";
+    github = "moni";
+    githubId = 20619776;
+    name = "moni";
+  };
   monsieurp = {
     email = "monsieurp@gentoo.org";
     github = "monsieurp";
@@ -12751,6 +12757,12 @@
     github = "Net-Mist";
     githubId = 13920346;
     name = "Sébastien Iooss";
+  };
+  netthier = {
+    email = "netthier@proton.me";
+    name = "nett_hier";
+    github = "netthier";
+    githubId = 66856670;
   };
   networkexception = {
     name = "networkException";
