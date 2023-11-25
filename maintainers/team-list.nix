@@ -219,7 +219,6 @@ with lib.maintainers; {
       cole-h
       grahamc
       hoverbear
-      lheckemann
     ];
     scope = "Group registration for packages maintained by Determinate Systems.";
     shortName = "Determinate Systems employees";
@@ -323,6 +322,7 @@ with lib.maintainers; {
 
   geospatial = {
     members = [
+      das-g
       imincik
       nh2
       sikmir
@@ -676,18 +676,6 @@ with lib.maintainers; {
     scope = "Maintain Node.js runtimes and build tooling.";
     shortName = "Node.js";
     enableFeatureFreezePing = true;
-  };
-
-  numtide = {
-    members = [
-      mic92
-      flokli
-      jfroche
-      tazjin
-      zimbatm
-    ];
-    scope = "Group registration for Numtide team members who collectively maintain packages.";
-    shortName = "Numtide team";
   };
 
   ocaml = {
