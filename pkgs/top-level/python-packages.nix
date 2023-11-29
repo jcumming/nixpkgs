@@ -234,6 +234,8 @@ self: super: with self; {
 
   aiohttp-cors = callPackage ../development/python-modules/aiohttp-cors { };
 
+  aiohttp-fast-url-dispatcher = callPackage ../development/python-modules/aiohttp-fast-url-dispatcher { };
+
   aiohttp-jinja2 = callPackage ../development/python-modules/aiohttp-jinja2 { };
 
   aiohttp-oauthlib = callPackage ../development/python-modules/aiohttp-oauthlib { };
@@ -6842,6 +6844,8 @@ self: super: with self; {
 
   mhcgnomes = callPackage ../development/python-modules/mhcgnomes { };
 
+  miauth = callPackage ../development/python-modules/miauth { };
+
   micawber = callPackage ../development/python-modules/micawber { };
 
   microdata = callPackage ../development/python-modules/microdata { };
@@ -8157,6 +8161,8 @@ self: super: with self; {
 
   nine = callPackage ../development/python-modules/nine { };
 
+  ninebot-ble = callPackage ../development/python-modules/ninebot-ble { };
+
   ninja = callPackage ../development/python-modules/ninja { inherit (pkgs) ninja; };
 
   nipy = callPackage ../development/python-modules/nipy { };
@@ -8862,8 +8868,6 @@ self: super: with self; {
   paypal-checkout-serversdk = callPackage ../development/python-modules/paypal-checkout-serversdk { };
 
   paypalhttp = callPackage ../development/python-modules/paypalhttp { };
-
-  paypalrestsdk = callPackage ../development/python-modules/paypalrestsdk { };
 
   pbkdf2 = callPackage ../development/python-modules/pbkdf2 { };
 
@@ -13429,6 +13433,8 @@ self: super: with self; {
 
   sqlmap = callPackage ../development/python-modules/sqlmap { };
 
+  sqlmodel = callPackage ../development/python-modules/sqlmodel { };
+
   sqlobject = callPackage ../development/python-modules/sqlobject { };
 
   sqlparse = callPackage ../development/python-modules/sqlparse { };
@@ -14139,10 +14145,6 @@ self: super: with self; {
   toposort = callPackage ../development/python-modules/toposort { };
 
   torch = callPackage ../development/python-modules/torch {
-    magma =
-      if pkgs.config.cudaSupport
-      then pkgs.magma-cuda-static
-      else pkgs.magma;
     inherit (pkgs.darwin.apple_sdk.frameworks) Accelerate CoreServices;
     inherit (pkgs.darwin) libobjc;
   };
@@ -14152,7 +14154,6 @@ self: super: with self; {
   };
 
   torchWithCuda = self.torch.override {
-    magma = pkgs.magma-cuda-static;
     openai-triton = self.openai-triton-cuda;
     cudaSupport = true;
     rocmSupport = false;
@@ -14163,7 +14164,6 @@ self: super: with self; {
   };
 
   torchWithRocm = self.torch.override {
-    magma = pkgs.magma-hip;
     openai-triton = self.openai-triton-no-cuda;
     rocmSupport = true;
     cudaSupport = false;
@@ -15190,6 +15190,8 @@ self: super: with self; {
   types-tabulate = callPackage ../development/python-modules/types-tabulate { };
 
   types-toml = callPackage ../development/python-modules/types-toml { };
+
+  types-tqdm = callPackage ../development/python-modules/types-tqdm { };
 
   types-typed-ast = callPackage ../development/python-modules/types-typed-ast { };
 
