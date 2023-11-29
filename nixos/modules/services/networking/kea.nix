@@ -299,7 +299,7 @@ in
         ExecStart = "${package}/bin/kea-ctrl-agent -c /etc/kea/ctrl-agent.conf ${lib.escapeShellArgs cfg.ctrl-agent.extraArgs}";
         KillMode = "process";
         Restart = "on-failure";
-        StateDirectory = "kea-ctrl-agent";
+        StateDirectory = "kea-ctrl-agent kea";
         RuntimeDirectory = "kea-ctrl-agent";
       } // commonServiceConfig;
     };
@@ -348,7 +348,7 @@ in
           "CAP_NET_BIND_SERVICE"
           "CAP_NET_RAW"
         ];
-        StateDirectory = "kea-dhcp4";
+        StateDirectory = "kea-dhcp4 kea";
         RuntimeDirectory = "kea-dhcp4";
       } // commonServiceConfig;
     };
@@ -395,7 +395,7 @@ in
         CapabilityBoundingSet = [
           "CAP_NET_BIND_SERVICE"
         ];
-        StateDirectory = "kea-dhcp6";
+        StateDirectory = "kea-dhcp6 kea";
         RuntimeDirectory = "kea-dhcp6";
       } // commonServiceConfig;
     };
@@ -441,7 +441,7 @@ in
         CapabilityBoundingSet = [
           "CAP_NET_BIND_SERVICE"
         ];
-        StateDirectory = "kea-dhcp-ddns";
+        StateDirectory = "kea-dhcp-ddns kea";
         RuntimeDirectory = "kea-dhcp-ddns";
       } // commonServiceConfig;
     };
