@@ -167,6 +167,7 @@
   ./programs/direnv.nix
   ./programs/dmrconfig.nix
   ./programs/droidcam.nix
+  ./programs/dublin-traceroute.nix
   ./programs/ecryptfs.nix
   ./programs/environment.nix
   ./programs/evince.nix
@@ -480,6 +481,7 @@
   ./services/desktops/telepathy.nix
   ./services/desktops/tumbler.nix
   ./services/desktops/zeitgeist.nix
+  ./services/development/athens.nix
   ./services/development/blackfire.nix
   ./services/development/bloop.nix
   ./services/development/distccd.nix
@@ -514,6 +516,7 @@
   ./services/hardware/argonone.nix
   ./services/hardware/asusd.nix
   ./services/hardware/auto-cpufreq.nix
+  ./services/hardware/auto-epp.nix
   ./services/hardware/bluetooth.nix
   ./services/hardware/bolt.nix
   ./services/hardware/brltty.nix
@@ -1539,9 +1542,10 @@
   ./virtualisation/waydroid.nix
   ./virtualisation/xe-guest-utilities.nix
   ./virtualisation/xen-dom0.nix
-  { documentation.nixos.extraModules = [
-    ./virtualisation/qemu-vm.nix
-    ./image/repart.nix
+  {
+    documentation.nixos.extraModules = [
+      ./virtualisation/qemu-vm.nix
+      ./image/repart.nix
     ];
   }
 ]

@@ -1526,8 +1526,6 @@ self: super: with self; {
 
   blosc2 = callPackage ../development/python-modules/blosc2 { };
 
-  blspy = callPackage ../development/python-modules/blspy { };
-
   bluemaestro-ble = callPackage ../development/python-modules/bluemaestro-ble { };
 
   bluepy = callPackage ../development/python-modules/bluepy { };
@@ -1978,13 +1976,13 @@ self: super: with self; {
 
   chex = callPackage ../development/python-modules/chex { };
 
-  chiabip158 = callPackage ../development/python-modules/chiabip158 { };
+  chiabip158 = throw "chiabip158 has been removed. see https://github.com/NixOS/nixpkgs/pull/270254";
 
-  chiapos = callPackage ../development/python-modules/chiapos { };
+  chiapos = throw "chiapos has been removed. see https://github.com/NixOS/nixpkgs/pull/270254";
 
-  chiavdf = callPackage ../development/python-modules/chiavdf { };
+  chiavdf = throw "chiavdf has been removed. see https://github.com/NixOS/nixpkgs/pull/270254";
 
-  chia-rs = callPackage ../development/python-modules/chia-rs { };
+  chia-rs = throw "chia-rs has been removed. see https://github.com/NixOS/nixpkgs/pull/270254";
 
   chirpstack-api = callPackage ../development/python-modules/chirpstack-api { };
 
@@ -2152,13 +2150,13 @@ self: super: with self; {
 
   clustershell = callPackage ../development/python-modules/clustershell { };
 
-  clvm = callPackage ../development/python-modules/clvm { };
+  clvm = throw "clvm has been removed. see https://github.com/NixOS/nixpkgs/pull/270254";
 
-  clvm-rs = callPackage ../development/python-modules/clvm-rs { };
+  clvm-rs = throw "clvm-rs has been removed. see https://github.com/NixOS/nixpkgs/pull/270254";
 
-  clvm-tools = callPackage ../development/python-modules/clvm-tools { };
+  clvm-tools = throw "clvm-tools has been removed. see https://github.com/NixOS/nixpkgs/pull/270254";
 
-  clvm-tools-rs = callPackage ../development/python-modules/clvm-tools-rs { };
+  clvm-tools-rs = throw "clvm-tools-rs has been removed. see https://github.com/NixOS/nixpkgs/pull/270254";
 
   cma = callPackage ../development/python-modules/cma { };
 
@@ -4375,6 +4373,8 @@ self: super: with self; {
 
   gekitchen = callPackage ../development/python-modules/gekitchen { };
 
+  gekko = callPackage ../development/python-modules/gekko { };
+
   gemfileparser = callPackage ../development/python-modules/gemfileparser { };
 
   gemfileparser2 = callPackage ../development/python-modules/gemfileparser2 { };
@@ -6115,6 +6115,8 @@ self: super: with self; {
   ldappool = callPackage ../development/python-modules/ldappool { };
 
   ldaptor = callPackage ../development/python-modules/ldaptor { };
+
+  ldfparser = callPackage ../development/python-modules/ldfparser { };
 
   leather = callPackage ../development/python-modules/leather { };
 
@@ -11953,8 +11955,6 @@ self: super: with self; {
 
   qcodes-contrib-drivers = callPackage ../development/python-modules/qcodes-contrib-drivers { };
 
-  qcodes-loop = callPackage ../development/python-modules/qcodes-loop { };
-
   qcs-api-client = callPackage ../development/python-modules/qcs-api-client { };
 
   qdarkstyle = callPackage ../development/python-modules/qdarkstyle { };
@@ -12827,6 +12827,8 @@ self: super: with self; {
 
   setuptools-declarative-requirements = callPackage ../development/python-modules/setuptools-declarative-requirements { };
 
+  setuptools_dso = callPackage ../development/python-modules/setuptools_dso { };
+
   setuptools-generate = callPackage ../development/python-modules/setuptools-generate { };
 
   setuptools-gettext = callPackage ../development/python-modules/setuptools-gettext { };
@@ -13024,6 +13026,8 @@ self: super: with self; {
   };
 
   skytemple-ssb-debugger = callPackage ../development/python-modules/skytemple-ssb-debugger { };
+
+  skytemple-ssb-emulator = callPackage ../development/python-modules/skytemple-ssb-emulator { };
 
   slack-bolt = callPackage ../development/python-modules/slack-bolt { };
 
