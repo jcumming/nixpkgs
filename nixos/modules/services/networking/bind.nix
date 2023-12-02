@@ -55,7 +55,13 @@ let
     };
   };
 
-  confFile = pkgs.writeText "named.conf"
+  confFile =
+    let maybeForward = if (cfg.forward == "never") then ""
+      else ''
+        forward ${cfg.forward};
+        forwarders { ${concatMapStrings (entry: " ${entry}; ") cfg.forwarders} };
+      '';
+    in pkgs.writeText "named.conf"
     ''
       include "/etc/bind/rndc.key";
       controls {
@@ -70,8 +76,7 @@ let
         listen-on-v6 { ${concatMapStrings (entry: " ${entry}; ") cfg.listenOnIpv6} };
         allow-query { cachenetworks; };
         blackhole { badnetworks; };
-        forward ${cfg.forward};
-        forwarders { ${concatMapStrings (entry: " ${entry}; ") cfg.forwarders} };
+        ${maybeForward}
         directory "${cfg.directory}";
         pid-file "/run/named/named.pid";
         ${cfg.extraOptions}
@@ -161,9 +166,9 @@ in
 
       forward = mkOption {
         default = "first";
-        type = types.enum ["first" "only"];
+        type = types.enum ["first" "only" "never"];
         description = lib.mdDoc ''
-          Whether to forward 'first' (try forwarding but lookup directly if forwarding fails) or 'only'.
+          Whether to forward 'first' (try forwarding but lookup directly if forwarding fails) 'never' (act as a recursive resolver)  or 'only'.
         '';
       };
 
