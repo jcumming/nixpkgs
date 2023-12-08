@@ -1380,6 +1380,8 @@ self: super: with self; {
   else
     callPackage ../development/python-modules/bcrypt { };
 
+  bdffont = callPackage ../development/python-modules/bdffont { };
+
   beaker = callPackage ../development/python-modules/beaker { };
 
   before-after = callPackage ../development/python-modules/before-after { };
@@ -1964,6 +1966,8 @@ self: super: with self; {
 
   characteristic = callPackage ../development/python-modules/characteristic { };
 
+  character-encoding-utils = callPackage ../development/python-modules/character-encoding-utils { };
+
   chardet = callPackage ../development/python-modules/chardet { };
 
   charset-normalizer = callPackage ../development/python-modules/charset-normalizer { };
@@ -2469,7 +2473,8 @@ self: super: with self; {
 
   cufflinks = callPackage ../development/python-modules/cufflinks { };
 
-  cupy = callPackage ../development/python-modules/cupy { };
+  # cupy 12.2.0 possibly incompatible with cutensor 2.0 that comes with cudaPackages_12
+  cupy = callPackage ../development/python-modules/cupy { cudaPackages = pkgs.cudaPackages_11; };
 
   curio = callPackage ../development/python-modules/curio { };
 
@@ -2785,6 +2790,8 @@ self: super: with self; {
   detect-secrets = callPackage ../development/python-modules/detect-secrets { };
 
   detectron2 = callPackage ../development/python-modules/detectron2 { };
+
+  devialet = callPackage ../development/python-modules/devialet { };
 
   devito = callPackage ../development/python-modules/devito { };
 
@@ -6154,6 +6161,8 @@ self: super: with self; {
 
   lc7001 = callPackage ../development/python-modules/lc7001 { };
 
+  lcd-i2c = callPackage ../development/python-modules/lcd-i2c { };
+
   lcgit = callPackage ../development/python-modules/lcgit { };
 
   lcov_cobertura = callPackage ../development/python-modules/lcov_cobertura { };
@@ -6444,6 +6453,10 @@ self: super: with self; {
 
   lingua = callPackage ../development/python-modules/lingua { };
 
+  linien-client = callPackage ../development/python-modules/linien-client { };
+
+  linien-common = callPackage ../development/python-modules/linien-common { };
+
   linkify-it-py = callPackage ../development/python-modules/linkify-it-py { };
 
   linknlink = callPackage ../development/python-modules/linknlink { };
@@ -6473,10 +6486,6 @@ self: super: with self; {
   livelossplot = callPackage ../development/python-modules/livelossplot { };
 
   livereload = callPackage ../development/python-modules/livereload { };
-
-  livestreamer = callPackage ../development/python-modules/livestreamer { };
-
-  livestreamer-curses = callPackage ../development/python-modules/livestreamer-curses { };
 
   lizard = callPackage ../development/python-modules/lizard { };
 
@@ -8549,6 +8558,8 @@ self: super: with self; {
 
   opcua-widgets = callPackage ../development/python-modules/opcua-widgets { };
 
+  open-clip-torch = callPackage ../development/python-modules/open-clip-torch { };
+
   open-garage = callPackage ../development/python-modules/open-garage { };
 
   open-meteo = callPackage ../development/python-modules/open-meteo { };
@@ -9236,6 +9247,8 @@ self: super: with self; {
 
   pixelmatch = callPackage ../development/python-modules/pixelmatch { };
 
+  pixel-font-builder = callPackage ../development/python-modules/pixel-font-builder { };
+
   pixel-ring = callPackage ../development/python-modules/pixel-ring { };
 
   pjsua2 = (toPythonModule (pkgs.pjsip.override {
@@ -9912,6 +9925,8 @@ self: super: with self; {
   pyasn1 = callPackage ../development/python-modules/pyasn1 { };
 
   pyasn1-modules = callPackage ../development/python-modules/pyasn1-modules { };
+
+  pyasuswrt = callPackage ../development/python-modules/pyasuswrt { };
 
   pyathena = callPackage ../development/python-modules/pyathena { };
 
@@ -10612,6 +10627,8 @@ self: super: with self; {
   pymetno = callPackage ../development/python-modules/pymetno { };
 
   pymicrobot = callPackage ../development/python-modules/pymicrobot { };
+
+  pymiele = callPackage ../development/python-modules/pymiele { };
 
   pymilter = callPackage ../development/python-modules/pymilter { };
 
@@ -12315,6 +12332,8 @@ self: super: with self; {
 
   rencode = callPackage ../development/python-modules/rencode { };
 
+  renson-endura-delta = callPackage ../development/python-modules/renson-endura-delta { };
+
   reorder-python-imports = callPackage ../development/python-modules/reorder-python-imports { };
 
   reolink = callPackage ../development/python-modules/reolink { };
@@ -13950,7 +13969,6 @@ self: super: with self; {
   callPackage ../development/python-modules/tensorflow {
     inherit (pkgs.darwin) cctools;
     inherit (pkgs.config) cudaSupport;
-    inherit (self.tensorflow-bin) cudaPackages;
     inherit (pkgs.darwin.apple_sdk.frameworks) Foundation Security;
     flatbuffers-core = pkgs.flatbuffers;
     flatbuffers-python = self.flatbuffers;
@@ -13983,7 +14001,7 @@ self: super: with self; {
 
   tensorly = callPackage ../development/python-modules/tensorly { };
 
-  tensorrt = callPackage ../development/python-modules/tensorrt { };
+  tensorrt = callPackage ../development/python-modules/tensorrt { cudaPackages = pkgs.cudaPackages_11; };
 
   tensorstore = callPackage ../development/python-modules/tensorstore { };
 
@@ -15415,6 +15433,8 @@ self: super: with self; {
 
   unicrypto = callPackage ../development/python-modules/unicrypto { };
 
+  unidata-blocks = callPackage ../development/python-modules/unidata-blocks { };
+
   unidecode = callPackage ../development/python-modules/unidecode { };
 
   unidic = callPackage ../development/python-modules/unidic { };
@@ -15790,6 +15810,8 @@ self: super: with self; {
   web-cache = callPackage ../development/python-modules/web-cache { };
 
   webcolors = callPackage ../development/python-modules/webcolors { };
+
+  webdataset = callPackage ../development/python-modules/webdataset { };
 
   webdav4 = callPackage ../development/python-modules/webdav4 { };
 

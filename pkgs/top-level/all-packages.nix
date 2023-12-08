@@ -822,6 +822,10 @@ with pkgs;
 
   sea-orm-cli = callPackage ../development/tools/sea-orm-cli { };
 
+  vcpkg-tool = callPackage ../by-name/vc/vcpkg-tool/package.nix {
+    fmt = fmt_10;
+  };
+
   r3ctl = qt5.callPackage ../tools/misc/r3ctl { };
 
   ptouch-print = callPackage ../misc/ptouch-print { };
@@ -3027,8 +3031,6 @@ with pkgs;
 
   xplorer = callPackage ../applications/file-managers/xplorer { };
 
-  ytree = callPackage ../applications/file-managers/ytree { };
-
   johnny-reborn-engine = callPackage ../applications/misc/johnny-reborn { };
 
   johnny-reborn = callPackage ../applications/misc/johnny-reborn/with-data.nix { };
@@ -3915,8 +3917,6 @@ with pkgs;
   gopacked = callPackage ../applications/misc/gopacked { };
 
   goperf = callPackage ../development/tools/goperf { };
-
-  gotktrix = callPackage ../applications/networking/instant-messengers/gotktrix { };
 
   graphite-cli = nodePackages.graphite-cli;
 
@@ -6328,6 +6328,10 @@ with pkgs;
       inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  rblake3sum = callPackage ../tools/security/rblake3sum {
+      inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   reg = callPackage ../tools/virtualization/reg { };
 
   retool = callPackage ../applications/misc/retool { };
@@ -7102,7 +7106,7 @@ with pkgs;
   ibus-theme-tools = callPackage ../tools/misc/ibus-theme-tools { };
 
   interception-tools = callPackage ../tools/inputmethods/interception-tools { };
-  interception-tools-plugins = {
+  interception-tools-plugins = recurseIntoAttrs {
     caps2esc = callPackage ../tools/inputmethods/interception-tools/caps2esc.nix { };
     dual-function-keys = callPackage ../tools/inputmethods/interception-tools/dual-function-keys.nix { };
   };
@@ -7304,7 +7308,7 @@ with pkgs;
   cudaPackages_10_0 = callPackage ./cuda-packages.nix { cudaVersion = "10.0"; };
   cudaPackages_10_1 = callPackage ./cuda-packages.nix { cudaVersion = "10.1"; };
   cudaPackages_10_2 = callPackage ./cuda-packages.nix { cudaVersion = "10.2"; };
-  cudaPackages_10 = cudaPackages_10_2;
+  cudaPackages_10 = recurseIntoAttrs cudaPackages_10_2;
 
   cudaPackages_11_0 = callPackage ./cuda-packages.nix { cudaVersion = "11.0"; };
   cudaPackages_11_1 = callPackage ./cuda-packages.nix { cudaVersion = "11.1"; };
@@ -7315,16 +7319,21 @@ with pkgs;
   cudaPackages_11_6 = callPackage ./cuda-packages.nix { cudaVersion = "11.6"; };
   cudaPackages_11_7 = callPackage ./cuda-packages.nix { cudaVersion = "11.7"; };
   cudaPackages_11_8 = callPackage ./cuda-packages.nix { cudaVersion = "11.8"; };
-  cudaPackages_11 = cudaPackages_11_8;
+  cudaPackages_11 = recurseIntoAttrs cudaPackages_11_8;
 
   cudaPackages_12_0 = callPackage ./cuda-packages.nix { cudaVersion = "12.0"; };
   cudaPackages_12_1 = callPackage ./cuda-packages.nix { cudaVersion = "12.1"; };
   cudaPackages_12_2 = callPackage ./cuda-packages.nix { cudaVersion = "12.2"; };
-  cudaPackages_12 = cudaPackages_12_0;
+  cudaPackages_12_3 = callPackage ./cuda-packages.nix { cudaVersion = "12.3"; };
+  cudaPackages_12 = recurseIntoAttrs cudaPackages_12_0;
+
+  # Use the older cudaPackages for tensorflow and jax, as determined by cudnn
+  # compatibility: https://www.tensorflow.org/install/source#gpu
+  cudaPackagesGoogle = cudaPackages_11;
 
   # TODO: try upgrading once there is a cuDNN release supporting CUDA 12. No
   # such cuDNN release as of 2023-01-10.
-  cudaPackages = recurseIntoAttrs cudaPackages_11;
+  cudaPackages = cudaPackages_11;
 
   # TODO: move to alias
   cudatoolkit = cudaPackages.cudatoolkit;
@@ -7806,19 +7815,6 @@ with pkgs;
   stratis-cli = callPackage ../tools/filesystems/stratis-cli { };
 
   strawberry = libsForQt5.callPackage ../applications/audio/strawberry { };
-
-  schildichat-desktop = callPackage ../applications/networking/instant-messengers/schildichat/schildichat-desktop.nix {
-    inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_25;
-  };
-  schildichat-desktop-wayland = writeScriptBin "schildichat-desktop" ''
-    #!/bin/sh
-    NIXOS_OZONE_WL=1 exec ${schildichat-desktop}/bin/schildichat-desktop "$@"
-  '';
-
-  schildichat-web = callPackage ../applications/networking/instant-messengers/schildichat/schildichat-web.nix {
-    conf = config.schildichat-web.conf or { };
-  };
 
   schleuder = callPackage ../tools/security/schleuder { };
 
@@ -11278,16 +11274,6 @@ with pkgs;
 
   nvfetcher = haskell.lib.compose.justStaticExecutables haskellPackages.nvfetcher;
 
-  nvidia-thrust = callPackage ../development/libraries/nvidia-thrust { };
-
-  nvidia-thrust-intel = callPackage ../development/libraries/nvidia-thrust {
-    hostSystem = "TBB";
-    deviceSystem = if config.cudaSupport then "CUDA" else "TBB";
-  };
-
-  nvidia-thrust-cuda = callPackage ../development/libraries/nvidia-thrust {
-    deviceSystem = "CUDA";
-  };
 
   miller = callPackage ../tools/text/miller { };
 
@@ -12193,8 +12179,6 @@ with pkgs;
   plotutils = callPackage ../tools/graphics/plotutils { };
 
   plowshare = callPackage ../tools/misc/plowshare { };
-
-  pls = callPackage ../tools/misc/pls { };
 
   pm2 = nodePackages.pm2;
 
@@ -15762,6 +15746,10 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
 
+  critcl = callPackage ../development/compilers/critcl {
+    tcllib = tcllib.override { withCritcl = false; };
+  };
+
   inherit (darwin.apple_sdk_11_0.callPackage ../development/compilers/crystal { })
     crystal_1_2
     crystal_1_7
@@ -17556,7 +17544,7 @@ with pkgs;
 
   clojure = callPackage ../development/interpreters/clojure {
     # set this to an LTS version of java
-    jdk = jdk17;
+    jdk = jdk21;
   };
 
   clojure-lsp = callPackage ../development/tools/misc/clojure-lsp { };
@@ -18045,8 +18033,8 @@ with pkgs;
   smiley-sans = callPackage ../data/fonts/smiley-sans { };
 
   inherit (callPackages ../applications/networking/cluster/spark { })
-    spark_3_4 spark_3_3 spark_3_2;
-  spark3 = spark_3_4;
+    spark_3_5 spark_3_4 spark_3_3;
+  spark3 = spark_3_5;
   spark = spark3;
 
   sparkleshare = callPackage ../applications/version-management/sparkleshare { };
@@ -18420,7 +18408,6 @@ with pkgs;
   antlr = antlr4;
 
   apacheAnt = callPackage ../development/tools/build-managers/apache-ant { };
-  apacheAnt_1_9 = callPackage ../development/tools/build-managers/apache-ant/1.9.nix { };
   ant = apacheAnt;
 
   apacheKafka = apacheKafka_3_5;
@@ -18490,9 +18477,10 @@ with pkgs;
   electron_22 = electron_22-bin;
   electron_23 = electron_23-bin;
   electron_24 = electron_24-bin;
-  electron_25 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_25 then electron-source.electron_25 else electron_25-bin;
+  electron_25 = electron_25-bin;
   electron_26 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_26 then electron-source.electron_26 else electron_26-bin;
   electron_27 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_27 then electron-source.electron_27 else electron_27-bin;
+  electron_28 = electron-source.electron_28;
   electron = electron_27;
 
   autobuild = callPackage ../development/tools/misc/autobuild { };
@@ -20765,6 +20753,9 @@ with pkgs;
     # catboost requires clang 12+ for build
     # after bumping the default version of llvm, check for compatibility with the cuda backend and pin it.
     inherit (llvmPackages_12) stdenv;
+
+    # https://github.com/catboost/catboost/issues/2540
+    cudaPackages = cudaPackages_11;
   };
 
   ndn-cxx = callPackage ../development/libraries/ndn-cxx { };
@@ -24591,6 +24582,9 @@ with pkgs;
 
   protobuf = protobuf_24;
 
+  protobuf_25 = callPackage ../development/libraries/protobuf/25.nix {
+    abseil-cpp = abseil-cpp_202308;
+  };
   protobuf_24 = callPackage ../development/libraries/protobuf/24.nix { };
   protobuf_23 = callPackage ../development/libraries/protobuf/23.nix { };
   protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
@@ -27154,6 +27148,7 @@ with pkgs;
   prometheus-alertmanager = callPackage ../servers/monitoring/prometheus/alertmanager.nix { };
   prometheus-apcupsd-exporter = callPackage ../servers/monitoring/prometheus/apcupsd-exporter.nix { };
   prometheus-artifactory-exporter = callPackage ../servers/monitoring/prometheus/artifactory-exporter.nix { };
+  prometheus-atlas-exporter = callPackage ../servers/monitoring/prometheus/atlas-exporter.nix { };
   prometheus-aws-s3-exporter = callPackage ../servers/monitoring/prometheus/aws-s3-exporter.nix { };
   prometheus-bind-exporter = callPackage ../servers/monitoring/prometheus/bind-exporter.nix { };
   prometheus-bird-exporter = callPackage ../servers/monitoring/prometheus/bird-exporter.nix { };
@@ -27417,6 +27412,8 @@ with pkgs;
   systemd-journal2gelf = callPackage ../tools/system/systemd-journal2gelf { };
 
   tailscale = callPackage ../servers/tailscale { };
+
+  tailscale-nginx-auth = callPackage ../by-name/ta/tailscale-nginx-auth/package.nix { };
 
   tailscale-systray = callPackage ../applications/misc/tailscale-systray { };
 
@@ -31971,8 +31968,6 @@ with pkgs;
   };
 
   firefox_decrypt = python3Packages.callPackage ../tools/security/firefox_decrypt { };
-
-  fmtoy = callPackage ../tools/audio/fmtoy { };
 
   flac = callPackage ../applications/audio/flac { };
 
@@ -38697,7 +38692,28 @@ with pkgs;
 
   ### DESKTOP ENVIRONMENTS
 
-  arcanPackages = recurseIntoAttrs (callPackage ../desktops/arcan { });
+  arcan-wrapped = arcan.wrapper.override { };
+  arcan-all-wrapped = arcan.wrapper.override {
+    name = "arcan-all-wrapped";
+    appls = [ cat9 durden pipeworld ];
+
+  };
+  cat9-wrapped = arcan.wrapper.override {
+    name = "cat9-wrapped";
+    appls = [ cat9 ];
+  };
+  durden-wrapped = arcan.wrapper.override {
+    name = "durden-wrapped";
+    appls = [ durden ];
+  };
+  pipeworld-wrapped = arcan.wrapper.override {
+    name = "pipeworld-wrapped";
+    appls = [ pipeworld ];
+  };
+  prio-wrapped = arcan.wrapper.override {
+    name = "prio-wrapped";
+    appls = [ prio ];
+  };
 
   budgie = recurseIntoAttrs (callPackage ../desktops/budgie { });
   budgiePlugins = recurseIntoAttrs (callPackage ../desktops/budgie/plugins { });
@@ -39329,6 +39345,7 @@ with pkgs;
   osi = callPackage ../development/libraries/science/math/osi { };
 
   or-tools = callPackage ../development/libraries/science/math/or-tools {
+    stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
     python = python3;
     protobuf = protobuf_21;
     # or-tools builds with -std=c++20, so abseil-cpp must
@@ -39445,7 +39462,6 @@ with pkgs;
     singlePrec = true;
     enableMpi = true;
     enableCuda = true;
-    cudatoolkit = cudatoolkit_11;
     fftw = fftwSinglePrec;
   });
 
@@ -39987,7 +40003,6 @@ with pkgs;
 
   faissWithCuda = faiss.override {
     cudaSupport = true;
-    nvidia-thrust = nvidia-thrust-cuda;
   };
 
   fityk = callPackage ../applications/science/misc/fityk { };
