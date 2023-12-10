@@ -2268,6 +2268,15 @@
     githubId = 16821405;
     name = "Ben Kuhn";
   };
+  benlemasurier = {
+    email = "ben@crypt.ly";
+    github = "benlemasurier";
+    githubId = 47993;
+    name = "Ben LeMasurier";
+    keys = [{
+      fingerprint = "0FD4 7407 EFD4 8FD8 8BF5  87B3 248D 430A E8E7 4189";
+    }];
+  };
   benley = {
     email = "benley@gmail.com";
     github = "benley";
@@ -6729,6 +6738,8 @@
   };
   gm6k = {
     email = "nix@quidecco.pl";
+    github = "zeuner";
+    githubId = 2545850;
     name = "Isidor Zeuner";
   };
   gmemstr = {
@@ -14659,6 +14670,11 @@
     githubId = 146413;
     name = "Tobias Poschwatta";
   };
+  poweredbypie = {
+    name = "poweredbypie";
+    github = "poweredbypie";
+    githubId = 67135060;
+  };
   PowerUser64 = {
     email = "blakelysnorth@gmail.com";
     github = "PowerUser64";
@@ -16273,6 +16289,11 @@
     github = "schnusch";
     githubId = 5104601;
     name = "schnusch";
+  };
+  Schweber = {
+    github = "Schweber";
+    githubId = 64630479;
+    name = "Schweber";
   };
   sciencentistguy = {
     email = "jamie@quigley.xyz";
@@ -18527,6 +18548,8 @@
   };
   tomkoid = {
     email = "tomaszierl@outlook.com";
+    github = "Tomkoid";
+    githubId = 67477750;
     name = "Tomkoid";
   };
   tomodachi94 = {
@@ -18561,6 +18584,12 @@
     github = "toonn";
     githubId = 1486805;
     name = "Toon Nolten";
+  };
+  tornax = {
+    email = "tornax@pm.me";
+    github = "TornaxO7";
+    githubId = 50843046;
+    name = "tornax";
   };
   toschmidt = {
     email = "tobias.schmidt@in.tum.de";
