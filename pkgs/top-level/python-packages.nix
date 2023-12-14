@@ -220,6 +220,8 @@ self: super: with self; {
 
   aiogram = callPackage ../development/python-modules/aiogram { };
 
+  aiohappyeyeballs = callPackage ../development/python-modules/aiohappyeyeballs { };
+
   aioharmony = callPackage ../development/python-modules/aioharmony { };
 
   aiohomekit = callPackage ../development/python-modules/aiohomekit { };
@@ -749,6 +751,8 @@ self: super: with self; {
   asf-search = callPackage ../development/python-modules/asf-search { };
 
   asgi-csrf = callPackage ../development/python-modules/asgi-csrf { };
+
+  asgi-logger = callPackage ../development/python-modules/asgi-logger { };
 
   asgineer = callPackage ../development/python-modules/asgineer { };
 
@@ -1513,6 +1517,8 @@ self: super: with self; {
   bleach-allowlist = callPackage ../development/python-modules/bleach-allowlist { };
 
   bleak = callPackage ../development/python-modules/bleak { };
+
+  bleak-esphome = callPackage ../development/python-modules/bleak-esphome { };
 
   bleak-retry-connector = callPackage ../development/python-modules/bleak-retry-connector { };
 
@@ -5421,6 +5427,8 @@ self: super: with self; {
 
   imgtool = callPackage ../development/python-modules/imgtool { };
 
+  imia = callPackage ../development/python-modules/imia { };
+
   iminuit = callPackage ../development/python-modules/iminuit { };
 
   immutabledict = callPackage ../development/python-modules/immutabledict { };
@@ -8374,7 +8382,7 @@ self: super: with self; {
     inherit (pkgs) notmuch;
   };
 
-  nototools = callPackage ../data/fonts/noto-fonts/tools.nix { };
+  nototools = callPackage ../development/python-modules/nototools { };
 
   notus-scanner = callPackage ../development/python-modules/notus-scanner { };
 
@@ -13022,6 +13030,8 @@ self: super: with self; {
 
   shapely = callPackage ../development/python-modules/shapely { };
 
+  shapely_1_8 = callPackage ../development/python-modules/shapely/1.8.nix { };
+
   shaperglot = callPackage ../development/python-modules/shaperglot { };
 
   sharedmem = callPackage ../development/python-modules/sharedmem { };
@@ -13249,6 +13259,8 @@ self: super: with self; {
   smpplib = callPackage ../development/python-modules/smpplib { };
 
   smpp_pdu = callPackage ../development/python-modules/smpp.pdu { };
+
+  smtpdfix = callPackage ../development/python-modules/smtpdfix { };
 
   snack = toPythonModule (pkgs.newt.override {
     inherit (self) python;
@@ -13653,6 +13665,8 @@ self: super: with self; {
   starlette = callPackage ../development/python-modules/starlette {
     inherit (pkgs.darwin.apple_sdk.frameworks) ApplicationServices;
   };
+
+  starlette-wtf = callPackage ../development/python-modules/starlette-wtf { };
 
   starkbank-ecdsa = callPackage ../development/python-modules/starkbank-ecdsa { };
 
@@ -16006,6 +16020,8 @@ self: super: with self; {
   wsproto = callPackage ../development/python-modules/wsproto { };
 
   wtforms = callPackage ../development/python-modules/wtforms { };
+
+  wtforms-bootstrap5 = callPackage ../development/python-modules/wtforms-bootstrap5 { };
 
   wtf-peewee = callPackage ../development/python-modules/wtf-peewee { };
 
