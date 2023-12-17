@@ -30,6 +30,16 @@ let
     # Override the version of some packages pinned in Home Assistant's setup.py and requirements_all.txt
 
     (self: super: {
+      aioesphomeapi = super.aioesphomeapi.overridePythonAttrs (oldAttrs: rec {
+        version = "19.2.1";
+        src = fetchFromGitHub {
+          owner = "esphome";
+          repo = "aioesphomeapi";
+          rev = "refs/tags/v${version}";
+          hash = "sha256-WSWGO0kI1m6oaImUYZ6m5WKJ+xPs/rtn5wVq1bDr+bE=";
+        };
+      });
+
       # https://github.com/home-assistant/core/pull/101913
       aiohttp = super.aiohttp.overridePythonAttrs (old: rec {
         version = "3.9.1";
@@ -311,7 +321,7 @@ let
   extraBuildInputs = extraPackages python.pkgs;
 
   # Don't forget to run parse-requirements.py after updating
-  hassVersion = "2023.12.2";
+  hassVersion = "2023.12.3";
 
 in python.pkgs.buildPythonApplication rec {
   pname = "homeassistant";
@@ -329,13 +339,13 @@ in python.pkgs.buildPythonApplication rec {
     owner = "home-assistant";
     repo = "core";
     rev = "refs/tags/${version}";
-    hash = "sha256-uP4aX8Fo4GopvzpZGKFw99rXxudEgsKfhdeMHhXv47s=";
+    hash = "sha256-pTDYiy9Ux7Rgsf9rXXF3GbaiJkTX5FA/7K2hJtiNOkQ=";
   };
 
   # Secondary source is pypi sdist for translations
   sdist = fetchPypi {
     inherit pname version;
-    hash = "sha256-1KMTn/iuey/Cug1gq4+54J+ZJTqcU+sW5Zw5tS+DwcQ=";
+    hash = "sha256-cvsYkuQG4i3GG8VGJ+HGSjdvpSBLzh0BFYQQpoVq4FY=";
   };
 
   nativeBuildInputs = with python.pkgs; [
