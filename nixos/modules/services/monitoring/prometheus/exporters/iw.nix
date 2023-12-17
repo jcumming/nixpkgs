@@ -8,19 +8,13 @@ in {
   port = 6798;
 
   serviceOpts = {
-    after = [ "hostapd-wlp4s0.service" "hostapd-wlp8s0.service" ];
-
     path = [ pkgs.iw ];
 
     serviceConfig = {
-      RestrictAddressFamilies = [
-        "AF_UNIX" # Need AF_UNIX to collect data
-      ];
+      RestrictAddressFamilies = [ "AF_UNIX" ];
 
       ExecStart = ''
-        ${pkgs.prometheus-iw-exporter}/bin/iw_exporter -http ${cfg.listenAddress}:${
-          toString cfg.port
-        }
+        ${pkgs.prometheus-iw-exporter}/bin/iw_exporter -http ${cfg.listenAddress}:${toString cfg.port}
       '';
     };
   };
