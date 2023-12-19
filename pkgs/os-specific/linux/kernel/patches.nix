@@ -1,13 +1,6 @@
 { lib, fetchpatch, fetchurl }:
 
 {
-
-  # https://github.com/openwrt/openwrt/blob/lede-17.01/package/kernel/mac80211/patches/850-brcmsmac-remove-extra-regulation-restriction.patch
-  openwrt-850 = 
-    { name = "openwrt-brcmfmac-relax-channel_restrictions";
-      patch = ./openwrt-brcmfmac-relax-channel_restrictions.patch; 
-    };
-
   ath_regd_optional = rec {
     name = "ath_regd_optional";
     patch = fetchpatch {

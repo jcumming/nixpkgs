@@ -148,7 +148,6 @@ in {
     users.users = optionalAttrs (cfg.user == "collectd") {
       collectd = {
         isSystemUser = true;
-        extraGroups = [ "disk" "ipmi" ];
         group = "collectd";
       };
     };

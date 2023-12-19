@@ -126,7 +126,6 @@ stdenv.mkDerivation rec {
     gettext
     glib
     glibmm
-    gobject-introspection
     gsl
     gtkmm3
     imagemagick

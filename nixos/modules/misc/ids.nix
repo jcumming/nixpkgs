@@ -274,8 +274,7 @@ in
       # emby = 242; # unusued, removed 2019-05-01
       #graylog = 243;# dynamically allocated as of 2021-09-03
       sniproxy = 244;
-      # nzbget = 245;
-      mailman = 245;
+      nzbget = 245;
       mosquitto = 246;
       #toxvpn = 247; # dynamically allocated as of 2021-09-18
       # squeezelite = 248; # DynamicUser = true
@@ -586,8 +585,7 @@ in
       # factorio = 241; # unused
       # emby = 242; # unused, removed 2019-05-01
       sniproxy = 244;
-      # nzbget = 245;
-      mailman = 245;
+      nzbget = 245;
       mosquitto = 246;
       #toxvpn = 247; # unused
       #squeezelite = 248; #unused

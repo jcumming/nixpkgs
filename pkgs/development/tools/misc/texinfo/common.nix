@@ -66,7 +66,9 @@ stdenv.mkDerivation {
 
   nativeCheckInputs = [ procps ];
 
-  doCheck = false;
+  doCheck = interactive
+    && !stdenv.isDarwin
+    && !stdenv.isSunOS; # flaky
 
   checkFlags = lib.optionals (!stdenv.hostPlatform.isMusl && lib.versionOlder version "7") [
     # Test is known to fail on various locales on texinfo-6.8:
