@@ -19,13 +19,13 @@ let
         <webroot>${pkgs.icecast}/share/icecast/web</webroot>
         <alias source="/" dest="/status.xsl"/>
       </paths>
-    '' 
+    ''
     + (concatMapStrings ( l: ''
         <listen-socket>
           <port>${toString l.port}</port>
           <bind-address>${l.ip}</bind-address>
-        </listen-socket>   
-      '' ) cfg.listen) 
+        </listen-socket>
+      '' ) cfg.listen)
     + ''
       <security>
         <chroot>0</chroot>
@@ -73,7 +73,7 @@ in {
         description = lib.mdDoc "Base directory used for logging.";
         default = "/var/log/icecast";
       };
-      
+
      listen = mkOption {
          type = types.listOf (types.submodule (
               {
