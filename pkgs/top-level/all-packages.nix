@@ -26175,7 +26175,6 @@ with pkgs;
     inherit apacheHttpd;
 
     mod_auth_mellon = callPackage ../servers/http/apache-modules/mod_auth_mellon { };
-    mod_authnz_pam = callPackage ../servers/http/apache-modules/mod_authnz_pam { };
 
     # Redwax collection
     mod_ca = callPackage ../servers/http/apache-modules/mod_ca { };
