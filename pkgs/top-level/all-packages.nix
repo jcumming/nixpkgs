@@ -590,8 +590,6 @@ with pkgs;
 
   crow-translate = libsForQt5.callPackage ../applications/misc/crow-translate { };
 
-  cryptowatch-desktop = callPackage ../applications/finance/cryptowatch { };
-
   dae = callPackage ../tools/networking/dae { };
 
   darling = callPackage ../applications/emulators/darling { };
@@ -4526,7 +4524,7 @@ with pkgs;
   };
 
   broot = callPackage ../tools/misc/broot {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) Foundation Security;
   };
 
   bruteforce-luks = callPackage ../tools/security/bruteforce-luks { };
@@ -5098,8 +5096,6 @@ with pkgs;
   dialogbox = libsForQt5.callPackage ../tools/misc/dialogbox { };
 
   dibbler = callPackage ../tools/networking/dibbler { };
-
-  didder = callPackage ../tools/graphics/didder { };
 
   dieharder = callPackage ../tools/security/dieharder { };
 
@@ -6711,6 +6707,8 @@ with pkgs;
   bibclean = callPackage ../tools/typesetting/bibclean { };
 
   biber = callPackage ../tools/typesetting/biber { };
+
+  biber-for-tectonic = callPackage ../tools/typesetting/tectonic/biber.nix { };
 
   biber-ms = callPackage ../tools/typesetting/biber-ms { };
 
@@ -11587,9 +11585,7 @@ with pkgs;
 
   onlykey = callPackage ../tools/security/onlykey { node_webkit = nwjs; };
 
-  ooniprobe-cli = callPackage ../tools/networking/ooniprobe-cli {
-    buildGoModule = buildGo120Module;
-  };
+  ooniprobe-cli = callPackage ../tools/networking/ooniprobe-cli { };
 
   openapi-generator-cli = callPackage ../tools/networking/openapi-generator-cli { jre = pkgs.jre_headless; };
   openapi-generator-cli-unstable = callPackage ../tools/networking/openapi-generator-cli/unstable.nix { jre = pkgs.jre_headless; };
@@ -13582,8 +13578,6 @@ with pkgs;
 
   supertag = callPackage ../tools/filesystems/supertag { };
 
-  supertux-editor = callPackage ../applications/editors/supertux-editor { };
-
   svgbob = callPackage ../tools/graphics/svgbob { };
 
   svgcleaner = callPackage ../tools/graphics/svgcleaner { };
@@ -14114,7 +14108,7 @@ with pkgs;
 
   traceroute = callPackage ../tools/networking/traceroute { };
 
-  tracebox = callPackage ../tools/networking/tracebox { stdenv = gcc10StdenvCompat; };
+  tracebox = callPackage ../tools/networking/tracebox { };
 
   tracee = callPackage ../tools/security/tracee {
     clang = clang_14;
@@ -14984,6 +14978,10 @@ with pkgs;
   which = callPackage ../tools/system/which { };
 
   whsniff = callPackage ../applications/networking/sniffers/whsniff { };
+
+  wio = callPackage ../by-name/wi/wio/package.nix {
+    wlroots = wlroots_0_17;
+  };
 
   wiiuse = callPackage ../development/libraries/wiiuse {
     inherit (darwin) libobjc;
@@ -24038,7 +24036,7 @@ with pkgs;
 
   minizip-ng = callPackage ../development/libraries/minizip-ng { };
 
-  mkvtoolnix = libsForQt5.callPackage ../applications/video/mkvtoolnix {
+  mkvtoolnix = qt6Packages.callPackage ../applications/video/mkvtoolnix {
     stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
   };
 
@@ -24505,7 +24503,8 @@ with pkgs;
   pcg_c = callPackage ../development/libraries/pcg-c { };
 
   pcl = libsForQt5.callPackage ../development/libraries/pcl {
-    inherit (darwin.apple_sdk.frameworks) Cocoa AGL OpenGL;
+    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
+    inherit (darwin.apple_sdk_11_0.frameworks) Cocoa AGL OpenGL;
   };
 
   pcre = callPackage ../development/libraries/pcre { };
@@ -25344,7 +25343,9 @@ with pkgs;
 
   tecla = callPackage ../development/libraries/tecla { };
 
-  tectonic = callPackage ../tools/typesetting/tectonic {
+  tectonic = callPackage ../tools/typesetting/tectonic/wrapper.nix { };
+
+  tectonic-unwrapped = callPackage ../tools/typesetting/tectonic {
     harfbuzz = harfbuzzFull;
   };
 
@@ -27101,16 +27102,12 @@ with pkgs;
   OVMF = callPackage ../applications/virtualization/OVMF { };
   OVMFFull = callPackage ../applications/virtualization/OVMF {
     secureBoot = true;
-    # CSM support is a BIOS emulation mechanism,
-    # SeaBIOS is only available on x86.
-    csmSupport = stdenv.hostPlatform.isx86;
     httpSupport = true;
     tpmSupport = true;
+    tlsSupport = true;
   };
 
   ops = callPackage ../applications/virtualization/ops { };
-
-  seabios = callPackage ../applications/virtualization/seabios { };
 
   vmfs-tools = callPackage ../tools/filesystems/vmfs-tools { };
 
@@ -27439,8 +27436,6 @@ with pkgs;
   systemd-journal2gelf = callPackage ../tools/system/systemd-journal2gelf { };
 
   tailscale = callPackage ../servers/tailscale { };
-
-  tailscale-nginx-auth = callPackage ../by-name/ta/tailscale-nginx-auth/package.nix { };
 
   tailscale-systray = callPackage ../applications/misc/tailscale-systray { };
 
@@ -31299,7 +31294,7 @@ with pkgs;
   dyff = callPackage ../development/tools/dyff { };
 
   dwl = callPackage ../applications/window-managers/dwl {
-    wlroots = wlroots_0_16;
+    wlroots = wlroots_0_17;
   };
 
   dwm = callPackage ../applications/window-managers/dwm {
@@ -32669,6 +32664,7 @@ with pkgs;
   inherit (callPackages ../development/libraries/wlroots {})
     wlroots_0_15
     wlroots_0_16
+    wlroots_0_17
     wlroots;
 
   sway-contrib = recurseIntoAttrs (callPackages ../applications/misc/sway-contrib { });
@@ -32768,7 +32764,7 @@ with pkgs;
   kitti3 = python3.pkgs.callPackage ../applications/window-managers/i3/kitti3.nix { };
 
   waybox = callPackage ../by-name/wa/waybox/package.nix {
-    wlroots = wlroots_0_15;
+    wlroots = wlroots_0_17;
   };
 
   workstyle = callPackage ../applications/window-managers/i3/workstyle.nix { };
@@ -34621,9 +34617,7 @@ with pkgs;
     enableDbusUi = false;
   };
 
-  parsec-bin = callPackage ../applications/misc/parsec/bin.nix {
-    ffmpeg = ffmpeg_4;
-  };
+  parsec-bin = callPackage ../applications/misc/parsec/bin.nix { };
 
   pavucontrol = callPackage ../applications/audio/pavucontrol { };
 
@@ -35693,9 +35687,7 @@ with pkgs;
 
   taizen = callPackage ../applications/misc/taizen { };
 
-  talosctl = callPackage ../applications/networking/cluster/talosctl {
-    buildGoModule = buildGo120Module;
-  };
+  talosctl = callPackage ../applications/networking/cluster/talosctl { };
 
   talentedhack = callPackage ../applications/audio/talentedhack { };
 
@@ -36362,6 +36354,13 @@ with pkgs;
   openvscode-server = callPackage ../servers/openvscode-server {
     nodejs = nodejs_18;
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa Security;
+    inherit (darwin) cctools;
+    inherit (nodePackages) node-gyp;
+  };
+
+  code-server = callPackage ../servers/code-server {
+    nodejs = nodejs_18;
+    inherit (darwin.apple_sdk.frameworks) AppKit Cocoa CoreServices Security;
     inherit (darwin) cctools;
     inherit (nodePackages) node-gyp;
   };
@@ -39535,6 +39534,7 @@ with pkgs;
     coqPackages_8_16 coq_8_16
     coqPackages_8_17 coq_8_17
     coqPackages_8_18 coq_8_18
+    coqPackages_8_19 coq_8_19
     coqPackages      coq
   ;
 

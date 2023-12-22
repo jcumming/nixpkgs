@@ -556,6 +556,8 @@ self: super: with self; {
 
   anonip = callPackage ../development/python-modules/anonip { };
 
+  anova-wifi = callPackage ../development/python-modules/anova-wifi { };
+
   ansi2html = callPackage ../development/python-modules/ansi2html { };
 
   ansi2image = callPackage ../development/python-modules/ansi2image { };
@@ -1759,8 +1761,6 @@ self: super: with self; {
 
   cachey = callPackage ../development/python-modules/cachey { };
 
-  cacheyou = callPackage ../development/python-modules/cacheyou { };
-
   cachier = callPackage ../development/python-modules/cachier { };
 
   cachy = callPackage ../development/python-modules/cachy { };
@@ -1999,6 +1999,8 @@ self: super: with self; {
   cheroot = callPackage ../development/python-modules/cheroot { };
 
   cherrypy = callPackage ../development/python-modules/cherrypy { };
+
+  cherrypy-cors = callPackage ../development/python-modules/cherrypy-cors { };
 
   chess = callPackage ../development/python-modules/chess { };
 
@@ -4755,6 +4757,8 @@ self: super: with self; {
 
   googletrans = callPackage ../development/python-modules/googletrans { };
 
+  gotailwind = callPackage ../development/python-modules/gotailwind { };
+
   gotenberg-client = callPackage ../development/python-modules/gotenberg-client { };
 
   gorilla = callPackage ../development/python-modules/gorilla { };
@@ -5348,6 +5352,8 @@ self: super: with self; {
   ical = callPackage ../development/python-modules/ical { };
 
   icalendar = callPackage ../development/python-modules/icalendar { };
+
+  icalevents = callPackage ../development/python-modules/icalevents { };
 
   icecream = callPackage ../development/python-modules/icecream { };
 
@@ -14456,6 +14462,8 @@ self: super: with self; {
   translatepy = callPackage ../development/python-modules/translatepy { };
 
   translationstring = callPackage ../development/python-modules/translationstring { };
+
+  translitcodec = callPackage ../development/python-modules/translitcodec { };
 
   transmission-rpc = callPackage ../development/python-modules/transmission-rpc { };
 
