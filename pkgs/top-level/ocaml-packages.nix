@@ -891,6 +891,8 @@ let
 
     kicadsch = callPackage ../development/ocaml-modules/kicadsch { };
 
+    kqueue = callPackage ../development/ocaml-modules/kqueue { };
+
     ### L ###
 
     lablgl = callPackage ../development/ocaml-modules/lablgl { };
@@ -1385,6 +1387,8 @@ let
 
     oseq = callPackage ../development/ocaml-modules/oseq { };
 
+    otfed = callPackage ../development/ocaml-modules/otfed { };
+
     otfm = callPackage ../development/ocaml-modules/otfm { };
 
     otoml = callPackage ../development/ocaml-modules/otoml { };
@@ -1440,6 +1444,8 @@ let
     plotkicadsch = callPackage ../development/ocaml-modules/plotkicadsch {
       inherit (pkgs) coreutils imagemagick;
     };
+
+    poll = callPackage ../development/ocaml-modules/poll { };
 
     polynomial = callPackage ../development/ocaml-modules/polynomial { };
 

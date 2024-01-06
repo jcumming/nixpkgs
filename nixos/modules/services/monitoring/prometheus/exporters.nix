@@ -65,6 +65,7 @@ let
     "pgbouncer"
     "php-fpm"
     "pihole"
+    "ping"
     "postfix"
     "postgres"
     "process"
