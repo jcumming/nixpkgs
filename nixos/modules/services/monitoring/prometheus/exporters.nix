@@ -336,7 +336,7 @@ in
     } {
       assertion = cfg.iw.enable -> config.services.hostapd.enable;
       message = ''
-        Please enable 'services.hostapd' before enabbling 'services.prometheus.exporters.iw_hostapd'.
+        Please enable 'services.hostapd' before enabbling 'services.prometheus.exporters.iw'.
       '';
     } {
       assertion = cfg.mysqld.runAsLocalSuperUser -> config.services.mysql.enable;
