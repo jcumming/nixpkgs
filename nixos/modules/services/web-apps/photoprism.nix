@@ -21,7 +21,6 @@ let
     THUMB_UNCACHED = "true";
     UPLOAD_NSFW = "true";
     WORKERS = 16;
-    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; # setting to "" prevents photoprism from accessing external https://
   };
 in
   {
@@ -153,7 +152,7 @@ in
             (defaultSettings
               // {
                 #HOME = "${cfg.dataDir}";
-                SSL_CERT_DIR = "${pkgs.cacert}/etc/ssl/certs";
+                SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; # setting to "" prevents photoprism from accessing external https://
                 DATABASE_DRIVER = "sqlite";
                 DATABASE_DSN = "${cfg.dataDir}/photoprism.sqlite";
                 STORAGE_PATH = "${cfg.dataDir}/storage";
