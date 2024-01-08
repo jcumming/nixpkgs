@@ -11,7 +11,7 @@ in {
     path = [ pkgs.iw ];
 
     serviceConfig = {
-      RestrictAddressFamilies = [ "AF_UNIX" ];
+      RestrictAddressFamilies = [ "AF_UNIX" "AF_NETLINK" ];
 
       ExecStart = ''
         ${pkgs.prometheus-iw-exporter}/bin/iw_exporter -http ${cfg.listenAddress}:${toString cfg.port}
