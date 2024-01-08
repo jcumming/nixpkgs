@@ -21,6 +21,7 @@ let
     THUMB_UNCACHED = "true";
     UPLOAD_NSFW = "true";
     WORKERS = 16;
+    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; # setting to "" prevents photoprism from accessing external https://
   };
 in
   {
