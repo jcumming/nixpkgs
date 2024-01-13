@@ -1,5 +1,4 @@
 { lib, stdenv, fetchFromGitHub, cmake, neon, libdiscid, libxml2, pkg-config, validatePkgConfig }:
-
 stdenv.mkDerivation rec {
   version = "5.1.0+220120-f5a31de";
   pname = "libmusicbrainz";
