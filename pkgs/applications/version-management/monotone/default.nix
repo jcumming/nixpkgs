@@ -31,9 +31,14 @@ stdenv.mkDerivation rec {
     hash = "sha256:1hfy8vaap3184cd7h3qhz0da7c992idkc6q2nz9frhma45c5vgmd";
   };
 
+
+  enableParallelBuilding = true;
+
   patches = [
     ./monotone-1.1-Adapt-to-changes-in-pcre-8.42.patch
     ./monotone-1.1-adapt-to-botan2.patch
+    ./bigger-netsync-packets.patch 
+    ./bigger-strings.patch
     (fetchpatch {
       name = "rm-clang-float128-hack.patch";
       url = "https://github.com/7c6f434c/monotone-mirror/commit/5f01a3a9326a8dbdae7fc911b208b7c319e5f456.patch";

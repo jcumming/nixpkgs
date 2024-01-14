@@ -1,30 +1,17 @@
-{ lib, stdenv, fetchFromGitHub, fetchpatch, cmake, neon, libdiscid, libxml2, pkg-config }:
-
+{ lib, stdenv, fetchFromGitHub, cmake, neon, libdiscid, libxml2, pkg-config, validatePkgConfig }:
 stdenv.mkDerivation rec {
-  version = "5.1.0";
+  version = "5.1.0+220120-f5a31de";
   pname = "libmusicbrainz";
 
-  nativeBuildInputs = [ cmake pkg-config ];
+  nativeBuildInputs = [ cmake pkg-config validatePkgConfig ];
   buildInputs = [ neon libdiscid libxml2 ];
 
   src = fetchFromGitHub {
     owner  = "metabrainz";
     repo   = "libmusicbrainz";
-    sha256 = "0ah9kaf3g3iv1cps2vs1hs33nfbjfx1xscpjgxr1cg28p4ri6jhq";
-    rev    = "release-${version}";
+    sha256 = "sha256-su+7kB5foGMCoVLTZsxt7m1/NT1fEeV6QbIOrtvhz1Q=";
+    rev    = "f5a31ded2d9794e9e27bbdfc197636b3c46b39be";
   };
-
-  patches = [
-    # Fix build with libxml2 2.12
-    (fetchpatch {
-      url = "https://github.com/metabrainz/libmusicbrainz/commit/9ba00067a15479a52262a5126bcb6889da5884b7.patch";
-      hash = "sha256-4VxTohLpjUNnNZGIoRpBjUz71mLP3blg4oFL7itnJnY=";
-    })
-    (fetchpatch {
-      url = "https://github.com/metabrainz/libmusicbrainz/commit/558c9ba0e6d702d5c877f75be98176f57abf1b02.patch";
-      hash = "sha256-hKYY4BJLh/Real3NugLwzc4gPBQ3NB/F63iI/aV8Wh8=";
-    })
-  ];
 
   dontUseCmakeBuildDir=true;
 

@@ -24,6 +24,7 @@
 , mongoc
 , mosquitto
 , net-snmp
+, nut
 , openldap
 , openipmi
 , perl
@@ -93,6 +94,7 @@ let
     nginx.buildInputs = [ curl ];
     notify_desktop.buildInputs = [ libnotify gdk-pixbuf ];
     notify_email.buildInputs = [ libesmtp ];
+    nut.buildInputs = [ nut ];
     openldap.buildInputs = [ openldap ];
     ovs_events.buildInputs = [ yajl ];
     ovs_stats.buildInputs = [ yajl ];

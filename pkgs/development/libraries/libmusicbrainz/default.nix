@@ -7,6 +7,9 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ cmake ];
   buildInputs = [ neon libdiscid ];
 
+  # this probably can be removed after 5.0.1: https://github.com/metabrainz/libmusicbrainz/issues/1
+  dontUseCmakeBuildDir=true;
+
   src = fetchurl {
     url = "ftp://ftp.musicbrainz.org/pub/musicbrainz/${pname}-${version}.tar.gz";
     sha256 = "1i9qly13bwwmgj68vma766hgvsd1m75236haqsp9zgh5znlmkm3z";
@@ -24,6 +27,7 @@ stdenv.mkDerivation rec {
       The libmusicbrainz (also known as mb_client or MusicBrainz Client
       Library) is a development library geared towards developers who wish to
       add MusicBrainz lookup capabilities to their applications.'';
+    maintainers = [ lib.maintainers.jcumming ];
     platforms = platforms.all;
     license = licenses.lgpl21;
   };

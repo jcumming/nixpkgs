@@ -289,6 +289,7 @@ mapAliases ({
   ordereddict = throw "ordereddict has been removed because it is only useful on unsupported python versions."; # added 2022-05-28
   pafy = throw "pafy has been removed because it is unmaintained and only a dependency of mps-youtube, itself superseded by yewtube"; # Added 2023-01-19
   pam = python-pam; # added 2020-09-07.
+  pythonpam = python-pam; # added 2022-08-27
   PasteDeploy = pastedeploy; # added 2021-10-07
   pathpy = path; # added 2022-04-12
   paypalrestsdk = throw "paypalrestsdk was removed, the upstream repo was archived back in 2020"; # Added 2023-11-25

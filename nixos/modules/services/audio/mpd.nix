@@ -31,7 +31,9 @@ let
     state_file          "${cfg.dataDir}/state"
     sticker_file        "${cfg.dataDir}/sticker.sql"
 
-    ${optionalString (cfg.network.listenAddress != "any") ''bind_to_address "${cfg.network.listenAddress}"''}
+    ${optionalString (cfg.network.listenAddress != []) concatMapStrings (addr: ''
+      bind_to_address "${addr}"
+    '') cfg.network.listenAddress}
     ${optionalString (cfg.network.port != 6600)  ''port "${toString cfg.network.port}"''}
     ${optionalString (cfg.fluidsynth) ''
       decoder {
@@ -40,7 +42,7 @@ let
       }
     ''}
 
-    ${optionalString (cfg.credentials != []) (credentialsPlaceholder cfg.credentials)}
+    ${credentialsPlaceholder cfg.credentials}
 
     ${cfg.extraConfig}
   '';
@@ -132,12 +134,11 @@ in {
       network = {
 
         listenAddress = mkOption {
-          type = types.str;
-          default = "127.0.0.1";
-          example = "any";
+          type = types.listOf types.str;
+          default = [];
           description = lib.mdDoc ''
-            The address for the daemon to listen on.
-            Use `any` to listen on all addresses.
+            A list of address for mpd to listen on. Use an empty list "[]" to
+            bind to all addresses. Ensure addresses are reachable by clients.
           '';
         };
 
@@ -201,9 +202,7 @@ in {
         '';
       };
     };
-
   };
-
 
   ###### implementation
 

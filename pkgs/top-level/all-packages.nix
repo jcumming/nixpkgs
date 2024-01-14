@@ -14725,6 +14725,8 @@ with pkgs;
 
   udunits = callPackage ../development/libraries/udunits { };
 
+  unac = callPackage ../development/libraries/unac { };
+
   ufmt = with python3Packages; toPythonApplication ufmt;
 
   uftp = callPackage ../servers/uftp { };
@@ -21370,6 +21372,8 @@ with pkgs;
 
   ganv = callPackage ../development/libraries/ganv { };
 
+  gavl = callPackage ../development/libraries/gavl { };
+
   garble = callPackage ../development/tools/garble { };
 
   gcab = callPackage ../development/libraries/gcab { };
@@ -22581,6 +22585,8 @@ with pkgs;
   libcouchbase = callPackage ../development/libraries/libcouchbase { };
 
   libcue = callPackage ../development/libraries/libcue { };
+
+  libcoverart = callPackage ../development/libraries/libcoverart { };
 
   libcutl = callPackage ../development/libraries/libcutl { };
 
@@ -27120,6 +27126,7 @@ with pkgs;
   prometheus-dnsmasq-exporter = callPackage ../servers/monitoring/prometheus/dnsmasq-exporter.nix { };
   prometheus-dovecot-exporter = callPackage ../servers/monitoring/prometheus/dovecot-exporter.nix { };
   prometheus-domain-exporter = callPackage ../servers/monitoring/prometheus/domain-exporter.nix { };
+  prometheus-fail2ban-exporter = callPackage ../servers/monitoring/prometheus/fail2ban-exporter.nix { };
   prometheus-fastly-exporter = callPackage ../servers/monitoring/prometheus/fastly-exporter.nix { };
   prometheus-flow-exporter = callPackage ../servers/monitoring/prometheus/flow-exporter.nix { };
   prometheus-fritzbox-exporter = callPackage ../servers/monitoring/prometheus/fritzbox-exporter.nix { };
@@ -27129,9 +27136,10 @@ with pkgs;
   prometheus-idrac-exporter = callPackage ../servers/monitoring/prometheus/idrac-exporter.nix { };
   prometheus-imap-mailstat-exporter = callPackage ../servers/monitoring/prometheus/imap-mailstat-exporter.nix { };
   prometheus-influxdb-exporter = callPackage ../servers/monitoring/prometheus/influxdb-exporter.nix { };
+  prometheus-iw-exporter = callPackage ../servers/monitoring/prometheus/iw-exporter.nix { };
   prometheus-ipmi-exporter = callPackage ../servers/monitoring/prometheus/ipmi-exporter.nix { };
   prometheus-jitsi-exporter = callPackage ../servers/monitoring/prometheus/jitsi-exporter.nix { };
-  prometheus-jmx-httpserver = callPackage ../servers/monitoring/prometheus/jmx-httpserver.nix {  };
+  prometheus-jmx-httpserver = callPackage ../servers/monitoring/prometheus/jmx-httpserver.nix { };
   prometheus-json-exporter = callPackage ../servers/monitoring/prometheus/json-exporter.nix { };
   prometheus-junos-czerwonk-exporter = callPackage ../servers/monitoring/prometheus/junos-czerwonk-exporter.nix { };
   prometheus-kea-exporter = callPackage ../servers/monitoring/prometheus/kea-exporter.nix { };
@@ -31916,6 +31924,8 @@ with pkgs;
   firefox_decrypt = python3Packages.callPackage ../tools/security/firefox_decrypt { };
 
   flac = callPackage ../applications/audio/flac { };
+
+  flactag = callPackage ../applications/audio/flactag { libmusicbrainz  = libmusicbrainz5; };
 
   redoflacs = callPackage ../applications/audio/redoflacs { };
 
@@ -37767,6 +37777,8 @@ with pkgs;
   gogdl = python3Packages.callPackage ../games/gogdl { };
 
   gogui = callPackage ../games/gogui { };
+
+  gsb = callPackage ../games/gsb { };
 
   gscrabble = python3Packages.callPackage ../games/gscrabble { };
 

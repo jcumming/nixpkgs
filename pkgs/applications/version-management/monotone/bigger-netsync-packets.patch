@@ -1,0 +1,19 @@
+*** monotone-1.0/src/constants.hh.orig	2013-11-24 00:26:52.000000000 -0800
+--- monotone-1.0/src/constants.hh	2013-11-24 00:27:05.000000000 -0800
+***************
+*** 154,160 ****
+  
+    // largest command *payload* allowed in a netcmd
+    // in practice, this sets the size of the largest compressed file
+!   std::size_t const netcmd_payload_limit = 2 << 27;
+  
+    // maximum size of any netcmd on the wire, including payload
+    std::size_t const netcmd_maxsz = netcmd_minsz + netcmd_payload_limit;
+--- 154,160 ----
+  
+    // largest command *payload* allowed in a netcmd
+    // in practice, this sets the size of the largest compressed file
+!   std::size_t const netcmd_payload_limit = 2 << 30;
+  
+    // maximum size of any netcmd on the wire, including payload
+    std::size_t const netcmd_maxsz = netcmd_minsz + netcmd_payload_limit;

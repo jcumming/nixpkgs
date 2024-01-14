@@ -1,0 +1,23 @@
+#
+# old_revision [95111069650467d834f109f505545124ac6846a9]
+#
+# patch "src/string_queue.hh"
+#  from [13bd52c88dd3abd8c4352de119158856b3529887]
+#    to [e4965f4bce5e24964225358a538a5aa0980d426e]
+#
+============================================================
+--- monotone-1.1/src/string_queue.hh	13bd52c88dd3abd8c4352de119158856b3529887
++++ monotone-1.1/src/string_queue.hh	e4965f4bce5e24964225358a538a5aa0980d426e
+@@ -241,9 +241,9 @@ private:
+ 
+ private:
+   static const bool do_selfcheck = false;
+-  // used to avoid integer wraparound, 500 megs should be enough:
+-  static const size_t max_string_queue_size = 500 * 1024 * 1024;
+-  static const size_t max_string_queue_incr = 500 * 1024 * 1024;
++  // used to avoid integer wraparound
++  static const size_t max_string_queue_size = SIZE_MAX - 1;
++  static const size_t max_string_queue_incr = SIZE_MAX - 1;
+   string_queue (string_queue & /* from */ )
+     {
+       std::abort ();

@@ -25,6 +25,7 @@ stdenv.mkDerivation rec {
     makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
     makeWrapper ${jre}/bin/java $out/bin/yed \
       ''${makeWrapperArgs[@]} \
+      --set _JAVA_AWT_WM_NONREPARENTING 1 \
       --add-flags "-jar $out/yed/yed.jar --"
   '';
   dontWrapGApps = true;

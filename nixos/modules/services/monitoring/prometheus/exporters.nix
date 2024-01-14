@@ -40,6 +40,7 @@ let
     "idrac"
     "imap-mailstat"
     "influxdb"
+    "iw"
     "ipmi"
     "jitsi"
     "json"
@@ -331,6 +332,11 @@ in
       message = ''
         Please specify either 'services.prometheus.exporters.mail.configuration'
           or 'services.prometheus.exporters.mail.configFile'.
+      '';
+    } {
+      assertion = cfg.iw.enable -> config.services.hostapd.enable;
+      message = ''
+        Please enable 'services.hostapd' before enabbling 'services.prometheus.exporters.iw'.
       '';
     } {
       assertion = cfg.mysqld.runAsLocalSuperUser -> config.services.mysql.enable;

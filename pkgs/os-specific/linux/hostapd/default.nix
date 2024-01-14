@@ -25,12 +25,17 @@ stdenv.mkDerivation rec {
 
   # Based on hostapd's defconfig. Only differences are tracked.
   extraConfig = ''
+    # prevent slow stations from clogging airwaves
+    CONFIG_AIRTIME_POLICY=y
+    CONFIG_LIBNL32=y
+    
     # Use epoll(7) instead of select(2) on linux
     CONFIG_ELOOP_EPOLL=y
 
     # Drivers
     CONFIG_DRIVER_WIRED=y
     CONFIG_DRIVER_NONE=y
+    CONFIG_DRIVER_NL80211_BRCM=y
 
     # Integrated EAP server
     CONFIG_EAP_SIM=y
@@ -80,6 +85,7 @@ stdenv.mkDerivation rec {
     CONFIG_IEEE80211N=y
     CONFIG_IEEE80211AC=y
     CONFIG_IEEE80211AX=y
+    CONFIG_IEEE80211BE=y
   '' + lib.optionalString (sqlite != null) ''
     CONFIG_SQLITE=y
   '';

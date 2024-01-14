@@ -1,0 +1,98 @@
+Only in source/: build
+Only in source/: CMakeCache.txt
+Only in source/: CMakeFiles
+Only in source/: cmake_install.cmake
+diff -rc old/CMakeLists.txt source/CMakeLists.txt
+*** old/CMakeLists.txt	1969-12-31 16:00:01.000000000 -0800
+--- source/CMakeLists.txt	2023-07-06 18:37:52.527413963 -0700
+***************
+*** 98,115 ****
+  
+  find_package(Threads)
+  
+- add_executable(progressbars
+- 	progressbars.cc
+- 	AlbumRequest.cc
+- 	ProgressBar.cc
+- 	ThreadBase.cc
+- )
+- 
+- target_link_libraries(progressbars
+- 	${SLANG_LIBRARIES}
+- 	${CMAKE_THREAD_LIBS_INIT}
+- )
+- 
+  find_program(A2X_EXE NAMES a2x REQUIRED)
+  
+  add_custom_target(manpage ALL DEPENDS flactag.1)
+--- 98,103 ----
+***************
+*** 120,160 ****
+  
+  find_program(ASCIIDOC_EXE NAMES asciidoc REQUIRED)
+  
+- add_custom_target(webpage ALL DEPENDS flactag.html)
+- add_custom_command(OUTPUT flactag.html
+- 	MAIN_DEPENDENCY flactag.txt
+- 	DEPENDS CHANGELOG.txt
+- 	COMMAND ${ASCIIDOC_EXE} -a numbered -o ${CMAKE_CURRENT_BINARY_DIR}/flactag.html ${CMAKE_CURRENT_SOURCE_DIR}/flactag.txt
+- )
+- 
+  install(TARGETS flactag discid-bin)
+  install(PROGRAMS checkflac ${CMAKE_CURRENT_BINARY_DIR}/ripflac ripdataflac DESTINATION ${CMAKE_INSTALL_BINDIR})
+  install(FILES tocfix.sed DESTINATION ${CMAKE_INSTALL_DATADIR}/flactag)
+- install(FILES flactag.html DESTINATION ${CMAKE_INSTALL_DOCDIR})
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flactag.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
+- 
+- function(install_manpage_symlink SOURCE TARGET MANDIR)
+- 	set(LINK_COMMAND "\"${CMAKE_COMMAND}\" \"-E\" \"create_symlink\" \"${SOURCE}\" \"${TARGET}\"")
+- 
+- 	install(CODE
+- 		"message(STATUS \"Symlinking: \$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/${MANDIR}/${SOURCE} to ${TARGET}\")
+- 		execute_process(
+- 			COMMAND \"${CMAKE_COMMAND}\" \"-E\" \"remove\" \"${TARGET}\"
+- 			WORKING_DIRECTORY \$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/${MANDIR}
+- 		)
+- 		execute_process(
+- 			COMMAND ${LINK_COMMAND}
+- 			WORKING_DIRECTORY \$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/${MANDIR}
+- 			RESULT_VARIABLE EXIT_STATUS
+- 		)
+- 		if(NOT EXIT_STATUS EQUAL 0)
+- 			message(FATAL_ERROR \"Could not create symbolic link from ${CMAKE_INSTALL_PREFIX}/${MANDIR}/${SOURCE} to ${TARGET}\")
+- 		endif()
+- 		set(CMAKE_INSTALL_MANIFEST_FILES \${CMAKE_INSTALL_MANIFEST_FILES} ${CMAKE_INSTALL_PREFIX}/${MANDIR}/${TARGET})"
+- 	)
+- endfunction(install_manpage_symlink)
+- 
+- install_manpage_symlink(flactag.1 ripflac.1 ${CMAKE_INSTALL_MANDIR}/man1)
+- install_manpage_symlink(flactag.1 ripdataflac.1 ${CMAKE_INSTALL_MANDIR}/man1)
+- install_manpage_symlink(flactag.1 checkflac.1 ${CMAKE_INSTALL_MANDIR}/man1)
+- install_manpage_symlink(flactag.1 discid.1 ${CMAKE_INSTALL_MANDIR}/man1)
+--- 108,114 ----
+diff -rc old/ConfigFile.cc source/ConfigFile.cc
+*** old/ConfigFile.cc	1969-12-31 16:00:01.000000000 -0800
+--- source/ConfigFile.cc	2023-07-06 17:10:14.050914146 -0700
+***************
+*** 97,103 ****
+  		{
+  			char Buffer[1024];
+  
+! 			fgets(Buffer,sizeof(Buffer),fptr);
+  			if (!feof(fptr))
+  			{
+  				std::string TmpBuff=Buffer;
+--- 97,103 ----
+  		{
+  			char Buffer[1024];
+  
+! 			RetVal = fgets(Buffer,sizeof(Buffer),fptr);
+  			if (!feof(fptr))
+  			{
+  				std::string TmpBuff=Buffer;
+Only in source/: config.h
+Only in source/: CPackConfig.cmake
+Only in source/: CPackSourceConfig.cmake
+Only in source/: flactag.html
+Only in source/: Makefile
+Only in source/: ripflac

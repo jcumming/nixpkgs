@@ -4,7 +4,7 @@ with lib;
 
 let
   cfg = config.services.icecast;
-  configFile = pkgs.writeText "icecast.xml" ''
+  configFile = pkgs.writeText "icecast.xml" (''
     <icecast>
       <hostname>${cfg.hostname}</hostname>
 
@@ -19,12 +19,14 @@ let
         <webroot>${pkgs.icecast}/share/icecast/web</webroot>
         <alias source="/" dest="/status.xsl"/>
       </paths>
-
-      <listen-socket>
-        <port>${toString cfg.listen.port}</port>
-        <bind-address>${cfg.listen.address}</bind-address>
-      </listen-socket>
-
+    ''
+    + (concatMapStrings ( l: ''
+        <listen-socket>
+          <port>${toString l.port}</port>
+          <bind-address>${l.ip}</bind-address>
+        </listen-socket>
+      '' ) cfg.listen)
+    + ''
       <security>
         <chroot>0</chroot>
         <changeowner>
@@ -35,11 +37,11 @@ let
 
       ${cfg.extraConf}
     </icecast>
-  '';
+  '');
+
 in {
 
   ###### interface
-
   options = {
 
     services.icecast = {
@@ -72,18 +74,26 @@ in {
         default = "/var/log/icecast";
       };
 
-      listen = {
-        port = mkOption {
-          type = types.port;
-          description = lib.mdDoc "TCP port that will be used to accept client connections.";
-          default = 8000;
-        };
+     listen = mkOption {
+         type = types.listOf (types.submodule (
+              {
+                options = {
+                  port = mkOption {
+                    type = types.port;
+                    description = lib.mdDoc "TCP port that will be used to accept client connections.";
+                  };
+                  ip = mkOption {
+                    type = types.str;
+                    default = "*";
+                    description = lib.mdDoc "IP address to listen on. 0.0.0.0 for ipv4 only, * for all.";
+                  };
+                };
+              } ));
+        description = lib.mdDoc ''
+          List of ip/ports { ip = "127.0.0.1"; port = 8000;} to listen on
+        '';
 
-        address = mkOption {
-          type = types.str;
-          description = lib.mdDoc "Address Icecast will listen on.";
-          default = "::";
-        };
+        default = [ { ip = "127.0.0.1"; port = 8000; } ];
       };
 
       user = mkOption {
