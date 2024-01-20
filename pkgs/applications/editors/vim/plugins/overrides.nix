@@ -284,6 +284,10 @@
     dependencies = with self; [ nvim-cmp nvim-snippy ];
   };
 
+  cmp-tabby = super.cmp-tabby.overrideAttrs {
+    dependencies = with self; [ nvim-cmp ];
+  };
+
   cmp-tabnine = super.cmp-tabnine.overrideAttrs {
     buildInputs = [ tabnine ];
 
@@ -969,9 +973,28 @@
     dependencies = with self; [ nvim-lspconfig ];
   };
 
-  nvim-spectre = super.nvim-spectre.overrideAttrs {
-    dependencies = with self; [ plenary-nvim ];
-  };
+  nvim-spectre = super.nvim-spectre.overrideAttrs (old:
+    let
+      spectre_oxi = rustPlatform.buildRustPackage {
+        pname = "spectre_oxi";
+        inherit (old) version src;
+        sourceRoot = "source/spectre_oxi";
+
+        cargoHash = "sha256-y2ZIgOApIShkIesXmItPKDO6XjFrG4GS5HCPncJUmN8=";
+
+
+        preCheck = ''
+          mkdir tests/tmp/
+        '';
+      };
+    in
+    (lib.optionalAttrs stdenv.isLinux {
+      dependencies = with self;
+        [ plenary-nvim ];
+      postInstall = ''
+        ln -s ${spectre_oxi}/lib/libspectre_oxi.* $out/lua/spectre_oxi.so
+      '';
+    }));
 
   nvim-teal-maker = super.nvim-teal-maker.overrideAttrs {
     postPatch = ''
@@ -1093,7 +1116,7 @@
         pname = "sg-nvim-rust";
         inherit (old) version src;
 
-        cargoHash = "sha256-U+EGS0GMWzE2yFyMH04gXpR9lR7HRMgWBecqICfTUbE=";
+        cargoHash = "sha256-BDNFZ/7nnfvtBA7T6a7MDNJsq/cOI9tgW0kxUoIcbV8=";
 
         nativeBuildInputs = [ pkg-config ];
 
