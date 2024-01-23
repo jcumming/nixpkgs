@@ -95,7 +95,7 @@ in
         systemd.services.photoprism = {
           enable = true;
           after = [ "network-online.target" ];
-
+          wants = [ "network-online.target" ];
           wantedBy = ["multi-user.target"];
 
           confinement = {
