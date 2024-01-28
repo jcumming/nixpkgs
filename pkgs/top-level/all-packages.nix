@@ -748,11 +748,6 @@ with pkgs;
     inherit (darwin) DarwinTools;
   };
 
-  rtthost = callPackage ../development/tools/rust/rtthost {
-    inherit (darwin.apple_sdk.frameworks) AppKit;
-    inherit (darwin) DarwinTools;
-  };
-
   mix2nix = callPackage ../development/tools/mix2nix {
     elixir = elixir_1_14;
   };
@@ -1115,7 +1110,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
     antlr = antlr4_10;
     boost = boost177; # Configure checks for specific version.
-    icu =  icu69;
+    icu =  icu73;
     protobuf = protobuf_21;
   };
 
@@ -1756,8 +1751,6 @@ with pkgs;
 
   bikeshed = python3Packages.callPackage ../applications/misc/bikeshed { };
 
-  bonsai = callPackage ../tools/misc/bonsai { };
-
   cie-middleware-linux = callPackage ../tools/security/cie-middleware-linux { };
 
   cidrgrep = callPackage ../tools/text/cidrgrep { };
@@ -1886,7 +1879,9 @@ with pkgs;
 
   grizzly = callPackage ../tools/misc/grizzly { };
 
-  guestfs-tools = callPackage ../tools/virtualization/guestfs-tools { };
+  guestfs-tools = callPackage ../tools/virtualization/guestfs-tools {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   fabs = callPackage ../tools/backup/fabs { };
 
@@ -2090,7 +2085,9 @@ with pkgs;
 
   supercronic = callPackage ../tools/system/supercronic { };
 
-  supermin = callPackage ../tools/virtualization/supermin { };
+  supermin = callPackage ../tools/virtualization/supermin {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   sx-go = callPackage ../tools/security/sx-go { };
 
@@ -2149,7 +2146,7 @@ with pkgs;
   vprof = with python3Packages; toPythonApplication vprof;
 
   vrc-get = callPackage ../tools/misc/vrc-get {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
   vrrtest = callPackage ../tools/video/vrrtest { };
@@ -5208,8 +5205,6 @@ with pkgs;
 
   easyocr = with python3.pkgs; toPythonApplication easyocr;
 
-  EBTKS = callPackage ../development/libraries/science/biology/EBTKS { };
-
   ecasound = callPackage ../applications/audio/ecasound { };
 
   edac-utils = callPackage ../os-specific/linux/edac-utils { };
@@ -5394,7 +5389,9 @@ with pkgs;
 
   ### TOOLS/TYPESETTING/TEX
 
-  advi = callPackage ../tools/typesetting/tex/advi { };
+  advi = callPackage ../tools/typesetting/tex/advi {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   auctex = callPackage ../tools/typesetting/tex/auctex { };
 
@@ -6812,8 +6809,14 @@ with pkgs;
 
   libceph = ceph.lib;
   inherit (callPackages ../tools/filesystems/ceph {
-    lua = lua5_4;
-    fmt = fmt_8;
+    lua = lua5_4; # Ceph currently requires >= 5.3
+
+    # To see which `fmt` version Ceph upstream recommends, check its `src/fmt` submodule.
+    #
+    # Ceph does not currently build with `fmt_10`; see https://github.com/NixOS/nixpkgs/issues/281027#issuecomment-1899128557
+    # If we want to switch for that before upstream fixes it, use this patch:
+    # https://github.com/NixOS/nixpkgs/pull/281858#issuecomment-1899648638
+    fmt = fmt_9;
   })
     ceph
     ceph-client;
@@ -7253,8 +7256,6 @@ with pkgs;
   convfont = callPackage ../tools/misc/convfont { };
 
   convmv = callPackage ../tools/misc/convmv { };
-
-  convoy = callPackage ../tools/filesystems/convoy { };
 
   cpcfs = callPackage ../tools/filesystems/cpcfs { };
 
@@ -9971,6 +9972,7 @@ with pkgs;
 
   liquidsoap = callPackage ../tools/audio/liquidsoap/full.nix {
     ffmpeg = ffmpeg-full;
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
   };
 
   linuxwave = callPackage ../tools/audio/linuxwave { };
@@ -11131,7 +11133,7 @@ with pkgs;
   netbootxyz-efi = callPackage ../tools/misc/netbootxyz-efi { };
 
   inherit (callPackage ../servers/web-apps/netbox { })
-    netbox netbox_3_5 netbox_3_6;
+    netbox netbox_3_6 netbox_3_7;
 
   netbox2netshot = callPackage ../tools/admin/netbox2netshot { };
 
@@ -11750,6 +11752,7 @@ with pkgs;
       then (overrideLibcxx llvmPackages_15.stdenv).cc
       else clang_15;
     llvm = llvm_15;
+    openexr = openexr_3;
   };
 
   osqp = callPackage ../development/libraries/science/math/osqp { };
@@ -11822,7 +11825,9 @@ with pkgs;
 
   page = callPackage ../tools/misc/page { };
 
-  PageEdit = libsForQt5.callPackage ../applications/office/PageEdit { };
+  pageedit = libsForQt5.callPackage ../applications/office/PageEdit {
+    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
+  };
 
   pagefind = libsForQt5.callPackage ../applications/misc/pagefind { };
 
@@ -15688,7 +15693,9 @@ with pkgs;
 
   coffeescript = callPackage ../development/compilers/coffeescript { };
 
-  comby = callPackage ../development/tools/comby { };
+  comby = callPackage ../development/tools/comby {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   inherit (coqPackages_8_17) compcert;
 
@@ -16333,6 +16340,7 @@ with pkgs;
   fsharp = callPackage ../development/compilers/fsharp { };
 
   fstar = callPackage ../development/compilers/fstar {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
     z3 = z3_4_8_5;
   };
 
@@ -16399,7 +16407,9 @@ with pkgs;
     inherit (emacs.pkgs.melpaStablePackages) irony;
   };
 
-  heptagon = callPackage ../development/compilers/heptagon { };
+  heptagon = callPackage ../development/compilers/heptagon {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   holo-build = callPackage ../tools/package-management/holo-build { };
 
@@ -16627,7 +16637,8 @@ with pkgs;
       else if platform.isAndroid then 12
       else if platform.isLinux then 16
       else if platform.isWasm then 16
-      else 14;
+      # For unknown systems, assume the latest version is required.
+      else 17;
     # We take the "max of the mins". Why? Since those are lower bounds of the
     # supported version set, this is like intersecting those sets and then
     # taking the min bound of that.
@@ -16888,7 +16899,9 @@ with pkgs;
 
   rgbds = callPackage ../development/compilers/rgbds { };
 
-  rml = callPackage ../development/compilers/rml { };
+  rml = callPackage ../development/compilers/rml {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   rgxg = callPackage ../tools/text/rgxg { };
 
@@ -17298,7 +17311,7 @@ with pkgs;
   };
 
   teyjus = callPackage ../development/compilers/teyjus {
-    inherit (ocamlPackages) buildDunePackage;
+    inherit (ocaml-ng.ocamlPackages_4_14) buildDunePackage;
   };
 
   thrust = callPackage ../development/tools/thrust {
@@ -18023,7 +18036,9 @@ with pkgs;
 
   sparkleshare = callPackage ../applications/version-management/sparkleshare { };
 
-  spark2014 = callPackage ../development/libraries/ada/spark2014 { };
+  spark2014 = callPackage ../development/libraries/ada/spark2014 {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   spidermonkey_78 = callPackage ../development/interpreters/spidermonkey/78.nix {
     inherit (darwin) libobjc;
@@ -18039,8 +18054,6 @@ with pkgs;
   };
 
   ssm-session-manager-plugin = callPackage ../applications/networking/cluster/ssm-session-manager-plugin { };
-
-  starlark = callPackage ../development/interpreters/starlark { };
 
   starlark-rust = callPackage ../development/interpreters/starlark-rust { };
 
@@ -18313,8 +18326,6 @@ with pkgs;
   helm-ls = callPackage ../development/tools/language-servers/helm-ls { };
 
   javascript-typescript-langserver = callPackage ../development/tools/language-servers/javascript-typescript-langserver { };
-
-  jdt-language-server = callPackage ../development/tools/language-servers/jdt-language-server { };
 
   jsonnet-language-server = callPackage ../development/tools/language-servers/jsonnet-language-server { };
 
@@ -18879,7 +18890,9 @@ with pkgs;
   # Does not actually depend on Qt 5
   inherit (plasma5Packages) extra-cmake-modules;
 
-  coccinelle = callPackage ../development/tools/misc/coccinelle { };
+  coccinelle = callPackage ../development/tools/misc/coccinelle {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   cpptest = callPackage ../development/libraries/cpptest { };
 
@@ -19147,6 +19160,7 @@ with pkgs;
 
   flow = callPackage ../development/tools/analysis/flow {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
   };
 
   fly = callPackage ../development/tools/continuous-integration/fly { };
@@ -22440,7 +22454,7 @@ with pkgs;
   libbacktrace = callPackage ../development/libraries/libbacktrace { };
 
   libbap = callPackage ../development/libraries/libbap {
-    inherit (ocaml-ng.ocamlPackages) bap ocaml findlib ctypes;
+    inherit (ocaml-ng.ocamlPackages_4_14) bap ocaml findlib ctypes;
   };
 
   libbaseencode = callPackage ../development/libraries/libbaseencode { };
@@ -22914,6 +22928,7 @@ with pkgs;
   libguestfs-appliance = callPackage ../development/libraries/libguestfs/appliance.nix { };
   libguestfs = callPackage ../development/libraries/libguestfs {
     autoreconfHook = buildPackages.autoreconfHook264;
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
   };
   libguestfs-with-appliance = libguestfs.override {
     appliance = libguestfs-appliance;
@@ -23816,8 +23831,6 @@ with pkgs;
   liquidfun = callPackage ../development/libraries/liquidfun { };
 
   litehtml = callPackage ../development/libraries/litehtml { };
-
-  live555 = callPackage ../development/libraries/live555 { };
 
   llhttp = callPackage ../development/libraries/llhttp { };
 
@@ -24920,9 +24933,9 @@ with pkgs;
 
   sdrplay = callPackage ../applications/radio/sdrplay { };
 
-  sdrpp = pin-to-gcc12-if-gcc13 (callPackage ../applications/radio/sdrpp {
+  sdrpp = callPackage ../applications/radio/sdrpp {
     inherit (darwin.apple_sdk.frameworks) AppKit;
-  });
+  };
 
   sigdigger = libsForQt5.callPackage ../applications/radio/sigdigger { };
 
@@ -25175,8 +25188,6 @@ with pkgs;
   steghide = callPackage ../tools/graphics/steghide { };
 
   stegsolve = callPackage ../tools/graphics/stegsolve { };
-
-  StormLib = callPackage ../development/libraries/StormLib { };
 
   stxxl = callPackage ../development/libraries/stxxl { };
 
@@ -25910,6 +25921,17 @@ with pkgs;
   };
   buildGo121Package = darwin.apple_sdk_11_0.callPackage ../build-support/go/package.nix {
     go = buildPackages.go_1_21;
+  };
+
+  # requires a newer Apple SDK
+  go_1_22 = darwin.apple_sdk_11_0.callPackage ../development/compilers/go/1.22.nix {
+    inherit (darwin.apple_sdk_11_0.frameworks) Foundation Security;
+  };
+  buildGo122Module = darwin.apple_sdk_11_0.callPackage ../build-support/go/module.nix {
+    go = buildPackages.go_1_22;
+  };
+  buildGo122Package = darwin.apple_sdk_11_0.callPackage ../build-support/go/package.nix {
+    go = buildPackages.go_1_22;
   };
 
   leaps = callPackage ../development/tools/leaps { };
@@ -27776,8 +27798,6 @@ with pkgs;
 
   fwanalyzer = callPackage ../tools/filesystems/fwanalyzer { };
 
-  fwupd = callPackage ../os-specific/linux/firmware/fwupd { };
-
   fwupd-efi = callPackage ../os-specific/linux/firmware/fwupd-efi { };
 
   firmware-manager = callPackage ../os-specific/linux/firmware/firmware-manager { };
@@ -28749,6 +28769,11 @@ with pkgs;
   systemdLibs = systemdMinimal.override {
     pname = "systemd-minimal-libs";
     buildLibsOnly = true;
+  };
+  # We do not want to include ukify in the normal systemd attribute as it
+  # relies on Python at runtime.
+  systemdUkify = systemd.override {
+    withUkify = true;
   };
 
   udev =
@@ -30342,7 +30367,9 @@ with pkgs;
 
   akira-unstable = callPackage ../applications/graphics/akira { };
 
-  alembic = callPackage ../development/libraries/alembic { };
+  alembic = callPackage ../development/libraries/alembic {
+    openexr = openexr_3;
+  };
 
   alfaview = callPackage ../applications/networking/instant-messengers/alfaview { };
 
@@ -30649,6 +30676,7 @@ with pkgs;
   blender = callPackage  ../applications/misc/blender {
     # LLVM 11 crashes when compiling GHOST_SystemCocoa.mm
     stdenv = if stdenv.isDarwin then llvmPackages_10.stdenv else stdenv;
+    openexr = openexr_3;
     inherit (darwin.apple_sdk.frameworks) Cocoa CoreGraphics ForceFeedback OpenAL OpenGL;
   };
 
@@ -30863,8 +30891,6 @@ with pkgs;
   clightd = callPackage ../applications/misc/clight/clightd.nix { };
 
   clipgrab = libsForQt5.callPackage ../applications/video/clipgrab { };
-
-  clipcat = callPackage ../applications/misc/clipcat { };
 
   clipmenu = callPackage ../applications/misc/clipmenu { };
 
@@ -31113,15 +31139,8 @@ with pkgs;
   docker-proxy = callPackage ../applications/virtualization/docker/proxy.nix { };
 
   docker-gc = callPackage ../applications/virtualization/docker/gc.nix { };
-
-  docker-machine = callPackage ../applications/networking/cluster/docker-machine { };
   docker-machine-hyperkit = callPackage ../applications/networking/cluster/docker-machine/hyperkit.nix { };
-  docker-machine-kvm = callPackage ../applications/networking/cluster/docker-machine/kvm.nix { };
   docker-machine-kvm2 = callPackage ../applications/networking/cluster/docker-machine/kvm2.nix { };
-  docker-machine-xhyve = callPackage ../applications/networking/cluster/docker-machine/xhyve.nix {
-    inherit (darwin.apple_sdk.frameworks) Hypervisor vmnet;
-    inherit (darwin) cctools;
-  };
 
   docker-distribution = callPackage ../applications/virtualization/docker/distribution.nix { };
 
@@ -31561,7 +31580,7 @@ with pkgs;
 
   freewheeling = callPackage ../applications/audio/freewheeling { };
 
-  fritzing = libsForQt5.callPackage ../applications/science/electronics/fritzing { };
+  fritzing = qt6Packages.callPackage ../applications/science/electronics/fritzing { };
 
   fsv = callPackage ../applications/misc/fsv { };
 
@@ -32459,7 +32478,9 @@ with pkgs;
     electron = electron_19;
   };
 
-  jackline = callPackage ../applications/networking/instant-messengers/jackline { };
+  jackline = callPackage ../applications/networking/instant-messengers/jackline {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   jay = callPackage ../applications/window-managers/jay { };
 
@@ -33881,7 +33902,7 @@ with pkgs;
 
   mm-common = callPackage ../development/libraries/mm-common { };
 
-  mpc-qt = libsForQt5.callPackage ../applications/video/mpc-qt { };
+  mpc-qt = qt6Packages.callPackage ../applications/video/mpc-qt { };
 
   mplayer = callPackage ../applications/video/mplayer ({
     libdvdnav = libdvdnav_4_2_1;
@@ -34384,7 +34405,9 @@ with pkgs;
 
   openfx = callPackage ../development/libraries/openfx { };
 
-  openimageio = darwin.apple_sdk_11_0.callPackage ../development/libraries/openimageio { };
+  openimageio = darwin.apple_sdk_11_0.callPackage ../development/libraries/openimageio {
+    openexr = openexr_3;
+  };
 
   openjump = callPackage ../applications/misc/openjump { };
 
@@ -34471,7 +34494,9 @@ with pkgs;
 
   opusTools = callPackage ../applications/audio/opus-tools { };
 
-  orpie = callPackage ../applications/misc/orpie { };
+  orpie = callPackage ../applications/misc/orpie {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   osmo = callPackage ../applications/office/osmo { };
 
@@ -36139,7 +36164,9 @@ with pkgs;
 
   virt-viewer = callPackage ../applications/virtualization/virt-viewer { };
 
-  virt-top = callPackage ../applications/virtualization/virt-top { };
+  virt-top = callPackage ../applications/virtualization/virt-top {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   virt-what = callPackage ../applications/virtualization/virt-what { };
 
@@ -37908,8 +37935,8 @@ with pkgs;
     # MapTool is fussy about which JRE it uses; OpenJDK will leave it hanging
     # at launch in a class initialization deadlock. MapTool ships Temurin with
     # their pre-built releases so we might as well use it too.
-    jre = temurin-bin-17;
-    openjfx = openjfx17;
+    jre = temurin-bin-21;
+    openjfx = openjfx21;
   };
 
   mari0 = callPackage ../games/mari0 { };
@@ -39454,7 +39481,9 @@ with pkgs;
 
   crypto-org-wallet = callPackage ../applications/blockchains/crypto-org-wallet { };
 
-  cubicle = callPackage ../applications/science/logic/cubicle { };
+  cubicle = callPackage ../applications/science/logic/cubicle {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   cvc3 = callPackage ../applications/science/logic/cvc3 {
     gmp = lib.overrideDerivation gmp (_: { dontDisableStatic = true; });
@@ -39582,7 +39611,9 @@ with pkgs;
 
   proverif = callPackage ../applications/science/logic/proverif { };
 
-  satallax = callPackage ../applications/science/logic/satallax { };
+  satallax = callPackage ../applications/science/logic/satallax {
+    inherit (ocaml-ng.ocamlPackages_4_14) ocaml;
+  };
 
   saw-tools = callPackage ../applications/science/logic/saw-tools { };
 
@@ -39932,7 +39963,9 @@ with pkgs;
     perl = perl536;
   };
 
-  megam = callPackage ../applications/science/misc/megam { };
+  megam = callPackage ../applications/science/misc/megam {
+    inherit (ocaml-ng.ocamlPackages_4_14) ocaml;
+  };
 
   netlogo = callPackage ../applications/science/misc/netlogo { };
 
@@ -41034,7 +41067,9 @@ with pkgs;
 
   sanoid = callPackage ../tools/backup/sanoid { };
 
-  satysfi = callPackage ../tools/typesetting/satysfi { };
+  satysfi = callPackage ../tools/typesetting/satysfi {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   sc-controller = python3Packages.callPackage ../misc/drivers/sc-controller {
     inherit libusb1; # Shadow python.pkgs.libusb1.
@@ -41632,7 +41667,7 @@ with pkgs;
 
   nitrokey-app = libsForQt5.callPackage ../tools/security/nitrokey-app { };
 
-  nitrokey-app2 = libsForQt5.callPackage ../tools/security/nitrokey-app2 { };
+  nitrokey-app2 = python3Packages.callPackage ../tools/security/nitrokey-app2 { };
 
   fpm2 = callPackage ../tools/security/fpm2 { };
 
