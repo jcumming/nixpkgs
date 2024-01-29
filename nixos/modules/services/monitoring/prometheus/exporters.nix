@@ -33,6 +33,7 @@ let
     "dnsmasq"
     "domain"
     "dovecot"
+    "fail2ban"
     "fastly"
     "flow"
     "fritzbox"
