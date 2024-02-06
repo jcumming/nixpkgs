@@ -2391,7 +2391,9 @@ self: super: with self; {
 
   cose = callPackage ../development/python-modules/cose { };
 
-  cot = callPackage ../development/python-modules/cot { };
+  cot = callPackage ../development/python-modules/cot {
+    qemu = pkgs.qemu;
+  };
 
   cov-core = callPackage ../development/python-modules/cov-core { };
 
@@ -5010,7 +5012,9 @@ self: super: with self; {
 
   guessit = callPackage ../development/python-modules/guessit { };
 
-  guestfs = callPackage ../development/python-modules/guestfs { };
+  guestfs = callPackage ../development/python-modules/guestfs {
+    qemu = pkgs.qemu;
+  };
 
   gudhi = callPackage ../development/python-modules/gudhi { };
 
@@ -6775,6 +6779,8 @@ self: super: with self; {
 
   mailmanclient = callPackage ../development/python-modules/mailmanclient { };
 
+  rtfunicode = callPackage ../development/python-modules/rtfunicode { };
+
   rtmixer = callPackage ../development/python-modules/rtmixer { };
 
   regress = callPackage ../development/python-modules/regress { };
@@ -7124,8 +7130,6 @@ self: super: with self; {
   mitmproxy-macos = callPackage ../development/python-modules/mitmproxy-macos { };
 
   mitmproxy-rs = callPackage ../development/python-modules/mitmproxy-rs { };
-
-  mitmproxy-wireguard = callPackage ../development/python-modules/mitmproxy-wireguard { };
 
   mitogen = callPackage ../development/python-modules/mitogen { };
 
@@ -8181,6 +8185,8 @@ self: super: with self; {
   names = callPackage ../development/python-modules/names { };
 
   name-that-hash = callPackage ../development/python-modules/name-that-hash { };
+
+  nameko = callPackage ../development/python-modules/nameko { };
 
   nampa = callPackage ../development/python-modules/nampa { };
 
@@ -12286,6 +12292,10 @@ self: super: with self; {
 
   qgrid = callPackage ../development/python-modules/qgrid { };
 
+  qemu = callPackage ../development/python-modules/qemu {
+    qemu = pkgs.qemu;
+  };
+
   qiling = callPackage ../development/python-modules/qiling { };
 
   qimage2ndarray = callPackage ../development/python-modules/qimage2ndarray { };
@@ -16326,9 +16336,7 @@ self: super: with self; {
     inherit (pkgs) graphviz;
   };
 
-  xformers = callPackage ../development/python-modules/xformers {
-    openai-triton = self.openai-triton-cuda;
-  };
+  xformers = callPackage ../development/python-modules/xformers { };
 
   xgboost = callPackage ../development/python-modules/xgboost {
     inherit (pkgs) xgboost;

@@ -258,8 +258,6 @@ with pkgs;
 
   ariang = callPackage ../servers/ariang { };
 
-  mov-cli = callPackage ../applications/video/mov-cli { };
-
   ani-cli = callPackage ../applications/video/ani-cli { };
 
   dra-cla = callPackage ../applications/video/dra-cla { };
@@ -744,9 +742,7 @@ with pkgs;
     inherit (darwin) DarwinTools;
   };
 
-  mix2nix = callPackage ../development/tools/mix2nix {
-    elixir = elixir_1_14;
-  };
+  mix2nix = callPackage ../development/tools/mix2nix { };
 
   n98-magerun = callPackage ../development/tools/misc/n98-magerun { };
 
@@ -2620,10 +2616,6 @@ with pkgs;
 
   _86Box = callPackage ../applications/emulators/86box { };
 
-  atari800 = callPackage ../applications/emulators/atari800 { };
-
-  ataripp = callPackage ../applications/emulators/atari++ { };
-
   attract-mode = callPackage ../applications/emulators/attract-mode { };
 
   basiliskii = callPackage ../applications/emulators/basiliskii { };
@@ -2687,8 +2679,6 @@ with pkgs;
   dynamips = callPackage ../applications/emulators/dynamips { };
 
   emu2 = callPackage ../applications/emulators/emu2 { };
-
-  emulationstation = callPackage ../applications/emulators/emulationstation { };
 
   fceux = libsForQt5.callPackage ../applications/emulators/fceux { };
 
@@ -2769,8 +2759,6 @@ with pkgs;
   mgba = libsForQt5.callPackage ../applications/emulators/mgba { };
 
   mupen64plus = callPackage ../applications/emulators/mupen64plus { };
-
-  nestopia = callPackage ../applications/emulators/nestopia { };
 
   np2kai = callPackage ../applications/emulators/np2kai { };
 
@@ -4944,8 +4932,6 @@ with pkgs;
   csvdiff = callPackage ../tools/text/csvdiff { };
 
   csview = callPackage ../tools/text/csview { };
-
-  csvkit = callPackage ../tools/text/csvkit { };
 
   csvquote = callPackage ../tools/text/csvquote { };
 
@@ -8250,8 +8236,6 @@ with pkgs;
 
   faraday-cli = callPackage ../tools/security/faraday-cli { };
 
-  farge = callPackage ../tools/misc/farge { };
-
   fastlane = callPackage ../tools/admin/fastlane { };
 
   fatresize = callPackage ../tools/filesystems/fatresize { };
@@ -10815,7 +10799,7 @@ with pkgs;
 
   memtest86plus = callPackage ../tools/misc/memtest86+ { };
 
-  mbutil = python3Packages.callPackage ../applications/misc/mbutil { };
+  mbutil = python310Packages.callPackage ../applications/misc/mbutil { };
 
   mcabber = callPackage ../applications/networking/instant-messengers/mcabber { };
 
@@ -11603,6 +11587,8 @@ with pkgs;
   openobex = callPackage ../tools/bluetooth/openobex { };
 
   openresolv = callPackage ../tools/networking/openresolv { };
+
+  openrefine = callPackage ../applications/science/misc/openrefine { jdk = jdk17; };
 
   openrgb = libsForQt5.callPackage ../applications/misc/openrgb { };
 
@@ -13322,8 +13308,6 @@ with pkgs;
   sng = callPackage ../tools/graphics/sng { };
 
   snmpcheck = callPackage ../tools/networking/snmpcheck { };
-
-  sniffglue = callPackage ../tools/networking/sniffglue { };
 
   snobol4 = callPackage ../development/interpreters/snobol4 { };
 
@@ -15400,9 +15384,6 @@ with pkgs;
   scponly = callPackage ../shells/scponly { };
 
   rush = callPackage ../shells/rush { };
-
-  xonsh = callPackage ../shells/xonsh/wrapper.nix { };
-  xonsh-unwrapped = callPackage ../shells/xonsh { };
 
   zsh = callPackage ../shells/zsh { };
 
@@ -19859,12 +19840,7 @@ with pkgs;
 
   reshape = callPackage ../development/tools/reshape { } ;
 
-  retdec = callPackage ../development/tools/analysis/retdec {
-    stdenv = gcc8Stdenv;
-  };
-  retdec-full = retdec.override {
-    withPEPatterns = true;
-  };
+  retdec = callPackage ../development/tools/analysis/retdec { };
 
   reviewdog = callPackage ../development/tools/misc/reviewdog { };
 
@@ -24351,8 +24327,6 @@ with pkgs;
     buildPythonPackage buildPythonApplication setuptools pycsdr pydigiham;
   };
 
-  optparse-bash = callPackage ../development/libraries/optparse-bash { };
-
   oras = callPackage ../development/tools/oras { };
 
   orcania = callPackage ../development/libraries/orcania { };
@@ -25234,8 +25208,6 @@ with pkgs;
 
   tdlib = callPackage ../development/libraries/tdlib { };
 
-  tecla = callPackage ../development/libraries/tecla { };
-
   tectonic = callPackage ../tools/typesetting/tectonic/wrapper.nix { };
 
   tectonic-unwrapped = callPackage ../tools/typesetting/tectonic {
@@ -25822,17 +25794,6 @@ with pkgs;
   go = go_1_21;
   buildGoModule = buildGo121Module;
   buildGoPackage = buildGo121Package;
-
-  # requires a newer Apple SDK
-  go_1_19 = darwin.apple_sdk_11_0.callPackage ../development/compilers/go/1.19.nix {
-    inherit (darwin.apple_sdk_11_0.frameworks) Foundation Security;
-  };
-  buildGo119Module = darwin.apple_sdk_11_0.callPackage ../build-support/go/module.nix {
-    go = buildPackages.go_1_19;
-  };
-  buildGo119Package = darwin.apple_sdk_11_0.callPackage ../build-support/go/package.nix {
-    go = buildPackages.go_1_19;
-  };
 
   # requires a newer Apple SDK
   go_1_20 = darwin.apple_sdk_11_0.callPackage ../development/compilers/go/1.20.nix {
@@ -28770,6 +28731,7 @@ with pkgs;
     ubootOdroidC2
     ubootOdroidXU3
     ubootOlimexA64Olinuxino
+    ubootOlimexA64Teres1
     ubootOrangePi3
     ubootOrangePiPc
     ubootOrangePiZeroPlus2H5
@@ -29001,8 +28963,6 @@ with pkgs;
   baekmuk-ttf = callPackage ../data/fonts/baekmuk-ttf { };
 
   bakoma_ttf = callPackage ../data/fonts/bakoma-ttf { };
-
-  banana-cursor = callPackage ../data/icons/banana-cursor { };
 
   barlow = callPackage ../data/fonts/barlow { };
 
@@ -34766,6 +34726,13 @@ with pkgs;
     inherit (darwin.stubs) rez setfile;
     inherit (darwin) sigtool;
   };
+
+  qemu-python-utils = python3Packages.toPythonApplication (
+    python3Packages.qemu.override {
+      fuseSupport = true;
+      tuiSupport = true;
+    }
+  );
 
   qemu-utils = qemu.override {
     toolsOnly = true;
