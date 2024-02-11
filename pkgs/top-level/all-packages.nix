@@ -19242,7 +19242,9 @@ with pkgs;
 
   gtranslator = callPackage ../tools/text/gtranslator { };
 
-  gtree = callPackage ../tools/text/gtree { };
+  gtree = callPackage ../tools/text/gtree {
+    buildGoModule = buildGo122Module;
+  };
 
   guff = callPackage ../tools/graphics/guff { };
 
@@ -31070,7 +31072,7 @@ with pkgs;
 
   dunst = callPackage ../applications/misc/dunst { };
 
-  du-dust = callPackage ../tools/misc/dust {
+  dust = callPackage ../by-name/du/dust/package.nix {
     inherit (darwin.apple_sdk_11_0.frameworks) AppKit;
   };
 
