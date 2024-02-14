@@ -290,10 +290,6 @@ with pkgs;
 
   _0x =  callPackage ../tools/misc/0x { };
 
-  atuin = callPackage ../tools/misc/atuin {
-    inherit (darwin.apple_sdk.frameworks) AppKit Security SystemConfiguration;
-  };
-
   automatic-timezoned = callPackage ../tools/system/automatic-timezoned { };
 
   cve = with python3Packages; toPythonApplication cvelib;
@@ -1471,7 +1467,12 @@ with pkgs;
   writers = callPackage ../build-support/writers { };
 
   # lib functions depending on pkgs
-  inherit (import ../pkgs-lib { inherit lib pkgs; }) formats;
+  inherit (import ../pkgs-lib {
+    # The `lib` variable in this scope doesn't include any applied lib overlays,
+    # `pkgs.lib` does.
+    inherit (pkgs) lib;
+    inherit pkgs;
+  }) formats;
 
   testers = callPackage ../build-support/testers { };
 
@@ -3552,6 +3553,8 @@ with pkgs;
   bitwarden = callPackage ../tools/security/bitwarden { };
 
   bitwarden-cli = callPackage ../tools/security/bitwarden/cli.nix { };
+
+  inherit (callPackages ../tools/security/bitwarden-directory-connector { }) bitwarden-directory-connector-cli bitwarden-directory-connector;
 
   bitwarden-menu = python3Packages.callPackage ../applications/misc/bitwarden-menu { };
 
@@ -7319,6 +7322,7 @@ with pkgs;
 
   curl = curlMinimal.override ({
     idnSupport = true;
+    pslSupport = true;
     zstdSupport = true;
   } // lib.optionalAttrs (!stdenv.hostPlatform.isStatic) {
     brotliSupport = true;
@@ -7915,7 +7919,7 @@ with pkgs;
 
   efibootmgr = callPackage ../tools/system/efibootmgr { };
 
-  efivar = disable-warnings-if-gcc13 (callPackage ../tools/system/efivar { });
+  efivar = callPackage ../tools/system/efivar { };
 
   eget = callPackage ../tools/misc/eget { };
 
@@ -8833,6 +8837,8 @@ with pkgs;
 
   graylog-5_1 = callPackage ../tools/misc/graylog/5.1.nix { };
 
+  graylog-5_2 = callPackage ../tools/misc/graylog/5.2.nix { };
+
   graylogPlugins = recurseIntoAttrs (
     callPackage ../tools/misc/graylog/plugins.nix { }
   );
@@ -9606,6 +9612,10 @@ with pkgs;
   just = callPackage ../development/tools/just { };
 
   go-jira = callPackage ../applications/misc/go-jira { };
+
+  jogl = callPackage ../by-name/jo/jogl/package.nix {
+    stdenv = if stdenv.isDarwin && stdenv.isx86_64 then overrideSDK stdenv "11.0" else stdenv;
+  };
 
   john = callPackage ../tools/security/john { };
 
@@ -10681,8 +10691,6 @@ with pkgs;
   lzham = callPackage ../tools/compression/lzham { };
 
   lzip = callPackage ../tools/compression/lzip { };
-
-  plzip = callPackage ../tools/compression/plzip { };
 
   lziprecover = callPackage ../tools/compression/lziprecover { };
 
@@ -14537,8 +14545,6 @@ with pkgs;
 
   wifish = callPackage ../tools/networking/wifish { };
 
-  wifite2 = callPackage ../tools/networking/wifite2 { };
-
   wimboot = callPackage ../tools/misc/wimboot { };
 
   wit-bindgen = callPackage ../tools/misc/wit-bindgen { };
@@ -15370,8 +15376,6 @@ with pkgs;
   murex = callPackage ../shells/murex { };
 
   oh = callPackage ../shells/oh { };
-
-  oil = callPackage ../shells/oil { };
 
   oksh = callPackage ../shells/oksh { };
 
@@ -16363,7 +16367,7 @@ with pkgs;
   hugs = callPackage ../development/interpreters/hugs { };
 
   inherit (javaPackages) openjfx11 openjfx15 openjfx17 openjfx19 openjfx20 openjfx21;
-  openjfx = pin-to-gcc12-if-gcc13 (openjfx17.override { });
+  openjfx = openjfx17;
 
   openjdk8-bootstrap = javaPackages.compiler.openjdk8-bootstrap;
   openjdk8 = javaPackages.compiler.openjdk8;
@@ -16860,10 +16864,6 @@ with pkgs;
   buildRustCrateHelpers = callPackage ../build-support/rust/build-rust-crate/helpers.nix { };
 
   cargo2junit = callPackage ../development/tools/rust/cargo2junit { };
-
-  cargo-espflash = callPackage ../development/tools/rust/cargo-espflash {
-    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
-  };
 
   cargo-web = callPackage ../development/tools/rust/cargo-web {
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
@@ -18667,8 +18667,6 @@ with pkgs;
 
   cc-tool = callPackage ../development/embedded/cc-tool { };
 
-  ccache = callPackage ../development/tools/misc/ccache { };
-
   # Wrapper that works as gcc or g++
   # It can be used by setting in nixpkgs config like this, for example:
   #    replaceStdenv = { pkgs }: pkgs.ccacheStdenv;
@@ -20375,7 +20373,7 @@ with pkgs;
       then overrideSDK stdenv { darwinMinVersion = "10.13"; }
       else stdenv;
   };
-  abseil-cpp = abseil-cpp_202301;
+  abseil-cpp = abseil-cpp_202401;
 
   accountsservice = callPackage ../development/libraries/accountsservice { };
 
@@ -20622,7 +20620,8 @@ with pkgs;
     withCMake = false;
   };
 
-  c-blosc = callPackage ../development/libraries/c-blosc { };
+  inherit (callPackages ../development/libraries/c-blosc { })
+    c-blosc c-blosc2;
 
   cachix = lib.getBin haskellPackages.cachix;
 
@@ -21432,12 +21431,12 @@ with pkgs;
   };
 
   libgit2_1_6 = libgit2.overrideAttrs rec {
-    version = "1.6.4";
+    version = "1.6.5";
     src = fetchFromGitHub {
       owner = "libgit2";
       repo = "libgit2";
       rev = "v${version}";
-      hash = "sha256-lW3mokVKsbknVj2xsxEbeZH4IdKZ0aIgGutzenS0Eh0=";
+      hash = "sha256-2tgXnrB85dEfxu7giETqMuFxfm0RH5MicHZqO3ezGu0=";
     };
     patches = [ ];
   };
@@ -22311,10 +22310,7 @@ with pkgs;
 
   libantlr3c = callPackage ../development/libraries/libantlr3c { };
 
-  libaom = callPackage ../development/libraries/libaom {
-    # Remove circular dependency for libavif
-    libjxl = libjxl.override { buildDocs = false; };
-  };
+  libaom = callPackage ../development/libraries/libaom { };
 
   libappindicator-gtk2 = libappindicator.override { gtkVersion = "2"; };
   libappindicator-gtk3 = libappindicator.override { gtkVersion = "3"; };
@@ -22395,7 +22391,7 @@ with pkgs;
 
   libcacard = callPackage ../development/libraries/libcacard { };
 
-  libcamera = callPackage ../development/libraries/libcamera { };
+  libcamera-qcam = callPackage ../by-name/li/libcamera/package.nix { withQcam = true; };
 
   libcanberra = callPackage ../development/libraries/libcanberra {
     inherit (darwin.apple_sdk.frameworks) Carbon CoreServices AppKit;
@@ -23769,8 +23765,6 @@ with pkgs;
 
   lyra = callPackage ../development/libraries/lyra { };
 
-  lzlib = callPackage ../development/libraries/lzlib { };
-
   lzo = callPackage ../development/libraries/lzo { };
 
   opencl-clang = callPackage ../development/libraries/opencl-clang { };
@@ -24231,9 +24225,7 @@ with pkgs;
 
   openexrid-unstable = callPackage ../development/libraries/openexrid-unstable { };
 
-  openldap = callPackage ../development/libraries/openldap {
-    openssl = openssl_legacy;
-  };
+  openldap = callPackage ../development/libraries/openldap { };
 
   opencolorio = darwin.apple_sdk_11_0.callPackage ../development/libraries/opencolorio {
     inherit (darwin.apple_sdk_11_0.frameworks) Carbon GLUT Cocoa;
@@ -26698,7 +26690,7 @@ with pkgs;
 
   openxr-loader = callPackage ../development/libraries/openxr-loader { };
 
-  osrm-backend = disable-warnings-if-gcc13 (callPackage ../servers/osrm-backend { });
+  osrm-backend = callPackage ../servers/osrm-backend { };
 
   oven-media-engine = callPackage ../servers/misc/oven-media-engine { };
 
@@ -27147,8 +27139,6 @@ with pkgs;
 
   restic-integrity = callPackage ../applications/backup/restic-integrity { };
   restic-rest-server = callPackage ../tools/backup/restic/rest-server.nix { };
-
-  restya-board = callPackage ../servers/web-apps/restya-board { };
 
   rethinkdb = callPackage ../servers/nosql/rethinkdb {
     stdenv = clangStdenv;
@@ -28266,8 +28256,6 @@ with pkgs;
   };
 
   go-callvis = callPackage ../development/tools/go-callvis { };
-
-  gofumpt = callPackage ../development/tools/gofumpt { };
 
   gotags = callPackage ../development/tools/gotags { };
 
@@ -30483,8 +30471,6 @@ with pkgs;
 
   banking = callPackage ../applications/office/banking { };
 
-  baresip = callPackage ../applications/networking/instant-messengers/baresip { };
-
   barrier = libsForQt5.callPackage ../applications/misc/barrier { };
 
   bashSnippets = callPackage ../applications/misc/bashSnippets { };
@@ -31251,7 +31237,7 @@ with pkgs;
 
   espeakup = callPackage ../applications/accessibility/espeakup { };
 
-  espflash = callPackage ../development/embedded/espflash {
+  espflash = callPackage ../by-name/es/espflash/package.nix {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
@@ -33787,7 +33773,6 @@ with pkgs;
   mpv-unwrapped = darwin.apple_sdk_11_0.callPackage ../applications/video/mpv {
     stdenv = if stdenv.isDarwin then swiftPackages.stdenv else stdenv;
     inherit lua;
-    inherit (darwin) sigtool;
   };
 
   shaka-packager = callPackage ../applications/video/shaka-packager { };
@@ -33921,11 +33906,6 @@ with pkgs;
   odin2 = callPackage ../applications/audio/odin2 { };
 
   okteto = callPackage ../development/tools/okteto { };
-
-  onlyoffice-bin_7_2 = callPackage ../applications/office/onlyoffice-bin/7_2.nix { };
-  onlyoffice-bin_7_5 = callPackage ../applications/office/onlyoffice-bin/7_5.nix { };
-  onlyoffice-bin = onlyoffice-bin_7_2;
-  onlyoffice-bin_latest = onlyoffice-bin_7_5;
 
   onmetal-image = callPackage ../tools/virtualization/onmetal-image { };
 
@@ -34609,8 +34589,6 @@ with pkgs;
   ponymix = callPackage ../applications/audio/ponymix { };
 
   pop-launcher = callPackage ../applications/misc/pop-launcher { };
-
-  popcorntime = callPackage ../applications/video/popcorntime { };
 
   pot = callPackage ../applications/misc/pot { };
 
@@ -35758,8 +35736,6 @@ with pkgs;
 
   toipe = callPackage ../applications/misc/toipe { };
 
-  tootle = callPackage ../applications/misc/tootle { };
-
   toxic = callPackage ../applications/networking/instant-messengers/toxic { };
 
   toxiproxy = callPackage ../development/tools/toxiproxy { };
@@ -36507,9 +36483,7 @@ with pkgs;
 
   xdg-user-dirs = callPackage ../tools/X11/xdg-user-dirs { };
 
-  xdg-utils = callPackage ../tools/X11/xdg-utils {
-    w3m = buildPackages.w3m-batch;
-  };
+  xdg-utils = callPackage ../tools/X11/xdg-utils {};
 
   xdgmenumaker = callPackage ../applications/misc/xdgmenumaker { };
 
@@ -39062,7 +39036,9 @@ with pkgs;
 
   notus-scanner = with python3Packages; toPythonApplication notus-scanner;
 
-  openblas = callPackage ../development/libraries/science/math/openblas { };
+  openblas = callPackage ../development/libraries/science/math/openblas {
+    inherit (llvmPackages) openmp;
+  };
 
   # A version of OpenBLAS using 32-bit integers on all platforms for compatibility with
   # standard BLAS and LAPACK.
@@ -39180,7 +39156,9 @@ with pkgs;
 
   suitesparse_4_2 = callPackage ../development/libraries/science/math/suitesparse/4.2.nix { };
   suitesparse_4_4 = callPackage ../development/libraries/science/math/suitesparse/4.4.nix { };
-  suitesparse_5_3 = callPackage ../development/libraries/science/math/suitesparse { };
+  suitesparse_5_3 = callPackage ../development/libraries/science/math/suitesparse {
+    inherit (llvmPackages) openmp;
+  };
   suitesparse = suitesparse_5_3;
 
   suitesparse-graphblas = callPackage ../development/libraries/science/math/suitesparse-graphblas { };
@@ -39603,6 +39581,8 @@ with pkgs;
     # executable fails at startup for jdk > 17
     jdk = jdk17;
   };
+
+  degate = libsForQt5.callPackage ../applications/science/electronics/degate { };
 
   diylc = callPackage ../applications/science/electronics/diylc { };
 
@@ -40434,12 +40414,11 @@ with pkgs;
 
   networkd-dispatcher = callPackage ../tools/networking/networkd-dispatcher { };
 
-  nixVersions = builtins.mapAttrs (_: disable-warnings-if-gcc13)
-    (recurseIntoAttrs (callPackage ../tools/package-management/nix {
-      storeDir = config.nix.storeDir or "/nix/store";
-      stateDir = config.nix.stateDir or "/nix/var";
-      inherit (darwin.apple_sdk.frameworks) Security;
-    }));
+  nixVersions = recurseIntoAttrs (callPackage ../tools/package-management/nix {
+    storeDir = config.nix.storeDir or "/nix/store";
+    stateDir = config.nix.stateDir or "/nix/var";
+    inherit (darwin.apple_sdk.frameworks) Security;
+  });
 
   nix = nixVersions.stable;
 
