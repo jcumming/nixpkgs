@@ -1,4 +1,12 @@
-{ lib, stdenv, fetchurl, python3, perl, intltool, flex, texinfo, libiconv, libintl }:
+{ lib
+, stdenv
+, fetchurl
+, python3Packages
+, flex
+, texinfo
+, libiconv
+, libintl
+}:
 
 stdenv.mkDerivation rec {
   pname = "recode";
@@ -10,12 +18,18 @@ stdenv.mkDerivation rec {
     hash = "sha256-eGqv1USFGisTsKN36sFQD4IM5iYVzMLmMLUB53Q7nzM=";
   };
 
-  nativeBuildInputs = [ python3 python3.pkgs.cython python3.pkgs.setuptools perl intltool flex texinfo libiconv ];
+  nativeBuildInputs = [ python3Packages.python flex texinfo libiconv ];
+
   buildInputs = [ libintl ];
 
   enableParallelBuilding = true;
 
   doCheck = true;
+
+  nativeCheckInputs = with python3Packages; [
+    cython
+    setuptools
+  ];
 
   meta = {
     homepage = "https://github.com/rrthomas/recode";

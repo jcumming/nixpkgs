@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2024.2.1";
+  version = "2024.2.2";
   components = {
     "3_day_blinds" = ps: with ps; [
     ];
@@ -568,7 +568,8 @@
     "brel_home" = ps: with ps; [
     ];
     "bring" = ps: with ps; [
-    ]; # missing inputs: python-bring-api
+      python-bring-api
+    ];
     "broadlink" = ps: with ps; [
       broadlink
     ];
@@ -3017,6 +3018,9 @@
     "meteoclimatic" = ps: with ps; [
       pymeteoclimatic
     ];
+    "metoffice" = ps: with ps; [
+      datapoint
+    ];
     "mfi" = ps: with ps; [
     ]; # missing inputs: mficlient
     "microsoft" = ps: with ps; [
@@ -3268,9 +3272,10 @@
       aiohttp-fast-url-dispatcher
       aiohttp-zlib-ng
       fnv-hash-fast
+      myuplink
       psutil-home-assistant
       sqlalchemy
-    ]; # missing inputs: myuplink
+    ];
     "nad" = ps: with ps; [
       nad-receiver
     ];
@@ -4926,7 +4931,8 @@
     "tcp" = ps: with ps; [
     ];
     "technove" = ps: with ps; [
-    ]; # missing inputs: python-technove
+      python-technove
+    ];
     "ted5000" = ps: with ps; [
       xmltodict
     ];
@@ -5895,6 +5901,7 @@
     "bond"
     "bosch_shc"
     "braviatv"
+    "bring"
     "broadlink"
     "brother"
     "brottsplatskartan"
@@ -6217,6 +6224,7 @@
     "met_eireann"
     "meteo_france"
     "meteoclimatic"
+    "metoffice"
     "microsoft_face"
     "microsoft_face_detect"
     "microsoft_face_identify"
@@ -6248,6 +6256,7 @@
     "mysensors"
     "mystrom"
     "mythicbeastsdns"
+    "myuplink"
     "nam"
     "namecheapdns"
     "nanoleaf"
@@ -6486,6 +6495,7 @@
     "tasmota"
     "tautulli"
     "tcp"
+    "technove"
     "tedee"
     "telegram"
     "telegram_bot"
