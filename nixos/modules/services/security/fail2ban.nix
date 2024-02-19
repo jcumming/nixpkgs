@@ -358,6 +358,7 @@ in
         StateDirectoryMode = "0750";
         LogsDirectory = "fail2ban";
         LogsDirectoryMode = "0750";
+        LimitNOFILE = 800000; # logs... so many logs..
         # Sandboxing
         ProtectSystem = "strict";
         ProtectHome = true;
