@@ -417,6 +417,8 @@ self: super: with self; {
 
   aiosyncthing = callPackage ../development/python-modules/aiosyncthing { };
 
+  aiotankerkoenig = callPackage ../development/python-modules/aiotankerkoenig { };
+
   aiotractive = callPackage ../development/python-modules/aiotractive { };
 
   aiounifi = callPackage ../development/python-modules/aiounifi { };
@@ -722,6 +724,8 @@ self: super: with self; {
   argparse-addons = callPackage ../development/python-modules/argparse-addons { };
 
   argparse-dataclass = callPackage ../development/python-modules/argparse-dataclass { };
+
+  argparse-manpage = callPackage ../development/python-modules/argparse-manpage { };
 
   args = callPackage ../development/python-modules/args { };
 
@@ -3352,6 +3356,8 @@ self: super: with self; {
 
   docloud = callPackage ../development/python-modules/docloud { };
 
+  docstr-coverage = callPackage ../development/python-modules/docstr-coverage { };
+
   docstring-to-markdown = callPackage ../development/python-modules/docstring-to-markdown { };
 
   docstring-parser = callPackage ../development/python-modules/docstring-parser { };
@@ -3945,6 +3951,8 @@ self: super: with self; {
 
   fastapi-mail = callPackage ../development/python-modules/fastapi-mail { };
 
+  fastapi-sso = callPackage ../development/python-modules/fastapi-sso { };
+
   fast-histogram = callPackage ../development/python-modules/fast-histogram { };
 
   fastavro = callPackage ../development/python-modules/fastavro { };
@@ -4396,6 +4404,8 @@ self: super: with self; {
 
   fschat = callPackage ../development/python-modules/fschat { };
 
+  fsspec-xrootd = callPackage ../development/python-modules/fsspec-xrootd { };
+
   fsspec = callPackage ../development/python-modules/fsspec { };
 
   fst-pso = callPackage ../development/python-modules/fst-pso { };
@@ -4584,6 +4594,8 @@ self: super: with self; {
   georss-tfs-incidents-client = callPackage ../development/python-modules/georss-tfs-incidents-client { };
 
   georss-wa-dfes-client = callPackage ../development/python-modules/georss-wa-dfes-client { };
+
+  gerbonara = callPackage ../development/python-modules/gerbonara { };
 
   getjump = callPackage ../development/python-modules/getjump { };
 
@@ -4847,6 +4859,8 @@ self: super: with self; {
   govee-ble = callPackage ../development/python-modules/govee-ble { };
 
   govee-led-wez = callPackage ../development/python-modules/govee-led-wez { };
+
+  govee-local-api = callPackage ../development/python-modules/govee-local-api { };
 
   goveelights = callPackage ../development/python-modules/goveelights { };
 
@@ -6351,6 +6365,8 @@ self: super: with self; {
 
   lexid = callPackage ../development/python-modules/lexid { };
 
+  lexilang = callPackage ../development/python-modules/lexilang { };
+
   lhapdf = toPythonModule (pkgs.lhapdf.override {
     inherit python;
   });
@@ -6579,6 +6595,8 @@ self: super: with self; {
   limits = callPackage ../development/python-modules/limits { };
 
   limnoria = callPackage ../development/python-modules/limnoria { };
+
+  linear-garage-door = callPackage ../development/python-modules/linear-garage-door { };
 
   linear-operator = callPackage ../development/python-modules/linear-operator { };
 
@@ -7043,7 +7061,7 @@ self: super: with self; {
 
   meshtastic = callPackage ../development/python-modules/meshtastic { };
 
-  meson = toPythonModule ((pkgs.meson.override { python3 = python; }).overrideAttrs
+  meson = toPythonModule ((pkgs.meson.override { python3 = python; }).overridePythonAttrs
     (oldAttrs: { # We do not want the setup hook in Python packages because the build is performed differently.
       setupHook = null;
     }));
@@ -9907,6 +9925,8 @@ self: super: with self; {
 
   priority = callPackage ../development/python-modules/priority { };
 
+  prisma = callPackage ../development/python-modules/prisma { };
+
   prison = callPackage ../development/python-modules/prison { };
 
   proboscis = callPackage ../development/python-modules/proboscis { };
@@ -12475,6 +12495,8 @@ self: super: with self; {
 
   rangehttpserver = callPackage ../development/python-modules/rangehttpserver { };
 
+  rangeparser = callPackage ../development/python-modules/rangeparser { };
+
   rank-bm25 = callPackage ../development/python-modules/rank-bm25 { };
 
   rapidfuzz = callPackage ../development/python-modules/rapidfuzz { };
@@ -12682,7 +12704,11 @@ self: super: with self; {
 
   reretry = callPackage ../development/python-modules/reretry { };
 
+  rerun-sdk = callPackage ../development/python-modules/rerun-sdk { };
+
   resampy = callPackage ../development/python-modules/resampy { };
+
+  resend = callPackage ../development/python-modules/resend { };
 
   resize-right = callPackage ../development/python-modules/resize-right { };
 
@@ -16032,6 +16058,8 @@ self: super: with self; {
 
   viv-utils = callPackage ../development/python-modules/viv-utils { };
 
+  vllm = callPackage ../development/python-modules/vllm { };
+
   vmprof = callPackage ../development/python-modules/vmprof { };
 
   vncdo = callPackage ../development/python-modules/vncdo { };
@@ -16094,6 +16122,8 @@ self: super: with self; {
   wagtail-factories = callPackage ../development/python-modules/wagtail-factories { };
 
   wagtail-localize = callPackage ../development/python-modules/wagtail-localize { };
+
+  wagtail-modeladmin = callPackage ../development/python-modules/wagtail-modeladmin { };
 
   waitress = callPackage ../development/python-modules/waitress { };
 
