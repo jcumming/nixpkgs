@@ -4247,6 +4247,12 @@
     githubId = 49398;
     name = "Daniël de Kok";
   };
+  daniel-fahey = {
+    name = "Daniel Fahey";
+    email = "daniel.fahey+nixpkgs@pm.me";
+    github = "daniel-fahey";
+    githubId = 7294692;
+  };
   danielfullmer = {
     email = "danielrf12@gmail.com";
     github = "danielfullmer";
@@ -7460,6 +7466,13 @@
     github = "gvolpe";
     githubId = 443978;
     name = "Gabriel Volpe";
+  };
+  gwg313 = {
+    email = "gwg313@pm.me";
+    matrix = "@gwg313:matrix.org";
+    github = "gwg313";
+    githubId = 70684146;
+    name = "Glen Goodwin";
   };
   gytis-ivaskevicius = {
     name = "Gytis Ivaskevicius";
@@ -14915,6 +14928,12 @@
     githubId = 8641;
     name = "Pierre Carrier";
   };
+  pcasaretto = {
+    email = "pcasaretto@gmail.com";
+    github = "pcasaretto";
+    githubId = 817039;
+    name = "Paulo Casaretto";
+  };
   pedrohlc = {
     email = "root@pedrohlc.com";
     github = "PedroHLC";
@@ -17120,6 +17139,15 @@
     github = "sargon";
     githubId = 178904;
     name = "Daniel Ehlers";
+  };
+  sascha8a = {
+    email = "sascha@localhost.systems";
+    github = "sascha8a";
+    githubId = 6937965;
+    name = "Alexander Lampalzer";
+    keys = [{
+      fingerprint = "0350 3136 E22C C561 30E3 A4AE 2087 9CCA CD5C D670";
+    }];
   };
   saschagrunert = {
     email = "mail@saschagrunert.de";

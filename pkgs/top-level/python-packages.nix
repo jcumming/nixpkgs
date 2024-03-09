@@ -125,6 +125,8 @@ self: super: with self; {
 
   agent-py = callPackage ../development/python-modules/agent-py { };
 
+  ago = callPackage ../development/python-modules/ago { };
+
   aggdraw = callPackage ../development/python-modules/aggdraw { };
 
   aigpy = callPackage ../development/python-modules/aigpy { };
@@ -194,6 +196,8 @@ self: super: with self; {
   aiocsv = callPackage ../development/python-modules/aiocsv { };
 
   aiocurrencylayer = callPackage ../development/python-modules/aiocurrencylayer { };
+
+  aiodhcpwatcher = callPackage ../development/python-modules/aiodhcpwatcher { };
 
   aiodiscover = callPackage ../development/python-modules/aiodiscover { };
 
@@ -1937,7 +1941,7 @@ self: super: with self; {
 
   comicon = callPackage ../development/python-modules/comicon { };
 
-  command_runner = callPackage ../development/python-modules/command_runner { };
+  command-runner = callPackage ../development/python-modules/command-runner { };
 
   connect-box = callPackage ../development/python-modules/connect-box { };
 
@@ -3566,6 +3570,8 @@ self: super: with self; {
 
   dynd = callPackage ../development/python-modules/dynd { };
 
+  dsl2html = callPackage ../development/python-modules/dsl2html { };
+
   e3-core = callPackage ../development/python-modules/e3-core { };
 
   e3-testsuite = callPackage ../development/python-modules/e3-testsuite { };
@@ -4029,7 +4035,7 @@ self: super: with self; {
 
   fastrlock = callPackage ../development/python-modules/fastrlock { };
 
-  fasttext = pkgs.disable-warnings-if-gcc13 (callPackage ../development/python-modules/fasttext { });
+  fasttext = callPackage ../development/python-modules/fasttext { };
 
   fasttext-predict = callPackage ../development/python-modules/fasttext-predict { };
 
@@ -4040,6 +4046,8 @@ self: super: with self; {
   fb-re2 = callPackage ../development/python-modules/fb-re2 { };
 
   fe25519 = callPackage ../development/python-modules/fe25519 { };
+
+  feedfinder2 = callPackage ../development/python-modules/feedfinder2 { };
 
   feedgen = callPackage ../development/python-modules/feedgen { };
 
@@ -4215,7 +4223,7 @@ self: super: with self; {
 
   flask-principal = callPackage ../development/python-modules/flask-principal { };
 
-  flask-pymongo = callPackage ../development/python-modules/Flask-PyMongo { };
+  flask-pymongo = callPackage ../development/python-modules/flask-pymongo { };
 
   flask-restful = callPackage ../development/python-modules/flask-restful { };
 
@@ -5417,6 +5425,8 @@ self: super: with self; {
   humblewx = callPackage ../development/python-modules/humblewx { };
 
   hupper = callPackage ../development/python-modules/hupper { };
+
+  hurry-filesize = callPackage ../development/python-modules/hurry-filesize { };
 
   huum = callPackage ../development/python-modules/huum { };
 
@@ -9047,6 +9057,8 @@ self: super: with self; {
   os-service-types = callPackage ../development/python-modules/os-service-types { };
 
   osc = callPackage ../development/python-modules/osc { };
+
+  osc-diagram = callPackage ../development/python-modules/osc-diagram { };
 
   osc-lib = callPackage ../development/python-modules/osc-lib { };
 
@@ -13682,7 +13694,7 @@ self: super: with self; {
 
   smpplib = callPackage ../development/python-modules/smpplib { };
 
-  smpp_pdu = callPackage ../development/python-modules/smpp.pdu { };
+  smpp-pdu = callPackage ../development/python-modules/smpp.pdu { };
 
   smtpdfix = callPackage ../development/python-modules/smtpdfix { };
 
@@ -14750,6 +14762,8 @@ self: super: with self; {
   tinyobjloader-py = callPackage ../development/python-modules/tinyobjloader-py { };
 
   tinyrecord = callPackage ../development/python-modules/tinyrecord { };
+
+  tinysegmenter = callPackage ../development/python-modules/tinysegmenter { };
 
   tissue = callPackage ../development/python-modules/tissue { };
 
@@ -16690,6 +16704,8 @@ self: super: with self; {
   };
 
   xxhash = callPackage ../development/python-modules/xxhash { };
+
+  xdxf2html = callPackage ../development/python-modules/xdxf2html { };
 
   xyzservices = callPackage ../development/python-modules/xyzservices { };
 
