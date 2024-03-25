@@ -365,14 +365,14 @@
 
 buildPythonPackage rec {
   pname = "boto3-stubs";
-  version = "1.34.62";
+  version = "1.34.68";
   pyproject = true;
 
   disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-0ms6qz8xFWwDST6cMbf1SRVJyasMuqV+Cgnjifscipo=";
+    hash = "sha256-acmbKrPt9CTYiOLM1mqmrifqGc3ub36mDx057pwrdCY=";
   };
 
   nativeBuildInputs = [
