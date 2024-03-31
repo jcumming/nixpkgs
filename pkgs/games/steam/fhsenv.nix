@@ -202,7 +202,7 @@ in buildFHSEnv rec {
     libdrm
     libxkbcommon # paradox launcher
     libvorbis # Dead Cells
-    libxcrypt # Alien Isolation, XCOM 2, Company of Heroes 2
+    libxcrypt-legacy # Alien Isolation, XCOM 2, Company of Heroes 2
     mono
     ncurses # Crusader Kings III
     openssl
