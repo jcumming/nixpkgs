@@ -171,6 +171,17 @@ let
         is true. It is used as `ip46tables -I nixos-fw firewallFilter -j nixos-fw-accept`.
       '';
     };
+    firewallRules = mkOption {
+      type = types.nullOr types.lines;
+      default = null;
+      example = literalExpression ''
+        iifname "eth0" tcp dport ${toString port} counter accept
+      '';
+      description = lib.mdDoc ''
+        Specify rules for nftables to add to the input chain
+        when {option}`services.prometheus.exporters.${name}.openFirewall` is true.
+      '';
+    };
     user = mkOption {
       type = types.str;
       default = "${name}-exporter";
@@ -196,6 +207,7 @@ let
         } // extraOpts);
       } ({ config, ... }: mkIf config.openFirewall {
         firewallFilter = mkDefault "-p tcp -m tcp --dport ${toString config.port}";
+        firewallRules = mkDefault ''tcp dport ${toString config.port} accept comment "${name}-exporter"'';
       })];
       internal = true;
       default = {};
@@ -214,6 +226,7 @@ let
   mkExporterConf = { name, conf, serviceOpts }:
     let
       enableDynamicUser = serviceOpts.serviceConfig.DynamicUser or true;
+      nftables = config.networking.nftables.enable;
     in
     mkIf conf.enable {
       warnings = conf.warnings or [];
@@ -225,10 +238,11 @@ let
       users.groups = (mkIf (conf.group == "${name}-exporter" && !enableDynamicUser) {
         "${name}-exporter" = {};
       });
-      networking.firewall.extraCommands = mkIf conf.openFirewall (concatStrings [
+      networking.firewall.extraCommands = mkIf (conf.openFirewall && !nftables) (concatStrings [
         "ip46tables -A nixos-fw ${conf.firewallFilter} "
         "-m comment --comment ${name}-exporter -j nixos-fw-accept"
       ]);
+      networking.firewall.extraInputRules = mkIf (conf.openFirewall && nftables) conf.firewallRules;
       systemd.services."prometheus-${name}-exporter" = mkMerge ([{
         wantedBy = [ "multi-user.target" ];
         after = [ "network.target" ];

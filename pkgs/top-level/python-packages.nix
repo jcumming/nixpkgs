@@ -587,11 +587,15 @@ self: super: with self; {
 
   ansible = callPackage ../development/python-modules/ansible { };
 
+  ansible-builder = callPackage ../development/python-modules/ansible-builder { };
+
   ansible-compat = callPackage ../development/python-modules/ansible-compat { };
 
   ansible-core = callPackage ../development/python-modules/ansible/core.nix { };
 
   ansible-kernel = callPackage ../development/python-modules/ansible-kernel { };
+
+  ansible-navigator = callPackage ../development/python-modules/ansible-navigator { };
 
   ansible-pylibssh = callPackage ../development/python-modules/ansible-pylibssh { };
 
@@ -1508,6 +1512,8 @@ self: super: with self; {
   binaryornot = callPackage ../development/python-modules/binaryornot { };
 
   bincopy = callPackage ../development/python-modules/bincopy { };
+
+  bindep = callPackage ../development/python-modules/bindep { };
 
   binho-host-adapter = callPackage ../development/python-modules/binho-host-adapter { };
 
@@ -8938,6 +8944,8 @@ self: super: with self; {
   ondilo = callPackage ../development/python-modules/ondilo { };
 
   onetimepass = callPackage ../development/python-modules/onetimepass { };
+
+  onigurumacffi = callPackage ../development/python-modules/onigurumacffi { };
 
   onkyo-eiscp = callPackage ../development/python-modules/onkyo-eiscp { };
 

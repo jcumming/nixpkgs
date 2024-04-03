@@ -690,8 +690,8 @@ let
         mktplcRef = {
           name = "vscode-intelephense-client";
           publisher = "bmewburn";
-          version = "1.10.2";
-          sha256 = "sha256-he/aPcsxfqYWI/RJ51d5V0reaTPTATci34xPm93qxGs=";
+          version = "1.10.4";
+          sha256 = "sha256-bD7AL4x0yL5S+MzQXMBrSZs1pVclfvsTfUbImP1oQok=";
         };
         meta = {
           description = "PHP code intelligence for Visual Studio Code";
@@ -2112,6 +2112,22 @@ let
           sha256 = "sha256-zWdIVdz+kZg7KZQ7LeBCB4aB9wg8dUbkWfzGlM0Fq7Q=";
         };
         meta = {
+          license = lib.licenses.mit;
+        };
+      };
+
+      hbenl.vscode-test-explorer = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vscode-test-explorer";
+          publisher = "hbenl";
+          version = "2.21.1";
+          sha256 = "sha256-fHyePd8fYPt7zPHBGiVmd8fRx+IM3/cSBCyiI/C0VAg=";
+        };
+        meta = {
+          changelog = "https://github.com/hbenl/vscode-test-explorer/blob/master/CHANGELOG.md";
+          description = "A Visual Studio Code extension that runs your tests in the sidebar";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer";
+          homepage = "https://github.com/hbenl/vscode-test-explorer";
           license = lib.licenses.mit;
         };
       };
