@@ -2962,8 +2962,6 @@ with pkgs;
 
   spaceFM = callPackage ../applications/file-managers/spacefm { };
 
-  tuifimanager = callPackage ../applications/file-managers/tuifimanager { };
-
   vifm = callPackage ../applications/file-managers/vifm { };
 
   vifm-full = vifm.override {
@@ -7553,6 +7551,9 @@ with pkgs;
 
   dub = callPackage ../development/tools/build-managers/dub { };
 
+  inherit (import ../build-support/dlang/dub-support.nix { inherit callPackage; })
+    buildDubPackage dub-to-nix;
+
   duc = callPackage ../tools/misc/duc { };
 
   duff = callPackage ../tools/filesystems/duff {
@@ -9142,8 +9143,6 @@ with pkgs;
 
   http-getter = callPackage ../applications/networking/flent/http-getter.nix { };
 
-  httpdirfs = callPackage ../tools/filesystems/httpdirfs { };
-
   httpdump = callPackage ../tools/security/httpdump { };
 
   httpie = with python3Packages; toPythonApplication httpie;
@@ -10571,11 +10570,6 @@ with pkgs;
   lwc = callPackage ../tools/misc/lwc { };
 
   lxc = callPackage ../os-specific/linux/lxc {  };
-
-  lxd = callPackage ../tools/admin/lxd/wrapper.nix { };
-  lxd-unwrapped = callPackage ../tools/admin/lxd {
-    buildGoModule = buildGo122Module;
-  };
 
   lxd-image-server = callPackage ../tools/virtualization/lxd-image-server { };
 
@@ -13099,8 +13093,6 @@ with pkgs;
   silver-searcher = callPackage ../tools/text/silver-searcher { };
 
   simple-mtpfs = callPackage ../tools/filesystems/simple-mtpfs { };
-
-  simplotask = callPackage ../tools/admin/simplotask { };
 
   simpleproxy = callPackage ../tools/networking/simpleproxy { };
 
@@ -17594,8 +17586,6 @@ with pkgs;
   php81Extensions = recurseIntoAttrs php81.extensions;
   php81Packages = recurseIntoAttrs php81.packages;
 
-  phpactor = callPackage ../development/tools/phpactor { };
-
   picoc = callPackage ../development/interpreters/picoc { };
 
   picolisp = callPackage ../development/interpreters/picolisp { };
@@ -18933,8 +18923,6 @@ with pkgs;
 
   funzzy = callPackage ../development/tools/misc/funzzy { };
 
-  fzf-make = callPackage ../development/tools/misc/fzf-make { };
-
   gede = libsForQt5.callPackage ../development/tools/misc/gede { };
 
   gdbgui = python3Packages.callPackage ../development/tools/misc/gdbgui { };
@@ -20121,7 +20109,7 @@ with pkgs;
 
   yams = callPackage ../applications/audio/yams { };
 
-  ycmd = callPackage ../development/tools/misc/ycmd {
+  ycmd = callPackage ../by-name/yc/ycmd/package.nix {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
     python = python3;
   };
@@ -21681,7 +21669,7 @@ with pkgs;
 
   hwloc = callPackage ../development/libraries/hwloc { };
 
-  hydra_unstable = callPackage ../development/tools/misc/hydra/unstable.nix { nix = nixVersions.nix_2_19; };
+  hydra_unstable = callPackage ../development/tools/misc/hydra/unstable.nix { nix = nixVersions.nix_2_20; };
 
   hydra-cli = callPackage ../development/tools/misc/hydra-cli { };
 
@@ -22615,8 +22603,6 @@ with pkgs;
   libmcrypt = callPackage ../development/libraries/libmcrypt { };
 
   libmediaart = callPackage ../development/libraries/libmediaart { };
-
-  libmediainfo = callPackage ../development/libraries/libmediainfo { };
 
   libmhash = callPackage ../development/libraries/libmhash { };
 
@@ -27640,8 +27626,6 @@ with pkgs;
   linux_6_1_hardened = linuxKernel.kernels.linux_6_1_hardened;
   linuxPackages_6_6_hardened = linuxKernel.packages.linux_6_6_hardened;
   linux_6_6_hardened = linuxKernel.kernels.linux_6_6_hardened;
-  linuxPackages_6_7_hardened = linuxKernel.packages.linux_6_7_hardened;
-  linux_6_7_hardened = linuxKernel.kernels.linux_6_7_hardened;
 
   # GNU Linux-libre kernels
   linuxPackages-libre = linuxKernel.packages.linux_libre;
@@ -27809,7 +27793,7 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.frameworks) AppKit Security;
   };
 
-  nushellFull = nushell.override { additionalFeatures = p: p ++ ["dataframe" "extra"]; };
+  nushellFull = nushell.override { additionalFeatures = p: p ++ ["dataframe"]; };
 
   nu_scripts = callPackage ../shells/nushell/nu_scripts { };
 
@@ -31607,6 +31591,12 @@ with pkgs;
 
   manim = callPackage ../applications/video/manim { };
 
+  manim-slides = python3Packages.toPythonApplication (
+    python3Packages.manim-slides.override {
+      withGui = true;
+    }
+  );
+
   manuskript = libsForQt5.callPackage ../applications/editors/manuskript { };
 
   mindforger = libsForQt5.callPackage ../applications/editors/mindforger { };
@@ -32997,10 +32987,6 @@ with pkgs;
   mediaelch = mediaelch-qt5;
   mediaelch-qt5 = libsForQt5.callPackage ../applications/misc/mediaelch { };
   mediaelch-qt6 = qt6Packages.callPackage ../applications/misc/mediaelch { };
-
-  mediainfo = callPackage ../applications/misc/mediainfo { };
-
-  mediainfo-gui = callPackage ../applications/misc/mediainfo-gui { };
 
   mediathekview = callPackage ../applications/video/mediathekview { jre = temurin-bin-20; };
 

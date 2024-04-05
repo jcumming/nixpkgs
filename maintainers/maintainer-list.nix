@@ -1237,12 +1237,6 @@
     githubId = 29887;
     name = "Andrew Smith";
   };
-  andsild = {
-    email = "andsild@gmail.com";
-    github = "andsild";
-    githubId = 3808928;
-    name = "Anders Sildnes";
-  };
   andys8 = {
     github = "andys8";
     githubId = 13085980;
@@ -17198,6 +17192,12 @@
     github = "russell";
     githubId = 2660;
     name = "Russell Sim";
+  };
+  rutherther = {
+    name = "Rutherther";
+    email = "rutherther@proton.me";
+    github = "rutherther";
+    githubId = 12197024;
   };
   ruuda = {
     email = "dev+nix@veniogames.com";
