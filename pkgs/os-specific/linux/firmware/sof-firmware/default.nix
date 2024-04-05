@@ -19,7 +19,6 @@ stdenvNoCC.mkDerivation rec {
     mkdir -p $out/lib/firmware/intel
     cp -av sof $out/lib/firmware/intel/sof
     cp -av sof-tplg $out/lib/firmware/intel/sof-tplg
-    cp -av sof-ace-tplg $out/lib/firmware/intel/sof-ace-tplg
     cp -av sof-ipc4 $out/lib/firmware/intel/sof-ipc4
     runHook postInstall
   '';
