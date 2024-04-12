@@ -57,6 +57,7 @@ let
     "modemmanager"
     "mongodb"
     "mysqld"
+    "nats"
     "nextcloud"
     "nginx"
     "nginxlog"

@@ -224,6 +224,12 @@
     githubId = 12578560;
     name = "Quinn Bohner";
   };
+  _8aed = {
+    email = "8aed@riseup.net";
+    github = "8aed";
+    githubId = 140662578;
+    name = "Huit Aed";
+  };
   _8-bit-fox = {
     email = "sebastian@markwaerter.de";
     github = "8-bit-fox";
@@ -1336,12 +1342,6 @@
     githubId = 81317317;
     name = "Anna Aurora";
   };
-  a-n-n-a-l-e-e = {
-    github = "a-n-n-a-l-e-e";
-    githubId = 150648636;
-    matrix = "@a-n-n-a-l-e-e:matrix.org";
-    name = "annalee";
-  };
   anoa = {
     matrix = "@andrewm:amorgan.xyz";
     email = "andrew@amorgan.xyz";
@@ -1769,6 +1769,16 @@
     github = "ashleyghooper";
     githubId = 11037075;
     name = "Ashley Hooper";
+  };
+  ashuramaruzxc = {
+    email = "ashuramaru@tenjin-dk.com";
+    matrix = "@tenjin:mozilla.org";
+    github = "ashuramaruzxc";
+    githubId = 72100551;
+    name = "Mariia Holovata";
+    keys = [{
+      fingerprint = "409D 201E 9450 8732 A49E  D0FC 6BDA F874 0068 08DF";
+    }];
   };
   ashvith-shetty = {
     github = "Ashvith10";
@@ -5379,6 +5389,12 @@
       fingerprint = "389A 78CB CD88 5E0C 4701  DEB9 FD42 C7D0 D414 94C8";
     }];
   };
+  dudymas = {
+    email = "jeremy.white@cloudposse.com";
+    github = "dudymas";
+    githubId = 928448;
+    name = "Jeremy White";
+  };
   dukc = {
     email = "ajieskola@gmail.com";
     github = "dukc";
@@ -5781,6 +5797,12 @@
     github = "elpdt852";
     githubId = 122112154;
     name = "Edgar Lee";
+  };
+  elrohirgt = {
+    email = "elrohirgt@gmail.com";
+    github = "ElrohirGT";
+    githubId = 45268815;
+    name = "Flavio Galán";
   };
   elvishjerricco = {
     email = "elvishjerricco@gmail.com";
@@ -8527,6 +8549,12 @@
       fingerprint = "F5B2 BE1B 9AAD 98FE 2916  5597 3665 FFF7 9D38 7BAA";
     }];
   };
+  imrying = {
+    email = "philiprying@gmail.com";
+    github = "imrying";
+    githubId = 36996706;
+    name = "Philip Rying";
+  };
   imuli = {
     email = "i@imu.li";
     github = "imuli";
@@ -9611,6 +9639,12 @@
     github = "john-rodewald";
     githubId = 51028009;
     name = "John Rodewald";
+  };
+  johnrtitor = {
+    email = "masumrezarock100@gmail.com";
+    github = "johnrtitor";
+    githubId = 50095635;
+    name = "Masum Reza";
   };
   john-shaffer = {
     email = "jdsha@proton.me";
@@ -11385,6 +11419,13 @@
       fingerprint = "80EE AAD8 43F9 3097 24B5  3D7E 27E9 7B91 E63A 7FF8";
     }];
   };
+  link2xt = {
+    email = "link2xt@testrun.org";
+    githubId = 18373967;
+    github = "link2xt";
+    matrix = "@link2xt:matrix.org";
+    name = "link2xt";
+  };
   linquize = {
     email = "linquize@yahoo.com.hk";
     github = "linquize";
@@ -11786,6 +11827,12 @@
     github = "lukas-heiligenbrunner";
     githubId = 30468956;
     name = "Lukas Heiligenbrunner";
+  };
+  lukaslihotzki = {
+    email = "lukas@lihotzki.de";
+    github = "lukaslihotzki";
+    githubId = 10326063;
+    name = "Lukas Lihotzki";
   };
   lukaswrz = {
     email = "lukas@wrz.one";
@@ -14772,6 +14819,12 @@
     githubId = 7249506;
     name = "oida";
   };
+  ok-nick = {
+    email = "nick.libraries@gmail.com";
+    github = "ok-nick";
+    githubId = 25470747;
+    name = "Nick";
+  };
   olcai = {
     email = "dev@timan.info";
     github = "olcai";
@@ -14880,6 +14933,12 @@
     email = "virkony@gmail.com";
     github = "ony";
     githubId = 11265;
+  };
+  oo-infty = {
+    name = "Justin Chen";
+    email = "oo-infty@outlook.com";
+    github = "oo-infty";
+    githubId = 42143810;
   };
   ooliver1 = {
     name = "Oliver Wilkes";
@@ -15324,6 +15383,12 @@
     githubId = 1368952;
     name = "Pedro Lara Campos";
   };
+  peefy = {
+    email = "xpf6677@gmail.com";
+    github = "Peefy";
+    githubId = 22744597;
+    name = "Peefy";
+  };
   peelz = {
     email = "peelz.dev+nixpkgs@gmail.com";
     github = "notpeelz";
@@ -15455,6 +15520,12 @@
     keys = [{
       fingerprint = "7756 E88F 3C6A 47A5 C5F0  CDFB AB54 6777 F93E 20BF";
     }];
+  };
+  phdyellow = {
+    name = "Phil Dyer";
+    email = "phildyer@protonmail.com";
+    github = "PhDyellow";
+    githubId = 7740661;
   };
   phfroidmont = {
     name = "Paul-Henri Froidmont";

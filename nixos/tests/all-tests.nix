@@ -558,6 +558,7 @@ in {
   morty = handleTest ./morty.nix {};
   mosquitto = handleTest ./mosquitto.nix {};
   moosefs = handleTest ./moosefs.nix {};
+  movim = discoverTests (import ./web-apps/movim { inherit handleTestOn; });
   mpd = handleTest ./mpd.nix {};
   mpv = handleTest ./mpv.nix {};
   mtp = handleTest ./mtp.nix {};
@@ -777,6 +778,7 @@ in {
   redis = handleTest ./redis.nix {};
   redmine = handleTest ./redmine.nix {};
   restartByActivationScript = handleTest ./restart-by-activation-script.nix {};
+  restic-rest-server = handleTest ./restic-rest-server.nix {};
   restic = handleTest ./restic.nix {};
   retroarch = handleTest ./retroarch.nix {};
   rkvm = handleTest ./rkvm {};
@@ -826,6 +828,7 @@ in {
   soapui = handleTest ./soapui.nix {};
   soft-serve = handleTest ./soft-serve.nix {};
   sogo = handleTest ./sogo.nix {};
+  soju = handleTest ./soju.nix {};
   solanum = handleTest ./solanum.nix {};
   sonarr = handleTest ./sonarr.nix {};
   sonic-server = handleTest ./sonic-server.nix {};

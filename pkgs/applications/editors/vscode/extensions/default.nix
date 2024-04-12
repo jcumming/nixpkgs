@@ -428,8 +428,8 @@ let
         mktplcRef = {
           name = "vscode-neovim";
           publisher = "asvetliakov";
-          version = "1.7.1";
-          sha256 = "0ib4sjk7r370ckvaqb4yzgy7csy8pli9z2jhibhhwwcq2748ah4q";
+          version = "1.8.1";
+          sha256 = "0kqzry0cbvvy1pkbx5rhnk5ry7j91cbf11vz1s1jrqc7j0hq0yx8";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/asvetliakov.vscode-neovim/changelog";
@@ -941,8 +941,8 @@ let
         mktplcRef = {
           name = "coder-remote";
           publisher = "coder";
-          version = "0.1.18";
-          sha256 = "soNGZuyvG5+haWRcwYmYB+0OcyDAm4UQ419UnEd8waA=";
+          version = "0.1.36";
+          hash = "sha256-N1X8wB2n6JYoFHCP5iHBXHnEaRa9S1zooQZsR5mUeh8=";
         };
         meta = {
           description = "An extension for Visual Studio Code to open any Coder workspace in VS Code with a single click.";
@@ -2803,8 +2803,8 @@ let
         mktplcRef = {
           name = "typst-preview";
           publisher = "mgt19937";
-          version = "0.11.1";
-          hash = "sha256-OsCgkq0OSBu7RZYHlxgy7W7zDNDUgJFSeSET20CX8zA=";
+          version = "0.11.4";
+          hash = "sha256-GwlzFphZmP87pLys01+PWTv13imcdGjunCMH6atz9xs=";
         };
 
         buildInputs = [
@@ -4198,6 +4198,21 @@ let
           hash = "sha256-JKj6noi2dTe02PxX/kS117ZhW8u7Bhj4QowZQiJKP2E=";
         };
         meta = {
+          license = lib.licenses.mit;
+        };
+      };
+
+      teabyii.ayu = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "ayu";
+          publisher = "teabyii";
+          version = "1.0.5";
+          sha256 = "sha256-+IFqgWliKr+qjBLmQlzF44XNbN7Br5a119v9WAnZOu4=";
+        };
+        meta = {
+          description = "A simple theme with bright colors and comes in three versions — dark, light and mirage for all day long comfortable work.";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=teabyii.ayu";
+          homepage = "https://github.com/ayu-theme/vscode-ayu";
           license = lib.licenses.mit;
         };
       };
