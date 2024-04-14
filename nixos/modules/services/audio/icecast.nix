@@ -46,11 +46,11 @@ in {
 
     services.icecast = {
 
-      enable = mkEnableOption (lib.mdDoc "Icecast server");
+      enable = mkEnableOption "Icecast server";
 
       hostname = mkOption {
         type = types.nullOr types.str;
-        description = lib.mdDoc "DNS name or IP address that will be used for the stream directory lookups or possibly the playlist generation if a Host header is not provided.";
+        description = "DNS name or IP address that will be used for the stream directory lookups or possibly the playlist generation if a Host header is not provided.";
         default = config.networking.domain;
         defaultText = literalExpression "config.networking.domain";
       };
@@ -58,19 +58,19 @@ in {
       admin = {
         user = mkOption {
           type = types.str;
-          description = lib.mdDoc "Username used for all administration functions.";
+          description = "Username used for all administration functions.";
           default = "admin";
         };
 
         password = mkOption {
           type = types.str;
-          description = lib.mdDoc "Password used for all administration functions.";
+          description = "Password used for all administration functions.";
         };
       };
 
       logDir = mkOption {
         type = types.path;
-        description = lib.mdDoc "Base directory used for logging.";
+        description = "Base directory used for logging.";
         default = "/var/log/icecast";
       };
 
@@ -80,16 +80,16 @@ in {
                 options = {
                   port = mkOption {
                     type = types.port;
-                    description = lib.mdDoc "TCP port that will be used to accept client connections.";
+                    description = "TCP port that will be used to accept client connections.";
                   };
                   ip = mkOption {
                     type = types.str;
                     default = "*";
-                    description = lib.mdDoc "IP address to listen on. 0.0.0.0 for ipv4 only, * for all.";
+                    description = "IP address to listen on. 0.0.0.0 for ipv4 only, * for all.";
                   };
                 };
               } ));
-        description = lib.mdDoc ''
+        description = ''
           List of ip/ports { ip = "127.0.0.1"; port = 8000;} to listen on
         '';
 
@@ -98,19 +98,19 @@ in {
 
       user = mkOption {
         type = types.str;
-        description = lib.mdDoc "User privileges for the server.";
+        description = "User privileges for the server.";
         default = "nobody";
       };
 
       group = mkOption {
         type = types.str;
-        description = lib.mdDoc "Group privileges for the server.";
+        description = "Group privileges for the server.";
         default = "nogroup";
       };
 
       extraConf = mkOption {
         type = types.lines;
-        description = lib.mdDoc "icecast.xml content.";
+        description = "icecast.xml content.";
         default = "";
       };
 

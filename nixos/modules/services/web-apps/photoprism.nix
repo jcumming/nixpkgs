@@ -33,11 +33,11 @@ in
   in {
     options = with lib; {
       services.photoprism = {
-        enable = mkEnableOption (lib.mdDoc "photoprism");
+        enable = mkEnableOption "photoprism";
 
         settings = mkOption {
           type = types.attrs;
-          description = lib.mdDoc ''
+          description = ''
             [Environment variable](https://docs.photoprism.app/getting-started/config-options/) set before executing photoprism.
             The resultant environment variable will have `PHOTOPRISM_` prepended. (i.e. WORKERS = 8 sets PHOTOPRISM_WORKERS = 8).
           '';
