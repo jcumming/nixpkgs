@@ -31,6 +31,7 @@ let
     "collectd"
     "dmarc"
     "dnsmasq"
+    "dnssec"
     "domain"
     "dovecot"
     "fail2ban"

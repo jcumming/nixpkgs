@@ -13,7 +13,7 @@ let
     type = types.bool;
     default = true;
     example = false;
-    description = lib.mdDoc "Whether to emit ${msg} section from the automatically generated  X server config. This is useful if the section will be added by services.xserver.extraConfig.";
+    description = "Whether to emit ${msg} section from the automatically generated  X server config. This is useful if the section will be added by services.xserver.extraConfig.";
   };
 
   # Map video driver names to driver packages. FIXME: move into card-specific modules.

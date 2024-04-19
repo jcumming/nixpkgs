@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, fetchpatch
 , acl
 , attr
 , autoreconfHook
@@ -50,6 +51,10 @@ stdenv.mkDerivation (finalAttrs: {
       # access-time-related tests flakey on some systems
       "cpio/test/test_option_a.c"
       "cpio/test/test_option_t.c"
+    ] ++ lib.optionals (stdenv.isAarch64 && stdenv.isLinux) [
+      # only on some aarch64-linux systems?
+      "cpio/test/test_basic.c"
+      "cpio/test/test_format_newc.c"
     ];
     removeTest = testPath: ''
       substituteInPlace Makefile.am --replace-fail "${testPath}" ""
