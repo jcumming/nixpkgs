@@ -5,6 +5,7 @@
 , callPackage
 , catalogue
 , cymem
+, cython_0
 , fetchPypi
 , hypothesis
 , jinja2
@@ -57,6 +58,7 @@ buildPythonPackage rec {
 
   nativeBuildInputs = [
     pythonRelaxDepsHook
+    cython_0
   ];
 
   propagatedBuildInputs = [
