@@ -12,7 +12,7 @@ in {
       type = types.path;            
       default = "/var/run/fail2ban/fail2ban.sock";
       example = "/var/lib/fail2ban/fail2ban.sock";
-      description = lib.mdDoc ''
+      description = ''
         Path under which the fail2ban socket is placed.
         The user/group under which the exporter runs,
         should be able to access the socket in order
