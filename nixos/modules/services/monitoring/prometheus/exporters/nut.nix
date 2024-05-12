@@ -35,7 +35,7 @@ in
       type = types.str;
       default = "/exporter_metrics";
       example = "/expoter";
-      description = lib.mdDoc ''
+      description = ''
         Path under which to expose process metrics about this exporter.
 
         The default is different than the exporter default; users are more
@@ -46,7 +46,7 @@ in
       type = types.str;
       default = "/metrics";
       example = "/ups_metrics";
-      description = lib.mdDoc ''
+      description = ''
         Path under which to expose the UPS Prometheus metrics.
 
         The default is different than the exporter default; users are more
