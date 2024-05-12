@@ -48,6 +48,7 @@
 , librsvg
 , libsForQt5
 , libsamplerate
+, libshout
 , libspatialaudio
 , libssh2
 , libtheora
@@ -165,6 +166,7 @@ stdenv.mkDerivation (finalAttrs: {
     libraw1394
     librsvg
     libsamplerate
+    libshout
     libspatialaudio
     libssh2
     libtheora
