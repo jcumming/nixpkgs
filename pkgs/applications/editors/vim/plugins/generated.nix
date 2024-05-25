@@ -2646,6 +2646,18 @@ final: prev:
     meta.homepage = "https://github.com/ms-jpq/coq_nvim/";
   };
 
+  cornelis = buildVimPlugin {
+    pname = "cornelis";
+    version = "2024-04-17";
+    src = fetchFromGitHub {
+      owner = "isovector";
+      repo = "cornelis";
+      rev = "c97b4817034a927dcadb22294cf97a88087a935f";
+      sha256 = "03wkq7jly9syv7kqsf66hdq8p7fqk6a240azcys9fsak797nbs1a";
+    };
+    meta.homepage = "https://github.com/isovector/cornelis/";
+  };
+
   cosco-vim = buildVimPlugin {
     pname = "cosco.vim";
     version = "2018-08-07";
@@ -8207,6 +8219,18 @@ final: prev:
       sha256 = "0lgqiwnsm4ahgkv7qnxyi48m2i7wybxkxv29869v71bidnbkm6yb";
     };
     meta.homepage = "https://github.com/dcampos/nvim-snippy/";
+  };
+
+  nvim-snippets = buildVimPlugin {
+    pname = "nvim-snippets";
+    version = "2024-02-07";
+    src = fetchFromGitHub {
+      owner = "garymjr";
+      repo = "nvim-snippets";
+      rev = "f394d17b9a83820714957a06c6ed8e12223f3034";
+      sha256 = "10yfjdjygxlagvf6pvj6n86n0kzf7j72zf7sq9mvy42a9h68i3ip";
+    };
+    meta.homepage = "https://github.com/garymjr/nvim-snippets/";
   };
 
   nvim-solarized-lua = buildVimPlugin {
@@ -17321,6 +17345,18 @@ final: prev:
       sha256 = "1wpn6gfw1r89232d779lz8wy19asrribindlcsaikrsqvml3a0hr";
     };
     meta.homepage = "https://github.com/jhradilek/vim-snippets/";
+  };
+
+  compiler-nvim = buildVimPlugin {
+    pname = "compiler-nvim";
+    version = "2024-04-26";
+    src = fetchFromGitHub {
+      owner = "Zeioth";
+      repo = "compiler.nvim";
+      rev = "cb14acd32ba9ea09d01bbe3493aefdc59b68965c";
+      sha256 = "sha256-YZyT5B0nk9LxaEA5ntuKPs7yf/Ix7zs3f6N3UOc9AIU=";
+    };
+    meta.homepage = "https://github.com/Zeioth/compiler.nvim/";
   };
 
 

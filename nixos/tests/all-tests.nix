@@ -130,6 +130,7 @@ in {
   apparmor = handleTest ./apparmor.nix {};
   archi = handleTest ./archi.nix {};
   armagetronad = handleTest ./armagetronad.nix {};
+  artalk = handleTest ./artalk.nix {};
   atd = handleTest ./atd.nix {};
   atop = handleTest ./atop.nix {};
   atuin = handleTest ./atuin.nix {};
@@ -205,6 +206,7 @@ in {
   code-server = handleTest ./code-server.nix {};
   coder = handleTest ./coder.nix {};
   collectd = handleTest ./collectd.nix {};
+  commafeed = handleTest ./commafeed.nix {};
   connman = handleTest ./connman.nix {};
   consul = handleTest ./consul.nix {};
   consul-template = handleTest ./consul-template.nix {};
@@ -310,6 +312,7 @@ in {
   fenics = handleTest ./fenics.nix {};
   ferm = handleTest ./ferm.nix {};
   ferretdb = handleTest ./ferretdb.nix {};
+  filesender = handleTest ./filesender.nix {};
   filesystems-overlayfs = runTest ./filesystems-overlayfs.nix;
   firefly-iii = handleTest ./firefly-iii.nix {};
   firefox = handleTest ./firefox.nix { firefoxPackage = pkgs.firefox; };
@@ -588,7 +591,7 @@ in {
   mysql-backup = handleTest ./mysql/mysql-backup.nix {};
   mysql-replication = handleTest ./mysql/mysql-replication.nix {};
   n8n = handleTest ./n8n.nix {};
-  nagios = handleTest ./nagios.nix {};
+  nagios = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./nagios.nix {};
   nar-serve = handleTest ./nar-serve.nix {};
   nat.firewall = handleTest ./nat.nix { withFirewall = true; };
   nat.standalone = handleTest ./nat.nix { withFirewall = false; };
@@ -613,6 +616,7 @@ in {
   # TODO: put in networking.nix after the test becomes more complete
   networkingProxy = handleTest ./networking-proxy.nix {};
   nextcloud = handleTest ./nextcloud {};
+  nextjs-ollama-llm-ui = runTest ./web-apps/nextjs-ollama-llm-ui.nix;
   nexus = handleTest ./nexus.nix {};
   # TODO: Test nfsv3 + Kerberos
   nfs3 = handleTest ./nfs { version = 3; };
@@ -927,6 +931,7 @@ in {
   systemd-oomd = handleTest ./systemd-oomd.nix {};
   systemd-portabled = handleTest ./systemd-portabled.nix {};
   systemd-repart = handleTest ./systemd-repart.nix {};
+  systemd-resolved = handleTest ./systemd-resolved.nix {};
   systemd-shutdown = handleTest ./systemd-shutdown.nix {};
   systemd-sysupdate = runTest ./systemd-sysupdate.nix;
   systemd-sysusers-mutable = runTest ./systemd-sysusers-mutable.nix;
@@ -1005,7 +1010,7 @@ in {
   vault-dev = handleTest ./vault-dev.nix {};
   vault-postgresql = handleTest ./vault-postgresql.nix {};
   vaultwarden = handleTest ./vaultwarden.nix {};
-  vector = handleTest ./vector.nix {};
+  vector = handleTest ./vector {};
   vengi-tools = handleTest ./vengi-tools.nix {};
   victoriametrics = handleTest ./victoriametrics.nix {};
   vikunja = handleTest ./vikunja.nix {};
