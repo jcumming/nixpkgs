@@ -2632,8 +2632,6 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.frameworks) AudioUnit Carbon Cocoa;
   };
 
-  duckstation = qt6Packages.callPackage ../applications/emulators/duckstation { };
-
   dynamips = callPackage ../applications/emulators/dynamips { };
 
   emu2 = callPackage ../applications/emulators/emu2 { };
@@ -15037,8 +15035,6 @@ with pkgs;
 
   ion = callPackage ../shells/ion { };
 
-  jush = callPackage ../shells/jush { };
-
   ksh = callPackage ../shells/ksh { };
 
   liquidprompt = callPackage ../shells/liquidprompt { };
@@ -17062,7 +17058,7 @@ with pkgs;
 
   # BQN interpreters and compilers
 
-  mbqn = callPackage ../development/interpreters/bqn/mlochbaum-bqn { };
+  mbqn = bqn;
 
   cbqn = cbqn-bootstrap.phase2;
   cbqn-replxx = cbqn-bootstrap.phase2-replxx;
@@ -17087,43 +17083,46 @@ with pkgs;
 
     phase0 = callPackage ../development/interpreters/bqn/cbqn {
       inherit (cbqn-bootstrap) mbqn-source stdenv;
-      genBytecode = false;
-      bqn-path = null;
+      generateBytecode = false;
+      # Not really used, but since null can be dangerous...
+      bqn-interpreter = "${lib.getExe' buildPackages.mbqn "bqn"}";
     };
 
     phase0-replxx = callPackage ../development/interpreters/bqn/cbqn {
       inherit (cbqn-bootstrap) mbqn-source stdenv;
-      genBytecode = false;
-      bqn-path = null;
       enableReplxx = true;
+      generateBytecode = false;
+      # Not really used, but since null can be dangerous...
+      bqn-interpreter = "${lib.getExe' buildPackages.mbqn "bqn"}";
     };
 
     phase1 = callPackage ../development/interpreters/bqn/cbqn {
       inherit (cbqn-bootstrap) mbqn-source stdenv;
-      genBytecode = true;
-      bqn-path = "${buildPackages.cbqn-bootstrap.phase0}/bin/cbqn";
+      generateBytecode = true;
+      bqn-interpreter = "${lib.getExe' buildPackages.cbqn-bootstrap.phase0 "cbqn"}";
     };
 
     phase2 = callPackage ../development/interpreters/bqn/cbqn {
       inherit (cbqn-bootstrap) mbqn-source stdenv;
-      genBytecode = true;
-      bqn-path = "${buildPackages.cbqn-bootstrap.phase1}/bin/cbqn";
+      generateBytecode = true;
+      bqn-interpreter = "${lib.getExe' buildPackages.cbqn-bootstrap.phase0 "cbqn"}";
     };
 
     phase2-replxx = callPackage ../development/interpreters/bqn/cbqn {
       inherit (cbqn-bootstrap) mbqn-source stdenv;
-      genBytecode = true;
-      bqn-path = "${buildPackages.cbqn-bootstrap.phase1}/bin/cbqn";
+      generateBytecode = true;
       enableReplxx = true;
+      bqn-interpreter = "${lib.getExe' buildPackages.cbqn-bootstrap.phase0 "cbqn"}";
     };
   };
 
-  dbqn = callPackage ../development/interpreters/bqn/dzaima-bqn {
+  dbqn = callPackage ../by-name/db/dbqn/package.nix {
     buildNativeImage = false;
-    stdenv = stdenvNoCC;
     jdk = jre;
+    stdenv = stdenvNoCC;
   };
-  dbqn-native = callPackage ../development/interpreters/bqn/dzaima-bqn {
+
+  dbqn-native = dbqn.override {
     buildNativeImage = true;
     jdk = graalvm-ce;
   };
@@ -30725,7 +30724,10 @@ with pkgs;
 
   fondo = callPackage ../applications/graphics/fondo { };
 
-  font-manager = callPackage ../applications/misc/font-manager { };
+  font-manager = callPackage ../by-name/fo/font-manager/package.nix {
+    libsoup = libsoup_3;
+    webkitgtk = webkitgtk_4_1;
+  };
 
   fontfinder = callPackage ../applications/misc/fontfinder { };
 

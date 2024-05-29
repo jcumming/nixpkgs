@@ -4880,6 +4880,8 @@ self: super: with self; {
 
   goodwe = callPackage ../development/python-modules/goodwe { };
 
+  gophish = callPackage ../development/python-modules/gophish { };
+
   google = callPackage ../development/python-modules/google { };
 
   google-ai-generativelanguage = callPackage ../development/python-modules/google-ai-generativelanguage { };
@@ -6504,6 +6506,8 @@ self: super: with self; {
   };
 
   latex2mathml = callPackage ../development/python-modules/latex2mathml { };
+
+  latex2pydata = callPackage ../development/python-modules/latex2pydata { };
 
   latexcodec = callPackage ../development/python-modules/latexcodec { };
 
@@ -8972,6 +8976,8 @@ self: super: with self; {
   nsz = callPackage ../development/python-modules/nsz { };
 
   nxt-python = callPackage ../development/python-modules/nxt-python { };
+
+  plugp100 = callPackage ../development/python-modules/plugp100 {};
 
   python-ndn = callPackage ../development/python-modules/python-ndn { };
 
@@ -17382,8 +17388,6 @@ self: super: with self; {
   zipfile2 = callPackage ../development/python-modules/zipfile2 { };
 
   zipp = callPackage ../development/python-modules/zipp { };
-
-  zipstream = callPackage ../development/python-modules/zipstream { };
 
   zipstream-ng = callPackage ../development/python-modules/zipstream-ng { };
 
