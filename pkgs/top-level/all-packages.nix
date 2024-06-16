@@ -37957,8 +37957,6 @@ with pkgs;
 
   seaview = callPackage ../applications/science/biology/seaview { };
 
-  SPAdes = callPackage ../applications/science/biology/spades { };
-
   svaba = callPackage ../applications/science/biology/svaba { };
 
   tandem-aligner = callPackage ../applications/science/biology/tandem-aligner { };
