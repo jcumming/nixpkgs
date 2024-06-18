@@ -42,7 +42,7 @@ stdenv.mkDerivation (finalAttrs: {
   gmic_stdlib = fetchurl {
     name = "gmic_stdlib_community.h";
     url = "http://gmic.eu/gmic_stdlib_community${lib.replaceStrings ["."] [""] finalAttrs.version}.h";
-    hash = "sha256-wq8yQ0pxEGH3sOmwmgQfRVluHAC4JBYgs2mto1PNLP4=";
+    hash = "sha256-LoqK8ADwzPpxhy2GvaxVjGyYEHAbhspyoIXuBXCLRtQ=";
   };
 
   nativeBuildInputs = [
