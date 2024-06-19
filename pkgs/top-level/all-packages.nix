@@ -2595,8 +2595,6 @@ with pkgs;
 
   cdemu-daemon = callPackage ../applications/emulators/cdemu/daemon.nix { };
 
-  cemu = callPackage ../applications/emulators/cemu { };
-
   cen64 = callPackage ../applications/emulators/cen64 { };
 
   citations = callPackage ../applications/misc/citations { };
@@ -3117,7 +3115,7 @@ with pkgs;
   inherit (callPackages ../development/tools/ammonite {})
     ammonite_2_12
     ammonite_2_13;
-  ammonite = if scala == scala_2_12 then ammonite_2_12 else ammonite_2_13;
+  ammonite = ammonite_2_13;
 
   amp = callPackage ../applications/editors/amp { };
 
@@ -5383,8 +5381,6 @@ with pkgs;
 
   globalarrays = callPackage ../development/libraries/globalarrays { };
 
-  glock = callPackage ../development/tools/glock { };
-
   glslviewer = callPackage ../development/tools/glslviewer {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
   };
@@ -6629,8 +6625,9 @@ with pkgs;
     citrix_workspace_23_09_0
     citrix_workspace_23_11_0
     citrix_workspace_24_02_0
+    citrix_workspace_24_05_0
   ;
-  citrix_workspace = citrix_workspace_24_02_0;
+  citrix_workspace = citrix_workspace_24_05_0;
 
   clima = callPackage ../tools/text/clima { };
 
@@ -6719,9 +6716,7 @@ with pkgs;
 
   unionfs-fuse = callPackage ../tools/filesystems/unionfs-fuse { };
 
-  unparam = callPackage ../tools/misc/unparam {
-    buildGoModule = buildGo121Module;
-  };
+  unparam = callPackage ../tools/misc/unparam { };
 
   inherit (nodePackages) uppy-companion;
 
@@ -10360,10 +10355,6 @@ with pkgs;
 
   lv = callPackage ../tools/text/lv { };
 
-  lv_img_conv = callPackage ../development/tools/lv_img_conv  {
-    inherit (darwin.apple_sdk.frameworks) CoreText;
-  };
-
   lwc = callPackage ../tools/misc/lwc { };
 
   lxd-image-server = callPackage ../tools/virtualization/lxd-image-server { };
@@ -11902,8 +11893,6 @@ with pkgs;
   ponysay = callPackage ../tools/misc/ponysay { };
 
   popfile = callPackage ../tools/text/popfile { };
-
-  poretools = callPackage ../applications/science/biology/poretools { };
 
   porsmo = callPackage ../applications/misc/porsmo { };
 
@@ -16785,7 +16774,7 @@ with pkgs;
   scala_2_13 = callPackage ../development/compilers/scala/2.x.nix { majorVersion = "2.13"; };
   scala_3 = callPackage ../development/compilers/scala { };
 
-  scala = scala_2_13;
+  scala = scala_3;
   scala-runners = callPackage ../development/compilers/scala-runners {
     coursier = coursier.override { jre = jdk8; };
   };
@@ -18017,8 +18006,6 @@ with pkgs;
 
   b4 = callPackage ../development/tools/b4 { };
 
-  babeltrace = callPackage ../development/tools/misc/babeltrace { };
-
   bam = callPackage ../development/tools/build-managers/bam { };
 
   bandit = with python3Packages; toPythonApplication bandit;
@@ -18547,8 +18534,6 @@ with pkgs;
   dwfv = callPackage ../applications/science/electronics/dwfv { };
 
   dwz = callPackage ../development/tools/misc/dwz { };
-
-  eask = callPackage ../development/tools/eask { };
 
   easypdkprog = callPackage ../development/embedded/easypdkprog { };
 
@@ -21639,9 +21624,6 @@ with pkgs;
 
   LAStools = callPackage ../development/libraries/LAStools { };
 
-  LASzip = callPackage ../development/libraries/LASzip { };
-  LASzip2 = callPackage ../development/libraries/LASzip/LASzip2.nix { };
-
   laurel = callPackage ../servers/monitoring/laurel/default.nix { };
 
   lcm = callPackage ../development/libraries/lcm { };
@@ -24653,9 +24635,7 @@ with pkgs;
 
   umockdev = callPackage ../development/libraries/umockdev { };
 
-  unconvert = callPackage ../development/tools/unconvert {
-    buildGoModule = buildGo121Module;
-  };
+  unconvert = callPackage ../development/tools/unconvert { };
 
   uncover = callPackage ../tools/security/uncover { };
 
@@ -27593,6 +27573,7 @@ with pkgs;
   odin = callPackage ../development/compilers/odin {
     inherit (pkgs.darwin.apple_sdk_11_0) MacOSX-SDK;
     inherit (pkgs.darwin.apple_sdk_11_0.frameworks) Security;
+    llvmPackages = llvmPackages_18;
   };
 
   odp-dpdk = callPackage ../os-specific/linux/odp-dpdk { };
@@ -29965,14 +29946,6 @@ with pkgs;
 
   cgif = callPackage ../tools/graphics/cgif { };
 
-  ChowCentaur  = callPackage ../applications/audio/ChowCentaur { };
-
-  ChowKick  = callPackage ../applications/audio/ChowKick { };
-
-  ChowPhaser  = callPackage ../applications/audio/ChowPhaser { };
-
-  CHOWTapeModel = callPackage ../applications/audio/CHOWTapeModel { };
-
   chromium = callPackage ../applications/networking/browsers/chromium (config.chromium or {});
 
   chuck = callPackage ../applications/audio/chuck {
@@ -30082,8 +30055,6 @@ with pkgs;
   cordless = callPackage ../applications/networking/instant-messengers/cordless { };
 
   coursera-dl = callPackage ../applications/misc/coursera-dl { };
-
-  coyim = callPackage ../applications/networking/instant-messengers/coyim { };
 
   cozy-drive = callPackage ../applications/networking/cozy-drive { };
 
@@ -30237,8 +30208,6 @@ with pkgs;
   docker-gc = callPackage ../applications/virtualization/docker/gc.nix { };
   docker-machine-hyperkit = callPackage ../applications/networking/cluster/docker-machine/hyperkit.nix { };
   docker-machine-kvm2 = callPackage ../applications/networking/cluster/docker-machine/kvm2.nix { };
-
-  docker-distribution = callPackage ../applications/virtualization/docker/distribution.nix { };
 
   dockfmt = callPackage ../development/tools/dockfmt { };
 
@@ -31175,6 +31144,9 @@ with pkgs;
       jdk = jdk21;
       withJcef = false;
     };
+    jdk-no-jcef-17 = callPackage ../development/compilers/jetbrains-jdk/17.nix {
+      withJcef = false;
+    };
     jdk = callPackage ../development/compilers/jetbrains-jdk {
       jdk = jdk21;
     };
@@ -31188,10 +31160,6 @@ with pkgs;
   junction = callPackage ../applications/misc/junction { };
 
   lemonade = callPackage ../applications/misc/lemonade { };
-
-  LibreArp = callPackage ../applications/audio/LibreArp { };
-
-  LibreArp-lv2 = callPackage ../applications/audio/LibreArp/lv2.nix { };
 
   librespot = callPackage ../applications/audio/librespot {
     withALSA = stdenv.isLinux;
@@ -35077,9 +35045,6 @@ with pkgs;
 
   neovim-gtk = callPackage ../applications/editors/neovim/neovim-gtk.nix { };
 
-  neovim-qt-unwrapped = libsForQt5.callPackage ../applications/editors/neovim/neovim-qt.nix { };
-  neovim-qt = libsForQt5.callPackage ../applications/editors/neovim/qt.nix { };
-
   gnvim-unwrapped = callPackage ../applications/editors/neovim/gnvim { };
 
   gnvim = callPackage ../applications/editors/neovim/gnvim/wrapper.nix { };
@@ -35622,8 +35587,6 @@ with pkgs;
   xlife = callPackage ../applications/graphics/xlife { };
 
   xmobar = haskellPackages.xmobar.bin;
-
-  xmonad-log = callPackage ../tools/misc/xmonad-log { };
 
   xmonad-with-packages = callPackage ../applications/window-managers/xmonad/wrapper.nix {
     inherit (haskellPackages) ghcWithPackages;
@@ -39265,8 +39228,6 @@ with pkgs;
 
   velero = callPackage ../applications/networking/cluster/velero { };
 
-  HentaiAtHome = callPackage ../applications/misc/HentaiAtHome { };
-
   hplip = callPackage ../misc/drivers/hplip { };
 
   hplipWithPlugin = hplip.override { withPlugin = true; };
@@ -39373,8 +39334,9 @@ with pkgs;
     kops_1_26
     kops_1_27
     kops_1_28
+    kops_1_29
     ;
-  kops = kops_1_28;
+  kops = kops_1_29;
 
   lguf-brightness = callPackage ../misc/lguf-brightness { };
 
@@ -40752,8 +40714,6 @@ with pkgs;
   };
 
   webwormhole = callPackage ../tools/networking/webwormhole { };
-
-  werf = callPackage ../applications/networking/cluster/werf { };
 
   yor = callPackage ../applications/networking/cluster/yor { };
 

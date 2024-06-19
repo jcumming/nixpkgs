@@ -41,7 +41,7 @@ stdenv.mkDerivation (finalAttrs: {
   # Reference: src/Makefile, directive gmic_stdlib_community.h
   gmic_stdlib = fetchurl {
     name = "gmic_stdlib_community.h";
-    url = "http://gmic.eu/gmic_stdlib_community${lib.replaceStrings ["."] [""] finalAttrs.version}.h";
+    url = "https://gmic.eu/gmic_stdlib_community${lib.replaceStrings ["."] [""] finalAttrs.version}.h";
     hash = "sha256-LoqK8ADwzPpxhy2GvaxVjGyYEHAbhspyoIXuBXCLRtQ=";
   };
 
