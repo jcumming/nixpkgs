@@ -775,7 +775,7 @@ in {
   printing-service = handleTest ./printing.nix { socket = false; };
   private-gpt = handleTest ./private-gpt.nix {};
   privoxy = handleTest ./privoxy.nix {};
-  prometheus = handleTest ./prometheus.nix {};
+  prometheus = handleTest ./prometheus {};
   prometheus-exporters = handleTest ./prometheus-exporters.nix {};
   prosody = handleTest ./xmpp/prosody.nix {};
   prosody-mysql = handleTest ./xmpp/prosody-mysql.nix {};
@@ -824,6 +824,7 @@ in {
   rstudio-server = handleTest ./rstudio-server.nix {};
   rsyncd = handleTest ./rsyncd.nix {};
   rsyslogd = handleTest ./rsyslogd.nix {};
+  rtorrent = handleTest ./rtorrent.nix {};
   rxe = handleTest ./rxe.nix {};
   sabnzbd = handleTest ./sabnzbd.nix {};
   samba = handleTest ./samba.nix {};
@@ -968,6 +969,7 @@ in {
   teleport = handleTest ./teleport.nix {};
   thelounge = handleTest ./thelounge.nix {};
   terminal-emulators = handleTest ./terminal-emulators.nix {};
+  thanos = handleTest ./thanos.nix {};
   tiddlywiki = handleTest ./tiddlywiki.nix {};
   tigervnc = handleTest ./tigervnc.nix {};
   timescaledb = handleTest ./timescaledb.nix {};
@@ -1040,6 +1042,7 @@ in {
   wiki-js = handleTest ./wiki-js.nix {};
   wine = handleTest ./wine.nix {};
   wireguard = handleTest ./wireguard {};
+  wg-access-server = handleTest ./wg-access-server.nix {};
   without-nix = handleTest ./without-nix.nix {};
   wmderland = handleTest ./wmderland.nix {};
   workout-tracker = handleTest ./workout-tracker.nix {};

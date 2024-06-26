@@ -3484,7 +3484,7 @@ self: super: with self; {
   dm-sonnet = callPackage ../development/python-modules/dm-sonnet { };
 
   dm-tree = callPackage ../development/python-modules/dm-tree {
-    abseil-cpp = pkgs.abseil-cpp_202103.override {
+    abseil-cpp = pkgs.abseil-cpp.override {
       cxxStandard = "14";
     };
   };
@@ -3794,7 +3794,7 @@ self: super: with self; {
 
   eggdeps = callPackage ../development/python-modules/eggdeps { };
 
-  eigenpy = toPythonModule (callPackage ../development/python-modules/eigenpy { });
+  eigenpy = callPackage ../development/python-modules/eigenpy { };
 
   einops = callPackage ../development/python-modules/einops { };
 
@@ -4035,6 +4035,10 @@ self: super: with self; {
 
   exifread = callPackage ../development/python-modules/exifread { };
 
+  exiv2 = callPackage ../development/python-modules/exiv2 {
+    inherit (pkgs) exiv2;
+  };
+
   expandvars = callPackage ../development/python-modules/expandvars { };
 
   expects = callPackage ../development/python-modules/expects { };
@@ -4084,6 +4088,11 @@ self: super: with self; {
   ezdxf = callPackage ../development/python-modules/ezdxf { };
 
   ezyrb = callPackage ../development/python-modules/ezyrb { };
+
+  f3d = toPythonModule (pkgs.f3d.override {
+    withPythonBinding = true;
+    python3Packages = self;
+  });
 
   f5-icontrol-rest = callPackage ../development/python-modules/f5-icontrol-rest { };
 
@@ -5368,6 +5377,8 @@ self: super: with self; {
   hatch-vcs = callPackage ../development/python-modules/hatch-vcs { };
 
   hatch-nodejs-version = callPackage ../development/python-modules/hatch-nodejs-version { };
+
+  hatch-regex-commit = callPackage ../development/python-modules/hatch-regex-commit { };
 
   hatch-requirements-txt = callPackage ../development/python-modules/hatch-requirements-txt { };
 
@@ -9199,9 +9210,7 @@ self: super: with self; {
 
   onlykey-solo-python = callPackage ../development/python-modules/onlykey-solo-python { };
 
-  onnx = callPackage ../development/python-modules/onnx {
-    abseil-cpp = pkgs.abseil-cpp_202301;
-  };
+  onnx = callPackage ../development/python-modules/onnx { };
 
   onnxconverter-common = callPackage ../development/python-modules/onnxconverter-common {
     inherit (pkgs) protobuf;
@@ -10093,6 +10102,8 @@ self: super: with self; {
 
   pylddwrap = callPackage ../development/python-modules/pylddwrap { };
 
+  pyloadapi = callPackage ../development/python-modules/pyloadapi { };
+
   pyngo = callPackage ../development/python-modules/pyngo { };
 
   pyngrok = callPackage ../development/python-modules/pyngrok { };
@@ -10135,7 +10146,9 @@ self: super: with self; {
 
   pyrender = callPackage ../development/python-modules/pyrender { };
 
-  pyreqwest-impersonate = callPackage ../development/python-modules/pyreqwest-impersonate { };
+  pyreqwest-impersonate = callPackage ../development/python-modules/pyreqwest-impersonate {
+    inherit (pkgs.darwin.apple_sdk.frameworks) SystemConfiguration;
+  };
 
   pyrevolve = callPackage ../development/python-modules/pyrevolve { };
 
@@ -10692,7 +10705,9 @@ self: super: with self; {
 
   py3buddy = toPythonModule (callPackage ../development/python-modules/py3buddy { });
 
-  py3exiv2 = callPackage ../development/python-modules/py3exiv2 { };
+  py3exiv2 = callPackage ../development/python-modules/py3exiv2 {
+    inherit (pkgs) exiv2;
+  };
 
   py3langid = callPackage ../development/python-modules/py3langid { };
 
@@ -13401,6 +13416,8 @@ self: super: with self; {
   rfc6555 = callPackage ../development/python-modules/rfc6555 { };
 
   rfc7464 = callPackage ../development/python-modules/rfc7464 { };
+
+  rfc8785 = callPackage ../development/python-modules/rfc8785 { };
 
   rfcat = callPackage ../development/python-modules/rfcat { };
 
