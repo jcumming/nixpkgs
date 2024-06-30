@@ -255,6 +255,8 @@ self: super: with self; {
 
   aiohttp-jinja2 = callPackage ../development/python-modules/aiohttp-jinja2 { };
 
+  aiohttp-middlewares = callPackage ../development/python-modules/aiohttp-middlewares { };
+
   aiohttp-oauthlib = callPackage ../development/python-modules/aiohttp-oauthlib { };
 
   aiohttp-openmetrics = callPackage ../development/python-modules/aiohttp-openmetrics { };
@@ -4457,6 +4459,10 @@ self: super: with self; {
 
   flet-runtime = callPackage ../development/python-modules/flet-runtime { };
 
+  flexcache = callPackage ../development/python-modules/flexcache { };
+
+  flexparser = callPackage ../development/python-modules/flexparser { };
+
   flexmock = callPackage ../development/python-modules/flexmock { };
 
   flickrapi = callPackage ../development/python-modules/flickrapi { };
@@ -4581,6 +4587,8 @@ self: super: with self; {
   fqdn = callPackage ../development/python-modules/fqdn { };
 
   freebox-api = callPackage ../development/python-modules/freebox-api { };
+
+  freertos-gdb = callPackage ../development/python-modules/freertos-gdb { };
 
   freetype-py = callPackage ../development/python-modules/freetype-py { };
 
@@ -7810,6 +7818,8 @@ self: super: with self; {
   moviepy = callPackage ../development/python-modules/moviepy { };
 
   mox3 = callPackage ../development/python-modules/mox3 { };
+
+  mozilla-django-oidc = callPackage ../development/python-modules/mozilla-django-oidc { };
 
   mpd2 = callPackage ../development/python-modules/mpd2 { };
 
@@ -12548,6 +12558,8 @@ self: super: with self; {
 
   python-linux-procfs = callPackage ../development/python-modules/python-linux-procfs { };
 
+  python-logging-loki = callPackage ../development/python-modules/python-logging-loki { };
+
   python-logstash = callPackage ../development/python-modules/python-logstash { };
 
   python-louvain = callPackage ../development/python-modules/python-louvain { };
@@ -14169,8 +14181,6 @@ self: super: with self; {
 
   slack-sdk = callPackage ../development/python-modules/slack-sdk { };
 
-  slackclient = callPackage ../development/python-modules/slackclient { };
-
   sleekxmpp = callPackage ../development/python-modules/sleekxmpp { };
 
   sleepyq = callPackage ../development/python-modules/sleepyq { };
@@ -14318,6 +14328,8 @@ self: super: with self; {
   solax = callPackage ../development/python-modules/solax { };
 
   solc-select = callPackage ../development/python-modules/solc-select { };
+
+  solidpython2 = callPackage ../development/python-modules/solidpython2 { };
 
   solo-python = disabledIf (!pythonAtLeast "3.6") (callPackage ../development/python-modules/solo-python { });
 
