@@ -4,11 +4,13 @@
   buildPythonPackage,
   fetchFromGitHub,
   six,
+  setuptools,
   setuptools-scm,
   xorg,
   python,
+  pythonOlder,
   mock,
-  nose,
+  pynose,
   pytestCheckHook,
   util-linux,
 }:
@@ -16,7 +18,9 @@
 buildPythonPackage rec {
   pname = "xlib";
   version = "0.33";
-  format = "setuptools";
+  pyproject = true;
+
+  build-system = [ setuptools ];
 
   src = fetchFromGitHub {
     owner = "python-xlib";
@@ -31,15 +35,15 @@ buildPythonPackage rec {
 
   propagatedBuildInputs = [ six ];
 
-  doCheck = !stdenv.isDarwin;
+  doCheck = !stdenv.isDarwin && pythonOlder "3.12";
 
   nativeCheckInputs = [
     pytestCheckHook
     mock
-    nose
+    pynose
     util-linux
     xorg.xauth
-    xorg.xorgserver
+    xorg.xvfb
   ];
 
   disabledTestPaths = [

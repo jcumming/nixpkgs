@@ -6035,6 +6035,18 @@ final: prev:
     meta.homepage = "https://github.com/chentoast/marks.nvim/";
   };
 
+  markview-nvim = buildVimPlugin {
+    pname = "markview.nvim";
+    version = "2024-06-28";
+    src = fetchFromGitHub {
+      owner = "OXY2DEV";
+      repo = "markview.nvim";
+      rev = "f60219dce7283192d549f21847fcf8537bf6d260";
+      sha256 = "E1lHSjbnOOIeieaFJ+INvxJHCbfVS3mwbQ6wrlKeGSQ=";
+    };
+    meta.homepage = "https://github.com/OXY2DEV/markview.nvim";
+  };
+
   mason-lspconfig-nvim = buildVimPlugin {
     pname = "mason-lspconfig.nvim";
     version = "2024-06-12";
@@ -9280,6 +9292,18 @@ final: prev:
     meta.homepage = "https://github.com/nvim-lua/popup.nvim/";
   };
 
+  precognition-nvim = buildVimPlugin {
+    pname = "precognition.nvim";
+    version = "2024-06-25";
+    src = fetchFromGitHub {
+      owner = "tris203";
+      repo = "precognition.nvim";
+      rev = "2a566f03eb06859298eff837f3a6686dfa5304a5";
+      sha256 = "XLcyRB4ow5nPoQ0S29bx0utV9Z/wogg7c3rozYSqlWE=";
+    };
+    meta.homepage = "https://github.com/tris203/precognition.nvim";
+  };
+
   presence-nvim = buildVimPlugin {
     pname = "presence.nvim";
     version = "2023-01-29";
@@ -10610,8 +10634,8 @@ final: prev:
     src = fetchFromGitHub {
       owner = "godlygeek";
       repo = "tabular";
-      rev = "29a6b21dd991477a9e137fe8891947e2f2e8bb45";
-      sha256 = "0q76w0xj443fn5a22wksp14f3s55ll2xq0rbdaj37xdd8kddlg8s";
+      rev = "12437cd1b53488e24936ec4b091c9324cafee311";
+      sha256 = "1cnh21yhcn2f4fajdr2b6hrclnhf1sz4abra4nw7b5yk1mvfjq5a";
     };
     meta.homepage = "https://github.com/godlygeek/tabular/";
   };
@@ -17165,6 +17189,18 @@ final: prev:
       fetchSubmodules = true;
     };
     meta.homepage = "https://github.com/HerringtonDarkholme/yats.vim/";
+  };
+
+  yazi-nvim = buildVimPlugin {
+    pname = "yazi.nvim";
+    version = "2024-06-29";
+    src = fetchFromGitHub {
+      owner = "mikavilpas";
+      repo = "yazi.nvim";
+      rev = "05849f390175f2ba8fd277b224d4fd9e35455895";
+      sha256 = "zj+lmxsOEW+YaCk5hb7u454gACUmqYPA/IeW6av4D7k=";
+    };
+    meta.homepage = "https://github.com/DreamMaoMao/yazi.nvim";
   };
 
   yescapsquit-vim = buildVimPlugin {
