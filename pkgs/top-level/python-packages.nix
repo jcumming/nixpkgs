@@ -25,8 +25,6 @@ self: super: with self; {
 
   a2wsgi = callPackage ../development/python-modules/a2wsgi { };
 
-  aadict = callPackage ../development/python-modules/aadict { };
-
   aafigure = callPackage ../development/python-modules/aafigure { };
 
   aardwolf = callPackage ../development/python-modules/aardwolf { };
@@ -468,6 +466,8 @@ self: super: with self; {
   aiozeroconf = callPackage ../development/python-modules/aiozeroconf { };
 
   aiozoneinfo = callPackage ../development/python-modules/aiozoneinfo { };
+
+  airgradient = callPackage ../development/python-modules/airgradient { };
 
   airium = callPackage ../development/python-modules/airium { };
 
@@ -1965,8 +1965,6 @@ self: super: with self; {
   casa-formats-io = callPackage ../development/python-modules/casa-formats-io { };
 
   casbin = callPackage ../development/python-modules/casbin { };
-
-  case = callPackage ../development/python-modules/case { };
 
   cashaddress = callPackage ../development/python-modules/cashaddress { };
 
@@ -4538,6 +4536,8 @@ self: super: with self; {
 
   font-v = callPackage ../development/python-modules/font-v { };
 
+  free-proxy = callPackage ../development/python-modules/free-proxy { };
+
   skia-pathops = callPackage ../development/python-modules/skia-pathops {
     inherit (pkgs.darwin.apple_sdk.frameworks) ApplicationServices OpenGL;
   };
@@ -4563,8 +4563,6 @@ self: super: with self; {
   foobot-async = callPackage ../development/python-modules/foobot-async { };
 
   foolscap = callPackage ../development/python-modules/foolscap { };
-
-  forbiddenfruit = callPackage ../development/python-modules/forbiddenfruit { };
 
   fordpass = callPackage ../development/python-modules/fordpass { };
 
@@ -5481,6 +5479,8 @@ self: super: with self; {
   hijri-converter = callPackage ../development/python-modules/hijri-converter { };
 
   hikari = callPackage ../development/python-modules/hikari { };
+
+  hikari-crescent = callPackage ../development/python-modules/hikari-crescent { };
 
   hikari-lightbulb = callPackage ../development/python-modules/hikari-lightbulb { };
 
@@ -7354,6 +7354,8 @@ self: super: with self; {
 
   material-color-utilities = callPackage ../development/python-modules/material-color-utilities { };
 
+  materialx = callPackage ../development/python-modules/materialx { };
+
   matchpy = callPackage ../development/python-modules/matchpy { };
 
   mathlibtools = callPackage ../development/python-modules/mathlibtools { };
@@ -8872,6 +8874,8 @@ self: super: with self; {
 
   netapp-ontap = callPackage ../development/python-modules/netapp-ontap { };
 
+  netbox-reorder-rack = callPackage ../development/python-modules/netbox-reorder-rack { };
+
   netcdf4 = callPackage ../development/python-modules/netcdf4 { };
 
   netdata = callPackage ../development/python-modules/netdata { };
@@ -10156,8 +10160,6 @@ self: super: with self; {
   pynndescent = callPackage ../development/python-modules/pynndescent { };
 
   pynobo = callPackage ../development/python-modules/pynobo { };
-
-  pynose = callPackage ../development/python-modules/pynose { };
 
   pynotifier = callPackage ../development/python-modules/pynotifier { };
 
@@ -12816,9 +12818,7 @@ self: super: with self; {
 
   pytorch-lightning = callPackage ../development/python-modules/pytorch-lightning { };
 
-  pytorch-metric-learning = callPackage ../development/python-modules/pytorch-metric-learning {
-    inherit (pkgs.config) cudaSupport;
-  };
+  pytorch-metric-learning = callPackage ../development/python-modules/pytorch-metric-learning { };
 
   pytorch-msssim = callPackage ../development/python-modules/pytorch-msssim { };
 
@@ -14087,6 +14087,8 @@ self: super: with self; {
   signedjson = callPackage ../development/python-modules/signedjson { };
 
   signxml = callPackage ../development/python-modules/signxml { };
+
+  sigparse = callPackage ../development/python-modules/sigparse { };
 
   sigrok = callPackage ../development/python-modules/sigrok { };
 

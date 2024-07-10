@@ -71,6 +71,12 @@
     github = "0b11stan";
     githubId = 27831931;
   };
+  _0david0mp = {
+    email = "davidmrpr@proton.me";
+    github = "0david0mp";
+    githubId = 54892055;
+    name = "David mp";
+  };
   _0nyr = {
     email = "onyr.maintainer@gmail.com";
     github = "0nyr";
@@ -15482,6 +15488,12 @@
     githubId = 817039;
     name = "Paulo Casaretto";
   };
+  pcboy = {
+    email = "david@joynetiks.com";
+    github = "pcboy";
+    githubId = 943430;
+    name = "David Hagege";
+  };
   pedrohlc = {
     email = "root@pedrohlc.com";
     github = "PedroHLC";
@@ -16513,6 +16525,12 @@
     github = "quinn-dougherty";
     githubId = 39039420;
     name = "Quinn Dougherty";
+  };
+  quodlibetor = {
+    email = "quodlibetor@gmail.com";
+    github = "quodlibetor";
+    githubId = 277161;
+    name = "Brandon W Maister";
   };
   qusic = {
     email = "qusicx@gmail.com";
@@ -19939,6 +19957,14 @@
     github = "TheBrainScrambler";
     githubId = 34945377;
     name = "John Smith";
+  };
+  theCapypara = {
+    name = "Marco Köpcke";
+    email = "hello@capypara.de";
+    matrix = "@capypara:matrix.org";
+    github = "theCapypara";
+    githubId = 3512122;
+    keys = [ { fingerprint = "5F29 132D EFA8 5DA0 B598  5BF2 5941 754C 1CDE 33BB"; } ];
   };
   thedavidmeister = {
     email = "thedavidmeister@gmail.com";
