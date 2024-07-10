@@ -1,10 +1,10 @@
-{ buildPythonPackage, fetchPypi, coverage, nose, radicale, abook, icstask, remind }:
+{ buildPythonPackage, fetchPypi, coverage, nose, radicale, abook, icstask, remind, setuptools }:
 
 buildPythonPackage rec {
   pname = "radicale-remind";
   version = "0.5.0";
 
-  buildInputs = [ coverage nose radicale ];
+  buildInputs = [ coverage nose radicale setuptools ];
 
   # don't propagate radicale, so we can inject radicale_remind back into radicale
   # as a propagatedBuildInput without causing a loop in _addToPythonPath
