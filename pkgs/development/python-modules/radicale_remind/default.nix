@@ -1,18 +1,32 @@
-{ buildPythonPackage, fetchPypi, coverage, nose, radicale, abook, icstask, remind, setuptools }:
-
+{
+  lib,
+  fetchPypi,
+  buildPythonPackage,
+  radicale,
+  abook,
+  icstask,
+  remind,
+}:
 buildPythonPackage rec {
   pname = "radicale-remind";
   version = "0.5.0";
-
-  buildInputs = [ coverage nose radicale setuptools ];
-
-  # don't propagate radicale, so we can inject radicale_remind back into radicale
-  # as a propagatedBuildInput without causing a loop in _addToPythonPath
-
-  propagatedBuildInputs = [ remind abook icstask ];
+  format = "setuptools";
 
   src = fetchPypi {
     inherit pname version;
     sha256 = "sha256-l/mHyN1+Dyf18UDdP6b9AaUFG8+J0HclD6OPnU7aVAk=";
+  };
+
+  propagatedBuildInputs = [radicale remind abook icstask];
+
+  pythonImportsCheck = ["radicale"];
+
+  meta = with lib; {
+    homepage = "https://github.com/jspricke/radicale-remind";
+    description = "Radicale storage backends for Remind and Abook";
+    license = with licenses; [
+      gpl3
+    ];
+    maintainers = with maintainers; [jcumming];
   };
 }

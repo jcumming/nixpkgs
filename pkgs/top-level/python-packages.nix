@@ -13160,7 +13160,9 @@ self: super: with self; {
     radicale = pkgs.radicale.override { python3 = python; };
   };
 
-  radicale_remind = callPackage ../development/python-modules/radicale_remind { };
+  radicale_remind = callPackage ../development/python-modules/radicale_remind { 
+    radicale = pkgs.radicale.override { python3 = python; };
+  };
 
   radian = callPackage ../development/python-modules/radian { };
 
