@@ -919,7 +919,9 @@ with pkgs;
 
   diswall = callPackage ../applications/networking/diswall { };
 
-  dupeguru = callPackage ../applications/misc/dupeguru { };
+  dupeguru = callPackage ../applications/misc/dupeguru {
+    python3Packages = python311Packages;
+  };
 
   dump1090 = callPackage ../applications/radio/dump1090 { };
 
@@ -1594,8 +1596,6 @@ with pkgs;
   agate = callPackage ../servers/gemini/agate {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
-
-  agda-pkg = callPackage ../development/tools/agda-pkg { };
 
   agi = callPackage ../tools/graphics/agi { };
 
@@ -7522,8 +7522,7 @@ with pkgs;
 
   timeline = callPackage ../applications/office/timeline { };
 
-  tsm-client = callPackage ../tools/backup/tsm-client { };
-  tsm-client-withGui = callPackage ../tools/backup/tsm-client { enableGui = true; };
+  tsm-client-withGui = callPackage ../by-name/ts/tsm-client/package.nix { enableGui = true; };
 
   tracker = callPackage ../development/libraries/tracker { };
 
@@ -15669,13 +15668,11 @@ with pkgs;
     meta.broken = stdenv.hostPlatform.isDarwin;
   });
 
-  ghdl = ghdl-mcode;
+  ghdl-mcode = callPackage ../by-name/gh/ghdl/package.nix { backend = "mcode"; };
 
-  ghdl-mcode = callPackage ../development/compilers/ghdl {
-    backend = "mcode";
-  };
+  ghdl-gcc = callPackage ../by-name/gh/ghdl/package.nix { backend = "gcc"; };
 
-  ghdl-llvm = callPackage ../development/compilers/ghdl {
+  ghdl-llvm = callPackage ../by-name/gh/ghdl/package.nix {
     backend = "llvm";
     inherit (llvmPackages_15) llvm;
   };
@@ -20930,7 +20927,10 @@ with pkgs;
     autoconf = buildPackages.autoconf269;
   };
 
-  gpac = callPackage ../applications/video/gpac { };
+  gpac = callPackage ../applications/video/gpac {
+    inherit (darwin) cctools;
+    inherit (darwin.apple_sdk.frameworks) Carbon;
+  };
 
   gpgme = callPackage ../development/libraries/gpgme { };
 
@@ -22635,16 +22635,6 @@ with pkgs;
   libtommath = callPackage ../development/libraries/libtommath { };
 
   libtomcrypt = callPackage ../development/libraries/libtomcrypt { };
-
-  libtorrent-rasterbar-2_0_x = callPackage ../development/libraries/libtorrent-rasterbar {
-    inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
-    python = python3;
-  };
-
-  libtorrent-rasterbar-1_2_x = callPackage ../development/libraries/libtorrent-rasterbar/1.2.nix {
-    inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
-    python = python3;
-  };
 
   libtorrent-rasterbar = libtorrent-rasterbar-2_0_x;
 
@@ -30489,7 +30479,7 @@ with pkgs;
   gnuradio = callPackage ../applications/radio/gnuradio/wrapper.nix {
     unwrapped = callPackage ../applications/radio/gnuradio {
       inherit (darwin.apple_sdk.frameworks) CoreAudio;
-      python = python3;
+      python = python311;
     };
   };
   gnuradioPackages = lib.recurseIntoAttrs gnuradio.pkgs;
@@ -30522,7 +30512,7 @@ with pkgs;
   gnuradio3_9 = callPackage ../applications/radio/gnuradio/wrapper.nix {
     unwrapped = callPackage ../applications/radio/gnuradio/3.9.nix {
       inherit (darwin.apple_sdk.frameworks) CoreAudio;
-      python = python3;
+      python = python311;
     };
   };
   gnuradio3_9Packages = lib.recurseIntoAttrs gnuradio3_9.pkgs;
@@ -30555,7 +30545,7 @@ with pkgs;
   gnuradio3_8 = callPackage ../applications/radio/gnuradio/wrapper.nix {
     unwrapped = callPackage ../applications/radio/gnuradio/3.8.nix ({
       inherit (darwin.apple_sdk.frameworks) CoreAudio;
-      python = python3;
+      python = python311;
     } // lib.optionalAttrs stdenv.isLinux {
       stdenv = pkgs.stdenvAdapters.useLibsFrom stdenv pkgs.gcc12Stdenv;
     });
@@ -30657,8 +30647,6 @@ with pkgs;
   };
 
   gjay = callPackage ../applications/audio/gjay { };
-
-  sherlock = callPackage ../tools/security/sherlock { };
 
   stratovirt = callPackage ../applications/virtualization/stratovirt { };
 
@@ -30892,8 +30880,8 @@ with pkgs;
 
   freerdpUnstable = freerdp;
 
-  friture = libsForQt5.callPackage ../applications/audio/friture {
-    python3Packages = python39Packages;
+  friture = callPackage ../by-name/fr/friture/package.nix {
+    python3Packages = python311Packages;
   };
 
   g933-utils = callPackage ../tools/misc/g933-utils { };

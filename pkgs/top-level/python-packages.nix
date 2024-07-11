@@ -6487,6 +6487,8 @@ self: super: with self; {
 
   keyring = callPackage ../development/python-modules/keyring { };
 
+  keyring_24 = callPackage ../development/python-modules/keyring_24 { };
+
   keyring-pass = callPackage ../development/python-modules/keyring-pass { };
 
   keyrings-cryptfile = callPackage ../development/python-modules/keyrings-cryptfile { };
@@ -6883,7 +6885,7 @@ self: super: with self; {
 
   libtmux = callPackage ../development/python-modules/libtmux { };
 
-  libtorrent-rasterbar = (toPythonModule (pkgs.libtorrent-rasterbar.override { inherit python; })).python;
+  libtorrent-rasterbar = (toPythonModule (pkgs.libtorrent-rasterbar.override { python3 = python; })).python;
 
   libusb1 = callPackage ../development/python-modules/libusb1 {
     inherit (pkgs) libusb1;
@@ -7355,6 +7357,8 @@ self: super: with self; {
   material-color-utilities = callPackage ../development/python-modules/material-color-utilities { };
 
   materialx = callPackage ../development/python-modules/materialx { };
+
+  materialyoucolor = callPackage ../development/python-modules/materialyoucolor { };
 
   matchpy = callPackage ../development/python-modules/matchpy { };
 
@@ -9290,7 +9294,6 @@ self: super: with self; {
 
   openai-triton = callPackage ../development/python-modules/openai-triton {
     llvm = pkgs.openai-triton-llvm;
-    cudaPackages = pkgs.cudaPackages_12_1;
   };
 
   openai-triton-cuda = self.openai-triton.override {
@@ -14721,6 +14724,8 @@ self: super: with self; {
   sslib = callPackage ../development/python-modules/sslib { };
 
   ssg = callPackage ../development/python-modules/ssg { };
+
+  ssort = callPackage ../development/python-modules/ssort { };
 
   stack-data = callPackage ../development/python-modules/stack-data { };
 
