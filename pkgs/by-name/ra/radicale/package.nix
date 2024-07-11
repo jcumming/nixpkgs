@@ -7,7 +7,7 @@
 python3.pkgs.buildPythonApplication rec {
   pname = "radicale";
   version = "3.2.2";
-  pyproject = true;
+  format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "Kozea";
@@ -19,10 +19,6 @@ python3.pkgs.buildPythonApplication rec {
   postPatch = ''
     sed -i '/addopts/d' setup.cfg
   '';
-
-  build-system = with python3.pkgs; [
-    setuptools
-  ];
 
   dependencies = with python3.pkgs; [
     defusedxml
