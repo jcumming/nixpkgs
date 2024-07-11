@@ -17,7 +17,8 @@ buildPythonPackage rec {
     sha256 = "sha256-l/mHyN1+Dyf18UDdP6b9AaUFG8+J0HclD6OPnU7aVAk=";
   };
 
-  propagatedBuildInputs = [radicale remind abook icstask];
+  nativeBuildInputs = [ radicale ]; # prevent radicale from importing itself
+  propagatedBuildInputs = [remind abook icstask];
 
   pythonImportsCheck = ["radicale"];
 
