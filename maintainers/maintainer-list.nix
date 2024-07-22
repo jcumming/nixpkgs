@@ -485,7 +485,7 @@
   };
   adamcstephens = {
     email = "happy.plan4249@valkor.net";
-    matrix = "@adam:valkor.net";
+    matrix = "@adam:robins.wtf";
     github = "adamcstephens";
     githubId = 2071575;
     name = "Adam C. Stephens";
@@ -1084,6 +1084,12 @@
     githubId = 74795488;
     name = "alyaeanyx";
     keys = [ { fingerprint = "1F73 8879 5E5A 3DFC E2B3 FA32 87D1 AADC D25B 8DEE"; } ];
+  };
+  amadejkastelic = {
+    email = "amadejkastelic7@gmail.com";
+    github = "amadejkastelic";
+    githubId = 26391003;
+    name = "Amadej Kastelic";
   };
   aman9das = {
     email = "amandas62640@gmail.com";
@@ -6627,6 +6633,12 @@
     github = "fionera";
     githubId = 5741401;
     name = "Tim Windelschmidt";
+  };
+  fiq = {
+    email = "raf+git@dreamthought.com";
+    github = "fiq";
+    githubId = 236293;
+    name = "Raf Gemmail";
   };
   firefly-cpp = {
     email = "iztok@iztok-jr-fister.eu";
@@ -13169,6 +13181,13 @@
     github = "michaeldonovan";
     githubId = 14077230;
   };
+  michaelglass = {
+    email = "nixpkgs@mike.is";
+    name = "Michael Glass";
+    github = "michaelglass";
+    githubId = 60136;
+    keys = [ { fingerprint = "46AF 8625 D92A 219B 8E6D  B7F8 9CDD 3769 1649 1385"; } ];
+  };
   michaelgrahamevans = {
     email = "michaelgrahamevans@gmail.com";
     name = "Michael Evans";
@@ -14054,6 +14073,7 @@
   };
   n8henrie = {
     name = "Nathan Henrie";
+    email = "nate@n8henrie.com";
     github = "n8henrie";
     githubId = 1234956;
     "keys" = [ { "fingerprint" = "F21A 6194 C9DB 9899 CD09 E24E 434B 2C14 B8C3 3422"; } ];
@@ -16178,11 +16198,6 @@
     name = "Polygon";
     github = "polygon";
     githubId = 51489;
-  };
-  polykernel = {
-    github = "polykernel";
-    githubId = 81340136;
-    name = "polykernel";
   };
   polyrod = {
     email = "dc1mdp@gmail.com";
@@ -22188,6 +22203,12 @@
     github = "Eternity-Yarr";
     githubId = 3705333;
     name = "Dmitry V.";
+  };
+  yash-garg = {
+    email = "me@yashgarg.dev";
+    github = "yash-garg";
+    githubId = 33605526;
+    name = "Yash Garg";
   };
   yavko = {
     name = "Yavor Kolev";

@@ -5626,6 +5626,8 @@ self: super: with self; {
 
   htmlmin = callPackage ../development/python-modules/htmlmin { };
 
+  htmltools = callPackage ../development/python-modules/htmltools { };
+
   html-sanitizer = callPackage ../development/python-modules/html-sanitizer { };
 
   html-tag-names = callPackage ../development/python-modules/html-tag-names { };
@@ -6280,6 +6282,8 @@ self: super: with self; {
 
   jsmin = callPackage ../development/python-modules/jsmin { };
 
+  json2html = callPackage ../development/python-modules/json2html { };
+
   json5 = callPackage ../development/python-modules/json5 { };
 
   jsonxs = callPackage ../development/python-modules/jsonxs { };
@@ -6663,6 +6667,12 @@ self: super: with self; {
   langdetect = callPackage ../development/python-modules/langdetect { };
 
   langfuse = callPackage ../development/python-modules/langfuse { };
+
+  langgraph = callPackage ../development/python-modules/langgraph { };
+
+  langgraph-cli = callPackage ../development/python-modules/langgraph-cli { };
+
+  langgraph-sdk = callPackage ../development/python-modules/langgraph-sdk { };
 
   langid = callPackage ../development/python-modules/langid { };
 
@@ -9080,6 +9090,8 @@ self: super: with self; {
   nodepy-runtime = callPackage ../development/python-modules/nodepy-runtime { };
 
   node-semver = callPackage ../development/python-modules/node-semver { };
+
+  nodriver = callPackage ../development/python-modules/nodriver { };
 
   noise = callPackage ../development/python-modules/noise { };
 
@@ -16748,6 +16760,8 @@ self: super: with self; {
 
   undefined = callPackage ../development/python-modules/undefined { };
 
+  undetected-chromedriver = callPackage ../development/python-modules/undetected-chromedriver { };
+
   unearth = callPackage ../development/python-modules/unearth { };
 
   unicodecsv = callPackage ../development/python-modules/unicodecsv { };
@@ -17031,6 +17045,8 @@ self: super: with self; {
   vnoise = callPackage ../development/python-modules/vnoise { };
 
   vobject = callPackage ../development/python-modules/vobject { };
+
+  voip-utils = callPackage ../development/python-modules/voip-utils { };
 
   volatile = callPackage ../development/python-modules/volatile { };
 
