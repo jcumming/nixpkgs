@@ -53,6 +53,8 @@
 , libaom
 , portmidi
 , lua
+, libyuv
+, dav1d
 }:
 
 stdenv.mkDerivation rec {
@@ -106,6 +108,8 @@ stdenv.mkDerivation rec {
     libaom
     portmidi
     lua
+    libyuv
+    dav1d
   ] ++ lib.optionals stdenv.isLinux [
     colord
     colord-gtk
