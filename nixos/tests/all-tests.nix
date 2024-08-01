@@ -538,6 +538,7 @@ in {
   #logstash = handleTest ./logstash.nix {};
   lomiri = handleTest ./lomiri.nix {};
   lomiri-calculator-app = runTest ./lomiri-calculator-app.nix;
+  lomiri-camera-app = runTest ./lomiri-camera-app.nix;
   lomiri-clock-app = runTest ./lomiri-clock-app.nix;
   lomiri-filemanager-app = runTest ./lomiri-filemanager-app.nix;
   lomiri-system-settings = handleTest ./lomiri-system-settings.nix {};
@@ -579,6 +580,7 @@ in {
   minidlna = handleTest ./minidlna.nix {};
   miniflux = handleTest ./miniflux.nix {};
   minio = handleTest ./minio.nix {};
+  miracle-wm = runTest ./miracle-wm.nix;
   miriway = handleTest ./miriway.nix {};
   misc = handleTest ./misc.nix {};
   mjolnir = handleTest ./matrix/mjolnir.nix {};

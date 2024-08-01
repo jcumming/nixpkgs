@@ -1092,7 +1092,7 @@ self: super: with self; {
 
   awswrangler = callPackage ../development/python-modules/awswrangler { };
 
-  ax = callPackage ../development/python-modules/ax { };
+  ax-platform = callPackage ../development/python-modules/ax-platform { };
 
   axis = callPackage ../development/python-modules/axis { };
 
@@ -4342,6 +4342,8 @@ self: super: with self; {
 
   first = callPackage ../development/python-modules/first { };
 
+  fissix = callPackage ../development/python-modules/fissix { };
+
   fitbit = callPackage ../development/python-modules/fitbit { };
 
   fivem-api = callPackage ../development/python-modules/fivem-api { };
@@ -4974,9 +4976,7 @@ self: super: with self; {
 
   glean-parser = callPackage ../development/python-modules/glean-parser { };
 
-  glean-sdk = callPackage ../development/python-modules/glean-sdk {
-    inherit (pkgs) lmdb;
-  };
+  glean-sdk = callPackage ../development/python-modules/glean-sdk { };
 
   glfw = callPackage ../development/python-modules/glfw { };
 
@@ -9136,6 +9136,8 @@ self: super: with self; {
 
   nose2 = callPackage ../development/python-modules/nose2 { };
 
+  nose2pytest = callPackage ../development/python-modules/nose2pytest { };
+
   nose3 = callPackage ../development/python-modules/nose3 { };
 
   notebook = callPackage ../development/python-modules/notebook { };
@@ -12410,6 +12412,8 @@ self: super: with self; {
 
   pytest-cov = callPackage ../development/python-modules/pytest-cov { };
 
+  pytest-cov-stub = callPackage ../development/python-modules/pytest-cov-stub { };
+
   pytest-cram = callPackage ../development/python-modules/pytest-cram { };
 
   pytest-datadir = callPackage ../development/python-modules/pytest-datadir { };
@@ -13886,8 +13890,6 @@ self: super: with self; {
 
   sacremoses = callPackage ../development/python-modules/sacremoses { };
 
-  safe = callPackage ../development/python-modules/safe { };
-
   safe-pysha3 = callPackage ../development/python-modules/safe-pysha3 { };
 
   safeio = callPackage ../development/python-modules/safeio { };
@@ -14225,6 +14227,8 @@ self: super: with self; {
   });
 
   shimmy = callPackage ../development/python-modules/shimmy { };
+
+  shiny = callPackage ../development/python-modules/shiny { };
 
   shippai = callPackage ../development/python-modules/shippai { };
 
