@@ -4654,9 +4654,7 @@ with pkgs;
 
   wl-mirror = callPackage ../tools/wayland/wl-mirror { };
 
-  wl-screenrec = callPackage ../tools/wayland/wl-screenrec {
-    ffmpeg = ffmpeg_6;
-  };
+  wl-screenrec = callPackage ../tools/wayland/wl-screenrec { };
 
   wleave = callPackage ../tools/wayland/wleave { };
 
@@ -9146,8 +9144,6 @@ with pkgs;
 
   jc = with python3Packages; toPythonApplication jc;
 
-  jcli = callPackage ../development/tools/misc/jcli { };
-
   jd-cli = callPackage ../tools/security/jd-cli { };
 
   jd-diff-patch = callPackage ../development/tools/jd-diff-patch { };
@@ -11714,8 +11710,6 @@ with pkgs;
 
   podman-compose = python3Packages.callPackage ../applications/virtualization/podman-compose { };
 
-  podman-tui = callPackage ../applications/virtualization/podman-tui { };
-
   podman-desktop = callPackage ../applications/virtualization/podman-desktop {};
 
   pods = callPackage ../applications/virtualization/pods { };
@@ -13570,8 +13564,6 @@ with pkgs;
   twm = callPackage ../tools/misc/twm {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
-
-  txtpbfmt = callPackage ../development/tools/txtpbfmt { };
 
   ipbt = callPackage ../tools/misc/ipbt { };
 
@@ -26446,7 +26438,12 @@ with pkgs;
 
   bridge-utils = callPackage ../os-specific/linux/bridge-utils { };
 
-  busybox = callPackage ../os-specific/linux/busybox { };
+  busybox = callPackage ../os-specific/linux/busybox {
+    # Fixes libunwind from being dynamically linked to a static binary.
+    stdenv = if (stdenv.targetPlatform.useLLVM or false) then
+      overrideCC stdenv buildPackages.llvmPackages.clangNoLibcxx
+    else stdenv;
+  };
   busybox-sandbox-shell = callPackage ../os-specific/linux/busybox/sandbox-shell.nix {
     # musl roadmap has RISC-V support projected for 1.1.20
     busybox = if !stdenv.hostPlatform.isRiscV && !stdenv.hostPlatform.isLoongArch64 && stdenv.hostPlatform.libc != "bionic"
@@ -26775,8 +26772,6 @@ with pkgs;
   lieer = callPackage ../applications/networking/lieer { };
 
   linuxConsoleTools = callPackage ../os-specific/linux/consoletools { };
-
-  linux-wifi-hotspot = callPackage ../os-specific/linux/linux-wifi-hotspot { };
 
   linthesia = callPackage ../games/linthesia/default.nix { };
 
@@ -30482,8 +30477,6 @@ with pkgs;
     imlib2 = imlib2Full;
   };
 
-  feishin = callPackage ../applications/audio/feishin { };
-
   feishu = callPackage ../applications/networking/instant-messengers/feishu { };
 
   filezilla = darwin.apple_sdk_11_0.callPackage ../applications/networking/ftp/filezilla {
@@ -33731,7 +33724,7 @@ with pkgs;
 
   viber = callPackage ../applications/networking/instant-messengers/viber { };
 
-  wavebox = libsForQt5.callPackage ../applications/networking/instant-messengers/wavebox { };
+  wavebox = callPackage ../applications/networking/instant-messengers/wavebox { };
 
   sonic-pi = libsForQt5.callPackage ../applications/audio/sonic-pi { };
 
