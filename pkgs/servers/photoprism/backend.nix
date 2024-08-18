@@ -10,6 +10,7 @@ buildGoModule rec {
     vips
     coreutils
     libtensorflow
+    vips
   ];
 
   ldflags = [
