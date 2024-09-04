@@ -1348,6 +1348,7 @@
   ./services/system/systembus-notify.nix
   ./services/system/systemd-lock-handler.nix
   ./services/system/uptimed.nix
+  ./services/system/userborn.nix
   ./services/system/zram-generator.nix
   ./services/torrent/deluge.nix
   ./services/torrent/flexget.nix
@@ -1478,6 +1479,7 @@
   ./services/web-apps/pretix.nix
   ./services/web-apps/prosody-filer.nix
   ./services/web-apps/rimgo.nix
+  ./services/web-apps/rutorrent.nix
   ./services/web-apps/screego.nix
   ./services/web-apps/sftpgo.nix
   ./services/web-apps/suwayomi-server.nix
