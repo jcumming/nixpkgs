@@ -21220,6 +21220,7 @@ with pkgs;
     stdenv = if stdenv.hostPlatform.useLLVM or false
              then overrideCC stdenv buildPackages.llvmPackages.tools.clangNoLibcxx
              else stdenv;
+  };
 
   libdaemon = callPackage ../development/libraries/libdaemon { };
 
