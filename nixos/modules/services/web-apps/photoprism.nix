@@ -148,20 +148,21 @@ in
           };
 
           environment = (
-            lib.mapAttrs' (n: v: lib.nameValuePair "PHOTOPRISM_${n}" (toString v))
-            (defaultSettings
-              // {
-                #HOME = "${cfg.dataDir}";
-                SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; # setting to "" prevents photoprism from accessing external https://
-                DATABASE_DRIVER = "sqlite";
-                DATABASE_DSN = "${cfg.dataDir}/photoprism.sqlite";
-                STORAGE_PATH = "${cfg.dataDir}/storage";
-                ORIGINALS_PATH = "${cfg.originalsDir}";
-                IMPORT_PATH = "${cfg.dataDir}/import";
-                SIDECAR_PATH = "${cfg.dataDir}/sidecar";
-              }
-              // cfg.settings)
-          );
+            (lib.mapAttrs' (n: v: lib.nameValuePair "PHOTOPRISM_${n}" (toString v))
+              (defaultSettings
+                // {
+                  #HOME = "${cfg.dataDir}";
+                  DATABASE_DRIVER = "sqlite";
+                  DATABASE_DSN = "${cfg.dataDir}/photoprism.sqlite";
+                  STORAGE_PATH = "${cfg.dataDir}/storage";
+                  ORIGINALS_PATH = "${cfg.originalsDir}";
+                  IMPORT_PATH = "${cfg.dataDir}/import";
+                  SIDECAR_PATH = "${cfg.dataDir}/sidecar";
+                }
+                // cfg.settings)
+             ) // { # thsese don't get PHOTOPRISM prepended to them. 
+              SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; # setting to "" prevents photoprism from accessing external https://
+            });
         };
       };
   }
