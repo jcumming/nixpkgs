@@ -243,8 +243,6 @@ with pkgs;
 
   anders = callPackage ../applications/science/logic/anders { };
 
-  ankisyncd = callPackage ../servers/ankisyncd { };
-
   ariang = callPackage ../servers/ariang { };
 
   ani-cli = callPackage ../applications/video/ani-cli { };
@@ -8024,7 +8022,9 @@ with pkgs;
 
   ggobi = callPackage ../tools/graphics/ggobi { };
 
-  ggshield = callPackage ../tools/security/ggshield { };
+  ggshield = callPackage ../tools/security/ggshield {
+    python3 = python311;
+  };
 
   ghost = callPackage ../tools/security/ghost { };
 
@@ -10745,10 +10745,6 @@ with pkgs;
   };
 
   notify-osd = callPackage ../applications/misc/notify-osd { };
-
-  notes = qt6Packages.callPackage ../applications/office/notes {
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-  };
 
   notes-up = callPackage ../applications/office/notes-up { };
 
@@ -15018,7 +15014,7 @@ with pkgs;
   };
 
   inherit (callPackage ../development/compilers/gcc/all.nix { inherit noSysDirs; })
-    gcc48 gcc49 gcc6 gcc7 gcc8 gcc9 gcc10 gcc11 gcc12 gcc13 gcc14;
+    gcc49 gcc6 gcc7 gcc8 gcc9 gcc10 gcc11 gcc12 gcc13 gcc14;
 
   gcc_latest = gcc14;
 
@@ -19018,7 +19014,6 @@ with pkgs;
   texinfoPackages = callPackages ../development/tools/misc/texinfo/packages.nix { };
   inherit (texinfoPackages)
     texinfo413
-    texinfo5 # needed for gcc48
     texinfo6_5 # needed for allegro
     texinfo6_7 # needed for gpm, iksemel and fwknop
     texinfo6
@@ -23459,6 +23454,8 @@ with pkgs;
   serd = callPackage ../development/libraries/serd { };
 
   serf = callPackage ../development/libraries/serf { };
+
+  sev-snp-measure = with python3Packages; toPythonApplication sev-snp-measure;
 
   sfsexp = callPackage ../development/libraries/sfsexp { };
 
@@ -29297,7 +29294,7 @@ with pkgs;
 
   darkman = callPackage ../applications/misc/darkman { };
 
-  darktable = callPackage ../applications/graphics/darktable {
+  darktable = callPackage ../by-name/da/darktable/package.nix {
     lua = lua5_4;
     pugixml = pugixml.override { shared = true; };
     stdenv = if stdenv.isDarwin && stdenv.isx86_64 then overrideSDK llvmPackages_18.stdenv { darwinMinVersion = "10.14"; darwinSdkVersion = "11.0"; } else stdenv;
@@ -31419,8 +31416,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa Foundation;
   };
 
-  libvmi = callPackage ../development/libraries/libvmi { };
-
   libutp = callPackage ../applications/networking/p2p/libutp { };
   libutp_3_4 = callPackage ../applications/networking/p2p/libutp/3.4.nix { };
 
@@ -31636,8 +31631,6 @@ with pkgs;
   };
 
   mercurialFull = mercurial.override { fullBuild = true; };
-
-  merkaartor = libsForQt5.callPackage ../applications/misc/merkaartor { };
 
   mepo = callPackage ../applications/misc/mepo { };
 
@@ -34749,8 +34742,6 @@ with pkgs;
   zita-at1 = callPackage ../applications/audio/zita-at1 { };
 
   zita-njbridge = callPackage ../applications/audio/zita-njbridge { };
-
-  zoom-us = callPackage ../applications/networking/instant-messengers/zoom-us { };
 
   zotero = callPackage ../applications/office/zotero { };
 

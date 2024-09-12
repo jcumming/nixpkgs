@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }:
-
-with lib;
-
 let
+  inherit (lib) imap0 optionalString concatMapStrings concatStringsSep mkOption types literalExpression mkIf
+                optional optionals optionalAttrs; 
 
   name = "mpd";
 
@@ -25,7 +24,7 @@ let
 
     music_directory     "${cfg.musicDirectory}"
     playlist_directory  "${cfg.playlistDirectory}"
-    ${lib.optionalString (cfg.dbFile != null) ''
+    ${optionalString (cfg.dbFile != null) ''
       db_file             "${cfg.dbFile}"
     ''}
     state_file          "${cfg.dataDir}/state"
@@ -36,6 +35,7 @@ let
     '') cfg.network.listenAddress}
     ${optionalString (cfg.network.port != 6600)  ''port "${toString cfg.network.port}"''}
     ${optionalString (cfg.fluidsynth) ''
+
       decoder {
               plugin "fluidsynth"
               soundfont "${pkgs.soundfont-fluid}/share/soundfonts/FluidR3_GM2-2.sf2"
