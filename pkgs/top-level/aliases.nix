@@ -511,11 +511,14 @@ mapAliases ({
   garmin-plugin = throw "garmin-plugin has been removed, as it is unmaintained upstream and no longer works with modern browsers."; # Added 2024-01-12
   garmindev = throw "'garmindev' has been removed as the dependent software 'qlandkartegt' has been removed"; # Added 2023-04-17
   gcc48 = throw "'gcc48' has been removed from nixpkgs"; # Added 2024-09-10
+  gcc49 = throw "'gcc49' has been removed from nixpkgs"; # Added 2024-09-11
+  gcc49Stdenv = throw "'gcc49Stdenv' has been removed from nixpkgs"; # Added 2024-09-11
   gcc10StdenvCompat = if stdenv.cc.isGNU && lib.versionAtLeast stdenv.cc.version "11" then gcc10Stdenv else stdenv; # Added 2024-03-21
   gcl_2_6_13_pre = throw "'gcl_2_6_13_pre' has been removed in favor of 'gcl'"; # Added 2024-01-11
   geekbench4 = throw "'geekbench4' has been renamed to 'geekbench_4'"; # Added 2023-03-10
   geekbench5 = throw "'geekbench5' has been renamed to 'geekbench_5'"; # Added 2023-03-10
   gfortran48 = throw "'gfortran48' has been removed from nixpkgs"; # Added 2024-09-10
+  gfortran49 = throw "'gfortran49' has been removed from nixpkgs"; # Added 2024-09-11
   ghostwriter = libsForQt5.kdeGear.ghostwriter; # Added 2023-03-18
   go-dependency-manager = throw "'go-dependency-manager' is unmaintained and the go community now uses 'go.mod' mostly instead"; # Added 2023-10-04
   gotktrix = throw "'gotktrix' has been removed, as it was broken and unmaintained"; # Added 2023-12-06
@@ -1122,6 +1125,7 @@ mapAliases ({
   openbangla-keyboard = throw "openbangla-keyboard has been replaced by ibus-engines.openbangla-keyboard and fcitx5-openbangla-keyboard"; # added 2023-10-10
   opencascade = throw "'opencascade' has been removed as it is unmaintained; consider opencascade-occt instead'"; # Added 2023-09-18
   opencl-info = throw "opencl-info has been removed, as the upstream is unmaintained; consider using 'clinfo' instead"; # Added 2024-06-12
+  opencomposite-helper = throw "opencomposite-helper has been removed from nixpkgs as it causes issues with some applications. See https://wiki.nixos.org/wiki/VR#OpenComposite for the recommended setup"; # Added 2024-09-07
   openconnect_head = openconnect_unstable; # Added 2022-03-29
   openconnect_gnutls = openconnect; # Added 2022-03-29
   openconnect_unstable = throw "openconnect_unstable was removed from nixpkgs as it was not being updated"; # Added 2023-06-01
@@ -1482,6 +1486,9 @@ mapAliases ({
   swift-im = throw "swift-im has been removed as it is unmaintained and depends on deprecated Python 2 / Qt WebKit"; # Added 2023-01-06
   swig1 = throw "swig1 has been removed as it is obsolete"; # Added 2024-08-23
   swig2 = throw "swig2 has been removed as it is obsolete"; # Added 2024-08-23
+  swig3 = throw "swig3 has been removed as it is obsolete"; # Added 2024-09-12
+  swig4 = swig; # Added 2024-09-12
+  swigWithJava = throw "swigWithJava has been removed as the main swig package has supported Java since 2009"; # Added 2024-09-12
   swtpm-tpm2 = swtpm; # Added 2021-02-26
   Sylk = sylk; # Added 2024-06-12
   symbiyosys = sby; # Added 2024-08-18

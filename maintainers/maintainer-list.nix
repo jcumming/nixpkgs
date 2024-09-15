@@ -742,6 +742,12 @@
     githubId = 45179933;
     name = "Alex Jackson";
   };
+  ajgon = {
+    email = "igor@rzegocki.pl";
+    github = "ajgon";
+    githubId = 150545;
+    name = "Igor Rzegocki";
+  };
   ajgrf = {
     email = "a@ajgrf.com";
     github = "ajgrf";
@@ -1093,6 +1099,12 @@
     github = "alunduil";
     githubId = 169249;
     name = "Alex Brandt";
+  };
+  alx = {
+    email = "nix@alexgirard.com";
+    github = "alx";
+    githubId = 373;
+    name = "Alexandre Girard Davila";
   };
   alxsimon = {
     email = "alexis.simon@normalesup.org";
@@ -2242,6 +2254,12 @@
     name = "Baitinq";
     github = "Baitinq";
     githubId = 30861839;
+  };
+  baksa = {
+    email = "baksa@pm.me";
+    name = "Kryštof Baksa";
+    github = "Golbinex";
+    githubId = 62813600;
   };
   balodja = {
     email = "balodja@gmail.com";
@@ -11288,6 +11306,12 @@
     github = "krav";
     githubId = 4032;
     name = "Kristoffer Thømt Ravneberg";
+  };
+  kristianan = {
+    email = "kristian@krined.no";
+    github = "KristianAN";
+    githubId = 80984519;
+    name = "Kristian Alvestad Nedevold-Hansen";
   };
   kristian-brucaj = {
     email = "kbrucaj@gmail.com";

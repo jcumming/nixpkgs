@@ -5,8 +5,14 @@ with lib;
 let
   cfg = config.services.samba;
 
-  settingsFormat = pkgs.formats.ini { };
-  configFile = settingsFormat.generate "smb.conf" cfg.settings;
+  settingsFormat = pkgs.formats.ini {
+    listToValue = lib.concatMapStringsSep " " (generators.mkValueStringDefault { });
+  };
+  # Ensure the global section is always first
+  globalConfigFile = settingsFormat.generate "smb-global.conf" { global = cfg.settings.global; };
+  sharesConfigFile = settingsFormat.generate "smb-shares.conf" (lib.removeAttrs cfg.settings [ "global" ]);
+
+  configFile = pkgs.concatText "smb.conf" [ globalConfigFile sharesConfigFile ];
 
 in
 
@@ -118,7 +124,6 @@ in
               type = lib.types.listOf lib.types.str;
               default = [ "root" ];
               description = "List of users who are denied to login via Samba.";
-              apply = x: lib.concatStringsSep " " x;
             };
             global."passwd program" = lib.mkOption {
               type = lib.types.str;
