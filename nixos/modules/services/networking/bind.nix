@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 let
-
   cfg = config.services.bind;
 
   bindPkg = config.services.bind.package;
@@ -56,7 +55,7 @@ let
     let maybeForward = if (cfg.forward == "never") then ""
       else ''
         forward ${cfg.forward};
-        forwarders { ${concatMapStrings (entry: " ${entry}; ") cfg.forwarders} };
+        forwarders { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.forwarders} };
       '';
     in pkgs.writeText "named.conf"
     ''
@@ -163,7 +162,7 @@ in
 
       forward = lib.mkOption {
         default = "first";
-        type = types.enum ["first" "only" "never"];
+        type = lib.types.enum ["first" "only" "never"];
         description = ''
           Whether to forward 'first' (try forwarding but lookup directly if forwarding fails) 'never' (act as a recursive resolver) or 'only'.
         '';
