@@ -12113,8 +12113,6 @@ self: super: with self; {
 
   pysim = callPackage ../development/python-modules/pysim { };
 
-  pysimplegui = callPackage ../development/python-modules/pysimplegui { };
-
   pysingleton = callPackage ../development/python-modules/pysingleton { };
 
   pyslim = callPackage ../development/python-modules/pyslim { };
@@ -12479,8 +12477,6 @@ self: super: with self; {
   pytest-resource-path = callPackage ../development/python-modules/pytest-resource-path { };
 
   pytest-responses = callPackage ../development/python-modules/pytest-responses { };
-
-  pytest-runner = callPackage ../development/python-modules/pytest-runner { };
 
   pytest-server-fixtures = callPackage ../development/python-modules/pytest-server-fixtures { };
 
