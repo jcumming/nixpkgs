@@ -139,7 +139,7 @@ with pkgs;
 
   unstableGitUpdater = callPackage ../common-updater/unstable-updater.nix { };
 
-  nix-update-script = callPackage ../common-updater/nix-update.nix { };
+  inherit (nix-update) nix-update-script;
 
   ### Push NixOS tests inside the fixed point
 
@@ -226,8 +226,6 @@ with pkgs;
   addDriverRunpath = callPackage ../build-support/add-driver-runpath { };
 
   quickgui = callPackage ../applications/virtualization/quickgui { };
-
-  adcli = callPackage ../os-specific/linux/adcli { };
 
   alda = callPackage ../development/interpreters/alda { };
 
@@ -2980,8 +2978,6 @@ with pkgs;
 
   alpine-make-vm-image = callPackage ../tools/virtualization/alpine-make-vm-image { };
 
-  amazon-ec2-utils = callPackage ../tools/admin/amazon-ec2-utils { };
-
   amazon-ecs-cli = callPackage ../tools/virtualization/amazon-ecs-cli { };
 
   amazon-qldb-shell = callPackage ../development/tools/amazon-qldb-shell {
@@ -3170,8 +3166,6 @@ with pkgs;
   avfs = callPackage ../tools/filesystems/avfs { };
 
   aliyun-cli = callPackage ../tools/admin/aliyun-cli { };
-
-  aws-encryption-sdk-cli = callPackage ../tools/admin/aws-encryption-sdk-cli { };
 
   aws-iam-authenticator = callPackage ../tools/security/aws-iam-authenticator { };
 
@@ -6265,8 +6259,6 @@ with pkgs;
 
   ccd2iso = callPackage ../tools/cd-dvd/ccd2iso { };
 
-  ccid = callPackage ../tools/security/ccid { };
-
   ccrypt = callPackage ../tools/security/ccrypt { };
 
   ccze = callPackage ../tools/misc/ccze { };
@@ -8040,8 +8032,6 @@ with pkgs;
 
   gnu-cim = callPackage ../development/compilers/gnu-cim { };
 
-  gnu-cobol = callPackage ../development/compilers/gnu-cobol { };
-
   gnuclad = callPackage ../applications/graphics/gnuclad { };
 
   gnufdisk = callPackage ../tools/system/fdisk {
@@ -8314,8 +8304,6 @@ with pkgs;
   efitools = callPackage ../tools/security/efitools { };
 
   sbsigntool = callPackage ../tools/security/sbsigntool { };
-
-  sonic-server = callPackage ../servers/search/sonic-server { };
 
   gsmartcontrol = callPackage ../tools/misc/gsmartcontrol { };
 
@@ -8844,8 +8832,6 @@ with pkgs;
 
   ipv6calc = callPackage ../tools/networking/ipv6calc { };
 
-  ipxe = callPackage ../tools/misc/ipxe { };
-
   irker = callPackage ../servers/irker { };
 
   iroh = callPackage ../applications/networking/iroh { };
@@ -8925,8 +8911,6 @@ with pkgs;
   jing-trang = callPackage ../tools/text/xml/jing-trang {
     jdk_headless = jdk8_headless; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
-
-  jira-cli-go = callPackage ../development/tools/jira-cli-go { };
 
   jirafeau = callPackage ../servers/web-apps/jirafeau { };
 
@@ -17168,7 +17152,8 @@ with pkgs;
   inherit (callPackages ../development/tools/electron/chromedriver { })
     electron-chromedriver_29
     electron-chromedriver_30
-    electron-chromedriver_31;
+    electron-chromedriver_31
+    electron-chromedriver_32;
 
   electron_24 = electron_24-bin;
   electron_27 = electron_27-bin;
@@ -21610,8 +21595,6 @@ with pkgs;
     jdk = jdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
 
-  libmatroska = callPackage ../development/libraries/libmatroska { };
-
   libmd = callPackage ../development/libraries/libmd { };
 
   libmemcached = callPackage ../development/libraries/libmemcached { };
@@ -21850,8 +21833,6 @@ with pkgs;
   libstroke = callPackage ../development/libraries/libstroke { };
 
   libspatialaudio = callPackage ../development/libraries/libspatialaudio { };
-
-  libspatialindex = callPackage ../development/libraries/libspatialindex { };
 
   libspatialite = callPackage ../development/libraries/libspatialite { };
 
@@ -22438,8 +22419,6 @@ with pkgs;
   mu = callPackage ../tools/networking/mu { };
 
   mueval = callPackage ../development/tools/haskell/mueval { };
-
-  mujoco = callPackage ../applications/science/robotics/mujoco { };
 
   muparserx = callPackage ../development/libraries/muparserx { };
 
@@ -24397,8 +24376,6 @@ with pkgs;
 
   appdaemon = callPackage ../servers/home-assistant/appdaemon.nix { };
 
-  asouldocs = callPackage ../servers/asouldocs { };
-
   atlassian-bamboo = callPackage ../servers/atlassian/bamboo.nix { };
   atlassian-confluence = callPackage ../servers/atlassian/confluence.nix { };
   atlassian-crowd = callPackage ../servers/atlassian/crowd.nix { };
@@ -25539,8 +25516,6 @@ with pkgs;
 
   tailspin = callPackage ../tools/misc/tailspin { };
 
-  thanos = callPackage ../servers/monitoring/thanos { };
-
   trafficserver = callPackage ../servers/http/trafficserver { };
 
   inherit (callPackages ../servers/http/tomcat { })
@@ -25571,8 +25546,6 @@ with pkgs;
     matomo
     matomo_5
     matomo-beta;
-
-  axis2 = callPackage ../servers/http/tomcat/axis2 { };
 
   inherit (callPackages ../servers/unifi { })
     unifi7
@@ -26640,8 +26613,6 @@ with pkgs;
   powerdns-admin = callPackage ../applications/networking/powerdns-admin { };
 
   dnsdist = callPackage ../servers/dns/dnsdist { };
-
-  powertop = callPackage ../os-specific/linux/powertop { };
 
   pps-tools = callPackage ../os-specific/linux/pps-tools { };
 
@@ -29266,10 +29237,17 @@ with pkgs;
     emacs28-gtk2
     emacs28-gtk3
     emacs28-nox
+
     emacs29
     emacs29-gtk3
     emacs29-nox
     emacs29-pgtk
+
+    emacs30
+    emacs30-gtk3
+    emacs30-nox
+    emacs30-pgtk
+
     emacs28-macport
     emacs29-macport
   ;
@@ -33745,8 +33723,6 @@ with pkgs;
 
   vivictpp = callPackage ../applications/video/vivictpp { };
 
-  vpcs = callPackage ../applications/virtualization/vpcs { };
-
   primusLib = callPackage ../tools/X11/primus/lib.nix {
     nvidia_x11 = linuxPackages.nvidia_x11.override { libsOnly = true; };
   };
@@ -34155,7 +34131,6 @@ with pkgs;
   xkbmon = callPackage ../applications/misc/xkbmon { };
 
   win-spice = callPackage ../applications/virtualization/driver/win-spice { };
-  win-pvdrivers = callPackage ../applications/virtualization/driver/win-pvdrivers { };
 
   xfig = callPackage ../applications/graphics/xfig { };
 
@@ -37795,10 +37770,10 @@ with pkgs;
   # Exceptions are versions that we need to keep to allow upgrades from older NixOS releases
   inherit (callPackage ../applications/networking/cluster/kops {})
     mkKops
-    kops_1_26
     kops_1_27
     kops_1_28
     kops_1_29
+    kops_1_30
     ;
   kops = kops_1_29;
 
@@ -38055,7 +38030,9 @@ with pkgs;
 
   nixpkgs-review = callPackage ../tools/package-management/nixpkgs-review { };
 
-  nix-serve = callPackage ../tools/package-management/nix-serve { };
+  nix-serve = callPackage ../tools/package-management/nix-serve {
+    nix = nixVersions.nix_2_18;
+  };
 
   nix-serve-ng = haskell.lib.compose.justStaticExecutables haskellPackages.nix-serve-ng;
 
@@ -38098,8 +38075,6 @@ with pkgs;
   nsncd = callPackage ../os-specific/linux/nsncd { };
 
   nvd = callPackage ../tools/package-management/nvd { };
-
-  solfege = python3Packages.callPackage ../misc/solfege { };
 
   disnix = callPackage ../tools/package-management/disnix { };
 

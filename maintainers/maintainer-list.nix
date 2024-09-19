@@ -12478,12 +12478,6 @@
     githubId = 7910815;
     name = "Alex McGrath";
   };
-  lychee = {
-    email = "itslychee+nixpkgs@protonmail.com";
-    githubId = 82718618;
-    github = "itslychee";
-    name = "Lychee";
-  };
   lyndeno = {
     name = "Lyndon Sanche";
     email = "lsanche@lyndeno.ca";
@@ -15529,6 +15523,12 @@
     githubId = 39134647;
     name = "Oliver Koss";
   };
+  oliver-ni = {
+    email = "nixos@oliver.ni";
+    github = "oliver-ni";
+    githubId = 20295134;
+    name = "Oliver Ni";
+  };
   ollieB = {
     github = "oliverbunting";
     githubId = 1237862;
@@ -16470,6 +16470,12 @@
     github = "Piturnah";
     githubId = 20472367;
     name = "Peter Hebden";
+  };
+  pixelsergey = {
+    email = "sergey.ichtchenko@gmail.com";
+    github = "PixelSergey";
+    githubId = 14542417;
+    name = "Sergey Ichtchenko";
   };
   pjbarnoy = {
     email = "pjbarnoy@gmail.com";
@@ -20739,7 +20745,7 @@
   };
   tfc = {
     email = "jacek@galowicz.de";
-    matrix = "@jonge:ukvly.org";
+    matrix = "@tfc:matrix.org";
     github = "tfc";
     githubId = 29044;
     name = "Jacek Galowicz";
