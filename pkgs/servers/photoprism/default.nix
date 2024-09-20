@@ -3,14 +3,14 @@
 , librsvg }:
 
 let
-  version = "240711-2197af848";
+  version = "240915-e1280b2fb";
   pname = "photoprism";
 
   src = fetchFromGitHub {
     owner = pname;
     repo = pname;
     rev = version;
-    hash = "sha256-ihDv5c5RUjDbFcAHJjzp/8qCwKfA+rlFXPziaYarzs8=";
+    hash = "sha256-8oV78H4BPSoWRQj6T4cwkIoRB9r/TqXmUvqpHAV3vqY=";
   };
 
   libtensorflow = pkgs.callPackage ./libtensorflow.nix { };
