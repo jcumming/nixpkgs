@@ -32,6 +32,10 @@ let
     runtimeEnv = {
       efiMountPoint = config.boot.loader.efi.efiSysMountPoint;
     };
+
+    # We disable SC2016 because we don't want to expand the regexes in the sed commands.
+    excludeShellChecks = [ "SC2016" ];
+
     text = builtins.readFile ./xen-boot-builder.sh;
   };
 in
@@ -601,7 +605,7 @@ in
   config = lib.modules.mkIf cfg.enable {
     assertions = [
       {
-        assertion = pkgs.stdenv.isx86_64;
+        assertion = pkgs.stdenv.hostPlatform.isx86_64;
         message = "Xen is currently not supported on ${pkgs.stdenv.hostPlatform.system}.";
       }
       {

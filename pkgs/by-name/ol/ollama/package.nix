@@ -8,6 +8,7 @@
   makeWrapper,
   stdenv,
   addDriverRunpath,
+  nix-update-script,
 
   cmake,
   gcc12,
@@ -39,13 +40,13 @@ assert builtins.elem acceleration [
 let
   pname = "ollama";
   # don't forget to invalidate all hashes each update
-  version = "0.3.10";
+  version = "0.3.11";
 
   src = fetchFromGitHub {
     owner = "ollama";
     repo = "ollama";
     rev = "v${version}";
-    hash = "sha256-iNjqnhiM0L873BiBPAgI2Y0KEQyCInn2nEihzwLasFU=";
+    hash = "sha256-YYrNrlXL6ytLfnrvSHybi0va0lvgVNuIRP+IFE5XZX8=";
     fetchSubmodules = true;
   };
 
@@ -61,8 +62,8 @@ let
   rocmRequested = shouldEnable "rocm" config.rocmSupport;
   cudaRequested = shouldEnable "cuda" config.cudaSupport;
 
-  enableRocm = rocmRequested && stdenv.isLinux;
-  enableCuda = cudaRequested && stdenv.isLinux;
+  enableRocm = rocmRequested && stdenv.hostPlatform.isLinux;
+  enableCuda = cudaRequested && stdenv.hostPlatform.isLinux;
 
   rocmLibs = [
     rocmPackages.clr
@@ -143,12 +144,12 @@ goBuild {
       makeWrapper
       autoAddDriverRunpath
     ]
-    ++ lib.optionals stdenv.isDarwin metalFrameworks;
+    ++ lib.optionals stdenv.hostPlatform.isDarwin metalFrameworks;
 
   buildInputs =
     lib.optionals enableRocm (rocmLibs ++ [ libdrm ])
     ++ lib.optionals enableCuda cudaLibs
-    ++ lib.optionals stdenv.isDarwin metalFrameworks;
+    ++ lib.optionals stdenv.hostPlatform.isDarwin metalFrameworks;
 
   patches = [
     # disable uses of `git` in the `go generate` script
@@ -156,6 +157,9 @@ goBuild {
     # this also disables necessary patches contained in `ollama/llm/patches/`
     # those patches are applied in `postPatch`
     ./disable-git.patch
+
+    # we provide our own deps at runtime
+    ./skip-rocm-cp.patch
   ];
 
   postPatch = ''
@@ -199,20 +203,24 @@ goBuild {
     "-X=github.com/ollama/ollama/server.mode=release"
   ];
 
-  passthru.tests =
-    {
-      inherit ollama;
-      version = testers.testVersion {
-        inherit version;
-        package = ollama;
+  passthru = {
+    tests =
+      {
+        inherit ollama;
+        version = testers.testVersion {
+          inherit version;
+          package = ollama;
+        };
+      }
+      // lib.optionalAttrs stdenv.hostPlatform.isLinux {
+        inherit ollama-rocm ollama-cuda;
+        service = nixosTests.ollama;
+        service-cuda = nixosTests.ollama-cuda;
+        service-rocm = nixosTests.ollama-rocm;
       };
-    }
-    // lib.optionalAttrs stdenv.isLinux {
-      inherit ollama-rocm ollama-cuda;
-      service = nixosTests.ollama;
-      service-cuda = nixosTests.ollama-cuda;
-      service-rocm = nixosTests.ollama-rocm;
-    };
+
+    updateScript = nix-update-script { };
+  };
 
   meta = {
     description =

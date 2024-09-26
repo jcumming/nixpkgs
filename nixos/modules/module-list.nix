@@ -20,7 +20,6 @@
   ./config/nix-channel.nix
   ./config/nix-flakes.nix
   ./config/nix-remote-build.nix
-  ./config/no-x-libs.nix
   ./config/nsswitch.nix
   ./config/power-management.nix
   ./config/pulseaudio.nix
@@ -1045,7 +1044,6 @@
   ./services/networking/gdomap.nix
   ./services/networking/ghostunnel.nix
   ./services/networking/git-daemon.nix
-  ./services/networking/globalprotect-vpn.nix
   ./services/networking/gns3-server.nix
   ./services/networking/gnunet.nix
   ./services/networking/go-autoconfig.nix
@@ -1194,6 +1192,7 @@
   ./services/networking/scion/scion-daemon.nix
   ./services/networking/scion/scion-dispatcher.nix
   ./services/networking/scion/scion-router.nix
+  ./services/networking/scion/scion-ip-gateway.nix
   ./services/networking/seafile.nix
   ./services/networking/searx.nix
   ./services/networking/shadowsocks.nix
@@ -1398,6 +1397,7 @@
   ./services/web-apps/crabfit.nix
   ./services/web-apps/davis.nix
   ./services/web-apps/cryptpad.nix
+  ./services/web-apps/dependency-track.nix
   ./services/web-apps/dex.nix
   ./services/web-apps/discourse.nix
   ./services/web-apps/documize.nix
@@ -1431,6 +1431,7 @@
   ./services/web-apps/icingaweb2/icingaweb2.nix
   ./services/web-apps/icingaweb2/module-monitoring.nix
   ./services/web-apps/ifm.nix
+  ./services/web-apps/immich.nix
   ./services/web-apps/invidious.nix
   ./services/web-apps/invoiceplane.nix
   ./services/web-apps/isso.nix
@@ -1625,6 +1626,7 @@
   ./system/boot/stage-2.nix
   ./system/boot/systemd.nix
   ./system/boot/systemd/coredump.nix
+  ./system/boot/systemd/dm-verity.nix
   ./system/boot/systemd/initrd-secrets.nix
   ./system/boot/systemd/initrd.nix
   ./system/boot/systemd/journald.nix
@@ -1639,6 +1641,7 @@
   ./system/boot/systemd/sysupdate.nix
   ./system/boot/systemd/sysusers.nix
   ./system/boot/systemd/tmpfiles.nix
+  ./system/boot/systemd/tpm2.nix
   ./system/boot/systemd/user.nix
   ./system/boot/systemd/userdbd.nix
   ./system/boot/systemd/homed.nix
