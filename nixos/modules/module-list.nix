@@ -259,6 +259,7 @@
   ./programs/oblogout.nix
   ./programs/oddjobd.nix
   ./programs/openvpn3.nix
+  ./programs/obs-studio.nix
   ./programs/partition-manager.nix
   ./programs/plotinus.nix
   ./programs/pqos-wrapper.nix
@@ -1392,6 +1393,7 @@
   ./services/web-apps/chatgpt-retrieval-plugin.nix
   ./services/web-apps/cloudlog.nix
   ./services/web-apps/code-server.nix
+  ./services/web-apps/collabora-online.nix
   ./services/web-apps/commafeed.nix
   ./services/web-apps/convos.nix
   ./services/web-apps/crabfit.nix
