@@ -1149,6 +1149,8 @@ self: super: with self; {
 
   azure-identity = callPackage ../development/python-modules/azure-identity { };
 
+  azure-iot-device = callPackage ../development/python-modules/azure-iot-device { };
+
   azure-keyvault = callPackage ../development/python-modules/azure-keyvault { };
 
   azure-keyvault-administration = callPackage ../development/python-modules/azure-keyvault-administration { };
@@ -1413,6 +1415,8 @@ self: super: with self; {
   pulumi-azure-native = pkgs.pulumiPackages.pulumi-azure-native.sdks.python;
 
   pulumi-command = pkgs.pulumiPackages.pulumi-command.sdks.python;
+
+  pulumi-hcloud = callPackage ../development/python-modules/pulumi-hcloud { };
 
   pulumi-random = pkgs.pulumiPackages.pulumi-random.sdks.python;
 
@@ -2155,6 +2159,10 @@ self: super: with self; {
   cfscrape = callPackage ../development/python-modules/cfscrape { };
 
   cftime = callPackage ../development/python-modules/cftime { };
+
+  cgal = callPackage ../development/python-modules/cgal {
+    inherit (pkgs) cgal;
+  };
 
   cgen = callPackage ../development/python-modules/cgen { };
 
@@ -3032,6 +3040,8 @@ self: super: with self; {
 
   deepdish = callPackage ../development/python-modules/deepdish { };
 
+  deepface = callPackage ../development/python-modules/deepface { };
+
   deepl = callPackage ../development/python-modules/deepl { };
 
   deepmerge = callPackage ../development/python-modules/deepmerge { };
@@ -3725,6 +3735,8 @@ self: super: with self; {
   drawsvg = callPackage ../development/python-modules/drawsvg { };
 
   dremel3dpy = callPackage ../development/python-modules/dremel3dpy { };
+
+  drf-extra-fields = callPackage ../development/python-modules/drf-extra-fields { };
 
   drf-jwt = callPackage ../development/python-modules/drf-jwt { };
 
@@ -5981,7 +5993,9 @@ self: super: with self; {
 
   ifconfig-parser = callPackage ../development/python-modules/ifconfig-parser { };
 
-  ifcopenshell = callPackage ../development/python-modules/ifcopenshell { };
+  ifcopenshell = callPackage ../development/python-modules/ifcopenshell {
+    inherit (pkgs) libxml2;
+  };
 
   ignite = callPackage ../development/python-modules/ignite { };
 
@@ -8246,6 +8260,8 @@ self: super: with self; {
 
   msrest = callPackage ../development/python-modules/msrest { };
 
+  mtcnn = callPackage ../development/python-modules/mtcnn { };
+
   mt-940 = callPackage ../development/python-modules/mt-940 { };
 
   mullvad-api = callPackage ../development/python-modules/mullvad-api { };
@@ -8849,6 +8865,8 @@ self: super: with self; {
 
   netapp-ontap = callPackage ../development/python-modules/netapp-ontap { };
 
+  netbox-documents = callPackage ../development/python-modules/netbox-documents { };
+
   netbox-reorder-rack = callPackage ../development/python-modules/netbox-reorder-rack { };
 
   netcdf4 = callPackage ../development/python-modules/netcdf4 { };
@@ -9379,6 +9397,8 @@ self: super: with self; {
 
   opentelemetry-instrumentation-asgi = callPackage ../development/python-modules/opentelemetry-instrumentation-asgi { };
 
+  opentelemetry-instrumentation-celery = callPackage ../development/python-modules/opentelemetry-instrumentation-celery { };
+
   opentelemetry-instrumentation-dbapi = callPackage ../development/python-modules/opentelemetry-instrumentation-dbapi { };
 
   opentelemetry-instrumentation-django = callPackage ../development/python-modules/opentelemetry-instrumentation-django { };
@@ -9390,6 +9410,10 @@ self: super: with self; {
   opentelemetry-instrumentation-grpc = callPackage ../development/python-modules/opentelemetry-instrumentation-grpc { };
 
   opentelemetry-instrumentation-psycopg2 = callPackage ../development/python-modules/opentelemetry-instrumentation-psycopg2 { };
+
+  opentelemetry-instrumentation-requests = callPackage ../development/python-modules/opentelemetry-instrumentation-requests { };
+
+  opentelemetry-instrumentation-redis = callPackage ../development/python-modules/opentelemetry-instrumentation-redis { };
 
   opentelemetry-instrumentation-wsgi = callPackage ../development/python-modules/opentelemetry-instrumentation-wsgi { };
 
@@ -13597,6 +13621,8 @@ self: super: with self; {
 
   requests-unixsocket = callPackage ../development/python-modules/requests-unixsocket { };
 
+  requests-unixsocket2 = callPackage ../development/python-modules/requests-unixsocket2 { };
+
   requests-wsgi-adapter = callPackage ../development/python-modules/requests-wsgi-adapter { };
 
   requirements-detector = callPackage ../development/python-modules/requirements-detector { };
@@ -13630,6 +13656,8 @@ self: super: with self; {
   result = callPackage ../development/python-modules/result { };
 
   rethinkdb = callPackage ../development/python-modules/rethinkdb { };
+
+  retinaface = callPackage ../development/python-modules/retinaface { };
 
   retry = callPackage ../development/python-modules/retry { };
 
@@ -14843,6 +14871,8 @@ self: super: with self; {
   spidev = callPackage ../development/python-modules/spidev { };
 
   splinter = callPackage ../development/python-modules/splinter { };
+
+  spotifyaio = callPackage ../development/python-modules/spotifyaio { };
 
   spotipy = callPackage ../development/python-modules/spotipy { };
 
