@@ -5393,7 +5393,9 @@ self: super: with self; {
 
   graphrag = callPackage ../development/python-modules/graphrag { };
 
-  graph-tool = callPackage ../development/python-modules/graph-tool { };
+  graph-tool = callPackage ../development/python-modules/graph-tool {
+    inherit (pkgs) cgal;
+  };
 
   graphtage = callPackage ../development/python-modules/graphtage { };
 
@@ -5498,7 +5500,9 @@ self: super: with self; {
     qemu = pkgs.qemu;
   };
 
-  gudhi = callPackage ../development/python-modules/gudhi { };
+  gudhi = callPackage ../development/python-modules/gudhi {
+    inherit (pkgs) cgal;
+  };
 
   guidance = callPackage ../development/python-modules/guidance { };
 
@@ -5715,8 +5719,6 @@ self: super: with self; {
   hjson = callPackage ../development/python-modules/hjson { };
 
   hkavr = callPackage ../development/python-modules/hkavr { };
-
-  hkdf = callPackage ../development/python-modules/hkdf { };
 
   hledger-utils = callPackage ../development/python-modules/hledger-utils { };
 
@@ -5996,7 +5998,7 @@ self: super: with self; {
   ifconfig-parser = callPackage ../development/python-modules/ifconfig-parser { };
 
   ifcopenshell = callPackage ../development/python-modules/ifcopenshell {
-    inherit (pkgs) libxml2;
+    inherit (pkgs) cgal libxml2;
   };
 
   ignite = callPackage ../development/python-modules/ignite { };
@@ -6334,6 +6336,8 @@ self: super: with self; {
   jaconv = callPackage ../development/python-modules/jaconv { };
 
   jaeger-client = callPackage ../development/python-modules/jaeger-client { };
+
+  jalali-core = callPackage ../development/python-modules/jalali-core { };
 
   jamo = callPackage ../development/python-modules/jamo { };
 
@@ -9401,6 +9405,8 @@ self: super: with self; {
 
   opentelemetry-instrumentation-celery = callPackage ../development/python-modules/opentelemetry-instrumentation-celery { };
 
+  opentelemetry-instrumentation-botocore = callPackage ../development/python-modules/opentelemetry-instrumentation-botocore { };
+
   opentelemetry-instrumentation-dbapi = callPackage ../development/python-modules/opentelemetry-instrumentation-dbapi { };
 
   opentelemetry-instrumentation-django = callPackage ../development/python-modules/opentelemetry-instrumentation-django { };
@@ -9418,6 +9424,8 @@ self: super: with self; {
   opentelemetry-instrumentation-redis = callPackage ../development/python-modules/opentelemetry-instrumentation-redis { };
 
   opentelemetry-instrumentation-wsgi = callPackage ../development/python-modules/opentelemetry-instrumentation-wsgi { };
+
+  opentelemetry-propagator-aws-xray = callPackage ../development/python-modules/opentelemetry-propagator-aws-xray { };
 
   opentelemetry-proto = callPackage ../development/python-modules/opentelemetry-proto { };
 
@@ -11618,6 +11626,8 @@ self: super: with self; {
   pylint-venv = callPackage ../development/python-modules/pylint-venv { };
 
   pylion = callPackage ../development/python-modules/pylion { };
+
+  pylitejet = callPackage ../development/python-modules/pylitejet { };
 
   pylitterbot = callPackage ../development/python-modules/pylitterbot { };
 

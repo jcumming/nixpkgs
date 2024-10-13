@@ -5534,6 +5534,18 @@ final: prev:
     meta.homepage = "https://github.com/qnighy/lalrpop.vim/";
   };
 
+  langmapper-nvim = buildVimPlugin {
+    pname = "langmapper.nvim";
+    version = "2024-09-19";
+    src = fetchFromGitHub {
+      owner = "Wansmer";
+      repo = "langmapper.nvim";
+      rev = "ac74a80cb86e8b51e4a13ccb2ee540d544fe1c62";
+      sha256 = "1b2sjsi81r7m1pxxkisl4b2w2cag3v2i4andhn89gv6afzakvzka";
+    };
+    meta.homepage = "https://github.com/Wansmer/langmapper.nvim/";
+  };
+
   last256 = buildVimPlugin {
     pname = "last256";
     version = "2020-12-09";
@@ -11715,6 +11727,18 @@ final: prev:
     meta.homepage = "https://github.com/nvim-telescope/telescope-fzy-native.nvim/";
   };
 
+  telescope-git-conflicts-nvim = buildVimPlugin {
+    pname = "telescope-git-conflicts.nvim";
+    version = "2024-01-14";
+    src = fetchFromGitHub {
+      owner = "Snikimonkd";
+      repo = "telescope-git-conflicts.nvim";
+      rev = "1ac7040f601d16ab3800bdda6f5912a0e385cb29";
+      sha256 = "0n5jwc7pv14fipavqfvam5691qp9fvs2nksdaihjgqrgl5sd12jv";
+    };
+    meta.homepage = "https://github.com/Snikimonkd/telescope-git-conflicts.nvim/";
+  };
+
   telescope-github-nvim = buildVimPlugin {
     pname = "telescope-github.nvim";
     version = "2022-04-22";
@@ -12940,6 +12964,18 @@ final: prev:
       sha256 = "13726m0c73n5pw9gil4ahbg71ibklrwkw9yvbr6qxxvn6qyijpdy";
     };
     meta.homepage = "https://github.com/junegunn/vim-after-object/";
+  };
+
+  vim-afterglow = buildVimPlugin {
+    pname = "vim-afterglow";
+    version = "2024-03-31";
+    src = fetchFromGitHub {
+      owner = "danilo-augusto";
+      repo = "vim-afterglow";
+      rev = "fe3a0c4d2acf13ed6f7f0f1fede0a2570f13b06e";
+      sha256 = "0z61jfdhhajw5k7y8msk8nj5nljwygmw3s6vsqq9qgczaixqh968";
+    };
+    meta.homepage = "https://github.com/danilo-augusto/vim-afterglow/";
   };
 
   vim-agda = buildVimPlugin {
