@@ -10,7 +10,8 @@
 , faad2
 , fetchpatch
 , fetchurl
-, ffmpeg
+# Please unpin FFmpeg on the next upstream release.
+, ffmpeg_6
 , flac
 , fluidsynth
 , freefont_ttf
@@ -136,7 +137,7 @@ stdenv.mkDerivation (finalAttrs: {
     avahi
     dbus
     faad2
-    ffmpeg
+    ffmpeg_6
     flac
     fluidsynth
     fribidi
@@ -214,6 +215,8 @@ stdenv.mkDerivation (finalAttrs: {
     # set the path to the compiler
     BUILDCC = "${pkgsBuildBuild.stdenv.cc}/bin/gcc";
     PKG_CONFIG_WAYLAND_SCANNER_WAYLAND_SCANNER = "wayland-scanner";
+  } // lib.optionalAttrs stdenv.cc.isGNU {
+    NIX_CFLAGS_COMPILE = "-Wno-error=incompatible-pointer-types";
   } // lib.optionalAttrs (!stdenv.hostPlatform.isAarch) {
     LIVE555_PREFIX = live555;
   };

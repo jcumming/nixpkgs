@@ -370,6 +370,11 @@ in
     nvimRequireCheck = "cmp_neosnippet";
   };
 
+  cmp-nixpkgs-maintainers = super.cmp-nixpkgs-maintainers.overrideAttrs {
+    dependencies = with self; [ nvim-cmp ];
+    nvimRequireCheck = "cmp_nixpkgs_maintainers";
+  };
+
   cmp-npm = super.cmp-npm.overrideAttrs {
     dependencies = with self; [
       nvim-cmp
@@ -2644,6 +2649,17 @@ in
   yazi-nvim = super.yazi-nvim.overrideAttrs {
     dependencies = with self; [ plenary-nvim ];
     nvimRequireCheck = "yazi";
+  };
+
+  leetcode-nvim = super.leetcode-nvim.overrideAttrs {
+    dependencies = with self; [
+      nui-nvim
+      plenary-nvim
+      telescope-nvim
+    ];
+
+    doInstallCheck = true;
+    nvimRequireCheck = "leetcode";
   };
 
   YouCompleteMe = super.YouCompleteMe.overrideAttrs {
