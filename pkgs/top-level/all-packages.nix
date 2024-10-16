@@ -2364,7 +2364,7 @@ with pkgs;
 
   gitls = callPackage ../applications/version-management/gitls { };
 
-  gitmux = callPackage ../applications/version-management/gitmux { };
+  gitmux = callPackage ../applications/version-management/gitmux { buildGoModule = buildGo122Module; };
 
   gitnuro = callPackage ../applications/version-management/gitnuro { };
 
@@ -4415,8 +4415,6 @@ with pkgs;
   chopchop = callPackage ../tools/security/chopchop { };
 
   clapboard = callPackage ../tools/wayland/clapboard { };
-
-  cliphist = callPackage ../tools/wayland/cliphist { };
 
   clipman = callPackage ../tools/wayland/clipman { };
 
@@ -13785,10 +13783,6 @@ with pkgs;
   wget = callPackage ../tools/networking/wget { };
 
   wget2 = callPackage ../tools/networking/wget2 { };
-
-  wgpu-utils = callPackage ../tools/graphics/wgpu-utils {
-    inherit (darwin.apple_sdk.frameworks) QuartzCore;
-  };
 
   wg-bond = callPackage ../applications/networking/wg-bond { };
 
@@ -24492,9 +24486,6 @@ with pkgs;
 
   matrix-alertmanager = callPackage ../servers/monitoring/matrix-alertmanager { };
 
-  mattermost = callPackage ../servers/mattermost { };
-  matterircd = callPackage ../servers/mattermost/matterircd.nix { };
-
   mattermost-desktop = callPackage ../applications/networking/instant-messengers/mattermost-desktop { };
 
   memcached = callPackage ../servers/memcached { };
@@ -28134,10 +28125,6 @@ with pkgs;
     audacious = audacious.override { audacious-plugins = null; };
   };
 
-  audacity = callPackage ../applications/audio/audacity {
-    inherit (darwin.apple_sdk.frameworks) AppKit CoreAudioKit;
-  };
-
   audio-recorder = callPackage ../applications/audio/audio-recorder { };
 
   auto-multiple-choice = callPackage ../applications/misc/auto-multiple-choice { };
@@ -28161,8 +28148,6 @@ with pkgs;
   ax25-apps = callPackage ../applications/radio/ax25-apps { };
 
   ax25-tools = callPackage ../applications/radio/ax25-tools { };
-
-  azpainter = callPackage ../applications/graphics/azpainter { };
 
   bambootracker = libsForQt5.callPackage ../applications/audio/bambootracker {
     stdenv = if stdenv.hostPlatform.isDarwin then
@@ -32333,8 +32318,6 @@ with pkgs;
 
   secretscanner = callPackage ../tools/security/secretscanner { };
 
-  setconf = python3.pkgs.callPackage ../tools/misc/setconf { };
-
   semiphemeral = callPackage ../tools/misc/semiphemeral { };
 
   semver = callPackage ../applications/misc/semver { };
@@ -33519,8 +33502,6 @@ with pkgs;
 
   wings = callPackage ../applications/graphics/wings { };
 
-  write_stylus = libsForQt5.callPackage ../applications/graphics/write_stylus { };
-
   wlc = callPackage  ../tools/misc/wlc { };
 
   wlclock = callPackage ../applications/misc/wlclock { };
@@ -33881,8 +33862,6 @@ with pkgs;
   ytmdl = callPackage ../tools/misc/ytmdl { };
 
   yuview = libsForQt5.yuview;
-
-  wallust = callPackage ../applications/misc/wallust { };
 
   zam-plugins = callPackage ../applications/audio/zam-plugins { };
 
@@ -38654,8 +38633,6 @@ with pkgs;
   fac-build = callPackage ../development/tools/build-managers/fac {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
-
-  nufmt = callPackage ../development/tools/nufmt { };
 
   bottom = darwin.apple_sdk_11_0.callPackage ../tools/system/bottom { };
 
