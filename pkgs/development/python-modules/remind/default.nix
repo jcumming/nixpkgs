@@ -1,14 +1,14 @@
-{ buildPythonPackage, fetchPypi, coverage, nose, pytz, tzlocal, python-dateutil, vobject }:
+{ buildPythonPackage, fetchPypi, coverage, pytz, tzlocal, python-dateutil, vobject }:
 
 buildPythonPackage rec {
   pname = "remind";
-  version = "0.18.0";
+  version = "0.19.1";
 
-  buildInputs = [ coverage nose ];
+  buildInputs = [ coverage ];
   propagatedBuildInputs = [ pytz tzlocal python-dateutil vobject ];
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-FB831vi9Vpy6dJ5HROR8cv5CFa9PD4pwFru62Dnd+Kk=";
+    sha256 = "sha256-6yi4AQ0EOFfe8UQNRuTnwbBPQpBwUip9CkcSG338VVg=";
   };
 }

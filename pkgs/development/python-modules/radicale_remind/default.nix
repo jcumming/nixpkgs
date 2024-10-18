@@ -1,6 +1,6 @@
 {
   lib,
-  fetchPypi,
+  fetchFromGitHub,
   buildPythonPackage,
   radicale,
   abook,
@@ -9,12 +9,14 @@
 }:
 buildPythonPackage rec {
   pname = "radicale-remind";
-  version = "0.5.0";
+  version = "0.6.0";
   format = "setuptools";
 
-  src = fetchPypi {
-    inherit pname version;
-    sha256 = "sha256-l/mHyN1+Dyf18UDdP6b9AaUFG8+J0HclD6OPnU7aVAk=";
+  src = fetchFromGitHub {
+    owner = "jspricke";
+    repo = "radicale-remind";
+    rev = "v${version}";
+    hash = "sha256-d4kLUC++mCc73pMXTJLpDIkV6eZ61CGXkeqcaaDgLdo=";
   };
 
   nativeBuildInputs = [ radicale ]; # prevent radicale from importing itself

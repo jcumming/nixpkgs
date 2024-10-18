@@ -1,14 +1,14 @@
-{ buildPythonPackage, fetchPypi, coverage, nose, vobject }:
+{ buildPythonPackage, fetchPypi, coverage, vobject }:
 
 buildPythonPackage rec {
   pname = "icstask";
-  version = "0.4.0";
+  version = "0.5.0";
 
-  buildInputs = [ coverage nose ];
+  buildInputs = [ coverage ];
   propagatedBuildInputs = [ vobject ];
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-h1mu+5cGodRhjRfEIxMgMbOzFZ3nczLF7MFckshjmoU=";
+    sha256 = "sha256-ckoVaGZJZ2L6d6eX17ZRtE/kH98l6rh8lSjzJxLVww8=";
   };
 }
