@@ -2191,8 +2191,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
-  git-branchstack = python3.pkgs.callPackage ../applications/version-management/git-branchstack { };
-
   git-bug = callPackage ../applications/version-management/git-bug { };
 
   git-bug-migration = callPackage ../applications/version-management/git-bug-migration { };
@@ -8604,6 +8602,7 @@ with pkgs;
     fmt = fmt_8.override { inherit stdenv; };
     nanodbc_llvm = nanodbc.override { inherit stdenv; };
     avro-cpp_llvm = avro-cpp.override { inherit stdenv boost; };
+    spdlog_llvm = spdlog.override { inherit stdenv fmt; };
   })
     irods
     irods-icommands;
@@ -8834,7 +8833,9 @@ with pkgs;
 
   jmespath = callPackage ../development/tools/jmespath { };
 
-  juicefs = callPackage ../tools/filesystems/juicefs { };
+  juicefs = callPackage ../tools/filesystems/juicefs {
+    buildGoModule = buildGo122Module;
+  };
 
   juicity = callPackage ../tools/networking/juicity { };
 
@@ -13642,6 +13643,10 @@ with pkgs;
 
   vul = callPackage ../applications/misc/vul { };
 
+  vuls = callPackage ../by-name/vu/vuls/package.nix {
+    buildGoModule = buildGo123Module;
+  };
+
   xarchive = callPackage ../tools/archivers/xarchive { };
 
   xarchiver = callPackage ../tools/archivers/xarchiver { };
@@ -15143,18 +15148,19 @@ with pkgs;
   juniper = callPackage ../development/compilers/juniper { };
 
   inherit (callPackage ../development/compilers/julia { })
-    julia_16-bin
     julia_19-bin
     julia_110-bin
+    julia_111-bin
     julia_19
-    julia_110;
+    julia_110
+    julia_111;
 
-  julia-lts = julia_16-bin;
-  julia-stable = julia_110;
+  julia-lts = julia_110-bin;
+  julia-stable = julia_111;
   julia = julia-stable;
 
-  julia-lts-bin = julia_16-bin;
-  julia-stable-bin = julia_110-bin;
+  julia-lts-bin = julia_110-bin;
+  julia-stable-bin = julia_111-bin;
   julia-bin = julia-stable-bin;
 
   kind2 = darwin.apple_sdk_11_0.callPackage ../development/compilers/kind2 { };
@@ -18388,8 +18394,6 @@ with pkgs;
   sloc = nodePackages.sloc;
 
   smc = callPackage ../tools/misc/smc { };
-
-  snakemake = callPackage ../applications/science/misc/snakemake { };
 
   snore = callPackage ../tools/misc/snore { };
 
@@ -23232,8 +23236,6 @@ with pkgs;
   talloc = callPackage ../development/libraries/talloc { };
 
   tagparser = callPackage ../development/libraries/tagparser { };
-
-  taskflow = callPackage ../development/libraries/taskflow { };
 
   tclap = tclap_1_2;
 
@@ -31495,15 +31497,6 @@ with pkgs;
 
   ncdu_1 = callPackage ../tools/misc/ncdu/1.nix { };
 
-  ncspot = callPackage ../applications/audio/ncspot {
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-
-    withALSA = stdenv.hostPlatform.isLinux;
-    withPulseAudio = config.pulseaudio or stdenv.hostPlatform.isLinux;
-    withPortAudio = stdenv.hostPlatform.isDarwin;
-    withMPRIS = stdenv.hostPlatform.isLinux;
-  };
-
   ncview = callPackage ../tools/X11/ncview { } ;
 
   ne = callPackage ../applications/editors/ne { };
@@ -35215,17 +35208,14 @@ with pkgs;
 
   stockfish = callPackage ../games/stockfish { };
 
-  steamPackages = recurseIntoAttrs (callPackage ../games/steam { });
-
-  steam = steamPackages.steam-fhsenv;
-
   steam-run = steam.run;
 
-  steam-run-free = steamPackages.steam-fhsenv-without-steam.run;
+  # This exists so Hydra tries to build all of Steam's dependencies.
+  steam-fhsenv-without-steam = steam.override { steam-unwrapped = null; };
+
+  steam-run-free = steam-fhsenv-without-steam.run;
 
   steam-tui = callPackage ../games/steam-tui { };
-
-  steamcmd = steamPackages.steamcmd;
 
   steam-acf = callPackage ../tools/games/steam-acf { };
 
