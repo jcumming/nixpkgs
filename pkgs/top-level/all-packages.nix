@@ -2517,7 +2517,8 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.frameworks) AudioUnit Carbon Cocoa;
   };
 
-  fceux = libsForQt5.callPackage ../applications/emulators/fceux { };
+  fceux-qt5 = fceux.override { ___qtVersion = "5"; };
+  fceux-qt6 = fceux.override { ___qtVersion = "6"; };
 
   firebird-emu = libsForQt5.callPackage ../applications/emulators/firebird-emu { };
 
@@ -2902,8 +2903,6 @@ with pkgs;
 
   yaft = callPackage ../applications/terminal-emulators/yaft { };
 
-  writefreely = callPackage ../applications/misc/writefreely { };
-
   iqueue = callPackage ../development/libraries/iqueue { };
 
   lifecycled = callPackage ../tools/misc/lifecycled { };
@@ -3036,8 +3035,6 @@ with pkgs;
   ArchiSteamFarm = callPackage ../applications/misc/ArchiSteamFarm { };
 
   archivebox = callPackage ../applications/misc/archivebox { };
-
-  archivemount = callPackage ../tools/filesystems/archivemount { };
 
   archivy = callPackage ../applications/misc/archivy { };
 
@@ -11295,7 +11292,9 @@ with pkgs;
 
   podman-compose = python3Packages.callPackage ../applications/virtualization/podman-compose { };
 
-  podman-desktop = callPackage ../applications/virtualization/podman-desktop {};
+  podman-desktop = callPackage ../applications/virtualization/podman-desktop {
+    inherit (darwin) autoSignDarwinBinariesHook;
+  };
 
   pods = callPackage ../applications/virtualization/pods { };
 
@@ -12745,7 +12744,7 @@ with pkgs;
 
   inherit (callPackages ../servers/teleport {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security AppKit;
-  }) teleport_14 teleport_15 teleport_16 teleport;
+  }) teleport_15 teleport_16 teleport;
 
   telepresence = callPackage ../tools/networking/telepresence {
     pythonPackages = python3Packages;
@@ -13095,8 +13094,6 @@ with pkgs;
   tuifeed = callPackage ../applications/networking/feedreaders/tuifeed {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
-
-  russ = callPackage ../applications/networking/feedreaders/russ { };
 
   tunnelto = callPackage ../tools/networking/tunnelto {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -20676,8 +20673,6 @@ with pkgs;
 
   libcomps = callPackage ../tools/package-management/libcomps { python = python3; };
 
-  libcpr = callPackage ../development/libraries/libcpr { };
-
   libcredis = callPackage ../development/libraries/libcredis { };
 
   libctb = callPackage ../development/libraries/libctb { };
@@ -24302,8 +24297,6 @@ with pkgs;
 
   grafana-loki = callPackage ../servers/monitoring/loki { };
   promtail = callPackage ../servers/monitoring/loki/promtail.nix { };
-
-  mimir = callPackage ../servers/monitoring/mimir { };
 
   phlare = callPackage ../servers/monitoring/phlare { };
 
@@ -28987,7 +28980,7 @@ with pkgs;
 
   icesl = callPackage ../applications/misc/icesl { };
 
-  input-leap = libsForQt5.callPackage ../applications/misc/input-leap {
+  input-leap = qt6Packages.callPackage ../applications/misc/input-leap {
     avahi = avahi.override { withLibdnssdCompat = true; };
   };
 
@@ -30194,10 +30187,6 @@ with pkgs;
 
   imgp = python3Packages.callPackage ../applications/graphics/imgp { };
 
-  imhex = callPackage ../by-name/im/imhex/package.nix {
-    llvm = llvm_17;
-  };
-
   inframap = callPackage ../applications/networking/cluster/inframap { };
 
   inkcut = libsForQt5.callPackage ../applications/misc/inkcut { };
@@ -30377,8 +30366,6 @@ with pkgs;
   kile = callPackage ../applications/editors/kile { };
 
   kitsas = libsForQt5.callPackage ../applications/office/kitsas { };
-
-  kiwitalk = callPackage ../by-name/ki/kiwitalk/package.nix { pnpm = pnpm_8; };
 
   kiwix = libsForQt5.callPackage ../applications/misc/kiwix { };
 
@@ -33222,8 +33209,6 @@ with pkgs;
   virt-manager-qt = libsForQt5.callPackage ../applications/virtualization/virt-manager/qt.nix {
     qtermwidget = lxqt.qtermwidget_1_4;
   };
-
-  virtscreen = callPackage ../tools/admin/virtscreen { };
 
   virtual-ans = callPackage ../applications/audio/virtual-ans { };
 
@@ -36776,7 +36761,6 @@ with pkgs;
         curl
       ];
     });
-    perl = perl540;
   };
 
   megam = callPackage ../applications/science/misc/megam {
@@ -37891,8 +37875,6 @@ with pkgs;
   steamcontroller = callPackage ../misc/drivers/steamcontroller { };
 
   stepreduce = callPackage ../applications/misc/stepreduce { };
-
-  stern = callPackage ../applications/networking/cluster/stern { };
 
   streamripper = callPackage ../applications/audio/streamripper { };
 
