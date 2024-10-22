@@ -199,6 +199,8 @@ in
     meta.homepage = "https://github.com/sblumentritt/bitbake.vim/";
   };
 
+  blink-cmp = callPackage ./blink-cmp { };
+
   # The GitHub repository returns 404, which breaks the update script
   vim-pony = buildVimPlugin {
     pname = "vim-pony";
@@ -1112,6 +1114,11 @@ in
     };
   };
 
+  hunk-nvim = super.hunk-nvim.overrideAttrs {
+    dependencies = with self; [ nui-nvim ];
+    nvimRequireCheck = "hunk";
+  };
+
   # https://hurl.dev/
   hurl = buildVimPlugin {
     pname = "hurl";
@@ -1852,6 +1859,10 @@ in
   rustaceanvim = neovimUtils.buildNeovimPlugin {
     luaAttr = luaPackages.rustaceanvim;
     nvimRequireCheck = "rustaceanvim";
+  };
+
+  scretch-nvim = super.scretch-nvim.overrideAttrs {
+    nvimRequireCheck = "scretch";
   };
 
   sg-nvim = super.sg-nvim.overrideAttrs (
@@ -2750,8 +2761,6 @@ in
       "coc-tabnine"
       "coc-texlab"
       "coc-toml"
-      "coc-tslint"
-      "coc-tslint-plugin"
       "coc-tsserver"
       "coc-ultisnips"
       "coc-vetur"
