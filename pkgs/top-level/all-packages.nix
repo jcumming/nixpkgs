@@ -196,6 +196,8 @@ with pkgs;
 
   appimageTools = callPackage ../build-support/appimage { };
 
+  appimageupdate-qt = appimageupdate.override { withQtUI = true; };
+
   appindicator-sharp = callPackage ../development/libraries/appindicator-sharp { };
 
   bindle = callPackage ../servers/bindle {
@@ -310,6 +312,12 @@ with pkgs;
   badlion-client = callPackage ../games/badlion-client {};
 
   banana-accounting = callPackage ../applications/office/banana-accounting { };
+
+  basalt-monado = callPackage ../by-name/ba/basalt-monado/package.nix {
+    tbb = tbb_2021_11;
+    cereal = cereal_1_3_2;
+    opencv = opencv.override { enableGtk3 = true; };
+  };
 
   beebeep = libsForQt5.callPackage ../applications/office/beebeep { };
 
@@ -443,6 +451,10 @@ with pkgs;
   ciel = callPackage ../tools/package-management/ciel { };
 
   circt = callPackage ../development/compilers/circt { };
+
+  clang-uml = callPackage ../by-name/cl/clang-uml/package.nix {
+    stdenv = clangStdenv;
+  };
 
   classicube = callPackage ../games/classicube { };
 
@@ -1906,7 +1918,7 @@ with pkgs;
 
   scarab = callPackage ../tools/games/scarab { };
 
-  sdbus-cpp = callPackage ../development/libraries/sdbus-cpp { };
+  inherit (callPackage ../development/libraries/sdbus-cpp { }) sdbus-cpp sdbus-cpp_2;
 
   sdlookup = callPackage ../tools/security/sdlookup { };
 
@@ -4797,7 +4809,7 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_31;
+    electron = electron_32;
   };
   element-desktop-wayland = writeScriptBin "element-desktop" ''
     #!/bin/sh
@@ -11159,7 +11171,9 @@ with pkgs;
 
   pingtcp = callPackage ../tools/networking/pingtcp { };
 
-  pingu = callPackage ../tools/networking/pingu { };
+  pingu = callPackage ../tools/networking/pingu {
+    buildGoModule = buildGo122Module;
+  };
 
   pinnwand = callPackage ../servers/pinnwand { };
 
@@ -11860,8 +11874,6 @@ with pkgs;
   rowhammer-test = callPackage ../tools/system/rowhammer-test { };
 
   rpPPPoE = callPackage ../tools/networking/rp-pppoe { };
-
-  rpiboot = callPackage ../development/misc/rpiboot { };
 
   rpm = callPackage ../tools/package-management/rpm {
     python = python3;
@@ -12731,6 +12743,7 @@ with pkgs;
 
   inherit (callPackages ../servers/teleport {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security AppKit;
+    buildGoModule = buildGo122Module;
   }) teleport_15 teleport_16 teleport;
 
   telepresence = callPackage ../tools/networking/telepresence {
@@ -13801,7 +13814,9 @@ with pkgs;
 
   wipe = callPackage ../tools/security/wipe { };
 
-  wireguard-go = callPackage ../tools/networking/wireguard-go { };
+  wireguard-go = callPackage ../tools/networking/wireguard-go {
+    buildGoModule = buildGo122Module;
+  };
 
   wkhtmltopdf = callPackage ../tools/graphics/wkhtmltopdf { };
 
@@ -16931,10 +16946,10 @@ with pkgs;
   electron_30 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_30 then electron-source.electron_30 else electron_30-bin;
   electron_31 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_31 then electron-source.electron_31 else electron_31-bin;
   electron_32 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_32 then electron-source.electron_32 else electron_32-bin;
-  electron_33 = electron_33-bin;
-  electron = electron_32;
-  electron-bin = electron_32-bin;
-  electron-chromedriver = electron-chromedriver_32;
+  electron_33 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_33 then electron-source.electron_33 else electron_33-bin;
+  electron = electron_33;
+  electron-bin = electron_33-bin;
+  electron-chromedriver = electron-chromedriver_33;
 
   autobuild = callPackage ../development/tools/misc/autobuild { };
 
@@ -21016,10 +21031,6 @@ with pkgs;
 
   libhugetlbfs = callPackage ../development/libraries/libhugetlbfs { };
 
-  libhv = callPackage ../development/libraries/libhv {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   libhwy = callPackage ../development/libraries/libhwy { };
 
   libHX = callPackage ../development/libraries/libHX { };
@@ -22556,9 +22567,6 @@ with pkgs;
       protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
         abseil-cpp = abseil-cpp_202103;
       };
-      protobuf3_20 = callPackage ../development/libraries/protobuf/3.20.nix {
-        abseil-cpp = abseil-cpp_202103;
-      };
     })
     protobuf_28
     protobuf_27
@@ -22567,7 +22575,6 @@ with pkgs;
     protobuf_24
     protobuf_23
     protobuf_21
-    protobuf3_20
     ;
 
   protobufc = callPackage ../development/libraries/protobufc { };
@@ -24319,10 +24326,10 @@ with pkgs;
   home-assistant = callPackage ../servers/home-assistant { };
 
   buildHomeAssistantComponent = callPackage ../servers/home-assistant/build-custom-component { };
-  home-assistant-custom-components = lib.recurseIntoAttrs
-    (callPackage ../servers/home-assistant/custom-components {
-      inherit (home-assistant.python.pkgs) callPackage;
-    });
+  home-assistant-custom-components = lib.recurseIntoAttrs (lib.packagesFromDirectoryRecursive {
+    inherit (home-assistant.python.pkgs) callPackage;
+    directory = ../servers/home-assistant/custom-components;
+  });
   home-assistant-custom-lovelace-modules = lib.recurseIntoAttrs
     (callPackage ../servers/home-assistant/custom-lovelace-modules {});
 
@@ -24364,8 +24371,6 @@ with pkgs;
   ircdog = callPackage ../applications/networking/irc/ircdog { };
 
   ircdHybrid = callPackage ../servers/irc/ircd-hybrid { };
-
-  janus-gateway = callPackage ../servers/janus-gateway { };
 
   janusgraph = callPackage ../servers/nosql/janusgraph { };
 
@@ -25155,10 +25160,6 @@ with pkgs;
   slurm-spank-x11 = callPackage ../servers/computing/slurm-spank-x11 { };
 
   systemd-journal2gelf = callPackage ../tools/system/systemd-journal2gelf { };
-
-  tailscale = callPackage ../servers/tailscale {
-    buildGoModule = buildGo123Module;
-  };
 
   tailscale-systray = callPackage ../applications/misc/tailscale-systray { };
 
@@ -25967,9 +25968,11 @@ with pkgs;
     fetchurl = import ../build-support/fetchurl/boot.nix {
       inherit (stdenv.buildPlatform) system;
     };
-    checkMeta = callPackage ../stdenv/generic/check-meta.nix { };
+    checkMeta = callPackage ../stdenv/generic/check-meta.nix { inherit (stdenv) hostPlatform; };
   });
-  minimal-bootstrap-sources = callPackage ../os-specific/linux/minimal-bootstrap/stage0-posix/bootstrap-sources.nix { };
+  minimal-bootstrap-sources = callPackage ../os-specific/linux/minimal-bootstrap/stage0-posix/bootstrap-sources.nix {
+    inherit (stdenv) hostPlatform;
+  };
   make-minimal-bootstrap-sources = callPackage ../os-specific/linux/minimal-bootstrap/stage0-posix/make-bootstrap-sources.nix {
     inherit (stdenv) hostPlatform;
   };
@@ -28405,8 +28408,6 @@ with pkgs;
 
   catt = callPackage ../applications/video/catt { };
 
-  cava = callPackage ../applications/audio/cava { };
-
   cb2bib = libsForQt5.callPackage ../applications/office/cb2bib { };
 
   cbatticon = callPackage ../applications/misc/cbatticon { };
@@ -28887,8 +28888,6 @@ with pkgs;
 
   ephemeral = callPackage ../applications/networking/browsers/ephemeral { };
 
-  epic5 = callPackage ../applications/networking/irc/epic5 { };
-
   epick = callPackage ../applications/graphics/epick {
     inherit (darwin.apple_sdk.frameworks) AppKit;
   };
@@ -28990,8 +28989,6 @@ with pkgs;
   keepass-qrcodeview = callPackage ../applications/misc/keepass-plugins/qrcodeview { };
 
   kerbrute = callPackage ../tools/security/kerbrute { };
-
-  komikku = callPackage ../applications/graphics/komikku { };
 
   kvmtool = callPackage ../applications/virtualization/kvmtool { };
 
@@ -30239,7 +30236,7 @@ with pkgs;
 
   jaeles = callPackage ../tools/security/jaeles { };
 
-  jalv = callPackage ../applications/audio/jalv { };
+  jalv-qt = jalv.override { useQt = true; };
 
   jameica = callPackage ../applications/office/jameica {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
@@ -32249,8 +32246,6 @@ with pkgs;
 
   sc-im = callPackage ../applications/misc/sc-im { };
 
-  scite = callPackage ../applications/editors/scite { };
-
   scli = callPackage ../applications/misc/scli { };
 
   scribus_1_5 = libsForQt5.callPackage ../applications/office/scribus/default.nix { };
@@ -33572,8 +33567,6 @@ with pkgs;
 
   xchainkeys = callPackage ../tools/X11/xchainkeys { };
 
-  xchm = callPackage ../applications/misc/xchm { };
-
   inherit (xorg) xcompmgr;
 
   x-create-mouse-void = callPackage ../applications/window-managers/x-create-mouse-void { };
@@ -34542,7 +34535,7 @@ with pkgs;
     fltk = fltk-minimal;
   };
 
-  factorio = callPackage ../games/factorio { releaseType = "alpha"; };
+  factorio = callPackage ../by-name/fa/factorio/package.nix { releaseType = "alpha"; };
 
   factorio-experimental = factorio.override { releaseType = "alpha"; experimental = true; };
 
@@ -34556,9 +34549,9 @@ with pkgs;
 
   factorio-space-age-experimental = factorio.override { releaseType = "expansion"; experimental = true; };
 
-  factorio-mods = callPackage ../games/factorio/mods.nix { };
+  factorio-mods = callPackage ../by-name/fa/factorio/mods.nix { };
 
-  factorio-utils = callPackage ../games/factorio/utils.nix { };
+  factorio-utils = callPackage ../by-name/fa/factorio/utils.nix { };
 
   fairymax = callPackage ../games/fairymax { };
 
@@ -36260,7 +36253,9 @@ with pkgs;
   };
   cvc4 = callPackage ../applications/science/logic/cvc4 { };
 
-  cvc5 = callPackage ../applications/science/logic/cvc5 { };
+  cvc5 = callPackage ../applications/science/logic/cvc5 {
+    cadical = pkgs.cadical.override { version = "2.0.0"; };
+  };
 
   drat-trim = callPackage ../applications/science/logic/drat-trim { };
 
@@ -37093,13 +37088,9 @@ with pkgs;
 
   gummi = callPackage ../applications/misc/gummi { };
 
-  gummy = callPackage ../tools/misc/gummy { };
-
   hashpump = callPackage ../tools/misc/hashpump { };
 
   hck = callPackage ../tools/text/hck { };
-
-  helm = callPackage ../applications/audio/helm { };
 
   helmfile = callPackage ../applications/networking/cluster/helmfile { };
 

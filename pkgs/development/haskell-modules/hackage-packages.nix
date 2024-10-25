@@ -1369,6 +1369,7 @@ self: {
        ];
        description = "Deriving Parsers and Quasi-Quoters from BNF Grammars";
        license = lib.licenses.gpl2Only;
+       maintainers = [ lib.maintainers.artem ];
      }) {};
 
   "BPS" = callPackage
@@ -28205,6 +28206,7 @@ self: {
        libraryToolDepends = [ alex happy ];
        description = "Quasi-quoter for Alex lexers";
        license = lib.licenses.bsd3;
+       maintainers = [ lib.maintainers.artem ];
      }) {};
 
   "alex-prelude" = callPackage
@@ -138797,6 +138799,7 @@ self: {
        libraryToolDepends = [ happy ];
        description = "Quasi-quoter for Happy parsers";
        license = lib.licenses.bsd3;
+       maintainers = [ lib.maintainers.artem ];
      }) {};
 
   "happybara" = callPackage
@@ -325853,6 +325856,7 @@ self: {
        ];
        description = "Efficient vector-based mutable hashtables implementation";
        license = lib.licenses.bsd3;
+       maintainers = [ lib.maintainers.artem ];
      }) {};
 
   "vector-heterogenous" = callPackage
