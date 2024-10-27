@@ -1478,6 +1478,8 @@ self: super: with self; {
 
   basemap-data = callPackage ../development/python-modules/basemap-data { };
 
+  basemap-data-hires = callPackage ../development/python-modules/basemap-data-hires { };
+
   bases = callPackage ../development/python-modules/bases { };
 
   bash-kernel = callPackage ../development/python-modules/bash-kernel { };
@@ -1754,6 +1756,8 @@ self: super: with self; {
   boilerpy3 = callPackage ../development/python-modules/boilerpy3 { };
 
   bokeh = callPackage ../development/python-modules/bokeh { };
+
+  bokeh-sampledata = callPackage ../development/python-modules/bokeh-sampledata { };
 
   boltons = callPackage ../development/python-modules/boltons { };
 
@@ -2435,8 +2439,6 @@ self: super: with self; {
   cocotb = callPackage ../development/python-modules/cocotb { };
 
   cocotb-bus = callPackage ../development/python-modules/cocotb-bus { };
-
-  codecov = callPackage ../development/python-modules/codecov { };
 
   codepy = callPackage ../development/python-modules/codepy { };
 
@@ -3338,6 +3340,8 @@ self: super: with self; {
 
   django-celery-results = callPackage ../development/python-modules/django-celery-results { };
 
+  django-choices-field = callPackage ../development/python-modules/django-choices-field { };
+
   django-ckeditor = callPackage ../development/python-modules/django-ckeditor { };
 
   django-classy-tags = callPackage ../development/python-modules/django-classy-tags { };
@@ -3367,6 +3371,8 @@ self: super: with self; {
   django-crispy-bootstrap5 = callPackage ../development/python-modules/django-crispy-bootstrap5 { };
 
   django-crispy-forms = callPackage ../development/python-modules/django-crispy-forms { };
+
+  django-crossdomainmedia = callPackage ../development/python-modules/django-crossdomainmedia { };
 
   django-cryptography = callPackage ../development/python-modules/django-cryptography { };
 
@@ -3407,6 +3413,8 @@ self: super: with self; {
   django-hierarkey = callPackage ../development/python-modules/django-hierarkey { };
 
   django-hijack = callPackage ../development/python-modules/django-hijack { };
+
+  django-htmx = callPackage ../development/python-modules/django-htmx { };
 
   django-i18nfield = callPackage ../development/python-modules/django-i18nfield { };
 
@@ -3569,6 +3577,8 @@ self: super: with self; {
   django-tastypie = callPackage ../development/python-modules/django-tastypie { };
 
   django-timezone-field = callPackage ../development/python-modules/django-timezone-field { };
+
+  django-tinymce = callPackage ../development/python-modules/django-tinymce { };
 
   django-treebeard = callPackage ../development/python-modules/django-treebeard { };
 
@@ -8889,6 +8899,8 @@ self: super: with self; {
 
   netapp-ontap = callPackage ../development/python-modules/netapp-ontap { };
 
+  netbox-bgp = callPackage ../development/python-modules/netbox-bgp { };
+
   netbox-documents = callPackage ../development/python-modules/netbox-documents { };
 
   netbox-reorder-rack = callPackage ../development/python-modules/netbox-reorder-rack { };
@@ -9520,6 +9532,8 @@ self: super: with self; {
 
   ordered-set = callPackage ../development/python-modules/ordered-set { };
 
+  orderly-set = callPackage ../development/python-modules/orderly-set { };
+
   orderedset = callPackage ../development/python-modules/orderedset { };
 
   orgparse = callPackage ../development/python-modules/orgparse { };
@@ -9578,9 +9592,7 @@ self: super: with self; {
 
   oslo-serialization = callPackage ../development/python-modules/oslo-serialization { };
 
-  oslo-utils = callPackage ../development/python-modules/oslo-utils {
-    qemu = pkgs.qemu;
-  };
+  oslo-utils = callPackage ../development/python-modules/oslo-utils { };
 
   oslotest = callPackage ../development/python-modules/oslotest { };
 
@@ -10373,6 +10385,8 @@ self: super: with self; {
   pytest-mockito = callPackage ../development/python-modules/pytest-mockito { };
 
   pytest-pudb = callPackage ../development/python-modules/pytest-pudb { };
+
+  pytest-ruff = callPackage ../development/python-modules/pytest-ruff { };
 
   pytlv = callPackage ../development/python-modules/pytlv { };
 
@@ -11228,7 +11242,7 @@ self: super: with self; {
 
   pydmd = callPackage ../development/python-modules/pydmd { };
 
-  pydns = callPackage ../development/python-modules/py3dns { };
+  py3dns = callPackage ../development/python-modules/py3dns { };
 
   pydocstyle = callPackage ../development/python-modules/pydocstyle { };
 
@@ -13553,6 +13567,10 @@ self: super: with self; {
 
   remarshal = callPackage ../development/python-modules/remarshal { };
 
+  remctl = callPackage ../development/python-modules/remctl {
+    remctl-c = pkgs.remctl;
+  };
+
   remi = callPackage ../development/python-modules/remi { };
 
   remote-pdb = callPackage ../development/python-modules/remote-pdb { };
@@ -13682,6 +13700,8 @@ self: super: with self; {
   retry = callPackage ../development/python-modules/retry { };
 
   retry-decorator = callPackage ../development/python-modules/retry-decorator { };
+
+  retry2 = callPackage ../development/python-modules/retry2 { };
 
   retrying = callPackage ../development/python-modules/retrying { };
 
@@ -13922,6 +13942,10 @@ self: super: with self; {
   rubicon-objc = callPackage ../development/python-modules/rubicon-objc { };
 
   rubymarshal = callPackage ../development/python-modules/rubymarshal { };
+
+  ruff = toPythonModule (pkgs.ruff.override {
+    python3Packages = self;
+  });
 
   ruff-api = callPackage ../development/python-modules/ruff-api { };
 
@@ -15103,6 +15127,8 @@ self: super: with self; {
 
   strawberry-graphql = callPackage ../development/python-modules/strawberry-graphql { };
 
+  strawberry-django = callPackage ../development/python-modules/strawberry-django { };
+
   strct = callPackage ../development/python-modules/strct { };
 
   streamcontroller-plugin-tools = callPackage ../development/python-modules/streamcontroller-plugin-tools { };
@@ -15130,6 +15156,8 @@ self: super: with self; {
   stringly = callPackage ../development/python-modules/stringly { };
 
   stringparser = callPackage ../development/python-modules/stringparser { };
+
+  stringzilla = callPackage ../development/python-modules/stringzilla { };
 
   stripe = callPackage ../development/python-modules/stripe { };
 
@@ -15775,6 +15803,8 @@ self: super: with self; {
   toonapi = callPackage ../development/python-modules/toonapi { };
 
   toposort = callPackage ../development/python-modules/toposort { };
+
+  toptica-lasersdk = callPackage ../development/python-modules/toptica-lasersdk { };
 
   torch = callPackage ../development/python-modules/torch { };
 
@@ -17942,6 +17972,8 @@ self: super: with self; {
   zerorpc = callPackage ../development/python-modules/zerorpc { };
 
   zetup = callPackage ../development/python-modules/zetup { };
+
+  zeversolar = callPackage ../development/python-modules/zeversolar { };
 
   zeversolarlocal = callPackage ../development/python-modules/zeversolarlocal { };
 
