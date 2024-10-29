@@ -681,6 +681,8 @@ with pkgs;
     inherit (darwin) DarwinTools;
   };
 
+  mumps_par = callPackage ../by-name/mu/mumps/package.nix { mpiSupport = true; };
+
   mix2nix = callPackage ../development/tools/mix2nix { };
 
   n98-magerun = callPackage ../development/tools/misc/n98-magerun { };
@@ -7506,8 +7508,6 @@ with pkgs;
 
   flashrom = callPackage ../tools/misc/flashrom { };
 
-  flent = python3Packages.callPackage ../applications/networking/flent { };
-
   flexoptix-app = callPackage ../tools/misc/flexoptix-app { };
 
   flpsed = callPackage ../applications/editors/flpsed { };
@@ -8129,11 +8129,6 @@ with pkgs;
 
   groff = callPackage ../tools/text/groff { };
 
-  gromit-mpx = callPackage ../tools/graphics/gromit-mpx {
-    gtk = gtk3;
-    libappindicator = libappindicator-gtk3;
-  };
-
   gron = callPackage ../development/tools/gron { };
 
   groonga = callPackage ../servers/search/groonga { };
@@ -8470,8 +8465,6 @@ with pkgs;
   htpdate = callPackage ../tools/networking/htpdate { };
 
   http-prompt = callPackage ../tools/networking/http-prompt { };
-
-  http-getter = callPackage ../applications/networking/flent/http-getter.nix { };
 
   httpdump = callPackage ../tools/security/httpdump { };
 
@@ -10341,8 +10334,6 @@ with pkgs;
 
   nomad-driver-podman = callPackage ../applications/networking/cluster/nomad-driver-podman { };
 
-  nomad-pack = callPackage ../applications/networking/cluster/nomad-pack { };
-
   nova = callPackage ../applications/networking/cluster/nova { };
 
   nomino = callPackage ../tools/misc/nomino { };
@@ -11430,10 +11421,6 @@ with pkgs;
 
   ticktick = callPackage ../applications/office/ticktick { };
 
-  pyditz = callPackage ../applications/misc/pyditz {
-    pythonPackages = python3Packages;
-  };
-
   py-spy = darwin.apple_sdk_11_0.callPackage ../development/tools/py-spy {
     # https://github.com/benfred/py-spy/issues/633
     python3 = python311;
@@ -11636,8 +11623,6 @@ with pkgs;
   realesrgan-ncnn-vulkan = callPackage ../tools/graphics/realesrgan-ncnn-vulkan { };
 
   react-native-debugger = callPackage ../development/tools/react-native-debugger { };
-
-  readarr = callPackage ../servers/readarr { };
 
   read-edid = callPackage ../os-specific/linux/read-edid { };
 
@@ -14464,6 +14449,7 @@ with pkgs;
   flutterPackages-source = recurseIntoAttrs (callPackage ../development/compilers/flutter { useNixpkgsEngine = true; });
   flutterPackages = flutterPackages-bin;
   flutter = flutterPackages.stable;
+  flutter327 = flutterPackages.v3_27;
   flutter326 = flutterPackages.v3_26;
   flutter324 = flutterPackages.v3_24;
   flutter319 = flutterPackages.v3_19;
@@ -14815,6 +14801,7 @@ with pkgs;
 
   gleam = callPackage ../development/compilers/gleam {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
+    erlang = erlang_27;
   };
 
   gmqcc = callPackage ../development/compilers/gmqcc { };
@@ -15327,11 +15314,14 @@ with pkgs;
 
   muonlang = callPackage ../development/compilers/muonlang { };
 
-  inherit (callPackages ../development/compilers/nim
-                        { inherit (darwin) Security;  }
-          ) nim-unwrapped-1 nim-unwrapped-2 nim1 nim2;
   nim = nim2;
-  buildNimPackage = callPackage ../development/compilers/nim/build-nim-package.nix { };
+  nim1 = nim-1_0;
+  nim2 = nim-2_2;
+  nim-unwrapped = nim-unwrapped-2_2;
+  nim-unwrapped-1 = nim-unwrapped-1_0;
+  nim-unwrapped-2 = nim-unwrapped-2_2;
+
+  buildNimPackage = callPackage ../build-support/build-nim-package.nix { };
   nimOverrides = callPackage ./nim-overrides.nix { };
 
   neko = callPackage ../development/compilers/neko { };
@@ -18385,8 +18375,6 @@ with pkgs;
 
   sqlboiler-crdb = callPackage ../development/tools/database/sqlboiler-crdb { };
 
-  sqlc = callPackage ../development/tools/database/sqlc { };
-
   sqlcheck = callPackage ../development/tools/database/sqlcheck { };
 
   sqlcmd = callPackage ../development/tools/database/sqlcmd { };
@@ -19802,7 +19790,6 @@ with pkgs;
   gmm = callPackage ../development/libraries/gmm { };
 
   gmp4 = callPackage ../development/libraries/gmp/4.3.2.nix { }; # required by older GHC versions
-  gmp5 = callPackage ../development/libraries/gmp/5.1.x.nix { };
   gmp6 = callPackage ../development/libraries/gmp/6.x.nix { };
   gmp = gmp6;
   gmpxx = gmp.override { cxx = true; };
@@ -25092,7 +25079,10 @@ with pkgs;
 
   inherit (callPackages ../servers/http/tomcat { })
     tomcat9
-    tomcat10;
+    tomcat10
+    tomcat11;
+
+  tomcat = tomcat11;
 
   tomcat_mysql_jdbc = callPackage ../servers/http/tomcat/jdbc/mysql { };
 
@@ -26252,8 +26242,8 @@ with pkgs;
 
   sdparm = callPackage ../os-specific/linux/sdparm { };
 
-  sdrangel = libsForQt5.callPackage ../applications/radio/sdrangel {
-    stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
+  sdrangel = qt6Packages.callPackage ../applications/radio/sdrangel {
+    stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "12.3" else stdenv;
   };
 
   setools = callPackage ../os-specific/linux/setools { };
@@ -27864,6 +27854,7 @@ with pkgs;
 
   inherit (qt6Packages.callPackage ../applications/office/activitywatch { })
     aw-qt
+    aw-notify
     aw-server-rust
     aw-watcher-afk
     aw-watcher-window;
@@ -28598,7 +28589,7 @@ with pkgs;
   dmenu = callPackage ../applications/misc/dmenu { };
   dmenu-wayland = callPackage ../applications/misc/dmenu/wayland.nix { };
 
-  dmenu-rs = callPackage ../applications/misc/dmenu-rs { };
+  dmenu-rs-enable-plugins = dmenu-rs.override { enablePlugins = true; };
 
   dmensamenu = callPackage ../applications/misc/dmensamenu {
     inherit (python3Packages) buildPythonApplication requests;
@@ -30274,7 +30265,7 @@ with pkgs;
 
   kondo = callPackage ../applications/misc/kondo { };
 
-  kotatogram-desktop = kdePackages.callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop {
+  kotatogram-desktop = libsForQt5.callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop {
     stdenv = if stdenv.hostPlatform.isDarwin
       then overrideSDK stdenv "11.0"
       else stdenv;
@@ -30354,8 +30345,6 @@ with pkgs;
   kubelogin = callPackage ../applications/networking/cluster/kubelogin { };
 
   kubevpn = callPackage ../applications/networking/cluster/kubevpn { };
-
-  k8sgpt = callPackage ../applications/networking/cluster/k8sgpt { };
 
   k9s = callPackage ../applications/networking/cluster/k9s { };
 
@@ -31244,6 +31233,8 @@ with pkgs;
   rssguard = libsForQt5.callPackage ../applications/networking/feedreaders/rssguard { };
 
   scudcloud = callPackage ../applications/networking/instant-messengers/scudcloud { };
+
+  scx = recurseIntoAttrs (callPackage ../os-specific/linux/scx { });
 
   shod = callPackage ../applications/window-managers/shod { };
 
@@ -32682,12 +32673,6 @@ with pkgs;
 
   thokr = callPackage ../applications/misc/thokr { };
 
-  betterbird-unwrapped = callPackage ../applications/networking/mailreaders/betterbird { };
-  betterbird = wrapThunderbird betterbird-unwrapped {
-    desktopName = "Betterbird";
-    pname = "betterbird";
-  };
-
   thunderbirdPackages = recurseIntoAttrs (callPackage ../applications/networking/mailreaders/thunderbird/packages.nix {
     callPackage = newScope {
       inherit (rustPackages) cargo rustc;
@@ -33597,8 +33582,6 @@ with pkgs;
 
   xrestop = callPackage ../tools/X11/xrestop { };
 
-  xrgears = callPackage ../applications/graphics/xrgears { };
-
   xsd = callPackage ../development/libraries/xsd {
     stdenv = gcc9Stdenv;
   };
@@ -33866,8 +33849,6 @@ with pkgs;
   ergo = callPackage ../applications/blockchains/ergo { };
 
   erigon = callPackage ../applications/blockchains/erigon { };
-
-  exodus = callPackage ../applications/blockchains/exodus { };
 
   faraday = callPackage ../applications/blockchains/faraday { };
 
@@ -36468,8 +36449,6 @@ with pkgs;
 
   xoscope = callPackage ../applications/science/electronics/xoscope { };
 
-  xschem = callPackage ../applications/science/electronics/xschem { };
-
   xyce = callPackage ../applications/science/electronics/xyce { };
 
   xyce-parallel = callPackage ../applications/science/electronics/xyce {
@@ -36609,8 +36588,6 @@ with pkgs;
   gildas = callPackage ../applications/science/astronomy/gildas { };
 
   gplates = libsForQt5.callPackage ../applications/science/misc/gplates { };
-
-  grap = callPackage ../tools/security/grap { };
 
   gravit = callPackage ../applications/science/astronomy/gravit { };
 

@@ -3426,6 +3426,8 @@ self: super: with self; {
 
   django-jquery-js = callPackage ../development/python-modules/django-jquery-js { };
 
+  django-json-widget = callPackage ../development/python-modules/django-json-widget { };
+
   django-js-asset = callPackage ../development/python-modules/django-js-asset { };
 
   django-js-reverse = callPackage ../development/python-modules/django-js-reverse { };
@@ -3623,6 +3625,8 @@ self: super: with self; {
   dlx = callPackage ../development/python-modules/dlx { };
 
   dmenu-python = callPackage ../development/python-modules/dmenu { };
+
+  dmgbuild = callPackage ../development/python-modules/dmgbuild { };
 
   dmt-core = callPackage ../development/python-modules/dmt-core { };
 
@@ -9153,6 +9157,8 @@ self: super: with self; {
 
   nutils-poly = callPackage ../development/python-modules/nutils-poly { };
 
+  nutpie = callPackage ../development/python-modules/nutpie { };
+
   nvchecker = callPackage ../development/python-modules/nvchecker { };
 
   nvdlib = callPackage ../development/python-modules/nvdlib { };
@@ -9377,6 +9383,8 @@ self: super: with self; {
     enablePython = true;
     pythonPackages = self;
   });
+
+  opencv-python-headless = callPackage ../development/python-modules/opencv-python-headless { };
 
   openerz-api = callPackage ../development/python-modules/openerz-api { };
 
@@ -9894,6 +9902,8 @@ self: super: with self; {
 
   pep8-naming = callPackage ../development/python-modules/pep8-naming { };
 
+  pepit = callPackage ../development/python-modules/pepit { };
+
   peppercorn = callPackage ../development/python-modules/peppercorn { };
 
   percol = callPackage ../development/python-modules/percol { };
@@ -10286,11 +10296,15 @@ self: super: with self; {
 
   pykrakenapi = callPackage ../development/python-modules/pykrakenapi { };
 
-  pylance = callPackage ../development/python-modules/pylance { };
+  pylance = callPackage ../development/python-modules/pylance {
+    inherit (pkgs) protobuf;
+  };
 
   pylddwrap = callPackage ../development/python-modules/pylddwrap { };
 
   pyloadapi = callPackage ../development/python-modules/pyloadapi { };
+
+  pylsl = callPackage ../development/python-modules/pylsl { };
 
   pyngo = callPackage ../development/python-modules/pyngo { };
 
@@ -15124,6 +15138,8 @@ self: super: with self; {
   strategies = callPackage ../development/python-modules/strategies { };
 
   stravalib = callPackage ../development/python-modules/stravalib { };
+
+  stravaweblib = callPackage ../development/python-modules/stravaweblib { };
 
   strawberry-graphql = callPackage ../development/python-modules/strawberry-graphql { };
 
