@@ -2951,6 +2951,12 @@
     githubId = 535135;
     name = "Brennon Loveless";
   };
+  bloxx12 = {
+    email = "charlie@charlieroot.dev";
+    github = "bloxx12";
+    githubId = 75451918;
+    name = "Charlie Root";
+  };
   bluescreen303 = {
     email = "mathijs@bluescreen303.nl";
     github = "bluescreen303";
@@ -5867,6 +5873,12 @@
     github = "dsferruzza";
     githubId = 1931963;
     name = "David Sferruzza";
+  };
+  dsluijk = {
+    name = "Dany Sluijk";
+    email = "nix@dany.dev";
+    github = "dsluijk";
+    githubId = 8537327;
   };
   dstengele = {
     name = "Dennis Stengele";
@@ -9499,6 +9511,13 @@
     githubId = 27058689;
     email = "itepastra@gmail.com";
     keys = [ { fingerprint = "E681 4CAF 06AE B076 D55D  3E32 A16C DCBF 1472 541F"; } ];
+  };
+  itsvic-dev = {
+    email = "contact@itsvic.dev";
+    name = "Victor B.";
+    github = "itsvic-dev";
+    githubId = 17727163;
+    keys = [ { fingerprint = "FBAA B86A 101B 4C5F D4F1  25D2 E93D DAC1 7E5D 6CA1"; } ];
   };
   ius = {
     email = "j.de.gram@gmail.com";
@@ -23199,6 +23218,12 @@
     github = "wexder";
     githubId = 24979302;
     name = "Vladimír Zahradník";
+  };
+  wfdewith = {
+    name = "Wim de With";
+    email = "wf@dewith.io";
+    github = "wfdewith";
+    githubId = 2306085;
   };
   wgunderwood = {
     email = "wg.underwood13@gmail.com";
