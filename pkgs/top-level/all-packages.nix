@@ -597,8 +597,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
   };
 
-  edge-runtime = callPackage ../development/web/edge-runtime { };
-
   efficient-compression-tool = callPackage ../tools/compression/efficient-compression-tool { };
 
   eludris = callPackage ../tools/misc/eludris {
@@ -1636,8 +1634,6 @@ with pkgs;
 
   askalono = callPackage ../tools/misc/askalono { };
 
-  asleap = callPackage ../tools/networking/asleap { };
-
   awsbck = callPackage ../tools/backup/awsbck {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -2118,7 +2114,7 @@ with pkgs;
 
   degit = callPackage ../applications/version-management/degit { };
 
-  delta = darwin.apple_sdk_11_0.callPackage ../applications/version-management/delta { };
+  delta = callPackage ../applications/version-management/delta { };
 
   debase = callPackage ../by-name/de/debase/package.nix {
     stdenv = if stdenv.hostPlatform.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
@@ -2227,8 +2223,6 @@ with pkgs;
 
   git-fame = callPackage ../applications/version-management/git-fame { };
 
-  git-fast-export = callPackage ../applications/version-management/fast-export { };
-
   git-fire = callPackage ../applications/version-management/git-fire { };
 
   git-ftp = callPackage ../applications/version-management/git-ftp { };
@@ -2247,9 +2241,7 @@ with pkgs;
 
   git-imerge = python3Packages.callPackage ../applications/version-management/git-imerge { };
 
-  git-interactive-rebase-tool = callPackage ../applications/version-management/git-interactive-rebase-tool {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  git-interactive-rebase-tool = callPackage ../applications/version-management/git-interactive-rebase-tool { };
 
   git-lfs = lowPrio (callPackage ../applications/version-management/git-lfs { });
 
@@ -2791,9 +2783,7 @@ with pkgs;
 
   ### APPLICATIONS/TERMINAL-EMULATORS
 
-  alacritty = callPackage ../applications/terminal-emulators/alacritty {
-    inherit (darwin.apple_sdk_11_0.frameworks) AppKit CoreGraphics CoreServices CoreText Foundation OpenGL;
-  };
+  alacritty = callPackage ../applications/terminal-emulators/alacritty { };
 
   blackbox-terminal = callPackage ../applications/terminal-emulators/blackbox-terminal { };
 
@@ -3130,8 +3120,6 @@ with pkgs;
   awslogs = callPackage ../tools/admin/awslogs { };
 
   awsume = python3Packages.callPackage ../tools/admin/awsume { };
-
-  aws-assume-role = callPackage ../tools/admin/aws-assume-role { };
 
   aws-lambda-rie = callPackage ../tools/admin/aws-lambda-runtime-interface-emulator { };
 
@@ -4620,8 +4608,6 @@ with pkgs;
     inherit (haskellPackages) ghcWithPackages diagrams-builder;
   };
 
-  dialect = callPackage ../applications/misc/dialect { };
-
   dialogbox = libsForQt5.callPackage ../tools/misc/dialogbox { };
 
   dieharder = callPackage ../tools/security/dieharder { };
@@ -5260,8 +5246,6 @@ with pkgs;
   jwt-hack = callPackage ../tools/security/jwt-hack { } ;
 
   jwx = callPackage ../tools/security/jwx { } ;
-
-  kapacitor = callPackage ../servers/monitoring/kapacitor { };
 
   karma = callPackage ../servers/monitoring/karma { };
 
@@ -8080,9 +8064,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  ripgrep = callPackage ../tools/text/ripgrep {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  ripgrep = callPackage ../tools/text/ripgrep { };
 
   ripgrep-all = callPackage ../tools/text/ripgrep-all {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -9802,8 +9784,6 @@ with pkgs;
 
   maildrop = callPackage ../tools/networking/maildrop { };
 
-  mailhog = callPackage ../servers/mail/mailhog { };
-
   mailnag = callPackage ../applications/networking/mailreaders/mailnag {
     availablePlugins = {
       # More are listed here: https://github.com/pulb/mailnag/#desktop-integration
@@ -10014,7 +9994,7 @@ with pkgs;
   mole = callPackage ../tools/networking/mole { };
 
   morgen = callPackage ../applications/office/morgen {
-    electron = electron_30;
+    electron = electron_32;
   };
 
   mosh = callPackage ../tools/networking/mosh { };
@@ -12107,10 +12087,6 @@ with pkgs;
 
   silc_server = callPackage ../servers/silc-server { };
 
-  sile = callPackage ../tools/typesetting/sile {
-    lua = lua5_3;
-  };
-
   silenthound = callPackage ../tools/security/silenthound { };
 
   silice = callPackage ../development/compilers/silice { };
@@ -12388,8 +12364,6 @@ with pkgs;
   sstp = callPackage ../tools/networking/sstp { };
 
   strip-nondeterminism = perlPackages.strip-nondeterminism;
-
-  structorizer = callPackage ../applications/graphics/structorizer { };
 
   subberthehut = callPackage ../tools/misc/subberthehut { };
 
@@ -14192,7 +14166,6 @@ with pkgs;
   aspectj = callPackage ../development/compilers/aspectj { };
 
   ats = callPackage ../development/compilers/ats { };
-  ats2 = callPackage ../development/compilers/ats2 { };
 
   ats-acc = callPackage ../development/tools/ats-acc { };
 
@@ -16012,6 +15985,8 @@ with pkgs;
     fetchHex
     lfe lfe_2_1;
   beamPackages = beam.packages.erlang // { __attrsFailEvaluation = true; };
+
+  erlang_language_platform = callPackage ../by-name/er/erlang-language-platform/package.nix { };
 
   expr = callPackage ../development/interpreters/expr { };
 
@@ -17884,7 +17859,6 @@ with pkgs;
   nimbo = with python3Packages; callPackage ../applications/misc/nimbo { };
 
   gn = callPackage ../development/tools/build-managers/gn { };
-  gn1924 = callPackage ../development/tools/build-managers/gn/rev1924.nix { };
 
   nixbang = callPackage ../development/tools/misc/nixbang {
     pythonPackages = python3Packages;
@@ -23204,8 +23178,6 @@ with pkgs;
     stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
   };
 
-  intel-vaapi-driver = callPackage ../development/libraries/intel-vaapi-driver { };
-
   vaapi-intel-hybrid = callPackage ../development/libraries/vaapi-intel-hybrid { };
 
   libva-vdpau-driver = callPackage ../development/libraries/libva-vdpau-driver { };
@@ -24977,8 +24949,6 @@ with pkgs;
   seyren = callPackage ../servers/monitoring/seyren { };
 
   ruby-zoom = callPackage ../tools/text/ruby-zoom { };
-
-  sensu = callPackage ../servers/monitoring/sensu { };
 
   inherit (callPackages ../servers/monitoring/sensu-go { })
     sensu-go-agent
@@ -28273,6 +28243,8 @@ with pkgs;
 
   cbc = callPackage ../applications/science/math/cbc { };
 
+  cbconvert-gui = cbconvert.gui;
+
   cddiscid = callPackage ../applications/audio/cd-discid {
     inherit (darwin) IOKit;
   };
@@ -30208,8 +30180,6 @@ with pkgs;
   kondo = callPackage ../applications/misc/kondo { };
 
   kotatogram-desktop = callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop { };
-
-  kotatogram-desktop-with-webkit = callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop/with-webkit.nix { };
 
   kpt = callPackage ../applications/networking/cluster/kpt { };
 
@@ -32193,8 +32163,6 @@ with pkgs;
     curses = ncurses;
   };
 
-  linuxstopmotion = libsForQt5.callPackage ../applications/video/linuxstopmotion { };
-
   sweethome3d = recurseIntoAttrs (
     (callPackage ../applications/misc/sweethome3d { }) //
     (callPackage ../applications/misc/sweethome3d/editors.nix {
@@ -32595,6 +32563,13 @@ with pkgs;
   thunderbird-unwrapped = thunderbirdPackages.thunderbird;
   thunderbird = wrapThunderbird thunderbird-unwrapped { };
 
+  thunderbird-latest-unwrapped = thunderbirdPackages.thunderbird-latest;
+  thunderbird-latest = wrapThunderbird thunderbird-latest-unwrapped { };
+
+  thunderbird-esr-unwrapped = thunderbirdPackages.thunderbird-esr;
+  thunderbird-esr = wrapThunderbird thunderbird-esr-unwrapped { };
+
+  thunderbird-128-unwrapped = thunderbirdPackages.thunderbird-128;
   thunderbird-128 = wrapThunderbird thunderbirdPackages.thunderbird-128 { };
 
   thunderbird-bin = wrapThunderbird thunderbird-bin-unwrapped {
@@ -32926,9 +32901,7 @@ with pkgs;
 
   vimv = callPackage ../tools/misc/vimv { };
 
-  vimv-rs = callPackage ../tools/misc/vimv-rs {
-    inherit (darwin.apple_sdk.frameworks) Foundation;
-  };
+  vimv-rs = callPackage ../tools/misc/vimv-rs { };
 
   qpdfview = libsForQt5.callPackage ../applications/office/qpdfview { };
 
@@ -33953,9 +33926,7 @@ with pkgs;
 
   colobot = callPackage ../games/colobot { };
 
-  corsix-th = callPackage ../games/corsix-th {
-    inherit (darwin.apple_sdk.frameworks) Cocoa CoreVideo CoreMedia VideoToolbox;
-  };
+  corsix-th = callPackage ../games/corsix-th { };
 
   enigma = callPackage ../games/enigma { };
 
@@ -33993,9 +33964,7 @@ with pkgs;
 
   keeperrl = callPackage ../games/keeperrl { };
 
-  shipwright = callPackage ../games/shipwright {
-    stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
-  };
+  shipwright = callPackage ../games/shipwright { };
 
   wipeout-rewrite = callPackage ../games/wipeout-rewrite {
     inherit (darwin.apple_sdk.frameworks) Foundation;
@@ -38267,8 +38236,6 @@ with pkgs;
   qubes-core-vchan-xen = callPackage ../applications/qubes/qubes-core-vchan-xen { };
 
   sieveshell = with python3.pkgs; toPythonApplication managesieve;
-
-  gortr = callPackage ../servers/gortr { };
 
   stayrtr = callPackage ../servers/stayrtr { };
 
