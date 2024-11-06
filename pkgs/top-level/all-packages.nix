@@ -446,8 +446,6 @@ with pkgs;
 
   ciel = callPackage ../tools/package-management/ciel { };
 
-  circt = callPackage ../development/compilers/circt { };
-
   clang-uml = callPackage ../by-name/cl/clang-uml/package.nix {
     stdenv = clangStdenv;
   };
@@ -10262,6 +10260,7 @@ with pkgs;
     nomad_1_6
     nomad_1_7
     nomad_1_8
+    nomad_1_9
     ;
 
   nomad-autoscaler = callPackage ../applications/networking/cluster/nomad-autoscaler { };
@@ -25005,8 +25004,6 @@ with pkgs;
 
   tailscale-systray = callPackage ../applications/misc/tailscale-systray { };
 
-  tailspin = callPackage ../tools/misc/tailspin { };
-
   trafficserver = callPackage ../servers/http/trafficserver { };
 
   inherit (callPackages ../servers/http/tomcat { })
@@ -25374,8 +25371,6 @@ with pkgs;
   libuuid = if stdenv.hostPlatform.isLinux
     then util-linuxMinimal
     else null;
-
-  light = callPackage ../os-specific/linux/light { };
 
   lightum = callPackage ../os-specific/linux/lightum { };
 
