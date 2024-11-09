@@ -22260,7 +22260,6 @@ self: {
        badPlatforms = [
          "i686-linux" "armv7l-linux"
        ] ++ lib.platforms.darwin;
-       maintainers = [ lib.maintainers.expipiplus1 ];
      }) {};
 
   "WAVE" = callPackage
@@ -43417,7 +43416,6 @@ self: {
        description = "Template Haskell to automatically pass values to functions";
        license = lib.licenses.bsd3;
        hydraPlatforms = lib.platforms.none;
-       maintainers = [ lib.maintainers.expipiplus1 ];
      }) {};
 
   "autodocodec" = callPackage
@@ -103653,7 +103651,6 @@ self: {
        benchmarkHaskellDepends = [ base criterion ];
        description = "Exact real arithmetic";
        license = lib.licenses.mit;
-       maintainers = [ lib.maintainers.expipiplus1 ];
      }) {};
 
   "exact-real-positional" = callPackage
@@ -187867,7 +187864,6 @@ self: {
        testHaskellDepends = [ base directory filepath process ];
        description = "Analysis and generation of C code";
        license = lib.licenses.bsd3;
-       maintainers = [ lib.maintainers.expipiplus1 ];
      }) {};
 
   "language-c-comments" = callPackage
@@ -228729,7 +228725,6 @@ self: {
        ];
        description = "Types and functions for Kepler orbits";
        license = lib.licenses.bsd3;
-       maintainers = [ lib.maintainers.expipiplus1 ];
      }) {};
 
   "orc" = callPackage
@@ -322493,9 +322488,7 @@ self: {
        description = "A program to update fetchgit values in Nix expressions";
        license = lib.licenses.bsd3;
        mainProgram = "update-nix-fetchgit";
-       maintainers = [
-         lib.maintainers.expipiplus1 lib.maintainers.sorki
-       ];
+       maintainers = [ lib.maintainers.sorki ];
      }) {};
 
   "update-repos" = callPackage
@@ -325927,7 +325920,6 @@ self: {
        ];
        description = "Size tagged vectors";
        license = lib.licenses.bsd3;
-       maintainers = [ lib.maintainers.expipiplus1 ];
      }) {};
 
   "vector-sized_1_6_1" = callPackage
@@ -325947,7 +325939,6 @@ self: {
        description = "Size tagged vectors";
        license = lib.licenses.bsd3;
        hydraPlatforms = lib.platforms.none;
-       maintainers = [ lib.maintainers.expipiplus1 ];
      }) {};
 
   "vector-space" = callPackage
@@ -327764,7 +327755,6 @@ self: {
        badPlatforms = [
          "i686-linux" "armv7l-linux"
        ] ++ lib.platforms.darwin;
-       maintainers = [ lib.maintainers.expipiplus1 ];
      }) {vulkan = null;};
 
   "vulkan-api" = callPackage
@@ -327798,7 +327788,6 @@ self: {
        description = "Utils for the vulkan package";
        license = lib.licenses.bsd3;
        badPlatforms = lib.platforms.darwin;
-       maintainers = [ lib.maintainers.expipiplus1 ];
      }) {};
 
   "waargonaut" = callPackage
