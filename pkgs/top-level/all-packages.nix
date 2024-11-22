@@ -9872,25 +9872,8 @@ with pkgs;
 
   libcomps = callPackage ../tools/package-management/libcomps { python = python3; };
 
-<<<<<<< HEAD
-  libcredis = callPackage ../development/libraries/libcredis { };
-
-  libctb = callPackage ../development/libraries/libctb { };
-
-  libctemplate = callPackage ../development/libraries/libctemplate { };
-
-  libctl = callPackage ../development/libraries/libctl { };
-
-  libcotp = callPackage ../development/libraries/libcotp { };
-
-  libcouchbase = callPackage ../development/libraries/libcouchbase { };
-
-  libcue = callPackage ../development/libraries/libcue { };
-
   libcoverart = callPackage ../development/libraries/libcoverart { };
 
-=======
->>>>>>> 66c4e8d3e91f6a4121a055630e005d9c70019c13
   libcxxrt = callPackage ../development/libraries/libcxxrt {
     stdenv = if stdenv.hostPlatform.useLLVM or false
              then overrideCC stdenv buildPackages.llvmPackages.tools.clangNoLibcxx
@@ -14169,23 +14152,11 @@ with pkgs;
 
   firefox_decrypt = python3Packages.callPackage ../tools/security/firefox_decrypt { };
 
-<<<<<<< HEAD
-  flac = callPackage ../applications/audio/flac { };
-
   flactag = callPackage ../applications/audio/flactag { libmusicbrainz  = libmusicbrainz5; };
 
-  redoflacs = callPackage ../applications/audio/redoflacs { };
-
-  flex-ncat = callPackage ../applications/radio/flex-ncat { };
-
-  flex-ndax = callPackage ../applications/radio/flex-ndax { };
-
-  floorp-unwrapped = callPackage ../applications/networking/browsers/floorp { };
-=======
   floorp-unwrapped = import ../applications/networking/browsers/floorp {
     inherit stdenv lib fetchFromGitHub buildMozillaMach nixosTests;
   };
->>>>>>> 66c4e8d3e91f6a4121a055630e005d9c70019c13
 
   floorp = wrapFirefox floorp-unwrapped { };
 
@@ -17080,13 +17051,8 @@ with pkgs;
 
   gogdl = python3Packages.callPackage ../games/gogdl { };
 
-<<<<<<< HEAD
-  gogui = callPackage ../games/gogui { };
-
   gsb = callPackage ../games/gsb { };
 
-=======
->>>>>>> 66c4e8d3e91f6a4121a055630e005d9c70019c13
   gscrabble = python3Packages.callPackage ../games/gscrabble { };
 
   gshogi = python3Packages.callPackage ../games/gshogi { };
