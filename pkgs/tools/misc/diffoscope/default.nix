@@ -102,11 +102,11 @@ in
 # Note: when upgrading this package, please run the list-missing-tools.sh script as described below!
 python.pkgs.buildPythonApplication rec {
   pname = "diffoscope";
-  version = "282";
+  version = "283";
 
   src = fetchurl {
     url = "https://diffoscope.org/archive/diffoscope-${version}.tar.bz2";
-    hash = "sha256-hp1SW9vHBZnlSNKCKW7AUPheyMntxvrPo0McDHZw96c=";
+    hash = "sha256-4kAM1MmWbFh0fqFSnulhm4lHR59PMNPR3z5nzBgI6WY=";
   };
 
   outputs = [
@@ -215,6 +215,7 @@ python.pkgs.buildPythonApplication rec {
         ghc
         ghostscriptX
         giflib
+        gnumeric
         gnupg
         hdf5
         imagemagick
@@ -246,8 +247,6 @@ python.pkgs.buildPythonApplication rec {
       ])
       # oggvideotools is broken on Darwin, please put it back when it will be fixed?
       ++ lib.optionals stdenv.hostPlatform.isLinux [ oggvideotools ]
-      # This doesn't work on aarch64-darwin
-      ++ lib.optionals (stdenv.hostPlatform.system != "aarch64-darwin") [ gnumeric ]
     )
   );
 
