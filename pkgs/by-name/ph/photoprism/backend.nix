@@ -1,4 +1,13 @@
-{ lib, buildGoModule, coreutils, pkg-config, vips, libtensorflow, src, version, ... }:
+{
+  lib,
+  buildGoModule,
+  coreutils,
+  libtensorflow,
+  src,
+  version,
+  pkg-config,
+  vips,
+}:
 
 buildGoModule rec {
   inherit src version;

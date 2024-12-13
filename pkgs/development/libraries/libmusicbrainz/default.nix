@@ -1,11 +1,21 @@
-{ lib, stdenv, fetchurl, cmake, neon, libdiscid }:
+{
+  lib,
+  stdenv,
+  fetchurl,
+  cmake,
+  neon,
+  libdiscid,
+}:
 
 stdenv.mkDerivation rec {
   pname = "libmusicbrainz";
   version = "3.0.3";
 
   nativeBuildInputs = [ cmake ];
-  buildInputs = [ neon libdiscid ];
+  buildInputs = [
+    neon
+    libdiscid
+  ];
 
   # this probably can be removed after 5.0.1: https://github.com/metabrainz/libmusicbrainz/issues/1
   dontUseCmakeBuildDir=true;

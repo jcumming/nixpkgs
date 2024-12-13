@@ -1,18 +1,19 @@
-{ lib
-, meson
-, ninja
-, pkg-config
-, gettext
-, fetchFromGitLab
-, python3Packages
-, wrapGAppsHook4
-, gtk4
-, glib
-, gdk-pixbuf
-, gobject-introspection
-, desktop-file-utils
-, appstream-glib
-, libadwaita
+{
+  lib,
+  meson,
+  ninja,
+  pkg-config,
+  gettext,
+  fetchFromGitLab,
+  python3Packages,
+  wrapGAppsHook4,
+  gtk4,
+  glib,
+  gdk-pixbuf,
+  gobject-introspection,
+  desktop-file-utils,
+  appstream-glib,
+  libadwaita,
 }:
 
 python3Packages.buildPythonApplication rec {
@@ -69,7 +70,7 @@ python3Packages.buildPythonApplication rec {
     homepage = "https://gitlab.gnome.org/World/secrets";
     license = licenses.gpl3Only;
     platforms = platforms.linux;
-    maintainers = with maintainers; [ mvnetbiz ];
+    maintainers = with maintainers; [ mvnetbiz ] ++ lib.teams.gnome-circle.members;
     mainProgram = "secrets";
   };
 }
