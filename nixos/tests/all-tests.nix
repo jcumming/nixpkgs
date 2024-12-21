@@ -107,6 +107,7 @@ in {
   aaaaxy = runTest ./aaaaxy.nix;
   acme = runTest ./acme.nix;
   acme-dns = handleTest ./acme-dns.nix {};
+  actual = handleTest ./actual.nix {};
   adguardhome = runTest ./adguardhome.nix;
   aesmd = runTestOn ["x86_64-linux"] ./aesmd.nix;
   agate = runTest ./web-servers/agate.nix;
@@ -131,11 +132,11 @@ in {
   apfs = runTest ./apfs.nix;
   appliance-repart-image = runTest ./appliance-repart-image.nix;
   appliance-repart-image-verity-store = runTest ./appliance-repart-image-verity-store.nix;
-  apparmor = handleTest ./apparmor.nix {};
+  apparmor = handleTest ./apparmor {};
   archi = handleTest ./archi.nix {};
   aria2 = handleTest ./aria2.nix {};
   armagetronad = handleTest ./armagetronad.nix {};
-  artalk = handleTest ./artalk.nix {};
+  artalk = runTest ./artalk.nix;
   atd = handleTest ./atd.nix {};
   atop = handleTest ./atop.nix {};
   atticd = runTest ./atticd.nix;
@@ -217,6 +218,7 @@ in {
   coder = handleTest ./coder.nix {};
   collectd = handleTest ./collectd.nix {};
   commafeed = handleTest ./commafeed.nix {};
+  conduwuit = runTest ./matrix/conduwuit.nix;
   connman = handleTest ./connman.nix {};
   consul = handleTest ./consul.nix {};
   consul-template = handleTest ./consul-template.nix {};
@@ -466,8 +468,8 @@ in {
   iftop = handleTest ./iftop.nix {};
   immich = handleTest ./web-apps/immich.nix {};
   incron = handleTest ./incron.nix {};
-  incus = pkgs.recurseIntoAttrs (handleTest ./incus { inherit handleTestOn; inherit (pkgs) incus; });
-  incus-lts = pkgs.recurseIntoAttrs (handleTest ./incus { inherit handleTestOn; });
+  incus = pkgs.recurseIntoAttrs (handleTest ./incus { lts = false; });
+  incus-lts = pkgs.recurseIntoAttrs (handleTest ./incus { });
   influxdb = handleTest ./influxdb.nix {};
   influxdb2 = handleTest ./influxdb2.nix {};
   initrd-network-openvpn = handleTestOn [ "x86_64-linux" "i686-linux" ] ./initrd-network-openvpn {};
@@ -910,6 +912,7 @@ in {
   rsyslogd = handleTest ./rsyslogd.nix {};
   rtkit = runTest ./rtkit.nix;
   rtorrent = handleTest ./rtorrent.nix {};
+  rustls-libssl = handleTest ./rustls-libssl.nix {};
   rxe = handleTest ./rxe.nix {};
   sabnzbd = handleTest ./sabnzbd.nix {};
   samba = handleTest ./samba.nix {};
@@ -1094,6 +1097,7 @@ in {
   trilium-server = handleTestOn ["x86_64-linux"] ./trilium-server.nix {};
   tsm-client-gui = handleTest ./tsm-client-gui.nix {};
   ttyd = handleTest ./web-servers/ttyd.nix {};
+  tt-rss = handleTest ./web-apps/tt-rss.nix {};
   txredisapi = handleTest ./txredisapi.nix {};
   tuptime = handleTest ./tuptime.nix {};
   turbovnc-headless-server = handleTest ./turbovnc-headless-server.nix {};
@@ -1148,6 +1152,8 @@ in {
   watchdogd = handleTest ./watchdogd.nix {};
   webhook = runTest ./webhook.nix;
   weblate = handleTest ./web-apps/weblate.nix {};
+  whisparr = handleTest ./whisparr.nix {};
+  whoogle-search = handleTest ./whoogle-search.nix {};
   wiki-js = handleTest ./wiki-js.nix {};
   wine = handleTest ./wine.nix {};
   wireguard = handleTest ./wireguard {};
@@ -1163,6 +1169,7 @@ in {
   xandikos = handleTest ./xandikos.nix {};
   xautolock = handleTest ./xautolock.nix {};
   xfce = handleTest ./xfce.nix {};
+  xfce-wayland = handleTest ./xfce-wayland.nix {};
   xmonad = handleTest ./xmonad.nix {};
   xmonad-xdg-autostart = handleTest ./xmonad-xdg-autostart.nix {};
   xpadneo = handleTest ./xpadneo.nix {};
