@@ -40,6 +40,7 @@ mapAliases ({
   adafruit-nrfutil = throw "adafruit-nrfutil has been promoted to a top-level attribute name: `pkgs.adafruit-nrfutil`."; # Added 2023-11-19
   aioaladdinconnect = throw "aioaladdinconnect has been removed, as the API is supported was obsoleted on 2024-01-24."; # Added 2024-06-07
   aiohttp-isal = throw "aiohttp-isal has been removed, as it has been archived and replace by aiohttp-fast-zlib"; # Added 2024-08-11
+  aiohttp-zlib-ng = throw "aiohttp-zlib-ng has been removed, as it has been archived and replaced by aiohttp-fast-zlib"; # Added 2024-11-14
   aiomysensors = throw "aiomysensors has been removed, as it was packaged for Home Assistant, which migrated to pymysensors."; # Added 2024-07-07
   aioh2 = throw "aioh2 has been removed because it is abandoned and broken."; # Added 2022-03-30
   aiolip = throw "aiolip has been removed because the upstream repository was archived in 2021"; # Added 2024-10-04
@@ -232,6 +233,7 @@ mapAliases ({
   foundationdb52 = throw "foundationdb52 is no longer maintained, use foundationdb71 instead"; # added 2023-06-06
   foundationdb60 = throw "foundationdb60 is no longer maintained, use foundationdb71 instead"; # added 2023-06-06
   foundationdb61 = throw "foundationdb61 is no longer maintained, use foundationdb71 instead"; # added 2023-06-06
+  foundationdb71 = throw "foundationdb71 has been removed, use foundationdb73 instead"; # added 2024-12-28
   functorch = throw "functorch is now part of the torch package and has therefore been removed. See https://github.com/pytorch/functorch/releases/tag/v1.13.0 for more info."; # added 2022-12-01
   functools32 = throw "functool32 was removed from nixpkgs, because python 2.7 has reach end of life in early 2020"; # added 2024-05-16
   fritzprofiles = throw "fritzprofiles was removed from nixpkgs, because it was removed as dependency of home-assistant for which it was pacakged."; # added 2024-01-05
@@ -273,6 +275,7 @@ mapAliases ({
   homeassistant-pyozw = throw "homeassistant-pyozw has been removed, as it was packaged for home-assistant which has removed it as a dependency."; # added 2024-01-05
   htmllaundry = throw "htmllaundry has been removed because it is abandoned"; # added 2024-06-04
   HTSeq = htseq; # added 2023-02-19
+  hug = throw "hug was marked broken since 2021 and has not established compatibility with newer dependency versions. It has therefore been removed."; # added 2024-11-15
   hyperkitty = throw "Please use pkgs.mailmanPackages.hyperkitty"; # added 2022-04-29
   hydra-check = throw "The Python package hydra-check was removed in favor of the top-level rust based pkgs.hydra-check"; # added 2022-04-29
   ihatemoney = throw "ihatemoney was removed because it is no longer maintained downstream"; # added 2023-04-08

@@ -140,7 +140,7 @@ in {
   atd = handleTest ./atd.nix {};
   atop = handleTest ./atop.nix {};
   atticd = runTest ./atticd.nix;
-  atuin = handleTest ./atuin.nix {};
+  atuin = runTest ./atuin.nix;
   audiobookshelf = handleTest ./audiobookshelf.nix {};
   auth-mysql = handleTest ./auth-mysql.nix {};
   authelia = handleTest ./authelia.nix {};
@@ -1087,6 +1087,7 @@ in {
   tmate-ssh-server = handleTest ./tmate-ssh-server.nix { };
   tomcat = handleTest ./tomcat.nix {};
   tor = handleTest ./tor.nix {};
+  tpm-ek = handleTest ./tpm-ek {};
   traefik = handleTestOn ["aarch64-linux" "x86_64-linux"] ./traefik.nix {};
   trafficserver = handleTest ./trafficserver.nix {};
   transfer-sh = handleTest ./transfer-sh.nix {};
@@ -1186,6 +1187,7 @@ in {
   yggdrasil = handleTest ./yggdrasil.nix {};
   your_spotify = handleTest ./your_spotify.nix {};
   zammad = handleTest ./zammad.nix {};
+  zenohd = handleTest ./zenohd.nix {};
   zeronet-conservancy = handleTest ./zeronet-conservancy.nix {};
   zfs = handleTest ./zfs.nix {};
   zigbee2mqtt = handleTest ./zigbee2mqtt.nix {};

@@ -22,7 +22,6 @@
   ./config/nix-remote-build.nix
   ./config/nsswitch.nix
   ./config/power-management.nix
-  ./config/pulseaudio.nix
   ./config/qt.nix
   ./config/resolvconf.nix
   ./config/shells-environment.nix
@@ -285,6 +284,7 @@
   ./programs/rust-motd.nix
   ./programs/ryzen-monitor-ng.nix
   ./programs/screen.nix
+  ./programs/schroot.nix
   ./programs/seahorse.nix
   ./programs/sedutil.nix
   ./programs/shadow.nix
@@ -316,6 +316,7 @@
   ./programs/usbtop.nix
   ./programs/vim.nix
   ./programs/virt-manager.nix
+  ./programs/vivid.nix
   ./programs/wavemon.nix
   ./programs/wayland/cardboard.nix
   ./programs/wayland/hyprlock.nix
@@ -405,6 +406,7 @@
   ./services/audio/mympd.nix
   ./services/audio/navidrome.nix
   ./services/audio/networkaudiod.nix
+  ./services/audio/pulseaudio.nix
   ./services/audio/roon-bridge.nix
   ./services/audio/roon-server.nix
   ./services/audio/slimserver.nix
@@ -762,6 +764,7 @@
   ./services/misc/disnix.nix
   ./services/misc/docker-registry.nix
   ./services/misc/domoticz.nix
+  ./services/misc/duckdns.nix
   ./services/misc/duckling.nix
   ./services/misc/dwm-status.nix
   ./services/misc/dysnomia.nix
@@ -1313,6 +1316,7 @@
   ./services/networking/yggdrasil.nix
   ./services/networking/zapret.nix
   ./services/networking/zerobin.nix
+  ./services/networking/zenohd.nix
   ./services/networking/zeronet.nix
   ./services/networking/zerotierone.nix
   ./services/networking/zeronsd.nix
@@ -1416,6 +1420,7 @@
   ./services/video/mirakurun.nix
   ./services/video/photonvision.nix
   ./services/video/mediamtx.nix
+  ./services/video/ustreamer.nix
   ./services/video/v4l2-relayd.nix
   ./services/video/wivrn.nix
   ./services/wayland/cage.nix
