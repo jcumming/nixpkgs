@@ -1,16 +1,22 @@
-{ stdenv, lib, fetchurl, perl }:
+{ stdenv, lib, fetchgit, autoreconfHook, perl }:
 
 stdenv.mkDerivation rec {
-  name = "unac-1.7.0";
+  name = "unac-1.8.0";
 
-  src = fetchurl {
-    url = "http://download.savannah.gnu.org/releases/unac/${name}.tar.gz";
-    sha256 = "1r54dzgcgrmllps1wzivzwx1dzjxcs7v2swwf7jrlp125154k0jy";
+  src = fetchgit {
+    url = "git://git.savannah.nongnu.org/unac.git/";
+    sha256 = "12ag1fkzc9yzfn2f8jcmab6301xggbk69ikjsds7m4szjjdpw1iv";
+    rev = "e29ef8789cfd6b70c2d099f8ec6765177cdbb166";
   };
 
-  patches = [ ./multiline-string.patch ];
+  nativeBuildInputs = [ autoreconfHook ];
 
   buildInputs = [ perl ];
+
+  patches = [ 
+    ./update-autotools.diff
+    ./gcc-4-fix-bug-556379.patch
+  ];
 
   doCheck = false;
 
