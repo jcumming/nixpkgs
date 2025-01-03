@@ -34,6 +34,13 @@ python3.pkgs.buildPythonApplication rec {
     hash = "sha256-LGFuz3NtNqH+XumJOirvflH0fyfTtqz5qgYlJx2fmAU=";
   };
 
+  patches = [ 
+    ./0001-pass-an-instance-not-a-type-to-resolveHostName.patch
+    ./0002-Explicitly-list-func-arguments.patch
+    ./0003-Use-new-private-variable-for-hostname-as-str.patch
+    ./0004-Use-a-different-variable-when-changing-var-type.patch
+  ];
+
   postPatch = ''
     # Remove setuptools_rust from runtime dependencies
     # https://github.com/element-hq/synapse/blob/v1.69.0/pyproject.toml#L177-L185
@@ -47,6 +54,13 @@ python3.pkgs.buildPythonApplication rec {
     # Don't force pillow to be 10.0.1 because we already have patched it, and
     # we don't use the pillow wheels.
     sed -i 's/Pillow = ".*"/Pillow = ">=5.4.0"/' pyproject.toml
+
+    # https://github.com/NixOS/nixpkgs/issues/367976#issuecomment-2565035465
+    substituteInPlace tests/storage/databases/main/test_events_worker.py --replace-fail \
+    $'    def test_recovery(' \
+    $'    from tests.unittest import skip_unless\n'\
+    $'    @skip_unless(False, "broken")\n'\
+    $'    def test_recovery('
   '';
 
   nativeBuildInputs = with python3.pkgs; [
@@ -111,9 +125,6 @@ python3.pkgs.buildPythonApplication rec {
         [
           psycopg2
         ];
-    saml2 = [
-      pysaml2
-    ];
     oidc = [
       authlib
     ];
