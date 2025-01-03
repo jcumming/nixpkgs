@@ -51,8 +51,6 @@ buildPythonPackage rec {
     })
   ];
 
-# 
-
   postPatch = ''
     # Fix failing tests on systems with 32bit time_t
     sed -i 's/2999\(-.*T\)/2029\1/g' tests/*.xml
@@ -96,6 +94,10 @@ buildPythonPackage rec {
     "test_load_remote_encoding"
     "test_load_external"
     "test_conf_syslog"
+    # https://github.com/NixOS/nixpkgs/issues/367976
+    "test_encrypted_response_6"
+    "test_validate_cert_chains"
+    "test_validate_with_root_cert"
   ];
 
   pythonImportsCheck = [ "saml2" ];
