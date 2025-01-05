@@ -9,7 +9,7 @@
 
 buildPythonPackage rec {
   pname = "guppy3";
-  version = "3.1.4.post1";
+  version = "3.1.5";
   pyproject = true;
 
   disabled = pythonOlder "3.8";
@@ -17,8 +17,8 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "zhuyifei1999";
     repo = pname;
-    rev = "refs/tags/v${version}";
-    hash = "sha256-HHy57P6WEHZKygAbdjEh6XAApFlQueiYGr02eSQMWfc=";
+    tag = "v${version}";
+    hash = "sha256-hgJcy4DRfZL50dCcRv2a6GJPDabsUMfDtq7HCXXYYz8=";
   };
 
   nativeBuildInputs = [ setuptools ];
