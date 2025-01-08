@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2025.1.0";
+  version = "2025.1.1";
   components = {
     "3_day_blinds" =
       ps: with ps; [
@@ -4274,7 +4274,8 @@
       ];
     "powerfox" =
       ps: with ps; [
-      ]; # missing inputs: powerfox
+        powerfox
+      ];
     "powerwall" =
       ps: with ps; [
         tesla-powerwall
@@ -7070,6 +7071,7 @@
     "plugwise"
     "point"
     "poolsense"
+    "powerfox"
     "powerwall"
     "private_ble_device"
     "profiler"
