@@ -446,8 +446,8 @@ rec {
       "sha256-wBlz4YrLaKwcv7O1DkInNhq7Hg79vBTr4PGeECHBLPY=";
 
   mypy-boto3-ec2 =
-    buildMypyBoto3Package "ec2" "1.35.93"
-      "sha256-BPsvnQKZJvcnN7PVLqUF2zpWZ5n4lGgu8XZBHNnxmIA=";
+    buildMypyBoto3Package "ec2" "1.35.98"
+      "sha256-4ugpFujY6a/wuPvR/Rj5wSfq9OJIIpZBHvKw/eBko14=";
 
   mypy-boto3-ec2-instance-connect =
     buildMypyBoto3Package "ec2-instance-connect" "1.35.93"
@@ -714,8 +714,8 @@ rec {
       "sha256-i1vARhAsw7mXRBVMVicEgz+7hHWTdjqyF5qf+QVXjCI=";
 
   mypy-boto3-kafkaconnect =
-    buildMypyBoto3Package "kafkaconnect" "1.35.93"
-      "sha256-+BthrsgeHHKf6O6CWsi9CaxA3HW+DY0BGIc7uACnJTQ=";
+    buildMypyBoto3Package "kafkaconnect" "1.35.98"
+      "sha256-P2PMe4zzm4pUSa9GsuwNksl/4Ry/KuDJUOqO9f3phog=";
 
   mypy-boto3-kendra =
     buildMypyBoto3Package "kendra" "1.35.93"
@@ -1094,8 +1094,8 @@ rec {
       "sha256-anaaP4VNdI4ZQWTp/8R6G4APscb6AS5Lo6YRjwbtGFM=";
 
   mypy-boto3-redshift =
-    buildMypyBoto3Package "redshift" "1.35.93"
-      "sha256-Y7MZ0ZZu11nCFU2PJWue6zpXp0kefb1vWDYu2HqAe58=";
+    buildMypyBoto3Package "redshift" "1.35.97"
+      "sha256-gJm76sCPgpS9ekNDCmtt68atbVbNh4B8IqO7lS6C3ic=";
 
   mypy-boto3-redshift-data =
     buildMypyBoto3Package "redshift-data" "1.35.93"
@@ -1226,8 +1226,8 @@ rec {
       "sha256-2kPOD5J5TK+vQbQVFfK9z68uTeXL62sj1Jqe2CuB4sw=";
 
   mypy-boto3-securitylake =
-    buildMypyBoto3Package "securitylake" "1.35.93"
-      "sha256-mHi82d7YO8N0ybimZ22wautkkJR3KILHu78p0am9lmk=";
+    buildMypyBoto3Package "securitylake" "1.35.97"
+      "sha256-m+cjupsQESwFSTcWE6JwIG6Pyx9kri4GwJyjXLlLdos=";
 
   mypy-boto3-serverlessrepo =
     buildMypyBoto3Package "serverlessrepo" "1.35.93"
@@ -1330,8 +1330,8 @@ rec {
       "sha256-HVi4ZB2gqc1Y+yTrQagG0JgtMsMoASoLrHlLCZA7GUE=";
 
   mypy-boto3-sts =
-    buildMypyBoto3Package "sts" "1.35.93"
-      "sha256-s+uh11yTUuMPnKswfc2JAh175JcZh26IECKzSlLqdfw=";
+    buildMypyBoto3Package "sts" "1.35.97"
+      "sha256-bfaY9qQAqC68wvEK20NVf2YnhGcgDg91WI594+ShYi0=";
 
   mypy-boto3-support =
     buildMypyBoto3Package "support" "1.35.93"
@@ -1366,8 +1366,8 @@ rec {
       "sha256-bTp/f0/MyQz4ThQoKWmPZRHF640/tCGyXOUQKGOqkuc=";
 
   mypy-boto3-transcribe =
-    buildMypyBoto3Package "transcribe" "1.35.93"
-      "sha256-9q2oQG9xFFOQQJTUxDlaG1JESstcT3sRZb76V0gFmcI=";
+    buildMypyBoto3Package "transcribe" "1.35.98"
+      "sha256-6yZCljyU/Gi2+PI3B4//EHaaomIFREwG6N15py1SVCs=";
 
   mypy-boto3-transfer =
     buildMypyBoto3Package "transfer" "1.35.93"

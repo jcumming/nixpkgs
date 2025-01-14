@@ -10,6 +10,7 @@
   rustc,
   nixosTests,
   callPackage,
+  fetchpatch2,
 }:
 
 let
@@ -34,11 +35,13 @@ python3.pkgs.buildPythonApplication rec {
     hash = "sha256-LGFuz3NtNqH+XumJOirvflH0fyfTtqz5qgYlJx2fmAU=";
   };
 
-  patches = [ 
-    ./0001-pass-an-instance-not-a-type-to-resolveHostName.patch
-    ./0002-Explicitly-list-func-arguments.patch
-    ./0003-Use-new-private-variable-for-hostname-as-str.patch
-    ./0004-Use-a-different-variable-when-changing-var-type.patch
+  patches = [
+    # Fixes test compat with twisted 24.11.0.
+    # Can be removed in next release.
+    (fetchpatch2 {
+      url = "https://github.com/element-hq/synapse/commit/3eb92369ca14012a07da2fbf9250e66f66afb710.patch";
+      sha256 = "sha256-VDn3kQy23+QC2WKhWfe0FrUOnLuI1YwH5GxdTTVWt+A=";
+    })
   ];
 
   postPatch = ''
@@ -55,12 +58,8 @@ python3.pkgs.buildPythonApplication rec {
     # we don't use the pillow wheels.
     sed -i 's/Pillow = ".*"/Pillow = ">=5.4.0"/' pyproject.toml
 
-    # https://github.com/NixOS/nixpkgs/issues/367976#issuecomment-2565035465
-    substituteInPlace tests/storage/databases/main/test_events_worker.py --replace-fail \
-    $'    def test_recovery(' \
-    $'    from tests.unittest import skip_unless\n'\
-    $'    @skip_unless(False, "broken")\n'\
-    $'    def test_recovery('
+    substituteInPlace tests/storage/databases/main/test_events_worker.py \
+      --replace-fail "def test_recovery" "def no_test_recovery"
   '';
 
   nativeBuildInputs = with python3.pkgs; [
