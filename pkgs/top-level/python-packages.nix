@@ -578,8 +578,6 @@ self: super: with self; {
 
   amcrest = callPackage ../development/python-modules/amcrest { };
 
-  amiibo-py = callPackage ../development/python-modules/amiibo-py { };
-
   amply = callPackage ../development/python-modules/amply { };
 
   amqp = callPackage ../development/python-modules/amqp { };
@@ -4214,6 +4212,8 @@ self: super: with self; {
 
   eradicate = callPackage ../development/python-modules/eradicate { };
 
+  eris = callPackage ../development/python-modules/eris { };
+
   es-client = callPackage ../development/python-modules/es-client { };
 
   esig = callPackage ../development/python-modules/esig { };
@@ -4485,6 +4485,8 @@ self: super: with self; {
   fastentrypoints = callPackage ../development/python-modules/fastentrypoints { };
 
   faster-whisper = callPackage ../development/python-modules/faster-whisper { };
+
+  fastexcel = callPackage ../development/python-modules/fastexcel { };
 
   fastimport = callPackage ../development/python-modules/fastimport { };
 
