@@ -267,6 +267,7 @@
   ./programs/ns-usbloader.nix
   ./programs/oblogout.nix
   ./programs/oddjobd.nix
+  ./programs/opengamepadui.nix
   ./programs/openvpn3.nix
   ./programs/obs-studio.nix
   ./programs/partition-manager.nix
@@ -631,6 +632,7 @@
   ./services/hardware/pcscd.nix
   ./services/hardware/pommed.nix
   ./services/hardware/power-profiles-daemon.nix
+  ./services/hardware/powerstation.nix
   ./services/hardware/rasdaemon.nix
   ./services/hardware/ratbagd.nix
   ./services/hardware/sane.nix
@@ -862,8 +864,6 @@
   ./services/misc/redlib.nix
   ./services/misc/redmine.nix
   ./services/misc/renovate.nix
-  ./services/misc/ripple-data-api.nix
-  ./services/misc/rippled.nix
   ./services/misc/rmfakecloud.nix
   ./services/misc/rkvm.nix
   ./services/misc/rshim.nix
@@ -1474,6 +1474,7 @@
   ./services/web-apps/eintopf.nix
   ./services/web-apps/engelsystem.nix
   ./services/web-apps/ethercalc.nix
+  ./services/web-apps/fider.nix
   ./services/web-apps/filesender.nix
   ./services/web-apps/firefly-iii.nix
   ./services/web-apps/firefly-iii-data-importer.nix
@@ -1566,6 +1567,7 @@
   ./services/web-apps/screego.nix
   ./services/web-apps/sftpgo.nix
   ./services/web-apps/suwayomi-server.nix
+  ./services/web-apps/readeck.nix
   ./services/web-apps/rss-bridge.nix
   ./services/web-apps/selfoss.nix
   ./services/web-apps/shiori.nix
