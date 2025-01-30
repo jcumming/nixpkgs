@@ -7252,6 +7252,8 @@ self: super: with self; {
 
   lektricowifi = callPackage ../development/python-modules/lektricowifi { };
 
+  letpot = callPackage ../development/python-modules/letpot { };
+
   leveldb = callPackage ../development/python-modules/leveldb { };
 
   levenshtein = callPackage ../development/python-modules/levenshtein { };
@@ -9934,6 +9936,8 @@ self: super: with self; {
   ossfs = callPackage ../development/python-modules/ossfs { };
 
   osxphotos = callPackage ../development/python-modules/osxphotos { };
+
+  otpauth = callPackage ../development/python-modules/otpauth { };
 
   ots-python = callPackage ../development/python-modules/ots-python { };
 
@@ -14536,7 +14540,15 @@ self: super: with self; {
 
   scienceplots = callPackage ../development/python-modules/scienceplots { };
 
+  scim2-client = callPackage ../development/python-modules/scim2-client { };
+
   scim2-filter-parser = callPackage ../development/python-modules/scim2-filter-parser { };
+
+  scim2-models = callPackage ../development/python-modules/scim2-models { };
+
+  scim2-server = callPackage ../development/python-modules/scim2-server { };
+
+  scim2-tester = callPackage ../development/python-modules/scim2-tester { };
 
   scikit-bio = callPackage ../development/python-modules/scikit-bio { };
 
@@ -15241,6 +15253,8 @@ self: super: with self; {
   speaklater = callPackage ../development/python-modules/speaklater { };
 
   speaklater3 = callPackage ../development/python-modules/speaklater3 { };
+
+  spectra = callPackage ../development/python-modules/spectra { };
 
   spectral-cube = callPackage ../development/python-modules/spectral-cube { };
 
