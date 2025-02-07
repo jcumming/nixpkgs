@@ -261,6 +261,8 @@ self: super: with self; {
 
   aiohttp-apispec = callPackage ../development/python-modules/aiohttp-apispec { };
 
+  aiohttp-asyncmdnsresolver = callPackage ../development/python-modules/aiohttp-asyncmdnsresolver { };
+
   aiohttp-basicauth = callPackage ../development/python-modules/aiohttp-basicauth { };
 
   aiohttp-client-cache = callPackage ../development/python-modules/aiohttp-client-cache { };
@@ -470,6 +472,8 @@ self: super: with self; {
   aiounifi = callPackage ../development/python-modules/aiounifi { };
 
   aiounittest = callPackage ../development/python-modules/aiounittest { };
+
+  aiousbwatcher = callPackage ../development/python-modules/aiousbwatcher { };
 
   aiovlc = callPackage ../development/python-modules/aiovlc { };
 
@@ -1480,6 +1484,8 @@ self: super: with self; {
 
   backports-entry-points-selectable = callPackage ../development/python-modules/backports-entry-points-selectable { };
 
+  backports-shutil-which = callPackage ../development/python-modules/backports-shutil-which { };
+
   backports-strenum = callPackage ../development/python-modules/backports-strenum { };
 
   backports-tarfile = callPackage ../development/python-modules/backports-tarfile { };
@@ -2258,6 +2264,8 @@ self: super: with self; {
 
   changefinder = callPackage ../development/python-modules/changefinder { };
 
+  changelog-chug = callPackage ../development/python-modules/changelog-chug { };
+
   channels = callPackage ../development/python-modules/channels { };
 
   channels-redis = callPackage ../development/python-modules/channels-redis { };
@@ -2343,6 +2351,8 @@ self: super: with self; {
   cjkwrap = callPackage ../development/python-modules/cjkwrap { };
 
   ckcc-protocol = callPackage ../development/python-modules/ckcc-protocol { };
+
+  ckzg = callPackage ../development/python-modules/ckzg { };
 
   clarabel = callPackage ../development/python-modules/clarabel { };
 
@@ -3426,7 +3436,9 @@ self: super: with self; {
 
   django-auditlog = callPackage ../development/python-modules/django-auditlog { };
 
-  django-auth-ldap = callPackage ../development/python-modules/django-auth-ldap { };
+  django-auth-ldap = callPackage ../development/python-modules/django-auth-ldap {
+    inherit (pkgs) openldap;
+  };
 
   django-autocomplete-light = callPackage ../development/python-modules/django-autocomplete-light { };
 
@@ -3714,6 +3726,8 @@ self: super: with self; {
 
   django-tinymce = callPackage ../development/python-modules/django-tinymce { };
 
+  django-tree-queries = callPackage ../development/python-modules/django-tree-queries { };
+
   django-treebeard = callPackage ../development/python-modules/django-treebeard { };
 
   django-two-factor-auth = callPackage ../development/python-modules/django-two-factor-auth { };
@@ -3806,6 +3820,8 @@ self: super: with self; {
 
   dockerspawner = callPackage ../development/python-modules/dockerspawner { };
 
+  docling = callPackage ../development/python-modules/docling { };
+
   docling-core = callPackage ../development/python-modules/docling-core { };
 
   docling-ibm-models = callPackage ../development/python-modules/docling-ibm-models { };
@@ -3859,6 +3875,8 @@ self: super: with self; {
   domeneshop = callPackage ../development/python-modules/domeneshop { };
 
   dominate = callPackage ../development/python-modules/dominate { };
+
+  donfig = callPackage ../development/python-modules/donfig { };
 
   doorbirdpy = callPackage ../development/python-modules/doorbirdpy { };
 
@@ -3981,6 +3999,8 @@ self: super: with self; {
   dungeon-eos = callPackage ../development/python-modules/dungeon-eos { };
 
   duo-client = callPackage ../development/python-modules/duo-client { };
+
+  durationpy = callPackage ../development/python-modules/durationpy { };
 
   durus = callPackage ../development/python-modules/durus {  };
 
@@ -4287,6 +4307,8 @@ self: super: with self; {
 
   eth-account = callPackage ../development/python-modules/eth-account { };
 
+  eth-bloom = callPackage ../development/python-modules/eth-bloom { };
+
   eth-hash = callPackage ../development/python-modules/eth-hash { };
 
   eth-keyfile = callPackage ../development/python-modules/eth-keyfile { };
@@ -4294,6 +4316,8 @@ self: super: with self; {
   eth-keys = callPackage ../development/python-modules/eth-keys { };
 
   eth-rlp = callPackage ../development/python-modules/eth-rlp { };
+
+  eth-tester = callPackage ../development/python-modules/eth-tester { };
 
   eth-typing = callPackage ../development/python-modules/eth-typing { };
 
@@ -4637,6 +4661,8 @@ self: super: with self; {
   fire = callPackage ../development/python-modules/fire { };
 
   firebase-messaging = callPackage ../development/python-modules/firebase-messaging { };
+
+  firebase-admin = callPackage ../development/python-modules/firebase-admin { };
 
   fireflyalgorithm = callPackage ../development/python-modules/fireflyalgorithm { };
 
@@ -5927,7 +5953,7 @@ self: super: with self; {
   };
 
   hidapi = callPackage ../development/python-modules/hidapi {
-    inherit (pkgs) udev;
+    inherit (pkgs) hidapi udev;
   };
 
   hid-parser = callPackage ../development/python-modules/hid-parser { };
@@ -6692,6 +6718,8 @@ self: super: with self; {
   jmp = callPackage ../development/python-modules/jmp { };
 
   joblib = callPackage ../development/python-modules/joblib { };
+
+  jobspy = callPackage ../development/python-modules/jobspy { };
 
   johnnycanencrypt = callPackage ../development/python-modules/johnnycanencrypt {
     inherit (pkgs.darwin.apple_sdk.frameworks) PCSC;
@@ -7675,7 +7703,7 @@ self: super: with self; {
 
   llvmlite = callPackage ../development/python-modules/llvmlite {
     # llvmlite always requires a specific version of llvm.
-    llvm = pkgs.llvm_14;
+    llvm = pkgs.llvm_15;
   };
 
   lm-eval = callPackage ../development/python-modules/lm-eval { };
@@ -7795,8 +7823,6 @@ self: super: with self; {
   luna-usb = callPackage ../development/python-modules/luna-usb { };
 
   luqum = callPackage ../development/python-modules/luqum { };
-
-  luxor = callPackage ../development/python-modules/luxor { };
 
   luxtronik = callPackage ../development/python-modules/luxtronik { };
 
@@ -8046,6 +8072,8 @@ self: super: with self; {
   mccabe = callPackage ../development/python-modules/mccabe { };
 
   mcdreforged = callPackage ../development/python-modules/mcdreforged { };
+
+  mcp = callPackage ../development/python-modules/mcp { };
 
   mcstatus = callPackage ../development/python-modules/mcstatus { };
 
@@ -9549,6 +9577,8 @@ self: super: with self; {
 
   py-eth-sig-utils = callPackage ../development/python-modules/py-eth-sig-utils { };
 
+  py-evm = callPackage ../development/python-modules/py-evm { };
+
   py-expression-eval = callPackage ../development/python-modules/py-expression-eval { };
 
   py-improv-ble-client = callPackage ../development/python-modules/py-improv-ble-client { };
@@ -9663,6 +9693,8 @@ self: super: with self; {
   ondilo = callPackage ../development/python-modules/ondilo { };
 
   onecache = callPackage ../development/python-modules/onecache { };
+
+  onedrive-personal-sdk = callPackage ../development/python-modules/onedrive-personal-sdk { };
 
   onetimepass = callPackage ../development/python-modules/onetimepass { };
 
@@ -10813,6 +10845,8 @@ self: super: with self; {
 
   pytest-mockito = callPackage ../development/python-modules/pytest-mockito { };
 
+  pytest-pook = callPackage ../development/python-modules/pytest-pook { };
+
   pytest-pudb = callPackage ../development/python-modules/pytest-pudb { };
 
   pytest-ruff = callPackage ../development/python-modules/pytest-ruff { };
@@ -10929,6 +10963,8 @@ self: super: with self; {
   pyuca = callPackage ../development/python-modules/pyuca { };
 
   pyunpack = callPackage ../development/python-modules/pyunpack { };
+
+  pyunormalize = callPackage ../development/python-modules/pyunormalize { };
 
   pyutil = callPackage ../development/python-modules/pyutil { };
 
@@ -11451,6 +11487,8 @@ self: super: with self; {
 
   pyasuswrt = callPackage ../development/python-modules/pyasuswrt { };
 
+  pyasynchat = callPackage ../development/python-modules/pyasynchat { };
+
   pyasyncore = callPackage ../development/python-modules/pyasyncore { };
 
   pyathena = callPackage ../development/python-modules/pyathena { };
@@ -11810,6 +11848,8 @@ self: super: with self; {
   pyexploitdb = callPackage ../development/python-modules/pyexploitdb { };
 
   pyezviz = callPackage ../development/python-modules/pyezviz { };
+
+  pyezvizapi = callPackage ../development/python-modules/pyezvizapi { };
 
   pyface = callPackage ../development/python-modules/pyface { };
 
@@ -14253,6 +14293,8 @@ self: super: with self; {
 
   rich-theme-manager = callPackage ../development/python-modules/rich-theme-manager { };
 
+  rich-toolkit = callPackage ../development/python-modules/rich-toolkit { };
+
   riden = callPackage ../development/python-modules/riden { };
 
   rigour = callPackage ../development/python-modules/rigour { };
@@ -14602,6 +14644,8 @@ self: super: with self; {
   scim2-server = callPackage ../development/python-modules/scim2-server { };
 
   scim2-tester = callPackage ../development/python-modules/scim2-tester { };
+
+  scikit-base = callPackage ../development/python-modules/scikit-base { };
 
   scikit-bio = callPackage ../development/python-modules/scikit-bio { };
 
@@ -16343,6 +16387,8 @@ self: super: with self; {
 
   tinygrad = callPackage ../development/python-modules/tinygrad { };
 
+  tinyhtml5 = callPackage ../development/python-modules/tinyhtml5 { };
+
   tinyobjloader-py = callPackage ../development/python-modules/tinyobjloader-py { };
 
   tinyrecord = callPackage ../development/python-modules/tinyrecord { };
@@ -16601,6 +16647,8 @@ self: super: with self; {
   };
 
   trezor = callPackage ../development/python-modules/trezor { };
+
+  trie = callPackage ../development/python-modules/trie { };
 
   trimesh = callPackage ../development/python-modules/trimesh { };
 
@@ -18718,6 +18766,8 @@ self: super: with self; {
   zope-proxy = callPackage ../development/python-modules/zope-proxy { };
 
   zope-schema = callPackage ../development/python-modules/zope-schema { };
+
+  zope-security = callPackage ../development/python-modules/zope-security { };
 
   zope-size = callPackage ../development/python-modules/zope-size { };
 
