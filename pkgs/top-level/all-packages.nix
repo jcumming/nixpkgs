@@ -11112,6 +11112,10 @@ with pkgs;
     postgresqlSupport = true;
   }).overrideAttrs { pname = "sqitch-pg"; };
 
+  sqitchSqlite = (callPackage ../development/tools/misc/sqitch {
+    sqliteSupport = true;
+  }).overrideAttrs { pname = "sqitch-sqlite"; };
+
   ### DEVELOPMENT / R MODULES
 
   R = darwin.apple_sdk_11_0.callPackage ../applications/science/math/R {
@@ -14645,6 +14649,10 @@ with pkgs;
   obs-studio-plugins = recurseIntoAttrs (callPackage ../applications/video/obs-studio/plugins {});
   wrapOBS = callPackage ../applications/video/obs-studio/wrapper.nix { };
 
+  obsidian = callPackage ../by-name/ob/obsidian/package.nix {
+    electron = electron_33;
+  };
+
   okms-cli = callPackage ../by-name/ok/okms-cli/package.nix {
     buildGoModule = buildGo123Module;
   };
@@ -15659,7 +15667,7 @@ with pkgs;
     plugins = with wayfirePlugins; [ wcm wf-shell ];
   };
 
-  webcamoid = libsForQt5.callPackage ../applications/video/webcamoid { };
+  webcamoid = qt6Packages.callPackage ../applications/video/webcamoid { };
 
   webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_33; };
 
@@ -18358,5 +18366,9 @@ with pkgs;
 
   wings = callPackage ../by-name/wi/wings/package.nix {
     erlang = erlang_25;
+  };
+
+  rustdesk-flutter = callPackage ../by-name/ru/rustdesk-flutter/package.nix {
+    flutter = flutter324;
   };
 }

@@ -1472,7 +1472,7 @@ self: super: with self; {
 
   pulumi-command = pkgs.pulumiPackages.pulumi-command.sdks.python;
 
-  pulumi-hcloud = callPackage ../development/python-modules/pulumi-hcloud { };
+  pulumi-hcloud = pkgs.pulumiPackages.pulumi-hcloud.sdks.python;
 
   pulumi-random = pkgs.pulumiPackages.pulumi-random.sdks.python;
 
@@ -5293,6 +5293,8 @@ self: super: with self; {
 
   ghdiff = callPackage ../development/python-modules/ghdiff { };
 
+  ghome-foyer-api = callPackage ../development/python-modules/ghome-foyer-api { };
+
   ghp-import = callPackage ../development/python-modules/ghp-import { };
 
   ghrepo-stats = callPackage ../development/python-modules/ghrepo-stats { };
@@ -7153,6 +7155,8 @@ self: super: with self; {
 
   langchain-core = callPackage ../development/python-modules/langchain-core { };
 
+  langchain-groq = callPackage ../development/python-modules/langchain-groq { };
+
   langchain-huggingface = callPackage ../development/python-modules/langchain-huggingface { };
 
   langchain-mongodb = callPackage ../development/python-modules/langchain-mongodb { };
@@ -7604,6 +7608,8 @@ self: super: with self; {
   litemapy = callPackage ../development/python-modules/litemapy { };
 
   litestar-htmx = callPackage ../development/python-modules/litestar-htmx { };
+
+  litestar = callPackage ../development/python-modules/litestar { };
 
   littleutils = callPackage ../development/python-modules/littleutils { };
 
@@ -9129,6 +9135,8 @@ self: super: with self; {
 
   nomadnet = callPackage ../development/python-modules/nomadnet { };
 
+  nonbloat-db = callPackage ../development/python-modules/nonbloat-db { };
+
   noneprompt = callPackage ../development/python-modules/noneprompt {  };
 
   nox = callPackage ../development/python-modules/nox { };
@@ -9386,6 +9394,8 @@ self: super: with self; {
   nixpkgs = callPackage ../development/python-modules/nixpkgs { };
 
   nixpkgs-pytools = callPackage ../development/python-modules/nixpkgs-pytools { };
+
+  nixpkgs-updaters-library = callPackage ../development/python-modules/nixpkgs-updaters-library { };
 
   nix-prefetch-github = callPackage ../development/python-modules/nix-prefetch-github { };
 
@@ -10044,7 +10054,7 @@ self: super: with self; {
 
   paho-mqtt_1 = callPackage ../development/python-modules/paho-mqtt/1.nix { };
   paho-mqtt_2 = callPackage ../development/python-modules/paho-mqtt/default.nix { };
-  paho-mqtt = paho-mqtt_1;
+  paho-mqtt = paho-mqtt_2;
 
   paintcompiler = callPackage ../development/python-modules/paintcompiler { };
 
@@ -12377,6 +12387,10 @@ self: super: with self; {
 
   pyobihai = callPackage ../development/python-modules/pyobihai { };
 
+  pyobjc-core = callPackage ../development/python-modules/pyobjc-core { };
+
+  pyobjc-framework-Cocoa = callPackage ../development/python-modules/pyobjc-framework-Cocoa { };
+
   pyocd = callPackage ../development/python-modules/pyocd { };
 
   pyocd-pemicro = callPackage ../development/python-modules/pyocd-pemicro { };
@@ -14507,6 +14521,8 @@ self: super: with self; {
 
   rules = callPackage ../development/python-modules/rules { };
 
+  rumps = callPackage ../development/python-modules/rumps { };
+
   runs = callPackage ../development/python-modules/runs { };
 
   runstats = callPackage ../development/python-modules/runstats { };
@@ -14720,6 +14736,8 @@ self: super: with self; {
   };
 
   sdds = callPackage ../development/python-modules/sdds { };
+
+  sdjson = callPackage ../development/python-modules/sdjson { };
 
   sdkmanager = callPackage ../development/python-modules/sdkmanager { };
 
@@ -15267,8 +15285,6 @@ self: super: with self; {
   somfy-mylink-synergy = callPackage ../development/python-modules/somfy-mylink-synergy { };
 
   somweb = callPackage ../development/python-modules/somweb { };
-
-  sonarr = callPackage ../development/python-modules/sonarr { };
 
   sonos-websocket = callPackage ../development/python-modules/sonos-websocket { };
 
@@ -16517,6 +16533,8 @@ self: super: with self; {
   torchcrepe = callPackage ../development/python-modules/torchcrepe { };
 
   torchdiffeq = callPackage ../development/python-modules/torchdiffeq { };
+
+  torcheval = callPackage ../development/python-modules/torcheval { };
 
   torchmetrics = callPackage ../development/python-modules/torchmetrics { };
 
