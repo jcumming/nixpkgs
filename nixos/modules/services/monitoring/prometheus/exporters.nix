@@ -68,6 +68,7 @@ let
     "nginx"
     "nginxlog"
     "node"
+    "node-cert"
     "nut"
     "nvidia-gpu"
     "pgbouncer"
