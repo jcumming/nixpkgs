@@ -142,6 +142,7 @@ mapAliases ({
   cx_Freeze = cx-freeze; # added 2023-08-02
   cx_oracle = cx-oracle; # added 2024-01-03
   d2to1 = throw "d2to1 is archived and no longer works with setuptools v68"; # added 2023-07-30
+  dask-expr = throw "dask-expr was removed because its features are available in dask"; # added 2025-02-07
   dask-xgboost = throw "dask-xgboost was removed because its features are available in xgboost"; # added 2022-05-24
   dash-renderer = throw "dash-renderer has been removed since it is abandoned"; # added 2025-01-01
   dateutil = python-dateutil; # added 2021-07-03
@@ -719,6 +720,7 @@ mapAliases ({
   twitter-common-log = throw "twitter-common-log has been removed because it is abandoned and unmaintained"; # added 2024-07-14
   twitter-common-options = throw "twitter-common-options has been removed because it is abandoned and unmaintained"; # added 2024-07-14
   types-cryptography = throw "types-cryptography has been removed because it is obsolete since cryptography version 3.4.4."; # added 2022-05-30
+  types-enum34 = throw "types-enum34 is obselete since Python 3.4"; # added 2025-02-15
   types-paramiko = throw "types-paramiko has been removed because it was unused."; # added 2022-05-30
   ufoLib2 = ufolib2; # added 2024-01-07
   ukrainealarm = throw "ukrainealarm has been removed, as it has been replaced as a home-assistant dependency by uasiren."; # added 2024-01-05

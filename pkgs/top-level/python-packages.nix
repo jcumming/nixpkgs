@@ -2951,6 +2951,8 @@ self: super: with self; {
 
   dash-bootstrap-components = callPackage ../development/python-modules/dash-bootstrap-components { };
 
+  dash-bootstrap-templates = callPackage ../development/python-modules/dash-bootstrap-templates { };
+
   dash-core-components = callPackage ../development/python-modules/dash-core-components { };
 
   dash-html-components = callPackage ../development/python-modules/dash-html-components { };
@@ -2962,8 +2964,6 @@ self: super: with self; {
   dask = callPackage ../development/python-modules/dask { };
 
   dask-awkward = callPackage ../development/python-modules/dask-awkward { };
-
-  dask-expr = callPackage ../development/python-modules/dask-expr { };
 
   dask-gateway = callPackage ../development/python-modules/dask-gateway { };
 
@@ -6498,6 +6498,8 @@ self: super: with self; {
 
   ipydatawidgets = callPackage ../development/python-modules/ipydatawidgets { };
 
+  ipylab = callPackage ../development/python-modules/ipylab { };
+
   ipynbname = callPackage ../development/python-modules/ipynbname { };
 
   ipyniivue = callPackage ../development/python-modules/ipyniivue { };
@@ -8205,6 +8207,8 @@ self: super: with self; {
 
   messagebird = callPackage ../development/python-modules/messagebird { };
 
+  metaflow = callPackage ../development/python-modules/metaflow { };
+
   metakernel = callPackage ../development/python-modules/metakernel { };
 
   metar = callPackage ../development/python-modules/metar { };
@@ -9656,6 +9660,8 @@ self: super: with self; {
 
   odc-geo = callPackage ../development/python-modules/odc-geo { };
 
+  odc-stac = callPackage ../development/python-modules/odc-stac { };
+
   oddsprout = callPackage ../development/python-modules/oddsprout { };
 
   odfpy = callPackage ../development/python-modules/odfpy { };
@@ -9750,6 +9756,8 @@ self: super: with self; {
   open-clip-torch = callPackage ../development/python-modules/open-clip-torch { };
 
   open-garage = callPackage ../development/python-modules/open-garage { };
+
+  open-hypergraphs = callPackage ../development/python-modules/open-hypergraphs { };
 
   open-interpreter = callPackage ../development/python-modules/open-interpreter { };
 
@@ -10365,6 +10373,8 @@ self: super: with self; {
   pgpdump = callPackage ../development/python-modules/pgpdump { };
 
   pgpy = callPackage ../development/python-modules/pgpy { };
+
+  pgpy-dtc = callPackage ../development/python-modules/pgpy-dtc { };
 
   pgsanity = callPackage ../development/python-modules/pgsanity { };
 
@@ -14773,6 +14783,8 @@ self: super: with self; {
 
   sectools = callPackage ../development/python-modules/sectools { };
 
+  sectxt = callPackage ../development/python-modules/sectxt { };
+
   seedir = callPackage ../development/python-modules/seedir { };
 
   seekpath = callPackage ../development/python-modules/seekpath { };
@@ -16249,9 +16261,13 @@ self: super: with self; {
 
   textual = callPackage ../development/python-modules/textual { };
 
+  textual-autocomplete = callPackage ../development/python-modules/textual-autocomplete { };
+
   textual-dev = callPackage ../development/python-modules/textual-dev { };
 
   textual-fastdatatable = callPackage ../development/python-modules/textual-fastdatatable { };
+
+  textual-serve = callPackage ../development/python-modules/textual-serve { };
 
   textual-slider = callPackage ../development/python-modules/textual-slider { };
 
@@ -17572,8 +17588,6 @@ self: super: with self; {
   types-docopt = callPackage ../development/python-modules/types-docopt { };
 
   types-docutils = callPackage ../development/python-modules/types-docutils { };
-
-  types-enum34 = callPackage ../development/python-modules/types-enum34 { };
 
   types-freezegun = callPackage ../development/python-modules/types-freezegun { };
 

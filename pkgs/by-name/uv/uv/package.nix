@@ -4,6 +4,9 @@
   rustPlatform,
   fetchFromGitHub,
 
+  # buildInputs
+  rust-jemalloc-sys,
+
   # nativeBuildInputs
   cmake,
   installShellFiles,
@@ -17,17 +20,21 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "uv";
-  version = "0.5.30";
+  version = "0.6.0";
 
   src = fetchFromGitHub {
     owner = "astral-sh";
     repo = "uv";
     tag = version;
-    hash = "sha256-a56y7sf2Os5ygTSu+iNZFjWwKi3HQ9VKo7p7e6LXmUc=";
+    hash = "sha256-1D1/LY8nJI14nLghYI60a4CFmu8McUIUnxB7SeXPs1o=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-rodzLpaCuokvHWvwXLB2qgPnDJaP+Qff1T4LfNCQsYM=";
+  cargoHash = "sha256-2XLkMk6IsWho/BlPr+uxfuliAsTDat+nY0h/MJN8sXU=";
+
+  buildInputs = [
+    rust-jemalloc-sys
+  ];
 
   nativeBuildInputs = [
     cmake
