@@ -2,8 +2,9 @@
   lib,
   stdenv,
   fetchurl,
-  runCommand,
-  tailwindcss_4,
+  versionCheckHook,
+  autoPatchelfHook,
+  makeWrapper,
 }:
 let
   version = "4.0.6";
@@ -38,27 +39,42 @@ stdenv.mkDerivation {
     inherit hash;
   };
 
+  nativeBuildInputs = lib.optional stdenv.hostPlatform.isLinux autoPatchelfHook;
+  buildInputs = [ makeWrapper ];
+
   dontUnpack = true;
-  dontConfigure = true;
   dontBuild = true;
-  dontFixup = true;
+  dontStrip = true;
 
   installPhase = ''
-    install -D $src $out/bin/tailwindcss
+    mkdir -p $out/bin
+    install -m755 $src $out/bin/tailwindcss
   '';
 
-  passthru.tests.helptext = runCommand "tailwindcss-test-helptext" { } ''
-    ${tailwindcss_4}/bin/tailwindcss --help > $out
+  # libstdc++.so.6 for @parcel/watcher
+  postFixup = ''
+    wrapProgram $out/bin/tailwindcss --prefix LD_LIBRARY_PATH : ${
+      lib.makeLibraryPath [ stdenv.cc.cc.lib ]
+    }
   '';
+
+  nativeInstallCheckInputs = [ versionCheckHook ];
+  doInstallCheck = true;
+  versionCheckProgram = "${placeholder "out"}/bin/tailwindcss";
+  versionCheckProgramArg = "--help";
+
   passthru.updateScript = ./update.sh;
 
-  meta = with lib; {
+  meta = {
     description = "Command-line tool for the CSS framework with composable CSS classes, standalone v4 CLI";
     homepage = "https://tailwindcss.com/blog/tailwindcss-v4";
-    license = licenses.mit;
-    sourceProvenance = [ sourceTypes.binaryNativeCode ];
-    maintainers = [ maintainers.adamjhf ];
+    license = lib.licenses.mit;
+    sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
+    maintainers = with lib.maintainers; [
+      adamcstephens
+      adamjhf
+    ];
     mainProgram = "tailwindcss";
-    platforms = platforms.darwin ++ platforms.linux;
+    platforms = lib.platforms.darwin ++ lib.platforms.linux;
   };
 }
