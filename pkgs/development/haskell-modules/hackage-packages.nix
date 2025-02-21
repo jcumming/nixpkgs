@@ -277355,9 +277355,7 @@ self: {
        description = "Automatically run Hspec tests on file modifications";
        license = lib.licenses.mit;
        badPlatforms = lib.platforms.darwin;
-       hydraPlatforms = lib.platforms.none;
        maintainers = [ lib.maintainers.libjared ];
-       broken = true;
      }) {};
 
   "sensenet" = callPackage

@@ -17,7 +17,7 @@
   requests,
   responses,
   setuptools,
-  substituteAll,
+  replaceVars,
   xmlschema,
   xmlsec,
   zope-interface,
@@ -45,8 +45,7 @@ buildPythonPackage rec {
   doCheck = false;
 
   patches = [
-    (substituteAll {
-      src = ./hardcode-xmlsec1-path.patch;
+    (replaceVars ./hardcode-xmlsec1-path.patch {
       inherit xmlsec;
     })
   ];

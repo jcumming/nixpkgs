@@ -14615,6 +14615,12 @@
     githubId = 279868;
     name = "Matti Kariluoma";
   };
+  mattkang = {
+    email = "wavy-wisdom-volley@duck.com";
+    github = "mattkang";
+    githubId = 2027430;
+    name = "Matthew Kang";
+  };
   mattpolzin = {
     email = "matt.polzin@gmail.com";
     github = "mattpolzin";
@@ -20004,6 +20010,12 @@
     githubId = 13752145;
     name = "Richard Lupton";
   };
+  rlwrnc = {
+    email = "raymond.lawrence@tutanota.com";
+    github = "rlwrnc";
+    githubId = 95446597;
+    name = "Raymond Lawrence";
+  };
   rmcgibbo = {
     email = "rmcgibbo@gmail.com";
     matrix = "@rmcgibbo:matrix.org";
@@ -21449,6 +21461,12 @@
     email = "deva.shikanime@protonmail.com";
     github = "shikanime";
     githubId = 22115108;
+  };
+  shimun = {
+    email = "shimun@shimun.net";
+    name = "shimun";
+    github = "shimunn";
+    githubId = 41011289;
   };
   shiphan = {
     email = "timlin940511@gmail.com";
