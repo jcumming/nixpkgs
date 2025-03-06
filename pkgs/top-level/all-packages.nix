@@ -11962,6 +11962,7 @@ with pkgs;
   };
 
   btop = darwin.apple_sdk_11_0.callPackage ../tools/system/btop { };
+  btop-cuda = btop.override { cudaSupport = true; };
   btop-rocm = btop.override { rocmSupport = true; };
 
   i7z = qt5.callPackage ../os-specific/linux/i7z { };
