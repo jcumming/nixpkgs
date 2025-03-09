@@ -300,6 +300,10 @@ with pkgs;
 
   coolercontrol = recurseIntoAttrs (callPackage ../applications/system/coolercontrol { });
 
+  curv = callPackage ../by-name/cu/curv/package.nix {
+    openexr = openexr_3;
+  };
+
   databricks-sql-cli = python3Packages.callPackage ../applications/misc/databricks-sql-cli { };
 
   deck = callPackage ../by-name/de/deck/package.nix {
@@ -3347,7 +3351,7 @@ with pkgs;
     garage
       garage_0_8 garage_0_9
       garage_0_8_7 garage_0_9_4
-      garage_1_0_1 garage_1_x;
+      garage_1_1_0 garage_1_x;
 
   gauge-unwrapped = callPackage ../development/tools/gauge { };
   gauge = callPackage ../development/tools/gauge/wrapper.nix { };
@@ -3868,8 +3872,6 @@ with pkgs;
 
   ksmoothdock = libsForQt5.callPackage ../applications/misc/ksmoothdock { };
 
-  kstars = libsForQt5.callPackage ../applications/science/astronomy/kstars { };
-
   ligo =
     let ocaml_p = ocaml-ng.ocamlPackages_4_14.overrideScope (self: super: {
       zarith = super.zarith.override { version = "1.13"; };
@@ -4133,11 +4135,7 @@ with pkgs;
 
   liquidctl = with python3Packages; toPythonApplication liquidctl;
 
-  localstack = with python3Packages; toPythonApplication localstack;
-
   xz = callPackage ../tools/compression/xz { };
-
-  lzwolf = callPackage ../games/lzwolf { SDL2_mixer = SDL2_mixer_2_0; };
 
   madlang = haskell.lib.compose.justStaticExecutables haskellPackages.madlang;
 
@@ -4260,7 +4258,7 @@ with pkgs;
   inherit (callPackage ../servers/web-apps/netbox { }) netbox_3_7;
 
   # Not in aliases because it wouldn't get picked up by callPackage
-  netbox = netbox_4_1;
+  netbox = netbox_4_2;
 
   netcat = libressl.nc.overrideAttrs (old: {
     meta = old.meta // {
@@ -4694,7 +4692,7 @@ with pkgs;
     jdk = jdk8;
   };
 
-  projectm = libsForQt5.callPackage ../applications/audio/projectm { };
+  projectm_3 = libsForQt5.callPackage ../applications/audio/projectm_3 { };
 
   proxmark3 = libsForQt5.callPackage ../tools/security/proxmark3/default.nix {
     inherit (darwin.apple_sdk_11_0.frameworks) Foundation AppKit;
@@ -7492,7 +7490,7 @@ with pkgs;
     electron-chromedriver_34
     ;
 
-  electron_32 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_32 then electron-source.electron_32 else electron_32-bin;
+  electron_32 = electron_32-bin;
   electron_33 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_33 then electron-source.electron_33 else electron_33-bin;
   electron_34 = electron_34-bin;
   electron = electron_34;
@@ -8511,7 +8509,11 @@ with pkgs;
   inherit (callPackages ../development/libraries/c-blosc { })
     c-blosc c-blosc2;
 
-  cachix = lib.getBin haskellPackages.cachix;
+  cachix = (lib.getBin haskellPackages.cachix).overrideAttrs (old: {
+    meta = (old.meta or {}) // {
+      mainProgram = old.meta.mainProgram or "cachix";
+    };
+  });
 
   cubeb = callPackage ../development/libraries/audio/cubeb {
     inherit (darwin.apple_sdk.frameworks) AudioUnit CoreAudio CoreServices;
@@ -8528,6 +8530,7 @@ with pkgs;
   catboost = callPackage ../by-name/ca/catboost/package.nix {
     # https://github.com/catboost/catboost/issues/2540
     cudaPackages = cudaPackages_11;
+    llvmPackagesCuda = llvmPackages_14;
   };
 
   cctag = callPackage ../development/libraries/cctag {
@@ -9911,6 +9914,7 @@ with pkgs;
   mesa_i686 = pkgsi686Linux.mesa; # make it build on Hydra
 
   libgbm = callPackage ../development/libraries/mesa/gbm.nix {};
+  mesa-gl-headers = callPackage ../development/libraries/mesa/headers.nix {};
 
   ## End libGL/libGLU/Mesa stuff
 
@@ -10770,12 +10774,14 @@ with pkgs;
     zig_0_11 = zigPackages."0.11";
     zig_0_12 = zigPackages."0.12";
     zig_0_13 = zigPackages."0.13";
+    zig_0_14 = zigPackages."0.14";
   }) zigPackages
      zig_0_11
      zig_0_12
-     zig_0_13;
+     zig_0_13
+     zig_0_14;
 
-  zig = zig_0_13;
+  zig = zig_0_14;
 
   zigStdenv = if stdenv.cc.isZig then stdenv else lowPrio zig.passthru.stdenv;
 
@@ -11437,12 +11443,6 @@ with pkgs;
   osrm-backend = callPackage ../servers/osrm-backend {
     tbb = tbb_2021_11;
   };
-
-  postfix = callPackage ../servers/mail/postfix { };
-
-  pfixtools = callPackage ../servers/mail/postfix/pfixtools.nix { };
-
-  pflogsumm = callPackage ../servers/mail/postfix/pflogsumm.nix { };
 
   system-sendmail = lowPrio (callPackage ../servers/mail/system-sendmail { });
 
@@ -12829,10 +12829,6 @@ with pkgs;
 
   antimony = libsForQt5.callPackage ../applications/graphics/antimony { };
 
-  anup = callPackage ../applications/misc/anup {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   apkeep = callPackage ../tools/misc/apkeep {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
@@ -13435,6 +13431,16 @@ with pkgs;
     libName = "librewolf";
   };
 
+  librewolf-bin = wrapFirefox librewolf-bin-unwrapped {
+    pname = "librewolf-bin";
+    extraPrefsFiles = [
+      "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/librewolf.cfg"
+    ];
+    extraPoliciesFiles = [
+      "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/distribution/extra-policies.json"
+    ];
+  };
+
   firefox_decrypt = python3Packages.callPackage ../tools/security/firefox_decrypt { };
 
   flactag = callPackage ../applications/audio/flactag { libmusicbrainz  = libmusicbrainz5; };
@@ -13509,11 +13515,6 @@ with pkgs;
   };
 
   gtk-pipe-viewer = perlPackages.callPackage ../applications/video/pipe-viewer { withGtk3 = true; };
-
-  hydrus = python3Packages.callPackage ../applications/graphics/hydrus {
-    inherit miniupnpc swftools;
-    inherit (qt6) wrapQtAppsHook qtbase qtcharts;
-  };
 
   kemai = qt6Packages.callPackage ../applications/misc/kemai { };
 
@@ -15768,6 +15769,8 @@ with pkgs;
     autoconf = buildPackages.autoconf269;
   };
 
+  zed-editor-fhs = zed-editor.fhs;
+
   zgv = callPackage ../applications/graphics/zgv {
     # Enable the below line for terminal display. Note
     # that it requires sixel graphics compatible terminals like mlterm
@@ -16514,10 +16517,6 @@ with pkgs;
   };
 
   tibia = pkgsi686Linux.callPackage ../games/tibia { };
-
-  toppler = callPackage ../games/toppler {
-    SDL2_image = SDL2_image_2_0;
-  };
 
   speed_dreams = callPackage ../games/speed-dreams {
     # Torcs wants to make shared libraries linked with plib libraries (it provides static).
@@ -17289,8 +17288,6 @@ with pkgs;
   spyder = with python3.pkgs; toPythonApplication spyder;
 
   stellarium = qt6Packages.callPackage ../applications/science/astronomy/stellarium { };
-
-  stellarsolver = libsForQt5.callPackage ../development/libraries/science/astronomy/stellarsolver { };
 
   tulip = libsForQt5.callPackage ../applications/science/misc/tulip { };
 
