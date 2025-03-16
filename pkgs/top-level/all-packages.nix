@@ -3495,14 +3495,12 @@ with pkgs;
 
   grails = callPackage ../development/web/grails { jdk = null; };
 
-  graylog-5_1 = callPackage ../tools/misc/graylog/5.1.nix { };
-
   graylog-5_2 = callPackage ../tools/misc/graylog/5.2.nix { };
 
   graylog-6_0 = callPackage ../tools/misc/graylog/6.0.nix { };
 
   graylogPlugins = recurseIntoAttrs (
-    callPackage ../tools/misc/graylog/plugins.nix { }
+    callPackage ../tools/misc/graylog/plugins.nix { graylogPackage = graylog-6_0; }
   );
 
   graphviz = callPackage ../tools/graphics/graphviz {
@@ -7404,10 +7402,10 @@ with pkgs;
     };
   }));
   ansible_2_16 = python3Packages.toPythonApplication (python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
-    version = "2.16.8";
+    version = "2.16.14";
     src = oldAttrs.src.override {
       inherit version;
-      hash = "sha256-WeSqQO1azbTvm789BYkY//k/ZqFJNz2BWciilgRBC9o=";
+      hash = "sha256-gCef/9mGhrrfqjLh7HhdmKbfGy/B5Al97AWXZA10ZBU=";
     };
   }));
 
@@ -9004,10 +9002,6 @@ with pkgs;
   });
 
   qxmpp = qt6Packages.callPackage ../development/libraries/qxmpp { };
-
-  gnu-efi = if stdenv.hostPlatform.isEfi
-              then callPackage ../development/libraries/gnu-efi { }
-            else null;
 
   gnutls = callPackage ../development/libraries/gnutls {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -16124,6 +16118,8 @@ with pkgs;
   factorio-headless-experimental = factorio.override { releaseType = "headless"; experimental = true; };
 
   factorio-demo = factorio.override { releaseType = "demo"; };
+
+  factorio-demo-experimental = factorio.override { releaseType = "demo"; experimental = true; };
 
   factorio-space-age = factorio.override { releaseType = "expansion"; };
 
