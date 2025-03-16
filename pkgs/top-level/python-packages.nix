@@ -768,6 +768,8 @@ self: super: with self; {
 
   apycula = callPackage ../development/python-modules/apycula { };
 
+  apykuma = callPackage ../development/python-modules/apykuma { };
+
   aqipy-atmotech = callPackage ../development/python-modules/aqipy-atmotech { };
 
   aqualogic = callPackage ../development/python-modules/aqualogic { };
@@ -5188,8 +5190,6 @@ self: super: with self; {
 
   gcodepy = callPackage ../development/python-modules/gcodepy { };
 
-  gcovr = callPackage ../development/python-modules/gcovr { };
-
   gcp-storage-emulator = callPackage ../development/python-modules/gcp-storage-emulator { };
 
   gcsa = callPackage ../development/python-modules/gcsa { };
@@ -6664,6 +6664,7 @@ self: super: with self; {
     inherit python numpy;
     enablePython = true;
     enableRtk = false;
+    stdenv = if stdenv.cc.isGNU then pkgs.stdenvAdapters.useLibsFrom stdenv pkgs.gcc12Stdenv else stdenv;
   });
 
 
@@ -6920,6 +6921,8 @@ self: super: with self; {
   jsonschema = callPackage ../development/python-modules/jsonschema { };
 
   jsonschema-path = callPackage ../development/python-modules/jsonschema-path { };
+
+  jsonschema-rs = callPackage ../development/python-modules/jsonschema-rs { };
 
   jsonschema-spec = callPackage ../development/python-modules/jsonschema-spec { };
 
@@ -8112,6 +8115,8 @@ self: super: with self; {
 
   markups = callPackage ../development/python-modules/markups { };
 
+  marqo = callPackage ../development/python-modules/marqo { };
+
   marshmallow = callPackage ../development/python-modules/marshmallow { };
 
   marshmallow-dataclass = callPackage ../development/python-modules/marshmallow-dataclass { };
@@ -8417,6 +8422,8 @@ self: super: with self; {
 
   miniful = callPackage ../development/python-modules/miniful { };
 
+  minify-html = callPackage ../development/python-modules/minify-html { };
+
   minikanren = callPackage ../development/python-modules/minikanren { };
 
   minikerberos = callPackage ../development/python-modules/minikerberos { };
@@ -8454,6 +8461,8 @@ self: super: with self; {
   mistune = callPackage ../development/python-modules/mistune { };
 
   mitmproxy = callPackage ../development/python-modules/mitmproxy { };
+
+  mitmproxy-linux = callPackage ../development/python-modules/mitmproxy-linux { };
 
   mitmproxy-macos = callPackage ../development/python-modules/mitmproxy-macos { };
 
@@ -11016,8 +11025,6 @@ self: super: with self; {
 
   pysubs2 = callPackage ../development/python-modules/pysubs2 { };
 
-  pysuez = callPackage ../development/python-modules/pysuez { };
-
   pysuezv2 = callPackage ../development/python-modules/pysuezv2 { };
 
   pysqlitecipher = callPackage ../development/python-modules/pysqlitecipher { };
@@ -11900,6 +11907,8 @@ self: super: with self; {
 
   pydenticon = callPackage ../development/python-modules/pydenticon { };
 
+  pydemumble = callPackage ../development/python-modules/pydemumble { };
+
   pydeps = callPackage ../development/python-modules/pydeps {
     inherit (pkgs) graphviz;
   };
@@ -12037,6 +12046,8 @@ self: super: with self; {
   pyexcel-xls = callPackage ../development/python-modules/pyexcel-xls { };
 
   pyexiftool = callPackage ../development/python-modules/pyexiftool { };
+
+  pyexpect = callPackage ../development/python-modules/pyexpect { };
 
   pyexploitdb = callPackage ../development/python-modules/pyexploitdb { };
 
@@ -13631,7 +13642,6 @@ self: super: with self; {
     inherit (pkgs) fontconfig rapidjson;
     inherit (pkgs.xorg) libX11 libXi libXmu libXext;
     inherit (pkgs.darwin.apple_sdk.frameworks) Cocoa;
-    opencascade-occt = pkgs.opencascade-occt_7_6;
   });
 
   python-olm = callPackage ../development/python-modules/python-olm { };
@@ -15264,9 +15274,11 @@ self: super: with self; {
 
   sip = callPackage ../development/python-modules/sip { };
 
-  siphashc = callPackage ../development/python-modules/siphashc { };
-
   sip4 = callPackage ../development/python-modules/sip/4.x.nix { };
+
+  siphash24 = callPackage ../development/python-modules/siphash24 { };
+
+  siphashc = callPackage ../development/python-modules/siphashc { };
 
   sipyco = callPackage ../development/python-modules/sipyco { };
 
@@ -15724,6 +15736,8 @@ self: super: with self; {
 
   sphinxcontrib-spelling = callPackage ../development/python-modules/sphinxcontrib-spelling { };
 
+  sphinxcontrib-svg2pdfconverter = callPackage ../development/python-modules/sphinxcontrib-svg2pdfconverter { };
+
   sphinxcontrib-tikz = callPackage ../development/python-modules/sphinxcontrib-tikz { };
 
   sphinxcontrib-wavedrom = callPackage ../development/python-modules/sphinxcontrib-wavedrom { };
@@ -15981,6 +15995,8 @@ self: super: with self; {
   standard-imghdr = if pythonAtLeast "3.13" then callPackage ../development/python-modules/standard-imghdr { } else null;
 
   standard-pipes = if pythonAtLeast "3.13" then callPackage ../development/python-modules/standard-pipes { } else null;
+
+  standard-sunau = if pythonAtLeast "3.13" then callPackage ../development/python-modules/standard-sunau { } else null;
 
   standard-telnetlib = if pythonAtLeast "3.13" then callPackage ../development/python-modules/standard-telnetlib { } else null;
 
@@ -16663,6 +16679,8 @@ self: super: with self; {
   tinytag = callPackage ../development/python-modules/tinytag { };
 
   tinytuya = callPackage ../development/python-modules/tinytuya { };
+
+  tiptapy = callPackage ../development/python-modules/tiptapy { };
 
   titlecase = callPackage ../development/python-modules/titlecase { };
 
@@ -18145,6 +18163,8 @@ self: super: with self; {
   uuid6 = callPackage ../development/python-modules/uuid6 { };
 
   uv = callPackage ../development/python-modules/uv { };
+
+  uv-build = callPackage ../development/python-modules/uv-build { };
 
   uv-dynamic-versioning = callPackage ../development/python-modules/uv-dynamic-versioning { };
 

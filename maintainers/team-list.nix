@@ -64,6 +64,7 @@ with lib.maintainers;
     # Edits to this list should only be done by an already existing member.
     members = [
       wolfgangwalther
+      DutchGerman
     ];
   };
 
@@ -443,6 +444,7 @@ with lib.maintainers;
     members = [
       globin
       krav
+      leona
       talyz
       yayayayaka
     ];
@@ -524,6 +526,7 @@ with lib.maintainers;
 
   home-assistant = {
     members = [
+      dotlambda
       fab
       hexa
     ];
@@ -546,7 +549,10 @@ with lib.maintainers;
   };
 
   infisical = {
-    members = [ akhilmhdh ];
+    members = [
+      akhilmhdh
+      mahyarmirrashed
+    ];
     scope = "Maintain Infisical";
     shortName = "Infisical";
   };

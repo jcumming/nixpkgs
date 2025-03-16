@@ -300,6 +300,10 @@ in
     dependencies = [ self.blink-cmp ];
   };
 
+  blink-nerdfont-nvim = super.blink-nerdfont-nvim.overrideAttrs {
+    dependencies = [ self.blink-cmp ];
+  };
+
   blink-cmp-git = super.blink-cmp-git.overrideAttrs {
     dependencies = [ self.plenary-nvim ];
   };
@@ -2654,6 +2658,10 @@ in
     ];
   };
 
+  org-roam-nvim = super.org-roam-nvim.overrideAttrs {
+    dependencies = [ self.orgmode ];
+  };
+
   otter-nvim = super.otter-nvim.overrideAttrs {
     dependencies = [ self.nvim-lspconfig ];
   };
@@ -3859,10 +3867,6 @@ in
 
   wtf-nvim = super.wtf-nvim.overrideAttrs {
     dependencies = [ self.nui-nvim ];
-  };
-
-  YankRing-vim = super.YankRing-vim.overrideAttrs {
-    sourceRoot = ".";
   };
 
   yanky-nvim = super.yanky-nvim.overrideAttrs {
