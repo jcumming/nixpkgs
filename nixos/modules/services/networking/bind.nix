@@ -85,7 +85,6 @@ let
       allow-query-cache { cachenetworks; };
       blackhole { badnetworks; };
       ${maybeForward}
-      forward ${cfg.forward};
       forwarders { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.forwarders} };
       directory "${cfg.directory}";
       pid-file "/run/named/named.pid";
