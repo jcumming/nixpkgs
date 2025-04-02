@@ -41,7 +41,11 @@ let
 
     ${optionalString (
       (cfg.network.listenAddress != [] || cfg.network.listenAddress != "any")) 
-      concatMapStrings (addr: '' bind_to_address "${addr}" '') cfg.network.listenAddress
+      concatMapStrings (
+        addr: ''
+          bind_to_address "${addr}" 
+        '') 
+        cfg.network.listenAddress
     }
     ${optionalString (cfg.network.port != 6600)  ''port "${toString cfg.network.port}"''}
     ${optionalString (cfg.fluidsynth) ''
