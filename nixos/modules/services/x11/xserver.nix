@@ -317,14 +317,6 @@ in
         '';
       };
 
-      generateConfigSection = {
-        ServerFlags = mkEmitSection "ServerFlags";
-        Module = mkEmitSection "Module";
-        Monitor = mkEmitSection "Monitor";
-        InputClass = mkEmitSection "InputClass";
-        ServerLayout = mkEmitSection "ServerLayout";
-      };
-
       enableTCP = mkOption {
         type = types.bool;
         default = false;
