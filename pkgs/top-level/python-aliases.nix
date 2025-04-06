@@ -373,6 +373,7 @@ mapAliases ({
   lammps-cython = throw "lammps-cython no longer builds and is unmaintained"; # added 2021-07-04
   langchain-standard-tests = langchain-tests; # added 2025-01-22
   langchainplus-sdk = langsmith; # added 2023-08-01
+  langgraph-checkpoint-duckdb = throw "langgraph-checkpoint-duckdb has been removed as of langgraph 0.2.63"; # added 2025-04-04
   lazr_config = lazr-config; # added 2023-11-03
   lazr_delegates = lazr-delegates; # added 2023-11-03
   lazy_import = lazy-import; # added 2024-01-07
@@ -794,6 +795,7 @@ mapAliases ({
   webhelpers = throw "webhelpers has been removed because it is unmaintained and upstream is gone"; # added 2024-07-27
   websocket_client = websocket-client; # added 2021-06-15
   word2vec = throw "word2vec has been removed because it is abandoned"; # added 2023-05-22
+  wsnsimpy = throw "wsnsimpy has been removed, it was unmaintained and no more compatible with Python 3.12"; # added 2025-04-01
   wxPython_4_0 = throw "wxPython_4_0 has been removed, use wxpython instead"; # added 2023-03-19
   wxPython_4_1 = throw "wxPython_4_1 has been removed, use wxpython instead"; # added 2023-03-19
   wxPython_4_2 = wxpython; # added 2024-01-07
