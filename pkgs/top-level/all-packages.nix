@@ -2541,9 +2541,7 @@ with pkgs;
 
   klipper = callPackage ../servers/klipper { };
 
-  klipper-firmware = callPackage ../servers/klipper/klipper-firmware.nix {
-    gcc-arm-embedded = gcc-arm-embedded-13;
-  };
+  klipper-firmware = callPackage ../servers/klipper/klipper-firmware.nix { };
 
   klipper-flash = callPackage ../servers/klipper/klipper-flash.nix { };
 
@@ -3250,8 +3248,6 @@ with pkgs;
   dvtm-unstable = callPackage ../tools/misc/dvtm/unstable.nix { };
 
   ecryptfs = callPackage ../tools/security/ecryptfs { };
-
-  ecryptfs-helper = callPackage ../tools/security/ecryptfs/helper.nix { };
 
   eid-mw = callPackage ../tools/security/eid-mw {
     autoreconfHook = buildPackages.autoreconfHook269;
@@ -4182,8 +4178,6 @@ with pkgs;
   mx-puppet-discord = callPackage ../servers/mx-puppet-discord { };
 
   nanoemoji = with python3Packages; toPythonApplication nanoemoji;
-
-  netexec = callPackage ../tools/security/netexec { };
 
   netdata = callPackage ../tools/system/netdata {
     protobuf = protobuf_21;
@@ -5159,8 +5153,6 @@ with pkgs;
 
   shiv = with python3Packages; toPythonApplication shiv;
 
-  sigil = qt6.callPackage ../applications/editors/sigil { };
-
   slither-analyzer = with python3Packages; toPythonApplication slither-analyzer;
 
   # aka., pgp-tools
@@ -5670,8 +5662,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Foundation IOBluetooth;
   };
 
-  wireguard-go = callPackage ../tools/networking/wireguard-go { };
-
   wring = nodePackages.wring;
 
   wyrd = callPackage ../tools/misc/wyrd {
@@ -5757,8 +5747,6 @@ with pkgs;
 
   zpaq = callPackage ../tools/archivers/zpaq { };
   zpaqd = callPackage ../tools/archivers/zpaq/zpaqd.nix { };
-
-  zint = qt6Packages.callPackage ../development/libraries/zint { };
 
   zstd = callPackage ../tools/compression/zstd {
     cmake = buildPackages.cmakeMinimal;
@@ -6383,7 +6371,7 @@ with pkgs;
     inherit (llvmPackages_15) llvm;
   };
 
-  gcc-arm-embedded = gcc-arm-embedded-12;
+  gcc-arm-embedded = gcc-arm-embedded-14;
 
   # It would be better to match the default gcc so that there are no linking errors
   # when using C/C++ libraries in D packages, but right now versions >= 12 are broken.
@@ -12490,6 +12478,7 @@ with pkgs;
   postgresql16JitPackages = recurseIntoAttrs postgresql_16_jit.pkgs;
   postgresql17JitPackages = recurseIntoAttrs postgresql_17_jit.pkgs;
 
+  postgres-websockets = haskellPackages.postgres-websockets.bin;
   postgrest = haskellPackages.postgrest.bin;
 
   prom2json = callPackage ../servers/monitoring/prometheus/prom2json.nix { };
@@ -13843,8 +13832,7 @@ with pkgs;
 
   av-98 = callPackage ../applications/networking/browsers/av-98 { };
 
-  bambootracker = libsForQt5.callPackage ../applications/audio/bambootracker { };
-  bambootracker-qt6 = qt6Packages.callPackage ../applications/audio/bambootracker { };
+  bambootracker-qt6 = bambootracker.override { withQt6 = true; };
 
   schismtracker = callPackage ../applications/audio/schismtracker {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
@@ -14765,8 +14753,6 @@ with pkgs;
   pixel2svg = python310Packages.callPackage ../tools/graphics/pixel2svg { };
 
   pixinsight = qt6Packages.callPackage ../applications/graphics/pixinsight { };
-
-  protonup-qt = python3Packages.callPackage ../applications/misc/protonup-qt { };
 
   inherit (callPackage ../applications/virtualization/singularity/packages.nix { })
     apptainer
@@ -15781,10 +15767,6 @@ with pkgs;
 
   peaclock = callPackage ../applications/misc/peaclock {
     stdenv = gccStdenv;
-  };
-
-  peertube = callPackage ../servers/peertube {
-    nodejs = nodejs_18;
   };
 
   photoflare = libsForQt5.callPackage ../applications/graphics/photoflare { };
@@ -18161,15 +18143,6 @@ with pkgs;
     nodejs = nodejs_20;
   };
 
-  or-tools = callPackage ../development/libraries/science/math/or-tools {
-    inherit (darwin) DarwinTools;
-    python = python3;
-    protobuf = protobuf_29.override {
-      abseil-cpp = abseil-cpp_202407;
-    };
-    abseil-cpp = abseil-cpp_202407;
-  };
-
   p4est-sc = callPackage ../development/libraries/science/math/p4est-sc {
     p4est-sc-debugEnable = false;
   };
@@ -18512,8 +18485,6 @@ with pkgs;
   openems = callPackage ../applications/science/electronics/openems {
     qcsxcad = libsForQt5.qcsxcad;
   };
-
-  openroad = libsForQt5.callPackage ../applications/science/electronics/openroad { };
 
   qucs-s = qt6Packages.callPackage ../applications/science/electronics/qucs-s { };
 
@@ -19573,6 +19544,8 @@ with pkgs;
   tubekit-unwrapped = callPackage ../applications/networking/cluster/tubekit { };
 
   duden = python3Packages.toPythonApplication python3Packages.duden;
+
+  yaziPlugins = recurseIntoAttrs (callPackage ../by-name/ya/yazi/plugins { });
 
   yazi-unwrapped = callPackage ../by-name/ya/yazi-unwrapped/package.nix {
     inherit (darwin.apple_sdk.frameworks) Foundation;

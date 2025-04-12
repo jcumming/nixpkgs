@@ -2025,6 +2025,8 @@ self: super: with self; {
 
   bravia-tv = callPackage ../development/python-modules/bravia-tv { };
 
+  brax = callPackage ../development/python-modules/brax { };
+
   breathe = callPackage ../development/python-modules/breathe { };
 
   breezy = callPackage ../development/python-modules/breezy { };
@@ -5618,6 +5620,12 @@ self: super: with self; {
 
   gntp = callPackage ../development/python-modules/gntp { };
 
+  gnucash = toPythonModule (
+    pkgs.gnucash.override {
+      python3 = python;
+    }
+  );
+
   gnureadline = callPackage ../development/python-modules/gnureadline { };
 
   go2rtc-client = callPackage ../development/python-modules/go2rtc-client { };
@@ -6197,6 +6205,8 @@ self: super: with self; {
   hexdump = callPackage ../development/python-modules/hexdump { };
 
   hf-transfer = callPackage ../development/python-modules/hf-transfer { };
+
+  hf-xet = callPackage ../development/python-modules/hf-xet { };
 
   hfst = callPackage ../development/python-modules/hfst { };
 
@@ -8791,6 +8801,8 @@ self: super: with self; {
 
   mkdocs-drawio-exporter = callPackage ../development/python-modules/mkdocs-drawio-exporter { };
 
+  mkdocs-drawio-file = callPackage ../development/python-modules/mkdocs-drawio-file { };
+
   mkdocs-exclude = callPackage ../development/python-modules/mkdocs-exclude { };
 
   mkdocs-get-deps = callPackage ../development/python-modules/mkdocs-get-deps { };
@@ -8814,6 +8826,8 @@ self: super: with self; {
   mkdocs-linkcheck = callPackage ../development/python-modules/mkdocs-linkcheck { };
 
   mkdocs-macros = callPackage ../development/python-modules/mkdocs-macros { };
+
+  mkdocs-markmap = callPackage ../development/python-modules/mkdocs-markmap { };
 
   mkdocs-material = callPackage ../development/python-modules/mkdocs-material { };
 
@@ -9084,6 +9098,8 @@ self: super: with self; {
   mtcnn = callPackage ../development/python-modules/mtcnn { };
 
   mujoco = callPackage ../development/python-modules/mujoco { inherit (pkgs) mujoco; };
+
+  mujoco-mjx = callPackage ../development/python-modules/mujoco-mjx { mujoco-main = pkgs.mujoco; };
 
   mujson = callPackage ../development/python-modules/mujson { };
 
@@ -10445,7 +10461,7 @@ self: super: with self; {
 
   ormsgpack = callPackage ../development/python-modules/ormsgpack { };
 
-  ortools = (toPythonModule (pkgs.or-tools.override { inherit (self) python; })).python;
+  ortools = (toPythonModule (pkgs.or-tools.override { python3 = self.python; })).python;
 
   orvibo = callPackage ../development/python-modules/orvibo { };
 
@@ -14259,6 +14275,8 @@ self: super: with self; {
 
   pytimeparse2 = callPackage ../development/python-modules/pytimeparse2 { };
 
+  pytinyrenderer = callPackage ../development/python-modules/pytinyrenderer { };
+
   pytlv = callPackage ../development/python-modules/pytlv { };
 
   pytm = callPackage ../development/python-modules/pytm { };
@@ -15366,9 +15384,7 @@ self: super: with self; {
 
   scikit-image = callPackage ../development/python-modules/scikit-image { };
 
-  scikit-learn = callPackage ../development/python-modules/scikit-learn {
-    inherit (pkgs) gfortran glibcLocales;
-  };
+  scikit-learn = callPackage ../development/python-modules/scikit-learn { };
 
   scikit-learn-extra = callPackage ../development/python-modules/scikit-learn-extra { };
 
@@ -15908,6 +15924,10 @@ self: super: with self; {
   smoke-zephyr = callPackage ../development/python-modules/smoke-zephyr { };
 
   smolagents = callPackage ../development/python-modules/smolagents { };
+
+  smp = callPackage ../development/python-modules/smp { };
+
+  smpclient = callPackage ../development/python-modules/smpclient { };
 
   smpp-pdu = callPackage ../development/python-modules/smpp-pdu { };
 
@@ -17488,6 +17508,8 @@ self: super: with self; {
   tree-sitter-languages = callPackage ../development/python-modules/tree-sitter-languages { };
 
   tree-sitter-make = callPackage ../development/python-modules/tree-sitter-make { };
+
+  tree-sitter-markdown = callPackage ../development/python-modules/tree-sitter-markdown { };
 
   tree-sitter-python = callPackage ../development/python-modules/tree-sitter-python { };
 
