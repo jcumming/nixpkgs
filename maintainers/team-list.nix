@@ -398,7 +398,6 @@ with lib.maintainers;
       leona
       osnyx
       ma27
-      laalsaas
     ];
     scope = "Team for Flying Circus employees who collectively maintain packages.";
     shortName = "Flying Circus employees";
@@ -527,6 +526,7 @@ with lib.maintainers;
       cdepillabout
       maralorn
       sternenseemann
+      wolfgangwalther
     ];
     githubTeams = [ "haskell" ];
     scope = "Maintain Haskell packages and infrastructure.";
