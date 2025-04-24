@@ -281,8 +281,6 @@ in
   calibre-server = import ./calibre-server.nix { inherit pkgs runTest; };
   canaille = handleTest ./canaille.nix { };
   castopod = handleTest ./castopod.nix { };
-  cassandra_3_0 = handleTest ./cassandra.nix { testPackage = pkgs.cassandra_3_0; };
-  cassandra_3_11 = handleTest ./cassandra.nix { testPackage = pkgs.cassandra_3_11; };
   cassandra_4 = handleTest ./cassandra.nix { testPackage = pkgs.cassandra_4; };
   centrifugo = runTest ./centrifugo.nix;
   ceph-multi-node = handleTestOn [ "aarch64-linux" "x86_64-linux" ] ./ceph-multi-node.nix { };
@@ -595,9 +593,8 @@ in
     inherit handleTestOn;
     package = pkgs.hadoop2;
   };
-  haka = handleTest ./haka.nix { };
   haste-server = handleTest ./haste-server.nix { };
-  haproxy = handleTest ./haproxy.nix { };
+  haproxy = runTest ./haproxy.nix;
   hardened = handleTest ./hardened.nix { };
   harmonia = runTest ./harmonia.nix;
   headscale = handleTest ./headscale.nix { };
@@ -702,6 +699,7 @@ in
   keyd = handleTest ./keyd.nix { };
   keymap = handleTest ./keymap.nix { };
   kimai = runTest ./kimai.nix;
+  kismet = runTest ./kismet.nix;
   kmonad = runTest ./kmonad.nix;
   knot = runTest ./knot.nix;
   komga = handleTest ./komga.nix { };
@@ -914,7 +912,7 @@ in
   nifi = runTestOn [ "x86_64-linux" ] ./web-apps/nifi.nix;
   nitter = handleTest ./nitter.nix { };
   nix-config = handleTest ./nix-config.nix { };
-  nix-ld = handleTest ./nix-ld.nix { };
+  nix-ld = runTest ./nix-ld.nix;
   nix-misc = handleTest ./nix/misc.nix { };
   nix-upgrade = handleTest ./nix/upgrade.nix { inherit (pkgs) nixVersions; };
   nix-required-mounts = runTest ./nix-required-mounts;
@@ -950,7 +948,7 @@ in
   nomad = runTest ./nomad.nix;
   non-default-filesystems = handleTest ./non-default-filesystems.nix { };
   non-switchable-system = runTest ./non-switchable-system.nix;
-  noto-fonts = handleTest ./noto-fonts.nix { };
+  noto-fonts = runTest ./noto-fonts.nix;
   noto-fonts-cjk-qt-default-weight = handleTest ./noto-fonts-cjk-qt-default-weight.nix { };
   novacomd = handleTestOn [ "x86_64-linux" ] ./novacomd.nix { };
   npmrc = handleTest ./npmrc.nix { };
@@ -1420,13 +1418,13 @@ in
     imports = [ ./varnish.nix ];
     _module.args.package = pkgs.varnish60;
   };
-  varnish75 = runTest {
-    imports = [ ./varnish.nix ];
-    _module.args.package = pkgs.varnish75;
-  };
   varnish76 = runTest {
     imports = [ ./varnish.nix ];
     _module.args.package = pkgs.varnish76;
+  };
+  varnish77 = runTest {
+    imports = [ ./varnish.nix ];
+    _module.args.package = pkgs.varnish77;
   };
   vault = handleTest ./vault.nix { };
   vault-agent = handleTest ./vault-agent.nix { };
@@ -1481,6 +1479,7 @@ in
   xterm = runTest ./xterm.nix;
   xxh = runTest ./xxh.nix;
   yabar = runTest ./yabar.nix;
+  yarr = runTest ./yarr.nix;
   ydotool = handleTest ./ydotool.nix { };
   yggdrasil = runTest ./yggdrasil.nix;
   your_spotify = runTest ./your_spotify.nix;
