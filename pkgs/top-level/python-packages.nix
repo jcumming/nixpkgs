@@ -1209,9 +1209,7 @@ self: super: with self; {
 
   aws-xray-sdk = callPackage ../development/python-modules/aws-xray-sdk { };
 
-  awscrt = callPackage ../development/python-modules/awscrt {
-    inherit (pkgs.darwin.apple_sdk.frameworks) CoreFoundation Security;
-  };
+  awscrt = callPackage ../development/python-modules/awscrt { };
 
   awsiotpythonsdk = callPackage ../development/python-modules/awsiotpythonsdk { };
 
@@ -1759,6 +1757,8 @@ self: super: with self; {
   };
 
   beniget = callPackage ../development/python-modules/beniget { };
+
+  benqprojector = callPackage ../development/python-modules/benqprojector { };
 
   bentoml = callPackage ../development/python-modules/bentoml { };
 
@@ -4198,6 +4198,8 @@ self: super: with self; {
 
   dsnap = callPackage ../development/python-modules/dsnap { };
 
+  dtfabric = callPackage ../development/python-modules/dtfabric { };
+
   dtlssocket = callPackage ../development/python-modules/dtlssocket { };
 
   dtschema = callPackage ../development/python-modules/dtschema { };
@@ -4416,6 +4418,8 @@ self: super: with self; {
   emborg = callPackage ../development/python-modules/emborg { };
 
   embrace = callPackage ../development/python-modules/embrace { };
+
+  embreex = callPackage ../development/python-modules/embreex { };
 
   emcee = callPackage ../development/python-modules/emcee { };
 
@@ -5213,8 +5217,8 @@ self: super: with self; {
 
   fortiosapi = callPackage ../development/python-modules/fortiosapi { };
 
-  foundationdb73 = callPackage ../servers/foundationdb/python.nix {
-    foundationdb = pkgs.foundationdb73;
+  foundationdb = callPackage ../development/python-modules/foundationdb {
+    inherit (pkgs) foundationdb;
   };
 
   fountains = callPackage ../development/python-modules/fountains { };
@@ -5553,6 +5557,8 @@ self: super: with self; {
 
   ghome-foyer-api = callPackage ../development/python-modules/ghome-foyer-api { };
 
+  ghostscript = callPackage ../development/python-modules/ghostscript { };
+
   ghp-import = callPackage ../development/python-modules/ghp-import { };
 
   ghrepo-stats = callPackage ../development/python-modules/ghrepo-stats { };
@@ -5628,6 +5634,8 @@ self: super: with self; {
   glom = callPackage ../development/python-modules/glom { };
 
   glueviz = callPackage ../development/python-modules/glueviz { };
+
+  gluonts = callPackage ../development/python-modules/gluonts { };
 
   glymur = callPackage ../development/python-modules/glymur { };
 
@@ -5851,6 +5859,8 @@ self: super: with self; {
   googletrans = callPackage ../development/python-modules/googletrans { };
 
   gophish = callPackage ../development/python-modules/gophish { };
+
+  gotify = callPackage ../development/python-modules/gotify { };
 
   gorilla = callPackage ../development/python-modules/gorilla { };
 
@@ -7943,6 +7953,8 @@ self: super: with self; {
 
   lightify = callPackage ../development/python-modules/lightify { };
 
+  lightning = callPackage ../development/python-modules/lightning { };
+
   lightning-utilities = callPackage ../development/python-modules/lightning-utilities { };
 
   lightparam = callPackage ../development/python-modules/lightparam { };
@@ -9934,6 +9946,8 @@ self: super: with self; {
   nixpkgs-updaters-library = callPackage ../development/python-modules/nixpkgs-updaters-library { };
 
   nkdfu = callPackage ../development/python-modules/nkdfu { };
+
+  nlopt = callPackage ../development/python-modules/nlopt { };
 
   nlpcloud = callPackage ../development/python-modules/nlpcloud { };
 
@@ -12308,7 +12322,6 @@ self: super: with self; {
 
   pygame-ce = callPackage ../development/python-modules/pygame-ce {
     inherit (pkgs.darwin.apple_sdk.frameworks) AppKit;
-    SDL2_mixer = pkgs.SDL2_mixer_2_0;
   };
 
   pygame-gui = callPackage ../development/python-modules/pygame-gui { };
@@ -14230,6 +14243,8 @@ self: super: with self; {
 
   python-toolbox = callPackage ../development/python-modules/python-toolbox { };
 
+  python-transip = callPackage ../development/python-modules/python-transip { };
+
   python-troveclient = callPackage ../development/python-modules/python-troveclient { };
 
   python-trovo = callPackage ../development/python-modules/python-trovo { };
@@ -15416,6 +15431,8 @@ self: super: with self; {
   scapy = callPackage ../development/python-modules/scapy {
     inherit (pkgs) libpcap; # Avoid confusion with python package of the same name
   };
+
+  scenedetect = callPackage ../development/python-modules/scenedetect { };
 
   schedule = callPackage ../development/python-modules/schedule { };
 
