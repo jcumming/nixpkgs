@@ -65,6 +65,7 @@ let
         "dnssec"
         "domain"
         "dovecot"
+        "ebpf"
         "fail2ban"
         "fastly"
         "flow"

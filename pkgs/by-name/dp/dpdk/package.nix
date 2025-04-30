@@ -1,6 +1,6 @@
 {
-  lib,
   stdenv,
+  lib,
   fetchurl,
   pkg-config,
   meson,
@@ -18,6 +18,7 @@
   doxygen,
   python3,
   pciutils,
+  fetchpatch,
   withExamples ? [ ],
   shared ? false,
   machine ? (
@@ -30,13 +31,13 @@
   ),
 }:
 
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation rec {
   pname = "dpdk";
   version = "25.03";
 
   src = fetchurl {
-    url = "https://fast.dpdk.org/rel/dpdk-${finalAttrs.version}.tar.xz";
-    hash = "sha256-akCnMTKChuvXloWxj/pZkua3cME4Q9Zf0NEVfPzP9j0=";
+    url = "https://fast.dpdk.org/rel/dpdk-${version}.tar.xz";
+    sha256 = "sha256-akCnMTKChuvXloWxj/pZkua3cME4Q9Zf0NEVfPzP9j0=";
   };
 
   nativeBuildInputs = [
@@ -49,7 +50,6 @@ stdenv.mkDerivation (finalAttrs: {
     python3.pkgs.sphinx
     python3.pkgs.pyelftools
   ];
-
   buildInputs = [
     jansson
     libbpf
@@ -102,20 +102,20 @@ stdenv.mkDerivation (finalAttrs: {
     "doc"
   ] ++ lib.optional (withExamples != [ ]) "examples";
 
-  meta = {
+  meta = with lib; {
     description = "Set of libraries and drivers for fast packet processing";
     homepage = "http://dpdk.org/";
-    license = with lib.licenses; [
+    license = with licenses; [
       lgpl21
       gpl2Only
       bsd2
     ];
-    platforms = lib.platforms.linux;
-    maintainers = with lib.maintainers; [
+    platforms = platforms.linux;
+    maintainers = with maintainers; [
       magenbluten
       orivej
       mic92
       zhaofengli
     ];
   };
-})
+}
