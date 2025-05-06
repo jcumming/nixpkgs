@@ -1117,7 +1117,7 @@ in
   private-gpt = handleTest ./private-gpt.nix { };
   privatebin = runTest ./privatebin.nix;
   privoxy = handleTest ./privoxy.nix { };
-  prometheus = handleTest ./prometheus { };
+  prometheus = import ./prometheus { inherit runTest; };
   prometheus-exporters = handleTest ./prometheus-exporters.nix { };
   prosody = handleTest ./xmpp/prosody.nix { };
   prosody-mysql = handleTest ./xmpp/prosody-mysql.nix { };
@@ -1193,6 +1193,7 @@ in
   schleuder = handleTest ./schleuder.nix { };
   scion-freestanding-deployment = handleTest ./scion/freestanding-deployment { };
   scrutiny = runTest ./scrutiny.nix;
+  scx = runTest ./scx/default.nix;
   sddm = handleTest ./sddm.nix { };
   sdl3 = handleTest ./sdl3.nix { };
   seafile = handleTest ./seafile.nix { };

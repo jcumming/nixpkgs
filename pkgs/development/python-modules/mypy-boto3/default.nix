@@ -90,8 +90,8 @@ rec {
       "sha256-ol6Gj+NsSOK3hInNvwLTDfWIpfD6tuSVyH52c6UhSNI=";
 
   mypy-boto3-appconfig =
-    buildMypyBoto3Package "appconfig" "1.38.0"
-      "sha256-oyrJXkXHRvSRKGxS5MtSvhKqXWGJ+2gGJMDkIyObL+I=";
+    buildMypyBoto3Package "appconfig" "1.38.7"
+      "sha256-V3UPvnKMl945aK+3gH9UrOs/DGx8Aiy/nuHtwu9N4z4=";
 
   mypy-boto3-appconfigdata =
     buildMypyBoto3Package "appconfigdata" "1.38.0"
@@ -210,8 +210,8 @@ rec {
       "sha256-tzYioIJx6aJQxiCUMOCQl71uzKW9f9kEw2xZlFrgfpI=";
 
   mypy-boto3-cleanrooms =
-    buildMypyBoto3Package "cleanrooms" "1.38.0"
-      "sha256-SfcrN5BVxW5t1zEUDUww6qOKqFrnu6DclVFwy8hWGVE=";
+    buildMypyBoto3Package "cleanrooms" "1.38.6"
+      "sha256-1OGeYcLRpFeLfnxKEjSUPfPI6keLDJbZVvhNXq12OaA=";
 
   mypy-boto3-cloud9 =
     buildMypyBoto3Package "cloud9" "1.38.0"
@@ -338,8 +338,8 @@ rec {
       "sha256-GaC5ClnSfg8/8jCv2ropPoUS7YOIhKkyicDhsYUUPwk=";
 
   mypy-boto3-connect =
-    buildMypyBoto3Package "connect" "1.38.0"
-      "sha256-S4dSNK7akvROloXwhPQJosJv/Ouizmkj/75Z/k8jlQ8=";
+    buildMypyBoto3Package "connect" "1.38.7"
+      "sha256-Aq0JiXGaBHSN31Z72a0LL8jG25f+0dBIlIWZuCergV4=";
 
   mypy-boto3-connect-contact-lens =
     buildMypyBoto3Package "connect-contact-lens" "1.38.0"
@@ -430,8 +430,8 @@ rec {
       "sha256-MZJRRdZ2nTX+EceiW5gEroB+FcGNBwHug16IRWk6lhY=";
 
   mypy-boto3-ds =
-    buildMypyBoto3Package "ds" "1.38.0"
-      "sha256-GZGTzkx/DzyV2IxrAF/8VM+O0Pl4U+hXiXpbWCT+oho=";
+    buildMypyBoto3Package "ds" "1.38.8"
+      "sha256-xDe+kWl/+j9ruKrlNLT20jv2WbJvChMkIrrkH3JIXOY=";
 
   mypy-boto3-dynamodb =
     buildMypyBoto3Package "dynamodb" "1.38.4"
@@ -446,20 +446,20 @@ rec {
       "sha256-RQh46jrXqj4bXTRJ+tPR9sql7yUn7Ek9u4p0OU0A7b0=";
 
   mypy-boto3-ec2 =
-    buildMypyBoto3Package "ec2" "1.38.0"
-      "sha256-75De58jFMumZ5f04hEx1dLC8mdk+XdQWnO/eP4dfzKk=";
+    buildMypyBoto3Package "ec2" "1.38.6"
+      "sha256-jkfIR/cdjFrsW05jU8Vmc4HZIO0AmD9TVhZH17B/q6c=";
 
   mypy-boto3-ec2-instance-connect =
     buildMypyBoto3Package "ec2-instance-connect" "1.38.0"
       "sha256-1zg5Vw+V+bpp5FxTw0CSfxSN7JNVBwY4I8uDFhEJL3w=";
 
   mypy-boto3-ecr =
-    buildMypyBoto3Package "ecr" "1.38.0"
-      "sha256-JPXmkpdWjQSVG8Z7gH385dRy/3HUraLxDLdmO/mqZU4=";
+    buildMypyBoto3Package "ecr" "1.38.6"
+      "sha256-CTIvlIYRlak6FnjhbyyShNGtYbRk45/ESXEKIoR7q/I=";
 
   mypy-boto3-ecr-public =
-    buildMypyBoto3Package "ecr-public" "1.38.0"
-      "sha256-qJ22ZyzB+8OVRjRklxWYKJlA9WZg542CccUWmdx4p+s=";
+    buildMypyBoto3Package "ecr-public" "1.38.6"
+      "sha256-aSZu8mxsTho4pvWWbNwlJf0IROjqjTlIUEE5DJkAje4=";
 
   mypy-boto3-ecs =
     buildMypyBoto3Package "ecs" "1.38.3"
@@ -730,8 +730,8 @@ rec {
       "sha256-/p6IadhTa59EpFXgN3GexAL+qLJzkedRFHfMOteVIeY=";
 
   mypy-boto3-kinesis =
-    buildMypyBoto3Package "kinesis" "1.38.5"
-      "sha256-p/QG+ZQsZOnDCCi1+CwdNqMB6GyvxI5LbP8JIaD1vII=";
+    buildMypyBoto3Package "kinesis" "1.38.8"
+      "sha256-OTLHfz/Iw3VFTz36ceHi8YVF2VyFTatX3Jw7prVh2Sg=";
 
   mypy-boto3-kinesis-video-archived-media =
     buildMypyBoto3Package "kinesis-video-archived-media" "1.38.0"
@@ -810,8 +810,8 @@ rec {
       "sha256-uypKW3Cqj98SLeWmSwCXVKhKpXWXEvwdUexqqFgXeEc=";
 
   mypy-boto3-logs =
-    buildMypyBoto3Package "logs" "1.38.0"
-      "sha256-5jb6bzG4T2w9jNW4XYf9m6t2ZjGZnEoMg8LPAAPv5ac=";
+    buildMypyBoto3Package "logs" "1.38.6"
+      "sha256-Fpe+7mXJQHikCVyn/hcRvFPu/U+wvDL0JmDN0/Vvxwc=";
 
   mypy-boto3-lookoutequipment =
     buildMypyBoto3Package "lookoutequipment" "1.38.0"
@@ -1174,8 +1174,8 @@ rec {
       "sha256-lBWZesgIKYnjSjUOPBhF4GNsNSk09YDSEyX0qweT3iM=";
 
   mypy-boto3-sagemaker =
-    buildMypyBoto3Package "sagemaker" "1.38.5"
-      "sha256-9UO8R+1+tC02VxRRafeKJAKq3rjPksegkTiteJVI5Sw=";
+    buildMypyBoto3Package "sagemaker" "1.38.7"
+      "sha256-tqb5dUkkvQ+R/aPVdKvGwCEqoVsBYkoCz9ZEG8TisnY=";
 
   mypy-boto3-sagemaker-a2i-runtime =
     buildMypyBoto3Package "sagemaker-a2i-runtime" "1.38.0"
@@ -1378,8 +1378,8 @@ rec {
       "sha256-ve7HllAv+PG6jHRZNp9Q32jpIEkCapOB4xZdpPYtZJQ=";
 
   mypy-boto3-verifiedpermissions =
-    buildMypyBoto3Package "verifiedpermissions" "1.38.0"
-      "sha256-PQHue+VV4SDyfPJinrKR0gB9FaTjsIjCGGCrrX/QAu4=";
+    buildMypyBoto3Package "verifiedpermissions" "1.38.7"
+      "sha256-fItaBlx3eeWHkKdYTSTeyUpTTeFc3cZdFaHBGVx7cLE=";
 
   mypy-boto3-voice-id =
     buildMypyBoto3Package "voice-id" "1.38.0"
