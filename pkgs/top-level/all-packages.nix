@@ -405,7 +405,7 @@ with pkgs;
 
   buildcatrust = with python3.pkgs; toPythonApplication buildcatrust;
 
-  mumps_par = callPackage ../by-name/mu/mumps/package.nix { mpiSupport = true; };
+  mumps-mpi = callPackage ../by-name/mu/mumps/package.nix { mpiSupport = true; };
 
   protoc-gen-grpc-web = callPackage ../development/tools/protoc-gen-grpc-web {
     protobuf = protobuf_21;
@@ -1004,10 +1004,6 @@ with pkgs;
   ### TOOLS
 
   _3llo = callPackage ../tools/misc/3llo { };
-
-  _1password-gui = callPackage ../applications/misc/1password-gui { };
-
-  _1password-gui-beta = callPackage ../applications/misc/1password-gui { channel = "beta"; };
 
   _7zz-rar = _7zz.override { enableUnfree = true; };
 
@@ -2913,7 +2909,7 @@ with pkgs;
   buildEmscriptenPackage = callPackage ../development/em-modules/generic { };
 
   emscripten = callPackage ../development/compilers/emscripten {
-    llvmPackages = llvmPackages_19;
+    llvmPackages = llvmPackages_20;
   };
 
   emscriptenPackages = recurseIntoAttrs (callPackage ./emscripten-packages.nix { });
@@ -3990,8 +3986,6 @@ with pkgs;
 
   olive-editor = qt6Packages.callPackage ../applications/video/olive-editor { };
 
-  ombi = callPackage ../servers/ombi { };
-
   ome_zarr = with python3Packages; toPythonApplication ome-zarr;
 
   onlykey = callPackage ../tools/security/onlykey { node_webkit = nwjs; };
@@ -4361,6 +4355,10 @@ with pkgs;
   rst2pdf = with python3Packages; toPythonApplication rst2pdf;
 
   rstcheck = with python3Packages; toPythonApplication rstcheck;
+
+  rstcheckWithSphinx = rstcheck.overridePythonAttrs (oldAttrs: {
+    dependencies = oldAttrs.dependencies ++ oldAttrs.optional-dependencies.sphinx;
+  });
 
   rtmpdump_gnutls = rtmpdump.override {
     gnutlsSupport = true;
@@ -7490,10 +7488,6 @@ with pkgs;
 
   mkdocs = with python3Packages; toPythonApplication mkdocs;
 
-  mold = callPackage ../by-name/mo/mold/package.nix {
-    tbb = tbb_2021_11;
-  };
-
   mold-wrapped = wrapBintoolsWith {
     bintools = mold;
     extraBuildCommands = ''
@@ -7580,8 +7574,6 @@ with pkgs;
     })
   );
 
-  pnpm-lock-export = callPackage ../development/web/pnpm-lock-export { };
-
   portableService = callPackage ../build-support/portable-service { };
 
   polar = callPackage ../tools/misc/polar { };
@@ -7652,8 +7644,6 @@ with pkgs;
     embedSamurai = true;
     buildDocs = false;
   };
-
-  sbomnix = python3.pkgs.callPackage ../tools/security/sbomnix { };
 
   seer = libsForQt5.callPackage ../development/tools/misc/seer { };
 
@@ -8180,11 +8170,6 @@ with pkgs;
 
   geos_3_9 = callPackage ../development/libraries/geos/3.9.nix { };
 
-  inherit (callPackages ../development/libraries/getdns { })
-    getdns
-    stubby
-    ;
-
   gettext = callPackage ../development/libraries/gettext { };
 
   gdalMinimal = gdal.override {
@@ -8196,8 +8181,6 @@ with pkgs;
   };
 
   givaro = callPackage ../development/libraries/givaro { };
-  givaro_3 = callPackage ../development/libraries/givaro/3.nix { };
-  givaro_3_7 = callPackage ../development/libraries/givaro/3.7.nix { };
 
   ghp-import = with python3Packages; toPythonApplication ghp-import;
 
@@ -10478,14 +10461,19 @@ with pkgs;
 
   kanidm_1_4 = callPackage ../by-name/ka/kanidm/1_4.nix { kanidm = kanidm_1_4; };
   kanidm_1_5 = callPackage ../by-name/ka/kanidm/1_5.nix { kanidm = kanidm_1_5; };
+  kanidm_1_6 = callPackage ../by-name/ka/kanidm/1_6.nix { kanidm = kanidm_1_6; };
 
-  kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_5;
+  kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_6;
 
   kanidmWithSecretProvisioning_1_4 = callPackage ../by-name/ka/kanidm/1_4.nix {
     enableSecretProvisioning = true;
   };
 
   kanidmWithSecretProvisioning_1_5 = callPackage ../by-name/ka/kanidm/1_5.nix {
+    enableSecretProvisioning = true;
+  };
+
+  kanidmWithSecretProvisioning_1_6 = callPackage ../by-name/ka/kanidm/1_6.nix {
     enableSecretProvisioning = true;
   };
 
@@ -10955,8 +10943,6 @@ with pkgs;
   shairport-sync-airplay2 = shairport-sync.override {
     enableAirplay2 = true;
   };
-
-  showoff = callPackage ../servers/http/showoff { };
 
   stalwart-mail-webadmin = stalwart-mail.webadmin;
 
@@ -12976,6 +12962,7 @@ with pkgs;
       libXtSupport = false;
       fontconfigSupport = false;
       freetypeSupport = false;
+      libraqmSupport = false;
       libjpegSupport = false;
       djvulibreSupport = false;
       lcms2Support = false;
@@ -13008,8 +12995,6 @@ with pkgs;
   img2pdf = with python3Packages; toPythonApplication img2pdf;
 
   imgp = python3Packages.callPackage ../applications/graphics/imgp { };
-
-  inkcut = libsForQt5.callPackage ../applications/misc/inkcut { };
 
   inkscape = callPackage ../applications/graphics/inkscape {
     lcms = lcms2;
@@ -13295,10 +13280,6 @@ with pkgs;
 
   luddite = with python3Packages; toPythonApplication luddite;
 
-  lumail = callPackage ../applications/networking/mailreaders/lumail {
-    lua = lua5_1;
-  };
-
   lutris-unwrapped = python3.pkgs.callPackage ../applications/misc/lutris { };
   lutris = callPackage ../applications/misc/lutris/fhsenv.nix { };
   lutris-free = lutris.override {
@@ -13483,10 +13464,6 @@ with pkgs;
   mpv = mpv-unwrapped.wrapper { mpv = mpv-unwrapped; };
 
   mpvScripts = mpv-unwrapped.scripts;
-
-  shaka-packager = callPackage ../by-name/sh/shaka-packager/package.nix {
-    abseil-cpp = abseil-cpp_202401;
-  };
 
   mu-repo = python3Packages.callPackage ../applications/misc/mu-repo { };
 
@@ -14989,9 +14966,13 @@ with pkgs;
     physfs = physfs_2;
   };
 
-  beancount-ing-diba = callPackage ../applications/office/beancount/beancount-ing-diba.nix { };
+  beancount-ing-diba = callPackage ../applications/office/beancount/beancount-ing-diba.nix {
+    inherit (python3Packages) beancount beangulp;
+  };
 
-  beancount-share = callPackage ../applications/office/beancount/beancount_share.nix { };
+  beancount-share = callPackage ../applications/office/beancount/beancount_share.nix {
+    inherit (python3Packages) beancount beancount-plugin-utils;
+  };
 
   cataclysmDDA = callPackage ../games/cataclysm-dda { };
 
@@ -15551,6 +15532,7 @@ with pkgs;
     gnome45Extensions
     gnome46Extensions
     gnome47Extensions
+    gnome48Extensions
     ;
 
   gnome-extensions-cli = python3Packages.callPackage ../desktops/gnome/misc/gnome-extensions-cli { };
