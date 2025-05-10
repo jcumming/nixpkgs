@@ -4939,6 +4939,8 @@ self: super: with self; {
 
   firecrawl-py = callPackage ../development/python-modules/firecrawl-py { };
 
+  firedrake-fiat = callPackage ../development/python-modules/firedrake-fiat { };
+
   fireflyalgorithm = callPackage ../development/python-modules/fireflyalgorithm { };
 
   firetv = callPackage ../development/python-modules/firetv { };
@@ -9131,6 +9133,8 @@ self: super: with self; {
 
   mpegdash = callPackage ../development/python-modules/mpegdash { };
 
+  mpi-pytest = callPackage ../development/python-modules/mpi-pytest { };
+
   mpi4py = callPackage ../development/python-modules/mpi4py { };
 
   mpire = callPackage ../development/python-modules/mpire { };
@@ -12668,6 +12672,8 @@ self: super: with self; {
   pylint-venv = callPackage ../development/python-modules/pylint-venv { };
 
   pylion = callPackage ../development/python-modules/pylion { };
+
+  pylit = callPackage ../development/python-modules/pylit { };
 
   pylitejet = callPackage ../development/python-modules/pylitejet { };
 
