@@ -248,6 +248,12 @@ in
         freeformType = settingsFormat.type;
 
         options = {
+          version = mkOption {
+            description = "config file version as a string";
+            example = "2";
+            default = "2";
+            type = types.str;
+          };
           bindaddress = mkOption {
             description = "Address/port combination the webserver binds to.";
             example = "[::1]:8443";
