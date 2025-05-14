@@ -4131,6 +4131,8 @@ self: super: with self; {
 
   dotwiz = callPackage ../development/python-modules/dotwiz { };
 
+  doubleratchet = callPackage ../development/python-modules/doubleratchet { };
+
   downloader-cli = callPackage ../development/python-modules/downloader-cli { };
 
   dparse = callPackage ../development/python-modules/dparse { };
@@ -4407,6 +4409,8 @@ self: super: with self; {
   elevate = callPackage ../development/python-modules/elevate { };
 
   elevenlabs = callPackage ../development/python-modules/elevenlabs { };
+
+  elfdeps = toPythonModule (pkgs.elfdeps.override { python3Packages = self; });
 
   elgato = callPackage ../development/python-modules/elgato { };
 
@@ -4754,6 +4758,8 @@ self: super: with self; {
   fakeredis = callPackage ../development/python-modules/fakeredis { };
 
   falcon = callPackage ../development/python-modules/falcon { };
+
+  falcon-cors = callPackage ../development/python-modules/falcon-cors { };
 
   falconpy = callPackage ../development/python-modules/falconpy { };
 
@@ -6909,6 +6915,8 @@ self: super: with self; {
 
   irctokens = callPackage ../development/python-modules/irctokens { };
 
+  irisclient = callPackage ../development/python-modules/irisclient { };
+
   isal = callPackage ../development/python-modules/isal { };
 
   isbnlib = callPackage ../development/python-modules/isbnlib { };
@@ -8095,6 +8103,8 @@ self: super: with self; {
   lizard = callPackage ../development/python-modules/lizard { };
 
   llama-cloud = callPackage ../development/python-modules/llama-cloud { };
+
+  llama-cloud-services = callPackage ../development/python-modules/llama-cloud-services { };
 
   llama-cpp-python = callPackage ../development/python-modules/llama-cpp-python { };
 
@@ -10112,6 +10122,8 @@ self: super: with self; {
   numba-scipy = callPackage ../development/python-modules/numba-scipy { };
 
   numbaWithCuda = self.numba.override { cudaSupport = true; };
+
+  numbagg = callPackage ../development/python-modules/numbagg { };
 
   numcodecs = callPackage ../development/python-modules/numcodecs { };
 
@@ -14874,6 +14886,8 @@ self: super: with self; {
 
   rcssmin = callPackage ../development/python-modules/rcssmin { };
 
+  rctclient = callPackage ../development/python-modules/rctclient { };
+
   rdbtools = callPackage ../development/python-modules/rdbtools { };
 
   rdflib = callPackage ../development/python-modules/rdflib { };
@@ -15965,6 +15979,8 @@ self: super: with self; {
   skidl = callPackage ../development/python-modules/skidl { };
 
   skl2onnx = callPackage ../development/python-modules/skl2onnx { };
+
+  sklearn-compat = callPackage ../development/python-modules/sklearn-compat { };
 
   sklearn-deap = callPackage ../development/python-modules/sklearn-deap { };
 
@@ -19113,6 +19129,8 @@ self: super: with self; {
   x11-hash = callPackage ../development/python-modules/x11-hash { };
 
   x256 = callPackage ../development/python-modules/x256 { };
+
+  x3dh = callPackage ../development/python-modules/x3dh { };
 
   x690 = callPackage ../development/python-modules/x690 { };
 
