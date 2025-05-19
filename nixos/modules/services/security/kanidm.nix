@@ -902,7 +902,7 @@ in
           BindPaths =
             [
               # To create the socket
-              "/run/kanidmd:/run/kanidmd"
+              "/run/kanidm:/run/kanidm"
               # To store backups
               cfg.serverSettings.online_backup.path
             ]
