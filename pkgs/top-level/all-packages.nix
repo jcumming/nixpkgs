@@ -843,10 +843,6 @@ with pkgs;
 
   substitute = callPackage ../build-support/substitute/substitute.nix { };
 
-  substituteAll = callPackage ../build-support/substitute/substitute-all.nix { };
-
-  substituteAllFiles = callPackage ../build-support/substitute-files/substitute-all-files.nix { };
-
   replaceDependencies = callPackage ../build-support/replace-dependencies.nix { };
 
   replaceDependency =
@@ -1932,9 +1928,6 @@ with pkgs;
     charles5
     ;
 
-  quaternion-qt5 =
-    libsForQt5.callPackage ../applications/networking/instant-messengers/quaternion
-      { };
   quaternion-qt6 =
     qt6Packages.callPackage ../applications/networking/instant-messengers/quaternion
       { };
@@ -2344,7 +2337,7 @@ with pkgs;
 
   mpd-sima = python3Packages.callPackage ../tools/audio/mpd-sima { };
 
-  nltk-data = callPackage ../tools/text/nltk-data { };
+  nltk-data = lib.recurseIntoAttrs (callPackage ../tools/text/nltk-data { });
 
   seabios-coreboot = seabios.override { ___build-type = "coreboot"; };
   seabios-csm = seabios.override { ___build-type = "csm"; };
@@ -4092,7 +4085,7 @@ with pkgs;
 
   padthv1 = libsForQt5.callPackage ../applications/audio/padthv1 { };
 
-  pageedit = libsForQt5.callPackage ../applications/office/PageEdit { };
+  pageedit = qt6Packages.callPackage ../applications/office/PageEdit { };
 
   pagefind = libsForQt5.callPackage ../applications/misc/pagefind { };
 
@@ -14479,7 +14472,7 @@ with pkgs;
 
   webcamoid = qt6Packages.callPackage ../applications/video/webcamoid { };
 
-  webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_35; };
+  webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_36; };
 
   webcord-vencord = callPackage ../by-name/we/webcord-vencord/package.nix { electron = electron_34; };
 
