@@ -3486,6 +3486,11 @@
     githubId = 50839;
     name = "Brian Jones";
   };
+  bokicoder = {
+    github = "bokicoder";
+    githubId = 193465580;
+    name = "bokicoder";
+  };
   boldikoller = {
     email = "boldi.koller@wtss.eu";
     github = "boldikoller";
@@ -5668,6 +5673,12 @@
     github = "dasJ";
     githubId = 4971975;
     name = "Janne Heß";
+  };
+  dashietm = {
+    email = "fabio.lenherr@gmail.com";
+    github = "DashieTM";
+    githubId = 72016555;
+    name = "Fabio Lenherr";
   };
   dasisdormax = {
     email = "dasisdormax@mailbox.org";
@@ -13026,12 +13037,6 @@
     githubId = 843652;
     name = "Kim Burgess";
   };
-  kindrowboat = {
-    email = "hello@kindrobot.ca";
-    github = "kindrowboat";
-    githubId = 777773;
-    name = "Stef Dunlap";
-  };
   kini = {
     email = "keshav.kini@gmail.com";
     github = "kini";
@@ -13637,6 +13642,12 @@
     email = "behradbadeli@gmail.com";
     github = "L0L1P0P1";
     githubId = 73695812;
+  };
+  l0r3v = {
+    email = "l0r3v@pasqui.casa";
+    github = "l0r3v";
+    githubId = 27364685;
+    name = "Lorenzo Pasqui";
   };
   l1npengtul = {
     email = "l1npengtul@l1npengtul.lol";
@@ -17592,7 +17603,7 @@
   };
   nicoo = {
     email = "nicoo@debian.org";
-    github = "nbraud";
+    github = "nicoonoclaste";
     githubId = 1155801;
     name = "nicoo";
     keys = [ { fingerprint = "E44E 9EA5 4B8E 256A FB73 49D3 EC9D 3708 72BC 7A8C"; } ];
@@ -20858,6 +20869,12 @@
     githubId = 3302;
     name = "Renzo Carbonara";
   };
+  repparw = {
+    email = "ubritos@gmail.com";
+    github = "repparw";
+    githubId = 45952970;
+    name = "repparw";
+  };
   reputable2772 = {
     name = "Reputable2772";
     github = "Reputable2772";
@@ -22900,6 +22917,11 @@
     email = "nonno.felice69uwu@gmail.com";
     matrix = "@c3n21:matrix.org";
     githubId = 37077738;
+  };
+  sinjin2300 = {
+    name = "Sinjin";
+    github = "Sinjin2300";
+    githubId = 35543336;
   };
   sioodmy = {
     name = "Antoni Sokołowski";
@@ -26693,6 +26715,12 @@
     github = "wolfgangwalther";
     githubId = 9132420;
     keys = [ { fingerprint = "F943 A0BC 720C 5BEF 73CD E02D B398 93FA 5F65 CAE1"; } ];
+  };
+  womeier = {
+    name = "Wolfgang Meier";
+    email = "womeier@posteo.de";
+    github = "womeier";
+    githubId = 55190123;
   };
   womfoo = {
     email = "kranium@gikos.net";

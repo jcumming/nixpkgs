@@ -5282,6 +5282,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  gh-nvim = buildVimPlugin {
+    pname = "gh.nvim";
+    version = "0-unstable-2025-01-21";
+    src = fetchFromGitHub {
+      owner = "ldelossa";
+      repo = "gh.nvim";
+      rev = "6f367b2ab8f9d4a0a23df2b703a3f91137618387";
+      hash = "sha256-XI4FVjajin0NM+OaEN+O5vmalPpOB2RII+aOERSzjJA=";
+    };
+    meta.description = "Fully featured GitHub integration for performing code reviews in Neovim";
+    meta.homepage = "https://github.com/ldelossa/gh.nvim";
+  };
+
   git-blame-nvim = buildVimPlugin {
     pname = "git-blame.nvim";
     version = "2025-04-12";
@@ -8162,6 +8175,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  mini-keymap = buildVimPlugin {
+    pname = "mini.keymap";
+    version = "2025-05-20";
+    src = fetchFromGitHub {
+      owner = "echasnovski";
+      repo = "mini.keymap";
+      rev = "2aa0a66d6cbf15c9cea331d976ac4d4b9f01621e";
+      sha256 = "18samb1yjvmw2yjl0l4csl484aqah71qr19zspx46z5dk3jib908";
+    };
+    meta.homepage = "https://github.com/echasnovski/mini.keymap/";
+    meta.hydraPlatforms = [ ];
+  };
+
   mini-map = buildVimPlugin {
     pname = "mini.map";
     version = "2025-04-01";
@@ -10580,6 +10606,19 @@ final: prev: {
       sha256 = "0s2z4nd5anh5r3z4iv9fa4m5vnkbdl6aj7rw5ssn3cm52kplw3fq";
     };
     meta.homepage = "https://github.com/gennaro-tedesco/nvim-jqx/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  nvim-k8s-crd = buildVimPlugin {
+    pname = "nvim-k8s-crd";
+    version = "2025-05-26";
+    src = fetchFromGitHub {
+      owner = "anasinnyk";
+      repo = "nvim-k8s-crd";
+      rev = "d57f9c6b0ad1e8ab894f2afd6db90c948ca51a8c";
+      sha256 = "1gx80lclc8jh2k288hswz8b03zlamkb5z8zdl03nchxrm6xr5x05";
+    };
+    meta.homepage = "https://github.com/anasinnyk/nvim-k8s-crd/";
     meta.hydraPlatforms = [ ];
   };
 
