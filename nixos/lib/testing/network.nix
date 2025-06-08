@@ -3,16 +3,17 @@
 let
   inherit (lib)
     attrNames
-    concatMap
+    concatMapAttrs
     concatMapStrings
-    flip
     forEach
     head
     listToAttrs
     mkDefault
     mkOption
     nameValuePair
+    optionalAttrs
     optionalString
+    optionals
     range
     toLower
     types
@@ -91,23 +92,24 @@ let
         # interfaces, use the IP address corresponding to
         # the first interface (i.e. the first network in its
         # virtualisation.vlans option).
-        networking.extraHosts = flip concatMapStrings (attrNames nodes) (
-          m':
+        networking.hosts = concatMapAttrs (
+          name: config:
           let
-            config = nodes.${m'};
             hostnames =
-              optionalString (
-                config.networking.domain != null
-              ) "${config.networking.hostName}.${config.networking.domain} "
-              + "${config.networking.hostName}\n";
+              [
+                "${config.networking.hostName}"
+              ]
+              ++ optionals (config.networking.domain != null) [
+                "${config.networking.hostName}.${config.networking.domain}"
+              ];
           in
-          optionalString (
-            config.networking.primaryIPAddress != ""
-          ) "${config.networking.primaryIPAddress} ${hostnames}"
-          + optionalString (config.networking.primaryIPv6Address != "") (
-            "${config.networking.primaryIPv6Address} ${hostnames}"
-          )
-        );
+          optionalAttrs (config.networking.primaryIPAddress != "") {
+            "${config.networking.primaryIPAddress}" = hostnames;
+          }
+          // optionalAttrs (config.networking.primaryIPv6Address != "") {
+            "${config.networking.primaryIPv6Address}" = hostnames;
+          }
+        ) nodes;
 
         virtualisation.qemu.options = qemuOptions;
         boot.initrd.services.udev.rules = concatMapStrings (x: x + "\n") udevRules;
