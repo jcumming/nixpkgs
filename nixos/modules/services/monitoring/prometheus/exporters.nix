@@ -591,6 +591,6 @@ in
 
   meta = {
     doc = ./exporters.md;
-    maintainers = [ maintainers.willibutz ];
+    maintainers = [ ];
   };
 }

@@ -5490,19 +5490,6 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
-  gleam-vim = buildVimPlugin {
-    pname = "gleam.vim";
-    version = "2025-04-24";
-    src = fetchFromGitHub {
-      owner = "gleam-lang";
-      repo = "gleam.vim";
-      rev = "7174886f4974629a4427b0c703d6ce77f39422c5";
-      sha256 = "0g99zc9x9l5mdh6nmlkwfqh4hk82ncqcgdzjp5b702fiymjhpkf4";
-    };
-    meta.homepage = "https://github.com/gleam-lang/gleam.vim/";
-    meta.hydraPlatforms = [ ];
-  };
-
   glow-nvim = buildVimPlugin {
     pname = "glow.nvim";
     version = "2025-03-21";
@@ -6622,20 +6609,6 @@ final: prev: {
       sha256 = "1z2zi951xgssq1d343b0rhcj1xn4qwvv1b2wzvy8jg7ak9pgrl1a";
     };
     meta.homepage = "https://github.com/neoclide/jsonc.vim/";
-    meta.hydraPlatforms = [ ];
-  };
-
-  jsonfly-nvim = buildVimPlugin {
-    pname = "jsonfly.nvim";
-    version = "2024-09-30";
-    src = fetchFromGitHub {
-      owner = "Myzel394";
-      repo = "jsonfly.nvim";
-      rev = "d713d9ef38115ab09b4a2828dac67b2b3f7d35c4";
-      sha256 = "12nafsy2s01ci679sj6s980kx4lgd7zyqng7xv3gbf2r2xvj3prr";
-      fetchSubmodules = true;
-    };
-    meta.homepage = "https://github.com/Myzel394/jsonfly.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -13148,6 +13121,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  schema-companion-nvim = buildVimPlugin {
+    pname = "schema-companion.nvim";
+    version = "2025-06-05";
+    src = fetchFromGitHub {
+      owner = "cenk1cenk2";
+      repo = "schema-companion.nvim";
+      rev = "a39cbf5a31ae7aec71e5aaec5e6d409f22b05099";
+      sha256 = "1s0lqxz1rh4f7jspl45pa9981zwz0i0h9c4ml0zy55y926454339";
+    };
+    meta.homepage = "https://github.com/cenk1cenk2/schema-companion.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   scnvim = buildVimPlugin {
     pname = "scnvim";
     version = "2025-01-29";
@@ -13210,6 +13196,19 @@ final: prev: {
       sha256 = "1na3x1n24xpybw4v7mi25pwfk18nm27kp7iywprdh7x6y6sx0czk";
     };
     meta.homepage = "https://github.com/cakebaker/scss-syntax.vim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  search-and-replace-nvim = buildVimPlugin {
+    pname = "search-and-replace.nvim";
+    version = "2025-06-16";
+    src = fetchFromGitHub {
+      owner = "mahyarmirrashed";
+      repo = "search-and-replace.nvim";
+      rev = "12dce26afc7f3c66d6ffbf2eae91ce19d4cdcc74";
+      sha256 = "0i197fs58qk6mgqsxi7cacba8sya7kh9cdnnz6sa79ry42cdff6a";
+    };
+    meta.homepage = "https://github.com/mahyarmirrashed/search-and-replace.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -13497,6 +13496,19 @@ final: prev: {
       sha256 = "185drqdf6qcwbjvs2f5gnz660w45d4pwqal40mbf1p3gd32il6qa";
     };
     meta.homepage = "https://github.com/shaunsingh/solarized.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  solarized-osaka-nvim = buildVimPlugin {
+    pname = "solarized-osaka.nvim";
+    version = "2025-04-19";
+    src = fetchFromGitHub {
+      owner = "craftzdog";
+      repo = "solarized-osaka.nvim";
+      rev = "f796014c14b1910e08d42cc2077fef34f08e0295";
+      sha256 = "0jy2hk4fc210jih30ybvisr9pliya1s3nazw4d131vh5k4p1xqi6";
+    };
+    meta.homepage = "https://github.com/craftzdog/solarized-osaka.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -14976,6 +14988,20 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  trailblazer-nvim = buildVimPlugin {
+    pname = "trailblazer.nvim";
+    version = "2025-02-04";
+    src = fetchFromGitHub {
+      owner = "LeonHeidelbach";
+      repo = "trailblazer.nvim";
+      rev = "5c0e3ac01e227bb9afe428583f29f0ec34801408";
+      sha256 = "0fvm4gb190b9a2gv3spf7429p2adjbsxcgpgd89azmpgqcsdg509";
+      fetchSubmodules = true;
+    };
+    meta.homepage = "https://github.com/LeonHeidelbach/trailblazer.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   train-nvim = buildVimPlugin {
     pname = "train.nvim";
     version = "2023-07-31";
@@ -15104,6 +15130,19 @@ final: prev: {
       sha256 = "1zvxjgyzzhnza2gv528dvyp7m1nvsz5gjn0qp65jn0k7y4gh3nnl";
     };
     meta.homepage = "https://github.com/tesaguri/trust.vim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  ts-autotag-nvim = buildVimPlugin {
+    pname = "ts-autotag.nvim";
+    version = "2025-01-15";
+    src = fetchFromGitHub {
+      owner = "tronikelis";
+      repo = "ts-autotag.nvim";
+      rev = "0f1dc38fddd99b468ef58938d7cd99ce1d6bcb0e";
+      sha256 = "1m0gng9v5dn6mm026nxw0n24bvysr156xhwvf83pv9xqp28xfwar";
+    };
+    meta.homepage = "https://github.com/tronikelis/ts-autotag.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -18788,6 +18827,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  vim-moonfly-colors = buildVimPlugin {
+    pname = "vim-moonfly-colors";
+    version = "2025-05-28";
+    src = fetchFromGitHub {
+      owner = "bluz71";
+      repo = "vim-moonfly-colors";
+      rev = "ff822100c5d268e0db79e8e725cbd3ade3470de3";
+      sha256 = "14ffclg7yjkyw05bdqwc7rmzf195vjswfpmcfi7sd85rr4d3midz";
+    };
+    meta.homepage = "https://github.com/bluz71/vim-moonfly-colors/";
+    meta.hydraPlatforms = [ ];
+  };
+
   vim-move = buildVimPlugin {
     pname = "vim-move";
     version = "2023-10-08";
@@ -21262,12 +21314,12 @@ final: prev: {
 
   vimtex = buildVimPlugin {
     pname = "vimtex";
-    version = "2025-06-02";
+    version = "2025-06-12";
     src = fetchFromGitHub {
       owner = "lervag";
       repo = "vimtex";
-      rev = "f20b11458e97250d690ce0dc8670759b838cace9";
-      sha256 = "1ihq3l1wx7pbm6qw1gky8r51f2z08c723gvc19j1mklcg4gxgw7z";
+      rev = "4b4f18b1b181cdea35fdc418e5eb511f20e1f0fb";
+      sha256 = "1dwp05rkpykq3ppwy45hcy6d8d63sh76i4qmw3387ybisj06929v";
     };
     meta.homepage = "https://github.com/lervag/vimtex/";
     meta.hydraPlatforms = [ ];
