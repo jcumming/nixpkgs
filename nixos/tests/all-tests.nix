@@ -503,6 +503,10 @@ in
     imports = [ ./firefox.nix ];
     _module.args.firefoxPackage = pkgs.firefox-esr-128;
   };
+  firefox-esr-140 = runTest {
+    imports = [ ./firefox.nix ];
+    _module.args.firefoxPackage = pkgs.firefox-esr-140;
+  };
   firefoxpwa = runTest ./firefoxpwa.nix;
   firejail = runTest ./firejail.nix;
   firewall = handleTest ./firewall.nix { nftables = false; };
@@ -806,7 +810,7 @@ in
   mariadb-galera = handleTest ./mysql/mariadb-galera.nix { };
   marytts = runTest ./marytts.nix;
   mastodon = pkgs.recurseIntoAttrs (handleTest ./web-apps/mastodon { inherit handleTestOn; });
-  pixelfed = discoverTests (import ./web-apps/pixelfed { inherit handleTestOn; });
+  pixelfed = import ./web-apps/pixelfed { inherit runTestOn; };
   mate = runTest ./mate.nix;
   mate-wayland = runTest ./mate-wayland.nix;
   matter-server = runTest ./matter-server.nix;
@@ -913,9 +917,9 @@ in
   networking.scripted = handleTest ./networking/networkd-and-scripted.nix { networkd = false; };
   networking.networkd = handleTest ./networking/networkd-and-scripted.nix { networkd = true; };
   networking.networkmanager = handleTest ./networking/networkmanager.nix { };
-  netbox_3_7 = handleTest ./web-apps/netbox/default.nix { netbox = pkgs.netbox_3_7; };
   netbox_4_1 = handleTest ./web-apps/netbox/default.nix { netbox = pkgs.netbox_4_1; };
   netbox_4_2 = handleTest ./web-apps/netbox/default.nix { netbox = pkgs.netbox_4_2; };
+  netbox_4_3 = handleTest ./web-apps/netbox/default.nix { netbox = pkgs.netbox_4_3; };
   netbox-upgrade = runTest ./web-apps/netbox-upgrade.nix;
   # TODO: put in networking.nix after the test becomes more complete
   networkingProxy = runTest ./networking-proxy.nix;
@@ -946,6 +950,7 @@ in
   nginx-unix-socket = runTest ./nginx-unix-socket.nix;
   nginx-variants = import ./nginx-variants.nix { inherit pkgs runTest; };
   nifi = runTestOn [ "x86_64-linux" ] ./web-apps/nifi.nix;
+  nipap = runTest ./web-apps/nipap.nix;
   nitter = runTest ./nitter.nix;
   nix-config = runTest ./nix-config.nix;
   nix-ld = runTest ./nix-ld.nix;
@@ -1008,6 +1013,7 @@ in
   ollama-cuda = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./ollama-cuda.nix;
   ollama-rocm = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./ollama-rocm.nix;
   ombi = runTest ./ombi.nix;
+  omnom = runTest ./omnom.nix;
   openarena = runTest ./openarena.nix;
   openbao = runTest ./openbao.nix;
   opencloud = runTest ./opencloud.nix;
@@ -1478,6 +1484,7 @@ in
   vector = import ./vector { inherit runTest; };
   velocity = runTest ./velocity.nix;
   vengi-tools = runTest ./vengi-tools.nix;
+  victorialogs = runTest ./victorialogs.nix;
   victoriametrics = handleTest ./victoriametrics { };
   vikunja = runTest ./vikunja.nix;
   virtualbox = handleTestOn [ "x86_64-linux" ] ./virtualbox.nix { };
