@@ -1,8 +1,11 @@
-{ buildPythonPackage, fetchPypi, coverage, pytz, tzlocal, python-dateutil, vobject }:
+{ buildPythonPackage, fetchPypi, coverage, pytz, tzlocal, python-dateutil, vobject, setuptools }:
 
 buildPythonPackage rec {
   pname = "remind";
   version = "0.19.1";
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   buildInputs = [ coverage ];
   propagatedBuildInputs = [ pytz tzlocal python-dateutil vobject ];

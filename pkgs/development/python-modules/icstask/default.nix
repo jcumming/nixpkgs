@@ -1,8 +1,11 @@
-{ buildPythonPackage, fetchPypi, coverage, vobject }:
+{ buildPythonPackage, fetchPypi, coverage, vobject, setuptools }:
 
 buildPythonPackage rec {
   pname = "icstask";
   version = "0.5.0";
+
+  pyproject = true;
+  build-system = [ setuptools ];
 
   buildInputs = [ coverage ];
   propagatedBuildInputs = [ vobject ];

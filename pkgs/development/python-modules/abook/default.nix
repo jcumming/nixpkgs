@@ -1,8 +1,11 @@
-{ buildPythonPackage, fetchPypi, coverage, vobject }:
+{ buildPythonPackage, fetchPypi, coverage, vobject, setuptools }:
 
 buildPythonPackage rec {
   pname = "abook";
   version = "0.9.1";
+  
+  pyproject = true;
+  build-system = [ setuptools ];
 
   buildInputs = [ coverage ];
   propagatedBuildInputs = [ vobject ];
