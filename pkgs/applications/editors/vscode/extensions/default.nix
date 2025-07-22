@@ -1094,28 +1094,28 @@ let
             sources = {
               "x86_64-linux" = {
                 arch = "linux-x64";
-                hash = "sha256-1swpgwNLCMWjzDYziXuvvPv8cox2+8ZaYR4fUDoHRkY=";
+                hash = "sha256-mm7/ITiXuSrFrAwRPVYYJ6l5b4ODyiCPv5H+WioDAWY=";
               };
               "x86_64-darwin" = {
                 arch = "darwin-x64";
-                hash = "sha256-uBSd/6Z2689n0vExoeaEwodLjjeBULo/RaGu8cGgvsQ=";
+                hash = "sha256-ySFiSJ+6AgxECzekBIlPl2BhWJvt5Rf1DFqg6b/6PDs=";
               };
               "aarch64-linux" = {
                 arch = "linux-arm64";
-                hash = "sha256-WdSKNC2DjR3n9VVJh5OBasmVq/sIXiWFajhniSwxPuw=";
+                hash = "sha256-zqvhlA9APWtJowCOceB52HsfU3PaAWciZWxY/QcOYgg=";
               };
               "aarch64-darwin" = {
                 arch = "darwin-arm64";
-                hash = "sha256-cwTUoVai9N2v5VmfYIKC+w8jYLcQhHGK5TLqxOBr05Q=";
+                hash = "sha256-CjzAntSjbYlauVptCnqE/HpwdudoGaTMML6Fyzj48pU=";
               };
             };
           in
           {
             name = "continue";
             publisher = "Continue";
-            version = "1.1.11";
+            version = "1.1.49";
           }
-          // sources.${stdenv.system};
+          // sources.${stdenv.system} or (throw "Unsupported system: ${stdenv.system}");
         nativeBuildInputs = lib.optionals stdenv.hostPlatform.isLinux [ autoPatchelfHook ];
         buildInputs = [ (lib.getLib stdenv.cc.cc) ];
         meta = {
@@ -1387,7 +1387,7 @@ let
             publisher = "devsense";
             version = "1.41.14332";
           }
-          // sources.${stdenv.system};
+          // sources.${stdenv.system} or (throw "Unsupported system: ${stdenv.system}");
 
         nativeBuildInputs = [ autoPatchelfHook ];
 
@@ -1789,6 +1789,8 @@ let
         };
       };
 
+      ethersync.ethersync = callPackage ./ethersync.ethersync { };
+
       eugleo.magic-racket = callPackage ./eugleo.magic-racket { };
 
       ExiaHuang.dictionary = buildVscodeMarketplaceExtension {
@@ -2133,8 +2135,8 @@ let
         mktplcRef = {
           name = "gitlab-workflow";
           publisher = "gitlab";
-          version = "6.28.2";
-          hash = "sha256-FOm0EWleDT5+xjb0Jif1TPnJrU+Zc1PfhKBvP6dUtBs=";
+          version = "6.32.2";
+          hash = "sha256-ZPfzCje8mAWr0Ntr1MEGvUsvCSi+ocPDVEXiezAI5N8=";
         };
         meta = {
           description = "GitLab extension for Visual Studio Code";
@@ -2453,8 +2455,8 @@ let
         mktplcRef = {
           name = "vscode-vibrancy-continued";
           publisher = "illixion";
-          version = "1.1.54";
-          hash = "sha256-CzhDStBa/LB/bzgzrFCUEcVDeBluWJPblneUbHdIcRE=";
+          version = "1.1.57";
+          hash = "sha256-UJn+RFBlQXmPqKkFIBiD4AblnX4s0O2IK747fG+UC/0=";
         };
         meta = {
           downloadPage = "https://marketplace.visualstudio.com/items?itemName=illixion.vscode-vibrancy-continued";
@@ -3334,7 +3336,7 @@ let
             publisher = "ms-dotnettools";
             version = "2.2.3";
           }
-          // sources.${stdenv.system};
+          // sources.${stdenv.system} or (throw "Unsupported system: ${stdenv.system}");
         nativeBuildInputs = lib.optionals stdenv.hostPlatform.isLinux [ autoPatchelfHook ];
         buildInputs = [
           (lib.getLib stdenv.cc.cc)

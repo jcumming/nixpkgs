@@ -478,7 +478,7 @@ with lib.maintainers;
       willcohen
     ];
     githubTeams = [ "geospatial" ];
-    scope = "Maintain geospatial packages.";
+    scope = "Maintain geospatial, remote sensing and OpenStreetMap software.";
     shortName = "Geospatial";
     enableFeatureFreezePing = true;
   };
@@ -1256,7 +1256,6 @@ with lib.maintainers;
   wdz = {
     members = [
       n0emis
-      vidister
       johannwagner
       yuka
     ];

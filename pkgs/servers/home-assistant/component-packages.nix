@@ -1221,7 +1221,8 @@
       ];
     "dlink" =
       ps: with ps; [
-      ]; # missing inputs: pyW215
+        pyw215
+      ];
     "dlna_dmr" =
       ps: with ps; [
         async-upnp-client
@@ -1827,9 +1828,10 @@
       ];
     "forked_daapd" =
       ps: with ps; [
+        pyforked-daapd
         pylibrespot-java
         spotifyaio
-      ]; # missing inputs: pyforked-daapd
+      ];
     "fortios" =
       ps: with ps; [
         fortiosapi
@@ -1846,7 +1848,8 @@
       ];
     "free_mobile" =
       ps: with ps; [
-      ]; # missing inputs: freesms
+        freesms
+      ];
     "freebox" =
       ps: with ps; [
         freebox-api
@@ -2742,7 +2745,8 @@
       ];
     "iperf3" =
       ps: with ps; [
-      ]; # missing inputs: iperf3
+        iperf3
+      ];
     "ipma" =
       ps: with ps; [
         pyipma
@@ -3036,7 +3040,8 @@
       ];
     "lacrosse_view" =
       ps: with ps; [
-      ]; # missing inputs: lacrosse-view
+        lacrosse-view
+      ];
     "lamarzocco" =
       ps: with ps; [
         aioesphomeapi
@@ -3562,7 +3567,8 @@
       ]; # missing inputs: microBeesPy
     "microsoft" =
       ps: with ps; [
-      ]; # missing inputs: pycsspeechtts
+        pycsspeechtts
+      ];
     "microsoft_face" =
       ps: with ps; [
         pyturbojpeg
@@ -3978,7 +3984,8 @@
       ];
     "noaa_tides" =
       ps: with ps; [
-      ]; # missing inputs: noaa-coops
+        noaa-coops
+      ];
     "nobo_hub" =
       ps: with ps; [
         pynobo
@@ -6961,6 +6968,7 @@
     "discovergy"
     "dlib_face_detect"
     "dlib_face_identify"
+    "dlink"
     "dlna_dmr"
     "dlna_dms"
     "dnsip"
@@ -7050,6 +7058,7 @@
     "folder_watcher"
     "foobot"
     "forecast_solar"
+    "forked_daapd"
     "foscam"
     "freebox"
     "freedns"
@@ -7217,6 +7226,7 @@
     "kostal_plenticore"
     "kraken"
     "kulersky"
+    "lacrosse_view"
     "lamarzocco"
     "lametric"
     "landisgyr_heat_meter"
@@ -7285,6 +7295,7 @@
     "meteoclimatic"
     "metoffice"
     "mfi"
+    "microsoft"
     "microsoft_face"
     "microsoft_face_detect"
     "microsoft_face_identify"
