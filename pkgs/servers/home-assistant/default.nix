@@ -354,7 +354,7 @@ let
   extraBuildInputs = extraPackages python.pkgs;
 
   # Don't forget to run update-component-packages.py after updating
-  hassVersion = "2025.7.3";
+  hassVersion = "2025.7.4";
 
 in
 python.pkgs.buildPythonApplication rec {
@@ -375,13 +375,13 @@ python.pkgs.buildPythonApplication rec {
     owner = "home-assistant";
     repo = "core";
     tag = version;
-    hash = "sha256-FT77obtb081QOgw+nqbQvvW+3x/L2WUr3DLT8X1Wpwg=";
+    hash = "sha256-2seMh1trP3PYnuQmWadTAiAPaI+v45+uzn9xkgUuGNE=";
   };
 
   # Secondary source is pypi sdist for translations
   sdist = fetchPypi {
     inherit pname version;
-    hash = "sha256-jO+rNIzEvtQ1vhSD1Xbq/SKV5XvBOb4MmkkczoeD1Kc=";
+    hash = "sha256-KwiwgQ8gAMlHLzpuYYdcLXabVrukhnfFlaODyFpuF88=";
   };
 
   build-system = with python.pkgs; [
@@ -517,14 +517,17 @@ python.pkgs.buildPythonApplication rec {
       "qwikswitch"
     ];
 
-  pytestFlagsArray = [
+  pytestFlags = [
     # assign tests grouped by file to workers
-    "--dist loadfile"
+    "--dist=loadfile"
     # enable full variable printing on error
     "--showlocals"
   ];
 
-  enabledTestPaths = [ "tests" ];
+  enabledTestPaths = [
+    # tests are located in tests/
+    "tests"
+  ];
 
   disabledTestPaths = [
     # we neither run nor distribute hassfest

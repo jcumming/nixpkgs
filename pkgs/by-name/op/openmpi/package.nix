@@ -101,6 +101,8 @@ stdenv.mkDerivation (finalAttrs: {
     libnl
     numactl
     pmix
+  ]
+  ++ lib.optionals (lib.meta.availableOn stdenv.hostPlatform ucx) [
     ucx
     ucc
   ]
@@ -153,7 +155,7 @@ stdenv.mkDerivation (finalAttrs: {
         p = [
           "mpi"
         ]
-        ++ lib.optionals stdenv.hostPlatform.isLinux [
+        ++ lib.optionals (lib.meta.availableOn stdenv.hostPlatform ucx) [
           "shmem"
           "osh"
         ];
@@ -201,7 +203,7 @@ stdenv.mkDerivation (finalAttrs: {
         part1 = [
           "mpi"
         ]
-        ++ lib.optionals stdenv.hostPlatform.isLinux [ "shmem" ];
+        ++ lib.optionals (lib.meta.availableOn stdenv.hostPlatform ucx) [ "shmem" ];
         part2 = builtins.attrNames wrapperDataSubstitutions;
       };
     in
@@ -237,14 +239,14 @@ stdenv.mkDerivation (finalAttrs: {
         ))
         (lib.concatStringsSep "\n")
       ]}
-      # A symlink to $\{lib.getDev pmix}/bin/pmixcc upstreeam puts here as well
-      # from some reason.
-      moveToOutput "bin/pcc" "''${!outputDev}"
 
       # Handle informative binaries about the compilation
-      for i in {prte,ompi,oshmem}_info; do
-        moveToOutput "bin/$i" "''${!outputDev}"
-      done
+      ${lib.pipe wrapperDataFileNames.part1 [
+        (map (name: ''
+          moveToOutput "bin/o${name}_info" "''${!outputDev}"
+        ''))
+        (lib.concatStringsSep "\n")
+      ]}
     '';
 
   postFixup = ''
