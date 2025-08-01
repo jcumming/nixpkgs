@@ -1,0 +1,18 @@
+diff -rc unac-e29ef87/configure.ac unac-e29ef87.new/configure.ac
+*** unac-e29ef87/configure.ac	1969-12-31 16:00:01.000000000 -0800
+--- unac-e29ef87.new/configure.ac	2025-07-24 16:43:28.284663488 -0700
+***************
+*** 23,31 ****
+--- 23,34 ----
+  AC_SUBST(MINOR_VERSION)
+  MICRO_VERSION=[`expr $VERSION : '[0-9][0-9]*\.[0-9][0-9]*\.\([0-9][0-9]*\)'`]
+  AC_SUBST(MICRO_VERSION)
++ AC_CONFIG_MACRO_DIRS([m4])
+  AM_INIT_AUTOMAKE([unac], $VERSION, nosubst)
+  AC_PREREQ(2.50)
+  
++ AM_GNU_GETTEXT_VERSION([0.21])
++ AM_GNU_GETTEXT([external])
+  AM_CONFIG_HEADER(config.h)
+  
+  AC_PROG_MAKE_SET

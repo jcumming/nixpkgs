@@ -19,14 +19,14 @@ python3Packages.buildPythonApplication rec {
   # The websites yt-dlp deals with are a very moving target. That means that
   # downloads break constantly. Because of that, updates should always be backported
   # to the latest stable release.
-  version = "2025.06.30";
+  version = "2025.07.21";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "yt-dlp";
     repo = "yt-dlp";
     tag = version;
-    hash = "sha256-dwBe6oXh7G67kfiI6BqiC0ZHzleR7QlfMiTVXWYW85I=";
+    hash = "sha256-VNUkCdrzbOwD+iD9BZUQFJlWXRc0tWJAvLnVKNZNPhQ=";
   };
 
   build-system = with python3Packages; [ hatchling ];
@@ -92,20 +92,19 @@ python3Packages.buildPythonApplication rec {
   # Requires network
   doCheck = false;
 
-  postInstall =
-    ''
-      installManPage yt-dlp.1
+  postInstall = ''
+    installManPage yt-dlp.1
 
-      installShellCompletion \
-        --bash completions/bash/yt-dlp \
-        --fish completions/fish/yt-dlp.fish \
-        --zsh completions/zsh/_yt-dlp
+    installShellCompletion \
+      --bash completions/bash/yt-dlp \
+      --fish completions/fish/yt-dlp.fish \
+      --zsh completions/zsh/_yt-dlp
 
-      install -Dm644 Changelog.md README.md -t "$out/share/doc/yt_dlp"
-    ''
-    + lib.optionalString withAlias ''
-      ln -s "$out/bin/yt-dlp" "$out/bin/youtube-dl"
-    '';
+    install -Dm644 Changelog.md README.md -t "$out/share/doc/yt_dlp"
+  ''
+  + lib.optionalString withAlias ''
+    ln -s "$out/bin/yt-dlp" "$out/bin/youtube-dl"
+  '';
 
   passthru.updateScript = nix-update-script { };
 
