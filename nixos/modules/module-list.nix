@@ -139,6 +139,7 @@
   ./misc/assertions.nix
   ./misc/crashdump.nix
   ./misc/documentation.nix
+  ./misc/documentation/modular-services.nix
   ./misc/extra-arguments.nix
   ./misc/ids.nix
   ./misc/label.nix
@@ -683,6 +684,7 @@
   ./services/hardware/tlp.nix
   ./services/hardware/trezord.nix
   ./services/hardware/triggerhappy.nix
+  ./services/hardware/tuned.nix
   ./services/hardware/tuxedo-rs.nix
   ./services/hardware/udev.nix
   ./services/hardware/udisks2.nix
