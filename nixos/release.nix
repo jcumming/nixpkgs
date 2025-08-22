@@ -593,7 +593,7 @@ rec {
       {
         services.xserver.enable = true;
         services.displayManager.sddm.enable = true;
-        services.xserver.desktopManager.plasma5.enable = true;
+        services.desktopManager.plasma6.enable = true;
       }
     );
 
@@ -619,15 +619,6 @@ rec {
       {
         services.xserver.enable = true;
         services.xserver.desktopManager.pantheon.enable = true;
-      }
-    );
-
-    deepin = makeClosure (
-      { ... }:
-      {
-        services.xserver.enable = true;
-        services.xserver.displayManager.lightdm.enable = true;
-        services.xserver.desktopManager.deepin.enable = true;
       }
     );
 
