@@ -484,6 +484,7 @@
   ./services/cluster/patroni/default.nix
   ./services/cluster/rke2/default.nix
   ./services/cluster/spark/default.nix
+  ./services/cluster/temporal/default.nix
   ./services/computing/boinc/client.nix
   ./services/computing/foldingathome/client.nix
   ./services/computing/slurm/slurm.nix
@@ -637,6 +638,7 @@
   ./services/hardware/brltty.nix
   ./services/hardware/buffyboard.nix
   ./services/hardware/ddccontrol.nix
+  ./services/hardware/deepcool-digital-linux.nix
   ./services/hardware/display.nix
   ./services/hardware/fancontrol.nix
   ./services/hardware/freefall.nix
@@ -1094,6 +1096,7 @@
   ./services/networking/bitlbee.nix
   ./services/networking/blockbook-frontend.nix
   ./services/networking/blocky.nix
+  ./services/networking/byedpi.nix
   ./services/networking/cato-client.nix
   ./services/networking/centrifugo.nix
   ./services/networking/cgit.nix
