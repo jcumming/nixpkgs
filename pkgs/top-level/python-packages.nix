@@ -3325,6 +3325,8 @@ self: super: with self; {
 
   dask-yarn = callPackage ../development/python-modules/dask-yarn { };
 
+  databackend = callPackage ../development/python-modules/databackend { };
+
   databases = callPackage ../development/python-modules/databases { };
 
   databricks-cli = callPackage ../development/python-modules/databricks-cli { };
@@ -7157,6 +7159,8 @@ self: super: with self; {
 
   iptools = callPackage ../development/python-modules/iptools { };
 
+  ipv8-rust-tunnels = callPackage ../development/python-modules/ipv8-rust-tunnels { };
+
   ipwhl = callPackage ../development/python-modules/ipwhl { };
 
   ipwhois = callPackage ../development/python-modules/ipwhois { };
@@ -8724,6 +8728,8 @@ self: super: with self; {
   looseversion = callPackage ../development/python-modules/looseversion { };
 
   loqedapi = callPackage ../development/python-modules/loqedapi { };
+
+  loro = callPackage ../development/python-modules/loro { };
 
   losant-rest = callPackage ../development/python-modules/losant-rest { };
 
@@ -10312,6 +10318,8 @@ self: super: with self; {
   netbox-attachments = callPackage ../development/python-modules/netbox-attachments { };
 
   netbox-bgp = callPackage ../development/python-modules/netbox-bgp { };
+
+  netbox-contextmenus = callPackage ../development/python-modules/netbox-contextmenus { };
 
   netbox-contract = callPackage ../development/python-modules/netbox-contract { };
 
@@ -13318,6 +13326,8 @@ self: super: with self; {
 
   pylutron-caseta = callPackage ../development/python-modules/pylutron-caseta { };
 
+  pyluwen = callPackage ../development/python-modules/pyluwen { };
+
   pylxd = callPackage ../development/python-modules/pylxd { };
 
   pylyrics = callPackage ../development/python-modules/pylyrics { };
@@ -13591,6 +13601,8 @@ self: super: with self; {
   pyosf = callPackage ../development/python-modules/pyosf { };
 
   pyosmium = callPackage ../development/python-modules/pyosmium { inherit (pkgs) lz4; };
+
+  pyosoenergyapi = callPackage ../development/python-modules/pyosoenergyapi { };
 
   pyosohotwaterapi = callPackage ../development/python-modules/pyosohotwaterapi { };
 
@@ -17062,8 +17074,6 @@ self: super: with self; {
 
   sparse = callPackage ../development/python-modules/sparse { };
 
-  sparsezoo = callPackage ../development/python-modules/sparsezoo { };
-
   spatial-image = callPackage ../development/python-modules/spatial-image { };
 
   spatialmath-python = callPackage ../development/python-modules/spatialmath-python { };
@@ -17797,6 +17807,8 @@ self: super: with self; {
       python3Packages = self;
     }
   );
+
+  syne-tune = callPackage ../development/python-modules/syne-tune { };
 
   synergy = callPackage ../development/python-modules/synergy { };
 
@@ -18534,6 +18546,7 @@ self: super: with self; {
         lib.filterAttrs (
           name: value:
           !(builtins.elem name [
+            "tree-sitter-go-template"
             "tree-sitter-sql"
             "tree-sitter-templ"
           ])
@@ -18648,6 +18661,10 @@ self: super: with self; {
   tskit = callPackage ../development/python-modules/tskit { };
 
   tsplib95 = callPackage ../development/python-modules/tsplib95 { };
+
+  tt-flash = callPackage ../development/python-modules/tt-flash { };
+
+  tt-tools-common = callPackage ../development/python-modules/tt-tools-common { };
 
   ttach = callPackage ../development/python-modules/ttach { };
 
