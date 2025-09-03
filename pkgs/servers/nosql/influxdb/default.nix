@@ -29,7 +29,7 @@ let
     # Don't fail on missing code documentation
     postPatch = ''
       substituteInPlace flux-core/src/lib.rs \
-        --replace-fail "deny(warnings, missing_docs))]" "deny(warnings))]"
+        --replace-fail "deny(warnings, missing_docs))]" "allow(warnings))]"
     '';
     sourceRoot = "${src.name}/libflux";
 
