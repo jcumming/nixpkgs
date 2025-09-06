@@ -44,8 +44,8 @@
       # so users choosing to allow don't have to rebuild them every time.
       permittedInsecurePackages = [
         "olm-3.2.16" # see PR #347899
-        "kanidm_1_5-1.5.0"
-        "kanidmWithSecretProvisioning_1_5-1.5.0"
+        "kanidm_1_6-1.6.4"
+        "kanidmWithSecretProvisioning_1_6-1.6.4"
       ];
     };
 
@@ -57,12 +57,10 @@
   # resulting tree of attributes to *not* have a ".${system}"
   # suffixed upon every job name like Hydra expects.
   #
-  # This flag exists mainly for use by
-  # pkgs/top-level/release-attrnames-superset.nix; see that file for
-  # full details.  The exact behavior of this flag may change; it
-  # should be considered an internal implementation detail of
-  # pkgs/top-level/.
-  #
+  # This flag exists mainly for use by ci/eval/attrpaths.nix; see
+  # that file for full details.  The exact behavior of this flag
+  # may change; it should be considered an internal implementation
+  # detail of ci/eval.
   attrNamesOnly ? false,
 }:
 

@@ -6070,6 +6070,14 @@
     name = "Dee Engan";
     keys = [ { fingerprint = "9C24 79F5 F0CE 48F4 00EE  4A5B B8ED 46EB 468B F72D"; } ];
   };
+  deej-io = {
+    email = "me@deej.io";
+    github = "deej-io";
+    githubId = 7419862;
+    name = "Daniel Rollins";
+    matrix = "@deej-io:matrix.org";
+    keys = [ { fingerprint = "A0BE BED3 A3A0 7127 1411 6234 6830 B0AE 30DD 38DB"; } ];
+  };
   deejayem = {
     email = "nixpkgs.bu5hq@simplelogin.com";
     github = "deejayem";
@@ -15279,6 +15287,11 @@
     github = "M0NsTeRRR";
     githubId = 37785089;
   };
+  m0ustache3 = {
+    name = "M0ustach3";
+    github = "M0ustach3";
+    githubId = 37956764;
+  };
   m1cr0man = {
     email = "lucas+nix@m1cr0man.com";
     github = "m1cr0man";
@@ -16234,6 +16247,12 @@
     name = "Colton J. McCurdy";
     keys = [ { fingerprint = "D709 03C8 0BE9 ACDC 14F0  3BFB 77BF E531 397E DE94"; } ];
   };
+  mcjocobe = {
+    email = "josecolomerbel@gmail.com";
+    github = "mcjocobe";
+    githubId = 94081214;
+    name = "Jose Colomer";
+  };
   mcmtroffaes = {
     email = "matthias.troffaes@gmail.com";
     github = "mcmtroffaes";
@@ -16635,12 +16654,6 @@
     github = "michaelpj";
     githubId = 1699466;
     name = "Michael Peyton Jones";
-  };
-  michaelshmitty = {
-    name = "Michael Smith";
-    email = "shmitty@protonmail.com";
-    github = "michaelshmitty";
-    githubId = 114845;
   };
   michaelvanstraten = {
     name = "Michael van Straten";
@@ -20421,6 +20434,12 @@
     name = "Kevin Mullins";
     keys = [ { fingerprint = "2CD2 B030 BD22 32EF DF5A  008A 3618 20A4 5DB4 1E9A"; } ];
   };
+  podium868909 = {
+    email = "89096245@proton.me";
+    github = "podium868909";
+    githubId = 150333826;
+    name = "podium868909";
+  };
   podocarp = {
     email = "xdjiaxd@gmail.com";
     github = "podocarp";
@@ -21324,6 +21343,13 @@
     github = "raspher";
     githubId = 23345803;
     name = "Szymon Scholz";
+  };
+  ratakor = {
+    name = "Ratakor";
+    github = "ratakor";
+    githubId = 45130910;
+    email = "ratakor@disroot.org";
+    keys = [ { fingerprint = "B60F 8F80 D6CD C5D2 58CF  14C3 241B 1CBE 567B 287E"; } ];
   };
   ratcornu = {
     email = "ratcornu+programmation@skaven.org";

@@ -3,7 +3,6 @@
   stdenv,
   fetchFromGitHub,
   fetchPypi,
-  fetchpatch,
   node-gyp,
   nodejs_20,
   nixosTests,
@@ -29,13 +28,13 @@
   xorg,
 }:
 let
-  version = "2.18.2";
+  version = "2.18.3";
 
   src = fetchFromGitHub {
     owner = "paperless-ngx";
     repo = "paperless-ngx";
     tag = "v${version}";
-    hash = "sha256-JaDeOiubu9VE8E/u2K9BS7GLNSTqXTcX926WhPMGd64=";
+    hash = "sha256-rr1QfTNutKO+DwEQmltxdtjuk07mT0unlYo3SMq6oEs=";
   };
 
   python = python3.override {
@@ -169,6 +168,7 @@ python.pkgs.buildPythonApplication rec {
 
   pythonRelaxDeps = [
     "django-allauth"
+    "filelock"
     "rapidfuzz"
     "redis"
   ];
@@ -315,6 +315,10 @@ python.pkgs.buildPythonApplication rec {
     export HOME=$(mktemp -d)
     export XDG_DATA_DIRS="${liberation_ttf}/share:$XDG_DATA_DIRS"
     export PAPERLESS_NLTK_DIR=${passthru.nltkDataDir}
+    # Limit threads per worker based on NIX_BUILD_CORES, capped at 256
+    # ocrmypdf has an internal limit of 256 jobs and will fail with more:
+    # https://github.com/ocrmypdf/OCRmyPDF/blob/66308c281306302fac3470f587814c3b212d0c40/src/ocrmypdf/cli.py#L234
+    export PAPERLESS_THREADS_PER_WORKER=$(( NIX_BUILD_CORES > 256 ? 256 : NIX_BUILD_CORES ))
   '';
 
   disabledTests = [
