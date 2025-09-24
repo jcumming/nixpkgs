@@ -29,17 +29,17 @@ let
 in
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "deno";
-  version = "2.5.0";
+  version = "2.5.1";
 
   src = fetchFromGitHub {
     owner = "denoland";
     repo = "deno";
     tag = "v${finalAttrs.version}";
     fetchSubmodules = true; # required for tests
-    hash = "sha256-N5TDKQKgmVCUevjJKIXJYje3bIBPXKLX53kQP7DdSUA=";
+    hash = "sha256-W0wQ4SXIAxIBjjk2z3sNTJjAYdY73dDaiPWDeUVWo/w=";
   };
 
-  cargoHash = "sha256-oGkM9kvPM3HU8SGj7Hpe6xcy5dzjGxEyKjck68CpeBA=";
+  cargoHash = "sha256-5votu/4MUusRvlZc4+vZQ/wbcI0XSZ8qkq5JaMGJHB8=";
 
   patches = [
     # Patch out the remote upgrade (deno update) check.
@@ -57,16 +57,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   postPatch = ''
     # Use patched nixpkgs libffi in order to fix https://github.com/libffi/libffi/pull/857
     tomlq -ti '.workspace.dependencies.libffi = { "version": .workspace.dependencies.libffi, "features": ["system"] }' Cargo.toml
-  ''
-  +
-    lib.optionalString
-      (stdenv.hostPlatform.isLinux || (stdenv.hostPlatform.isDarwin && stdenv.hostPlatform.isx86_64))
-      ''
-        # LTO crashes with the latest Rust + LLVM combination.
-        # https://github.com/rust-lang/rust/issues/141737
-        # TODO: remove this once LLVM is upgraded to 20.1.7
-        tomlq -ti '.profile.release.lto = false' Cargo.toml
-      '';
+  '';
 
   buildInputs = [
     libffi

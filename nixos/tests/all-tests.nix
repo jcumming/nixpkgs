@@ -190,6 +190,7 @@ in
   activation-etc-overlay-mutable = runTest ./activation/etc-overlay-mutable.nix;
   activation-lib = pkgs.callPackage ../modules/system/activation/lib/test.nix { };
   activation-nix-channel = runTest ./activation/nix-channel.nix;
+  activation-nixos-init = runTest ./activation/nixos-init.nix;
   activation-perlless = runTest ./activation/perlless.nix;
   activation-var = runTest ./activation/var.nix;
   actual = runTest ./actual.nix;
@@ -254,6 +255,7 @@ in
   ayatana-indicators = runTest ./ayatana-indicators.nix;
   babeld = runTest ./babeld.nix;
   bazarr = runTest ./bazarr.nix;
+  bcache = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./bcache.nix;
   bcachefs = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./bcachefs.nix;
   beanstalkd = runTest ./beanstalkd.nix;
   bees = runTest ./bees.nix;
@@ -1141,9 +1143,9 @@ in
   pam-u2f = runTest ./pam/pam-u2f.nix;
   pam-ussh = runTest ./pam/pam-ussh.nix;
   pam-zfs-key = runTest ./pam/zfs-key.nix;
+  pangolin = runTest ./pangolin.nix;
   pantalaimon = runTest ./matrix/pantalaimon.nix;
   pantheon = runTest ./pantheon.nix;
-  pantheon-wayland = runTest ./pantheon-wayland.nix;
   paperless = runTest ./paperless.nix;
   paretosecurity = runTest ./paretosecurity.nix;
   parsedmarc = handleTest ./parsedmarc { };
@@ -1390,7 +1392,10 @@ in
   sudo-rs = runTest ./sudo-rs.nix;
   sunshine = runTest ./sunshine.nix;
   suricata = runTest ./suricata.nix;
-  suwayomi-server = handleTest ./suwayomi-server.nix { };
+  suwayomi-server = import ./suwayomi-server.nix {
+    inherit runTest;
+    lib = pkgs.lib;
+  };
   swap-file-btrfs = runTest ./swap-file-btrfs.nix;
   swap-partition = runTest ./swap-partition.nix;
   swap-random-encryption = runTest ./swap-random-encryption.nix;
@@ -1413,6 +1418,7 @@ in
   systemd-binfmt = handleTestOn [ "x86_64-linux" ] ./systemd-binfmt.nix { };
   systemd-boot = handleTest ./systemd-boot.nix { };
   systemd-bpf = runTest ./systemd-bpf.nix;
+  systemd-capsules = runTest ./systemd-capsules.nix;
   systemd-confinement = handleTest ./systemd-confinement { };
   systemd-coredump = runTest ./systemd-coredump.nix;
   systemd-credentials-tpm2 = runTest ./systemd-credentials-tpm2.nix;
