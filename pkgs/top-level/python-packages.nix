@@ -124,6 +124,8 @@ self: super: with self; {
 
   affine = callPackage ../development/python-modules/affine { };
 
+  affine-gaps = callPackage ../development/python-modules/affine-gaps { };
+
   afsapi = callPackage ../development/python-modules/afsapi { };
 
   agate = callPackage ../development/python-modules/agate { };
@@ -1406,6 +1408,8 @@ self: super: with self; {
 
   azure-mgmt-databoxedge = callPackage ../development/python-modules/azure-mgmt-databoxedge { };
 
+  azure-mgmt-databricks = callPackage ../development/python-modules/azure-mgmt-databricks { };
+
   azure-mgmt-datafactory = callPackage ../development/python-modules/azure-mgmt-datafactory { };
 
   azure-mgmt-datalake-analytics =
@@ -2250,6 +2254,8 @@ self: super: with self; {
 
   bundlewrap-teamvault = callPackage ../development/python-modules/bundlewrap-teamvault { };
 
+  busylight-core = callPackage ../development/python-modules/busylight-core { };
+
   busylight-for-humans = callPackage ../development/python-modules/busylight-for-humans { };
 
   busypie = callPackage ../development/python-modules/busypie { };
@@ -2393,6 +2399,8 @@ self: super: with self; {
       python3Packages = self;
     };
   };
+
+  catkin-pkg = callPackage ../development/python-modules/catkin-pkg { };
 
   catppuccin = callPackage ../development/python-modules/catppuccin { };
 
@@ -2881,7 +2889,11 @@ self: super: with self; {
 
   colout = callPackage ../development/python-modules/colout { };
 
+  comet-ml = callPackage ../development/python-modules/comet-ml { };
+
   cometblue-lite = callPackage ../development/python-modules/cometblue-lite { };
+
+  cometx = callPackage ../development/python-modules/cometx { };
 
   comicapi = callPackage ../development/python-modules/comicapi { };
 
@@ -4856,6 +4868,8 @@ self: super: with self; {
   eventlet = callPackage ../development/python-modules/eventlet { };
 
   events = callPackage ../development/python-modules/events { };
+
+  everett = callPackage ../development/python-modules/everett { };
 
   evohome-async = callPackage ../development/python-modules/evohome-async { };
 
@@ -6894,6 +6908,8 @@ self: super: with self; {
 
   i3ipc = callPackage ../development/python-modules/i3ipc { };
 
+  iamdata = callPackage ../development/python-modules/iamdata { };
+
   iammeter = callPackage ../development/python-modules/iammeter { };
 
   iapws = callPackage ../development/python-modules/iapws { };
@@ -7256,6 +7272,8 @@ self: super: with self; {
   irctokens = callPackage ../development/python-modules/irctokens { };
 
   irisclient = callPackage ../development/python-modules/irisclient { };
+
+  irm-kmi-api = callPackage ../development/python-modules/irm-kmi-api { };
 
   isal = callPackage ../development/python-modules/isal { };
 
@@ -11585,6 +11603,8 @@ self: super: with self; {
 
   peacasso = callPackage ../development/python-modules/peacasso { };
 
+  peakutils = callPackage ../development/python-modules/peakutils { };
+
   peaqevcore = callPackage ../development/python-modules/peaqevcore { };
 
   pebble = callPackage ../development/python-modules/pebble { };
@@ -11844,10 +11864,7 @@ self: super: with self; {
 
   piqp = callPackage ../development/python-modules/piqp { };
 
-  pivy = callPackage ../development/python-modules/pivy {
-    inherit (pkgs.qt5) qtbase qmake;
-    inherit (pkgs.libsForQt5) soqt;
-  };
+  pivy = callPackage ../development/python-modules/pivy { };
 
   pixcat = callPackage ../development/python-modules/pixcat { };
 
@@ -11856,6 +11873,8 @@ self: super: with self; {
   pixel-font-knife = callPackage ../development/python-modules/pixel-font-knife { };
 
   pixel-ring = callPackage ../development/python-modules/pixel-ring { };
+
+  pixelmatch = callPackage ../development/python-modules/pixelmatch { };
 
   pizzapi = callPackage ../development/python-modules/pizzapi { };
 
@@ -12431,6 +12450,8 @@ self: super: with self; {
   py-evm = callPackage ../development/python-modules/py-evm { };
 
   py-expression-eval = callPackage ../development/python-modules/py-expression-eval { };
+
+  py-iam-expand = callPackage ../development/python-modules/py-iam-expand { };
 
   py-improv-ble-client = callPackage ../development/python-modules/py-improv-ble-client { };
 
@@ -13794,6 +13815,8 @@ self: super: with self; {
   pypoolstation = callPackage ../development/python-modules/pypoolstation { };
 
   pyporscheconnectapi = callPackage ../development/python-modules/pyporscheconnectapi { };
+
+  pyportainer = callPackage ../development/python-modules/pyportainer { };
 
   pyppeteer = callPackage ../development/python-modules/pyppeteer { };
 
@@ -17553,6 +17576,8 @@ self: super: with self; {
 
   ssort = callPackage ../development/python-modules/ssort { };
 
+  sss = callPackage ../development/python-modules/sss { };
+
   st-pages = callPackage ../development/python-modules/st-pages { };
 
   stable-baselines3 = callPackage ../development/python-modules/stable-baselines3 { };
@@ -17619,6 +17644,8 @@ self: super: with self; {
   starlingbank = callPackage ../development/python-modules/starlingbank { };
 
   starlink-grpc-core = callPackage ../development/python-modules/starlink-grpc-core { };
+
+  starsessions = callPackage ../development/python-modules/starsessions { };
 
   stashy = callPackage ../development/python-modules/stashy { };
 
@@ -18384,6 +18411,8 @@ self: super: with self; {
   timing-asgi = callPackage ../development/python-modules/timing-asgi { };
 
   timm = callPackage ../development/python-modules/timm { };
+
+  timple = callPackage ../development/python-modules/timple { };
 
   timy = callPackage ../development/python-modules/timy { };
 

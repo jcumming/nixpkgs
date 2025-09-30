@@ -337,7 +337,6 @@
   ./programs/vivid.nix
   ./programs/vscode.nix
   ./programs/wavemon.nix
-  ./programs/wayland/cardboard.nix
   ./programs/wayland/dwl.nix
   ./programs/wayland/gtklock.nix
   ./programs/wayland/hyprland.nix
@@ -541,6 +540,7 @@
   ./services/databases/tigerbeetle.nix
   ./services/databases/victorialogs.nix
   ./services/databases/victoriametrics.nix
+  ./services/databases/victoriatraces.nix
   ./services/desktops/accountsservice.nix
   ./services/desktops/ayatana-indicators.nix
   ./services/desktops/bamf.nix
@@ -1236,7 +1236,6 @@
   ./services/networking/mmsd.nix
   ./services/networking/modemmanager.nix
   ./services/networking/monero.nix
-  ./services/networking/morty.nix
   ./services/networking/mosquitto.nix
   ./services/networking/mozillavpn.nix
   ./services/networking/mptcpd.nix
@@ -1501,6 +1500,7 @@
   ./services/system/localtimed.nix
   ./services/system/nix-daemon.nix
   ./services/system/nscd.nix
+  ./services/system/nvme-rs.nix
   ./services/system/saslauthd.nix
   ./services/system/self-deploy.nix
   ./services/system/swapspace.nix
