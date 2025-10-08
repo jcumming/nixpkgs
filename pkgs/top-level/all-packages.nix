@@ -1703,7 +1703,6 @@ with pkgs;
   };
 
   plausible = callPackage ../by-name/pl/plausible/package.nix {
-    elixir = elixir_1_18;
     beamPackages = beamPackages.extend (self: super: { elixir = elixir_1_18; });
   };
 
@@ -2184,7 +2183,6 @@ with pkgs;
   mkspiffs-presets = recurseIntoAttrs (callPackages ../tools/filesystems/mkspiffs/presets.nix { });
 
   mobilizon = callPackage ../servers/mobilizon {
-    elixir = beam.packages.erlang_26.elixir_1_15;
     beamPackages = beam.packages.erlang_26.extend (self: super: { elixir = self.elixir_1_15; });
     mobilizon-frontend = callPackage ../servers/mobilizon/frontend.nix { };
   };
@@ -3831,7 +3829,6 @@ with pkgs;
   tautulli = python3Packages.callPackage ../servers/tautulli { };
 
   pleroma = callPackage ../servers/pleroma {
-    elixir = elixir_1_17;
     beamPackages = beam.packages.erlang_26.extend (self: super: { elixir = elixir_1_17; });
   };
 
@@ -5748,7 +5745,6 @@ with pkgs;
   inherit (beam.packages.erlang_26.beamPackages)
     elixir_1_16
     elixir_1_15
-    elixir_1_14
     ;
 
   inherit (beam.packages.erlang)
@@ -5760,7 +5756,6 @@ with pkgs;
     rebar3WithPlugins
     fetchHex
     lfe
-    lfe_2_1
     ;
 
   beamPackages = dontRecurseIntoAttrs beam27Packages;
@@ -9834,9 +9829,8 @@ with pkgs;
 
   qremotecontrol-server = libsForQt5.callPackage ../servers/misc/qremotecontrol-server { };
 
-  rabbitmq-server = callPackage ../by-name/ra/rabbitmq-server/package.nix rec {
-    erlang = erlang_27;
-    elixir = elixir_1_17.override { inherit erlang; };
+  rabbitmq-server = callPackage ../by-name/ra/rabbitmq-server/package.nix {
+    beamPackages = beam27Packages.extend (self: super: { elixir = elixir_1_17; });
   };
 
   rethinkdb = callPackage ../servers/nosql/rethinkdb {

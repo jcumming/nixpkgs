@@ -659632,7 +659632,7 @@ self: {
       hydraPlatforms = lib.platforms.none;
       broken = true;
     }
-  ) { inherit (pkgs) libtcod; };
+  ) { libtcod = null; };
 
   tconfig = callPackage (
     {
