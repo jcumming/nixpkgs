@@ -2251,10 +2251,6 @@ with pkgs;
 
   patool = with python3Packages; toPythonApplication patool;
 
-  pocket-casts = callPackage ../by-name/po/pocket-casts/package.nix {
-    electron = electron_35;
-  };
-
   pixcat = with python3Packages; toPythonApplication pixcat;
 
   pyznap = python3Packages.callPackage ../tools/backup/pyznap { };
@@ -2368,7 +2364,7 @@ with pkgs;
   };
 
   beetsPackages = lib.recurseIntoAttrs (callPackage ../tools/audio/beets { });
-  inherit (beetsPackages) beets beets-unstable;
+  inherit (beetsPackages) beets;
 
   binlore = callPackage ../development/tools/analysis/binlore { };
 
@@ -3626,7 +3622,7 @@ with pkgs;
     toPythonApplication (
       nvchecker.overridePythonAttrs (oldAttrs: {
         propagatedBuildInputs =
-          oldAttrs.propagatedBuildInputs ++ lib.flatten (builtins.attrValues oldAttrs.optional-dependencies);
+          oldAttrs.dependencies ++ lib.flatten (builtins.attrValues oldAttrs.optional-dependencies);
       })
     );
 
@@ -4552,9 +4548,6 @@ with pkgs;
     inherit (llvmPackages) lld stdenv;
   };
 
-  colmap = libsForQt5.callPackage ../applications/science/misc/colmap {
-    inherit (config) cudaSupport;
-  };
   colmapWithCuda = colmap.override { cudaSupport = true; };
 
   opensplatWithCuda = opensplat.override { cudaSupport = true; };
@@ -5818,7 +5811,12 @@ with pkgs;
     xeus-cling
     ;
 
-  clojure = callPackage ../development/interpreters/clojure { };
+  clojure = callPackage ../development/interpreters/clojure {
+    # set this to an LTS version of java
+    # Be careful if you remove this, out-of-tree consumers expect to
+    # be able to override `jdk`.
+    jdk = jdk21;
+  };
 
   clooj = callPackage ../development/interpreters/clojure/clooj.nix { };
 
@@ -5866,7 +5864,6 @@ with pkgs;
     ;
 
   inherit (beam.packages.erlang)
-    erlang-ls
     ex_doc
     erlfmt
     elvis-erlang
@@ -6023,16 +6020,6 @@ with pkgs;
   };
   php82Extensions = recurseIntoAttrs php82.extensions;
   php82Packages = recurseIntoAttrs php82.packages;
-
-  # Import PHP81 interpreter, extensions and packages
-  php81 = callPackage ../development/interpreters/php/8.1.nix {
-    stdenv = if stdenv.cc.isClang then llvmPackages.stdenv else stdenv;
-    pcre2 = pcre2.override {
-      withJitSealloc = false; # See https://bugs.php.net/bug.php?id=78927 and https://bugs.php.net/bug.php?id=78630
-    };
-  };
-  php81Extensions = recurseIntoAttrs php81.extensions;
-  php81Packages = recurseIntoAttrs php81.packages;
 
   polyml = callPackage ../development/compilers/polyml { };
   polyml56 = callPackage ../development/compilers/polyml/5.6.nix { };
@@ -7308,7 +7295,6 @@ with pkgs;
   # Multi-arch "drivers" which we want to build for i686.
   driversi686Linux = recurseIntoAttrs {
     inherit (pkgsi686Linux)
-      amdvlk
       intel-media-driver
       intel-vaapi-driver
       mesa
@@ -8234,7 +8220,7 @@ with pkgs;
         py
       ];
       # Avoid update.nix/tests conflicts with libxml2.
-      passthru = builtins.removeAttrs libxml2.passthru [
+      passthru = removeAttrs libxml2.passthru [
         "updateScript"
         "tests"
       ];
@@ -8703,10 +8689,6 @@ with pkgs;
     nodejs = nodejs_22;
   };
 
-  qradiolink = callPackage ../applications/radio/qradiolink {
-    protobuf = protobuf_21;
-  };
-
   qadwaitadecorations-qt6 = callPackage ../by-name/qa/qadwaitadecorations/package.nix {
     useQt6 = true;
   };
@@ -8718,8 +8700,6 @@ with pkgs;
   };
 
   reposilitePlugins = recurseIntoAttrs (callPackage ../by-name/re/reposilite/plugins.nix { });
-
-  rhino = callPackage ../development/libraries/java/rhino { };
 
   rocksdb_9_10 = rocksdb.overrideAttrs rec {
     pname = "rocksdb";
@@ -10319,12 +10299,6 @@ with pkgs;
   linux-rt = linuxPackages-rt.kernel;
   linux-rt_latest = linuxPackages-rt_latest.kernel;
 
-  # GNU Linux-libre kernels
-  linuxPackages-libre = linuxKernel.packages.linux_libre;
-  linux-libre = linuxPackages-libre.kernel;
-  linuxPackages_latest-libre = linuxKernel.packages.linux_latest_libre;
-  linux_latest-libre = linuxPackages_latest-libre.kernel;
-
   # zen-kernel
   linuxPackages_zen = linuxKernel.packages.linux_zen;
   linux_zen = linuxPackages_zen.kernel;
@@ -11617,8 +11591,6 @@ with pkgs;
 
   huggle = libsForQt5.callPackage ../applications/misc/huggle { };
 
-  hushboard = python3.pkgs.callPackage ../applications/audio/hushboard { };
-
   hyperion-ng = libsForQt5.callPackage ../applications/video/hyperion-ng { };
 
   jackline = callPackage ../applications/networking/instant-messengers/jackline {
@@ -12327,8 +12299,6 @@ with pkgs;
   obs-studio-plugins = recurseIntoAttrs (callPackage ../applications/video/obs-studio/plugins { });
   wrapOBS = callPackage ../applications/video/obs-studio/wrapper.nix { };
 
-  omegat = callPackage ../applications/misc/omegat.nix { };
-
   openambit = qt5.callPackage ../applications/misc/openambit { };
 
   openbox-menu = callPackage ../applications/misc/openbox-menu {
@@ -12437,10 +12407,6 @@ with pkgs;
   pokefinder = qt6Packages.callPackage ../tools/games/pokefinder { };
 
   pothos = libsForQt5.callPackage ../applications/radio/pothos { };
-
-  qiv = callPackage ../applications/graphics/qiv {
-    imlib2 = imlib2Full;
-  };
 
   # perhaps there are better apps for this task? It's how I had configured my previous system.
   # And I don't want to rewrite all rules
@@ -12617,6 +12583,8 @@ with pkgs;
   retroshare = libsForQt5.callPackage ../applications/networking/p2p/retroshare { };
 
   rgp = libsForQt5.callPackage ../development/tools/rgp { };
+
+  ringboard-wayland = callPackage ../by-name/ri/ringboard/package.nix { displayServer = "wayland"; };
 
   ripcord =
     if stdenv.hostPlatform.isLinux then
@@ -12875,9 +12843,6 @@ with pkgs;
 
   thunderbird-esr-unwrapped = thunderbirdPackages.thunderbird-esr;
   thunderbird-esr = wrapThunderbird thunderbird-esr-unwrapped { };
-
-  thunderbird-128-unwrapped = thunderbirdPackages.thunderbird-128;
-  thunderbird-128 = wrapThunderbird thunderbirdPackages.thunderbird-128 { };
 
   thunderbird-140-unwrapped = thunderbirdPackages.thunderbird-140;
   thunderbird-140 = wrapThunderbird thunderbirdPackages.thunderbird-140 { };
@@ -13933,18 +13898,6 @@ with pkgs;
 
   warsow = callPackage ../games/warsow { };
 
-  wesnoth = callPackage ../games/wesnoth {
-    boost = boost186;
-    # wesnoth requires lua built with c++, see https://github.com/wesnoth/wesnoth/pull/8234
-    lua = lua5_4.override {
-      postConfigure = ''
-        makeFlagsArray+=("CC=$CXX")
-      '';
-    };
-  };
-
-  wesnoth-dev = wesnoth;
-
   inherit (callPackage ../games/xonotic { })
     xonotic-data
     xonotic
@@ -14679,8 +14632,6 @@ with pkgs;
 
   openlilylib-fonts = callPackage ../misc/lilypond/fonts.nix { };
 
-  meilisearch_1_11 = callPackage ../by-name/me/meilisearch/package.nix { version = "1.11.3"; };
-
   muse = libsForQt5.callPackage ../applications/audio/muse { };
 
   nixDependencies = recurseIntoAttrs (
@@ -15063,30 +15014,12 @@ with pkgs;
 
   httraqt = libsForQt5.callPackage ../tools/backup/httrack/qt.nix { };
 
-  # Overriding does not work when using callPackage on discord using import instead. (https://github.com/NixOS/nixpkgs/pull/179906)
-  discord = import ../applications/networking/instant-messengers/discord {
-    inherit lib stdenv;
-    inherit (pkgs) callPackage fetchurl;
-    branch = "stable";
-  };
-
-  discord-ptb = import ../applications/networking/instant-messengers/discord {
-    inherit lib stdenv;
-    inherit (pkgs) callPackage fetchurl;
-    branch = "ptb";
-  };
-
-  discord-canary = import ../applications/networking/instant-messengers/discord {
-    inherit lib stdenv;
-    inherit (pkgs) callPackage fetchurl;
-    branch = "canary";
-  };
-
-  discord-development = import ../applications/networking/instant-messengers/discord {
-    inherit lib stdenv;
-    inherit (pkgs) callPackage fetchurl;
-    branch = "development";
-  };
+  inherit (callPackage ../applications/networking/instant-messengers/discord { })
+    discord
+    discord-ptb
+    discord-canary
+    discord-development
+    ;
 
   discord-screenaudio =
     qt6Packages.callPackage ../applications/networking/instant-messengers/discord-screenaudio

@@ -7827,8 +7827,6 @@ self: super: with self; {
     callPackage ../development/python-modules/keyrings-google-artifactregistry-auth
       { };
 
-  keyrings-passwordstore = callPackage ../development/python-modules/keyrings-passwordstore { };
-
   keystone-engine = callPackage ../development/python-modules/keystone-engine { };
 
   keystoneauth1 = callPackage ../development/python-modules/keystoneauth1 { };
@@ -8904,8 +8902,6 @@ self: super: with self; {
 
   macholib = callPackage ../development/python-modules/macholib { };
 
-  macropy = callPackage ../development/python-modules/macropy { };
-
   maec = callPackage ../development/python-modules/maec { };
 
   maestral = callPackage ../development/python-modules/maestral { };
@@ -9615,6 +9611,8 @@ self: super: with self; {
   molecule-plugins = callPackage ../development/python-modules/molecule/plugins.nix { };
 
   momepy = callPackage ../development/python-modules/momepy { };
+
+  momonga = callPackage ../development/python-modules/momonga { };
 
   monai = callPackage ../development/python-modules/monai { };
 
@@ -11204,8 +11202,6 @@ self: super: with self; {
   ordered-set = callPackage ../development/python-modules/ordered-set { };
 
   orderedmultidict = callPackage ../development/python-modules/orderedmultidict { };
-
-  orderedset = callPackage ../development/python-modules/orderedset { };
 
   orderly-set = callPackage ../development/python-modules/orderly-set { };
 
@@ -16772,6 +16768,8 @@ self: super: with self; {
 
   sigstore = callPackage ../development/python-modules/sigstore { };
 
+  sigstore-models = callPackage ../development/python-modules/sigstore-models { };
+
   sigstore-protobuf-specs = callPackage ../development/python-modules/sigstore-protobuf-specs { };
 
   sigstore-rekor-types = callPackage ../development/python-modules/sigstore-rekor-types { };
@@ -17036,6 +17034,10 @@ self: super: with self; {
 
   snakemake-interface-report-plugins =
     callPackage ../development/python-modules/snakemake-interface-report-plugins
+      { };
+
+  snakemake-interface-scheduler-plugins =
+    callPackage ../development/python-modules/snakemake-interface-scheduler-plugins
       { };
 
   snakemake-interface-storage-plugins =
@@ -17804,8 +17806,6 @@ self: super: with self; {
   subunit = callPackage ../development/python-modules/subunit {
     inherit (pkgs) subunit cppunit check;
   };
-
-  subunit2sql = callPackage ../development/python-modules/subunit2sql { };
 
   subzerod = callPackage ../development/python-modules/subzerod { };
 

@@ -745,11 +745,11 @@ in
   installer-systemd-stage-1 = handleTest ./installer-systemd-stage-1.nix { };
   intune = runTest ./intune.nix;
   invidious = runTest ./invidious.nix;
-  invoiceplane = runTest ./invoiceplane.nix;
   iodine = runTest ./iodine.nix;
   iosched = runTest ./iosched.nix;
   ipget = runTest ./ipget.nix;
   ipv6 = runTest ./ipv6.nix;
+  irqbalance = runTest ./irqbalance.nix;
   iscsi-multipath-root = runTest ./iscsi-multipath-root.nix;
   iscsi-root = runTest ./iscsi-root.nix;
   isolate = runTest ./isolate.nix;
@@ -1172,10 +1172,6 @@ in
     inherit runTest;
     php = pkgs.php;
   };
-  php81 = import ./php/default.nix {
-    inherit runTest;
-    php = pkgs.php81;
-  };
   php82 = import ./php/default.nix {
     inherit runTest;
     php = pkgs.php82;
@@ -1217,7 +1213,6 @@ in
     handleTest ./postfix-raise-smtpd-tls-security-level.nix
       { };
   postfix-tlspol = runTest ./postfix-tlspol.nix;
-  postfixadmin = runTest ./postfixadmin.nix;
   postgres-websockets = runTest ./postgres-websockets.nix;
   postgresql = handleTest ./postgresql { };
   postgrest = runTest ./postgrest.nix;
@@ -1301,6 +1296,7 @@ in
   restic = runTest ./restic.nix;
   restic-rest-server = runTest ./restic-rest-server.nix;
   retroarch = runTest ./retroarch.nix;
+  ringboard = runTest ./ringboard.nix;
   rke2 = handleTestOn [ "aarch64-linux" "x86_64-linux" ] ./rke2 { };
   rkvm = handleTest ./rkvm { };
   rmfakecloud = runTest ./rmfakecloud.nix;
@@ -1407,18 +1403,22 @@ in
   switchTest = runTest ./switch-test.nix;
   sx = runTest ./sx.nix;
   sympa = runTest ./sympa.nix;
-  syncthing = runTest ./syncthing.nix;
-  syncthing-folders = runTest ./syncthing-folders.nix;
-  syncthing-init = runTest ./syncthing-init.nix;
-  syncthing-many-devices = runTest ./syncthing-many-devices.nix;
-  syncthing-no-settings = runTest ./syncthing-no-settings.nix;
-  syncthing-relay = runTest ./syncthing-relay.nix;
+  syncthing = runTest ./syncthing/main.nix;
+  syncthing-folders = runTest ./syncthing/folders.nix;
+  syncthing-guiPassword = runTest ./syncthing/guiPassword.nix;
+  syncthing-guiPasswordFile = runTest ./syncthing/guiPasswordFile.nix;
+  syncthing-init = runTest ./syncthing/init.nix;
+  # FIXME: Test has been failing since 2025-07-06:
+  # https://github.com/NixOS/nixpkgs/issues/447674
+  # syncthing-many-devices = runTest ./syncthing/many-devices.nix;
+  syncthing-no-settings = runTest ./syncthing/no-settings.nix;
+  syncthing-relay = runTest ./syncthing/relay.nix;
   sysfs = runTest ./sysfs.nix;
   sysinit-reactivation = runTest ./sysinit-reactivation.nix;
   systemd = runTest ./systemd.nix;
   systemd-analyze = runTest ./systemd-analyze.nix;
   systemd-binfmt = handleTestOn [ "x86_64-linux" ] ./systemd-binfmt.nix { };
-  systemd-boot = handleTest ./systemd-boot.nix { };
+  systemd-boot = import ./systemd-boot.nix { inherit runTest runTestOn; };
   systemd-bpf = runTest ./systemd-bpf.nix;
   systemd-capsules = runTest ./systemd-capsules.nix;
   systemd-confinement = handleTest ./systemd-confinement { };
@@ -1461,6 +1461,7 @@ in
   systemd-machinectl = runTest ./systemd-machinectl.nix;
   systemd-misc = runTest ./systemd-misc.nix;
   systemd-networkd = runTest ./systemd-networkd.nix;
+  systemd-networkd-batadv = runTest ./systemd-networkd-batadv.nix;
   systemd-networkd-bridge = runTest ./systemd-networkd-bridge.nix;
   systemd-networkd-dhcpserver = runTest ./systemd-networkd-dhcpserver.nix;
   systemd-networkd-dhcpserver-static-leases = runTest ./systemd-networkd-dhcpserver-static-leases.nix;
