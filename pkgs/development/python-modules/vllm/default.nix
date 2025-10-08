@@ -115,8 +115,8 @@ let
     src = fetchFromGitHub {
       owner = "vllm-project";
       repo = "FlashMLA";
-      rev = "a757314c04eedd166e329e846c820eb1bdd702de";
-      hash = "sha256-KT9R6ju7XzgqKHPGQwzw0yNiKL3DNW6qJrEBvmLn4hY=";
+      rev = "5f65b85703c7ed75fda01e06495077caad207c3f";
+      hash = "sha256-DO9EFNSoAgyfRRc095v1UjT+Zdzk4cFY0+n28FVEwI0=";
     };
 
     dontConfigure = true;
@@ -167,7 +167,7 @@ let
       rm -rf csrc/cutlass
       ln -sf ${cutlass} csrc/cutlass
     ''
-    + lib.optionalString (rocmSupport) ''
+    + lib.optionalString rocmSupport ''
       rm -rf csrc/composable_kernel;
       ln -sf ${rocmPackages.composable_kernel} csrc/composable_kernel
     '';
@@ -200,16 +200,19 @@ let
         "8.9"
         "9.0"
         "9.0a"
-        "10.0"
-        "10.0a"
-        "10.1"
-        "10.1a"
-        "10.3"
-        "10.3a"
-        "12.0"
-        "12.0a"
-        "12.1"
-        "12.1a"
+        # Blackwell (SM100+) capabilities temporarily disabled due to CUTLASS API incompatibility
+        # FlashMLA kernels require CUTLASS v4.2.1+ APIs not available in bundled v4.0.0
+        # TODO: Re-enable when vLLM upgrades CUTLASS (see https://github.com/vllm-project/vllm/pull/24673)
+        # "10.0"
+        # "10.0a"
+        # "10.1"
+        # "10.1a"
+        # "10.3"
+        # "10.3a"
+        # "12.0"
+        # "12.0a"
+        # "12.1"
+        # "12.1a"
       ];
       ptx = lists.map (x: "${x}+PTX") real;
     in
@@ -271,7 +274,7 @@ in
 
 buildPythonPackage rec {
   pname = "vllm";
-  version = "0.10.2";
+  version = "0.11.0";
   pyproject = true;
 
   stdenv = torch.stdenv;
@@ -280,7 +283,7 @@ buildPythonPackage rec {
     owner = "vllm-project";
     repo = "vllm";
     tag = "v${version}";
-    hash = "sha256-m9P4cxxdAToGKKIyTQdFupG3vZ3sEueMMxjugYfjKbo=";
+    hash = "sha256-uYK/e9McEyrDTACMk5S0cGCjai9rf6HMR9dpPL7ISYc=";
   };
 
   patches = [
