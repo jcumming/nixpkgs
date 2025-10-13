@@ -159675,7 +159675,6 @@ self: {
       ];
       description = "Concurrent PostgreSQL data consumers";
       license = lib.licenses.bsd3;
-      hydraPlatforms = lib.platforms.none;
     }
   ) { };
 
@@ -159713,7 +159712,6 @@ self: {
       ];
       description = "Prometheus metrics for the consumers library";
       license = lib.licenses.bsd3;
-      hydraPlatforms = lib.platforms.none;
     }
   ) { };
 
@@ -342693,8 +342691,6 @@ self: {
       ];
       description = "Haskell bindings to libpqtypes";
       license = lib.licenses.bsd3;
-      hydraPlatforms = lib.platforms.none;
-      broken = true;
     }
   ) { inherit (pkgs) libpq; };
 
@@ -342732,7 +342728,6 @@ self: {
       ];
       description = "Adaptation of the hpqtypes library for the effectful ecosystem";
       license = lib.licenses.bsd3;
-      hydraPlatforms = lib.platforms.none;
     }
   ) { };
 
@@ -342795,7 +342790,6 @@ self: {
       ];
       description = "Extra utilities for hpqtypes library";
       license = lib.licenses.bsd3;
-      hydraPlatforms = lib.platforms.none;
     }
   ) { };
 
@@ -426174,7 +426168,6 @@ self: {
       ];
       description = "Structured logging solution with multiple backends";
       license = lib.licenses.bsd3;
-      hydraPlatforms = lib.platforms.none;
     }
   ) { };
 
@@ -426471,7 +426464,6 @@ self: {
       ];
       description = "Structured logging solution (PostgreSQL back end)";
       license = lib.licenses.bsd3;
-      hydraPlatforms = lib.platforms.none;
     }
   ) { };
 
