@@ -66,6 +66,7 @@
   ./hardware/decklink.nix
   ./hardware/device-tree.nix
   ./hardware/digitalbitbox.nix
+  ./hardware/facter
   ./hardware/flipperzero.nix
   ./hardware/flirc.nix
   ./hardware/fw-fanctrl.nix
@@ -239,6 +240,7 @@
   ./programs/iay.nix
   ./programs/iftop.nix
   ./programs/iio-hyprland.nix
+  ./programs/iio-niri.nix
   ./programs/immersed.nix
   ./programs/iotop.nix
   ./programs/java.nix
@@ -351,6 +353,7 @@
   ./programs/wayland/uwsm.nix
   ./programs/wayland/waybar.nix
   ./programs/wayland/wayfire.nix
+  ./programs/wayland/wayvnc.nix
   ./programs/weylus.nix
   ./programs/winbox.nix
   ./programs/wireshark.nix
@@ -396,7 +399,6 @@
   ./security/pam_mount.nix
   ./security/please.nix
   ./security/polkit.nix
-  ./security/rngd.nix
   ./security/rtkit.nix
   ./security/soteria.nix
   ./security/sudo-rs.nix
@@ -598,7 +600,6 @@
   ./services/development/livebook.nix
   ./services/development/lorri.nix
   ./services/development/nixseparatedebuginfod2.nix
-  ./services/development/nixseparatedebuginfod.nix
   ./services/development/rstudio-server/default.nix
   ./services/development/vsmartcard-vpcd.nix
   ./services/development/zammad.nix
@@ -972,6 +973,8 @@
   ./services/monitoring/apcupsd.nix
   ./services/monitoring/arbtt.nix
   ./services/monitoring/below.nix
+  ./services/monitoring/beszel-agent.nix
+  ./services/monitoring/beszel-hub.nix
   ./services/monitoring/bosun.nix
   ./services/monitoring/cadvisor.nix
   ./services/monitoring/certspotter.nix
@@ -1053,6 +1056,7 @@
   ./services/monitoring/zabbix-agent.nix
   ./services/monitoring/zabbix-proxy.nix
   ./services/monitoring/zabbix-server.nix
+  ./services/network-filesystems/a2boot.nix
   ./services/network-filesystems/cachefilesd.nix
   ./services/network-filesystems/ceph.nix
   ./services/network-filesystems/davfs2.nix
@@ -1294,6 +1298,7 @@
   ./services/networking/openconnect.nix
   ./services/networking/opengfw.nix
   ./services/networking/openvpn.nix
+  ./services/networking/opkssh/opkssh.nix
   ./services/networking/ostinato.nix
   ./services/networking/owamp.nix
   ./services/networking/pangolin.nix
@@ -1584,7 +1589,6 @@
   ./services/web-apps/fediwall.nix
   ./services/web-apps/fider.nix
   ./services/web-apps/filebrowser.nix
-  ./services/web-apps/filesender.nix
   ./services/web-apps/firefly-iii-data-importer.nix
   ./services/web-apps/firefly-iii.nix
   ./services/web-apps/flarum.nix
@@ -1632,6 +1636,7 @@
   ./services/web-apps/lasuite-docs.nix
   ./services/web-apps/lasuite-meet.nix
   ./services/web-apps/lemmy.nix
+  ./services/web-apps/librespeed.nix
   ./services/web-apps/libretranslate.nix
   ./services/web-apps/limesurvey.nix
   ./services/web-apps/linkwarden.nix
@@ -1669,6 +1674,7 @@
   ./services/web-apps/openvscode-server.nix
   ./services/web-apps/openwebrx.nix
   ./services/web-apps/outline.nix
+  ./services/web-apps/pairdrop.nix
   ./services/web-apps/part-db.nix
   ./services/web-apps/peering-manager.nix
   ./services/web-apps/peertube-runner.nix
@@ -1700,7 +1706,6 @@
   ./services/web-apps/shiori.nix
   ./services/web-apps/sillytavern.nix
   ./services/web-apps/silverbullet.nix
-  ./services/web-apps/simplesamlphp.nix
   ./services/web-apps/slskd.nix
   ./services/web-apps/snipe-it.nix
   ./services/web-apps/snips-sh.nix

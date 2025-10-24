@@ -73,6 +73,13 @@ buildPythonPackage rec {
     "test_convert_time_zone_to_connection_tz_pyspark"
     "test_replace_time_zone_to_connection_tz_pyspark"
     "test_lazy"
+    # Incompatible with ibis 11
+    "test_unique_3069"
+    # DuckDB 1.4.x compatibility - empty result schema handling with PyArrow
+    "test_skew_expr"
+    # ibis improvements cause strict XPASS failures (tests expected to fail now pass)
+    "test_empty_scalar_reduction_with_columns"
+    "test_collect_empty"
   ];
 
   pytestFlags = [

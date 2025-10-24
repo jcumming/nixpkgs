@@ -142305,6 +142305,7 @@ self: {
       testToolDepends = [ hspec-discover ];
       description = "CSS preprocessor as embedded Haskell";
       license = lib.licenses.bsd3;
+      maintainers = [ lib.maintainers.turion ];
     }
   ) { };
 
@@ -265218,7 +265219,7 @@ self: {
       license = lib.licenses.lgpl21Only;
       hydraPlatforms = lib.platforms.none;
     }
-  ) { inherit (pkgs) webkitgtk_4_0; };
+  ) { webkitgtk_4_0 = null; };
 
   gi-javascriptcore6 = callPackage (
     {
@@ -266170,7 +266171,7 @@ self: {
       badPlatforms = lib.platforms.darwin;
       hydraPlatforms = lib.platforms.none;
     }
-  ) { inherit (pkgs) webkitgtk_4_0; };
+  ) { webkitgtk_4_0 = null; };
 
   gi-webkit2webextension = callPackage (
     {
@@ -266230,7 +266231,7 @@ self: {
       hydraPlatforms = lib.platforms.none;
       broken = true;
     }
-  ) { inherit (pkgs) webkitgtk_4_0; };
+  ) { webkitgtk_4_0 = null; };
 
   gi-webkitwebprocessextension = callPackage (
     {
@@ -400804,7 +400805,10 @@ self: {
       description = "Advanced keyboard remapping utility";
       license = lib.licenses.mit;
       mainProgram = "kmonad";
-      maintainers = [ lib.maintainers.slotThe ];
+      maintainers = [
+        lib.maintainers.auscyber
+        lib.maintainers.slotThe
+      ];
     }
   ) { };
 
@@ -437629,8 +437633,6 @@ self: {
       ];
       description = "Fast and extensible bytestring builder";
       license = lib.licenses.bsd3;
-      hydraPlatforms = lib.platforms.none;
-      broken = true;
     }
   ) { };
 
@@ -490319,6 +490321,7 @@ self: {
       description = "OpenAPI3 Haskell Client Code Generator";
       license = lib.licenses.mit;
       mainProgram = "openapi3-code-generator-exe";
+      maintainers = [ lib.maintainers.turion ];
     }
   ) { };
 
@@ -672191,7 +672194,7 @@ self: {
       )
       {
         inherit (pkgs) gtk3;
-        inherit (pkgs) webkitgtk_4_0;
+        webkitgtk_4_0 = null;
       };
 
   tibetan-utils = callPackage (
@@ -719612,7 +719615,7 @@ self: {
       badPlatforms = lib.platforms.darwin;
       hydraPlatforms = lib.platforms.none;
     }
-  ) { inherit (pkgs) webkitgtk_4_0; };
+  ) { webkitgtk_4_0 = null; };
 
   webkitgtk3 = callPackage (
     {
