@@ -18,12 +18,6 @@ let
   cfg = config.services.miniflux;
 
   boolToInt = b: if b then 1 else 0;
-
-  pgbin = "${config.services.postgresql.package}/bin";
-  preStart = pkgs.writeScript "miniflux-pre-start" ''
-    #!${pkgs.runtimeShell}
-    ${pgbin}/psql "miniflux" -c "CREATE EXTENSION IF NOT EXISTS hstore"
-  '';
 in
 
 {
@@ -39,7 +33,7 @@ in
         description = ''
           Whether a PostgreSQL database should be automatically created and
           configured on the local host. If set to `false`, you need provision a
-          database yourself and make sure to create the hstore extension in it.
+          database yourself.
         '';
       };
 
@@ -139,7 +133,9 @@ in
       serviceConfig = {
         Type = "oneshot";
         User = config.services.postgresql.superUser;
-        ExecStart = preStart;
+        # The hstore extension is no longer needed as of v2.2.14
+        # and would prevent Miniflux from starting.
+        ExecStart = ''${config.services.postgresql.package}/bin/psql "miniflux" -c "DROP EXTENSION IF EXISTS hstore"'';
       };
     };
 

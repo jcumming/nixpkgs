@@ -3,22 +3,19 @@
   buildPythonPackage,
   fetchPypi,
   setuptools,
-  pythonOlder,
   types-awscrt,
   typing-extensions,
 }:
 
 buildPythonPackage rec {
   pname = "botocore-stubs";
-  version = "1.40.56";
+  version = "1.40.61";
   pyproject = true;
-
-  disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     pname = "botocore_stubs";
     inherit version;
-    hash = "sha256-qpU1uKD3E1sGJQTjnny8g/s/ALLU3CurphcENrSUtpY=";
+    hash = "sha256-wgjZBmYT1pkMyj623Tovy+8e8CNo5d9nAcXjVzVSf+Q=";
   };
 
   nativeBuildInputs = [ setuptools ];

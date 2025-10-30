@@ -203,7 +203,9 @@ in
   adguardhome = runTest ./adguardhome.nix;
   aesmd = runTestOn [ "x86_64-linux" ] ./aesmd.nix;
   agate = runTest ./web-servers/agate.nix;
-  agda = runTest ./agda.nix;
+  agda = import ./agda {
+    inherit runTest;
+  };
   age-plugin-tpm-decrypt = runTest ./age-plugin-tpm-decrypt.nix;
   agnos = discoverTests (import ./agnos.nix);
   agorakit = runTest ./web-apps/agorakit.nix;
@@ -450,6 +452,7 @@ in
   devpi-server = runTest ./devpi-server.nix;
   dex-oidc = runTest ./dex-oidc.nix;
   dhparams = runTest ./dhparams.nix;
+  dictd = runTest ./dictd.nix;
   disable-installer-tools = runTest ./disable-installer-tools.nix;
   discourse = runTest {
     imports = [ ./discourse.nix ];
@@ -516,8 +519,7 @@ in
   ergochat = runTest ./ergochat.nix;
   esphome = runTest ./esphome.nix;
   etc = pkgs.callPackage ../modules/system/etc/test.nix { inherit evalMinimalConfig; };
-  etcd = runTestOn [ "aarch64-linux" "x86_64-linux" ] ./etcd/etcd.nix;
-  etcd-cluster = runTestOn [ "aarch64-linux" "x86_64-linux" ] ./etcd/etcd-cluster.nix;
+  etcd = import ./etcd/default.nix { inherit pkgs runTest; };
   etebase-server = runTest ./etebase-server.nix;
   etesync-dav = runTest ./etesync-dav.nix;
   evcc = runTest ./evcc.nix;
@@ -733,6 +735,7 @@ in
   immich = runTest ./web-apps/immich.nix;
   immich-public-proxy = runTest ./web-apps/immich-public-proxy.nix;
   immich-vectorchord-migration = runTest ./web-apps/immich-vectorchord-migration.nix;
+  immich-vectorchord-reindex = runTest ./web-apps/immich-vectorchord-reindex.nix;
   incron = runTest ./incron.nix;
   incus = pkgs.recurseIntoAttrs (
     handleTest ./incus {
@@ -855,6 +858,7 @@ in
   localsend = runTest ./localsend.nix;
   locate = runTest ./locate.nix;
   login = runTest ./login.nix;
+  logkeys = runTest ./logkeys.nix;
   logrotate = runTest ./logrotate.nix;
   loki = runTest ./loki.nix;
   #logstash = handleTest ./logstash.nix {};
@@ -955,6 +959,7 @@ in
   mtp = runTest ./mtp.nix;
   multipass = runTest ./multipass.nix;
   mumble = runTest ./mumble.nix;
+  munge = runTest ./munge.nix;
   munin = runTest ./munin.nix;
   # Fails on aarch64-linux at the PDF creation step - need to debug this on an
   # aarch64 machine..
@@ -1069,7 +1074,6 @@ in
     _module.args.withNg = true;
   };
   nixpkgs = pkgs.callPackage ../modules/misc/nixpkgs/test.nix { inherit evalMinimalConfig; };
-  nixseparatedebuginfod = runTest ./nixseparatedebuginfod.nix;
   nixseparatedebuginfod2 = runTest ./nixseparatedebuginfod2.nix;
   node-red = runTest ./node-red.nix;
   nomad = runTest ./nomad.nix;
@@ -1323,6 +1327,7 @@ in
   rss-bridge = handleTest ./web-apps/rss-bridge { };
   rss2email = handleTest ./rss2email.nix { };
   rstudio-server = runTest ./rstudio-server.nix;
+  rsync = runTest ./rsync.nix;
   rsyncd = runTest ./rsyncd.nix;
   rsyslogd = handleTest ./rsyslogd.nix { };
   rtkit = runTest ./rtkit.nix;
@@ -1361,6 +1366,7 @@ in
   silverbullet = runTest ./silverbullet.nix;
   simple = runTest ./simple.nix;
   sing-box = runTest ./sing-box.nix;
+  sks = runTest ./sks.nix;
   slimserver = runTest ./slimserver.nix;
   slipshow = runTest ./slipshow.nix;
   slurm = runTest ./slurm.nix;
@@ -1386,8 +1392,8 @@ in
   ssh-audit = runTest ./ssh-audit.nix;
   sshwifty = runTest ./web-apps/sshwifty/default.nix;
   sslh = handleTest ./sslh.nix { };
-  sssd = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./sssd.nix { };
   sssd-ldap = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./sssd-ldap.nix { };
+  sssd-legacy-config = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./sssd-legacy-config.nix { };
   stalwart-mail = runTest ./stalwart/stalwart-mail.nix;
   stargazer = runTest ./web-servers/stargazer.nix;
   starship = runTest ./starship.nix;
@@ -1407,6 +1413,7 @@ in
     inherit runTest;
     lib = pkgs.lib;
   };
+  svnserve = runTest ./svnserve.nix;
   swap-file-btrfs = runTest ./swap-file-btrfs.nix;
   swap-partition = runTest ./swap-partition.nix;
   swap-random-encryption = runTest ./swap-random-encryption.nix;
@@ -1610,6 +1617,7 @@ in
   vsftpd = runTest ./vsftpd.nix;
   waagent = runTest ./waagent.nix;
   wakapi = runTest ./wakapi.nix;
+  warpgate = runTest ./warpgate.nix;
   warzone2100 = runTest ./warzone2100.nix;
   wasabibackend = runTest ./wasabibackend.nix;
   wastebin = runTest ./wastebin.nix;
