@@ -2,15 +2,12 @@
 {
   # Packages that provide multiple executables where one is clearly the `mainProgram`.
   "@antfu/ni" = "ni";
-  "@electron-forge/cli" = "electron-forge";
   "@microsoft/rush" = "rush";
   "@webassemblyjs/cli-1.11.1" = "wasm2wast";
 
   # Packages that provide a single executable.
   "@angular/cli" = "ng";
-  "@babel/cli" = "babel";
   "@commitlint/cli" = "commitlint";
-  "@uppy/companion" = "companion";
   "@webassemblyjs/repl-1.11.1" = "wasm";
   "@webassemblyjs/wasm-strip" = "wasm-strip";
   "@webassemblyjs/wasm-text-gen-1.11.1" = "wasmgen";
