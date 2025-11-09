@@ -1202,8 +1202,6 @@ with pkgs;
 
   cgit-pink = callPackage ../applications/version-management/cgit/pink.nix { };
 
-  commitlint = nodePackages."@commitlint/cli";
-
   datalad = with python3Packages; toPythonApplication datalad;
 
   datalad-gooey = with python3Packages; toPythonApplication datalad-gooey;
@@ -1650,6 +1648,8 @@ with pkgs;
   gistyc = with python3Packages; toPythonApplication gistyc;
 
   glances = python3Packages.callPackage ../applications/system/glances { };
+
+  glm_1_0_1 = callPackage ../by-name/gl/glm/1_0_1.nix { };
 
   go2tv-lite = go2tv.override { withGui = false; };
 
@@ -2730,8 +2730,6 @@ with pkgs;
 
   fluentd = callPackage ../tools/misc/fluentd { };
 
-  gemstash = callPackage ../development/tools/gemstash { };
-
   lp_solve = callPackage ../applications/science/math/lp_solve {
     inherit (darwin) autoSignDarwinBinariesHook;
   };
@@ -3655,10 +3653,6 @@ with pkgs;
     llvm = llvm_19;
   };
 
-  ossec-agent = callPackage ../tools/security/ossec/agent.nix { };
-
-  ossec-server = callPackage ../tools/security/ossec/server.nix { };
-
   p4c = callPackage ../development/compilers/p4c {
     protobuf = protobuf_21;
   };
@@ -3984,8 +3978,6 @@ with pkgs;
     openssl = openssl.override { withZlib = true; };
   };
 
-  stacer = libsForQt5.callPackage ../tools/system/stacer { };
-
   staticjinja = with python3.pkgs; toPythonApplication staticjinja;
 
   stoken = callPackage ../tools/security/stoken (config.stoken or { });
@@ -4009,8 +4001,6 @@ with pkgs;
   privoxy = callPackage ../tools/networking/privoxy {
     w3m = w3m-batch;
   };
-
-  systemdgenie = libsForQt5.callPackage ../applications/system/systemdgenie { };
 
   tartube = callPackage ../applications/video/tartube { };
 
@@ -4136,14 +4126,7 @@ with pkgs;
     inherit (perlPackages) Po4a;
   };
 
-  webassemblyjs-cli = nodePackages."@webassemblyjs/cli-1.11.1";
-  webassemblyjs-repl = nodePackages."@webassemblyjs/repl-1.11.1";
-
   buildWasmBindgenCli = callPackage ../build-support/wasm-bindgen-cli { };
-
-  wasm-strip = nodePackages."@webassemblyjs/wasm-strip";
-  wasm-text-gen = nodePackages."@webassemblyjs/wasm-text-gen-1.11.1";
-  wast-refmt = nodePackages."@webassemblyjs/wast-refmt-1.11.1";
 
   wasmedge = callPackage ../development/tools/wasmedge {
     stdenv = clangStdenv;
@@ -4230,8 +4213,6 @@ with pkgs;
   wio = callPackage ../by-name/wi/wio/package.nix {
     wlroots = wlroots_0_19;
   };
-
-  wring = nodePackages.wring;
 
   wyrd = callPackage ../tools/misc/wyrd {
     ocamlPackages = ocaml-ng.ocamlPackages_4_14;
@@ -6055,7 +6036,8 @@ with pkgs;
   ansible_2_18 = python3Packages.toPythonApplication (
     python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
       version = "2.18.8";
-      src = oldAttrs.src.override {
+      src = fetchPypi {
+        pname = "ansible_core";
         inherit version;
         hash = "sha256-sHZiFalqR845kz0n4emWyivrVM8bOQfHQtNckTsfeM0=";
       };
@@ -6064,7 +6046,8 @@ with pkgs;
   ansible_2_17 = python3Packages.toPythonApplication (
     python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
       version = "2.17.8";
-      src = oldAttrs.src.override {
+      src = fetchPypi {
+        pname = "ansible_core";
         inherit version;
         hash = "sha256-Ob6KeYaix9NgabDZciC8L2eDxl/qfG1+Di0A0ayK+Hc=";
       };
@@ -6073,7 +6056,8 @@ with pkgs;
   ansible_2_16 = python3Packages.toPythonApplication (
     python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
       version = "2.16.14";
-      src = oldAttrs.src.override {
+      src = fetchPypi {
+        pname = "ansible_core";
         inherit version;
         hash = "sha256-gCef/9mGhrrfqjLh7HhdmKbfGy/B5Al97AWXZA10ZBU=";
       };
@@ -6403,8 +6387,6 @@ with pkgs;
   creduce = callPackage ../development/tools/misc/creduce {
     inherit (llvmPackages_18) llvm libclang;
   };
-
-  inherit (nodePackages) csslint;
 
   css-html-js-minify = with python3Packages; toPythonApplication css-html-js-minify;
 
@@ -8961,14 +8943,6 @@ with pkgs;
       "3000"
     ];
   };
-  sbcl_2_4_10 = wrapLisp {
-    pkg = callPackage ../development/compilers/sbcl { version = "2.4.10"; };
-    faslExt = "fasl";
-    flags = [
-      "--dynamic-space-size"
-      "3000"
-    ];
-  };
   sbcl_2_5_5 = wrapLisp {
     pkg = callPackage ../development/compilers/sbcl { version = "2.5.5"; };
     faslExt = "fasl";
@@ -9702,7 +9676,7 @@ with pkgs;
   qremotecontrol-server = libsForQt5.callPackage ../servers/misc/qremotecontrol-server { };
 
   rabbitmq-server = callPackage ../by-name/ra/rabbitmq-server/package.nix {
-    beamPackages = beam27Packages.extend (self: super: { elixir = elixir_1_17; });
+    beamPackages = beam27Packages.extend (self: super: { elixir = elixir_1_18; });
   };
 
   rethinkdb = callPackage ../servers/nosql/rethinkdb {
@@ -10359,9 +10333,6 @@ with pkgs;
 
   inherit
     ({
-      zfs_2_2 = callPackage ../os-specific/linux/zfs/2_2.nix {
-        configFile = "user";
-      };
       zfs_2_3 = callPackage ../os-specific/linux/zfs/2_3.nix {
         configFile = "user";
       };
@@ -10369,7 +10340,6 @@ with pkgs;
         configFile = "user";
       };
     })
-    zfs_2_2
     zfs_2_3
     zfs_unstable
     ;
@@ -10957,8 +10927,6 @@ with pkgs;
     sqlite = sqlite.override { enableDeserialize = true; };
   };
 
-  fritzing = qt6Packages.callPackage ../applications/science/electronics/fritzing { };
-
   fvwm = fvwm2;
 
   gaucheBootstrap = callPackage ../development/interpreters/gauche/boot.nix { };
@@ -11225,7 +11193,7 @@ with pkgs;
   graphicsmagick_q16 = graphicsmagick.override { quantumdepth = 16; };
   graphicsmagick-imagemagick-compat = graphicsmagick.imagemagick-compat;
 
-  q4wine = libsForQt5.callPackage ../applications/misc/q4wine { };
+  q4wine = kdePackages.callPackage ../applications/misc/q4wine { };
 
   googleearth-pro = libsForQt5.callPackage ../applications/misc/googleearth-pro { };
 
@@ -11669,8 +11637,6 @@ with pkgs;
     VoiceOfFaust = callPackage ../applications/audio/magnetophonDSP/VoiceOfFaust { };
     shelfMultiBand = callPackage ../applications/audio/magnetophonDSP/shelfMultiBand { };
   };
-
-  mastodon-bot = nodePackages.mastodon-bot;
 
   matrix-commander =
     python3Packages.callPackage ../applications/networking/instant-messengers/matrix-commander
@@ -12272,11 +12238,9 @@ with pkgs;
 
   inherit (ocaml-ng.ocamlPackages) stog;
 
-  # Stumpwm is broken on SBCL 2.4.11, see
-  # https://github.com/NixOS/nixpkgs/pull/360320
   stumpwm = callPackage ../applications/window-managers/stumpwm {
     stdenv = stdenvNoCC;
-    sbcl = sbcl_2_4_10.withPackages (
+    sbcl = sbcl.withPackages (
       ps: with ps; [
         alexandria
         cl-ppcre
@@ -12286,7 +12250,7 @@ with pkgs;
     );
   };
 
-  stumpwm-unwrapped = sbcl_2_4_10.pkgs.stumpwm;
+  stumpwm-unwrapped = sbcl.pkgs.stumpwm;
 
   sublime3Packages = recurseIntoAttrs (
     callPackage ../applications/editors/sublime/3/packages.nix { }
@@ -13142,8 +13106,6 @@ with pkgs;
     pythonSupport = true;
   };
 
-  leela-zero = libsForQt5.callPackage ../games/leela-zero { };
-
   liquidwar = callPackage ../games/liquidwar {
     guile = guile_2_0;
   };
@@ -13790,8 +13752,6 @@ with pkgs;
   simulide_1_2_0 = callPackage ../by-name/si/simulide/package.nix { versionNum = "1.2.0"; };
 
   eagle = libsForQt5.callPackage ../applications/science/electronics/eagle/eagle.nix { };
-
-  caneda = libsForQt5.callPackage ../applications/science/electronics/caneda { };
 
   degate = libsForQt5.callPackage ../applications/science/electronics/degate { };
 
@@ -14529,5 +14489,9 @@ with pkgs;
 
   davis = callPackage ../by-name/da/davis/package.nix {
     php = php83; # https://github.com/tchapi/davis/issues/195
+  };
+
+  gpac-unstable = callPackage ../by-name/gp/gpac/package.nix {
+    releaseChannel = "unstable";
   };
 }
