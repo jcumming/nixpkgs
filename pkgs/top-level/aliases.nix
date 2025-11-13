@@ -516,6 +516,7 @@ mapAliases {
   duckstation-bin = duckstation; # Added 2025-09-20
   dumb = throw "'dumb' has been archived by upstream. Upstream recommends libopenmpt as a replacement."; # Added 2025-09-14
   dump1090 = throw "'dump1090' has been renamed to/replaced by 'dump1090-fa'"; # Converted to throw 2025-10-27
+  dune_1 = throw "'dune_1' has been removed"; # Added 2025-11-13
   eask = throw "'eask' has been renamed to/replaced by 'eask-cli'"; # Converted to throw 2025-10-27
   easyloggingpp = throw "easyloggingpp has been removed, as it is deprecated upstream and does not build with CMake 4"; # Added 2025-09-17
   EBTKS = throw "'EBTKS' has been renamed to/replaced by 'ebtks'"; # Converted to throw 2025-10-27
@@ -1078,6 +1079,7 @@ mapAliases {
   nats-streaming-server = throw "'nats-streaming-server' has been removed as critical bug fixes and security fixes will no longer be performed as of June of 2023"; # added 2025-10-13
   ncdu_2 = throw "'ncdu_2' has been renamed to/replaced by 'ncdu'"; # Converted to throw 2025-10-27
   neardal = throw "neardal has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-29
+  nekoray = lib.warnOnInstantiate "nekoray has been renamed to throne" throne; # Added 2025-11-10
   neocities-cli = throw "'neocities-cli' has been renamed to/replaced by 'neocities'"; # Converted to throw 2025-10-27
   netbox_4_1 = throw "netbox 4.1 series has been removed as it was EOL"; # Added 2025-10-14
   netbsdCross = throw "'netbsdCross' has been renamed to/replaced by 'netbsd'"; # Converted to throw 2025-10-27

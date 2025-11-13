@@ -45,13 +45,13 @@
     "vendorHash": "sha256-2dGMtSLIiBuhZt4XmcBGfkghU4kCsMsiRFWKMbdmSB8="
   },
   "aliyun_alicloud": {
-    "hash": "sha256-4dj49kVEPPFfd8N86L5czVOpdCkE4H7OKnIzZY8pMv4=",
+    "hash": "sha256-+Nh5SJxdpGUYv0EljfvDvOMqMwWscPk4EXvfkNBvjkI=",
     "homepage": "https://registry.terraform.io/providers/aliyun/alicloud",
     "owner": "aliyun",
     "repo": "terraform-provider-alicloud",
-    "rev": "v1.262.0",
+    "rev": "v1.262.1",
     "spdx": "MPL-2.0",
-    "vendorHash": "sha256-GvnQrgczdnxpWCq8/vHcpcKeYf8v+GU/edx2CgPA/40="
+    "vendorHash": "sha256-LSvX63g4GWcr2Uo6H50dOWG0XWUhmbhUw9EYsQqs+HU="
   },
   "aminueza_minio": {
     "hash": "sha256-ey2+vFfa1sTc87XRSlEoV0OjuEVqs3fqZ+U+uwyKzZk=",
@@ -741,11 +741,11 @@
     "vendorHash": null
   },
   "integrations_github": {
-    "hash": "sha256-Xicv5L4DnSoIs4vCXDVawHzxKI7PzTfdBZ4+0jzg1uc=",
+    "hash": "sha256-LNjHD4TFJiO8CMl3B891bxNss6b85iwOEHemlbRiSBU=",
     "homepage": "https://registry.terraform.io/providers/integrations/github",
     "owner": "integrations",
     "repo": "terraform-provider-github",
-    "rev": "v6.7.5",
+    "rev": "v6.8.0",
     "spdx": "MIT",
     "vendorHash": null
   },
@@ -1228,11 +1228,11 @@
     "vendorHash": "sha256-skswuFKhN4FFpIunbom9rM/FVRJVOFb1WwHeAIaEjn8="
   },
   "spacelift-io_spacelift": {
-    "hash": "sha256-lmg7PUwcX1NwuyBEGcZZJbRhpUT9eVUQAf740gk9aAU=",
+    "hash": "sha256-d26HPdufp8HgZSMA/wkEMtwXUOXSRgFd7+wqRc3V0OI=",
     "homepage": "https://registry.terraform.io/providers/spacelift-io/spacelift",
     "owner": "spacelift-io",
     "repo": "terraform-provider-spacelift",
-    "rev": "v1.35.1",
+    "rev": "v1.37.0",
     "spdx": "MIT",
     "vendorHash": "sha256-cX5K221Jnq701Nb+2bC1LmXVL7YvkZ8dkc2wYjDNOSw="
   },
