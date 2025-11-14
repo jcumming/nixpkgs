@@ -5634,7 +5634,7 @@
     email = "nix@theriault.codes";
     github = "Dan-Theriault";
     githubId = 13945563;
-    matrix = "@dan:matrix.org";
+    matrix = "@Dan:matrix.org";
     name = "Daniel Theriault";
   };
   danbst = {
@@ -8836,11 +8836,6 @@
     github = "Freed-Wu";
     githubId = 32936898;
     name = "Wu Zhenyu";
-  };
-  freezeboy = {
-    github = "freezeboy";
-    githubId = 13279982;
-    name = "freezeboy";
   };
   frenetic00 = {
     github = "frenetic00";
@@ -22729,6 +22724,12 @@
     email = "i@rudolfvesely.com";
     github = "rudolfvesely";
     githubId = 13966949;
+  };
+  ruiiiijiiiiang = {
+    name = "Rui Jiang";
+    email = "me@ruijiang.me";
+    github = "ruiiiijiiiiang";
+    githubId = 911199;
   };
   Ruixi-rebirth = {
     name = "Ruixi-rebirth";
