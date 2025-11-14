@@ -69,15 +69,6 @@ let
         };
       };
     };
-
-  testRndcKey = pkgs.writeTextFile {
-    name = "testrndc.key";
-    text = ''
-      key "rndc-key" {
-        algorithm ${bindRndcMacType};
-        secret "0123456789abcdefghijklmnopqrstuvw=";
-      };
-    '';
   };
 
   confFile =
@@ -92,11 +83,6 @@ let
           '';
     in
     pkgs.writeText "named.conf" ''
-      include "${testRndcKey}";
-      controls {
-        inet 127.0.0.1 allow {localhost;} keys {"rndc-key";};
-      };
-
       options {
         listen-on { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.listenOn} };
         listen-on-v6 { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.listenOnIpv6} };
