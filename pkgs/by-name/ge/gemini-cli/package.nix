@@ -13,16 +13,16 @@
 
 buildNpmPackage (finalAttrs: {
   pname = "gemini-cli";
-  version = "0.13.0";
+  version = "0.16.0";
 
   src = fetchFromGitHub {
     owner = "google-gemini";
     repo = "gemini-cli";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-Y6RIFF65uzgeOKU03wibEeLtUub1iG52tljM+rHDZbg=";
+    hash = "sha256-EOiG7Ov+tY6UPci4A67kKcCItkTrrENOm1mSaWxKE94=";
   };
 
-  npmDepsHash = "sha256-6YhbPj+gbSi/OvyH+dFxkTD4qVj+/7TiMQuP7f1aZYE=";
+  npmDepsHash = "sha256-JvzrbyiJHbKNRHoGll7eSH4dD6Hj5qnrh4F/upHPntI=";
 
   nativeBuildInputs = [
     jq
@@ -46,6 +46,9 @@ buildNpmPackage (finalAttrs: {
 
     # Remove node-pty dependency from packages/core/package.json
     ${jq}/bin/jq 'del(.optionalDependencies."node-pty")' packages/core/package.json > packages/core/package.json.tmp && mv packages/core/package.json.tmp packages/core/package.json
+
+    # Get rid of auto-update
+    sed -i '/disableAutoUpdate: {/,/}/ s/default: false/default: true/' packages/cli/src/config/settingsSchema.ts
   '';
 
   installPhase = ''
