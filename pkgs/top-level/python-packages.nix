@@ -2211,7 +2211,9 @@ self: super: with self; {
 
   brother-ql = callPackage ../development/python-modules/brother-ql { };
 
-  brotli = callPackage ../development/python-modules/brotli { };
+  brotli = callPackage ../development/python-modules/brotli {
+    inherit (pkgs) brotli;
+  };
 
   brotli-asgi = callPackage ../development/python-modules/brotli-asgi { };
 
@@ -3516,6 +3518,8 @@ self: super: with self; {
   datrie = callPackage ../development/python-modules/datrie { };
 
   dawg-python = callPackage ../development/python-modules/dawg-python { };
+
+  dawg2-python = callPackage ../development/python-modules/dawg2-python { };
 
   dazl = callPackage ../development/python-modules/dazl { };
 
@@ -8083,6 +8087,8 @@ self: super: with self; {
 
   langchain-chroma = callPackage ../development/python-modules/langchain-chroma { };
 
+  langchain-classic = callPackage ../development/python-modules/langchain-classic { };
+
   langchain-community = callPackage ../development/python-modules/langchain-community { };
 
   langchain-core = callPackage ../development/python-modules/langchain-core { };
@@ -8125,6 +8131,10 @@ self: super: with self; {
 
   langgraph-checkpoint = callPackage ../development/python-modules/langgraph-checkpoint { };
 
+  langgraph-checkpoint-mongodb =
+    callPackage ../development/python-modules/langgraph-checkpoint-mongodb
+      { };
+
   langgraph-checkpoint-postgres =
     callPackage ../development/python-modules/langgraph-checkpoint-postgres
       { };
@@ -8140,6 +8150,8 @@ self: super: with self; {
   langgraph-runtime-inmem = callPackage ../development/python-modules/langgraph-runtime-inmem { };
 
   langgraph-sdk = callPackage ../development/python-modules/langgraph-sdk { };
+
+  langgraph-store-mongodb = callPackage ../development/python-modules/langgraph-store-mongodb { };
 
   langid = callPackage ../development/python-modules/langid { };
 
@@ -9720,6 +9732,10 @@ self: super: with self; {
   model-bakery = callPackage ../development/python-modules/model-bakery { };
 
   model-checker = callPackage ../development/python-modules/model-checker { };
+
+  model-hosting-container-standards =
+    callPackage ../development/python-modules/model-hosting-container-standards
+      { };
 
   model-signing = callPackage ../development/python-modules/model-signing { };
 
@@ -11804,6 +11820,8 @@ self: super: with self; {
 
   pendulum = callPackage ../development/python-modules/pendulum { };
 
+  pentapy = callPackage ../development/python-modules/pentapy { };
+
   pep440 = callPackage ../development/python-modules/pep440 { };
 
   pep517 = callPackage ../development/python-modules/pep517 { };
@@ -13734,13 +13752,13 @@ self: super: with self; {
 
   pymorphy2 = callPackage ../development/python-modules/pymorphy2 { };
 
-  pymorphy2-dicts-ru = callPackage ../development/python-modules/pymorphy2/dicts-ru.nix { };
+  pymorphy2-dicts-ru = callPackage ../development/python-modules/pymorphy2-dicts-ru { };
 
   pymorphy3 = callPackage ../development/python-modules/pymorphy3 { };
 
-  pymorphy3-dicts-ru = callPackage ../development/python-modules/pymorphy3/dicts-ru.nix { };
+  pymorphy3-dicts-ru = callPackage ../development/python-modules/pymorphy3-dicts-ru { };
 
-  pymorphy3-dicts-uk = callPackage ../development/python-modules/pymorphy3/dicts-uk.nix { };
+  pymorphy3-dicts-uk = callPackage ../development/python-modules/pymorphy3-dicts-uk { };
 
   pympler = callPackage ../development/python-modules/pympler { };
 
@@ -14741,6 +14759,8 @@ self: super: with self; {
 
   pytest-instafail = callPackage ../development/python-modules/pytest-instafail { };
 
+  pytest-integration = callPackage ../development/python-modules/pytest-integration { };
+
   pytest-isort = callPackage ../development/python-modules/pytest-isort { };
 
   pytest-json-report = callPackage ../development/python-modules/pytest-json-report { };
@@ -15371,6 +15391,8 @@ self: super: with self; {
 
   python-ulid = callPackage ../development/python-modules/python-ulid { };
 
+  python-unrar = callPackage ../development/python-modules/python-unrar { inherit (pkgs) unrar; };
+
   python-utils = callPackage ../development/python-modules/python-utils { };
 
   python-vagrant = callPackage ../development/python-modules/python-vagrant { };
@@ -15512,6 +15534,8 @@ self: super: with self; {
   pytransportnsw = callPackage ../development/python-modules/pytransportnsw { };
 
   pytransportnswv2 = callPackage ../development/python-modules/pytransportnswv2 { };
+
+  pytricia = callPackage ../development/python-modules/pytricia { };
 
   pytrydan = callPackage ../development/python-modules/pytrydan { };
 
@@ -16799,6 +16823,8 @@ self: super: with self; {
 
   segyio = callPackage ../development/python-modules/segyio { inherit (pkgs) cmake ninja; };
 
+  selectolax = callPackage ../development/python-modules/selectolax { };
+
   selenium = callPackage ../development/python-modules/selenium { };
 
   selenium-wire = callPackage ../development/python-modules/selenium-wire { };
@@ -17294,6 +17320,8 @@ self: super: with self; {
   snakeviz = callPackage ../development/python-modules/snakeviz { };
 
   snapcast = callPackage ../development/python-modules/snapcast { };
+
+  snappy = callPackage ../development/python-modules/snappy { };
 
   snappy-15-knots = callPackage ../development/python-modules/snappy-15-knots { };
 
@@ -18146,11 +18174,11 @@ self: super: with self; {
 
   swh-objstorage = callPackage ../development/python-modules/swh-objstorage { };
 
-  swh-perfecthash = callPackage ../development/python-modules/swh-perfecthash { };
-
   swh-scanner = callPackage ../development/python-modules/swh-scanner { };
 
   swh-scheduler = callPackage ../development/python-modules/swh-scheduler { };
+
+  swh-shard = callPackage ../development/python-modules/swh-shard { };
 
   swh-storage = callPackage ../development/python-modules/swh-storage { };
 
@@ -18852,6 +18880,8 @@ self: super: with self; {
   torchsummary = callPackage ../development/python-modules/torchsummary { };
 
   torchtnt = callPackage ../development/python-modules/torchtnt { };
+
+  torchtune = callPackage ../development/python-modules/torchtune { };
 
   torchvision = callPackage ../development/python-modules/torchvision { };
 

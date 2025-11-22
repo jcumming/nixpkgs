@@ -389,7 +389,6 @@ mapAliases {
   pytorch-bin = throw "'pytorch-bin' has been renamed to/replaced by 'torch-bin'"; # Converted to throw 2025-10-29
   pytorchWithCuda = throw "'pytorchWithCuda' has been renamed to/replaced by 'torchWithCuda'"; # Converted to throw 2025-10-29
   pytorchWithoutCuda = throw "'pytorchWithoutCuda' has been renamed to/replaced by 'torchWithoutCuda'"; # Converted to throw 2025-10-29
-  pytricia = throw "pytricia has been removed, since it is unmaintained"; # added 2025-05-25
   pytwitchapi = throw "'pytwitchapi' has been renamed to/replaced by 'twitchapi'"; # Converted to throw 2025-10-29
   pyvicare-neo = throw "'pyvicare-neo' has been renamed to/replaced by 'pyvicare'"; # Converted to throw 2025-10-29
   PyVirtualDisplay = throw "'PyVirtualDisplay' has been renamed to/replaced by 'pyvirtualdisplay'"; # Converted to throw 2025-10-29
@@ -451,6 +450,7 @@ mapAliases {
   sqlalchemy_migrate = throw "'sqlalchemy_migrate' has been renamed to/replaced by 'sqlalchemy-migrate'"; # Converted to throw 2025-10-29
   subunit2sql = throw "subunit2sql has been removed because it has been marked as broken since at least November 2024."; # Added 2025-10-04
   supervise_api = throw "'supervise_api' has been renamed to/replaced by 'supervise-api'"; # Converted to throw 2025-10-29
+  swh-perfecthash = throw "'swh-perfecthash' has been renamed to/replaced by 'swh-shard'"; # added 2025-11-13
   synologydsm-api = throw "'synologydsm-api' has been renamed to/replaced by 'py-synologydsm-api'"; # Converted to throw 2025-10-29
   systemd = throw "systemd was removed because it was misnamed; use systemd-python instead"; # added 2025-11-09
   sysv_ipc = throw "'sysv_ipc' has been renamed to/replaced by 'sysv-ipc'"; # Converted to throw 2025-10-29

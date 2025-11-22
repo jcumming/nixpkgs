@@ -3718,10 +3718,6 @@ with pkgs;
 
   tautulli = python3Packages.callPackage ../servers/tautulli { };
 
-  pleroma = callPackage ../servers/pleroma {
-    beamPackages = beam.packages.erlang_26.extend (self: super: { elixir = elixir_1_17; });
-  };
-
   plfit = callPackage ../by-name/pl/plfit/package.nix {
     python = null;
   };
@@ -5222,15 +5218,15 @@ with pkgs;
   wrapRustcWith = { rustc-unwrapped, ... }@args: callPackage ../build-support/rust/rustc-wrapper args;
   wrapRustc = rustc-unwrapped: wrapRustcWith { inherit rustc-unwrapped; };
 
-  rust_1_90 = callPackage ../development/compilers/rust/1_90.nix { };
-  rust = rust_1_90;
+  rust_1_91 = callPackage ../development/compilers/rust/1_91.nix { };
+  rust = rust_1_91;
 
   mrustc = callPackage ../development/compilers/mrustc { };
   mrustc-minicargo = callPackage ../development/compilers/mrustc/minicargo.nix { };
   mrustc-bootstrap = callPackage ../development/compilers/mrustc/bootstrap.nix { };
 
-  rustPackages_1_90 = rust_1_90.packages.stable;
-  rustPackages = rustPackages_1_90;
+  rustPackages_1_91 = rust_1_91.packages.stable;
+  rustPackages = rustPackages_1_91;
 
   inherit (rustPackages)
     cargo
@@ -8167,7 +8163,6 @@ with pkgs;
   zunclient = with python313Packages; toPythonApplication python-zunclient;
 
   inherit (callPackages ../by-name/li/libressl { })
-    libressl_4_0
     libressl_4_1
     libressl_4_2
     ;
@@ -8247,7 +8242,9 @@ with pkgs;
 
   prospector = callPackage ../development/tools/prospector { };
 
-  protobuf = protobuf_33;
+  # this version should align with the static protobuf version linked into python3.pkgs.tensorflow
+  # $ nix-shell -I nixpkgs=$(git rev-parse --show-toplevel) -p python3.pkgs.tensorflow --run "python3 -c 'import google.protobuf; print(google.protobuf.__version__)'"
+  protobuf = protobuf_32;
 
   inherit
     ({
@@ -8906,23 +8903,25 @@ with pkgs;
       "3000"
     ];
   };
-  sbcl_2_5_7 = wrapLisp {
-    pkg = callPackage ../development/compilers/sbcl { version = "2.5.7"; };
-    faslExt = "fasl";
-    flags = [
-      "--dynamic-space-size"
-      "3000"
-    ];
-  };
+
   sbcl_2_5_9 = wrapLisp {
     pkg = callPackage ../development/compilers/sbcl { version = "2.5.9"; };
+
     faslExt = "fasl";
     flags = [
       "--dynamic-space-size"
       "3000"
     ];
   };
-  sbcl = sbcl_2_5_9;
+  sbcl_2_5_10 = wrapLisp {
+    pkg = callPackage ../development/compilers/sbcl { version = "2.5.10"; };
+    faslExt = "fasl";
+    flags = [
+      "--dynamic-space-size"
+      "3000"
+    ];
+  };
+  sbcl = sbcl_2_5_10;
 
   sbclPackages = recurseIntoAttrs sbcl.pkgs;
 
@@ -9513,7 +9512,6 @@ with pkgs;
     ;
 
   inherit (postgresqlVersions)
-    postgresql_13
     postgresql_14
     postgresql_15
     postgresql_16
@@ -9522,7 +9520,6 @@ with pkgs;
     ;
 
   inherit (postgresqlJitVersions)
-    postgresql_13_jit
     postgresql_14_jit
     postgresql_15_jit
     postgresql_16_jit
@@ -9532,7 +9529,6 @@ with pkgs;
   postgresql = postgresql_17;
   postgresql_jit = postgresql_17_jit;
   postgresqlPackages = recurseIntoAttrs postgresql.pkgs;
-  postgresql13Packages = recurseIntoAttrs postgresql_13.pkgs;
   postgresql14Packages = recurseIntoAttrs postgresql_14.pkgs;
   postgresql15Packages = recurseIntoAttrs postgresql_15.pkgs;
   postgresql16Packages = recurseIntoAttrs postgresql_16.pkgs;
@@ -9543,7 +9539,6 @@ with pkgs;
   postgrest = haskellPackages.postgrest.bin;
 
   prom2json = callPackage ../servers/monitoring/prometheus/prom2json.nix { };
-  prometheus-alertmanager = callPackage ../servers/monitoring/prometheus/alertmanager.nix { };
   prometheus-apcupsd-exporter = callPackage ../servers/monitoring/prometheus/apcupsd-exporter.nix { };
   prometheus-artifactory-exporter =
     callPackage ../servers/monitoring/prometheus/artifactory-exporter.nix
@@ -10633,6 +10628,10 @@ with pkgs;
   };
 
   audacious = audacious-bare.override { withPlugins = true; };
+
+  audacity = callPackage ../by-name/au/audacity/package.nix {
+    ffmpeg = ffmpeg_7;
+  };
 
   bambootracker-qt6 = bambootracker.override { withQt6 = true; };
 
