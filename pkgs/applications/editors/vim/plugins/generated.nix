@@ -10178,6 +10178,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  neovim-tips = buildVimPlugin {
+    pname = "neovim-tips";
+    version = "2025-11-25";
+    src = fetchFromGitHub {
+      owner = "saxon1964";
+      repo = "neovim-tips";
+      rev = "b8c02411907ce1a5ded18a922a894a5dfb5c89a5";
+      sha256 = "084m1g9pxgkxcsbi6yja3fd71x1r5i0j32bsxjnf63dxyzlf7v20";
+    };
+    meta.homepage = "https://github.com/saxon1964/neovim-tips/";
+    meta.hydraPlatforms = [ ];
+  };
+
   neovim-trunk = buildVimPlugin {
     pname = "neovim-trunk";
     version = "2025-07-23";
@@ -22296,6 +22309,19 @@ final: prev: {
       sha256 = "1c7kb5hx46f9g87iryjjpbcif1al96dlh0am1k7zzddd5hyjyq1l";
     };
     meta.homepage = "https://github.com/EthanJWright/vs-tasks.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  vscode-diff-nvim = buildVimPlugin {
+    pname = "vscode-diff.nvim";
+    version = "2025-11-26";
+    src = fetchFromGitHub {
+      owner = "esmuellert";
+      repo = "vscode-diff.nvim";
+      rev = "94bba113413cb660397f219d4096775338ea08e1";
+      sha256 = "17kll9vclgy7flvxbw4hc2fj4xnn1hq3ds3s9fg0z7x9nmf23v85";
+    };
+    meta.homepage = "https://github.com/esmuellert/vscode-diff.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
