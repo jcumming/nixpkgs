@@ -20,13 +20,14 @@
   libGL,
   libglvnd,
   systemd,
+  patchelf,
   nix-update-script,
   undmg,
   makeWrapper,
 }:
 let
   pname = "nextcloud-talk-desktop";
-  version = "2.0.3";
+  version = "2.0.4";
 
   # Only x86_64-linux is supported with Darwin support being universal
   sources = {
@@ -34,7 +35,7 @@ let
     # See https://github.com/nextcloud/talk-desktop?tab=readme-ov-file#%EF%B8%8F-prerequisites
     linux = fetchzip {
       url = "https://github.com/nextcloud-releases/talk-desktop/releases/download/v${version}/Nextcloud.Talk-linux-x64.zip";
-      hash = "sha256-QKbg5vHLuxLpngrHom/odWw9RK43jhZsEg7Df5c7db0=";
+      hash = "sha256-Nky3ws1UV0F4qjbBog53BjXkZ/ttTER/32NlB2ONJaE=";
       stripRoot = false;
     };
     darwin = fetchurl {
@@ -123,6 +124,11 @@ let
       cp $icon $out/share/icons/hicolor/512x512/apps/nextcloud-talk-desktop.png
 
       runHook postInstall
+    '';
+
+    postFixup = ''
+      patchelf --add-needed libGL.so.1 --add-needed libEGL.so.1 \
+        "$out/opt/Nextcloud Talk-linux-x64/Nextcloud Talk"
     '';
 
     passthru.updateScript = nix-update-script { };
