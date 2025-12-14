@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchgit, autoreconfHook, perl }:
+{ stdenv, lib, fetchgit, autoreconfHook, gettext, perl }:
 
 stdenv.mkDerivation rec {
   name = "unac-1.8.0";
@@ -11,11 +11,12 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ autoreconfHook ];
 
-  buildInputs = [ perl ];
+  buildInputs = [ perl gettext ];
 
   patches = [ 
     ./update-autotools.diff
     ./gcc-4-fix-bug-556379.patch
+    ./gettext-0.25.patch
   ];
 
   doCheck = false;
