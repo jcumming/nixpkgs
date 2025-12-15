@@ -11190,6 +11190,11 @@
     githubId = 3698237;
     name = "ImUrX";
   };
+  Inarizxc = {
+    name = "Inarizxc";
+    github = "Inarizxc";
+    githubId = 128096405;
+  };
   inclyc = {
     email = "i@lyc.dev";
     github = "inclyc";
@@ -24891,6 +24896,12 @@
     githubId = 2060836;
     name = "Casey Stark";
   };
+  starryreverie = {
+    email = "starryreverie@proton.me";
+    github = "StarryReverie";
+    githubId = 42143810;
+    name = "Justin Chen";
+  };
   starsep = {
     email = "nix@starsep.com";
     github = "starsep";
@@ -26652,6 +26663,12 @@
     githubId = 6740669;
     name = "Tom Smeets";
   };
+  tonybanters = {
+    email = "tony@tonybtw.com";
+    github = "tonybanters";
+    githubId = 27378358;
+    name = "tony";
+  };
   toonn = {
     email = "nixpkgs@toonn.io";
     matrix = "@toonn:matrix.org";
@@ -27870,6 +27887,11 @@
     email = "github-dev@mail2013.wamser.eu";
     github = "wamserma";
     githubId = 60148;
+  };
+  wariuccio = {
+    name = "Wariuccio";
+    github = "wariuccio";
+    githubId = 191101255;
   };
   water-sucks = {
     email = "varun@snare.dev";
