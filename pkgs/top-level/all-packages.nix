@@ -918,7 +918,7 @@ with pkgs;
   };
 
   wrapGAppsNoGuiHook = callPackage ../build-support/setup-hooks/wrap-gapps-hook {
-    makeWrapper = buildPackages.makeBinaryWrapper;
+    makeWrapper = makeBinaryWrapper;
   };
 
   separateDebugInfo = makeSetupHook {
@@ -4236,24 +4236,6 @@ with pkgs;
 
   inherit (coqPackages_9_0) compcert;
 
-  computecpp = wrapCCWith rec {
-    cc = computecpp-unwrapped;
-    extraPackages = [
-      llvmPackages.compiler-rt
-    ];
-    extraBuildCommands = ''
-      wrap compute $wrapper $ccPath/compute
-      wrap compute++ $wrapper $ccPath/compute++
-      export named_cc=compute
-      export named_cxx=compute++
-
-      rsrc="$out/resource-root"
-      mkdir -p "$rsrc/lib"
-      ln -s "${cc}/lib" "$rsrc/include"
-      echo "-resource-dir=$rsrc" >> $out/nix-support/cc-cflags
-    '';
-  };
-
   corretto11 = javaPackages.compiler.corretto11;
   corretto17 = javaPackages.compiler.corretto17;
   corretto21 = javaPackages.compiler.corretto21;
@@ -5760,7 +5742,7 @@ with pkgs;
     mkRuby
     ruby_3_3
     ruby_3_4
-    ruby_3_5
+    ruby_4_0
     ;
 
   ruby = ruby_3_3;
@@ -5768,7 +5750,7 @@ with pkgs;
 
   rubyPackages_3_3 = recurseIntoAttrs ruby_3_3.gems;
   rubyPackages_3_4 = recurseIntoAttrs ruby_3_4.gems;
-  rubyPackages_3_5 = recurseIntoAttrs ruby_3_5.gems;
+  rubyPackages_4_0 = recurseIntoAttrs ruby_4_0.gems;
 
   inherit (callPackages ../applications/networking/cluster/spark { })
     spark_4_0
@@ -8637,6 +8619,11 @@ with pkgs;
   go_1_25 = callPackage ../development/compilers/go/1.25.nix { };
   buildGo125Module = callPackage ../build-support/go/module.nix {
     go = buildPackages.go_1_25;
+  };
+
+  go_1_26 = callPackage ../development/compilers/go/1.26.nix { };
+  buildGo126Module = callPackage ../build-support/go/module.nix {
+    go = buildPackages.go_1_26;
   };
 
   ### DEVELOPMENT / HARE
@@ -13965,10 +13952,6 @@ with pkgs;
   vimb = wrapFirefox vimb-unwrapped { };
 
   vivisect = with python3Packages; toPythonApplication (vivisect.override { withGui = true; });
-
-  vokoscreen = libsForQt5.callPackage ../applications/video/vokoscreen {
-    ffmpeg = ffmpeg-full;
-  };
 
   py-wacz = with python3Packages; toPythonApplication wacz;
 

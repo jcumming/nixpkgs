@@ -1005,8 +1005,8 @@ let
         mktplcRef = {
           name = "coder-remote";
           publisher = "coder";
-          version = "1.11.5";
-          hash = "sha256-p2mAm6bY2lNocQLQ/8ZW+JcDFlwhMytoQtXNMeJq+CE=";
+          version = "1.11.6";
+          hash = "sha256-yMhbOnG7jVO0oPzLa+El5i7KlD1GCYTOcfF0cOUf5hQ=";
         };
         meta = {
           description = "Extension for Visual Studio Code to open any Coder workspace in VS Code with a single click";
@@ -1225,8 +1225,8 @@ let
         mktplcRef = {
           name = "vscode-markdownlint";
           publisher = "DavidAnson";
-          version = "0.60.0";
-          hash = "sha256-Buwa63HahT96qhhuvARW7p1u9kbkoEyA9usoh60m3KE=";
+          version = "0.61.1";
+          hash = "sha256-3O4ii6RUuw35pv95zJwJhgnI/8ryAnSKfnHC01l3FDw=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/DavidAnson.vscode-markdownlint/changelog";
@@ -1953,8 +1953,8 @@ let
         mktplcRef = {
           publisher = "github";
           name = "vscode-pull-request-github";
-          version = "0.122.0";
-          hash = "sha256-U7BpKnkk7l4+dmgam6OP3Dl6ySX9e+wHmUELGpAjOss=";
+          version = "0.124.1";
+          hash = "sha256-+ooxmm3OiNuQigApqkQV9hzw18yUGPEjKFEgn7MjpJA=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -1965,8 +1965,8 @@ let
         mktplcRef = {
           name = "gitlab-workflow";
           publisher = "gitlab";
-          version = "6.60.2";
-          hash = "sha256-X3ZOrEkcFDlB4pYqEvO3gACAOET1kjF56FkHLmNKRrI=";
+          version = "6.61.2";
+          hash = "sha256-NLWu/4QgG/vbhTVjV57bt6J7AX2kC59/2xNkj8PMdtc=";
         };
         meta = {
           description = "GitLab extension for Visual Studio Code";
@@ -3596,8 +3596,8 @@ let
         mktplcRef = {
           name = "dark-molokai-theme";
           publisher = "nonylene";
-          version = "1.0.8";
-          hash = "sha256-GQNv3QWzb0xSnaR8GOnAOZF/wOg0LaWHN3goIYq7JmI=";
+          version = "1.0.10";
+          hash = "sha256-YBYlcf6TUPEQvmhL7mYfN59itKQvtWt9003/Bup15eg=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/nonylene.dark-molokai-theme/changelog";
@@ -3624,6 +3624,8 @@ let
           maintainers = [ lib.maintainers.d3vil0p3r ];
         };
       };
+
+      nsd.vscode-epics = callPackage ./nsd.vscode-epics { };
 
       ocamllabs.ocaml-platform = buildVscodeMarketplaceExtension {
         meta = {
@@ -3826,8 +3828,8 @@ let
         mktplcRef = {
           name = "ansible";
           publisher = "redhat";
-          version = "25.12.2";
-          hash = "sha256-mglzlRBGD09RDwzfJvWaTt3btgEF/G818prJcQC8/Is=";
+          version = "25.12.3";
+          hash = "sha256-6G/CpzSSrRzwtay4+t46gz8aBF7qgu79NUhBypTJMrc=";
         };
         meta = {
           description = "Ansible language support";
