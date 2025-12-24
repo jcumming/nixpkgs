@@ -74,12 +74,79 @@ in
           '';
         };
 
+<<<<<<< HEAD
         package = mkOption {
           type = types.package;
           default = pkgs.photoprism;
           defaultText = literalExpression "pkgs.photoprism";
           description = "The photoprism package.";
         };
+=======
+    address = lib.mkOption {
+      type = lib.types.str;
+      default = "localhost";
+      description = ''
+        Web interface address.
+      '';
+    };
+
+    port = lib.mkOption {
+      type = lib.types.port;
+      default = 2342;
+      description = ''
+        Web interface port.
+      '';
+    };
+
+    originalsPath = lib.mkOption {
+      type = lib.types.path;
+      default = null;
+      example = "/data/photos";
+      description = ''
+        Storage path of your original media files (photos and videos).
+      '';
+    };
+
+    importPath = lib.mkOption {
+      type = lib.types.str;
+      default = "import";
+      description = ''
+        Relative or absolute to the `originalsPath` from where the files should be imported.
+      '';
+    };
+
+    storagePath = lib.mkOption {
+      type = lib.types.path;
+      default = "/var/lib/photoprism";
+      description = ''
+        Location for sidecar, cache, and database files.
+      '';
+    };
+
+    user = lib.mkOption {
+      type = lib.types.str;
+      default = "photoprism";
+      description = "User under which photoprism runs.";
+    };
+
+    group = lib.mkOption {
+      type = lib.types.str;
+      default = "photoprism";
+      description = "Group under which photoprism runs.";
+    };
+
+    package = lib.mkPackageOption pkgs "photoprism" { };
+
+    settings = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = { };
+      description = ''
+        See [the getting-started guide](https://docs.photoprism.app/getting-started/config-options/) for available options.
+      '';
+      example = {
+        PHOTOPRISM_DEFAULT_LOCALE = "de";
+        PHOTOPRISM_ADMIN_USER = "root";
+>>>>>>> 2fa5eae119ef4411a784c3575eb709aaf9f78be8
       };
     };
 
@@ -90,7 +157,23 @@ in
           group = "photoprism";
         };
 
+<<<<<<< HEAD
         users.groups.photoprism = {};
+=======
+      serviceConfig = {
+        Restart = "on-failure";
+        User = cfg.user;
+        Group = cfg.group;
+        DynamicUser = true;
+        StateDirectory = "photoprism";
+        WorkingDirectory = cfg.storagePath;
+        RuntimeDirectory = "photoprism";
+        ReadWritePaths = [
+          cfg.originalsPath
+          cfg.importPath
+          cfg.storagePath
+        ];
+>>>>>>> 2fa5eae119ef4411a784c3575eb709aaf9f78be8
 
         systemd.services.photoprism = {
           enable = true;
