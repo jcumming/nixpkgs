@@ -204,6 +204,7 @@
   ./programs/dsearch.nix
   ./programs/dublin-traceroute.nix
   ./programs/ecryptfs.nix
+  ./programs/ente-auth.nix
   ./programs/environment.nix
   ./programs/envision.nix
   ./programs/evince.nix
@@ -708,6 +709,7 @@
   ./services/hardware/usbmuxd.nix
   ./services/hardware/usbrelayd.nix
   ./services/hardware/vdr.nix
+  ./services/home-automation/deye-dummycloud.nix
   ./services/home-automation/ebusd.nix
   ./services/home-automation/esphome.nix
   ./services/home-automation/evcc.nix
@@ -1288,6 +1290,7 @@
   ./services/networking/networkd-dispatcher.nix
   ./services/networking/networkmanager.nix
   ./services/networking/newt.nix
+  ./services/networking/nextcloud-spreed-signaling.nix
   ./services/networking/nextdns.nix
   ./services/networking/nftables.nix
   ./services/networking/nghttpx/default.nix
@@ -1529,6 +1532,7 @@
   ./services/system/localtimed.nix
   ./services/system/nix-daemon-firewall.nix
   ./services/system/nix-daemon.nix
+  ./services/system/nohang.nix
   ./services/system/nscd.nix
   ./services/system/nvme-rs.nix
   ./services/system/saslauthd.nix

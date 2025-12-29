@@ -62,6 +62,12 @@
   "module-boot-plymouth-tpm2-totp-quick-start-enable": [
     "index.html#module-boot-plymouth-tpm2-totp-quick-start-enable"
   ],
+  "module-services-tandoor-recipes-migrating-media-option-1": [
+    "index.html#module-services-tandoor-recipes-migrating-media-option-1"
+  ],
+  "module-services-tandoor-recipes-migrating-media-option-2": [
+    "index.html#module-services-tandoor-recipes-migrating-media-option-2"
+  ],
   "sec-override-nixos-test": [
     "index.html#sec-override-nixos-test"
   ],
@@ -737,6 +743,15 @@
   "module-services-nextcloud-maintainer-info": [
     "index.html#module-services-nextcloud-maintainer-info"
   ],
+  "module-services-nextcloud-spreed-signaling": [
+    "index.html#module-services-nextcloud-spreed-signaling"
+  ],
+  "module-services-nextcloud-spreed-signaling-config": [
+    "index.html#module-services-nextcloud-spreed-signaling-config"
+  ],
+  "module-services-nextcloud-spreed-signaling-nats": [
+    "index.html#module-services-nextcloud-spreed-signaling-nats"
+  ],
   "module-services-matomo": [
     "index.html#module-services-matomo"
   ],
@@ -1113,6 +1128,12 @@
   "module-services-samba-configuring-file-share": [
     "index.html#module-services-samba-configuring-file-share"
   ],
+  "module-services-tandoor-recipes": [
+    "index.html#module-services-tandoor-recipes"
+  ],
+  "module-services-tandoor-recipes-migrating-media": [
+    "index.html#module-services-tandoor-recipes-migrating-media"
+  ],
   "module-services-litestream": [
     "index.html#module-services-litestream"
   ],
@@ -1467,6 +1488,9 @@
   ],
   "module-services-postgres-upstream-deviation": [
     "index.html#module-services-postgres-upstream-deviation"
+  ],
+  "module-services-postgresql-target-vs-service": [
+    "index.html#module-services-postgresql-target-vs-service"
   ],
   "module-services-foundationdb": [
     "index.html#module-services-foundationdb"
