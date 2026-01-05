@@ -11715,10 +11715,6 @@ with pkgs;
     wxGTK = wxGTK32;
   };
 
-  rawtherapee = callPackage ../applications/graphics/rawtherapee {
-    fftw = fftwSinglePrec;
-  };
-
   reaper = callPackage ../applications/audio/reaper {
     jackLibrary = libjack2; # Another option is "pipewire.jack".
     ffmpeg = ffmpeg_4-headless;
