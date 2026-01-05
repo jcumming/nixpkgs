@@ -140,6 +140,12 @@
     github = "0xd61";
     githubId = 8351869;
   };
+  _0xMillyByte = {
+    email = "emilia.daelman@gmail.com";
+    name = "Emilia Daelman";
+    github = "0xMillyByte";
+    githubId = 48217459;
+  };
   _0xMRTT = {
     email = "0xMRTT@proton.me";
     name = "0xMRTT";
@@ -9864,13 +9870,6 @@
     githubId = 6179496;
     name = "Grayson Head";
   };
-  grburst = {
-    email = "GRBurst@protonmail.com";
-    github = "GRBurst";
-    githubId = 4647221;
-    name = "GRBurst";
-    keys = [ { fingerprint = "7FC7 98AB 390E 1646 ED4D  8F1F 797F 6238 68CD 00C2"; } ];
-  };
   greaka = {
     email = "git@greaka.de";
     github = "greaka";
@@ -16648,12 +16647,6 @@
     githubId = 613740;
     name = "Martin Baillie";
   };
-  mbalatsko = {
-    email = "mbalatsko@gmail.com";
-    github = "mbalatsko";
-    githubId = 15967073;
-    name = "Maksym Balatsko";
-  };
   mbbx6spp = {
     email = "me@susanpotter.net";
     github = "mbbx6spp";
@@ -16665,6 +16658,12 @@
     github = "brandonedens";
     githubId = 396449;
     name = "Brandon Edens";
+  };
+  mbinns = {
+    email = "mack@yourdata.rip";
+    github = "mbinns";
+    githubId = 14008591;
+    name = "Mack Binns";
   };
   mbode = {
     email = "maxbode@gmail.com";
@@ -18066,6 +18065,12 @@
     github = "muscaln";
     githubId = 96225281;
     name = "Mustafa Çalışkan";
+  };
+  mushrowan = {
+    email = "roarch@proton.me";
+    name = "Rowan";
+    github = "mushrowan";
+    githubId = 69822445;
   };
   musjj = {
     name = "musjj";
@@ -19610,6 +19615,12 @@
     github = "OleMussmann";
     githubId = 14004859;
     name = "Ole Mussmann";
+  };
+  olillin = {
+    email = "oli@olillin.com";
+    github = "olillin";
+    githubId = 55047947;
+    name = "Oli";
   };
   oliver-koss = {
     email = "oliver.koss06@gmail.com";

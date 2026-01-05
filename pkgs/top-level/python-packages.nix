@@ -144,6 +144,10 @@ self: super: with self; {
 
   agent-py = callPackage ../development/python-modules/agent-py { };
 
+  agentic-threat-hunting-framework =
+    callPackage ../development/python-modules/agentic-threat-hunting-framework
+      { };
+
   aggdraw = callPackage ../development/python-modules/aggdraw { };
 
   aggregate6 = callPackage ../development/python-modules/aggregate6 { };
@@ -2893,6 +2897,8 @@ self: super: with self; {
   coiled = callPackage ../development/python-modules/coiled { };
 
   coinbase-advanced-py = callPackage ../development/python-modules/coinbase-advanced-py { };
+
+  coincidence = callPackage ../development/python-modules/coincidence { };
 
   coincurve = callPackage ../development/python-modules/coincurve { inherit (pkgs) secp256k1; };
 
@@ -6799,6 +6805,8 @@ self: super: with self; {
 
   hdfs = callPackage ../development/python-modules/hdfs { };
 
+  hdfury = callPackage ../development/python-modules/hdfury { };
+
   hdmedians = callPackage ../development/python-modules/hdmedians { };
 
   headerparser = callPackage ../development/python-modules/headerparser { };
@@ -8555,6 +8563,8 @@ self: super: with self; {
       python3 = python;
     }
   );
+
+  libparse-python = callPackage ../development/python-modules/libparse-python/package.nix { };
 
   libpass = callPackage ../development/python-modules/libpass { };
 

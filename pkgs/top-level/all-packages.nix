@@ -7890,7 +7890,6 @@ with pkgs;
   openexr_2 = callPackage ../development/libraries/openexr/2.nix { };
 
   opencolorio = callPackage ../development/libraries/opencolorio { };
-  opencolorio_1 = callPackage ../development/libraries/opencolorio/1.x.nix { };
 
   openstackclient = with python313Packages; toPythonApplication python-openstackclient;
   openstackclient-full = openstackclient.overridePythonAttrs (oldAttrs: {
@@ -10351,8 +10350,6 @@ with pkgs;
     pinentry = pinentry-curses;
   };
 
-  blender-hip = blender.override { hipSupport = true; };
-
   blucontrol = callPackage ../applications/misc/blucontrol/wrapper.nix {
     inherit (haskellPackages) ghcWithPackages;
   };
@@ -11340,9 +11337,6 @@ with pkgs;
     libOnly = true;
     withConplay = false;
   };
-
-  # a somewhat more maintained fork of ympd
-  memento = qt6Packages.callPackage ../applications/video/memento { };
 
   mplayer = callPackage ../applications/video/mplayer (
     {
@@ -12683,12 +12677,6 @@ with pkgs;
     tlsSupport = true;
     pythonSupport = true;
   };
-
-  liquidwar = callPackage ../games/liquidwar {
-    guile = guile_2_0;
-  };
-
-  liquidwar5 = callPackage ../games/liquidwar/5.nix { };
 
   mindustry-wayland = callPackage ../by-name/mi/mindustry/package.nix {
     enableWayland = true;
