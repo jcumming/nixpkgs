@@ -50,7 +50,7 @@ stdenv.mkDerivation rec {
   '';
 
   # default target is binaries + manpages; manpages don't cross compile without more work.
-  makeFlags = lib.optionals (!stdenv.buildPlatform.canExecute stdenv.hostPlatform) [ "bins" ];
+  makeFlags = [ "CFLAGS0=-std=gnu17" ] ++ lib.optionals (!stdenv.buildPlatform.canExecute stdenv.hostPlatform) [ "bins" ];
   installTargets = lib.optionals (!stdenv.buildPlatform.canExecute stdenv.hostPlatform) [
     "install.bin"
   ];
