@@ -879,6 +879,12 @@
     github = "AimPizza";
     githubId = 64905268;
   };
+  aionescu = {
+    name = "Alex Ionescu";
+    email = "github@ionescu.sh";
+    github = "aionescu";
+    githubId = 48064242;
+  };
   aiotter = {
     email = "git@aiotter.com";
     github = "aiotter";
@@ -1119,6 +1125,13 @@
     github = "aldoborrero";
     githubId = 82811;
     name = "Aldo Borrero";
+  };
+  aleclearmind = {
+    email = "ale.nix@clearmind.me";
+    matrix = "@bake.monorail:matrix.org";
+    github = "aleclearmind";
+    githubId = 2545644;
+    name = "Alessandro Di Federico";
   };
   alejandrosame = {
     email = "alejandrosanchzmedina@gmail.com";
@@ -9243,14 +9256,6 @@
     email = "gaeljames@gmail.com";
     github = "gaelj";
     githubId = 8884632;
-  };
-  gaelreyrol = {
-    email = "me@gaelreyrol.dev";
-    matrix = "@Zevran:matrix.org";
-    name = "Gaël Reyrol";
-    github = "gaelreyrol";
-    githubId = 498465;
-    keys = [ { fingerprint = "3492 D8FA ACFF 4C5F A56E  50B7 DFB9 B69A 2C42 7F61"; } ];
   };
   GaetanLepage = {
     email = "gaetan@glepage.com";
@@ -22304,6 +22309,11 @@
     name = "Rhydian Jenkins";
     github = "RhydianJenkins";
     githubId = 9198690;
+  };
+  Rhys-T = {
+    name = "Rhys T.";
+    github = "Rhys-T";
+    githubId = 108157737;
   };
   rhysmdnz = {
     email = "rhys@memes.nz";
