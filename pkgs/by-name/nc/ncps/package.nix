@@ -5,24 +5,41 @@
   fetchFromGitHub,
   jq,
   lib,
+  makeWrapper,
   mariadb,
   minio,
   minio-client,
   postgresql,
   python3,
   redis,
+  writeShellScriptBin,
 }:
 
 let
+  dbmate-real = writeShellScriptBin "dbmate.real" ''
+    exec ${dbmate}/bin/dbmate "$@"
+  '';
+
+  dbmate-wrapper = buildGoModule {
+    pname = "ncps-dbmate-wrapper";
+    inherit (finalAttrs) version;
+
+    src = "${finalAttrs.src}/nix/dbmate-wrapper/src";
+
+    vendorHash = null;
+
+    subPackages = [ "." ];
+  };
+
   finalAttrs = {
     pname = "ncps";
-    version = "0.6.0";
+    version = "0.6.1";
 
     src = fetchFromGitHub {
       owner = "kalbasit";
       repo = "ncps";
       tag = "v${finalAttrs.version}";
-      hash = "sha256-/Fa8cpBACbbB74W1HSQmsS06BLofnH094be6I2peX0U=";
+      hash = "sha256-GIAZ1fKIYCi+qPCIYJpi7q1AigEcIk60SxNUvzYnROA=";
     };
 
     ldflags = [
@@ -46,6 +63,7 @@ let
       postgresql # PostgreSQL for integration tests
       python3 # used for generating the ports
       redis # Redis for distributed locking integration tests
+      makeWrapper # For wrapping dbmate.
     ];
 
     # pre and post checks
@@ -68,6 +86,11 @@ let
     postInstall = ''
       mkdir -p $out/share/ncps
       cp -r db $out/share/ncps/db
+
+      makeWrapper ${dbmate-wrapper}/bin/dbmate-wrapper \
+        $out/bin/dbmate-ncps \
+        --prefix PATH : ${dbmate-real}/bin \
+        --set NCPS_DB_MIGRATIONS_DIR $out/share/ncps/db/migrations
     '';
 
     meta = {

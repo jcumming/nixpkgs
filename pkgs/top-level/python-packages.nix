@@ -2319,6 +2319,8 @@ self: super: with self; {
 
   buildstream-plugins = callPackage ../development/python-modules/buildstream-plugins { };
 
+  bumble = callPackage ../development/python-modules/bumble { };
+
   bump-my-version = callPackage ../development/python-modules/bump-my-version { };
 
   bump2version = callPackage ../development/python-modules/bump2version { };
@@ -5449,6 +5451,8 @@ self: super: with self; {
   fissix = callPackage ../development/python-modules/fissix { };
 
   fitbit = callPackage ../development/python-modules/fitbit { };
+
+  fitbit-web-api = callPackage ../development/python-modules/fitbit-web-api { };
 
   fitdecode = callPackage ../development/python-modules/fitdecode { };
 
@@ -13903,8 +13907,6 @@ self: super: with self; {
 
   pymfy = callPackage ../development/python-modules/pymfy { };
 
-  pymicro-vad = callPackage ../development/python-modules/pymicro-vad { };
-
   pymicrobot = callPackage ../development/python-modules/pymicrobot { };
 
   pymiele = callPackage ../development/python-modules/pymiele { };
@@ -15656,6 +15658,8 @@ self: super: with self; {
 
   python3-saml = callPackage ../development/python-modules/python3-saml { };
 
+  python3-sipsimple = callPackage ../development/python-modules/python3-sipsimple { };
+
   pythondialog = callPackage ../development/python-modules/pythondialog { };
 
   pythonefl = callPackage ../development/python-modules/python-efl { };
@@ -17106,6 +17110,8 @@ self: super: with self; {
 
   serializable = callPackage ../development/python-modules/serializable { };
 
+  serialx = callPackage ../development/python-modules/serialx { };
+
   serpent = callPackage ../development/python-modules/serpent { };
 
   serpy = callPackage ../development/python-modules/serpy { };
@@ -17331,8 +17337,6 @@ self: super: with self; {
   siphash24 = callPackage ../development/python-modules/siphash24 { };
 
   siphashc = callPackage ../development/python-modules/siphashc { };
-
-  sipsimple = callPackage ../development/python-modules/sipsimple { };
 
   sipyco = callPackage ../development/python-modules/sipyco { };
 
@@ -20936,6 +20940,8 @@ self: super: with self; {
   yalexs-ble = callPackage ../development/python-modules/yalexs-ble { };
 
   yamale = callPackage ../development/python-modules/yamale { };
+
+  yamlcore = callPackage ../development/python-modules/yamlcore { };
 
   yamlfix = callPackage ../development/python-modules/yamlfix { };
 
