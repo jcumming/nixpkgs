@@ -715,11 +715,11 @@
     "vendorHash": "sha256-8gBaOdoUjmeomi8+H2gMypKnJdkXGzgzu8K0ATqMfxE="
   },
   "huaweicloud_huaweicloud": {
-    "hash": "sha256-8GsGyWBkeHy+7MOrjn6r8Q67EDBycU0FEFILabJvkWA=",
+    "hash": "sha256-B7THs+KpB9j72Jklzpw9GmjM/U5rqvZG9kxNbU/YkFY=",
     "homepage": "https://registry.terraform.io/providers/huaweicloud/huaweicloud",
     "owner": "huaweicloud",
     "repo": "terraform-provider-huaweicloud",
-    "rev": "v1.83.0",
+    "rev": "v1.84.0",
     "spdx": "MPL-2.0",
     "vendorHash": null
   },
@@ -1130,11 +1130,11 @@
     "vendorHash": "sha256-33NOGIvqLpgndG68GxAeoiISjWV7ApR4jmvqyZHjPKo="
   },
   "rootlyhq_rootly": {
-    "hash": "sha256-aAZTcZ97/rPOfvBwmPTp3BF/G0IkrCrx0u4yPiTfXrY=",
+    "hash": "sha256-v/CdJiEmMmmtQ0EhDxg6IT3FGWs3jeuZ/BKhmcHi9XM=",
     "homepage": "https://registry.terraform.io/providers/rootlyhq/rootly",
     "owner": "rootlyhq",
     "repo": "terraform-provider-rootly",
-    "rev": "v5.2.1",
+    "rev": "v5.2.2",
     "spdx": "MPL-2.0",
     "vendorHash": "sha256-H0ohTNvSeFYEhHFIJoY37asNWwe+s2RKsDzYbx1CkJw="
   },
