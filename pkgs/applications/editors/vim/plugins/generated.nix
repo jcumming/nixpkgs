@@ -4,6 +4,7 @@
   buildVimPlugin,
   buildNeovimPlugin,
   fetchFromGitHub,
+  fetchFromGitea,
 }:
 
 final: prev: {
@@ -1793,12 +1794,12 @@ final: prev: {
 
   blink-indent = buildVimPlugin {
     pname = "blink.indent";
-    version = "2.1.0-unstable-2025-12-02";
+    version = "2.1.2-unstable-2026-01-13";
     src = fetchFromGitHub {
       owner = "Saghen";
       repo = "blink.indent";
-      rev = "93ff30292d34116444ff9db5264f6ccd34f3f71f";
-      hash = "sha256-aPCJAK/hO/Vn8kiYyoaMdJjO6b3ce1IXo8Xy4LJS+q8=";
+      rev = "9c80820ca77218a8d28e70075d6f44a1609911fe";
+      hash = "sha256-SS66JZFCX8viYxYaObASlwtrG5h7yHbVvRBVXBNXkng=";
     };
     meta.homepage = "https://github.com/Saghen/blink.indent/";
     meta.hydraPlatforms = [ ];
@@ -10503,6 +10504,20 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  nidhogg-nvim = buildVimPlugin {
+    pname = "nidhogg.nvim";
+    version = "0-unstable-2026-01-11";
+    src = fetchFromGitea {
+      domain = "codeberg.org";
+      owner = "koibtw";
+      repo = "nidhogg.nvim";
+      rev = "a8c72aa204f68d5bd79a2508fbbed7b0ad2290cf";
+      hash = "sha256-x8CryNcg3u5uCncCMTgK7yzCvk5MiomjKpdjNEoCQu4=";
+    };
+    meta.homepage = "https://codeberg.org/koibtw/nidhogg.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   night-owl-nvim = buildVimPlugin {
     pname = "night-owl.nvim";
     version = "0.5-beta-unstable-2024-09-12";
@@ -17602,6 +17617,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  vim-colors-paramount = buildVimPlugin {
+    pname = "vim-colors-paramount";
+    version = "0-unstable-2018-10-02";
+    src = fetchFromGitHub {
+      owner = "owickstrom";
+      repo = "vim-colors-paramount";
+      rev = "a5601d36fb6932e8d1a6f8b37b179a99b1456798";
+      hash = "sha256-j9nMjKYK7bqrGHprYp0ddLEWs1CNMudxXD13sOROVmY=";
+    };
+    meta.homepage = "https://github.com/owickstrom/vim-colors-paramount/";
+    meta.hydraPlatforms = [ ];
+  };
+
   vim-colors-solarized = buildVimPlugin {
     pname = "vim-colors-solarized";
     version = "0-unstable-2011-05-09";
@@ -22582,19 +22610,6 @@ final: prev: {
       hash = "sha256-NGAvPSyttf/PDFUBSJtJVAUX2bpS+hwPeskZ0mFZ87A=";
     };
     meta.homepage = "https://github.com/EthanJWright/vs-tasks.nvim/";
-    meta.hydraPlatforms = [ ];
-  };
-
-  vscode-diff-nvim = buildVimPlugin {
-    pname = "vscode-diff.nvim";
-    version = "2.8.0-unstable-2026-01-10";
-    src = fetchFromGitHub {
-      owner = "esmuellert";
-      repo = "codediff.nvim";
-      rev = "5c52cdd4d007e72062cb0fd2fb398197b6d51040";
-      hash = "sha256-pGDjzwjz3OOpMOAJGR5oHAv/LBlUlbMbYGenvB8SNiU=";
-    };
-    meta.homepage = "https://github.com/esmuellert/codediff.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
