@@ -778,8 +778,6 @@ self: super: with self; {
 
   ansicolors = callPackage ../development/python-modules/ansicolors { };
 
-  ansiconv = callPackage ../development/python-modules/ansiconv { };
-
   ansimarkup = callPackage ../development/python-modules/ansimarkup { };
 
   ansitable = callPackage ../development/python-modules/ansitable { };
@@ -963,6 +961,12 @@ self: super: with self; {
   art = callPackage ../development/python-modules/art { };
 
   arviz = callPackage ../development/python-modules/arviz { };
+
+  arviz-base = callPackage ../development/python-modules/arviz-base { };
+
+  arviz-plots = callPackage ../development/python-modules/arviz-plots { };
+
+  arviz-stats = callPackage ../development/python-modules/arviz-stats { };
 
   arxiv = callPackage ../development/python-modules/arxiv { };
 
@@ -4658,6 +4662,8 @@ self: super: with self; {
 
   dsnap = callPackage ../development/python-modules/dsnap { };
 
+  dt8852 = callPackage ../development/python-modules/dt8852 { };
+
   dtfabric = callPackage ../development/python-modules/dtfabric { };
 
   dtlssocket = callPackage ../development/python-modules/dtlssocket { };
@@ -8010,6 +8016,8 @@ self: super: with self; {
   kaggle = callPackage ../development/python-modules/kaggle { };
 
   kagglehub = callPackage ../development/python-modules/kagglehub { };
+
+  kagglesdk = callPackage ../development/python-modules/kagglesdk { };
 
   kahip = toPythonModule (
     pkgs.kahip.override {
@@ -12405,6 +12413,8 @@ self: super: with self; {
   pnglatex = callPackage ../development/python-modules/pnglatex { };
 
   pocket = callPackage ../development/python-modules/pocket { };
+
+  pocket-tts = callPackage ../development/python-modules/pocket-tts { };
 
   pocketsphinx = callPackage ../development/python-modules/pocketsphinx {
     inherit (pkgs) pocketsphinx;
@@ -17004,8 +17014,6 @@ self: super: with self; {
   scrapy = callPackage ../development/python-modules/scrapy { };
 
   scrapy-deltafetch = callPackage ../development/python-modules/scrapy-deltafetch { };
-
-  scrapy-fake-useragent = callPackage ../development/python-modules/scrapy-fake-useragent { };
 
   scrapy-splash = callPackage ../development/python-modules/scrapy-splash { };
 
