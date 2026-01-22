@@ -5072,6 +5072,18 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  evergarden-nvim = buildVimPlugin {
+    pname = "nvim";
+    version = "0-unstable-2026-01-11";
+    src = fetchgit {
+      url = "https://codeberg.org/evergarden/nvim";
+      rev = "124f7d142ed328fe413888b10ae39d94ee695560";
+      hash = "sha256-TeWsXdiCbNCFWMgCixDIu2yQ7R8uTWVScben6rOPsx8=";
+    };
+    meta.homepage = "https://codeberg.org/everviolet/nvim";
+    meta.hydraPlatforms = [ ];
+  };
+
   executor-nvim = buildVimPlugin {
     pname = "executor.nvim";
     version = "0-unstable-2025-08-15";
@@ -16181,6 +16193,20 @@ final: prev: {
       hash = "sha256-E+6yph7I1Z7NgUhjD5rkBeJ2Bx9QRbMpgd2Yu8uTPG4=";
     };
     meta.homepage = "https://github.com/Quramy/tsuquyomi/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  tuis-nvim = buildVimPlugin {
+    pname = "tuis.nvim";
+    version = "0-unstable-2026-01-15";
+    src = fetchFromGitHub {
+      owner = "jrop";
+      repo = "tuis.nvim";
+      rev = "3f3daa725cf1faffe07287cfe347e054d2f80470";
+      hash = "sha256-IJIqWD6XNzoAVr75WLzBf1Ut35RxSHzZ0//hTskEdSA=";
+      fetchSubmodules = true;
+    };
+    meta.homepage = "https://github.com/jrop/tuis.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
