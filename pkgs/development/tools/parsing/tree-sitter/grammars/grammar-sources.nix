@@ -692,7 +692,7 @@
   };
 
   org-nvim = {
-    version = "0-unstable-2023-06-19";
+    version = "1.3.1-unstable-2023-06-19";
     url = "github:emiasims/tree-sitter-org/64cfbc213f5a83da17632c95382a5a0a2f3357c1";
     hash = "sha256-/03eZBbv23W5s/GbDgPgaJV5TyK+/lrWUVeINRS5wtA=";
     meta = {
@@ -724,6 +724,18 @@
     hash = "sha256-jI7yzcoHS/tNxUqJI4aD1rdEZV3jMn1GZD0J+81Dyf0=";
     meta = {
       license = lib.licenses.mit;
+    };
+  };
+
+  phpdoc = {
+    version = "0.1.8";
+    url = "github:claytonrcarter/tree-sitter-phpdoc";
+    hash = "sha256-X+ElKI0ZMLCmxEanKsDRL/1KzGZfBrG7zITsT+jSrtQ=";
+    meta = {
+      license = lib.licenses.mit;
+      maintainers = with lib.maintainers; [
+        Stebalien
+      ];
     };
   };
 
