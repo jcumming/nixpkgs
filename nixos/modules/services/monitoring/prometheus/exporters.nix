@@ -103,6 +103,7 @@ let
         "node-cert"
         "nut"
         "nvidia-gpu"
+        "opnsense"
         "pgbouncer"
         "php-fpm"
         "pihole"

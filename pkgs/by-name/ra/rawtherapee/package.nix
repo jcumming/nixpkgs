@@ -12,14 +12,14 @@
   libdatrie,
   libxkbcommon,
   libepoxy,
-  libXtst,
+  libxtst,
   wrapGAppsHook3,
   makeWrapper,
   pixman,
-  libpthreadstubs,
+  libpthread-stubs,
   gtkmm3,
-  libXau,
-  libXdmcp,
+  libxau,
+  libxdmcp,
   lcms2,
   libiptcdata,
   fftwSinglePrec,
@@ -85,12 +85,12 @@ stdenv.mkDerivation (finalAttrs: {
     libdatrie
     libxkbcommon
     libepoxy
-    libXtst
+    libxtst
     pixman
-    libpthreadstubs
+    libpthread-stubs
     gtkmm3
-    libXau
-    libXdmcp
+    libxau
+    libxdmcp
     lcms2
     libiptcdata
     fftwSinglePrec
