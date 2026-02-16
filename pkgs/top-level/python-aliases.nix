@@ -38,13 +38,11 @@ mapAliases {
   python2Packages = throw "do not use python2Packages when building Python packages, specify each used package as a separate argument"; # do not remove
   python27Packages = throw "do not use python27Packages when building Python packages, specify each used package as a separate argument"; # do not remove
   python3Packages = throw "do not use python3Packages when building Python packages, specify each used package as a separate argument"; # do not remove
-  python310Packages = throw "do not use python310Packages when building Python packages, specify each used package as a separate argument"; # do not remove
   python311Packages = throw "do not use python311Packages when building Python packages, specify each used package as a separate argument"; # do not remove
   python312Packages = throw "do not use python312Packages when building Python packages, specify each used package as a separate argument"; # do not remove
   python313Packages = throw "do not use python313Packages when building Python packages, specify each used package as a separate argument"; # do not remove
   python2 = throw "do not use python2 when building Python packages, use the generic python parameter instead"; # do not remove
   python3 = throw "do not use python3 when building Python packages, use the generic python parameter instead"; # do not remove
-  python310 = throw "do not use python310 when building Python packages, use the generic python parameter instead"; # do not remove
   python311 = throw "do not use python311 when building Python packages, use the generic python parameter instead"; # do not remove
   python312 = throw "do not use python312 when building Python packages, use the generic python parameter instead"; # do not remove
   python313 = throw "do not use python313 when building Python packages, use the generic python parameter instead"; # do not remove
@@ -79,6 +77,8 @@ mapAliases {
   Babel = throw "'Babel' has been renamed to/replaced by 'babel'"; # Converted to throw 2025-10-29
   backports-functools-lru-cache = throw "'backports-functools-lru-cache' has been removed from nixpkgs as it was not longer used in python2"; # Added 2026-01-14
   backports_shutil_get_terminal_size = throw "'backports_shutil_get_terminal_size' has been renamed to/replaced by 'backports-shutil-get-terminal-size'"; # Converted to throw 2025-10-29
+  basedmypy = throw "basedmypy has been deprecated by upstream. Use instead 'basedpyright' or 'ty'"; # added 2026-02-03
+  basedtyping = throw "basedtyping has been deprecated by upstream."; # added 2026-02-03
   basewood-av = throw "'basewood-av' has been removed due to being archived upstream and unused"; # added 2025-11-26
   bash_kernel = throw "'bash_kernel' has been renamed to/replaced by 'bash-kernel'"; # Converted to throw 2025-10-29
   beancount_docverif = throw "'beancount_docverif' has been renamed to/replaced by 'beancount-docverif'"; # Converted to throw 2025-10-29
@@ -201,6 +201,7 @@ mapAliases {
   gplaycli = throw "'gplaycli' has been removed as it was broken and lacked maintenance"; # Added 2025-11-09
   gpy = throw "'gpy' has been removed as it is based on 'paramz', which was removed"; # added 2025-11-10
   gradient_statsd = throw "'gradient_statsd' has been renamed to/replaced by 'gradient-statsd'"; # Converted to throw 2025-10-29
+  grapheme = throw "'grapheme' has been removed as it is unmaintained upstream. Consider using 'graphemeu' instead."; # Converted to throw 2025-12-22
   grappelli_safe = throw "'grappelli_safe' has been renamed to/replaced by 'grappelli-safe'"; # Converted to throw 2025-10-29
   groestlcoin_hash = throw "'groestlcoin_hash' has been renamed to/replaced by 'groestlcoin-hash'"; # Converted to throw 2025-10-29
   grpc_google_iam_v1 = throw "'grpc_google_iam_v1' has been renamed to/replaced by 'grpc-google-iam-v1'"; # Converted to throw 2025-10-29

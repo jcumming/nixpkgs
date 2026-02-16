@@ -71,7 +71,7 @@ buildGoModule rec {
 
   nativeBuildInputs = [ pkg-config ];
 
-  PKG_CONFIG_PATH = "${flux}/pkgconfig";
+  env.PKG_CONFIG_PATH = "${flux}/pkgconfig";
 
   # Check that libflux is at the right version
   preBuild = ''
@@ -101,7 +101,6 @@ buildGoModule rec {
     license = lib.licenses.mit;
     homepage = "https://influxdata.com/";
     maintainers = with lib.maintainers; [
-      offline
       zimbatm
     ];
   };

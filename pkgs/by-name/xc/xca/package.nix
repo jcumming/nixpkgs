@@ -34,7 +34,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   # Needed for qcollectiongenerator (see https://github.com/NixOS/nixpkgs/pull/92710)
-  QT_PLUGIN_PATH = "${qt6.qtbase}/${qt6.qtbase.qtPluginPrefix}";
+  env.QT_PLUGIN_PATH = "${qt6.qtbase}/${qt6.qtbase.qtPluginPrefix}";
 
   enableParallelBuilding = true;
 
@@ -51,7 +51,6 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://hohnstaedt.de/xca/";
     license = lib.licenses.bsd3;
     maintainers = with lib.maintainers; [
-      offline
       peterhoeg
     ];
     inherit (qt6.qtbase.meta) platforms;

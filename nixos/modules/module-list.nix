@@ -1598,6 +1598,7 @@
   ./services/web-apps/changedetection-io.nix
   ./services/web-apps/chhoto-url.nix
   ./services/web-apps/cloudlog.nix
+  ./services/web-apps/cocoon.nix
   ./services/web-apps/code-server.nix
   ./services/web-apps/coder.nix
   ./services/web-apps/collabora-online.nix
@@ -1658,6 +1659,7 @@
   ./services/web-apps/immich.nix
   ./services/web-apps/immichframe.nix
   ./services/web-apps/invidious.nix
+  ./services/web-apps/invoiceplane.nix
   ./services/web-apps/isso.nix
   ./services/web-apps/jirafeau.nix
   ./services/web-apps/jitsi-meet.nix
@@ -1714,6 +1716,7 @@
   ./services/web-apps/outline.nix
   ./services/web-apps/pairdrop.nix
   ./services/web-apps/part-db.nix
+  ./services/web-apps/pdfding.nix
   ./services/web-apps/peering-manager.nix
   ./services/web-apps/peertube-runner.nix
   ./services/web-apps/peertube.nix
