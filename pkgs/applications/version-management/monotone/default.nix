@@ -76,7 +76,7 @@ stdenv.mkDerivation rec {
       {} +
   '';
 
-  CXXFLAGS = " --std=c++11 ";
+  env.CXXFLAGS = " --std=c++11 ";
 
   nativeBuildInputs = [
     pkg-config
