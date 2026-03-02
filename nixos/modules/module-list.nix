@@ -317,7 +317,6 @@
   ./programs/slock.nix
   ./programs/sniffnet.nix
   ./programs/soundmodem.nix
-  ./programs/spacefm.nix
   ./programs/ssh.nix
   ./programs/starship.nix
   ./programs/steam.nix
@@ -349,6 +348,7 @@
   ./programs/wayland/hyprland.nix
   ./programs/wayland/hyprlock.nix
   ./programs/wayland/labwc.nix
+  ./programs/wayland/mangowc.nix
   ./programs/wayland/miracle-wm.nix
   ./programs/wayland/niri.nix
   ./programs/wayland/river.nix
@@ -873,6 +873,7 @@
   ./services/misc/headphones.nix
   ./services/misc/heisenbridge.nix
   ./services/misc/homepage-dashboard.nix
+  ./services/misc/hyprwhspr-rs.nix
   ./services/misc/ihaskell.nix
   ./services/misc/iio-niri.nix
   ./services/misc/input-remapper.nix
@@ -1515,6 +1516,8 @@
   ./services/security/reaction.nix
   ./services/security/shibboleth-sp.nix
   ./services/security/sks.nix
+  ./services/security/spire/agent.nix
+  ./services/security/spire/server.nix
   ./services/security/ssh-agent-switcher.nix
   ./services/security/sshguard.nix
   ./services/security/sslmate-agent.nix
@@ -1619,6 +1622,7 @@
   ./services/web-apps/docuseal.nix
   ./services/web-apps/dokuwiki.nix
   ./services/web-apps/dolibarr.nix
+  ./services/web-apps/drasl.nix
   ./services/web-apps/drupal.nix
   ./services/web-apps/echoip.nix
   ./services/web-apps/eintopf.nix

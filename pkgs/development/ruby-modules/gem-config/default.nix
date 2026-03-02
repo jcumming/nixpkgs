@@ -31,7 +31,7 @@
   which,
   libiconv,
   libpq,
-  nodejs,
+  nodejs-slim,
   clang,
   sqlite,
   zlib,
@@ -338,7 +338,7 @@ in
 
   mini_racer = attrs: {
     buildFlags = [
-      "--with-v8-dir=\"${nodejs.libv8}\""
+      "--with-v8-dir=\"${nodejs-slim.libv8}\""
     ];
     dontBuild = false;
     postPatch = ''
@@ -699,7 +699,7 @@ in
   };
 
   execjs = attrs: {
-    propagatedBuildInputs = [ nodejs.libv8 ];
+    propagatedBuildInputs = [ nodejs-slim.libv8 ];
   };
 
   libxml-ruby = attrs: {
@@ -1165,6 +1165,13 @@ in
 
   treetop = attrs: {
     meta.mainProgram = "tt";
+  };
+
+  trilogy = attrs: {
+    postInstall = ''
+      installPath=$(cat "$out/nix-support/gem-meta/install-path")
+      ln -s contrib/ruby/trilogy.gemspec "$installPath/trilogy.gemspec"
+    '';
   };
 
   typhoeus = attrs: {
