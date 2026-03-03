@@ -1,35 +1,23 @@
-{ config, pkgs, lib, ... }:
+{ lib, buildGoModule, fetchFromGitHub }:
 
-with lib;
+buildGoModule rec {
+  pname = "fail2ban-prometheus-exporter";
+  version = "v0.10.1";
 
-let cfg = config.services.prometheus.exporters.fail2ban;
-
-in {
-  port = 6798;
-  
-  extraOpts = {
-    socketPath = mkOption {
-      type = types.path;            
-      default = "/var/run/fail2ban/fail2ban.sock";
-      example = "/var/lib/fail2ban/fail2ban.sock";
-      description = ''
-        Path under which the fail2ban socket is placed.
-        The user/group under which the exporter runs,
-        should be able to access the socket in order
-        to scrape the metrics successfully.
-      '';
-    };
+  src = fetchFromGitHub {
+    rev = version;
+    owner = "hectorjsmith";
+    repo = "fail2ban-prometheus-exporter";
+    sha256 = "sha256-zGEhDy3uXIbvx4agSA8Mx7bRtiZZtoDZGbNbHc9L+yI=";
   };
 
-  serviceOpts = {
-    serviceConfig = {
-      RestrictAddressFamilies = [ "AF_UNIX" "AF_NETLINK" ];
+  vendorHash = "sha256-5o8p5p0U/c0WAIV5dACnWA3ThzSh2tt5LIFMb59i9GY=";
 
-      ExecStart = ''
-        ${pkgs.prometheus-fail2ban-exporter}/bin/fail2ban-prometheus-exporter \
-          --web.listen-address=${cfg.listenAddress}:${toString cfg.port} \
-          --collector.f2b.socket=${cfg.socketPath}
-      '';
-    };
+  meta = with lib; {
+    description = "Collect and export metrics on Fail2Ban";
+    homepage = "https://gitlab.com/hectorjsmith/fail2ban-prometheus-exporter";
+    license = licenses.mit; 
+    maintainers = with maintainers; [ jcumming ];
+    platforms = platforms.linux;
   };
 }
