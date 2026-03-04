@@ -89,6 +89,7 @@ let
         allow-query-cache { cachenetworks; };
         blackhole { badnetworks; };
         ${maybeForward}
+        directory "/run/named";
         pid-file "/run/named/named.pid";
         ${cfg.extraOptions}
       };
