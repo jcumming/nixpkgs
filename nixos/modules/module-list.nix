@@ -609,6 +609,7 @@
   ./services/development/lorri.nix
   ./services/development/nixseparatedebuginfod2.nix
   ./services/development/rstudio-server/default.nix
+  ./services/development/turborepo-remote-cache.nix
   ./services/development/vsmartcard-vpcd.nix
   ./services/development/zammad.nix
   ./services/display-managers/cosmic-greeter.nix
@@ -877,6 +878,7 @@
   ./services/misc/ihaskell.nix
   ./services/misc/iio-niri.nix
   ./services/misc/input-remapper.nix
+  ./services/misc/inventree.nix
   ./services/misc/invidious-router.nix
   ./services/misc/irkerd.nix
   ./services/misc/jackett.nix
@@ -1118,6 +1120,7 @@
   ./services/networking/atalkd.nix
   ./services/networking/atftpd.nix
   ./services/networking/atticd.nix
+  ./services/networking/autossh-ng.nix
   ./services/networking/autossh.nix
   ./services/networking/avahi-daemon.nix
   ./services/networking/ax25/axlisten.nix
@@ -1525,6 +1528,7 @@
   ./services/security/step-ca.nix
   ./services/security/tang.nix
   ./services/security/timekpr.nix
+  ./services/security/tinyauth.nix
   ./services/security/tor.nix
   ./services/security/torify.nix
   ./services/security/torsocks.nix
