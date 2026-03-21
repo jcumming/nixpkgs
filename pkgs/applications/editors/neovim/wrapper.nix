@@ -69,6 +69,8 @@ let
       # { plugin=far-vim; config = "let g:far#source='rg'"; optional = false; }
       # ]
       plugins ? [ ],
+      # the function you would have passed to lua.withPackages
+      extraLuaPackages ? (_: [ ]),
       ...
     }@attrs:
     assert
@@ -105,10 +107,25 @@ let
         packpathDirs.myNeovimPackages = vimPackageInfo.vimPackage;
         finalPackdir = neovimUtils.packDir packpathDirs;
 
+        luaDeps = extraLuaPackages lua.pkgs ++ vimPackageInfo.luaDependencies;
+
+        luaPathLuaRc =
+          let
+            luaEnv = lua.withPackages (_: luaDeps);
+
+            # getLuaPath / getLuaCPath are not interpreter dependant at the moment and might thus cause
+            # errors between luajit/Puc lua
+            generatedLuaPath = lua.pkgs.getLuaPath luaEnv;
+            generatedLuaCPath = lua.pkgs.getLuaCPath luaEnv;
+          in
+          ''
+            package.path = "${generatedLuaPath}".. ";" .. package.path
+            package.cpath = "${generatedLuaCPath}".. ";" .. package.cpath
+          '';
+
         rcContent = lib.concatStringsSep "\n" (
-          [
-            providerLuaRc
-          ]
+          lib.optional (luaDeps != [ ]) luaPathLuaRc
+          ++ [ providerLuaRc ]
           ++ lib.optional (luaRcContent != "") luaRcContent
           ++ lib.optional (neovimRcContent' != "") ''
             vim.cmd.source "${writeText "init.vim" neovimRcContent'}"
@@ -312,16 +329,7 @@ let
             rm $out/bin/nvim
             touch $out/rplugin.vim
 
-            echo "Looking for lua dependencies..."
-            source ${lua}/nix-support/utils.sh
-
-            _addToLuaPath "${finalPackdir}"
-
-            echo "LUA_PATH towards the end of packdir: $LUA_PATH"
-
-            makeWrapper ${lib.escapeShellArgs finalMakeWrapperArgs} ${wrapperArgsStr} \
-                --prefix LUA_PATH ';' "$LUA_PATH" \
-                --prefix LUA_CPATH ';' "$LUA_CPATH"
+            makeWrapper ${lib.escapeShellArgs finalMakeWrapperArgs} ${wrapperArgsStr}
           '';
 
         buildPhase = ''

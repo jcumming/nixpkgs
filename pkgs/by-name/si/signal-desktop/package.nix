@@ -55,13 +55,13 @@ let
     '';
   });
 
-  version = "8.2.0";
+  version = "8.3.0";
 
   src = fetchFromGitHub {
     owner = "signalapp";
     repo = "Signal-Desktop";
     tag = "v${version}";
-    hash = "sha256-KejUmkTko5xg9LhswYy6qSb+8S+FhqK2cWHYSngUnVs=";
+    hash = "sha256-udwV9xmNI2FYqE5i2aP6NQWaXUVLWMV1NODBRhkAkRo=";
   };
 
   sticker-creator = stdenv.mkDerivation (finalAttrs: {
@@ -163,15 +163,15 @@ stdenv.mkDerivation (finalAttrs: {
     fetcherVersion = 3;
     hash =
       if withAppleEmojis then
-        "sha256-0Cfhd5s3c4cnUv/YY07fUnsG0WKfYT+EGrHlFIkS1Zw="
+        "sha256-A43ZOqLffaMiVvVlX0s7bsdz8qM1LiQuJ0Ka8x5B3OQ="
       else
-        "sha256-WYyGBA6y/vxf1nPwiNIuXYkuk1ZbZPrM1+7VXupidjA=";
+        "sha256-O5k7k2WbsSI1BEzrAkrtQX9ZMxP6oekllA+5wF0FCHQ=";
   };
 
   env = {
     ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
     SIGNAL_ENV = "production";
-    SOURCE_DATE_EPOCH = 1773262210;
+    SOURCE_DATE_EPOCH = 1773926124;
   }
   // lib.optionalAttrs stdenv.hostPlatform.isDarwin {
     # Disable code signing during local macOS builds.
