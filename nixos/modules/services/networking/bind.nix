@@ -62,19 +62,36 @@ let
       };
     };
 
-  confFile = 
-    let maybeForward = 
-      if (cfg.forward == "never") 
-        then ""
-        else ''
-          forward ${cfg.forward};
-          forwarders { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.forwarders} };
-        '';
-  in pkgs.writeText "named.conf" ''
-    include "/etc/bind/rndc.key";
-    controls {
-      inet 127.0.0.1 allow {localhost;} keys {"rndc-key";};
-    };
+  testRndcKey = pkgs.writeTextFile {
+    name = "testrndc.key";
+    text = ''
+      key "rndc-key" {
+        algorithm ${bindRndcMacType};
+        secret "Ini0XSebb9LrYz7zprobBLZ2iwBEK5S9vh9zj/DozR8=";
+      };
+    '';
+  };
+
+  testFakeDir = "/tmp/test-fake-directory-for-named-checkconf";
+
+  confFile = let 
+    maybeForward = if (cfg.forward == "never") then "" else ''
+        forward ${cfg.forward};
+        forwarders { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.forwarders} };
+      '';
+  in pkgs.writeTextFile {
+    name = "named.conf";
+    checkPhase = ''
+      ${lib.optionalString cfg.checkConfig ''
+        echo "Checking named configuration file...";
+        mkdir -p ${testFakeDir}
+        ${lib.getExe' bindPkg "named-checkconf"} -z $target
+      ''}
+
+      substituteInPlace $target \
+        --replace-fail ${testRndcKey} ${bindRndcKeyFile} \
+        --replace-fail ${testFakeDir} ${cfg.directory}
+    '';
 
     acl cachenetworks { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.cacheNetworks} };
     acl badnetworks { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.blockedNetworks} };
@@ -88,8 +105,9 @@ let
         } };
         allow-query-cache { cachenetworks; };
         blackhole { badnetworks; };
+
         ${maybeForward}
-        directory "/run/named";
+        directory "${testFakeDir}";
         pid-file "/run/named/named.pid";
         ${cfg.extraOptions}
       };
@@ -293,6 +311,16 @@ in
         '';
       };
 
+      checkConfig = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = ''
+          Check configuration.
+
+          The configuration will not be checked if you override the config file
+          with `configFile`.
+        '';
+      };
     };
 
   };
