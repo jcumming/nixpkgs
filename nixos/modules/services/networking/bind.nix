@@ -83,87 +83,93 @@ let
 
   testFakeDir = "/tmp/test-fake-directory-for-named-checkconf";
 
-  confFile = let  
-    maybeForward = if (cfg.forward == "never") then "" else ''
-        forward ${cfg.forward};
-        forwarders { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.forwarders} };
+  confFile =
+    let
+      maybeForward =
+        if (cfg.forward == "never") then
+          ""
+        else
+          ''
+            forward ${cfg.forward};
+            forwarders { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.forwarders} };
+          '';
+    in
+    pkgs.writeTextFile {
+      name = "named.conf";
+      checkPhase = ''
+        ${lib.optionalString cfg.checkConfig ''
+          echo "Checking named configuration file...";
+          mkdir -p ${testFakeDir}
+          ${lib.getExe' bindPkg "named-checkconf"} -z $target
+        ''}
+
+        substituteInPlace $target \
+          --replace-fail ${testRndcKey} ${bindRndcKeyFile} \
+          --replace-fail ${testFakeDir} ${cfg.directory}
       '';
-  in pkgs.writeTextFile {
-    name = "named.conf";
-    checkPhase = ''
-      ${lib.optionalString cfg.checkConfig ''
-        echo "Checking named configuration file...";
-        mkdir -p ${testFakeDir}
-        ${lib.getExe' bindPkg "named-checkconf"} -z $target
-      ''}
 
-      substituteInPlace $target \
-        --replace-fail ${testRndcKey} ${bindRndcKeyFile} \
-        --replace-fail ${testFakeDir} ${cfg.directory}
-    '';
+      # The include path in the first line will be replaced in the postCheck hook.
+      text = ''
+        include "${testRndcKey}";
+        controls {
+          inet 127.0.0.1 allow {localhost;} keys {"rndc-key";};
+        };
 
-    # The include path in the first line will be replaced in the postCheck hook.
-    text = ''
-      include "${testRndcKey}";
-      controls {
-        inet 127.0.0.1 allow {localhost;} keys {"rndc-key";};
-      };
+        acl cachenetworks { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.cacheNetworks} };
+        acl badnetworks { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.blockedNetworks} };
 
-      acl cachenetworks { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.cacheNetworks} };
-      acl badnetworks { ${lib.concatMapStrings (entry: " ${entry}; ") cfg.blockedNetworks} };
+        options {
+          listen-on port ${toString cfg.listenOnPort} { ${
+            lib.concatMapStrings (entry: " ${entry}; ") cfg.listenOn
+          } };
+          listen-on-v6 port ${toString cfg.listenOnIpv6Port} { ${
+            lib.concatMapStrings (entry: " ${entry}; ") cfg.listenOnIpv6
+          } };
+          allow-query-cache { cachenetworks; };
+          blackhole { badnetworks; };
+          ${maybeForward}
+          directory "${testFakeDir}";
+          pid-file "/run/named/named.pid";
+          ${cfg.extraOptions}
+        };
 
-      options {
-        listen-on port ${toString cfg.listenOnPort} { ${
-          lib.concatMapStrings (entry: " ${entry}; ") cfg.listenOn
-        } };
-        listen-on-v6 port ${toString cfg.listenOnIpv6Port} { ${
-          lib.concatMapStrings (entry: " ${entry}; ") cfg.listenOnIpv6
-        } };
-        allow-query-cache { cachenetworks; };
-        blackhole { badnetworks; };
-        ${maybeForward}
-        directory "${testFakeDir}";
-        pid-file "/run/named/named.pid";
-        ${cfg.extraOptions}
-      };
+        ${cfg.extraConfig}
 
-      ${cfg.extraConfig}
-
-      ${lib.concatMapStrings (
-        {
-          name,
-          file,
-          master ? true,
-          slaves ? [ ],
-          masters ? [ ],
-          allowQuery ? [ ],
-          extraConfig ? "",
-        }:
-        ''
-          zone "${name}" {
-            type ${if master then "master" else "slave"};
-            file "${file}";
-            ${
-              if master then
-                ''
-                  allow-transfer {
-                    ${lib.concatMapStrings (ip: "${ip};\n") slaves}
-                  };
-                ''
-              else
-                ''
-                  masters {
-                    ${lib.concatMapStrings (ip: "${ip};\n") masters}
-                  };
-                ''
-            }
-            allow-query { ${lib.concatMapStrings (ip: "${ip}; ") allowQuery}};
-            ${extraConfig}
-          };
-        ''
-      ) (lib.attrValues cfg.zones)}
-    '';
-  };
+        ${lib.concatMapStrings (
+          {
+            name,
+            file,
+            master ? true,
+            slaves ? [ ],
+            masters ? [ ],
+            allowQuery ? [ ],
+            extraConfig ? "",
+          }:
+          ''
+            zone "${name}" {
+              type ${if master then "master" else "slave"};
+              file "${file}";
+              ${
+                if master then
+                  ''
+                    allow-transfer {
+                      ${lib.concatMapStrings (ip: "${ip};\n") slaves}
+                    };
+                  ''
+                else
+                  ''
+                    masters {
+                      ${lib.concatMapStrings (ip: "${ip};\n") masters}
+                    };
+                  ''
+              }
+              allow-query { ${lib.concatMapStrings (ip: "${ip}; ") allowQuery}};
+              ${extraConfig}
+            };
+          ''
+        ) (lib.attrValues cfg.zones)}
+      '';
+    };
 in
 
 {
