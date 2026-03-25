@@ -13974,13 +13974,6 @@
     githubId = 788813;
     name = "Bryan Gardiner";
   };
-  khushraj = {
-    email = "khushraj.rathod@gmail.com";
-    github = "khrj";
-    githubId = 44947946;
-    name = "Khushraj Rathod";
-    keys = [ { fingerprint = "1988 3FD8 EA2E B4EC 0A93  1E22 B77B 2A40 E770 2F19"; } ];
-  };
   kiara = {
     name = "kiara";
     email = "cinereal@riseup.net";
@@ -17332,6 +17325,11 @@
     github = "Mephistophiles";
     githubId = 4850908;
   };
+  Merikei = {
+    name = "Merikei";
+    github = "Merikei";
+    githubId = 73759842;
+  };
   merrkry = {
     email = "merrkry@tsubasa.moe";
     name = "merrkry";
@@ -18707,6 +18705,12 @@
     github = "nadir-ishiguro";
     githubId = 23151917;
     name = "nadir-ishiguro";
+  };
+  nadja-y = {
+    email = "git@njy.dev";
+    github = "nadja-y";
+    githubId = 255079535;
+    name = "Nadja Yang";
   };
   nadrieril = {
     email = "nadrieril@gmail.com";
