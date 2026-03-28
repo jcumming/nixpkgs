@@ -8502,6 +8502,12 @@
     githubId = 88741530;
     name = "Fabian Rigoll";
   };
+  fallenbagel = {
+    name = "fallenbagel";
+    github = "fallenbagel";
+    githubId = 98979876;
+    email = "hello@fallenbagel.com";
+  };
   famfo = {
     name = "famfo";
     email = "famfo+nixpkgs@famfo.xyz";
@@ -26162,6 +26168,12 @@
     githubId = 43136984;
     name = "Sven Ziegler";
   };
+  svistoi = {
+    email = "svistoi@zohomailcloud.ca";
+    github = "svistoi";
+    githubId = 47987757;
+    name = "svistoi";
+  };
   svrana = {
     email = "shaw@vranix.com";
     github = "svrana";
@@ -27941,6 +27953,12 @@
     github = "twitchy0";
     githubId = 131159000;
     name = "Nitin Passa";
+  };
+  twoneis = {
+    email = "nix@chpu.eu";
+    github = "twoneis";
+    githubId = 48321566;
+    name = "Mira Chacku Purakal";
   };
   twz123 = {
     name = "Tom Wieczorek";

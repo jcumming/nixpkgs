@@ -4148,6 +4148,8 @@ self: super: with self; {
 
   django-currentuser = callPackage ../development/python-modules/django-currentuser { };
 
+  django-dbbackup = callPackage ../development/python-modules/django-dbbackup { };
+
   django-debug-toolbar = callPackage ../development/python-modules/django-debug-toolbar { };
 
   django-dynamic-preferences =
@@ -4207,6 +4209,8 @@ self: super: with self; {
   django-htmx = callPackage ../development/python-modules/django-htmx { };
 
   django-i18nfield = callPackage ../development/python-modules/django-i18nfield { };
+
+  django-ical = callPackage ../development/python-modules/django-ical { };
 
   django-import-export = callPackage ../development/python-modules/django-import-export { };
 
@@ -6898,6 +6902,8 @@ self: super: with self; {
 
   hatasmota = callPackage ../development/python-modules/hatasmota { };
 
+  hatch = callPackage ../development/python-modules/hatch/default.nix { };
+
   hatch-autorun = callPackage ../development/python-modules/hatch-autorun { };
 
   hatch-babel = callPackage ../development/python-modules/hatch-babel { };
@@ -8301,6 +8307,8 @@ self: super: with self; {
 
   kml2geojson = callPackage ../development/python-modules/kml2geojson { };
 
+  kmock = callPackage ../development/python-modules/kmock { };
+
   kmsxx = toPythonModule (
     pkgs.kmsxx.override {
       withPython = true;
@@ -9007,8 +9015,6 @@ self: super: with self; {
 
   llama-cloud = callPackage ../development/python-modules/llama-cloud { };
 
-  llama-cloud-services = callPackage ../development/python-modules/llama-cloud-services { };
-
   llama-cpp-python = callPackage ../development/python-modules/llama-cpp-python { };
 
   llama-index = callPackage ../development/python-modules/llama-index { };
@@ -9049,10 +9055,6 @@ self: super: with self; {
     callPackage ../development/python-modules/llama-index-graph-stores-neptune
       { };
 
-  llama-index-indices-managed-llama-cloud =
-    callPackage ../development/python-modules/llama-index-indices-managed-llama-cloud
-      { };
-
   llama-index-instrumentation =
     callPackage ../development/python-modules/llama-index-instrumentation
       { };
@@ -9065,10 +9067,6 @@ self: super: with self; {
 
   llama-index-llms-openai-like =
     callPackage ../development/python-modules/llama-index-llms-openai-like
-      { };
-
-  llama-index-multi-modal-llms-openai =
-    callPackage ../development/python-modules/llama-index-multi-modal-llms-openai
       { };
 
   llama-index-node-parser-docling =
@@ -9086,10 +9084,6 @@ self: super: with self; {
   llama-index-readers-file = callPackage ../development/python-modules/llama-index-readers-file { };
 
   llama-index-readers-json = callPackage ../development/python-modules/llama-index-readers-json { };
-
-  llama-index-readers-llama-parse =
-    callPackage ../development/python-modules/llama-index-readers-llama-parse
-      { };
 
   llama-index-readers-s3 = callPackage ../development/python-modules/llama-index-readers-s3 { };
 
@@ -9124,8 +9118,6 @@ self: super: with self; {
       { };
 
   llama-index-workflows = callPackage ../development/python-modules/llama-index-workflows { };
-
-  llama-parse = callPackage ../development/python-modules/llama-parse { };
 
   llama-stack-client = callPackage ../development/python-modules/llama-stack-client { };
 
@@ -13976,6 +13968,8 @@ self: super: with self; {
 
   pyinstrument = callPackage ../development/python-modules/pyinstrument { };
 
+  pyintelliclima = callPackage ../development/python-modules/pyintelliclima { };
+
   pyinterp = callPackage ../development/python-modules/pyinterp { };
 
   pyintesishome = callPackage ../development/python-modules/pyintesishome { };
@@ -15593,6 +15587,8 @@ self: super: with self; {
   python-didl-lite = callPackage ../development/python-modules/python-didl-lite { };
 
   python-digitalocean = callPackage ../development/python-modules/python-digitalocean { };
+
+  python-discovery = callPackage ../development/python-modules/python-discovery { };
 
   python-djvulibre = callPackage ../development/python-modules/python-djvulibre { };
 
