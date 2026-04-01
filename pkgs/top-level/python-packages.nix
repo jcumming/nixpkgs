@@ -5882,6 +5882,8 @@ self: super: with self; {
     inherit (pkgs) foundationdb;
   };
 
+  foundrytools = callPackage ../development/python-modules/foundrytools { };
+
   fountains = callPackage ../development/python-modules/fountains { };
 
   foxdot = callPackage ../development/python-modules/foxdot { };
@@ -10095,6 +10097,8 @@ self: super: with self; {
   mockito = callPackage ../development/python-modules/mockito { };
 
   mockupdb = callPackage ../development/python-modules/mockupdb { };
+
+  modal = callPackage ../development/python-modules/modal { };
 
   modbus-tk = callPackage ../development/python-modules/modbus-tk { };
 
@@ -17249,6 +17253,8 @@ self: super: with self; {
 
   scanpy = callPackage ../development/python-modules/scanpy { };
 
+  scantree = callPackage ../development/python-modules/scantree { };
+
   scapy = callPackage ../development/python-modules/scapy {
     inherit (pkgs) libpcap; # Avoid confusion with python package of the same name
   };
@@ -18843,6 +18849,8 @@ self: super: with self; {
 
   syncer = callPackage ../development/python-modules/syncer { };
 
+  synchronicity = callPackage ../development/python-modules/synchronicity { };
+
   syndication-domination = toPythonModule (
     pkgs.syndication-domination.override {
       enablePython = true;
@@ -20238,6 +20246,8 @@ self: super: with self; {
   types-awscrt = callPackage ../development/python-modules/types-awscrt { };
 
   types-beautifulsoup4 = callPackage ../development/python-modules/types-beautifulsoup4 { };
+
+  types-certifi = callPackage ../development/python-modules/types-certifi { };
 
   types-click = callPackage ../development/python-modules/types-click { };
 
