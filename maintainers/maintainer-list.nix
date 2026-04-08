@@ -4443,6 +4443,11 @@
     github = "carlthome";
     githubId = 1595907;
   };
+  carschandler = {
+    name = "Cars Chandler";
+    github = "carschandler";
+    githubId = 92899389;
+  };
   casaca = {
     name = "J McNutt";
     email = "jmacasac@hotmail.com";
@@ -7703,6 +7708,13 @@
     github = "electrified";
     githubId = 103082;
     name = "Ed Brindley";
+  };
+  eleina = {
+    email = "ellie@eleina.dev";
+    github = "eleinah";
+    githubId = 129979592;
+    name = "Eleina Mironia";
+    keys = [ { fingerprint = "0A86 5F49 90B1 569C B849  5070 2EF4 8A29 49D6 5978"; } ];
   };
   eleonora = {
     email = "leonsch@protonmail.com";
@@ -18332,6 +18344,12 @@
     github = "MrMebelMan";
     githubId = 15896005;
     name = "Vladyslav Burzakovskyy";
+  };
+  mrsmoer = {
+    email = "mrsmoer@protonmail.com";
+    github = "MrSmoer";
+    githubId = 66489839;
+    name = "MrSmör";
   };
   MrSom3body = {
     email = "nix@sndh.dev";
