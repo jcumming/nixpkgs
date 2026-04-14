@@ -138,6 +138,13 @@
     github = "0xd61";
     githubId = 8351869;
   };
+  _0xErwin1 = {
+    email = "ignacio@feuer.me";
+    name = "Ignacio Perez";
+    github = "0xErwin1";
+    githubId = 67933444;
+    keys = [ { fingerprint = "B39E B98E 8860 DAFB 0567  0073 A614 B7D2 5134 987A"; } ];
+  };
   _0xMillyByte = {
     email = "emilia.daelman@gmail.com";
     name = "Emilia Daelman";
@@ -5685,6 +5692,11 @@
     name = "Serg Nesterov";
     keys = [ { fingerprint = "6E7D BA30 DB5D BA60 693C  3BE3 1512 F6EB 84AE CC8C"; } ];
   };
+  cvengler = {
+    name = "Clara Engler";
+    github = "cvengler";
+    githubId = 12272949;
+  };
   cwoac = {
     email = "oliver@codersoffortune.net";
     github = "cwoac";
@@ -10897,12 +10909,6 @@
     github = "hpfr";
     githubId = 44043764;
     name = "Liam Hupfer";
-  };
-  hqurve = {
-    email = "hqurve@outlook.com";
-    github = "hqurve";
-    githubId = 53281855;
-    name = "hqurve";
   };
   hraban = {
     email = "hraban@0brg.net";
