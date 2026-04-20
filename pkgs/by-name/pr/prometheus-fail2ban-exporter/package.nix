@@ -1,23 +1,31 @@
-{ lib, buildGoModule, fetchFromGitHub }:
+{
+  lib,
+  buildGoModule,
+  fetchFromGitLab,
+}:
 
-buildGoModule rec {
-  pname = "fail2ban-prometheus-exporter";
-  version = "v0.10.1";
+buildGoModule (finalAttrs: {
+  pname = "prometheus-fail2ban-exporter";
+  version = "0.10.3";
 
-  src = fetchFromGitHub {
-    rev = version;
-    owner = "hectorjsmith";
+  src = fetchFromGitLab {
+    owner = "hctrdev";
     repo = "fail2ban-prometheus-exporter";
-    sha256 = "sha256-zGEhDy3uXIbvx4agSA8Mx7bRtiZZtoDZGbNbHc9L+yI=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-CyYGY6SovnvgExB22G+LEKRDRzbDZWhWUjctJMkprYs=";
   };
 
-  vendorHash = "sha256-5o8p5p0U/c0WAIV5dACnWA3ThzSh2tt5LIFMb59i9GY=";
+  vendorHash = "sha256-ogdRXbS1EG402qlnj5SfuI/1P/Pi0+xwJrJsc6vwdds=";
 
-  meta = with lib; {
+  ldflags = [ "-s" ];
+
+  meta = {
     description = "Collect and export metrics on Fail2Ban";
-    homepage = "https://gitlab.com/hectorjsmith/fail2ban-prometheus-exporter";
-    license = licenses.mit; 
-    maintainers = with maintainers; [ jcumming ];
-    platforms = platforms.linux;
+    homepage = "https://gitlab.com/hctrdev/fail2ban-prometheus-exporter";
+    license = lib.licenses.mit;
+    mainProgram = "fail2ban-prometheus-exporter";
+    maintainers = with lib.maintainers; [
+      bartoostveen
+    ];
   };
-}
+})
