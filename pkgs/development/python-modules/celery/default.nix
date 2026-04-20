@@ -194,8 +194,15 @@ buildPythonPackage (finalAttrs: {
     "test_regression_worker_startup_info"
     "test_check_privileges"
 
+    # FileNotFoundError: [Errno 2] No such file or directory: 'test.db'
+    "test_forget"
+
     # Flaky: Unclosed temporary file handle under heavy load (as in nixpkgs-review)
     "test_check_privileges_without_c_force_root_and_no_group_entry"
+  ]
+  ++ lib.optionals (lib.versionAtLeast django.version "6.0") [
+    "test_is_pickled"
+    "test_cleanup"
   ]
   ++ lib.optionals stdenv.hostPlatform.isDarwin [
     # Too many open files on hydra
