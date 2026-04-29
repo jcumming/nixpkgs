@@ -7252,12 +7252,6 @@
     githubId = 187309685;
     name = "Drew Council";
   };
-  dritter = {
-    email = "dritter03@googlemail.com";
-    github = "dritter";
-    githubId = 1544760;
-    name = "Dominik Ritter";
-  };
   drperceptron = {
     github = "drperceptron";
     githubId = 92106371;
@@ -7756,6 +7750,12 @@
     github = "Ekleog";
     githubId = 411447;
     name = "Leo Gaspard";
+  };
+  ekzyis = {
+    email = "ramdip.singhgill@gmail.com";
+    github = "ekzyis";
+    githubId = 27162016;
+    name = "Ramdip Gill";
   };
   elasticdog = {
     email = "aaron@elasticdog.com";
@@ -11291,6 +11291,12 @@
     githubId = 55025025;
     name = "Feather Lin";
   };
+  igor-ramazanov = {
+    email = "personal@igorramazanov.tech";
+    github = "igor-ramazanov";
+    githubId = 12570166;
+    name = "Igor Ramazanov";
+  };
   igsha = {
     email = "igor.sharonov@gmail.com";
     github = "igsha";
@@ -14264,6 +14270,13 @@
     github = "Kitt3120";
     githubId = 10689811;
     name = "Torben Schweren";
+  };
+  kittyandrew = {
+    email = "alias.nixpkgs.maintainer@kittymail.me";
+    github = "kittyandrew";
+    githubId = 45767571;
+    matrix = "@kittyandrew:ndrew.me";
+    name = "kittyandrew";
   };
   kittywitch = {
     email = "kat@inskip.me";
@@ -19479,6 +19492,14 @@
     githubId = 8753998;
     name = "Nicolas Goudry";
     keys = [ { fingerprint = "21B6 A59A 4E89 0B1B 83E3 0CDB 01C8 8C03 5450 9AA9"; } ];
+  };
+  nicolas-guichard = {
+    name = "Nicolas Qiu Guichard";
+    email = "nicolas@guichard.eu";
+    matrix = "@nicolas:guichard.eu";
+    github = "nicolas-guichard";
+    githubId = 11260285;
+    keys = [ { fingerprint = "22B2 237B 0158 EE61 704C E191 7684 D229 0313 47AA"; } ];
   };
   nicomem = {
     email = "nix@nicomem.com";
@@ -26029,6 +26050,12 @@
     email = "blue@spook.rip";
     github = "StayBlue";
     githubId = 23127866;
+  };
+  stealthbadger747 = {
+    email = "parawell.erik@gmail.com";
+    github = "StealthBadger747";
+    githubId = 26052996;
+    name = "Erik Parawell";
   };
   steamwalker = {
     email = "steamwalker@xs4all.nl";
