@@ -7254,6 +7254,8 @@ self: super: with self; {
 
   httpx-oauth = callPackage ../development/python-modules/httpx-oauth { };
 
+  httpx-retries = callPackage ../development/python-modules/httpx-retries { };
+
   httpx-socks = callPackage ../development/python-modules/httpx-socks { };
 
   httpx-sse = callPackage ../development/python-modules/httpx-sse { };
@@ -13236,6 +13238,8 @@ self: super: with self; {
   py-partiql-parser = callPackage ../development/python-modules/py-partiql-parser { };
 
   py-pdf-parser = callPackage ../development/python-modules/py-pdf-parser { };
+
+  py-radix = callPackage ../development/python-modules/py-radix { };
 
   py-radix-sr = callPackage ../development/python-modules/py-radix-sr { };
 
