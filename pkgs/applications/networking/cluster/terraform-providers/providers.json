@@ -73,13 +73,13 @@
     "vendorHash": "sha256-FHBpTYSmVivoqz+Eaa/r5y1f/saIx4l6mjOtZhxZVRw="
   },
   "auth0_auth0": {
-    "hash": "sha256-Ha+2Z0gVNJ7oOozSWmW9XVpwlZo2LpvET03pAvh/3Mo=",
+    "hash": "sha256-4TNKFlWt6Hda/N/H50Aq2IEMGYsLs9R+GG9e9uLQqG4=",
     "homepage": "https://registry.terraform.io/providers/auth0/auth0",
     "owner": "auth0",
     "repo": "terraform-provider-auth0",
-    "rev": "v1.43.0",
+    "rev": "v1.45.0",
     "spdx": "MPL-2.0",
-    "vendorHash": "sha256-E6NOuhalQ9bXwRp6UTS5t35K3lOmFr9krGdRWtdtjGI="
+    "vendorHash": "sha256-EyKOxwayr10RbOBDu+8Yp4FILPwCN6yu+VJq6jgeQCo="
   },
   "aviatrixsystems_aviatrix": {
     "hash": "sha256-46djOfAj/5kfeoKLQHbeKefzdGbmlBATR+uN/IaAn8I=",
@@ -463,13 +463,13 @@
     "vendorHash": "sha256-/8h2bmesnFz3tav3+iDelZSjp1Z9lreexwcw0WdYekA="
   },
   "goharbor_harbor": {
-    "hash": "sha256-+HhtRod8VNOE6KceWIviWDCPvPuLK9/WaKrgT27GUpw=",
+    "hash": "sha256-2mi1QlWPAPGVr/Q0xOQjI8R8baeyJotjjoKZyQYNJg0=",
     "homepage": "https://registry.terraform.io/providers/goharbor/harbor",
     "owner": "goharbor",
     "repo": "terraform-provider-harbor",
-    "rev": "v3.11.5",
+    "rev": "v3.11.6",
     "spdx": "MIT",
-    "vendorHash": "sha256-yOM4JcQxAvYAFPyAFfjJn4FK8pEXF3I55ddMTkijn9c="
+    "vendorHash": "sha256-874QpqIFFhzIGJZ8nKGcUe9qEpR9jQkx4nl75Cpqpww="
   },
   "grafana_grafana": {
     "hash": "sha256-M29iRplTonmxOXeQYAdij+ttfGYiOCLN/v6YvYN9k7w=",

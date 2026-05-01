@@ -18508,6 +18508,11 @@
     githubId = 8165792;
     name = "Mark Karpov";
   };
+  mrmaxmeier = {
+    github = "mrmaxmeier";
+    githubId = 3913977;
+    name = "Mrmaxmeier";
+  };
   mrmebelman = {
     email = "burzakovskij@protonmail.com";
     github = "MrMebelMan";
@@ -23380,12 +23385,6 @@
     github = "rmcgibbo";
     githubId = 641278;
     name = "Robert T. McGibbon";
-  };
-  rmgpinto = {
-    email = "hessian_loom_0u@icloud.com";
-    github = "rmgpinto";
-    githubId = 24584;
-    name = "Ricardo Gândara Pinto";
   };
   rnhmjoj = {
     email = "rnhmjoj@inventati.org";
