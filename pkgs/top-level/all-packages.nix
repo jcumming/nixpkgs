@@ -1554,10 +1554,6 @@ with pkgs;
 
   apprise = with python3Packages; toPythonApplication apprise;
 
-  avahi-compat = callPackage ../by-name/av/avahi/package.nix {
-    withLibdnssdCompat = true;
-  };
-
   babelfish = callPackage ../shells/fish/babelfish.nix { };
 
   bat-extras = recurseIntoAttrs (lib.makeScope newScope (import ../tools/misc/bat-extras));
@@ -1645,8 +1641,6 @@ with pkgs;
     ;
 
   coreboot-configurator = libsForQt5.callPackage ../tools/misc/coreboot-configurator { };
-
-  intel-oneapi = recurseIntoAttrs (callPackage ../development/libraries/intel-oneapi { });
 
   intelLlvmStdenv = intel-llvm.stdenv;
 
@@ -2870,6 +2864,8 @@ with pkgs;
   # Not in aliases because it wouldn't get picked up by callPackage
   netbox = netbox_4_5;
 
+  netboxPlugins = recurseIntoAttrs netbox.plugins;
+
   netcap-nodpi = callPackage ../by-name/ne/netcap/package.nix {
     withDpi = false;
   };
@@ -3737,6 +3733,7 @@ with pkgs;
   gcc13Stdenv = overrideCC gccStdenv buildPackages.gcc13;
   gcc14Stdenv = overrideCC gccStdenv buildPackages.gcc14;
   gcc15Stdenv = overrideCC gccStdenv buildPackages.gcc15;
+  gcc16Stdenv = overrideCC gccStdenv buildPackages.gcc16;
 
   # This is not intended for use in nixpkgs but for providing a faster-running
   # compiler to nixpkgs users by building gcc with reproducibility-breaking
@@ -3839,9 +3836,10 @@ with pkgs;
     gcc13
     gcc14
     gcc15
+    gcc16
     ;
 
-  gcc_latest = gcc15;
+  gcc_latest = gcc16;
 
   libgccjit = gcc.cc.override {
     name = "libgccjit";
@@ -3939,6 +3937,34 @@ with pkgs;
     }
   );
 
+  gnat16 = wrapCC (
+    gcc16.cc.override {
+      name = "gnat";
+      langC = true;
+      langCC = false;
+      langAda = true;
+      profiledCompiler = false;
+      # As per upstream instructions building a cross compiler
+      # should be done with a (native) compiler of the same version.
+      # If we are cross-compiling GNAT, we may as well do the same.
+      gnat-bootstrap =
+        if stdenv.hostPlatform == stdenv.targetPlatform && stdenv.buildPlatform == stdenv.hostPlatform then
+          buildPackages.gnat-bootstrap14
+        else
+          buildPackages.gnat16;
+      stdenv =
+        if
+          stdenv.hostPlatform == stdenv.targetPlatform
+          && stdenv.buildPlatform == stdenv.hostPlatform
+          && stdenv.buildPlatform.isDarwin
+          && stdenv.buildPlatform.isx86_64
+        then
+          overrideCC stdenv gnat-bootstrap14
+        else
+          stdenv;
+    }
+  );
+
   gnat-bootstrap = gnat-bootstrap13;
   gnat-bootstrap13 = wrapCCWith (
     {
@@ -3960,6 +3986,7 @@ with pkgs;
   gnat13Packages = recurseIntoAttrs (callPackage ./ada-packages.nix { gnat = buildPackages.gnat13; });
   gnat14Packages = recurseIntoAttrs (callPackage ./ada-packages.nix { gnat = buildPackages.gnat14; });
   gnat15Packages = recurseIntoAttrs (callPackage ./ada-packages.nix { gnat = buildPackages.gnat15; });
+  gnat16Packages = recurseIntoAttrs (callPackage ./ada-packages.nix { gnat = buildPackages.gnat16; });
   gnatPackages = gnat13Packages;
 
   inherit (gnatPackages)
@@ -4014,6 +4041,21 @@ with pkgs;
 
   gccgo15 = wrapCC (
     gcc15.cc.override {
+      name = "gccgo";
+      langCC = true; # required for go.
+      langC = true;
+      langGo = true;
+      langJit = true;
+      profiledCompiler = false;
+    }
+    // {
+      # not supported on darwin: https://github.com/golang/go/issues/463
+      meta.broken = stdenv.hostPlatform.isDarwin;
+    }
+  );
+
+  gccgo16 = wrapCC (
+    gcc16.cc.override {
       name = "gccgo";
       langCC = true; # required for go.
       langC = true;
@@ -5254,6 +5296,7 @@ with pkgs;
     electron_39-bin
     electron_40-bin
     electron_41-bin
+    electron_42-bin
     ;
 
   inherit (callPackages ../development/tools/electron/chromedriver { })
@@ -5261,6 +5304,7 @@ with pkgs;
     electron-chromedriver_39
     electron-chromedriver_40
     electron-chromedriver_41
+    electron-chromedriver_42
     ;
 
   inherit
@@ -5293,12 +5337,17 @@ with pkgs;
           src = electron-source.electron_41;
           bin = electron_41-bin;
         };
+        electron_42 = getElectronPkg {
+          src = electron-source.electron_42;
+          bin = electron_42-bin;
+        };
       }
     )
     electron_38
     electron_39
     electron_40
     electron_41
+    electron_42
     ;
   electron = electron_41;
   electron-bin = electron_41-bin;
@@ -6756,8 +6805,12 @@ with pkgs;
     )
       haskellPackages.matterhorn;
 
-  mbedtls = callPackage ../development/libraries/mbedtls/3.nix { };
-  mbedtls_4 = callPackage ../development/libraries/mbedtls/4.nix { };
+  inherit
+    ({
+      mbedtls_4 = callPackage ../by-name/mb/mbedtls/4.nix { };
+    })
+    mbedtls_4
+    ;
 
   simple-dftd3 = callPackage ../development/libraries/science/chemistry/simple-dftd3 { };
 
@@ -9079,6 +9132,7 @@ with pkgs;
     musical-spectrum = callPackage ../applications/audio/deadbeef/plugins/musical-spectrum.nix { };
     statusnotifier = callPackage ../applications/audio/deadbeef/plugins/statusnotifier.nix { };
     playlist-manager = callPackage ../applications/audio/deadbeef/plugins/playlist-manager.nix { };
+    vgmstream = callPackage ../applications/audio/deadbeef/plugins/vgmstream.nix { };
     waveform-seekbar = callPackage ../applications/audio/deadbeef/plugins/waveform-seekbar.nix { };
   };
 
@@ -10884,8 +10938,7 @@ with pkgs;
     enableServer = true;
   };
 
-  minecraftServers = import ../games/minecraft-servers { inherit callPackage lib javaPackages; };
-  minecraft-server = minecraftServers.vanilla; # backwards compatibility
+  minecraftServers = callPackage ../by-name/mi/minecraft-server/versions.nix { };
 
   luanti-client = luanti.override { buildServer = false; };
   luanti-server = luanti.override { buildClient = false; };
