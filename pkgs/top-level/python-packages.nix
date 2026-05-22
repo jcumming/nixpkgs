@@ -2122,6 +2122,8 @@ self: super: with self; {
 
   bitstruct = callPackage ../development/python-modules/bitstruct { };
 
+  bittensor-drand = callPackage ../development/python-modules/bittensor-drand { };
+
   bitvavo-aio = callPackage ../development/python-modules/bitvavo-aio { };
 
   bitvector-for-humans = callPackage ../development/python-modules/bitvector-for-humans { };
@@ -2354,6 +2356,8 @@ self: super: with self; {
   bson = callPackage ../development/python-modules/bson { };
 
   bsuite = callPackage ../development/python-modules/bsuite { };
+
+  bt-decode = callPackage ../development/python-modules/bt-decode { };
 
   bt-proximity = callPackage ../development/python-modules/bt-proximity { };
 
@@ -3517,6 +3521,8 @@ self: super: with self; {
   cypherpunkpay = callPackage ../development/python-modules/cypherpunkpay { };
 
   cyrtranslit = callPackage ../development/python-modules/cyrtranslit { };
+
+  cyscale = callPackage ../development/python-modules/cyscale { };
 
   cysignals = callPackage ../development/python-modules/cysignals { };
 
@@ -7308,6 +7314,8 @@ self: super: with self; {
   httpx-aiohttp = callPackage ../development/python-modules/httpx-aiohttp { };
 
   httpx-auth = callPackage ../development/python-modules/httpx-auth { };
+
+  httpx-curl-cffi = callPackage ../development/python-modules/httpx-curl-cffi { };
 
   httpx-ntlm = callPackage ../development/python-modules/httpx-ntlm { };
 
@@ -11441,6 +11449,8 @@ self: super: with self; {
 
   nvdlib = callPackage ../development/python-modules/nvdlib { };
 
+  nvidia-cutlass = callPackage ../development/python-modules/nvidia-cutlass { };
+
   nvidia-dlprof-pytorch-nvtx =
     callPackage ../development/python-modules/nvidia-dlprof-pytorch-nvtx
       { };
@@ -13285,6 +13295,8 @@ self: super: with self; {
   py-air-control-exporter = callPackage ../development/python-modules/py-air-control-exporter { };
 
   py-aosmith = callPackage ../development/python-modules/py-aosmith { };
+
+  py-arwen = callPackage ../development/python-modules/py-arwen { };
 
   py-bip39-bindings = callPackage ../development/python-modules/py-bip39-bindings { };
 
@@ -16152,6 +16164,8 @@ self: super: with self; {
 
   python-sql = callPackage ../development/python-modules/python-sql { };
 
+  python-statemachine = callPackage ../development/python-modules/python-statemachine { };
+
   python-status = callPackage ../development/python-modules/python-status { };
 
   python-stdnum = callPackage ../development/python-modules/python-stdnum { };
@@ -17496,6 +17510,8 @@ self: super: with self; {
   sbom4files = callPackage ../development/python-modules/sbom4files { };
 
   scalar-fastapi = callPackage ../development/python-modules/scalar-fastapi { };
+
+  scalecodec = callPackage ../development/python-modules/scalecodec { };
 
   scalene = callPackage ../development/python-modules/scalene { };
 
@@ -19749,6 +19765,8 @@ self: super: with self; {
   torch-bin = callPackage ../development/python-modules/torch/bin { triton = self.triton-bin; };
 
   torch-c-dlpack-ext = callPackage ../development/python-modules/torch-c-dlpack-ext { };
+
+  torch-cluster = callPackage ../development/python-modules/torch-cluster { };
 
   torch-einops-utils = callPackage ../development/python-modules/torch-einops-utils { };
 
