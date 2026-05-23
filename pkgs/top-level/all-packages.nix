@@ -1352,11 +1352,6 @@ with pkgs;
     emojiSupport = true;
   };
 
-  termite = callPackage ../applications/terminal-emulators/termite/wrapper.nix {
-    termite = termite-unwrapped;
-  };
-  termite-unwrapped = callPackage ../applications/terminal-emulators/termite { };
-
   twine = with python3Packages; toPythonApplication twine;
 
   inherit (callPackages ../development/tools/ammonite { })
@@ -7208,7 +7203,6 @@ with pkgs;
     s6-portable-utils-man-pages
     s6-rc
     s6-rc-man-pages
-    sdnotify-wrapper
     skalibs
     skalibs_2_10
     tipidee
@@ -9050,7 +9044,6 @@ with pkgs;
 
   inherit (callPackage ../applications/virtualization/docker { })
     docker_25
-    docker_28
     docker_29
     ;
 

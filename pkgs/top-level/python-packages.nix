@@ -5966,6 +5966,8 @@ self: super: with self; {
 
   fpdf2 = callPackage ../development/python-modules/fpdf2 { };
 
+  fpsample = callPackage ../development/python-modules/fpsample { };
+
   fpylll = callPackage ../development/python-modules/fpylll { };
 
   fpyutils = callPackage ../development/python-modules/fpyutils { };
@@ -9269,8 +9271,6 @@ self: super: with self; {
   llama-index-workflows = callPackage ../development/python-modules/llama-index-workflows { };
 
   llama-stack-client = callPackage ../development/python-modules/llama-stack-client { };
-
-  llfuse = callPackage ../development/python-modules/llfuse { inherit (pkgs) fuse; };
 
   llguidance = callPackage ../development/python-modules/llguidance { };
 
@@ -15758,6 +15758,8 @@ self: super: with self; {
 
   python-axolotl-curve25519 = callPackage ../development/python-modules/python-axolotl-curve25519 { };
 
+  python-backoff = callPackage ../development/python-modules/python-backoff { };
+
   python-barbicanclient = callPackage ../development/python-modules/python-barbicanclient { };
 
   python-barcode = callPackage ../development/python-modules/python-barcode { };
@@ -18202,8 +18204,16 @@ self: super: with self; {
     callPackage ../development/python-modules/snakemake-interface-storage-plugins
       { };
 
+  snakemake-logger-plugin-rich =
+    callPackage ../development/python-modules/snakemake-logger-plugin-rich
+      { };
+
   snakemake-storage-plugin-fs =
     callPackage ../development/python-modules/snakemake-storage-plugin-fs
+      { };
+
+  snakemake-storage-plugin-http =
+    callPackage ../development/python-modules/snakemake-storage-plugin-http
       { };
 
   snakemake-storage-plugin-s3 =
@@ -20833,8 +20843,6 @@ self: super: with self; {
   units-llnl = callPackage ../development/python-modules/units-llnl {
     inherit (pkgs) units-llnl;
   };
-
-  unittest-data-provider = callPackage ../development/python-modules/unittest-data-provider { };
 
   unittest-xml-reporting = callPackage ../development/python-modules/unittest-xml-reporting { };
 

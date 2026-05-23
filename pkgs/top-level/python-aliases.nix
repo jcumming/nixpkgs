@@ -316,6 +316,7 @@ mapAliases {
   llama-index-readers-llama-parse = throw "'llama-index-readers-llama-parse' has been removed as it was deprecated upstream in favor of 'llama-cloud'"; # added 2026-03-25
   llama-parse = throw "'llama-parse' has been removed as it was deprecated upstream in favor of 'llama-cloud'"; # added 2026-03-25
   llamaindex-py-client = throw "'llamaindex-pyclient' has been removed as it was removed from upstream"; # Added 2026-04-03
+  llfuse = throw "'llfuse' hase been removed, as it depends on fuse2, and is no longer developed. Please use 'mfusepy' instead"; # Added 2026-05-20
   lmcloud = throw "'lmcloud' has been renamed to/replaced by 'pylamarzocco'"; # Converted to throw 2025-10-29
   logilab_common = throw "'logilab_common' has been renamed to/replaced by 'logilab-common'"; # Converted to throw 2025-10-29
   loo-py = throw "'loo-py' has been renamed to/replaced by 'loopy'"; # Converted to throw 2025-10-29
@@ -616,6 +617,7 @@ mapAliases {
   ufoLib2 = throw "'ufoLib2' has been renamed to/replaced by 'ufolib2'"; # Converted to throw 2025-10-29
   unicode-slugify = throw "'unicode-slugify' has been removed becaues it was broken and unmaintained. Consider using 'python-slugify' instead."; # added 2025-10-05
   unifi = throw "'unifi' has been removed as upstream was archived in 2017"; # Added 2025-08-25
+  unittest-data-provider = throw "'unittest-data-provider' has been removed as it was unused, unmaintained, and upstream suggests 'pytest parameterize' instead."; # Added 2026-05-22
   update_checker = throw "'update_checker' has been renamed to/replaced by 'update-checker'"; # Converted to throw 2025-10-29
   vcver = throw "vcver has been removed, since it was an unused leaf package"; # added 2025-08-25
   vega_datasets = throw "'vega_datasets' has been renamed to/replaced by 'vega-datasets'"; # Converted to throw 2025-10-29
