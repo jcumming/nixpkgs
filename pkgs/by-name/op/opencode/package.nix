@@ -16,13 +16,13 @@
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "opencode";
-  version = "1.15.7";
+  version = "1.15.11";
 
   src = fetchFromGitHub {
     owner = "anomalyco";
     repo = "opencode";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-fk8GDVE+bQfOkZCQ1YEc3V7YIXDHfNC/srcZs/MrE38=";
+    hash = "sha256-SIRE+x1YCSAX1L89237RN9owJkC4hgCIy1Q93Iy9GzM=";
   };
 
   node_modules = stdenvNoCC.mkDerivation {
@@ -75,7 +75,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     # NOTE: Required else we get errors that our fixed-output derivation references store paths
     dontFixup = true;
 
-    outputHash = "sha256-bwCWjaIYfzkJkCMRQ8veKM81pBt8CzMZhUqHgFM/muk=";
+    outputHash = "sha256-eOzzfDcYrjeVMMdEKlHbUy7F6MTUY3jXrVkr3q0LZ4Q=";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   };
@@ -187,13 +187,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       "aarch64-linux"
       "x86_64-linux"
       "aarch64-darwin"
-      "x86_64-darwin"
     ];
     mainProgram = "opencode";
-    badPlatforms = [
-      # Broken as 2026-04-23, errors as:
-      # CPU lacks AVX support, strange crashes may occur. Reinstall Bun
-      "x86_64-darwin"
-    ];
   };
 })

@@ -247,6 +247,7 @@ with pkgs;
     { makeSetupHook }:
     makeSetupHook {
       name = "add-bin-to-path-hook";
+      meta.license = lib.licenses.mit;
     } ../build-support/setup-hooks/add-bin-to-path.sh
   ) { };
 
@@ -276,6 +277,7 @@ with pkgs;
         gettext
         libtool
       ];
+      meta.license = lib.licenses.mit;
     } ../build-support/setup-hooks/autoreconf.sh
   ) { };
 
@@ -301,6 +303,7 @@ with pkgs;
   stripJavaArchivesHook = makeSetupHook {
     name = "strip-java-archives-hook";
     propagatedBuildInputs = [ strip-nondeterminism ];
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/strip-java-archives.sh;
 
   ensureNewerSourcesHook =
@@ -308,6 +311,7 @@ with pkgs;
     makeSetupHook
       {
         name = "ensure-newer-sources-hook";
+        meta.license = lib.licenses.mit;
       }
       (
         writeScript "ensure-newer-sources-hook.sh" ''
@@ -345,6 +349,7 @@ with pkgs;
         runtimeShell = if stdenv.buildPlatform == stdenv.hostPlatform then stdenv.shell else runtimeShell;
       };
     };
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/update-autotools-gnu-config-scripts.sh;
 
   gogUnpackHook = makeSetupHook {
@@ -353,6 +358,7 @@ with pkgs;
       innoextract
       file-rename
     ];
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/gog-unpack.sh;
 
   buildEnv = callPackage ../build-support/buildenv { }; # not actually a package
@@ -432,6 +438,7 @@ with pkgs;
 
   dieHook = makeSetupHook {
     name = "die-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/die.sh;
 
   devShellTools = callPackage ../build-support/dev-shell-tools { };
@@ -738,20 +745,32 @@ with pkgs;
 
   ld-is-cc-hook = makeSetupHook {
     name = "ld-is-cc-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/ld-is-cc-hook.sh;
 
   copyDesktopItems = makeSetupHook {
     name = "copy-desktop-items-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/copy-desktop-items.sh;
 
   makeDesktopItem = callPackage ../build-support/make-desktopitem { };
 
   installFonts = makeSetupHook {
     name = "install-fonts-hook";
+    meta = {
+      description = "Copies standard font extension into their respective installation path";
+      maintainers = with lib.maintainers; [
+        pancaek
+        sigmanificient
+        jopejoe1
+      ];
+      license = lib.licenses.mit;
+    };
   } ../build-support/setup-hooks/install-fonts.sh;
 
   copyPkgconfigItems = makeSetupHook {
     name = "copy-pkg-config-items-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/copy-pkgconfig-items.sh;
 
   makePkgconfigItem = callPackage ../build-support/make-pkgconfigitem { };
@@ -783,6 +802,7 @@ with pkgs;
     passthru = {
       tests = tests.makeWrapper;
     };
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/make-wrapper.sh;
 
   compressFirmwareXz = callPackage ../build-support/kernel/compress-firmware.nix { type = "xz"; };
@@ -830,6 +850,7 @@ with pkgs;
 
   pruneLibtoolFiles = makeSetupHook {
     name = "prune-libtool-files";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/prune-libtool-files.sh;
 
   closureInfo = callPackage ../build-support/closure-info.nix { };
@@ -839,6 +860,7 @@ with pkgs;
   shortenPerlShebang = makeSetupHook {
     name = "shorten-perl-shebang-hook";
     propagatedBuildInputs = [ dieHook ];
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/shorten-perl-shebang.sh;
 
   singularity-tools = callPackage ../build-support/singularity-tools { };
@@ -897,6 +919,7 @@ with pkgs;
 
   setJavaClassPath = makeSetupHook {
     name = "set-java-classpath-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/set-java-classpath.sh;
 
   fixDarwinDylibNames = callPackage (
@@ -908,7 +931,10 @@ with pkgs;
     makeSetupHook {
       name = "fix-darwin-dylib-names-hook";
       substitutions = { inherit (targetPackages.stdenv.cc) targetPrefix; };
-      meta.platforms = lib.platforms.darwin;
+      meta = {
+        platforms = lib.platforms.darwin;
+        license = lib.licenses.mit;
+      };
     } ../build-support/setup-hooks/fix-darwin-dylib-names.sh
   ) { };
 
@@ -922,18 +948,22 @@ with pkgs;
       imagemagick
       (onlyBin python3Packages.icnsutil)
     ];
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/desktop-to-darwin-bundle.sh;
 
   keepBuildTree = makeSetupHook {
     name = "keep-build-tree-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/keep-build-tree.sh;
 
   moveBuildTree = makeSetupHook {
     name = "move-build-tree-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/move-build-tree.sh;
 
   enableGCOVInstrumentation = makeSetupHook {
     name = "enable-gcov-instrumentation-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/enable-coverage-instrumentation.sh;
 
   makeGCOVReport = makeSetupHook {
@@ -942,6 +972,7 @@ with pkgs;
       lcov
       enableGCOVInstrumentation
     ];
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/make-coverage-analysis-report.sh;
 
   makeHardcodeGsettingsPatch = callPackage ../build-support/make-hardcode-gsettings-patch { };
@@ -951,6 +982,7 @@ with pkgs;
 
   findXMLCatalogs = makeSetupHook {
     name = "find-xml-catalogs-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/find-xml-catalogs.sh;
 
   wrapGAppsHook3 = wrapGAppsNoGuiHook.override {
@@ -968,21 +1000,25 @@ with pkgs;
 
   separateDebugInfo = makeSetupHook {
     name = "separate-debug-info-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/separate-debug-info.sh;
 
   setupDebugInfoDirs = makeSetupHook {
     name = "setup-debug-info-dirs-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/setup-debug-info-dirs.sh;
 
   writableTmpDirAsHomeHook = callPackage (
     { makeSetupHook }:
     makeSetupHook {
       name = "writable-tmpdir-as-home-hook";
+      meta.license = lib.licenses.mit;
     } ../build-support/setup-hooks/writable-tmpdir-as-home.sh
   ) { };
 
   useOldCXXAbi = makeSetupHook {
     name = "use-old-cxx-abi-hook";
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/use-old-cxx-abi.sh;
 
   validatePkgConfig = makeSetupHook {
@@ -991,6 +1027,7 @@ with pkgs;
       findutils
       pkg-config
     ];
+    meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/validate-pkg-config.sh;
 
   #package writers
@@ -1141,6 +1178,7 @@ with pkgs;
     perlSupport = false;
     rustSupport = false; # Needed for bootstrap
     withpcre2 = false;
+    curl = if stdenv.hostPlatform.isFreeBSD then curlMinimal else curl; # Needed for FreeBSD bootstrap
   };
 
   bump2version = with python3Packages; toPythonApplication bump2version;
@@ -1152,15 +1190,6 @@ with pkgs;
   forgejo-lts = callPackage ../by-name/fo/forgejo/lts.nix { };
 
   github-cli = gh;
-
-  git-annex-remote-dbx = callPackage ../applications/version-management/git-annex-remote-dbx {
-    inherit (python3Packages)
-      buildPythonApplication
-      dropbox
-      annexremote
-      humanfriendly
-      ;
-  };
 
   git-credential-manager = callPackage ../applications/version-management/git-credential-manager { };
 
@@ -1416,24 +1445,6 @@ with pkgs;
       throw "freshBootstrapTools: unknown hostPlatform ${stdenv.hostPlatform.config}";
 
   crystfel-headless = crystfel.override { withGui = false; };
-
-  amule-daemon = amule.override {
-    monolithic = false;
-    enableDaemon = true;
-    mainProgram = "amuled";
-  };
-
-  amule-gui = amule.override {
-    monolithic = false;
-    client = true;
-    mainProgram = "amulegui";
-  };
-
-  amule-web = amule.override {
-    monolithic = false;
-    httpServer = true;
-    mainProgram = "amuleweb";
-  };
 
   inherit (callPackages ../tools/security/bitwarden-directory-connector { })
     bitwarden-directory-connector-cli
@@ -1736,6 +1747,7 @@ with pkgs;
     texliveSmall
     texliveTeTeX
     ;
+  texliveFullWithDocs = texliveFull.overrideAttrs { withDocs = true; };
   texlivePackages = recurseIntoAttrs (lib.mapAttrs (_: v: v.build) texlive.pkgs);
 
   futhark = haskell.lib.compose.justStaticExecutables haskellPackages.futhark;
@@ -1808,6 +1820,7 @@ with pkgs;
             exe_wrapper = '${lib.escape [ "'" "\\" ] (stdenv.targetPlatform.emulator pkgs)}'
           '';
         };
+        meta.license = lib.licenses.mit;
       }
       # The throw is moved into the `makeSetupHook` derivation, so that its
       # outer level, but not its outPath can still be evaluated if the condition
@@ -2039,10 +2052,6 @@ with pkgs;
 
   bluetooth_battery = python3Packages.callPackage ../applications/misc/bluetooth_battery { };
 
-  calyx-vpn = qt6Packages.callPackage ../tools/networking/bitmask-vpn {
-    provider = "calyx";
-  };
-
   cffconvert = python3Packages.toPythonApplication python3Packages.cffconvert;
 
   clickhouse-lts = callPackage ../by-name/cl/clickhouse/lts.nix { };
@@ -2135,7 +2144,7 @@ with pkgs;
 
   diffutils = callPackage ../tools/text/diffutils { };
 
-  inherit (import ../build-support/dlang/dub-support.nix { inherit callPackage; })
+  inherit (import ../build-support/dlang/dub-support.nix { inherit lib callPackage; })
     dub-to-nix
     importDubLock
     buildDubPackage
@@ -2806,8 +2815,6 @@ with pkgs;
     }
   );
 
-  mytetra = libsForQt5.callPackage ../applications/office/mytetra { };
-
   nerd-fonts = recurseIntoAttrs (callPackage ../data/fonts/nerd-fonts { });
 
   maple-mono = recurseIntoAttrs (callPackage ../data/fonts/maple-font { });
@@ -2897,8 +2904,6 @@ with pkgs;
 
   nwdiag = with python3Packages; toPythonApplication nwdiag;
 
-  ofono-phonesim = libsForQt5.callPackage ../development/tools/ofono-phonesim { };
-
   ola = callPackage ../applications/misc/ola {
     protobuf = protobuf_21;
   };
@@ -2908,8 +2913,6 @@ with pkgs;
   ophcrack-cli = ophcrack.override { enableGui = false; };
 
   open-interpreter = with python3Packages; toPythonApplication open-interpreter;
-
-  openhantek6022 = libsForQt5.callPackage ../applications/science/electronics/openhantek6022 { };
 
   openmvs = callPackage ../applications/science/misc/openmvs {
     inherit (llvmPackages) openmp;
@@ -3083,8 +3086,6 @@ with pkgs;
 
   po4a = perlPackages.Po4a;
 
-  proxmark3 = libsForQt5.callPackage ../tools/security/proxmark3/default.nix { };
-
   pycflow2dot = with python3.pkgs; toPythonApplication pycflow2dot;
 
   pyinfra = with python3Packages; toPythonApplication pyinfra;
@@ -3099,21 +3100,11 @@ with pkgs;
 
   remarshal = with python3Packages; toPythonApplication remarshal;
 
-  riseup-vpn = qt6Packages.callPackage ../tools/networking/bitmask-vpn {
-    provider = "riseup";
-  };
-
   rtaudio = rtaudio_5;
 
   mpi = openmpi; # this attribute should used to build MPI applications
 
-  qlcplus = libsForQt5.callPackage ../applications/misc/qlcplus { };
-
-  qmarkdowntextedit = libsForQt5.callPackage ../development/libraries/qmarkdowntextedit { };
-
   quota = if stdenv.hostPlatform.isLinux then linuxquota else unixtools.quota;
-
-  radeon-profile = libsForQt5.callPackage ../tools/misc/radeon-profile { };
 
   rainbowstream = with python3.pkgs; toPythonApplication rainbowstream;
 
@@ -3223,8 +3214,6 @@ with pkgs;
 
   strip-nondeterminism = perlPackages.strip-nondeterminism;
 
-  subsurface = libsForQt5.callPackage ../applications/misc/subsurface { };
-
   sumorobot-manager =
     python3Packages.callPackage ../applications/science/robotics/sumorobot-manager
       { };
@@ -3270,8 +3259,6 @@ with pkgs;
   texmacs = libsForQt5.callPackage ../applications/editors/texmacs {
     extraFonts = true;
   };
-
-  tiled = libsForQt5.callPackage ../applications/editors/tiled { };
 
   tinc = callPackage ../tools/networking/tinc { };
 
@@ -3446,6 +3433,8 @@ with pkgs;
   zenith-nvidia = zenith.override {
     nvidiaSupport = true;
   };
+
+  zellijPlugins = recurseIntoAttrs (callPackage ../by-name/ze/zellij/plugins { });
 
   zstd = callPackage ../tools/compression/zstd {
     cmake = buildPackages.cmakeMinimal;
@@ -5263,10 +5252,7 @@ with pkgs;
       in
       {
         electron_38 = electron_38-bin;
-        electron_39 = getElectronPkg {
-          src = electron-source.electron_39;
-          bin = electron_39-bin;
-        };
+        electron_39 = electron_39-bin;
         electron_40 = getElectronPkg {
           src = electron-source.electron_40;
           bin = electron_40-bin;
@@ -5764,11 +5750,7 @@ with pkgs;
     // (config.radare or { })
   );
 
-  rizin = pkgs.callPackage ../development/tools/analysis/rizin { };
-
   rizinPlugins = recurseIntoAttrs rizin.plugins;
-
-  cutter = qt6.callPackage ../development/tools/analysis/rizin/cutter.nix { };
 
   cutterPlugins = recurseIntoAttrs cutter.plugins;
 
@@ -5881,10 +5863,6 @@ with pkgs;
       '';
     };
 
-  whatstyle = callPackage ../development/tools/misc/whatstyle {
-    inherit (llvmPackages) clang-unwrapped;
-  };
-
   whisper-cpp-vulkan = whisper-cpp.override {
     vulkanSupport = true;
   };
@@ -5894,6 +5872,7 @@ with pkgs;
   xcbuildHook = makeSetupHook {
     name = "xcbuild-hook";
     propagatedBuildInputs = [ xcbuild ];
+    meta.license = lib.licenses.mit;
   } ../by-name/xc/xcbuild/setup-hook.sh;
 
   xcodebuild = xcbuild;
@@ -6589,8 +6568,6 @@ with pkgs;
 
   libmicrohttpd = libmicrohttpd_1_0;
 
-  libosmscout = libsForQt5.callPackage ../development/libraries/libosmscout { };
-
   libpeas = callPackage ../development/libraries/libpeas { };
   libpeas2 = callPackage ../development/libraries/libpeas/2.x.nix { };
 
@@ -6647,9 +6624,6 @@ with pkgs;
   libva-minimal = callPackage ../development/libraries/libva { minimal = true; };
   libva = libva-minimal.override { minimal = false; };
   libva-utils = callPackage ../development/libraries/libva/utils.nix { };
-
-  libva1 = callPackage ../development/libraries/libva/1.nix { };
-  libva1-minimal = libva1.override { minimal = true; };
 
   libwnck = callPackage ../development/libraries/libwnck { };
   libwnck2 = callPackage ../development/libraries/libwnck/2.nix { };
@@ -6969,8 +6943,6 @@ with pkgs;
 
   pcre2 = callPackage ../development/libraries/pcre2 { };
 
-  pdfhummus = libsForQt5.callPackage ../development/libraries/pdfhummus { };
-
   inherit
     (callPackage ../development/libraries/physfs {
     })
@@ -6979,8 +6951,6 @@ with pkgs;
     ;
 
   place-cursor-at = haskell.lib.compose.justStaticExecutables haskellPackages.place-cursor-at;
-
-  podofo = podofo_1_0;
 
   poppler = callPackage ../development/libraries/poppler { lcms = lcms2; };
 
@@ -7041,8 +7011,6 @@ with pkgs;
   nanopbMalloc = callPackage ../by-name/na/nanopb/package.nix { enableMalloc = true; };
 
   pth = if stdenv.hostPlatform.isMusl then npth else gnupth;
-
-  qdjango = libsForQt5.callPackage ../development/libraries/qdjango { };
 
   quartoMinimal = quarto.override {
     rWrapper = null;
@@ -7203,6 +7171,7 @@ with pkgs;
     s6-portable-utils-man-pages
     s6-rc
     s6-rc-man-pages
+    sdnotify-wrapper
     skalibs
     skalibs_2_10
     tipidee
@@ -7266,8 +7235,6 @@ with pkgs;
   stlink-gui = callPackage ../by-name/st/stlink/package.nix { withGUI = true; };
 
   streamlink-twitch-gui-bin = callPackage ../applications/video/streamlink-twitch-gui/bin.nix { };
-
-  structuresynth = libsForQt5.callPackage ../development/libraries/structuresynth { };
 
   szurubooru = callPackage ../servers/web-apps/szurubooru { };
 
@@ -7425,6 +7392,7 @@ with pkgs;
         darwinMinVersionVariable = lib.escapeShellArg stdenv.hostPlatform.darwinMinVersionVariable;
         deploymentTarget = lib.escapeShellArg deploymentTarget;
       };
+      meta.license = lib.licenses.mit;
     } ../os-specific/darwin/darwin-min-version-hook/setup-hook.sh;
 
   ### DEVELOPMENT / TESTING TOOLS
@@ -7942,8 +7910,6 @@ with pkgs;
     ];
   };
 
-  mkchromecast = libsForQt5.callPackage ../applications/networking/mkchromecast { };
-
   moodle = callPackage ../servers/web-apps/moodle { };
 
   moodle-utils = callPackage ../servers/web-apps/moodle/moodle-utils.nix { };
@@ -8271,8 +8237,6 @@ with pkgs;
   };
 
   dmraid = callPackage ../os-specific/linux/dmraid { lvm2 = lvm2_dmeventd; };
-
-  drbd = callPackage ../os-specific/linux/drbd/utils.nix { };
 
   # unstable until the first 1.x release
   fwts = callPackage ../os-specific/linux/fwts { };
@@ -8667,6 +8631,7 @@ with pkgs;
     ubootRock3C
     ubootRock4CPlus
     ubootRock5ModelB
+    ubootRock5ModelC
     ubootRock64
     ubootRock64v2
     ubootRockPiE
@@ -8900,8 +8865,6 @@ with pkgs;
     ;
 
   activitywatch = callPackage ../applications/office/activitywatch/wrapper.nix { };
-
-  masterpdfeditor4 = libsForQt5.callPackage ../applications/misc/masterpdfeditor4 { };
 
   inherit
     ({
@@ -9339,11 +9302,7 @@ with pkgs;
 
   m32edit = callPackage ../applications/audio/midas/m32edit.nix { };
 
-  manuskript = libsForQt5.callPackage ../applications/editors/manuskript { };
-
   minari = python3Packages.toPythonApplication python3Packages.minari;
-
-  molsketch = libsForQt5.callPackage ../applications/editors/molsketch { };
 
   graphicsmagick_q16 = graphicsmagick.override { quantumdepth = 16; };
   graphicsmagick-imagemagick-compat = graphicsmagick.imagemagick-compat;
@@ -9474,14 +9433,6 @@ with pkgs;
     callPackages ../applications/graphics/inkscape/extensions.nix { }
   );
 
-  jabcode-writer = jabcode.override {
-    subproject = "writer";
-  };
-
-  jabcode-reader = jabcode.override {
-    subproject = "reader";
-  };
-
   jackmix_jack1 = jackmix.override { jack = jack1; };
 
   inherit (callPackage ../applications/networking/cluster/k3s { })
@@ -9491,10 +9442,6 @@ with pkgs;
     k3s_1_36
     ;
   k3s = k3s_1_35;
-
-  okteta = kdePackages.callPackage ../applications/editors/okteta { };
-
-  klayout = qt6Packages.callPackage ../applications/misc/klayout { };
 
   kotatogram-desktop =
     callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop
@@ -9513,25 +9460,6 @@ with pkgs;
   linkerd = callPackage ../applications/networking/cluster/linkerd { };
   linkerd_edge = callPackage ../applications/networking/cluster/linkerd/edge.nix { };
   linkerd_stable = linkerd;
-
-  kuma = callPackage ../applications/networking/cluster/kuma { isFull = true; };
-  kuma-experimental = callPackage ../applications/networking/cluster/kuma {
-    isFull = true;
-    enableGateway = true;
-    pname = "kuma-experimental";
-  };
-  kumactl = callPackage ../applications/networking/cluster/kuma {
-    components = [ "kumactl" ];
-    pname = "kumactl";
-  };
-  kuma-cp = callPackage ../applications/networking/cluster/kuma {
-    components = [ "kuma-cp" ];
-    pname = "kuma-cp";
-  };
-  kuma-dp = callPackage ../applications/networking/cluster/kuma {
-    components = [ "kuma-dp" ];
-    pname = "kuma-dp";
-  };
 
   kubernetes-helm = callPackage ../applications/networking/cluster/helm { };
 
@@ -9642,8 +9570,6 @@ with pkgs;
     lua = lua5;
   };
 
-  moolticute = libsForQt5.callPackage ../applications/misc/moolticute { };
-
   mopidyPackages = recurseIntoAttrs (
     callPackages ../applications/audio/mopidy {
       python = python3;
@@ -9724,8 +9650,6 @@ with pkgs;
   ostinato = libsForQt5.callPackage ../applications/networking/ostinato {
     protobuf = protobuf_21;
   };
-
-  p4v = qt6Packages.callPackage ../applications/version-management/p4v { };
 
   pcmanfm-qt = lxqt.pcmanfm-qt;
 
@@ -9869,8 +9793,6 @@ with pkgs;
 
   qbittorrent-enhanced-nox = qbittorrent-enhanced.override { guiSupport = false; };
 
-  qelectrotech = libsForQt5.callPackage ../applications/misc/qelectrotech { };
-
   qemu-python-utils = python3Packages.toPythonApplication (
     python3Packages.qemu.override {
       fuseSupport = true;
@@ -9888,8 +9810,6 @@ with pkgs;
   };
 
   wrapQemuBinfmtP = callPackage ../by-name/qe/qemu/binfmt-p-wrapper.nix { };
-
-  qmediathekview = libsForQt5.callPackage ../applications/video/qmediathekview { };
 
   qmplay2-qt5 = qmplay2.override { qtVersion = "5"; };
   qmplay2-qt6 = qmplay2.override { qtVersion = "6"; };
@@ -10009,13 +9929,6 @@ with pkgs;
   lightdm_qt = lightdm.override { withQt5 = true; };
 
   curaengine_stable = callPackage ../applications/misc/curaengine/stable.nix { };
-
-  curaengine = callPackage ../applications/misc/curaengine {
-    inherit (python3.pkgs) libarcus;
-    protobuf = protobuf_21;
-  };
-
-  curaPlugins = recurseIntoAttrs (callPackage ../applications/misc/cura/plugins.nix { });
 
   super-slicer-beta = super-slicer.beta;
 
@@ -10538,16 +10451,6 @@ with pkgs;
 
   alfis-nogui = alfis.override {
     withGui = false;
-  };
-
-  bitcoin = qt6Packages.callPackage ../applications/blockchains/bitcoin {
-    withGui = true;
-    zeromq = zeromq.override {
-      enableCurve = false;
-      enableDrafts = false;
-      libsodium = null;
-    };
-    inherit (darwin) autoSignDarwinBinariesHook;
   };
 
   bitcoind = bitcoin.override {
@@ -11110,8 +11013,6 @@ with pkgs;
 
   trilinos-mpi = trilinos.override { withMPI = true; };
 
-  wolfram-engine = libsForQt5.callPackage ../applications/science/math/wolfram-engine { };
-
   wolfram-for-jupyter-kernel = callPackage ../applications/editors/jupyter-kernels/wolfram { };
 
   ### SCIENCE/MOLECULAR-DYNAMICS
@@ -11260,7 +11161,7 @@ with pkgs;
     enableUnfree = true;
   };
 
-  inherit (ocamlPackages) hol_light;
+  inherit (ocaml-ng.ocamlPackages_5_3) hol_light;
 
   isabelle-components = recurseIntoAttrs (callPackage ../by-name/is/isabelle/components { });
 
@@ -11377,8 +11278,6 @@ with pkgs;
   tulip = libsForQt5.callPackage ../applications/science/misc/tulip {
     python3 = python312; # fails to build otherwise
   };
-
-  vite = libsForQt5.callPackage ../applications/science/misc/vite { };
 
   ### SCIENCE / PHYSICS
 
@@ -11910,6 +11809,7 @@ with pkgs;
 
   bsdSetupHook = makeSetupHook {
     name = "bsd-setup-hook";
+    meta.license = lib.licenses.mit;
   } ../os-specific/bsd/setup-hook.sh;
 
   freebsd = callPackage ../os-specific/bsd/freebsd { };
@@ -11917,8 +11817,6 @@ with pkgs;
   netbsd = callPackage ../os-specific/bsd/netbsd { };
 
   openbsd = callPackage ../os-specific/bsd/openbsd { };
-
-  xp-pen-deco-01-v2-driver = libsForQt5.xp-pen-deco-01-v2-driver;
 
   radicle-node-unstable = callPackage ../by-name/ra/radicle-node/unstable.nix { };
 
