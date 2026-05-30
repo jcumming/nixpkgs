@@ -2751,8 +2751,6 @@ self: super: with self; {
 
   chromadb = callPackage ../development/python-modules/chromadb { zstd-c = pkgs.zstd; };
 
-  chromaprint = callPackage ../development/python-modules/chromaprint { };
-
   ci-info = callPackage ../development/python-modules/ci-info { };
 
   ci-py = callPackage ../development/python-modules/ci-py { };
@@ -8382,8 +8380,6 @@ self: super: with self; {
 
   keepkey = callPackage ../development/python-modules/keepkey { };
 
-  keepkey-agent = callPackage ../development/python-modules/keepkey-agent { };
-
   kegtron-ble = callPackage ../development/python-modules/kegtron-ble { };
 
   keke = callPackage ../development/python-modules/keke { };
@@ -8731,8 +8727,6 @@ self: super: with self; {
         python3 = python;
       }
     )).py;
-
-  ledger-agent = callPackage ../development/python-modules/ledger-agent { };
 
   ledger-bitcoin = callPackage ../development/python-modules/ledger-bitcoin { };
 
@@ -9450,6 +9444,8 @@ self: super: with self; {
 
   london-tube-status = callPackage ../development/python-modules/london-tube-status { };
 
+  lookyloo-models = callPackage ../development/python-modules/lookyloo-models { };
+
   loompy = callPackage ../development/python-modules/loompy { };
 
   looptime = callPackage ../development/python-modules/looptime { };
@@ -9533,8 +9529,6 @@ self: super: with self; {
   lzfse = callPackage ../development/python-modules/lzfse { };
 
   m2crypto = callPackage ../development/python-modules/m2crypto { };
-
-  m2r = callPackage ../development/python-modules/m2r { };
 
   m3u8 = callPackage ../development/python-modules/m3u8 { };
 
@@ -13274,6 +13268,8 @@ self: super: with self; {
 
   pure-eval = callPackage ../development/python-modules/pure-eval { };
 
+  pure-magic-rs = callPackage ../development/python-modules/pure-magic-rs { };
+
   pure-pcapy3 = callPackage ../development/python-modules/pure-pcapy3 { };
 
   pure-protobuf = callPackage ../development/python-modules/pure-protobuf { };
@@ -13999,6 +13995,8 @@ self: super: with self; {
 
   pyfatfs = callPackage ../development/python-modules/pyfatfs { };
 
+  pyfaup-rs = callPackage ../development/python-modules/pyfaup-rs { };
+
   pyfcm = callPackage ../development/python-modules/pyfcm { };
 
   pyfdt = callPackage ../development/python-modules/pyfdt { };
@@ -14420,6 +14418,8 @@ self: super: with self; {
   pyloadapi = callPackage ../development/python-modules/pyloadapi { };
 
   pyloggermanager = callPackage ../development/python-modules/pyloggermanager { };
+
+  pylookyloo = callPackage ../development/python-modules/pylookyloo { };
 
   pylpsd = callPackage ../development/python-modules/pylpsd { };
 
@@ -16903,6 +16903,8 @@ self: super: with self; {
   redis = callPackage ../development/python-modules/redis { };
 
   redis-om = callPackage ../development/python-modules/redis-om { };
+
+  redisvl = callPackage ../development/python-modules/redisvl { };
 
   redshift-connector = callPackage ../development/python-modules/redshift-connector { };
 

@@ -1420,6 +1420,13 @@ assertNoAdditions {
     dependencies = [ self.nvim-lspconfig ];
   };
 
+  eldritch-nvim = super.eldritch-nvim.overrideAttrs (old: {
+    meta = old.meta // {
+      description = "A theme for the Ancient Ones! (NVIM)";
+      maintainers = with lib.maintainers; [ neonvoid ];
+    };
+  });
+
   elixir-tools-nvim = super.elixir-tools-nvim.overrideAttrs {
     dependencies = [ self.plenary-nvim ];
     fixupPhase = ''
@@ -5783,6 +5790,12 @@ assertNoAdditions {
 
   vim-tabby = super.vim-tabby.overrideAttrs {
   };
+
+  vim-table-mode = super.vim-table-mode.overrideAttrs (old: {
+    meta = old.meta // {
+      license = lib.licenses.mit;
+    };
+  });
 
   vim-tabpagecd = super.vim-tabpagecd.overrideAttrs (old: {
     meta = old.meta // {
