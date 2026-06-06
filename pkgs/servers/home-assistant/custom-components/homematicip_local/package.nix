@@ -7,20 +7,22 @@
   aiohomematic-config,
   aiohomematic-test-support,
   home-assistant,
+  openccu-data,
   pytest-homeassistant-custom-component,
+  pytest-xdist,
   pytestCheckHook,
 }:
 
 buildHomeAssistantComponent rec {
   owner = "SukramJ";
   domain = "homematicip_local";
-  version = "2.6.0";
+  version = "2.7.3";
 
   src = fetchFromGitHub {
     owner = "SukramJ";
     repo = "custom_homematic";
     tag = version;
-    hash = "sha256-u3REMGuaQ+wQgDgiTvplBRMbzZJDUfcbyJm9tYOuYIw=";
+    hash = "sha256-9dXvIxMMdHTOi9JbRsHbySqRUYq6dN+MzrOocq9cpdA=";
   };
 
   postPatch = ''
@@ -33,13 +35,20 @@ buildHomeAssistantComponent rec {
   dependencies = [
     aiohomematic
     aiohomematic-config
+    openccu-data
   ];
 
   nativeCheckInputs = [
     aiohomematic-test-support
     async-upnp-client
     pytest-homeassistant-custom-component
+    pytest-xdist
     pytestCheckHook
+  ];
+
+  disabledTestPaths = [
+    # tries to write to the Nix store
+    "tests/test_blueprints.py"
   ];
 
   disabledTests = [
