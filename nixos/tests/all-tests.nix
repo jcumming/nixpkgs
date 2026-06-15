@@ -695,6 +695,7 @@ in
   grocy = runTest ./grocy.nix;
   grow-partition = runTest ./grow-partition.nix;
   grub = runTest ./grub.nix;
+  gs1200-exporter = runTest ./gs1200-exporter.nix;
   guacamole-server = runTest ./guacamole-server.nix;
   guix = handleTest ./guix { };
   gvisor = runTest ./gvisor.nix;
@@ -1490,11 +1491,12 @@ in
   sane = runTest ./sane.nix;
   sanoid = runTest ./sanoid.nix;
   saunafs = runTest ./saunafs.nix;
-  scaphandre = runTest ./scaphandre.nix;
+  scanservjs = runTest ./scanservjs.nix;
   schleuder = runTest ./schleuder.nix;
   scion-freestanding-deployment = runTest ./scion/freestanding-deployment;
   scrutiny = runTest ./scrutiny.nix;
   scx = runTest ./scx/default.nix;
+  scx-loader = runTest ./scx/loader.nix;
   sddm = import ./sddm.nix { inherit runTest; };
   sdl3 = runTest ./sdl3.nix;
   searx = runTest ./searx.nix;
@@ -1583,6 +1585,7 @@ in
   sx = runTest ./sx.nix;
   sympa = runTest ./sympa.nix;
   syncthing = runTest ./syncthing/main.nix;
+  syncthing-defaults = runTest ./syncthing/defaults.nix;
   syncthing-folders = runTest ./syncthing/folders.nix;
   syncthing-guiPassword = runTest ./syncthing/guiPassword.nix;
   syncthing-guiPasswordFile = runTest ./syncthing/guiPasswordFile.nix;
@@ -1671,6 +1674,7 @@ in
   systemd-timesyncd-nscd-dnssec = runTest ./systemd-timesyncd-nscd-dnssec.nix;
   systemd-user-linger = runTest ./systemd-user-linger.nix;
   systemd-user-linger-purge = runTest ./systemd-user-linger-purge.nix;
+  systemd-user-settings = runTest ./systemd-user-settings.nix;
   systemd-user-tmpfiles-rules = runTest ./systemd-user-tmpfiles-rules.nix;
   systemd-userdbd = runTest ./systemd-userdbd.nix;
   systemtap = handleTest ./systemtap.nix { };
@@ -1697,6 +1701,7 @@ in
   tiddlywiki = runTest ./tiddlywiki.nix;
   tigervnc = handleTest ./tigervnc.nix { };
   tika = runTest ./tika.nix;
+  timekpr = runTest ./timekpr.nix;
   timezone = runTest ./timezone.nix;
   timidity = handleTestOn [ "aarch64-linux" "x86_64-linux" ] ./timidity { };
   tinc = handleTest ./tinc { };
