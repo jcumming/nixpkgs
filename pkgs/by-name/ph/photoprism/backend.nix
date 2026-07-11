@@ -2,7 +2,7 @@
   lib,
   buildGoModule,
   coreutils,
-  python3,
+  python313,
   src,
   version,
   pkg-config,
