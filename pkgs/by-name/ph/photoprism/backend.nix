@@ -14,7 +14,7 @@ let
   # we need to copy these, to add the symlinks, so the linker actually finds these libraries
   libtensorflow = symlinkJoin {
     name = "libtensorflow";
-    paths = [ "${python3.pkgs.tensorflow-bin}/${python3.sitePackages}/tensorflow" ];
+    paths = [ "${python313.pkgs.tensorflow-bin}/${python313.sitePackages}/tensorflow" ];
     postBuild = ''
       ln -s "$out/libtensorflow_cc.so.2" "$out/libtensorflow.so"
       ln -s "$out/libtensorflow_framework.so.2" "$out/libtensorflow_framework.so"
