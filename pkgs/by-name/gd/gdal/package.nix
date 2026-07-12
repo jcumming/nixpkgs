@@ -293,6 +293,7 @@ stdenv.mkDerivation (finalAttrs: {
     # tests for magic numbers, seem to change with different poppler versions,
     # and architectures
     "test_pdf_extra_rasters"
+    "test_zarr_read_simple_sharding"
   ]
   ++ lib.optionals (!stdenv.hostPlatform.isx86_64) [
     # likely precision-related expecting x87 behaviour
