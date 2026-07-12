@@ -234,6 +234,8 @@ stdenv.mkDerivation (finalAttrs: {
     })
   ];
 
+  env.NIX_CFLAGS_COMPILE = "-fpermissive";
+
   cmakeFlags = [
     # During installPhase, keep rpath that came from target_link_libraries() of imported targets.
     # Typically libgeotiff,liblaszip propagated from liblas and libmariadb found by pkg-config.
