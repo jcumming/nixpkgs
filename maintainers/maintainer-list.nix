@@ -7036,12 +7036,6 @@
     github = "DimitarNestorov";
     githubId = 8790386;
   };
-  diniamo = {
-    name = "diniamo";
-    email = "diniamo53@gmail.com";
-    github = "diniamo";
-    githubId = 55629891;
-  };
   diogomdp = {
     email = "me@diogodp.dev";
     github = "diogomdp";
@@ -18813,6 +18807,12 @@
     github = "moosingin3space";
     githubId = 830082;
     name = "Nathan Moos";
+  };
+  mootfrost = {
+    email = "hello@mootfrost.dev";
+    github = "mootfrost";
+    githubId = 75925945;
+    name = "Andrew Semeykin";
   };
   moraxyc = {
     name = "Moraxyc Xu";
