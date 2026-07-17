@@ -18,12 +18,8 @@
   gdk-pixbuf,
   glib,
   glib-networking,
-  gnome2,
   gst_all_1,
-  gtk2,
-  gtk2-x11,
   gtk3,
-  gtk_engines,
   harfbuzzFull,
   heimdal,
   hyphen,
@@ -41,7 +37,6 @@
   libjson,
   libmanette,
   libnotify,
-  libpng12,
   libpulseaudio,
   libredirect,
   libseccomp,
@@ -77,7 +72,6 @@
   xprop,
   xdpyinfo,
   libxcb,
-  x264,
   zlib,
 
   extraCerts ? [ ],
@@ -168,11 +162,7 @@ stdenv.mkDerivation rec {
     fuse3'
     gdk-pixbuf
     glib-networking
-    gnome2.gtkglext
-    gtk2
-    gtk2-x11
     gtk3
-    gtk_engines
     harfbuzzFull
     heimdal
     hyphen
@@ -188,7 +178,6 @@ stdenv.mkDerivation rec {
     libjson
     libmanette
     libnotify
-    libpng12
     libpulseaudio
     libseccomp
     libsecret
@@ -212,7 +201,6 @@ stdenv.mkDerivation rec {
     libxaw
     libxmu
     libxtst
-    x264
     zlib
   ]
   ++ gstPackages;
@@ -280,6 +268,15 @@ stdenv.mkDerivation rec {
             ''--set LD_PRELOAD "${libredirect}/lib/libredirect.so ${lib.getLib pcsclite}/lib/libpcsclite.so"''
             ''--set NIX_REDIRECTS "/usr/share/zoneinfo=${tzdata}/share/zoneinfo:/etc/zoneinfo=${tzdata}/share/zoneinfo:/etc/timezone=$ICAInstDir/timezone"''
           ]
+          ++ lib.optionals (isWfica program) [
+            # wfica is an X11 client (it runs under XWayland). On a Wayland
+            # session Mesa's EGL loader otherwise auto-selects the Wayland
+            # platform for wfica's startup OpenGL probe and segfaults in
+            # wl_proxy_create_wrapper; pin the client to X11 (user-overridable).
+            # See https://github.com/NixOS/nixpkgs/issues/540102
+            "--set-default GDK_BACKEND x11"
+            "--set-default EGL_PLATFORM x11"
+          ]
         );
 
       wrap = program: ''
@@ -335,6 +332,9 @@ stdenv.mkDerivation rec {
       # the tarball still contains the legacy WebKitGTK 4.0 bundle.
       rm -rf "$ICAInstDir/Webkit2gtk4.0"
 
+      # FHS launcher hinst generates even for non-root installs; it hardcodes
+      # store paths without any of the wrapper environment.
+      rm -f "$ICAInstDir/wfica.sh"
       if [ -f "$ICAInstDir/util/setlog" ]; then
         chmod +x "$ICAInstDir/util/setlog"
         ln -sf "$ICAInstDir/util/setlog" "$out/bin/citrix-setlog"
@@ -404,7 +404,12 @@ stdenv.mkDerivation rec {
       done
 
       echo "Copy .desktop files."
-      cp $out/opt/citrix-icaclient/desktop/* $out/share/applications/
+      cp $out/opt/citrix-icaclient/desktop/*.desktop $out/share/applications/
+
+      install -Dm444 "$ICAInstDir/desktop/Citrix-mime_types.xml" \
+        $out/share/mime/packages/Citrix-mime_types.xml
+      install -Dm444 "$ICAInstDir/icons/000_Receiver_64.png" \
+        $out/share/icons/hicolor/64x64/apps/Citrix-Receiver.png
 
       runHook postInstall
     '';

@@ -40,7 +40,10 @@ final: prev: {
       meta = {
         homepage = "https://github.com/cheusov/lua-alt-getopt";
         maintainers = with lib.maintainers; [ arobyn ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Process application arguments the same way as getopt_long";
         longDescription = ''
           alt-getopt is a module for Lua programming language for processing
@@ -204,7 +207,10 @@ final: prev: {
       meta = {
         homepage = "https://github.com/Tieske/binaryheap.lua";
         maintainers = with lib.maintainers; [ vcunat ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Binary heap implementation in pure Lua";
         longDescription = ''
           Binary heaps are an efficient sorting algorithm. This module
@@ -414,7 +420,10 @@ final: prev: {
       meta = {
         homepage = "https://github.com/alerque/cldr-lua";
         maintainers = with lib.maintainers; [ alerque ];
-        license.fullName = "MIT/ICU";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.unicode-30
+        ];
         description = "Lua interface to Unicode CLDR data";
         longDescription = "Unicode CLDR (Common Locale Data Repository) data and Lua interface.";
       };
@@ -462,18 +471,18 @@ final: prev: {
     }:
     buildLuarocksPackage {
       pname = "compat53";
-      version = "0.14.4-1";
+      version = "0.15.1-1";
       knownRockspec =
         (fetchurl {
-          url = "mirror://luarocks/compat53-0.14.4-1.rockspec";
-          sha256 = "01ahfb6g7ibxrlvypvrsry4pwzfj978afjfa9c5w1s7ahjf95d40";
+          url = "mirror://luarocks/compat53-0.15.1-1.rockspec";
+          sha256 = "0x2vpfvsb6qqybx42aawa1mvnzlhlndy9z99g1707lixd4849fkl";
         }).outPath;
       src = fetchzip {
-        url = "https://github.com/lunarmodules/lua-compat-5.3/archive/v0.14.4.zip";
-        sha256 = "16mvf6qq290m8pla3fq3r6d6fmbbysjy8b5rxi40hchs4ngrn847";
+        url = "https://github.com/lunarmodules/lua-compat-5.3/archive/v0.15.1.zip";
+        sha256 = "03gfs74lj58qd9mrd9y0bz5f6mq9qd8my5bb2xg5lx6wvagdlvim";
       };
 
-      disabled = luaOlder "5.1" || luaAtLeast "5.5";
+      disabled = luaOlder "5.1" || luaAtLeast "5.6";
 
       meta = {
         homepage = "https://github.com/lunarmodules/lua-compat-5.3";
@@ -548,7 +557,10 @@ final: prev: {
 
       meta = {
         homepage = "http://cosmo.luaforge.net";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Safe templates for Lua";
         longDescription = ''
           Cosmo is a "safe templates" engine. It allows you to fill nested templates,
@@ -582,7 +594,10 @@ final: prev: {
 
       meta = {
         homepage = "http://keplerproject.github.io/coxpcall";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Coroutine safe xpcall and pcall";
         longDescription = ''
           Encapsulates the protected calls with a coroutine based loop, so errors can
@@ -617,7 +632,10 @@ final: prev: {
       meta = {
         homepage = "http://25thandclement.com/~william/projects/cqueues.html";
         maintainers = with lib.maintainers; [ vcunat ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Continuation Queues: Embeddable asynchronous networking, threading, and notification framework for Lua on Unix.";
       };
     }
@@ -690,7 +708,10 @@ final: prev: {
 
       meta = {
         homepage = "http://github.com/hishamhm/datafile";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "A library for handling paths when loading data files";
         longDescription = ''
           datafile is a library for avoiding hardcoded paths
@@ -732,7 +753,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/astoff/digestif/";
-        license.fullName = "GPLv3+ and other free licenses";
+        license = lib.licenses.AND [
+          lib.licenses.gpl3Plus
+          lib.licenses.free
+        ];
         description = "A code analyzer for TeX";
         longDescription = ''
           A code analyzer for TeX documents, including LaTeX and BibTeX.  It
@@ -767,7 +791,10 @@ final: prev: {
 
       meta = {
         homepage = "https://dkolf.de/dkjson-lua/";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "David Kolf's JSON module for Lua";
         longDescription = ''
           dkjson is a module for encoding and decoding JSON data. It supports UTF-8.
@@ -950,7 +977,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/daurnimator/fifo.lua";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "A lua library/'class' that implements a FIFO";
       };
     }
@@ -1137,15 +1167,15 @@ final: prev: {
     }:
     buildLuarocksPackage {
       pname = "grug-far.nvim";
-      version = "1.6.72-1";
+      version = "1.6.74-1";
       knownRockspec =
         (fetchurl {
-          url = "mirror://luarocks/grug-far.nvim-1.6.72-1.rockspec";
-          sha256 = "1ky24vksn0wvv058pvv03r163ba07s8b051mwi99qna2y77js2ds";
+          url = "mirror://luarocks/grug-far.nvim-1.6.74-1.rockspec";
+          sha256 = "0g8nb4w6l6bwnpy54xy5qncwn3hp0dcay1gfqrjfsf9j5pm3ysmg";
         }).outPath;
       src = fetchzip {
-        url = "https://github.com/MagicDuck/grug-far.nvim/archive/c69859c1d5427ab5fc7ed12380ab521b4e336691.zip";
-        sha256 = "0yp64zp64zk5skf3blx359dmchy9wwfv4nf30hhdagvm8phbkkpx";
+        url = "https://github.com/MagicDuck/grug-far.nvim/archive/1cc080f55706b38aabfa97d40acb6adf59ac4a5a.zip";
+        sha256 = "0aybgj5h8d6ydm304ybgw506rrrvmcdis3pclyjv9adi4z61a9fn";
       };
 
       disabled = luaOlder "5.1";
@@ -1371,7 +1401,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/daurnimator/ldbus";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "A Lua library to access dbus.";
       };
     }
@@ -1445,7 +1478,10 @@ final: prev: {
 
       meta = {
         homepage = "http://github.com/pavouk/lgi";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Lua bindings to GObject libraries";
         longDescription = ''
           Dynamic Lua binding to any library which is introspectable
@@ -1475,7 +1511,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/hoelzro/lua-linenoise";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "A binding for the linenoise command line library";
       };
     }
@@ -1578,7 +1617,7 @@ final: prev: {
       meta = {
         homepage = "http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/#lmathx";
         maintainers = with lib.maintainers; [ alexshpilkin ];
-        license.fullName = "Public domain";
+        license = lib.licenses.publicDomain;
         description = "C99 extensions for the math library";
         longDescription = ''
           An extension of the Lua math library with the functions
@@ -1613,7 +1652,7 @@ final: prev: {
       meta = {
         homepage = "http://www.circuitwizard.de/lmpfrlib/lmpfrlib.html";
         maintainers = with lib.maintainers; [ alexshpilkin ];
-        license.fullName = "LGPL";
+        license = lib.licenses.free;
         description = "Lua API for the GNU MPFR library";
         longDescription = "The MPFR library is a C library for multi-precision floating-point computations with correct rounding. This extension allows the use of the MPFR library from within Lua.";
       };
@@ -1681,7 +1720,10 @@ final: prev: {
 
       meta = {
         homepage = "https://www.inf.puc-rio.br/~roberto/lpeg.html";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Parsing Expression Grammars For Lua";
         longDescription = ''
           LPeg is a new pattern-matching library for Lua, based on Parsing
@@ -1748,7 +1790,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/sqmedeiros/lpeglabel/";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Parsing Expression Grammars For Lua with Labeled Failures";
         longDescription = ''
           LPegLabel is a conservative extension of the LPeg library that provides
@@ -1788,7 +1833,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/rrthomas/lrexlib";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Regular expression library binding (GNU flavour).";
         longDescription = ''
           Lrexlib is a regular expression library for Lua 5.1-5.4, which
@@ -1825,7 +1873,10 @@ final: prev: {
       meta = {
         homepage = "https://github.com/rrthomas/lrexlib";
         maintainers = with lib.maintainers; [ junestepp ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Regular expression library binding (oniguruma flavour).";
         longDescription = ''
           Lrexlib is a regular expression library for Lua 5.1-5.4, which
@@ -1861,7 +1912,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/rrthomas/lrexlib";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Regular expression library binding (PCRE flavour).";
         longDescription = ''
           Lrexlib is a regular expression library for Lua 5.1-5.4, which
@@ -1898,7 +1952,10 @@ final: prev: {
       meta = {
         homepage = "https://github.com/rrthomas/lrexlib";
         maintainers = with lib.maintainers; [ wishstudio ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Regular expression library binding (PCRE2 flavour).";
         longDescription = ''
           Lrexlib is a regular expression library for Lua 5.1-5.4, which
@@ -1934,7 +1991,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/rrthomas/lrexlib";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Regular expression library binding (POSIX flavour).";
         longDescription = ''
           Lrexlib is a regular expression library for Lua 5.1-5.4, which
@@ -2170,7 +2230,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/Lua-cURL";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Lua binding to libcurl";
         longDescription = "";
       };
@@ -2231,7 +2294,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/lua-iconv/";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Lua binding to the iconv";
         longDescription = ''
           Lua binding to the POSIX 'iconv' library, which converts a sequence of
@@ -2317,7 +2383,10 @@ final: prev: {
 
       meta = {
         homepage = "https://fperrad.frama.io/lua-MessagePack/";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "a pure Lua implementation of the MessagePack serialization format";
         longDescription = ''
           MessagePack is an efficient binary serialization format.
@@ -2512,7 +2581,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/fffonion/lua-resty-openssl";
-        license.fullName = "BSD";
+        license = lib.licenses.free;
         description = "No summary";
         longDescription = "FFI-based OpenSSL binding for LuaJIT.";
       };
@@ -2551,7 +2620,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/bungle/lua-resty-session";
-        license.fullName = "BSD";
+        license = lib.licenses.free;
         description = "Session Library for OpenResty - Flexible and Secure";
         longDescription = "lua-resty-session is a secure, and flexible session library for OpenResty.";
       };
@@ -2635,7 +2704,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/hoelzro/lua-term";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Terminal functions for Lua";
       };
     }
@@ -2737,7 +2809,10 @@ final: prev: {
       meta = {
         homepage = "http://github.com/brimworks/lua-yajl";
         maintainers = with lib.maintainers; [ pstn ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Integrate the yajl JSON library with Lua.";
       };
     }
@@ -2842,7 +2917,10 @@ final: prev: {
 
       meta = {
         homepage = "http://bitop.luajit.org/";
-        license.fullName = "MIT/X license";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Lua Bit Operations Module";
         longDescription = ''
           Lua BitOp is a C extension module for Lua 5.1 which adds bitwise operations on numbers. 
@@ -2997,7 +3075,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/mwild1/luadbi";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Database abstraction layer";
         longDescription = ''
           LuaDBI is a database interface library for Lua. It is designed 
@@ -3042,7 +3123,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/mwild1/luadbi";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Database abstraction layer";
         longDescription = ''
           LuaDBI is a database interface library for Lua. It is designed 
@@ -3087,7 +3171,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/mwild1/luadbi";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Database abstraction layer";
         longDescription = ''
           LuaDBI is a database interface library for Lua. It is designed 
@@ -3132,7 +3219,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/mwild1/luadbi";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Database abstraction layer";
         longDescription = ''
           LuaDBI is a database interface library for Lua. It is designed 
@@ -3249,7 +3339,10 @@ final: prev: {
           arobyn
           flosse
         ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "XML Expat parsing";
         longDescription = ''
           LuaExpat is a SAX (Simple API for XML) XML parser based on the
@@ -3285,7 +3378,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/facebook/luaffifb";
-        license.fullName = "BSD";
+        license = lib.licenses.free;
         description = "FFI library for calling C functions from lua";
         longDescription = "";
       };
@@ -3319,7 +3412,10 @@ final: prev: {
       meta = {
         homepage = "https://github.com/lunarmodules/luafilesystem";
         maintainers = with lib.maintainers; [ flosse ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "File System Library for the Lua Programming Language";
         longDescription = ''
           LuaFileSystem is a Lua library developed to complement the set of
@@ -3429,7 +3525,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/lualogging";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "A simple API to use logging features";
         longDescription = ''
           LuaLogging provides a simple API to use logging features in Lua. Its design was
@@ -3461,7 +3560,10 @@ final: prev: {
 
       meta = {
         homepage = "http://25thandclement.com/~william/projects/luaossl.html";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Most comprehensive OpenSSL module in the Lua universe.";
       };
     }
@@ -3493,7 +3595,10 @@ final: prev: {
       meta = {
         homepage = "http://github.com/luaposix/luaposix/";
         maintainers = with lib.maintainers; [ lblasc ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Lua bindings for POSIX";
         longDescription = ''
           A library binding various POSIX APIs. POSIX is the IEEE Portable
@@ -3532,7 +3637,10 @@ final: prev: {
       meta = {
         homepage = "https://github.com/dpapavas/luaprompt";
         maintainers = with lib.maintainers; [ Freed-Wu ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "A Lua command prompt with pretty-printing and auto-completion";
         longDescription = ''
           luaprompt is both an interactive Lua prompt that can be used instead
@@ -3593,7 +3701,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/hoelzro/lua-repl";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "A reusable REPL component for Lua, written in Lua";
       };
     }
@@ -3714,15 +3825,15 @@ final: prev: {
     }:
     buildLuarocksPackage {
       pname = "luarocks-build-treesitter-parser";
-      version = "6.0.2-1";
+      version = "6.1.1-1";
       knownRockspec =
         (fetchurl {
-          url = "mirror://luarocks/luarocks-build-treesitter-parser-6.0.2-1.rockspec";
-          sha256 = "0lwz15983gp29smykm3z6blhfd3ah3yi96j0g6di74nkz2kmfqk7";
+          url = "mirror://luarocks/luarocks-build-treesitter-parser-6.1.1-1.rockspec";
+          sha256 = "1hijvszf33l0yv1lwvp8187p0gwixr0cmf3ryvsvgcgas0fbb6nl";
         }).outPath;
       src = fetchzip {
-        url = "https://github.com/lumen-oss/luarocks-build-treesitter-parser/archive/v6.0.2.zip";
-        sha256 = "17877av310icqrv961ffhq852xx90wnpcxvqnylm476pndi1bf0f";
+        url = "https://github.com/lumen-oss/luarocks-build-treesitter-parser/archive/v6.1.1.zip";
+        sha256 = "1fg2fsxwc5qs2ll188s0rmz06gdxzfhwpg5wy6nwlwcg3y6x42ny";
       };
 
       disabled = luaOlder "5.1";
@@ -3902,7 +4013,10 @@ final: prev: {
 
       meta = {
         homepage = "https://lunarmodules.github.io/luasql/";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Database connectivity for Lua (SQLite3 driver)";
         longDescription = ''
           LuaSQL is a simple interface from Lua to a DBMS. It enables a
@@ -4079,7 +4193,7 @@ final: prev: {
       meta = {
         homepage = "http://github.com/bluebird75/luaunit";
         maintainers = with lib.maintainers; [ lockejan ];
-        license.fullName = "BSD";
+        license = lib.licenses.free;
         description = "A unit testing framework for Lua";
         longDescription = ''
           LuaUnit is a popular unit-testing framework for Lua, with an interface typical
@@ -4237,7 +4351,10 @@ final: prev: {
       meta = {
         homepage = "https://github.com/rktjmp/lush.nvim";
         maintainers = with lib.maintainers; [ teto ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Define Neovim themes as a DSL in lua, with real-time feedback.";
         longDescription = ''
           Lush is a colorscheme creation aid, written in Lua, for Neovim.
@@ -4270,7 +4387,7 @@ final: prev: {
 
       meta = {
         homepage = "http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/#luuid";
-        license.fullName = "Public domain";
+        license = lib.licenses.publicDomain;
         description = "A library for UUID generation";
         longDescription = ''
           A library for generating universally unique identifiers based on
@@ -4306,7 +4423,10 @@ final: prev: {
       meta = {
         homepage = "http://github.com/gvvaughan/lyaml";
         maintainers = with lib.maintainers; [ lblasc ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "libYAML binding for Lua";
         longDescription = "Read and write YAML format files with Lua.";
       };
@@ -4508,7 +4628,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/mpeterv/markdown";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Markdown text-to-html markup system.";
         longDescription = "A pure-lua implementation of the Markdown text-to-html markup system.";
       };
@@ -4538,7 +4661,10 @@ final: prev: {
 
       meta = {
         homepage = "http://keplerproject.github.io/md5/";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Checksum library";
         longDescription = "MD5 offers checksum facilities for Lua 5.X: a hash (digest) function, a pair crypt/decrypt based on MD5 and CFB, and a pair crypt/decrypt based on DES with 56-bit keys.";
       };
@@ -4693,7 +4819,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/lua-mimetypes";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "A simple library for looking up the MIME types of files.";
         longDescription = ''
           This is a simple library for guessing a file's MIME type. It includes
@@ -4882,15 +5011,15 @@ final: prev: {
     }:
     buildLuarocksPackage {
       pname = "neotest";
-      version = "5.19.0-1";
+      version = "5.19.2-1";
       knownRockspec =
         (fetchurl {
-          url = "mirror://luarocks/neotest-5.19.0-1.rockspec";
-          sha256 = "1gfxf6v9q19xfn8kyklg2k4mj2fh4w03vyhq0drcmm4901vcvcz1";
+          url = "mirror://luarocks/neotest-5.19.2-1.rockspec";
+          sha256 = "01dlqkl877z7b4rvxbrw56z7804lwdy9k7vzy0zld7lvbhhxi3ha";
         }).outPath;
       src = fetchzip {
-        url = "https://github.com/nvim-neotest/neotest/archive/e37147bca240d5b790bb61dc7d13cea214897079.zip";
-        sha256 = "1pbk3x8yi5hvb275gzz0c8gjykzpam1pcxxlb2l6qr1pzz0kvj7r";
+        url = "https://github.com/nvim-neotest/neotest/archive/4e2cd42c4252ee9d2435571d9adcdbc1d47931fe.zip";
+        sha256 = "01n0fr2k5fqj3xj0gng81d7abjr64b1ad0f0fp5qpc8wxnjk5agj";
       };
 
       disabled = luaOlder "5.1";
@@ -5057,8 +5186,8 @@ final: prev: {
       src = fetchFromGitHub {
         owner = "hrsh7th";
         repo = "nvim-cmp";
-        rev = "a1d504892f2bc56c2e79b65c6faded2fd21f3eca";
-        hash = "sha256-uzfM8DLRKshESsYmUAbSfXtos9COWpe/fVkxNJPIUFw=";
+        rev = "2ffe79f1f021def8dd1fcd81deb16f1bb0d989f3";
+        hash = "sha256-YN8KAXVv1AFc3DajWVIl+EppOx/s3vdxiKMlb/lj5qc=";
       };
 
       disabled = luaOlder "5.1" || luaAtLeast "5.4";
@@ -5304,7 +5433,10 @@ final: prev: {
       meta = {
         homepage = "https://lunarmodules.github.io/penlight";
         maintainers = with lib.maintainers; [ alerque ];
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Lua utility libraries loosely based on the Python standard libraries";
         longDescription = ''
           Penlight is a set of pure Lua libraries for making it easier to work with common tasks like
@@ -5339,7 +5471,10 @@ final: prev: {
 
       meta = {
         homepage = "http://github.com/nvim-lua/plenary.nvim";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "lua functions you don't want to write ";
         longDescription = ''
           plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write twice.
@@ -5884,7 +6019,10 @@ final: prev: {
 
       meta = {
         homepage = "http://lua-stdlib.github.io/_debug";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Debug Hints Library";
         longDescription = ''
           Manage an overall debug state, and associated hint substates.
@@ -5920,7 +6058,10 @@ final: prev: {
 
       meta = {
         homepage = "https://lua-stdlib.github.io/normalize";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "Normalized Lua Functions";
         longDescription = ''
           This module can inject deterministic versions of core Lua
@@ -5959,7 +6100,10 @@ final: prev: {
 
       meta = {
         homepage = "http://lua-stdlib.github.io/lua-stdlib";
-        license.fullName = "MIT/X11";
+        license = lib.licenses.AND [
+          lib.licenses.mit
+          lib.licenses.x11
+        ];
         description = "General Lua Libraries";
         longDescription = "stdlib is a library of modules for common programming tasks, including list, table and functional operations, objects, pickling, pretty-printing and command-line option parsing.";
       };
@@ -5981,17 +6125,17 @@ final: prev: {
     }:
     buildLuarocksPackage {
       pname = "teal-language-server";
-      version = "0.2.0-1";
+      version = "0.2.1-1";
       knownRockspec =
         (fetchurl {
-          url = "mirror://luarocks/teal-language-server-0.2.0-1.rockspec";
-          sha256 = "16345jk69raavia6gnx6qcnllwlhmjqbnaffbr67if20iglgwyy6";
+          url = "mirror://luarocks/teal-language-server-0.2.1-1.rockspec";
+          sha256 = "0dfqalvzsmvspmxp54pp9z4icx6k7ah6xz99lrnkhx01f798kf8z";
         }).outPath;
       src = fetchFromGitHub {
         owner = "teal-language";
         repo = "teal-language-server";
-        tag = "0.2.0";
-        hash = "sha256-ZjvGvdyd+NLQU1lSYvHQYtt9ShbszMKqhNtOoWpzO1g=";
+        tag = "0.2.1";
+        hash = "sha256-nrgop5L9RARx64ZbyIWzW3/8n9Vm4YSugLHgOnznVSs=";
       };
 
       propagatedBuildInputs = [
@@ -6292,7 +6436,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/rest-nvim/tree-sitter-http";
-        license.fullName = "UNKNOWN";
+        license = lib.licenses.unfree;
         description = "tree-sitter parser for http";
       };
     }
@@ -6445,7 +6589,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/euclidianAce/tree-sitter-teal";
-        license.fullName = "UNKNOWN";
+        license = lib.licenses.unfree;
         description = "tree-sitter parser for teal";
       };
     }

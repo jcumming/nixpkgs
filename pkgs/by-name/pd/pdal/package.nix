@@ -112,7 +112,7 @@ stdenv.mkDerivation (finalAttrs: {
 
     # Require data to be downloaded from Internet
     "pdal_io_copc_reader_test"
-    "pdal_io_copc_remote_reader_test"
+    # "pdal_io_copc_remote_reader_test"
   ];
 
   nativeCheckInputs = [
