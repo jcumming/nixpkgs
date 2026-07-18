@@ -4680,11 +4680,9 @@ with pkgs;
 
   inherit
     ({
-      spidermonkey_115 = callPackage ../development/interpreters/spidermonkey/115.nix { };
       spidermonkey_128 = callPackage ../development/interpreters/spidermonkey/128.nix { };
       spidermonkey_140 = callPackage ../development/interpreters/spidermonkey/140.nix { };
     })
-    spidermonkey_115
     spidermonkey_128
     spidermonkey_140
     ;
@@ -9089,10 +9087,6 @@ with pkgs;
     mopidy-ytmusic
     ;
 
-  mpg123 = callPackage ../applications/audio/mpg123 {
-    jack = libjack2;
-  };
-
   libmpg123 = mpg123.override {
     libOnly = true;
     withConplay = false;
@@ -9347,6 +9341,11 @@ with pkgs;
   rtl-sdr = rtl-sdr-blog;
 
   rusty-psn-gui = rusty-psn.override { withGui = true; };
+
+  sable = callPackage ../by-name/ci/cinny/package.nix {
+    pname = "sable";
+    cinny-unwrapped = sable-unwrapped;
+  };
 
   sweethome3d = recurseIntoAttrs (
     (callPackage ../applications/misc/sweethome3d { })
