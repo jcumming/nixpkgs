@@ -62,16 +62,8 @@ in
     requires = mkIf config.services.fail2ban.enable [ "prometheus-fail2ban-exporter-setup.service" ];
     serviceConfig = {
       DynamicUser = false;
-      ExecStart = ''
-        ${getExe pkgs.prometheus-fail2ban-exporter} \
-          ${optionalString cfg.exitOnError ''--collector.f2b.exit-on-socket-connection-error \''}
-          ${optionalString (cfg.username != null) ''
-            --web.basic-auth.username="${cfg.username}" \
-            --web.basic-auth.password="$(cat ${cfg.passwordFile})" \
-          ''}
-          --web.listen-address="${cfg.host}:${toString cfg.port}" \
-          --collector.f2b.socket=${cfg.fail2banSocket}
-      '';
+      ExecStart = "${getExe pkgs.prometheus-fail2ban-exporter} --collector.f2b.exit-on-socket-connection-error --collector.f2b.socket=${cfg.fail2banSocket}
+      ";
       RestrictAddressFamilies = [
         "AF_INET"
         "AF_INET6"
