@@ -10,7 +10,7 @@
   libsm,
   libx11,
   libSM,
-  libXext,
+  libxext,
   flac,
   glew,
   openal,
@@ -91,7 +91,6 @@ stdenv.mkDerivation (finalAttrs: {
   ++ lib.optionals stdenv.hostPlatform.isLinux [
     libx11
     libSM
-    libXext
     glew
     libuuid
   ]
