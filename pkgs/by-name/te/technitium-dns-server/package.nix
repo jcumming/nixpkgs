@@ -6,18 +6,18 @@
   technitium-dns-server-library,
   libmsquic,
   nixosTests,
-  nix-update-script,
 }:
-buildDotnetModule rec {
+buildDotnetModule (finalAttrs: {
   pname = "technitium-dns-server";
   version = "15.3.0";
+
+  __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "TechnitiumSoftware";
     repo = "DnsServer";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-nopmnQpozvN0p/SyUCH3Yej/oAhDvNdfJssUA1JyGsk=";
-    name = "${pname}-${version}";
   };
 
   dotnet-sdk = dotnetCorePackages.sdk_10_0;
@@ -45,7 +45,7 @@ buildDotnetModule rec {
     inherit (nixosTests) technitium-dns-server;
   };
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = ./update.sh;
 
   meta = {
     changelog = "https://github.com/TechnitiumSoftware/DnsServer/blob/master/CHANGELOG.md";
@@ -59,4 +59,4 @@ buildDotnetModule rec {
     ];
     platforms = lib.platforms.linux;
   };
-}
+})

@@ -301,6 +301,7 @@ final: prev: {
 
       meta = {
         homepage = "https://lunarmodules.github.io/busted/";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.mit;
         description = "Elegant Lua unit testing";
         longDescription = ''
@@ -347,6 +348,37 @@ final: prev: {
                 It is based on the gtest output handler that
                 is bundled with Busted.
         '';
+      };
+    }
+  ) { };
+
+  canola-nvim = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchurl,
+      fetchzip,
+      luaOlder,
+    }:
+    buildLuarocksPackage {
+      pname = "canola.nvim";
+      version = "0.1.0-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/canola.nvim-0.1.0-1.rockspec";
+          sha256 = "1aig4ndcqj7mliawckzvcv6gaigk9l2nqdfn96qd51jrmgy0ghyp";
+        }).outPath;
+      src = fetchzip {
+        url = "https://github.com/barrettruth/canola.nvim/archive/v0.1.0.zip";
+        sha256 = "1ykdjz1ysbn1f9a2pmj595ishh2yzis5d1d0a51ny5j63fjic3p8";
+      };
+
+      disabled = luaOlder "5.1";
+
+      meta = {
+        homepage = "https://github.com/barrettruth/canola.nvim";
+        maintainers = with lib.maintainers; [ saadndm ];
+        license = lib.licenses.mit;
+        description = "a refined oil.nvim";
       };
     }
   ) { };
@@ -486,7 +518,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/lua-compat-5.3";
-        maintainers = with lib.maintainers; [ vcunat ];
+        maintainers = with lib.maintainers; [
+          vcunat
+          alerque
+        ];
         license = lib.licenses.mit;
         description = "Compatibility module providing Lua-5.3-style APIs for Lua 5.2 and 5.1";
         longDescription = ''
@@ -1070,15 +1105,15 @@ final: prev: {
     }:
     buildLuarocksPackage {
       pname = "fzf-lua";
-      version = "0.0.2682-1";
+      version = "0.0.2686-1";
       knownRockspec =
         (fetchurl {
-          url = "mirror://luarocks/fzf-lua-0.0.2682-1.rockspec";
-          sha256 = "1kqpacp8ycywvdazcychl18xzdiw1bd1ga0780hffig3wgh190ys";
+          url = "mirror://luarocks/fzf-lua-0.0.2686-1.rockspec";
+          sha256 = "05n93jkdb3djv8xdanbrcn3nymy1srmx0vgjvk7pjfy1zxxqpiv4";
         }).outPath;
       src = fetchzip {
-        url = "https://github.com/ibhagwan/fzf-lua/archive/532d463f5c83595192fe740572d8fd6902b2217a.zip";
-        sha256 = "1wy69gn4fx34jn5l7f8a9x4plbl1axv2aj7dw5q944ni71bwl8h1";
+        url = "https://github.com/ibhagwan/fzf-lua/archive/eced685813841391087fd65f896fc6ce6339a809.zip";
+        sha256 = "0py1ddpsvgb2989y0r4db6i55xffkwn4mwjkxsvx63mfq4nahf8q";
       };
 
       disabled = luaOlder "5.1";
@@ -1167,15 +1202,15 @@ final: prev: {
     }:
     buildLuarocksPackage {
       pname = "grug-far.nvim";
-      version = "1.6.74-1";
+      version = "1.6.75-1";
       knownRockspec =
         (fetchurl {
-          url = "mirror://luarocks/grug-far.nvim-1.6.74-1.rockspec";
-          sha256 = "0g8nb4w6l6bwnpy54xy5qncwn3hp0dcay1gfqrjfsf9j5pm3ysmg";
+          url = "mirror://luarocks/grug-far.nvim-1.6.75-1.rockspec";
+          sha256 = "08sqp2ibcsc8dn4d4vm4wzp9k8mpi9mzifqb7kaf2hzgza4ddvim";
         }).outPath;
       src = fetchzip {
-        url = "https://github.com/MagicDuck/grug-far.nvim/archive/1cc080f55706b38aabfa97d40acb6adf59ac4a5a.zip";
-        sha256 = "0aybgj5h8d6ydm304ybgw506rrrvmcdis3pclyjv9adi4z61a9fn";
+        url = "https://github.com/MagicDuck/grug-far.nvim/archive/0f6a5d0d7a70659b11bbcd6b3673ee0fe61b6024.zip";
+        sha256 = "0c77zzmbvddldjmw68fd6czj6w5m42mg5yrrzs73hs9h7ipd9s6s";
       };
 
       disabled = luaOlder "5.1";
@@ -1352,15 +1387,15 @@ final: prev: {
     }:
     buildLuarocksPackage {
       pname = "kulala.nvim";
-      version = "6.21.0-1";
+      version = "6.21.2-1";
       knownRockspec =
         (fetchurl {
-          url = "mirror://luarocks/kulala.nvim-6.21.0-1.rockspec";
-          sha256 = "11g9k9gi1cl9bmrcd70p6gy874nql6z0l3wfhiskjwac8385lqj3";
+          url = "mirror://luarocks/kulala.nvim-6.21.2-1.rockspec";
+          sha256 = "0w34k8676l7gavnv99v3c2d9m59926ykj509qbri0g927442pcrw";
         }).outPath;
       src = fetchzip {
-        url = "https://github.com/mistweaverco/kulala.nvim/archive/v6.21.0.zip";
-        sha256 = "0zglgmxz1lcfzk7x4p6c78drpa60b9rf9bvsnmnbg2w0rypg91wm";
+        url = "https://github.com/mistweaverco/kulala.nvim/archive/v6.21.2.zip";
+        sha256 = "175m953v0v0k12246skdxm8kjagx2drxi2na9qgiak3vb5m5k3l0";
       };
 
       disabled = luaOlder "5.1";
@@ -1440,6 +1475,7 @@ final: prev: {
 
       meta = {
         homepage = "http://lunarmodules.github.io/ldoc";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.mit;
         description = "A Lua Documentation Tool";
         longDescription = ''
@@ -2294,6 +2330,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/lua-iconv/";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.AND [
           lib.licenses.mit
           lib.licenses.x11
@@ -2883,6 +2920,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/lua_cliargs.git";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.mit;
         description = "A command-line argument parsing module for Lua";
         longDescription = ''
@@ -2962,6 +3000,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/luacheck";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.mit;
         description = "A static analyzer and a linter for Lua";
         longDescription = ''
@@ -3001,6 +3040,7 @@ final: prev: {
 
       meta = {
         homepage = "https://lunarmodules.github.ioluacov/";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.mit;
         description = "Coverage analysis tool for Lua scripts";
         longDescription = ''
@@ -3411,7 +3451,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/luafilesystem";
-        maintainers = with lib.maintainers; [ flosse ];
+        maintainers = with lib.maintainers; [
+          flosse
+          alerque
+        ];
         license = lib.licenses.AND [
           lib.licenses.mit
           lib.licenses.x11
@@ -3909,7 +3952,10 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/brunoos/luasec/wiki";
-        maintainers = with lib.maintainers; [ flosse ];
+        maintainers = with lib.maintainers; [
+          flosse
+          alerque
+        ];
         license = lib.licenses.mit;
         description = "A binding for OpenSSL library to provide TLS/SSL communication over LuaSocket.";
         longDescription = "This version delegates to LuaSocket the TCP connection establishment between the client and server. Then LuaSec uses this connection to start a secure TLS/SSL session.";
@@ -3975,6 +4021,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/luasocket";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.mit;
         description = "Network support for the Lua language";
         longDescription = ''
@@ -4055,6 +4102,7 @@ final: prev: {
 
       meta = {
         homepage = "https://lunarmodules.github.io/busted/";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.mit;
         description = "Lua assertions extension";
         longDescription = ''
@@ -4091,6 +4139,7 @@ final: prev: {
 
       meta = {
         homepage = "https://github.com/lunarmodules/luasystem";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.mit;
         description = "Platform independent system calls for Lua.";
         longDescription = ''
@@ -5724,6 +5773,43 @@ final: prev: {
     }
   ) { };
 
+  rocks-lazy-nvim = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchurl,
+      fetchzip,
+      luaOlder,
+      lz-n,
+      rocks-nvim,
+    }:
+    buildLuarocksPackage {
+      pname = "rocks-lazy.nvim";
+      version = "1.2.1-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/rocks-lazy.nvim-1.2.1-1.rockspec";
+          sha256 = "11xd46bf2zmd8x5xdkp0j4x1n2g20wczzq29sb90wp1vk6srmpgh";
+        }).outPath;
+      src = fetchzip {
+        url = "https://github.com/nvim-neorocks/rocks-lazy.nvim/archive/v1.2.1.zip";
+        sha256 = "0cccxaqfr943qw06491f799q5czb2rhjcy9swf9zmv9s26zl19bw";
+      };
+
+      disabled = luaOlder "5.1";
+      propagatedBuildInputs = [
+        lz-n
+        rocks-nvim
+      ];
+
+      meta = {
+        homepage = "https://github.com/nvim-neorocks/rocks-lazy.nvim";
+        maintainers = with lib.maintainers; [ teto ];
+        license = lib.licenses.gpl3Only;
+        description = ":sloth: A lazy-loading module for rocks.nvim";
+      };
+    }
+  ) { };
+
   rocks-nvim = callPackage (
     {
       buildLuarocksPackage,
@@ -5871,6 +5957,7 @@ final: prev: {
 
       meta = {
         homepage = "https://lunarmodules.github.io/say";
+        maintainers = with lib.maintainers; [ alerque ];
         license = lib.licenses.mit;
         description = "Lua string hashing/indexing library";
         longDescription = ''

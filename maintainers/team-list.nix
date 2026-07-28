@@ -519,7 +519,6 @@ with lib.maintainers;
     members = [
       alejandrosame
       aleksi
-      artturin
       emilytrau
       ericson2314
       jk
@@ -715,6 +714,15 @@ with lib.maintainers;
 
   security-review = {
     github = "security-review";
+  };
+
+  stardust-xr = {
+    members = [
+      pandapip1
+      technobaboo
+    ];
+    scope = "Maintain Stardust XR packages";
+    shortName = "StardustXR";
   };
 
   stdenv = {

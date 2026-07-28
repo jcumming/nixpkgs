@@ -18,6 +18,7 @@
   pypaInstallHook,
   pythonCatchConflictsHook,
   pythonImportsCheckHook,
+  pythonMetadataCheckHook,
   pythonNamespacesHook,
   pythonOutputDistHook,
   pythonRelaxDepsHook,
@@ -58,6 +59,8 @@ let
       len = max (stringLength name) (stringLength against);
     in
     fixedWidthString len " " name;
+
+  hasZipSuffix = hasSuffix "zip";
 
   isPythonModule =
     drv:
@@ -317,7 +320,7 @@ lib.extendMkDerivation {
       ++ optionals removeBinBytecode [
         pythonRemoveBinBytecodeHook
       ]
-      ++ optionals (hasSuffix "zip" (finalAttrs.src.name or "")) [
+      ++ optionals (attrs ? src.name && hasZipSuffix attrs.src.name) [
         unzip
       ]
       ++ optionals (format' == "setuptools") [
@@ -358,6 +361,21 @@ lib.extendMkDerivation {
         # This is a test, however, it should be ran independent of the checkPhase and checkInputs
         pythonImportsCheckHook
       ]
+      ++
+        optionals
+          (
+            finalAttrs ? "pname"
+            && finalAttrs ? "version"
+            # We don't care about the METADATA of Python applications.
+            && isPythonModule finalAttrs.passthru
+            # METADATA is unlikely to be correct if pyproject is false or null.
+            && pyproject == true
+            && !lib.hasInfix "unstable-" finalAttrs.version
+            && !isBootstrapPackage
+          )
+          [
+            pythonMetadataCheckHook
+          ]
       ++ optionals (python.pythonAtLeast "3.3") [
         # Optionally enforce PEP420 for python3
         pythonNamespacesHook

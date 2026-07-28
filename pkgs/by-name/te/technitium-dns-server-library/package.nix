@@ -3,18 +3,18 @@
   buildDotnetModule,
   fetchFromGitHub,
   dotnetCorePackages,
-  nix-update-script,
 }:
-buildDotnetModule rec {
+buildDotnetModule (finalAttrs: {
   pname = "technitium-dns-server-library";
   version = "15.3.0";
+
+  __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "TechnitiumSoftware";
     repo = "TechnitiumLibrary";
-    tag = "dns-server-v${version}";
+    tag = "dns-server-v${finalAttrs.version}";
     hash = "sha256-BQWDzMEiChY8uX1wUUZNWFDomGqUyDrZ6+UEncC5G5U=";
-    name = "${pname}-${version}";
   };
 
   dotnet-sdk = dotnetCorePackages.sdk_10_0;
@@ -26,8 +26,6 @@ buildDotnetModule rec {
     "TechnitiumLibrary.Net/TechnitiumLibrary.Net.csproj"
     "TechnitiumLibrary.Security.OTP/TechnitiumLibrary.Security.OTP.csproj"
   ];
-
-  passthru.updateScript = nix-update-script { };
 
   meta = {
     changelog = "https://github.com/TechnitiumSoftware/DnsServer/blob/master/CHANGELOG.md";
@@ -41,4 +39,4 @@ buildDotnetModule rec {
     ];
     platforms = lib.platforms.linux;
   };
-}
+})
