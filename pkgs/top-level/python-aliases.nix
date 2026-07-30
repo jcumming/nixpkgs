@@ -406,6 +406,7 @@ mapAliases {
   multi_key_dict = throw "'multi_key_dict' has been renamed to/replaced by 'multi-key-dict'"; # Converted to throw 2025-10-29
   mutag = throw "mutag has been removed because it is unmaintained since 2018"; # added 2025-05-25
   mysql-connector = mysql-connector-python; # added 2026-06-21
+  napari-npe2 = warnAlias "napari-npe2 has been renamed to 'npe2'" npe2; # added 2026-07-28
   net2grid = throw "'net2grid' has been renamed to/replaced by 'gridnet'"; # Converted to throw 2025-10-29
   ninja-python = throw "'ninja-python' has been renamed to/replaced by 'ninja'"; # Converted to throw 2025-10-29
   nitpick = throw "'nitpick' has been removed because it was unmaintained upstream since 2017 and using python2"; # added 2025-08-25
@@ -416,6 +417,7 @@ mapAliases {
   oauth2 = throw "oauth2 has been removed as it is unmaintained"; # added 2025-05-16
   oauth = throw "oauth has been removed as it is unmaintained"; # added 2025-05-16
   objax = throw "objax has been removed because the upstream project was archived."; # Added 2025-10-04
+  ocrmypdf_16 = throw "'ocrmypdf_16' was removed because paperless-ngx no longer uses it"; # Added 2026-07-23
   openai-triton = throw "'openai-triton' has been renamed to/replaced by 'triton'"; # Converted to throw 2025-10-29
   openai-triton-bin = throw "'openai-triton-bin' has been renamed to/replaced by 'triton-bin'"; # Converted to throw 2025-10-29
   openai-triton-cuda = throw "'openai-triton-cuda' has been renamed to/replaced by 'triton-cuda'"; # Converted to throw 2025-10-29
