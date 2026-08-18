@@ -361,6 +361,22 @@ let
         };
       };
 
+      arktypeio.arkdark = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          publisher = "arktypeio";
+          name = "arkdark";
+          version = "6.6.0";
+          hash = "sha256-9QsHaH8mXM7D7QE5+xTFrGyxh6MShPF9Wk0hFHpxk8A=";
+        };
+        meta = {
+          description = "Syntax highlighting and inline errors for ArkType";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=arktypeio.arkdark";
+          homepage = "https://github.com/arktypeio/arktype";
+          license = lib.licenses.mit;
+          maintainers = with lib.maintainers; [ logn ];
+        };
+      };
+
       arrterian.nix-env-selector = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "nix-env-selector";
@@ -1007,8 +1023,8 @@ let
         mktplcRef = {
           name = "coder-remote";
           publisher = "coder";
-          version = "1.15.2";
-          hash = "sha256-mBACvGUQF3LoaFJ9MIewN9zu4jDTWfUgyd1MQvZQUvk=";
+          version = "1.16.0";
+          hash = "sha256-ZQivZPBQ10KwtY8LaQPeDNYl5jcpY1kAkT65yiQvR+M=";
         };
         meta = {
           description = "Extension for Visual Studio Code to open any Coder workspace in VS Code with a single click";
@@ -1174,8 +1190,8 @@ let
         mktplcRef = {
           publisher = "DanielSanMedium";
           name = "dscodegpt";
-          version = "3.24.39";
-          hash = "sha256-r1XkER09s+38uCbUxK9MM5bHRNp3UnMj6VJCHUMZM1Q=";
+          version = "3.24.43";
+          hash = "sha256-Y3pCg0qauVu4K6qz610QGRizyodnRpDigGSSIn6m6gw=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/DanielSanMedium.dscodegpt/changelog";
@@ -1226,8 +1242,8 @@ let
         mktplcRef = {
           name = "databricks";
           publisher = "databricks";
-          version = "2.12.4";
-          hash = "sha256-29xG0/AhBhidM8Hd7vHUWxESCDt8MwACIkBpmfvhD2Q=";
+          version = "2.13.0";
+          hash = "sha256-4Fa1UABo7JUO7+IECjsYEq9zyscHTGUlrUCa3aBdhoI=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/databricks.databricks/changelog";
@@ -1243,8 +1259,8 @@ let
         mktplcRef = {
           name = "vscode-markdownlint";
           publisher = "DavidAnson";
-          version = "0.62.0";
-          hash = "sha256-cupXtTdzTKxhvTEHKe/OU8TFlp1CeAIIy2XCLvLMZ5s=";
+          version = "0.62.1";
+          hash = "sha256-zR0pWpxWTTxeAEfX49vlhaTPc2YZxcJCv62abriPtRg=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/DavidAnson.vscode-markdownlint/changelog";
@@ -1346,8 +1362,8 @@ let
         mktplcRef = {
           publisher = "discloud";
           name = "discloud";
-          version = "2.29.8";
-          hash = "sha256-dvyIdixtmg5ZTo/REB/E5QlHJu2xZ+Ui5qwJegoHTfk=";
+          version = "2.29.10";
+          hash = "sha256-t1FbUeFw5WMKyb/qwVJBpILB8z4wtWH/BOnMVEDg0pU=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/discloud.discloud/changelog";
@@ -1375,8 +1391,8 @@ let
         mktplcRef = {
           name = "competitive-programming-helper";
           publisher = "DivyanshuAgrawal";
-          version = "2026.7.1784984280";
-          hash = "sha256-0re8raTXTv61JUr0WeIOmSWIy5NsgmqKpkJo5nt8z+w=";
+          version = "2026.8.1785865132";
+          hash = "sha256-/JVuIOoTgeENtbvYFri1/RtiZ6PCabOrwC1mzHoaML4=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/DivyanshuAgrawal.competitive-programming-helper/changelog";
@@ -1669,6 +1685,22 @@ let
           changelog = "https://marketplace.visualstudio.com/items/ExiaHuang.dictionary/changelog";
           license = lib.licenses.gpl3Only;
           maintainers = with lib.maintainers; [ onedragon ];
+        };
+      };
+
+      ExodiusStudios.comment-anchors = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          publisher = "ExodiusStudios";
+          name = "comment-anchors";
+          version = "1.10.4";
+          hash = "sha256-FvfjPpQsgCsnY1BylhLCM/qDQChf9/iTr3cKkCGfMVI=";
+        };
+        meta = {
+          description = "Place anchor tags within comments for easy file and workspace navigation.";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=exodiusstudios.comment-anchors";
+          homepage = "https://github.com/StarlaneStudios/vscode-comment-anchors";
+          license = lib.licenses.mit;
+          maintainers = with lib.maintainers; [ logn ];
         };
       };
 
@@ -2015,8 +2047,8 @@ let
         mktplcRef = {
           name = "gitlab-workflow";
           publisher = "gitlab";
-          version = "6.85.5";
-          hash = "sha256-WtdTQjDxeI4YLOSQFdrFpdualNizYIQC7HQlsocSt4M=";
+          version = "6.86.0";
+          hash = "sha256-DzVfMMXifTASxb/YvjsAxQUnqZGgBGHKfpLEtkyJt88=";
         };
         meta = {
           description = "GitLab extension for Visual Studio Code";
@@ -2346,8 +2378,8 @@ let
         mktplcRef = {
           name = "vscode-vibrancy-continued";
           publisher = "illixion";
-          version = "1.1.86";
-          hash = "sha256-iTBCkNJ2iO/9bILGn+B4eYNlJ3JwDBIOxJiklsBQvW8=";
+          version = "1.1.92";
+          hash = "sha256-10uwh2Z34pejFAGRFAcOgocL7owTOLUDeQ7XPqrTiqQ=";
         };
         meta = {
           downloadPage = "https://marketplace.visualstudio.com/items?itemName=illixion.vscode-vibrancy-continued";
@@ -4852,8 +4884,8 @@ let
         mktplcRef = {
           name = "emacs-mcx";
           publisher = "tuttieee";
-          version = "0.111.1";
-          hash = "sha256-+0wIC/7xbun2Wf8wePU6NSR9UMNd0RvLz6UdAM3X5Y4=";
+          version = "0.111.3";
+          hash = "sha256-yMiEvC7zCVnBSSo+HvK9m7RbD6Bmv7zwKabOtlsEXjE=";
         };
         meta = {
           changelog = "https://github.com/whitphx/vscode-emacs-mcx/blob/main/CHANGELOG.md";
@@ -5070,8 +5102,8 @@ let
         mktplcRef = {
           name = "vstuc";
           publisher = "VisualStudioToolsForUnity";
-          version = "1.2.2";
-          hash = "sha256-Yh4nhRTOmQiL34wYnd7Y2OMdl837fexRm5r2hHfhjIg=";
+          version = "1.3.1";
+          hash = "sha256-lpkqFXLod/m95DsvIcsb6si0ekIawYO5CI2H6GPML6c=";
         };
         meta = {
           description = "Integrates Visual Studio Code for Unity";

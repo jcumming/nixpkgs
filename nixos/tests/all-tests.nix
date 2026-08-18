@@ -328,6 +328,7 @@ in
   calibre-server = import ./calibre-server.nix { inherit pkgs runTest; };
   calibre-web = runTest ./calibre-web.nix;
   canaille = runTest ./canaille.nix;
+  cardwire = runTest ./cardwire.nix;
   cassandra = runTest {
     imports = [ ./cassandra.nix ];
     _module.args.getPackage = pkgs: pkgs.cassandra;
@@ -793,6 +794,7 @@ in
   hibernate-systemd-stage-1 = handleTestOn [ "x86_64-linux" ] ./hibernate.nix {
     systemdStage1 = true;
   };
+  hister = runTest ./hister.nix;
   hitch = handleTest ./hitch { };
   hledger-web = runTest ./hledger-web.nix;
   hockeypuck = runTest ./hockeypuck.nix;
@@ -809,6 +811,7 @@ in
   hub = runTest ./git/hub.nix;
   hydra = runTest ./hydra;
   i18n = runTest ./i18n.nix;
+  i2pd = runTest ./i2pd.nix;
   i3wm = runTest ./i3wm.nix;
   icecast = runTest ./icecast.nix;
   icingaweb2 = runTest ./icingaweb2.nix;
@@ -911,6 +914,7 @@ in
   komga = runTest ./komga.nix;
   komodo-periphery = runTest ./komodo-periphery.nix;
   krb5 = discoverTests (import ./krb5);
+  krill = runTest ./krill.nix;
   ksm = runTest ./ksm.nix;
   kthxbye = runTest ./kthxbye.nix;
   kubernetes = handleTestOn [ "x86_64-linux" ] ./kubernetes { };
@@ -918,6 +922,7 @@ in
     inherit runTest;
     inherit (pkgs) lib;
   };
+  kvrocks = runTest ./kvrocks.nix;
   labgrid = runTest ./labgrid.nix;
   lact = runTest ./lact.nix;
   ladybird = runTest ./ladybird.nix;
@@ -967,7 +972,9 @@ in
   livekit = runTest ./networking/livekit.nix;
   lix = runTest ./lix.nix;
   lk-jwt-service = runTest ./matrix/lk-jwt-service.nix;
-  llama-swap = runTest ./web-servers/llama-swap.nix;
+  llama-swap = import ./web-servers/llama-swap.nix {
+    inherit pkgs runTest;
+  };
   lldap = runTest ./lldap.nix;
   local-content-share = runTest ./local-content-share.nix;
   locale = runTest ./locale.nix;
@@ -1057,6 +1064,7 @@ in
   modularService = pkgs.callPackage ../modules/system/service/systemd/test.nix {
     inherit evalSystem;
   };
+  moduleStateRevisions = pkgs.callPackage ./moduleStateRevisions.nix { };
   molly-brown = runTest ./molly-brown.nix;
   mollysocket = runTest ./mollysocket.nix;
   monado = runTest ./monado.nix;
@@ -1232,6 +1240,7 @@ in
   ntfy-sh-migration = handleTest ./ntfy-sh-migration.nix { };
   ntpd = runTest ./ntpd.nix;
   ntpd-rs = runTest ./ntpd-rs.nix;
+  nullmailer = runTest ./nullmailer.nix;
   nushell = runTest ./nushell.nix;
   nvidia-container-toolkit = runTest ./nvidia-container-toolkit.nix;
   nvme-rs = runTest ./nvme-rs.nix;
@@ -1329,6 +1338,7 @@ in
   pantalaimon = runTest ./matrix/pantalaimon.nix;
   pantheon = runTest ./pantheon.nix;
   paperless = runTest ./paperless.nix;
+  papra = runTest ./papra.nix;
   paretosecurity = runTest ./paretosecurity.nix;
   parsedmarc = handleTest ./parsedmarc { };
   part-db = runTest ./web-apps/part-db.nix;
@@ -1514,6 +1524,7 @@ in
   rmfakecloud = runTest ./rmfakecloud.nix;
   rnsd = runTest ./networking/rnsd.nix;
   robustirc-bridge = runTest ./robustirc-bridge.nix;
+  romm = runTest ./romm.nix;
   rosenpass = runTest ./rosenpass.nix;
   roundcube = runTest ./roundcube.nix;
   routinator = handleTest ./routinator.nix { };
@@ -1835,11 +1846,13 @@ in
   userborn = runTest ./userborn.nix;
   userborn-immutable-etc = runTest ./userborn-immutable-etc.nix;
   userborn-immutable-users = runTest ./userborn-immutable-users.nix;
+  userborn-migration = runTest ./userborn-migration.nix;
   userborn-mutable-etc = runTest ./userborn-mutable-etc.nix;
   userborn-mutable-users = runTest ./userborn-mutable-users.nix;
   userborn-static = runTest ./userborn-static.nix;
   ustreamer = runTest ./ustreamer.nix;
-  utils = import ./utils { inherit runTest; };
+  utils = pkgs.callPackage ./utils { inherit runTest; };
+  utmp = runTest ./utmp.nix;
   uwsgi = runTest ./uwsgi.nix;
   v2ray = runTest ./v2ray.nix;
   varnish80 = runTest {
@@ -1925,6 +1938,7 @@ in
   yggdrasil = runTest ./yggdrasil.nix;
   your_spotify = runTest ./your_spotify.nix;
   zammad = runTest ./zammad.nix;
+  zapret2 = runTest ./zapret2.nix;
   zenohd = runTest ./zenohd.nix;
   zeronet-conservancy = runTest ./zeronet-conservancy.nix;
   zfs = import ./zfs.nix { inherit system pkgs runTest; };

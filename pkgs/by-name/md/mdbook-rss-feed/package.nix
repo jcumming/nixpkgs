@@ -3,21 +3,25 @@
   rustPlatform,
   fetchFromGitHub,
   nix-update-script,
+  withAtom ? false,
+  withJsonFeed ? false,
 }:
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "mdbook-rss-feed";
-  version = "1.7.0";
+  version = "1.8.1";
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "saylesss88";
     repo = "mdbook-rss-feed";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-uIEl9lHHsTMV+ft9Zn42zzL1A8HRV17zuf/FBh973/E=";
+    hash = "sha256-EABRjqnNRNRyfbZBwzh8NMpFuE+voxAr2ugSB+8sIBw=";
   };
 
-  cargoHash = "sha256-/tm0rciW4Nif3nfAokZ1P2eDkC1hXY6owccyev+kVZ0=";
+  cargoHash = "sha256-UkoNcwEq2Ga3PEF04Xly++VdBekdCBKSHggIGXjTMXU=";
+
+  buildFeatures = lib.optional withAtom [ "atom" ] ++ lib.optional withJsonFeed [ "json-feed" ];
 
   passthru.updateScript = nix-update-script { };
 
