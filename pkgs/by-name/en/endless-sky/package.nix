@@ -35,6 +35,9 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-v+0RrZqIkF849D8rmOhYS1kqeeCPRcBED+3VPSuhGF0=";
   };
 
+  __structuredAttrs = true;
+  strictDeps = true;
+
   patches = lib.optionals stdenv.hostPlatform.isLinux [
     ./fixes.patch
   ];

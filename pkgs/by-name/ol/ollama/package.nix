@@ -111,12 +111,12 @@ let
   # vendored in-tree. Pre-stage the pin (tracks upstream's
   # `LLAMA_CPP_VERSION` file) so the FetchContent step uses our copy
   # instead of trying to clone over the network in the sandbox.
-  llamaCppVersion = "b10380";
+  llamaCppVersion = "b10488";
   llamaCppSrc = fetchFromGitHub {
     owner = "ggml-org";
     repo = "llama.cpp";
     tag = llamaCppVersion;
-    hash = "sha256-HT0QuIFJz5cgH2qinxhtyLEL/RrUpziZuntj/EDQtzI=";
+    hash = "sha256-5noPIcSD9Ki1D3J7b6JofeXiPO1RdL/Q8z+E0ZCwceY=";
   };
 
   wrapperOptions = [
@@ -152,13 +152,13 @@ let
 in
 goBuild (finalAttrs: {
   pname = "ollama";
-  version = "0.32.13";
+  version = "0.32.15";
 
   src = fetchFromGitHub {
     owner = "ollama";
     repo = "ollama";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-KSvw7LsvpUVeSm9BKJ4wIp/fWGHjMp8bOTMUpFJCDmw=";
+    hash = "sha256-BpN3y1unf6Yd1RBura2S4O5jLSkImzi1Guo6GWbNZI8=";
   };
 
   vendorHash = "sha256-HMwoaFBMbpoy8f0I+O+i7kIa9BslLu3FcVWeaIOkpvs=";
@@ -204,8 +204,8 @@ goBuild (finalAttrs: {
     ++ lib.optionals stdenv.hostPlatform.isDarwin [ apple-sdk_15 ]
     ++ lib.optionals enableVulkan vulkanLibs;
 
-  # replace inaccurate version number with actual release version
   postPatch = ''
+    # replace inaccurate version number with actual release version
     substituteInPlace version/version.go \
       --replace-fail 0.0.0 '${finalAttrs.version}'
 
@@ -343,6 +343,8 @@ goBuild (finalAttrs: {
     "-X=github.com/ollama/ollama/version.Version=${finalAttrs.version}"
     "-X=github.com/ollama/ollama/server.mode=release"
   ];
+
+  subPackages = [ "." ];
 
   __darwinAllowLocalNetworking = true;
 

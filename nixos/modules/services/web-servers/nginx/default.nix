@@ -398,6 +398,11 @@ let
 
         hostListen = if vhost.forceSSL then filter (x: x.ssl) defaultListen else defaultListen;
 
+        # If there's any location setting `useGrpcErrorPages`, we need to add the location blocks.
+        locationsWantGrpcErrorPages = builtins.any (location: location.useGrpcErrorPages) (
+          attrValues vhost.locations
+        );
+
         listenString =
           {
             addr,
@@ -515,6 +520,10 @@ let
 
           ${mkBasicAuth vhostName vhost}
 
+          ${optionalString locationsWantGrpcErrorPages ''
+            include ${./grpc-locations.conf};
+          ''}
+
           ${optionalString (vhost.root != null) "root ${vhost.root};"}
 
           ${optionalString (vhost.globalRedirect != null) ''
@@ -559,6 +568,9 @@ let
               optionalAttrs (config.fastcgiParams != { }) (defaultFastcgiParams // config.fastcgiParams)
             )
           )}
+          ${optionalString config.useGrpcErrorPages ''
+            include ${./grpc-error-pages.conf};
+          ''}
           ${optionalString (config.index != null) "index ${config.index};"}
           ${optionalString (config.tryFiles != null) "try_files ${config.tryFiles};"}
           ${optionalString (config.root != null) "root ${config.root};"}
@@ -1614,11 +1626,7 @@ in
           ];
           RestrictNamespaces = true;
           LockPersonality = true;
-          MemoryDenyWriteExecute =
-            !(
-              (builtins.any (mod: (mod.allowMemoryWriteExecute or false)) cfg.package.modules)
-              || (lib.getName cfg.package == "openresty")
-            );
+          MemoryDenyWriteExecute = false; # for pcre2 & several plugins
           RestrictRealtime = true;
           RestrictSUIDSGID = true;
           RemoveIPC = true;
