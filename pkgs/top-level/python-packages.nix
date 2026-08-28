@@ -11894,6 +11894,8 @@ self: super: with self; {
 
   nest-asyncio = callPackage ../development/python-modules/nest-asyncio { };
 
+  nest-asyncio2 = callPackage ../development/python-modules/nest-asyncio2 { };
+
   nested-lookup = callPackage ../development/python-modules/nested-lookup { };
 
   nested-multipart-parser = callPackage ../development/python-modules/nested-multipart-parser { };
@@ -16613,6 +16615,8 @@ self: super: with self; {
       { };
 
   pytest-shutil = callPackage ../development/python-modules/pytest-shutil { };
+
+  pytest-skip-slow = callPackage ../development/python-modules/pytest-skip-slow { };
 
   pytest-smtpd = callPackage ../development/python-modules/pytest-smtpd { };
 
