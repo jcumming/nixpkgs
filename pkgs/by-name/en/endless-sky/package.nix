@@ -7,9 +7,8 @@
   libpng,
   libjpeg,
   libogg,
-  libsm,
   libx11,
-  libSM,
+  libsm,
   libxext,
   flac,
   glew,
@@ -84,7 +83,6 @@ stdenv.mkDerivation (finalAttrs: {
     libpng
     libjpeg
     libogg
-    libsm
     libxext
     flac
     openal
@@ -93,7 +91,7 @@ stdenv.mkDerivation (finalAttrs: {
   ]
   ++ lib.optionals stdenv.hostPlatform.isLinux [
     libx11
-    libSM
+    libsm
     glew
     libuuid
   ]

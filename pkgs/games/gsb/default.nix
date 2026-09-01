@@ -1,6 +1,6 @@
 { stdenv, lib, config, requireFile
 , curl, SDL, SDL_image, libpng12, libjpeg, libvorbis, libogg, openal, libGLU
-, libX11, libXext, libXft, fontconfig, zlib, makeDesktopItem }:
+, libx11, libxext, libxft, fontconfig, zlib, makeDesktopItem }:
 
 assert stdenv.system == "i686-linux" || stdenv.system == "x86_64-linux";
 
@@ -37,7 +37,7 @@ stdenv.mkDerivation rec {
   libPath = lib.makeLibraryPath [ stdenv.cc.cc stdenv.cc.libc ] 
     + ":" + lib.makeLibraryPath [ SDL SDL_image libjpeg libpng12 libGLU ]
     + ":" + lib.makeLibraryPath [ curl openal libvorbis libogg ]
-    + ":" + lib.makeLibraryPath [ libX11 libXext libXft fontconfig zlib ]
+    + ":" + lib.makeLibraryPath [ libx11 libxext libxft fontconfig zlib ]
     + ":" + stdenv.cc.cc + "/lib64";
 
   installPhase = ''
