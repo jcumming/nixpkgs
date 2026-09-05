@@ -307,6 +307,7 @@ in
   blockbook-frontend = runTest ./blockbook-frontend.nix;
   blocky = runTest ./blocky.nix;
   bluesky-pds = runTest ./bluesky-pds.nix;
+  bookorbit = runTest ./web-apps/bookorbit.nix;
   bookstack = runTest ./bookstack.nix;
   boot = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./boot.nix { };
   boot-stage1 = runTest ./boot-stage1.nix;
@@ -696,6 +697,7 @@ in
   geth = runTest ./geth.nix;
   ghostunnel = runTest ./ghostunnel.nix;
   ghostunnel-modular = runTest ./ghostunnel-modular.nix;
+  git-pages-modular = runTest ./git-pages.nix;
   gitdaemon = runTest ./gitdaemon.nix;
   gitea = import ./gitea.nix {
     inherit pkgs runTest;
@@ -719,7 +721,6 @@ in
   go-camo = runTest ./go-camo.nix;
   go-csp-collector = runTest ./go-csp-collector.nix;
   go-httpbin = runTest ./go-httpbin.nix;
-  go-neb = runTest ./go-neb.nix;
   goatcounter = runTest ./goatcounter.nix;
   gobgpd = runTest ./gobgpd.nix;
   gocd-agent = runTest ./gocd-agent.nix;
@@ -1501,7 +1502,9 @@ in
   pufferpanel = runTest ./pufferpanel.nix;
   pulseaudio = discoverTests (import ./pulseaudio.nix);
   pulseaudio-tcp = runTest ./pulseaudio-tcp.nix;
+  pumpkin = runTest ./pumpkin.nix;
   pykms = runTest ./pykms.nix;
+  qbit-manage = runTest ./qbit-manage.nix;
   qbittorrent = runTest ./qbittorrent.nix;
   qboot = runTestOn [ "x86_64-linux" "i686-linux" ] ./qboot.nix;
   qemu-firmware = runTestOn [ "x86_64-linux" ] ./qemu-firmware.nix;

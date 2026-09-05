@@ -89,8 +89,8 @@ let
         mktplcRef = {
           publisher = "42Crunch";
           name = "vscode-openapi";
-          version = "5.6.0";
-          hash = "sha256-ISrCEZukzXsQFCn0fAvG9Fuf8ReO/gkn3FX5/G6DRak=";
+          version = "5.9.0";
+          hash = "sha256-sUfug0F0OaoMmKEmcHyXQIXcun35MAFVSGAHbx7xK/8=";
         };
         meta = {
           changelog = "https://github.com/42Crunch/vscode-openapi/blob/v${mktplcRef.version}/CHANGELOG.md";
@@ -262,8 +262,8 @@ let
         mktplcRef = {
           name = "ng-template";
           publisher = "Angular";
-          version = "22.0.1";
-          hash = "sha256-IaaqFb0YLJcVqoV5QT9fZmYd5GbfQCUlK68SF76Y/dY=";
+          version = "22.1.0";
+          hash = "sha256-/PftUvaE9EjsKRc0TnF0lftOgp5fzKmR+KGhocXEMrk=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/Angular.ng-template/changelog";
@@ -1190,8 +1190,8 @@ let
         mktplcRef = {
           publisher = "DanielSanMedium";
           name = "dscodegpt";
-          version = "3.24.51";
-          hash = "sha256-VK0AfJdMBofH6ra4jTFRzzId3vXyB66SzMqKJVeXa+Y=";
+          version = "3.24.57";
+          hash = "sha256-iZZlZqghFRBtAOGZz1DV5bW0n41DpJKB865plQ5rXoY=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/DanielSanMedium.dscodegpt/changelog";
@@ -1242,8 +1242,8 @@ let
         mktplcRef = {
           name = "databricks";
           publisher = "databricks";
-          version = "2.14.1";
-          hash = "sha256-f/jkmzHGZx5NJ0hKcNvPodjWcc7xGSUND5XzaXlL/Ms=";
+          version = "2.15.0";
+          hash = "sha256-IkzkKEmcbRI0RD72NFgE38oDKxrFe+rYozkUmOc3SBM=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/databricks.databricks/changelog";
@@ -1982,8 +1982,8 @@ let
         mktplcRef = {
           publisher = "github";
           name = "codespaces";
-          version = "1.18.15";
-          hash = "sha256-NcW2XVQ6F7s6k4mIesEXhCkVVRfudwFr3glqB+TjrqM=";
+          version = "1.18.16";
+          hash = "sha256-5TEMMAy9t54WSnfWWHMNHTYbwGieMIG6fCETm3YASHs=";
         };
 
         meta = {
@@ -2079,8 +2079,8 @@ let
         mktplcRef = {
           name = "Go";
           publisher = "golang";
-          version = "0.56.0";
-          hash = "sha256-n1lZ+xe6Co29gEOH3dpQl1/Kqd1SZ6oz6qqJkSByqss=";
+          version = "0.56.1";
+          hash = "sha256-RTZdpdEoTzUYspSfIYSB8envYiGz2Zmi4wgsy7Yeh0s=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/golang.Go/changelog";
@@ -3909,6 +3909,8 @@ let
         };
       };
 
+      quarto.quarto = callPackage ./quarto.quarto { };
+
       quicktype.quicktype = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "quicktype";
@@ -4073,8 +4075,8 @@ let
         mktplcRef = {
           name = "wikitext";
           publisher = "RoweWilsonFrederiskHolme";
-          version = "4.0.5";
-          hash = "sha256-VyrcgS93B5Xd4s101lnTw9o27ffcvmxkShCKJ+6H+2w=";
+          version = "4.0.6";
+          hash = "sha256-qclCSVLvdU6TYQxKxdrHWZRfBSjzEblA4zgDqxEuFXo=";
         };
         meta = {
           description = "Extension that helps users view and write MediaWiki's Wikitext files";
@@ -4298,8 +4300,8 @@ let
         mktplcRef = {
           publisher = "shd101wyy";
           name = "markdown-preview-enhanced";
-          version = "0.8.30";
-          hash = "sha256-wtI+W+ZNxXv8WonGDmSt1NxeF8WN8fqPCuMougERxDE=";
+          version = "0.8.32";
+          hash = "sha256-4AeRM5Pg6o0GJqHHfjicIoesn/hr0MVwQZRUagu7IhU=";
         };
         meta = {
           description = "Provides a live preview of markdown using either markdown-it or pandoc";
@@ -4885,8 +4887,8 @@ let
         mktplcRef = {
           name = "opa";
           publisher = "tsandall";
-          version = "0.24.1";
-          hash = "sha256-wNlZM9/2K32W4vYPKzLiBCTqhV+SqgZzXGRxKoHoIaM=";
+          version = "0.25.0";
+          hash = "sha256-d+INOMEc4ZO3T3326GxQW3PP/UflOwmEPfQOm2weVRY=";
         };
         meta = {
           changelog = "https://github.com/open-policy-agent/vscode-opa/blob/master/CHANGELOG.md";
@@ -4978,8 +4980,8 @@ let
         mktplcRef = {
           name = "theme-bluloco-light";
           publisher = "uloco";
-          version = "3.7.5";
-          sha256 = "sha256-MDrw0JWioLyg+H0XOCpULsmtM/y7RfV9ruDtskRiT3A=";
+          version = "3.10.0";
+          sha256 = "sha256-dweX1i8nn8qSleeGyhnrzSUXkhA13IXcGwwdkV7WsCI=";
         };
         postInstall = ''
           rm -r $out/share/vscode/extensions/uloco.theme-bluloco-light/screenshots
@@ -5552,8 +5554,8 @@ let
         mktplcRef = {
           name = "markdown-editor";
           publisher = "zaaack";
-          version = "0.1.19";
-          hash = "sha256-W0lL0JMNyEszyJa6I7RbXYLu4cU9DQUh0ZEAOd6eshI=";
+          version = "0.1.20";
+          hash = "sha256-YewK36OeKWgTU/iFRVZHYjF2+ke6TXb6HIggRZt1/nk=";
         };
         meta = {
           description = "Visual Studio Code extension for WYSIWYG markdown editing";

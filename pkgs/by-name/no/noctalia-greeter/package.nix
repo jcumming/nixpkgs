@@ -25,12 +25,13 @@
   wayland-protocols,
   wlroots_0_20,
 
+  versionCheckHook,
   nix-update-script,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "noctalia-greeter";
-  version = "1.3.0";
+  version = "1.3.1";
 
   __structuredAttrs = true;
   strictDeps = true;
@@ -39,7 +40,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "noctalia-dev";
     repo = "noctalia-greeter";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-veowX6t9Vo6nV6BzJ3YKSUDXgfgX8k8yHccd+6fYlBo=";
+    hash = "sha256-1ZdtgBwndNHDltX8J7DLLl2/LBgywQhmt1JNcanfeMA=";
   };
 
   nativeBuildInputs = [
@@ -66,6 +67,12 @@ stdenv.mkDerivation (finalAttrs: {
     wayland
     wayland-protocols
     wlroots_0_20
+  ];
+
+  doInstallCheck = stdenv.buildPlatform.canExecute stdenv.hostPlatform;
+  versionCheckProgram = "${placeholder "out"}/bin/noctalia-greeter";
+  nativeInstallCheckInputs = [
+    versionCheckHook
   ];
 
   passthru.updateScript = nix-update-script { };

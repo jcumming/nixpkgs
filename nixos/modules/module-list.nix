@@ -671,6 +671,7 @@
   ./services/games/minecraft-server.nix
   ./services/games/minetest-server.nix
   ./services/games/openarena.nix
+  ./services/games/pumpkin.nix
   ./services/games/quake3-server.nix
   ./services/games/teeworlds.nix
   ./services/games/terraria.nix
@@ -1633,6 +1634,7 @@
   ./services/torrent/magnetico.nix
   ./services/torrent/opentracker.nix
   ./services/torrent/peerflix.nix
+  ./services/torrent/qbit-manage.nix
   ./services/torrent/qbittorrent.nix
   ./services/torrent/qui.nix
   ./services/torrent/rqbit.nix
@@ -1667,6 +1669,7 @@
   ./services/web-apps/bentopdf.nix
   ./services/web-apps/bluemap.nix
   ./services/web-apps/bluesky-pds.nix
+  ./services/web-apps/bookorbit.nix
   ./services/web-apps/bookstack.nix
   ./services/web-apps/bulwark.nix
   ./services/web-apps/c2fmzq-server.nix

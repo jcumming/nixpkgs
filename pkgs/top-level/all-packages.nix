@@ -343,12 +343,12 @@ with pkgs;
   djgpp = djgpp_i586;
   djgpp_i586 = callPackage ../development/compilers/djgpp {
     targetArchitecture = "i586";
-    stdenv = gccStdenv;
+    stdenv = gcc14Stdenv;
   };
   djgpp_i686 = lowPrio (
     callPackage ../development/compilers/djgpp {
       targetArchitecture = "i686";
-      stdenv = gccStdenv;
+      stdenv = gcc14Stdenv;
     }
   );
 
@@ -2577,8 +2577,6 @@ with pkgs;
 
   ophcrack-cli = ophcrack.override { enableGui = false; };
 
-  open-interpreter = with python3Packages; toPythonApplication open-interpreter;
-
   openntpd_nixos = openntpd.override {
     privsepUser = "ntp";
     privsepPath = "/var/empty";
@@ -3229,10 +3227,12 @@ with pkgs;
       # NOTE: keep this with the "NG" label until we're ready to drop the monolithic GCC
       gccNGPackagesSet = recurseIntoAttrs (callPackages ../development/compilers/gcc/ng { });
       gccNGPackages_15 = gccNGPackagesSet."15";
+      gccNGPackages_16 = gccNGPackagesSet."16";
       gccNGPackages = gccNGPackagesSet.${toString default-gcc-version};
       mkGCCNGPackages = gccNGPackagesSet.mkPackage;
     })
     gccNGPackages_15
+    gccNGPackages_16
     gccNGPackages
     mkGCCNGPackages
     ;
@@ -3943,7 +3943,7 @@ with pkgs;
   buildNimSbom = callPackage ../build-support/build-nim-sbom.nix { };
   nimOverrides = callPackage ./nim-overrides.nix { };
 
-  nextpnrWithGui = libsForQt5.callPackage ../by-name/ne/nextpnr/package.nix {
+  nextpnrWithGui = callPackage ../by-name/ne/nextpnr/package.nix {
     enableGui = true;
   };
 
@@ -6054,8 +6054,6 @@ with pkgs;
 
   libsigcxx30 = callPackage ../development/libraries/libsigcxx/3.0.nix { };
 
-  libsoup_3 = callPackage ../development/libraries/libsoup/3.x.nix { };
-
   libtorrent-rasterbar = libtorrent-rasterbar-2_0_x;
 
   libubox-nossl = libubox.override { with_ustream_ssl = false; };
@@ -6084,6 +6082,7 @@ with pkgs;
 
   libv4l = lowPrio (
     v4l-utils.override {
+      withGUI = false;
       withUtils = false;
     }
   );
@@ -6315,9 +6314,6 @@ with pkgs;
 
   opencv = opencv4;
 
-  openexr = callPackage ../development/libraries/openexr/3.nix { };
-  openexr_2 = callPackage ../development/libraries/openexr/2.nix { };
-
   openstackclient = with python313Packages; toPythonApplication python-openstackclient;
   openstackclient-full = openstackclient.overridePythonAttrs (oldAttrs: {
     dependencies = oldAttrs.dependencies ++ oldAttrs.optional-dependencies.cli-plugins;
@@ -6509,9 +6505,9 @@ with pkgs;
     useQt6 = true;
   };
 
-  qgnomeplatform = libsForQt5.callPackage ../development/libraries/qgnomeplatform { };
+  qgnomeplatform = callPackage ../development/libraries/qgnomeplatform { };
 
-  qgnomeplatform-qt6 = qt6Packages.callPackage ../development/libraries/qgnomeplatform {
+  qgnomeplatform-qt6 = qgnomeplatform.override {
     useQt6 = true;
   };
 
@@ -6650,8 +6646,6 @@ with pkgs;
 
   sqlite = lowPrio (callPackage ../development/libraries/sqlite { });
 
-  unqlite = lowPrio (callPackage ../development/libraries/unqlite { });
-
   inherit
     (callPackage ../development/libraries/sqlite/tools.nix {
     })
@@ -6732,7 +6726,7 @@ with pkgs;
   wlr-protocols = callPackage ../development/libraries/wlroots/protocols.nix { };
 
   wt = wt4;
-  inherit (libsForQt5.callPackage ../development/libraries/wt { })
+  inherit (callPackage ../development/libraries/wt { })
     wt4
     ;
 
@@ -8251,7 +8245,7 @@ with pkgs;
     patches = config."2bwm".patches or [ ];
   };
 
-  inherit (qt6Packages.callPackage ../applications/office/activitywatch { })
+  inherit (callPackage ../applications/office/activitywatch { })
     aw-qt
     aw-notify
     aw-server-rust
@@ -8405,11 +8399,11 @@ with pkgs;
 
   eclipses = recurseIntoAttrs (callPackage ../applications/editors/eclipse { });
 
-  electrum = libsForQt5.callPackage ../applications/misc/electrum { };
+  electrum = callPackage ../applications/misc/electrum { };
 
-  electrum-grs = libsForQt5.callPackage ../applications/misc/electrum/grs.nix { };
+  electrum-grs = callPackage ../applications/misc/electrum/grs.nix { };
 
-  electrum-ltc = libsForQt5.callPackage ../applications/misc/electrum/ltc.nix { };
+  electrum-ltc = callPackage ../applications/misc/electrum/ltc.nix { };
 
   inherit (recurseIntoAttrs (callPackage ../applications/editors/emacs { }))
     emacs31
@@ -8464,7 +8458,7 @@ with pkgs;
 
   gauche = callPackage ../development/interpreters/gauche { };
 
-  gimagereader-qt = qt6Packages.callPackage ../by-name/gi/gimagereader/package.nix {
+  gimagereader-qt = gimagereader.override {
     withQt6 = true;
   };
 
@@ -8794,7 +8788,6 @@ with pkgs;
   jackmix_jack1 = jackmix.override { jack = jack1; };
 
   inherit (callPackage ../applications/networking/cluster/k3s { })
-    k3s_1_33
     k3s_1_34
     k3s_1_35
     k3s_1_36
@@ -9116,10 +9109,6 @@ with pkgs;
     ;
   rke2 = rke2_stable;
 
-  rofi-pass-wayland = rofi-pass.override {
-    backend = "wayland";
-  };
-
   rstudio-server = rstudio.override { server = true; };
 
   foks-server = foks.server;
@@ -9296,15 +9285,17 @@ with pkgs;
     wlroots = wlroots_0_20;
   };
 
-  tuxclocker = libsForQt5.callPackage ../applications/misc/tuxclocker {
+  tuxclocker = callPackage ../applications/misc/tuxclocker {
     tuxclocker-plugins = tuxclocker-plugins-with-unfree;
   };
 
-  tuxclocker-without-unfree = libsForQt5.callPackage ../applications/misc/tuxclocker { };
+  tuxclocker-without-unfree = callPackage ../applications/misc/tuxclocker { };
 
   linphonePackages = recurseIntoAttrs (
     callPackage ../applications/networking/instant-messengers/linphone { }
   );
+
+  typescript = typescript_5;
 
   buildTypstPackage = callPackage ../build-support/build-typst-package.nix { };
 
