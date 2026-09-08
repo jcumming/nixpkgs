@@ -360,6 +360,7 @@ mapAliases {
   astronomer = throw "'astronomer' has been removed, as it has been unmaintained upstream since August 2020"; # Added 2026-01-01
   atlassian-cli = appfire-cli; # Added 2025-09-29
   ats = throw "'ats' has been removed as it is unmaintained for 10 years and broken"; # Added 2025-05-17
+  audacity_4 = audacity; # Added 2026-09-05
   audio-recorder = throw "'audio-recorder' has been removed, as it is unmaintained upstream and broken. Consider using 'gnome-sound-recorder' or 'reco' instead"; # Added 2026-01-02
   august = throw "'august' has been removed, as it has been unmaintained since august 2023"; # Added 2025-12-25
   AusweisApp2 = throw "'AusweisApp2' has been renamed to/replaced by 'ausweisapp'"; # Converted to throw 2025-10-27
@@ -460,6 +461,7 @@ mapAliases {
   c0 = throw "'c0' has been removed due to being broken for more than a year; see RFC 180"; # Added 2026-02-05
   caddyfile-language-server = throw "'caddyfile-language-server' has been removed as it is unmaintained upstream"; # Added 2026-06-17
   caido = warnAlias "'caido' has been split into 'caido-cli' and 'caido-desktop'." caido-desktop; # Added 2026-03-03
+  cairomm = throw "'cairomm' attribute has been removed from nixpkgs. Use a 'cairomm_*' attribute with an explicit ABI version instead."; # Added 2026-08-28
   calculix = throw "'calculix' has been renamed to/replaced by 'calculix-ccx'"; # Converted to throw 2025-10-27
   calligra = throw "'calligra' has been renamed to/replaced by 'kdePackages.calligra'"; # Converted to throw 2025-10-27
   callPackage_i686 = throw "'callPackage_i686' has been renamed to/replaced by 'pkgsi686Linux.callPackage'"; # Converted to throw 2025-10-27
@@ -924,6 +926,7 @@ mapAliases {
   freerdpUnstable = throw "'freerdpUnstable' has been renamed to/replaced by 'freerdp'"; # Converted to throw 2025-10-27
   frozen-bubble = throw "'frozen-bubble' has been removed because it is broken and unmaintained"; # Added 2026-05-17
   frugal = throw "'frugal' was removed because upstream has been pulled"; # Added 2025-12-20
+  fscrypt-experimental = warnAlias "'fscrypt-experimental' has been renamed to/replaced by 'fscrypt'" fscrypt; # Added 2026-01-19
   fuse-7z-ng = throw "'fuse-7z-ng' was removed as it is unmaintained, and depends on fuse2"; # Added 2026-05-05
   fuse-ext2 = throw "'fuse-ext2' was removed as it is unmaintained, and depends on fuse2"; # Added 2026-08-05
   fusee-launcher = throw "'fusee-launcher' was removed as upstream removed the original source repository fearing legal repercussions"; # Added 2025-07-05
@@ -959,6 +962,7 @@ mapAliases {
   gcc12 = throw "gcc12 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2025-08-08
   gcc12Stdenv = throw "gcc12Stdenv has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2025-08-08
   gccgo12 = throw "gccgo12 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2025-08-08
+  gcr = throw "'gcr' attribute has been removed from nixpkgs. Use a 'gcr_*' attribute with an explicit ABI version instead."; # Added 2026-09-03
   gdc11 = throw "gdc11 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2025-08-08
   gdc = throw "gdc has been removed from Nixpkgs, as recent versions require complex bootstrapping"; # Added 2025-08-08
   gdmd = throw "gdmd has been removed from Nixpkgs, as it depends on GDC which was removed"; # Added 2025-08-08
@@ -1698,6 +1702,7 @@ mapAliases {
   minio_legacy_fs = throw "'minio_legacy_fs' has been removed. Users should migrate to alternatives such as Garage, SeaweedFS, or Ceph. S3-compatible clients such as rclone can be used to move data."; # Added 2026-02-02
   minizincide = warnAlias "'minizincide' has been renamed to 'minizinc-ide'" minizinc-ide; # Added 2026-01-03
   minizip2 = throw "'minizip2' has been renamed to/replaced by 'minizip-ng'"; # Converted to throw 2025-10-27
+  mkTerraform = throw "'mkTerraform' has been removed"; # Added 2026-08-29
   mkYarnModules = throw "'yarn2nix' and its tooling has been removed as it was unusable within nodePackages. Use the standard yarn v1 hooks available in nixpkgs instead."; # Added 2026-04-25
   mkYarnPackage = throw "'yarn2nix' and its tooling has been removed as it was unusable within nodePackages. Use the standard yarn v1 hooks available in nixpkgs instead."; # Added 2026-04-25
   mlir_16 = throw "mlir_16 has been removed, as it is unmaintained and obsolete"; # Added 2025-08-09
@@ -1761,6 +1766,7 @@ mapAliases {
   near-cli = throw "'near-cli' has been removed as upstream has deprecated it and archived the source code repo"; # Added 2025-11-10
   neardal = throw "neardal has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-29
   nekoray = lib.warnOnInstantiate "nekoray has been renamed to throne" throne; # Added 2025-11-10
+  nemiver = throw "'nemiver' has been removed due to being archived upstream."; # Added 2026-09-03
   neo4j-desktop = throw "neo4j-desktop has been removed as it was out-of-date"; # Added 2025-11-01
   neocities-cli = throw "'neocities-cli' has been renamed to/replaced by 'neocities'"; # Converted to throw 2025-10-27
   neofetch = throw "'neofetch' has been removed because it was unmaintained upstream. Consider using the updated fork 'neowofetch' provided by the 'hyfetch' package or the alternative 'fastfetch' instead."; # Added 2026-03-02
@@ -2263,6 +2269,7 @@ mapAliases {
   SDL2_classic_mixer = throw "'SDL2_classic_mixer' has been removed as part of the deprecation of 'SDL2_classic'. Consider upgrading to 'SDL2_mixer' built with 'sdl2-compat'."; # Added 2025-05-20
   SDL2_classic_ttf = throw "'SDL2_classic_ttf' has been removed as part of the deprecation of 'SDL2_classic'. Consider upgrading to 'SDL2_ttf' built with 'sdl2-compat'."; # Added 2025-05-20
   SDL_compat = sdl12-compat; # Added 2026-05-19
+  SDL_Pango = throw "'SDL_Pango' has been removed as it is unused and unmaintained both upstream and in Nixpkgs."; # Added 2026-09-06
   sdnotify-wrapper = skawarePackages.sdnotify-wrapper;
   seafile-server = throw "'seafile-server' has been removed as it is unmaintained"; # Added 2025-08-21
   seahub = throw "'seahub' has been removed as it is unmaintained"; # Added 2025-08-21
@@ -2396,6 +2403,7 @@ mapAliases {
   stract = throw "'stract' has been removed because the upstream project was archived on 2026-04-02"; # Added 2026-07-28
   strawberry-qt5 = throw "strawberry-qt5 has been replaced by strawberry"; # Converted to throw 2025-07-19
   strawberry-qt6 = throw "strawberry-qt6 has been replaced by strawberry"; # Added 2025-07-19
+  streamlink-twitch-gui-bin = throw "'streamlink-twitch-gui-bin' has be removed due to lack on maintence and insecure electron"; # Added 2026-09-02
   stremio = throw "'stremio' has been removed as it depended on the vulnerable and outdated qt5 webengine. On Linux, consider using 'stremio-linux-shell' instead."; # Added 2026-02-11
   stringsWithDeps = warnAlias "'stringsWithDeps' has been removed from pkgs, use `lib.stringsWithDeps` instead" lib.stringsWithDeps; # Added 2025-10-30
   subberthehut = throw "'subberthehut' has been removed as it was unmaintained upstream"; # Added 2025-05-17
@@ -2481,6 +2489,8 @@ mapAliases {
   termbook = throw "'termbook' has been removed because it is not maintained upstream and has insecure dependencies."; # Added 2025-12-01
   terminus-nerdfont = throw "'terminus-nerdfont' has been renamed to/replaced by 'nerd-fonts.terminess-ttf'"; # Converted to throw 2025-10-27
   termite = throw "'termite' has been removed as it was broken and unmaintained upstream"; # Added 2026-05-22
+  terraform_1 = warnAlias "'terraform_1' has been renamed to/replaced by 'terraform'" terraform; # Added 2026-08-29
+  terraform_plugins_test = throw "'terraform_plugins_test' has been renamed to/replaced by 'terraform.tests.terraform_plugins_test'"; # Added 2026-08-29
   testVersion = throw "'testVersion' has been renamed to/replaced by 'testers.testVersion'"; # Converted to throw 2025-10-27
   tet = throw "'tet' has been removed for lack of maintenance"; # Added 2025-10-12
   tewi-font = throw "'tewi-font' has been removed because it was removed from upstream"; # Added 2025-12-18
@@ -2548,6 +2558,7 @@ mapAliases {
   trust-dns = throw "'trust-dns' has been renamed to/replaced by 'hickory-dns'"; # Converted to throw 2025-10-27
   tvbrowser-bin = throw "'tvbrowser-bin' has been renamed to/replaced by 'tvbrowser'"; # Converted to throw 2025-10-27
   twitterBootstrap = warnAlias "'twitterBootstrap' has been renamed to 'twitter-bootstrap'"; # Added 2026-02-12
+  typescript-go = throw "'typescript-go' has been renamed to/replaced by 'typescript'"; # Added 2026-09-08
   typodermic-free-fonts = throw "'typodermic-free-fonts' has been removed as it is unmaintained in nixpkgs, and the src is prone to breakage."; # Added 2026-05-07
   typodermic-public-domain = throw "'typodermic-public-domain' has been removed as it is unmaintained in nixpkgs, and the src is prone to breakage."; # Added 2026-05-07
   typst-fmt = throw "'typst-fmt' has been renamed to/replaced by 'typstfmt'"; # Converted to throw 2025-10-27

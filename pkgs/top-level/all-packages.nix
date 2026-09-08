@@ -4618,7 +4618,7 @@ with pkgs;
     spidermonkey_140
     ;
 
-  supercollider = libsForQt5.callPackage ../development/interpreters/supercollider {
+  supercollider = callPackage ../development/interpreters/supercollider {
     fftw = fftwSinglePrec;
   };
 
@@ -6219,8 +6219,6 @@ with pkgs;
 
   mygpoclient = with python3.pkgs; toPythonApplication mygpoclient;
 
-  nemo-qml-plugin-dbus = libsForQt5.callPackage ../development/libraries/nemo-qml-plugin-dbus { };
-
   ncurses5 = ncurses.override {
     abiVersion = "5";
   };
@@ -6237,6 +6235,7 @@ with pkgs;
       };
 
   nettle = import ../development/libraries/nettle { inherit callPackage fetchurl; };
+  nettle_4 = import ../development/libraries/nettle/4.nix { inherit callPackage fetchurl; };
 
   libnghttp2 = nghttp2.lib;
 
@@ -6658,8 +6657,6 @@ with pkgs;
 
   stlink-gui = callPackage ../by-name/st/stlink/package.nix { withGUI = true; };
 
-  streamlink-twitch-gui-bin = callPackage ../applications/video/streamlink-twitch-gui/bin.nix { };
-
   szurubooru = callPackage ../servers/web-apps/szurubooru { };
 
   tclap = tclap_1_2;
@@ -6712,11 +6709,6 @@ with pkgs;
 
   waylandpp = callPackage ../development/libraries/waylandpp {
     graphviz = graphviz-nox;
-  };
-
-  webkitgtk_6_0 = callPackage ../development/libraries/webkitgtk {
-    harfbuzz = harfbuzzFull;
-    inherit (gst_all_1) gst-plugins-base gst-plugins-bad;
   };
 
   webkitgtk_4_1 = webkitgtk_6_0.override {
@@ -8440,15 +8432,7 @@ with pkgs;
     withGtk3 = false;
     withGtk4 = true;
   };
-  evolution = callPackage ../applications/networking/mailreaders/evolution/evolution { };
-  evolutionWithPlugins =
-    callPackage ../applications/networking/mailreaders/evolution/evolution/wrapper.nix
-      {
-        plugins = [
-          evolution
-          evolution-ews
-        ];
-      };
+  evolutionWithPlugins = callPackage ../by-name/ev/evolution/with-plugins.nix { };
 
   firewalld-gui = firewalld.override { withGui = true; };
 
@@ -9295,7 +9279,7 @@ with pkgs;
     callPackage ../applications/networking/instant-messengers/linphone { }
   );
 
-  typescript = typescript_5;
+  typescript = typescript_7;
 
   buildTypstPackage = callPackage ../build-support/build-typst-package.nix { };
 
@@ -10628,14 +10612,6 @@ with pkgs;
   sourceAndTags = callPackage ../misc/source-and-tags {
     hasktags = haskellPackages.hasktags;
   };
-
-  inherit (callPackage ../applications/networking/cluster/terraform { })
-    mkTerraform
-    terraform_1
-    terraform_plugins_test
-    ;
-
-  terraform = terraform_1;
 
   terraform-providers = recurseIntoAttrs (
     callPackage ../applications/networking/cluster/terraform-providers { }

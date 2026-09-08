@@ -2155,6 +2155,20 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  boolean-toggle-nvim = buildVimPlugin {
+    pname = "boolean-toggle.nvim";
+    version = "0.5.0-1";
+    src = fetchFromGitHub {
+      owner = "DrKJeff16";
+      repo = "boolean-toggle.nvim";
+      tag = "v0.5.0-1";
+      hash = "sha256-93ppL2JP2K+lfeCtJG0R8YW6cLk8JJrPa5RAGKnzOlE=";
+    };
+    meta.homepage = "https://github.com/DrKJeff16/boolean-toggle.nvim/";
+    meta.license = getLicenseFromSpdxId "GPL-2.0-only";
+    meta.hydraPlatforms = [ ];
+  };
+
   bracey-vim = buildVimPlugin {
     pname = "bracey.vim";
     version = "0-unstable-2021-08-20";
@@ -12380,6 +12394,20 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  notmuch-nvim = buildVimPlugin {
+    pname = "notmuch.nvim";
+    version = "0.4.0";
+    src = fetchFromGitHub {
+      owner = "yousefakbar";
+      repo = "notmuch.nvim";
+      tag = "v0.4.0";
+      hash = "sha256-A+vlH8fUNd3/lTH++sp90YXRqe3/uTxOTNw43CJQQyc=";
+    };
+    meta.homepage = "https://github.com/yousefakbar/notmuch.nvim/";
+    meta.license = unfree;
+    meta.hydraPlatforms = [ ];
+  };
+
   nterm-nvim = buildVimPlugin {
     pname = "nterm.nvim";
     version = "0-unstable-2022-05-10";
@@ -19774,6 +19802,20 @@ final: prev: {
       hash = "sha256-xJMZQ/27TgwAnvPVH1fjF6SLOA9jvXmbfcwV0NZ1kTY=";
     };
     meta.homepage = "https://github.com/moll/vim-bbye/";
+    meta.license = unfree;
+    meta.hydraPlatforms = [ ];
+  };
+
+  vim-be-better = buildVimPlugin {
+    pname = "vim-be-better";
+    version = "0-unstable-2025-06-21";
+    src = fetchFromGitHub {
+      owner = "szymonwilczek";
+      repo = "vim-be-better";
+      rev = "60e0214598d9d0bac8253e8b53a72eace4af92d3";
+      hash = "sha256-bbIhh5A1135UVMdQxUVMEHlqf1tCSbDP8QYQGg/OMa0=";
+    };
+    meta.homepage = "https://github.com/szymonwilczek/vim-be-better/";
     meta.license = unfree;
     meta.hydraPlatforms = [ ];
   };

@@ -4474,6 +4474,14 @@
     githubId = 510553;
     name = "Jos van Bakel";
   };
+  c2fc2f = {
+    name = "c2fc2f";
+    github = "c2fc2f";
+    githubId = 59392138;
+    email = "contact@c2fc2f.com";
+    matrix = "@c2fc2f:sagbot.com";
+    keys = [ { fingerprint = "6EF1 8507 76B5 ABCE 5BF0  C0F8 42E0 E1D1 0B61 1208"; } ];
+  };
   c31io = {
     email = "celiogrand@outlook.com";
     github = "c31io";
@@ -13305,7 +13313,7 @@
   };
   jfr = {
     name = "Joseph Fox-Rabinovitz";
-    github = " joe-saronic";
+    github = "joe-saronic";
     githubId = 156837150;
   };
   jfroche = {
@@ -14657,6 +14665,12 @@
     github = "kanashimia";
     githubId = 56224949;
     name = "Mia Kanashi";
+  };
+  kangazero = {
+    name = "Samuel Wai Weng Yong";
+    email = "samuelyongw@gmail.com";
+    github = "KangaZero";
+    githubId = 107836643;
   };
   kaptcha0 = {
     name = "J'C Kabunga";
@@ -16368,6 +16382,13 @@
     github = "liberodark";
     githubId = 4238928;
     name = "liberodark";
+  };
+  libewa = {
+    email = "linus@libewa.xyz";
+    github = "libewa";
+    githubId = 67926131;
+    name = "Linus Warnatz";
+    keys = [ { fingerprint = "EBD0 29E0 73D2 959A 9DC1  A74A 7BCA 3874 C2A0 475C"; } ];
   };
   libjared = {
     email = "jared@perrycode.com";
@@ -19328,6 +19349,12 @@
     github = "mmlb";
     githubId = 708570;
     name = "Manuel Mendez";
+  };
+  mmulqueen = {
+    email = "michael@mulqueen.me.uk";
+    github = "mmulqueen";
+    githubId = 6616321;
+    name = "Michael Mulqueen";
   };
   mmusnjak = {
     email = "marko.musnjak@gmail.com";
@@ -24774,7 +24801,7 @@
     name = "Robert T. McGibbon";
   };
   rnhmjoj = {
-    email = "rnhmjoj@inventati.org";
+    email = "rnhmjoj@eurofusion.eu";
     matrix = "@rnhmjoj:eurofusion.eu";
     github = "rnhmjoj";
     githubId = 2817565;
@@ -29375,6 +29402,12 @@
     github = "tobim";
     githubId = 858790;
     name = "Tobias Mayer";
+  };
+  tobinio = {
+    email = "tobias.frischmann@proton.me";
+    github = "ToBinio";
+    githubId = 81473300;
+    name = "Tobias Frischmann";
   };
   tobz619 = {
     email = "toloke@yahoo.co.uk";

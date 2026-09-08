@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2026.9.0";
+  version = "2026.9.1";
   components = {
     "3_day_blinds" =
       ps: with ps; [
@@ -7800,7 +7800,8 @@
       ];
     "vizio" =
       ps: with ps; [
-      ]; # missing inputs: vizaio
+        vizaio
+      ];
     "vlc_telnet" =
       ps: with ps; [
         aiovlc
@@ -9429,6 +9430,7 @@
     "vilfo"
     "vistapool"
     "vivotek"
+    "vizio"
     "vlc_telnet"
     "vodafone_station"
     "voicerss"
