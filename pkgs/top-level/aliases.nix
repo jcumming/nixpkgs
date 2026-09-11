@@ -428,6 +428,7 @@ mapAliases {
   blender-hip = throw "blender-hip has been removed in favor of setting `config.rocmSupport = true` or using `pkgsRocm.blender`"; # Added 2026-01-04
   blender-with-packages = throw "blender-with-packages is deprecated in favor of blender.withPackages, e.g. `blender.withPackages(ps: [ ps.foobar ])`"; # Converted to throw 2025-10-26
   blockbench-electron = throw "'blockbench-electron' has been renamed to/replaced by 'blockbench'"; # Converted to throw 2025-10-27
+  bloodhound = throw "'bloodhound's upstream is archived, and the package is running on Electron 11"; # Added 2025-09-08
   bloomeetunes = throw "bloomeetunes is unmaintained and has been removed"; # Added 2025-08-26
   blueberry = throw "'blueberry' has been removed as it is unmaintained upstream. Consider using blueman instead"; # Added 2026-03-09
   bmap-tools = throw "'bmap-tools' has been renamed to/replaced by 'bmaptool'"; # Converted to throw 2025-10-27
@@ -922,6 +923,7 @@ mapAliases {
   freecad-qt6 = freecad; # Added 2025-06-14
   freecad-wayland = freecad; # Added 2025-06-14
   freeimage = throw "freeimage was removed due to numerous vulnerabilities"; # Added 2025-10-23
+  freenet = warnAlias "freenet has been renamed to hyphanet" hyphanet; # Added 2026-08-19
   freerdp3 = throw "'freerdp3' has been renamed to/replaced by 'freerdp'"; # Converted to throw 2025-10-27
   freerdpUnstable = throw "'freerdpUnstable' has been renamed to/replaced by 'freerdp'"; # Converted to throw 2025-10-27
   frozen-bubble = throw "'frozen-bubble' has been removed because it is broken and unmaintained"; # Added 2026-05-17
@@ -972,6 +974,7 @@ mapAliases {
   geos_3_9 = throw "geos_3_9 has been removed from nixpkgs. Please use a more recent 'geos' instead."; # Added 2025-09-21
   gepetto-viewer = throw "'gepetto-viewer' has been removed, as authors and most users moved to viser"; # Added 2026-03-24
   gepetto-viewer-corba = throw "'gepetto-viewer-corba' has been removed, as authors and most users moved to viser"; # Added 2026-03-24
+  gexiv2 = throw "'gexiv2' attribute has been removed from nixpkgs. Use a 'gexiv2_*' attribute with an explicit ABI version instead."; # Added 2026-09-04
   gfie = throw "'gfie' has been removed as it depended on EOL qt5 webengine"; # Added 2026-04-17
   gfn-electron = throw "gfn-electron has been removed from Nixpkgs as it's abandoned upstream"; # Added 2025-11-05
   gfortran9 = throw "gfortran9 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2025-08-08
@@ -1109,6 +1112,8 @@ mapAliases {
   gtklp = throw "'gtklp' has been removed, as it depended on GTK 2. Consider using 'system-config-printer' instead."; # Added 2026-05-22
   gtkmm2 = throw "'gtkmm2' has been removed as it depended on the deprecated gtk2. Consider using 'gtkmm3' or 'gtkmm4' instead."; # Added 2026-08-09
   gtkradiant = throw "'gtkradiant' has been removed, as it relies on gtk2"; # Added 2026-06-18
+  gtksourceview = throw "'gtksourceview' attribute has been removed from nixpkgs. Use a 'gtksourceview*' attribute with an explicit ABI version instead."; # Added 2026-09-04
+  gtksourceviewmm4 = throw "'gtksourceviewmm4' has been removed as this version of gtksourceviewmm was unused in nixpkgs and unmaintained upstream"; # Added 2026-09-04
   gtkspell2 = throw "'gtkspell2' has been removed as it depended on the deprecated GTK2 engine. Consider using 'gtkspell3' instead"; # Added 2026-07-23
   gtuber = throw "'gtuber' has been removed due to being discontinued by upstream."; # Added 2025-12-12
   gui-for-clash = throw "'gui-for-clash' has been removed, as it is unmaintained"; # Added 2026-05-28
@@ -1127,6 +1132,7 @@ mapAliases {
   haxe_4_0 = throw "'haxe_4_0' has been removed as it reached its end of life. Migrate to 'haxe_4_3'.";
   haxe_4_1 = throw "'haxe_4_1' has been removed as it reached its end of life. Migrate to 'haxe_4_3'.";
   haxor-news = throw "'haxor-news' has been removed as it is unmaintained"; # Added 2026-06-16
+  hdhomerun-config-gui = throw "'hdhomerun-config-gui' has been removed as its support was discontinued: https://forum.silicondust.com/forum/viewtopic.php?p=399766#p399766"; # Added 2026-08-30
   helix-gpt = throw "helix-gpt was deprecated in January 2026 and has been since removed"; # Added 2026-02-05
   heptabase = throw "'heptabase' bas been removed due to lack of maintenance."; # Added 2026-05-31
   hexchat = throw "'hexchat' has been removed due to being archived upstream and relying on gtk2."; # Added 2026-07-28
@@ -1924,6 +1930,7 @@ mapAliases {
   openmodelica = throw "'openmodelica' has been removed as it was unmaintained in nixpkgs and depends on insecure&unmtaintained qtwebkit"; # Added 2026-04-26
   openmpCheckPhaseHook = warnAlias "'openmpCheckPhaseHook' has been renamed to 'checkPhaseThreadLimitHook' to reflect its handling of all known thread-limiting mechanisms during check phase" checkPhaseThreadLimitHook; # Added 2026-07-09
   openmw-tes3mp = throw "'openmw-tes3mp' has been removed due to lack of maintenance upstream"; # Added 2025-08-30
+  openslp = throw "'openslp' has been removed because upstream has not released since 2013 and the package has an unfixable UDP reflection vulnerability (CVE-2023-29552)."; # Added 2026-09-02
   openssl_1_1 = throw "'openssl_1_1' has been removed, because it was end of life'"; # Added 2026-07-24
   openssl_3_0 = throw "'openssl_3_0' has been renamed to/replaced by 'openssl_3'"; # Converted to throw 2025-10-27
   opensycl = throw "'opensycl' has been renamed to/replaced by 'adaptivecpp'"; # Converted to throw 2025-10-27
@@ -1953,6 +1960,8 @@ mapAliases {
   pal = throw "pal has been removed, as it was broken"; # Added 2025-08-25
   pam_pgsql = pam-pgsql; # Added 2025-12-16
   pangolin = throw "pangolin has been removed due to lack of maintenance"; # Added 2025-11-17
+  pangomm = throw "'pangomm' attribute has been removed from nixpkgs. Use a 'pangomm_*' attribute with an explicit ABI version instead."; # Added 2026-09-05
+  pangomm_2_42 = throw "'pangomm_2_42' has been removed as this version of pangomm was unused in nixpkgs and unmaintained upstream"; # Added 2026-09-05
   paper-gtk-theme = throw "'paper-gtk-theme' has been removed because its source is no longer available"; # Added 2026-07-30
   paper-plane = throw "'paper-plane' has been removed as it is unmaintained upstream and depends on vulnerable tdlib version."; # Added 2026-02-26
   paperless-ng = throw "'paperless-ng' has been renamed to/replaced by 'paperless-ngx'"; # Converted to throw 2025-10-27
@@ -2109,6 +2118,7 @@ mapAliases {
   protonvpn-gui = warnAlias "'protonvpn-gui' has been renamed to/replaced by 'proton-vpn'" proton-vpn; # Added 2026-02-23
   prototool = throw "'prototool' has been removed. Use 'buf' instead."; # Added 2026-09-04
   proxmark3-rrg = throw "'proxmark3-rrg' has been renamed to/replaced by 'proxmark3'"; # Converted to throw 2025-10-27
+  proxysql = throw "'proxysql' has been removed because it was unmaintained within nixpkgs"; # Added 2026-09-08
   pscid = throw "'pscid' has been removed because it was unmaintained upstream"; # Added 2025-12-12
   psi = throw "'psi' has been removed as it depended on EOL qt5 webengine. Consider moving to psi-plus, a somewhat more maintained fork."; # Added 2026-04-15
   pulp = throw "'pulp' has been removed because it was unmaintained upstream"; # Added 2025-12-12
@@ -2153,6 +2163,7 @@ mapAliases {
   qcachegrind = throw "'qcachegrind' has been removed, as it depends on KDE Gear 5, which has reached EOL"; # Added 2025-08-20
   qes = throw "'qes' has been removed, as it has been merged into shkd"; # Added 2025-12-21
   qflipper = throw "'qflipper' has been renamed to/replaced by 'qFlipper'"; # Converted to throw 2025-10-27
+  qgo = throw "'qgo' has been removed because upstream no longer develops it"; # Added 2026-09-02
   qMasterPassword = warnAlias "'qMasterPassword' has been renamed to/replaced by 'qmasterpassword'" qmasterpassword; # Added 2026-02-01
   qMasterPassword-wayland = warnAlias "'qMasterPassword-wayland' has been renamed to/replaced by 'qmasterpassword-wayland'" qmasterpassword-wayland; # Added 2026-02-01
   qmenumodel = warnAlias "'qmenumodel' has been renamed to 'libsForQt5.qmenumodel'" libsForQt5.qmenumodel; # Added 2026-03-26

@@ -513,8 +513,8 @@ let
         mktplcRef = {
           publisher = "banacorn";
           name = "agda-mode";
-          version = "0.10.1";
-          hash = "sha256-jQn7DJ3LKnuWDtoTu0FhDXMZSUwasz8lwJ6O9K06B3M=";
+          version = "0.10.2";
+          hash = "sha256-XpVhFFxmvoIHh64abRVQ+hrdauJBwg+doJGNoweH2hU=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/banacorn.agda-mode/changelog";
@@ -3959,8 +3959,8 @@ let
         mktplcRef = {
           publisher = "redhat";
           name = "java";
-          version = "1.55.0";
-          hash = "sha256-ARY5w+40e5WRiVv8d9jPKPg2wFPQpJrkqD7+ncRzpgM=";
+          version = "1.56.0";
+          hash = "sha256-PGqCHXYS64efpAKAtsWFNC7sgtaxs+jc/k0DleBiQ0M=";
         };
         buildInputs = [ jdk ];
         meta = {
@@ -5336,8 +5336,8 @@ let
         mktplcRef = {
           name = "csharp-ls";
           publisher = "vytautassurvila";
-          version = "0.0.34";
-          hash = "sha256-wlBa9Fv1sIu4On2za+gzzS9vULDaAVidRKZ1UbyaJTA=";
+          version = "0.0.35";
+          hash = "sha256-3EgC90XebG+YLWZTIJ3+5xDmGlU2Tr4bWwXL+jrt9XA=";
         };
         meta = {
           changelog = "https://github.com/vytautassurvila/vscode-csharp-ls/blob/master/CHANGELOG.md";
