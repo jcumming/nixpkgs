@@ -1053,6 +1053,8 @@ let
         junit_alcotest = callPackage ../development/ocaml-modules/junit/alcotest.nix { };
         junit_ounit = callPackage ../development/ocaml-modules/junit/ounit.nix { };
 
+        jws = callPackage ../development/ocaml-modules/jws { };
+
         jwto = callPackage ../development/ocaml-modules/jwto { };
 
         ### K ###
@@ -1822,6 +1824,8 @@ let
         };
 
         ppx_deriving_encoding = callPackage ../development/ocaml-modules/ppx_deriving_encoding { };
+
+        ppx_deriving_hash = callPackage ../development/ocaml-modules/ppx_deriving_hash { };
 
         ppx_deriving_protobuf = callPackage ../development/ocaml-modules/ppx_deriving_protobuf { };
 

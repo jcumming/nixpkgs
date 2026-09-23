@@ -1632,8 +1632,6 @@ with pkgs;
 
   lexicon = with python3Packages; toPythonApplication dns-lexicon;
 
-  lgogdownloader-gui = callPackage ../by-name/lg/lgogdownloader/package.nix { enableGui = true; };
-
   # Less secure variant of lowdown for use inside Nix builds.
   lowdown-unsandboxed = lowdown.override {
     enableDarwinSandbox = false;
@@ -1893,9 +1891,6 @@ with pkgs;
 
   cudaPackages = recurseIntoAttrs cudaPackages_12;
 
-  # TODO: move to alias
-  cudatoolkit = cudaPackages.cudatoolkit;
-
   dconf2nix = callPackage ../development/tools/haskell/dconf2nix { };
 
   inherit (callPackages ../applications/networking/p2p/deluge { })
@@ -1987,17 +1982,9 @@ with pkgs;
     binutils = binutils-unwrapped;
   };
 
-  file = callPackage ../tools/misc/file {
-    inherit (windows) libgnurx;
-  };
-
-  findutils = callPackage ../tools/misc/findutils { };
-
   bsd-fingerd = bsd-finger.override {
     buildProduct = "daemon";
   };
-
-  fpm = callPackage ../tools/package-management/fpm { };
 
   ferdium = callPackage ../applications/networking/instant-messengers/ferdium {
     mkFranzDerivation = callPackage ../applications/networking/instant-messengers/franz/generic.nix { };
@@ -2008,8 +1995,6 @@ with pkgs;
   };
 
   frostwire-bin = callPackage ../applications/networking/p2p/frostwire/frostwire-bin.nix { };
-
-  uniscribe = callPackage ../tools/text/uniscribe { };
 
   inherit (callPackages ../tools/filesystems/garage { })
     garage
@@ -2157,8 +2142,6 @@ with pkgs;
       { };
 
   hassil = with python3Packages; toPythonApplication hassil;
-
-  haste-client = callPackage ../tools/misc/haste-client { };
 
   hareThirdParty = recurseIntoAttrs (callPackage ./hare-third-party.nix { });
 
@@ -2527,14 +2510,14 @@ with pkgs;
   libnma-gtk4 = libnma.override { withGtk4 = true; };
 
   inherit (callPackages ../servers/nextcloud { })
-    nextcloud32
     nextcloud33
     nextcloud34
+    nextcloud35
     ;
 
-  nextcloud32Packages = callPackage ../servers/nextcloud/packages { ncVersion = "32"; };
   nextcloud33Packages = callPackage ../servers/nextcloud/packages { ncVersion = "33"; };
   nextcloud34Packages = callPackage ../servers/nextcloud/packages { ncVersion = "34"; };
+  nextcloud35Packages = callPackage ../servers/nextcloud/packages { ncVersion = "35"; };
 
   nextcloud-notify_push = callPackage ../servers/nextcloud/notify_push.nix { };
 
@@ -2560,10 +2543,6 @@ with pkgs;
   nvfetcher = haskell.lib.compose.justStaticExecutables haskellPackages.nvfetcher;
 
   pgbadger = perlPackages.callPackage ../tools/misc/pgbadger { };
-
-  nsjail = callPackage ../tools/security/nsjail {
-    protobuf = protobuf_21;
-  };
 
   # ntfsprogs are merged into ntfs-3g
   ntfsprogs = pkgs.ntfs3g;
@@ -2691,8 +2670,6 @@ with pkgs;
     ssh = openssh;
   };
 
-  phosh = callPackage ../applications/window-managers/phosh { };
-
   phosh-mobile-settings =
     callPackage ../applications/window-managers/phosh/phosh-mobile-settings.nix
       { };
@@ -2732,7 +2709,7 @@ with pkgs;
     pnpm_11
     pnpm_12
     ;
-  pnpm = pnpm_11;
+  pnpm = pnpm_12;
 
   inherit (callPackages ../build-support/node/fetch-pnpm-deps { })
     fetchPnpmDeps
@@ -3003,10 +2980,6 @@ with pkgs;
   # https://github.com/NixOS/nixpkgs/issues/211340
   # https://github.com/NixOS/nixpkgs/issues/227327
   wafHook = waf.hook;
-
-  wyrd = callPackage ../tools/misc/wyrd {
-    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
-  };
 
   # A minimal xar is needed to break an infinite recursion between macfuse-stubs and xar.
   # It is also needed to reduce the amount of unnecessary stuff in the Darwin bootstrap.
@@ -5123,8 +5096,6 @@ with pkgs;
 
   libtool = libtool_2;
 
-  libtool_1_5 = callPackage ../development/tools/misc/libtool { };
-
   libtool_2 = callPackage ../development/tools/misc/libtool/libtool2.nix { };
 
   linuxkit = callPackage ../development/tools/misc/linuxkit {
@@ -5431,8 +5402,6 @@ with pkgs;
   niv = lib.getBin (haskell.lib.compose.justStaticExecutables haskellPackages.niv);
 
   ormolu = lib.getBin (haskell.lib.compose.justStaticExecutables haskellPackages.ormolu);
-
-  ceedling = callPackage ../development/tools/ceedling { };
 
   celt = callPackage ../development/libraries/celt { };
   celt_0_7 = callPackage ../development/libraries/celt/0.7.nix { };
@@ -7554,7 +7523,7 @@ with pkgs;
   zabbix70 = recurseIntoAttrs (zabbixFor "v70");
   zabbix60 = recurseIntoAttrs (zabbixFor "v60");
 
-  zabbix = zabbix60;
+  zabbix = zabbix74;
 
   ### OS-SPECIFIC
 
@@ -8168,6 +8137,28 @@ with pkgs;
     '';
   };
 
+  notonoto-35 = notonoto.override {
+    width35 = true;
+  };
+
+  notonoto-console = notonoto.override {
+    console = true;
+  };
+
+  notonoto-hs = notonoto.override {
+    hideZenkakuSpace = true;
+  };
+
+  notonoto-hs-35 = notonoto.override {
+    width35 = true;
+    hideZenkakuSpace = true;
+  };
+
+  notonoto-hs-console = notonoto.override {
+    console = true;
+    hideZenkakuSpace = true;
+  };
+
   openmoji-color = callPackage ../data/fonts/openmoji { fontFormats = [ "glyf_colr_0" ]; };
 
   openmoji-black = callPackage ../data/fonts/openmoji { fontFormats = [ "glyf" ]; };
@@ -8763,18 +8754,15 @@ with pkgs;
     k3s_1_34
     k3s_1_35
     k3s_1_36
+    k3s_1_37
     ;
-  k3s = k3s_1_35;
+  k3s = k3s_1_36;
 
   kotatogram-desktop =
     callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop
       { };
 
   kubectl-convert = kubectl.convert;
-
-  kubectl-view-allocations =
-    callPackage ../applications/networking/cluster/kubectl-view-allocations
-      { };
 
   linkerd = callPackage ../applications/networking/cluster/linkerd { };
   linkerd_edge = callPackage ../applications/networking/cluster/linkerd/edge.nix { };
@@ -10023,6 +10011,8 @@ with pkgs;
   ### SCIENCE/MATH
 
   blas-ilp64 = blas.override { isILP64 = true; };
+
+  globalarrays-ilp64 = globalarrays.override { blas = blas-ilp64; };
 
   lapack-ilp64 = lapack.override { isILP64 = true; };
 
