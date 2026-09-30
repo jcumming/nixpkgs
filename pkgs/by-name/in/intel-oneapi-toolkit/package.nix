@@ -50,6 +50,7 @@
   libuuid,
   sqlite,
   libffi,
+  openssl,
   bash,
   # The list of components to install;
   # Either [ "all" ], [ "default" ], or a custom list of components.
@@ -243,6 +244,10 @@ stdenv.mkDerivation (finalAttrs: {
     python3
     # Required for patchShebangs to discover the correct interpreter
     bash
+    # libstdc++/libgcc_s for non-vtune components (vtune uses its bundled copies)
+    (lib.getLib stdenv.cc.cc)
+    # libcrypto.so.3 for ippcp's crypto_mb
+    openssl
   ]
   ++ lib.concatMap (
     comp:
@@ -293,6 +298,21 @@ stdenv.mkDerivation (finalAttrs: {
     runHook postInstall
   '';
 
+  # Patch vtune separately: autoPatchelf prefers libraries in the patched paths,
+  # so other components would pick up vtune's old bundled libstdc++.
+  dontAutoPatchelf = true;
+  postFixup = ''
+    others=()
+    for dir in "$out"/*; do
+      [[ -L $dir || $dir == "$out/vtune" ]] || others+=("$dir")
+    done
+    autoPatchelf -- "''${others[@]}"
+    if [[ -d $out/vtune ]]; then
+      addAutoPatchelfSearchPath "''${others[@]}"
+      autoPatchelf -- "$out/vtune"
+    fi
+  '';
+
   autoPatchelfIgnoreMissingDeps = [
     # Needs to be dynamically loaded as it depends on the hardware
     "libcuda.so.1"
@@ -329,6 +349,7 @@ stdenv.mkDerivation (finalAttrs: {
     maintainers = with lib.maintainers; [
       balsoft
       kilyanni
+      recutita
     ];
     platforms = [ "x86_64-linux" ];
   };
