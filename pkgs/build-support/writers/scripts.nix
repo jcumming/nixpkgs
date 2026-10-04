@@ -879,10 +879,14 @@ rec {
     name: argsOrScript:
     if lib.isAttrs argsOrScript && !lib.isDerivation argsOrScript then
       makeScriptWriter (
-        argsOrScript // { interpreter = "${lib.getExe pkgs.nushell} --no-config-file"; }
+        argsOrScript
+        // {
+          # Separate the shebang from doc comments attached to `main`.
+          interpreter = "${lib.getExe pkgs.nushell} --no-config-file\n";
+        }
       ) name
     else
-      makeScriptWriter { interpreter = "${lib.getExe pkgs.nushell} --no-config-file"; } name argsOrScript;
+      writeNu name { } argsOrScript;
 
   /**
     Like writeScriptBin but the first line is a shebang to nu
