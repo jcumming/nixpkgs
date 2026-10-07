@@ -105,7 +105,7 @@ let
 
           echo "Checking named configuration file...";
           mkdir -p ${testFakeDir}
-          if ! ${lib.getExe' bindPkg "named-checkconf"}-z $target; then
+          if ! ${lib.getExe' bindPkg "named-checkconf"} -z $target; then
           cat -n $target
           echo
           echo "Check failed. Is your configuration using impure files?"
