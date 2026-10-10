@@ -1406,8 +1406,6 @@ with pkgs;
     charles5
     ;
 
-  libtensorflow = python3.pkgs.tensorflow-build.libtensorflow;
-
   libtorch-bin = callPackage ../development/libraries/science/math/libtorch/bin.nix { };
 
   behave = with python3Packages; toPythonApplication behave;
@@ -9155,9 +9153,6 @@ with pkgs;
   thunderbird-153-unwrapped = thunderbirdPackages.thunderbird-153;
   thunderbird-153 = wrapThunderbird thunderbirdPackages.thunderbird-153 { };
 
-  thunderbird-140-unwrapped = thunderbirdPackages.thunderbird-140;
-  thunderbird-140 = wrapThunderbird thunderbirdPackages.thunderbird-140 { };
-
   thunderbird-bin = thunderbird-latest-bin;
   thunderbird-latest-bin = wrapThunderbird thunderbird-latest-bin-unwrapped {
     pname = "thunderbird-bin";
@@ -9565,7 +9560,7 @@ with pkgs;
     withGui = false;
   };
 
-  napari = with python312Packages; toPythonApplication napari;
+  napari = with python3Packages; toPythonApplication napari;
 
   pycoin = with python3Packages; toPythonApplication pycoin;
 
