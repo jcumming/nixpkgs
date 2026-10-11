@@ -17,10 +17,6 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
     hash = "sha256-yhmsUN9hSKPpKN9UFOpCKV/AnYcC6SgtPzgthra7/aY=";
   };
 
-  postPatch = ''
-    sed -i '/addopts/d' setup.cfg
-  '';
-
   build-system = with python3.pkgs; [
     setuptools
   ];
