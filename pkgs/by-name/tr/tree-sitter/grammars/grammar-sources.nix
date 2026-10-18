@@ -469,9 +469,9 @@
   };
 
   dbml = {
-    version = "0.1.0";
+    version = "1.0.0";
     url = "github:dynamotn/tree-sitter-dbml";
-    hash = "sha256-IxxUW6YYxP1hkwA9NEojEEE3c8pwvAI6juX8aF7NfMw=";
+    hash = "sha256-18pAc8tOdUDBvZiFwikwrG0mMXnHCludZM56IJXZTDw=";
     meta = {
       license = lib.licenses.mit;
       maintainers = with lib.maintainers; [
@@ -1422,9 +1422,9 @@
   };
 
   inko = {
-    version = "0.5.1";
+    version = "0.9.0";
     url = "github:inko-lang/tree-sitter-inko";
-    hash = "sha256-bt/T6O/7of8r9DrA6DU8pM4vWlBCgWWzw89GZbDyJnw=";
+    hash = "sha256-thSOSJLxRztyp3krxS2yGUTCof42JotCcFmK08/Lb4M=";
     meta = {
       license = lib.licenses.mpl20;
       maintainers = with lib.maintainers; [
@@ -2087,6 +2087,19 @@
         aciceri
       ];
     };
+  };
+
+  odoc = rec {
+    version = "0.2.0";
+    url = "github:tmcgilchrist/tree-sitter-odoc?ref=${version}";
+    hash = "sha256-hLx5spgka2fW7L2yjdDvNxRcEwcZsGGQ9Xd5bFITg8A=";
+    meta = {
+      license = lib.licenses.mit;
+      maintainers = with lib.maintainers; [
+        leungbk
+      ];
+    };
+    excludeBrokenTreeSitterJson = true;
   };
 
   ohm = {
@@ -3025,9 +3038,9 @@
   };
 
   t32 = {
-    version = "9.0.2";
+    version = "9.0.3";
     url = "github:xasc/tree-sitter-t32";
-    hash = "sha256-hs0JHC4SOC4LvBQTMv/kKDQnW590p6waPHuO58CUaUw=";
+    hash = "sha256-tM0xN+boHCJzK16jRZKQYk/KkwEBut7KGZxj8KDHMMg=";
     meta = {
       maintainers = with lib.maintainers; [
         aciceri
