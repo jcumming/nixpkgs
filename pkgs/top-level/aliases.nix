@@ -1949,7 +1949,6 @@ mapAliases {
   nufraw = throw "'nufraw' has been removed as the UI depended on the deprecated GTK2 engine."; # Added 2026-08-03
   nufraw-thumbnailer = throw "'nufraw-thumbnailer' has been removed as the UI depended on the deprecated GTK2 engine."; # Added 2026-08-03
   nuget-to-nix = throw "nuget-to-nix has been removed as it was deprecated in favor of nuget-to-json. Please use nuget-to-json instead"; # Added 2025-08-28
-  numix-gtk-theme = throw "'numix-gtk-theme' has been removed because it depended on 'gtk-engine-murrine', which was removed because it was unmaintained upstream and depended on GTK 2."; # Added 2026-07-22
   numix-solarized-gtk-theme = throw "'numix-solarized-gtk-theme' has been removed because it depended on 'gtk-engine-murrine', which was removed because it was unmaintained upstream and depended on GTK 2."; # Added 2026-07-22
   numix-sx-gtk-theme = throw "'numix-sx-gtk-theme' has been removed because it depended on 'gtk-engine-murrine', which was removed because it was unmaintained upstream and depended on GTK 2."; # Added 2026-07-22
   nushellFull = throw "'nushellFull' has been renamed to/replaced by 'nushell'"; # Converted to throw 2025-10-27
@@ -2153,7 +2152,6 @@ mapAliases {
   polyml56 = throw "'polyml56' has been deprecated in favor of polyml"; # Added 2026-06-01
   polyml57 = throw "'polyml57' has been deprecated in favor of polyml"; # Added 2026-06-01
   polypane = throw "'polypane' has been removed due to lack of maintenance in nixpkgs"; # Added 2025-06-25
-  pop-gtk-theme = throw "'pop-gtk-theme' has been removed because it depended on 'gtk-engine-murrine', which was removed because it was unmaintained upstream and depended on GTK 2."; # Added 2026-07-22
   popcorntime = throw "'popcorntime' has been removed since the upstream project has been forked"; # Added 2026-09-03
   poppler_utils = throw "'poppler_utils' has been renamed to/replaced by 'poppler-utils'"; # Converted to throw 2025-10-27
   popura = throw "'popura' is abandoned upstream and in nixpkgs and has been removed"; # Added 2026-01-15
@@ -2687,6 +2685,7 @@ mapAliases {
   ugarit-manifest-maker = throw "'ugarit-manifest-maker' has been removed because it is unmaintained"; # Added 2026-05-07
   uhttpmock_1_0 = warnAlias "'uhttpmock_1_0' has been renamed to 'uhttpmock'" uhttpmock; # Added 2026-05-30
   unicap = throw "'unicap' has been removed because it is unmaintained"; # Added 2025-05-17
+  unicorn-angr = throw "'unicorn-angr' has been removed as angr now uses upstream unicorn"; # Added 2026-08-20
   unifi-poller = throw "'unifi-poller' has been renamed to/replaced by 'unpoller'"; # Converted to throw 2025-10-27
   unifiedpush-common-proxies = warnAlias "'unifiedpush-common-proxies' has been renamed to 'common-proxies'" common-proxies; # Added 2026-09-27
   unixODBC = warnAlias "'unixODBC' has been renamed to 'unixodbc'" unixodbc; # Added 2026-02-12
