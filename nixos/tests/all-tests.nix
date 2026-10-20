@@ -1496,6 +1496,10 @@ in
   phosh = runTest ./phosh.nix;
   photonvision = runTest ./photonvision.nix;
   photoprism = runTest ./photoprism.nix;
+  php = import ./php/default.nix {
+    inherit runTest;
+    php = pkgs.php;
+  };
   php82 = import ./php/default.nix {
     inherit runTest;
     php = pkgs.php82;
@@ -1951,6 +1955,7 @@ in
   tinyproxy = runTest ./tinyproxy.nix;
   tinywl = runTest ./tinywl.nix;
   tlshd = runTest ./tlshd.nix;
+  tlsrouter = runTest ./tlsrouter.nix;
   tlsrpt = runTest ./tlsrpt.nix;
   tmate-ssh-server = runTest ./tmate-ssh-server.nix;
   tomcat = runTest ./tomcat.nix;
