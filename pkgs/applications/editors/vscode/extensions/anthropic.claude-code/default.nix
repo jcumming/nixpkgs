@@ -21,22 +21,22 @@ vscode-utils.buildVscodeMarketplaceExtension (finalAttrs: {
       sources = {
         "x86_64-linux" = {
           arch = "linux-x64";
-          hash = "sha256-CxcRJM0kr9GWqHDqklgwnfv7l+a42NUl19uzIl/sxQA=";
+          hash = "sha256-/SwwSte7/Hax5vb8InWnnyQZhvRsCqMwt0vvI9dOTdc=";
         };
         "aarch64-linux" = {
           arch = "linux-arm64";
-          hash = "sha256-g26KjS0tAj5aN+8WLwnEMTE6aiyNPJLRPvtD6rQklos=";
+          hash = "sha256-fqMiudjiZVA6DBhIe/B+FwYfB++e1l4OUaIriHI56kU=";
         };
         "aarch64-darwin" = {
           arch = "darwin-arm64";
-          hash = "sha256-a9rAHqk4oYcM3FG/ghMci72SxHMuS3EzNVpsC56OP3g=";
+          hash = "sha256-PXjVf7PPRrh9SzN86UGDJr9AWPyK8sXEukuha4/0gfA=";
         };
       };
     in
     {
       name = "claude-code";
       publisher = "anthropic";
-      version = "2.1.301";
+      version = "2.1.309";
     }
     // sources.${stdenvNoCC.hostPlatform.system}
       or (throw "Unsupported system ${stdenvNoCC.hostPlatform.system}");

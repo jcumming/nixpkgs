@@ -25,7 +25,7 @@ stdenv.mkDerivation (
     makeFlags = kernelModuleMakeFlags ++ [
       "KERNELDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
       "INSTALL_MOD_PATH=${placeholder "out"}"
-      "INSTALL_MOD_DIR=misc"
+      "INSTALL_MOD_DIR=kernel/drivers/hid"
       "INSTALL_MOD_STRIP=1"
       "DEPMOD=true"
     ];
@@ -37,7 +37,7 @@ stdenv.mkDerivation (
     installFlags = [
       "-C"
       "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-      "M=$(PWD)"
+      "M=$(PWD)/driver"
     ];
 
     postInstall = ''
