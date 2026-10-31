@@ -1634,9 +1634,7 @@ with pkgs;
     rainloop-standard
     ;
 
-  roundcube = callPackage ../servers/roundcube { };
-
-  roundcubePlugins = recurseIntoAttrs (callPackage ../servers/roundcube/plugins { });
+  roundcubePlugins = recurseIntoAttrs (callPackage ../by-name/ro/roundcube/plugins { });
 
   xmlsort = perlPackages.XMLFilterSort;
 
@@ -1653,10 +1651,6 @@ with pkgs;
     enableExtraPlugins = true;
   };
 
-  b2sum = callPackage ../tools/security/b2sum {
-    inherit (llvmPackages) openmp;
-  };
-
   beamerpresenter-mupdf = beamerpresenter;
   beamerpresenter-poppler = beamerpresenter.override {
     useMupdf = false;
@@ -1664,8 +1658,6 @@ with pkgs;
   };
 
   binlore = callPackage ../development/tools/analysis/binlore { };
-
-  bzip2 = callPackage ../tools/compression/bzip2 { };
 
   davix-copy = davix.override { enableThirdPartyCopy = true; };
 
@@ -1981,8 +1973,6 @@ with pkgs;
     guiSupport = false;
   };
 
-  gnused = callPackage ../tools/text/gnused { };
-
   inherit (callPackage ../development/tools/godot { })
     godot3
     godot3-export-templates
@@ -2108,8 +2098,6 @@ with pkgs;
 
   humanfriendly = with python3Packages; toPythonApplication humanfriendly;
 
-  hw-probe = perlPackages.callPackage ../tools/system/hw-probe { };
-
   hyphen = callPackage ../development/libraries/hyphen { };
 
   hyphenDicts = recurseIntoAttrs (callPackages ../development/libraries/hyphen/dictionaries.nix { });
@@ -2221,8 +2209,6 @@ with pkgs;
   logstash = logstash7;
 
   lagrange-tui = lagrange.override { enableTUI = true; };
-
-  kzipmix = pkgsi686Linux.callPackage ../tools/compression/kzipmix { };
 
   matrix-synapse-plugins = recurseIntoAttrs matrix-synapse-unwrapped.plugins;
 
@@ -2380,8 +2366,6 @@ with pkgs;
   mjpegtoolsFull = mjpegtools.override {
     withMinimal = false;
   };
-
-  mkpasswd = hiPrio (callPackage ../tools/security/mkpasswd { });
 
   molecule = with python3Packages; toPythonApplication molecule;
 
@@ -2702,10 +2686,6 @@ with pkgs;
 
   rpatool = with python3Packages; toPythonApplication rpatool;
 
-  rpm = callPackage ../tools/package-management/rpm {
-    lua = lua5_4;
-  };
-
   rubocop = rubyPackages.rubocop;
 
   ruby-lsp = rubyPackages.ruby-lsp;
@@ -2921,10 +2901,6 @@ with pkgs;
   };
 
   zellijPlugins = recurseIntoAttrs (callPackage ../by-name/ze/zellij/plugins { });
-
-  zstd = callPackage ../tools/compression/zstd {
-    cmake = buildPackages.cmakeMinimal;
-  };
 
   ### SHELLS
 
@@ -4439,8 +4415,6 @@ with pkgs;
   bundlerApp = callPackage ../development/ruby-modules/bundler-app { };
   bundlerUpdateScript = callPackage ../development/ruby-modules/bundler-update-script { };
 
-  bundler-audit = callPackage ../tools/security/bundler-audit { };
-
   solargraph = rubyPackages.solargraph;
 
   inherit
@@ -4639,10 +4613,7 @@ with pkgs;
         electron_39 = electron_39-bin;
         electron_40 = electron_40-bin;
         electron_41 = electron_41-bin;
-        electron_42 = getElectronPkg {
-          src = electron-source.electron_42;
-          bin = electron_42-bin;
-        };
+        electron_42 = electron_42-bin;
         electron_43 = getElectronPkg {
           src = electron-source.electron_43;
           bin = electron_43-bin;
@@ -6272,7 +6243,6 @@ with pkgs;
         pkgsHostTarget
         kdePackages
         ;
-      inherit stdenv;
     }
   );
 
@@ -7043,10 +7013,6 @@ with pkgs;
     kanidmWithSecretProvisioning_1_10
     kanidmWithSecretProvisioning_1_11
     ;
-
-  lemmy-server = callPackage ../servers/web-apps/lemmy/server.nix { };
-
-  lemmy-ui = callPackage ../servers/web-apps/lemmy/ui.nix { };
 
   mailmanPackages = recurseIntoAttrs (callPackage ../servers/mail/mailman { });
   inherit (mailmanPackages) mailman mailman-hyperkitty;
