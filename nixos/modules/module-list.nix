@@ -226,6 +226,7 @@
   ./programs/flashrom.nix
   ./programs/flexoptix-app.nix
   ./programs/foot
+  ./programs/framework-settings.nix
   ./programs/freetds.nix
   ./programs/fuse.nix
   ./programs/fzf.nix
@@ -361,6 +362,7 @@
   ./programs/vim.nix
   ./programs/virt-manager.nix
   ./programs/vivid.nix
+  ./programs/vlc.nix
   ./programs/vscode.nix
   ./programs/wavemon.nix
   ./programs/wayland/dux-shell.nix
@@ -1551,7 +1553,6 @@
   ./services/scheduling/gocron.nix
   ./services/scheduling/prefect.nix
   ./services/scheduling/scx-loader.nix
-  ./services/scheduling/scx.nix
   ./services/search/elasticsearch-curator.nix
   ./services/search/elasticsearch.nix
   ./services/search/hound.nix
@@ -1579,6 +1580,7 @@
   ./services/security/endlessh.nix
   ./services/security/esdm.nix
   ./services/security/fail2ban.nix
+  ./services/security/falco.nix
   ./services/security/fprintd.nix
   ./services/security/haveged.nix
   ./services/security/hockeypuck.nix
@@ -1747,6 +1749,7 @@
   ./services/web-apps/goupile.nix
   ./services/web-apps/grav.nix
   ./services/web-apps/greenlight.nix
+  ./services/web-apps/grimmory.nix
   ./services/web-apps/grist.nix
   ./services/web-apps/grocy.nix
   ./services/web-apps/guacamole-client.nix
@@ -1897,6 +1900,7 @@
   ./services/web-apps/windmill.nix
   ./services/web-apps/wordpress.nix
   ./services/web-apps/writefreely.nix
+  ./services/web-apps/yopass.nix
   ./services/web-apps/your_spotify.nix
   ./services/web-apps/youtrack.nix
   ./services/web-apps/zabbix.nix
