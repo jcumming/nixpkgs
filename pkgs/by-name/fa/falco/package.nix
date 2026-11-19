@@ -52,7 +52,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "falco";
-  version = "0.45.1";
+  version = "0.45.2";
 
   strictDeps = true;
   __structuredAttrs = true;
@@ -61,7 +61,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "falcosecurity";
     repo = "falco";
     tag = finalAttrs.version;
-    hash = "sha256-zLuNFJc82bfu8um+hWVss+rp46RgMeig52ykbNz4UXM=";
+    hash = "sha256-+W4mF1vV5A5VHCwzuipeCweMnJAjYqYgZWqRgsBB0Bg=";
   };
 
   postPatch = ''
@@ -123,7 +123,7 @@ stdenv.mkDerivation (finalAttrs: {
     mkdir falco-rules
     tar -xzf ${rules} -C falco-rules
 
-    cmakeFlagsArray+=(
+    cmakeFlags+=(
       "-DFALCOSECURITY_LIBS_SOURCE_DIR=$(pwd)/libs-src"
       "-DDRIVER_SOURCE_DIR=$(pwd)/libs-src/driver"
       "-DFALCOSECURITY_RULES_FALCO_PATH=$(pwd)/falco-rules/falco_rules.yaml"

@@ -41,14 +41,14 @@ let
 in
 pythonPackages.buildPythonApplication (finalAttrs: {
   pname = "pretix";
-  version = "2026.9.0";
+  version = "2026.9.2";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "pretix";
     repo = "pretix";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-PnCZbfGjp9aRrRld68KSqhawys0mynrNRdjfQPJ+iZA=";
+    hash = "sha256-RrQw3gulU2kX7RogihQ/FjMb9fiQAvdSNcp8914HIZY=";
   };
 
   patches = [
@@ -296,8 +296,6 @@ pythonPackages.buildPythonApplication (finalAttrs: {
       inherit (nixosTests) pretix;
     };
   };
-
-  __structuredAttrs = true;
 
   meta = {
     description = "Ticketing software that cares about your event—all the way";

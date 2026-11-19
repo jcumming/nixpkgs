@@ -1158,6 +1158,7 @@ in
     adamcstephens
     Flakebi
     oddlama
+    herbetom
   ];
   meta.buildDocsInSandbox = false;
 }

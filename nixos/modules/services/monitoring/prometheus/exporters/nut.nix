@@ -91,11 +91,9 @@ in
         --web.telemetry-path="${cfg.metricsPath}" \
         --web.exporter-telemetry-path="${cfg.exporterMetricsPath}" \
         ${optionalString (cfg.nutUser != "") "--nut.username=${cfg.nutUser}"} \
-        ${
-          optionalString (
-            cfg.nutVariables != [ ]
-          ) "--nut.vars_enable=${concatStringsSep "," cfg.nutVariables}"
-        } \
+        "--nut.vars_enable=${
+          optionalString (cfg.nutVariables != [ ]) (concatStringsSep "," cfg.nutVariables)
+        }" \
         ${concatStringsSep " " cfg.extraFlags}
     '';
   };

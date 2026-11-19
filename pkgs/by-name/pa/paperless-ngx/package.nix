@@ -59,14 +59,14 @@ let
 in
 pythonPackages.buildPythonApplication (finalAttrs: {
   pname = "paperless-ngx";
-  version = "3.3.4";
+  version = "3.5.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "paperless-ngx";
     repo = "paperless-ngx";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-KUDQ75CJc30Cjyx1UpKKzcN2erYv7gQ/q2H2wI4I6aY=";
+    hash = "sha256-Kde7tDWs2W1M3VD0/pHu/0vPraSODvpplLj8PVWAJug=";
   };
 
   postPatch = ''
@@ -87,6 +87,7 @@ pythonPackages.buildPythonApplication (finalAttrs: {
     "python-ipware"
     "redis"
     "regex"
+    "torch"
     "turbohtml"
     # requested by maintainer
     "imap-tools"
@@ -116,7 +117,6 @@ pythonPackages.buildPythonApplication (finalAttrs: {
       django-multiselectfield
       django-rich
       django-soft-delete
-      django-treenode
       djangorestframework
       drf-spectacular
       drf-spectacular-sidecar
