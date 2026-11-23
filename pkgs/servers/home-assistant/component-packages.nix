@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2026.11.1";
+  version = "2026.11.2";
   components = {
     "3_day_blinds" =
       ps: with ps; [
@@ -912,11 +912,12 @@
       ps:
       with ps;
       [
+        bluetti-modbus
         modbus-connection
         pymodbus
         tmodbus
       ]
-      ++ modbus-connection.optional-dependencies.tmodbus; # missing inputs: bluetti-modbus
+      ++ modbus-connection.optional-dependencies.tmodbus;
     "bmw_connected_drive" =
       ps: with ps; [
       ];
@@ -2327,12 +2328,13 @@
         home-assistant-intents
         ifaddr
         mutagen
+        pyflic-ble
         pymicro-vad
         pysmlight
         pyspeex-noise
         serialx
         zeroconf
-      ]; # missing inputs: pyflic-ble
+      ];
     "flipr" =
       ps: with ps; [
       ];
@@ -3160,7 +3162,8 @@
       ];
     "hp_printer" =
       ps: with ps; [
-      ]; # missing inputs: aiohpprinter
+        aiohpprinter
+      ];
     "hr_energy_qube" =
       ps: with ps; [
         ifaddr
@@ -8960,6 +8963,7 @@
     "bluetooth"
     "bluetooth_adapters"
     "bluetooth_le_tracker"
+    "bluetti_modbus"
     "bmw_connected_drive"
     "bond"
     "bosch_alarm"
@@ -9151,6 +9155,7 @@
     "flexit"
     "flexit_bacnet"
     "flic"
+    "flic_button"
     "flipr"
     "flo"
     "flow_it"
@@ -9287,6 +9292,7 @@
     "honeywell_string_lights"
     "hortimax"
     "hotspring"
+    "hp_printer"
     "hr_energy_qube"
     "html5"
     "http"
