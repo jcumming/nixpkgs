@@ -503,6 +503,8 @@ let
         # Must be the same as CONFIG_DRM
         BACKLIGHT_CLASS_DEVICE = yes;
 
+        NOUVEAU_LEGACY_CTX_SUPPORT = whenOlder "6.3" no;
+
         # Enable simpledrm and use it for generic framebuffer
         DRM_SIMPLEDRM = yes;
         SYSFB_SIMPLEFB = yes;
@@ -1286,7 +1288,10 @@ let
 
         NVME_MULTIPATH = yes;
 
-        NVME_AUTH = yes;
+        NVME_AUTH = lib.mkMerge [
+          (whenOlder "6.7" yes)
+          (whenAtLeast "6.7" module)
+        ];
 
         NVME_HOST_AUTH = whenAtLeast "6.7" yes;
         NVME_TCP_TLS = whenAtLeast "6.7" yes;
