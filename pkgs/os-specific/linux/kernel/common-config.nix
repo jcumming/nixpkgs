@@ -1072,7 +1072,7 @@ let
       ZRAM_BACKEND_LZ4HC = whenAtLeast "6.12" yes;
       ZRAM_BACKEND_LZO = whenAtLeast "6.12" yes;
       ZRAM_BACKEND_ZSTD = whenAtLeast "6.12" yes;
-      ZRAM_DEF_COMP_ZSTD = whenAtLeast "6.12" yes;
+      ZRAM_DEF_COMP_ZSTD = whenAtlEast "6.12" yes;
       ZSWAP = option yes;
       ZSWAP_COMPRESSOR_DEFAULT_ZSTD = lib.mkOptionDefault yes;
       ZPOOL = whenOlder "6.18" yes;
