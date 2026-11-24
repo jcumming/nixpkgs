@@ -1286,7 +1286,7 @@ let
 
         NVME_MULTIPATH = yes;
 
-        NVME_AUTH = module;
+        NVME_AUTH = yes;
 
         NVME_HOST_AUTH = whenAtLeast "6.7" yes;
         NVME_TCP_TLS = whenAtLeast "6.7" yes;
