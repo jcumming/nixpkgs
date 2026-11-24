@@ -228,6 +228,7 @@ let
       DAMON_VADDR = yes;
       DAMON_PADDR = yes;
       DAMON_SYSFS = yes;
+      DAMON_DBGFS = whenOlder "6.9" yes;
       DAMON_RECLAIM = yes;
       DAMON_LRU_SORT = yes;
       DAMON_STAT = whenAtLeast "6.17" yes;
@@ -414,6 +415,7 @@ let
       # Not enabled by default, hides modules behind it
       NET_VENDOR_MEDIATEK = yes;
       # Enable SoC interface for MT7915 module, required for MT798X.
+      MT7986_WMAC = whenOlder "6.6" yes;
       MT798X_WMAC = whenAtLeast "6.6" yes;
     };
 
@@ -500,6 +502,8 @@ let
         AGP = lib.mkIf (with stdenv.hostPlatform; isPower || isx86) yes;
         DRM = yes;
 
+        DRM_LEGACY = whenOlder "6.8" no;
+
         # Must be the same as CONFIG_DRM
         BACKLIGHT_CLASS_DEVICE = yes;
 
@@ -518,12 +522,14 @@ let
         # (stable) amdgpu support for bonaire and newer chipsets
         DRM_AMDGPU_CIK = yes;
         # Allow device firmware updates
+        DRM_DP_AUX_CHARDEV = whenOlder "6.10" yes;
         DRM_DISPLAY_DP_AUX_CHARDEV = whenAtLeast "6.10" yes;
         # amdgpu display core (DC) support
         DRM_AMD_DC_DCN = lib.mkIf (with stdenv.hostPlatform; isx86 || isPower64) (whenOlder "6.4" yes);
         # Not available when using clang
         # See: https://github.com/torvalds/linux/blob/172a9d94339cea832d89630b89d314e41d622bd8/drivers/gpu/drm/amd/display/Kconfig#L14
         DRM_AMD_DC_FP = lib.mkIf (!stdenv.cc.isClang) (whenAtLeast "6.4" yes);
+        DRM_AMD_DC_HDCP = whenOlder "6.4" yes;
         DRM_AMD_DC_SI = yes;
 
         # Enable AMD Audio Coprocessor support for HDMI outputs
@@ -553,6 +559,7 @@ let
         MEDIA_CEC_RC = yes;
 
         # Enable CEC over DisplayPort
+        DRM_DP_CEC = whenOlder "6.10" yes;
         DRM_DISPLAY_DP_AUX_CEC = whenAtLeast "6.10" yes;
 
         # Enable RAS reporting via netlink
@@ -751,6 +758,7 @@ let
       CEPH_FS_POSIX_ACL = yes;
 
       SQUASHFS_FILE_DIRECT = yes;
+      SQUASHFS_DECOMP_MULTI_PERCPU = whenOlder "6.2" yes;
       SQUASHFS_CHOICE_DECOMP_BY_MOUNT = whenAtLeast "6.2" yes;
       SQUASHFS_XATTR = yes;
       SQUASHFS_ZLIB = yes;
@@ -819,6 +827,11 @@ let
 
       SECURITY_DMESG_RESTRICT = yes;
 
+      RANDOM_TRUST_CPU = lib.mkIf (with stdenv.hostPlatform; isPower64 || isS390 || isx86 || isAarch64) (
+        whenOlder "6.2" yes
+      ); # allow RDRAND to seed the RNG
+      RANDOM_TRUST_BOOTLOADER = whenOlder "6.2" yes; # allow the bootloader to seed the RNG
+      # only when compiled as yes, TPM 2.0 will automatically seed the kernel RNG
       HW_RANDOM = yes;
 
       MODULE_SIG = yes;
@@ -1048,6 +1061,7 @@ let
       MEDIA_PCI_SUPPORT = yes;
       MEDIA_USB_SUPPORT = yes;
       MEDIA_ANALOG_TV_SUPPORT = yes;
+      VIDEO_STK1160_COMMON = whenOlder "6.5" module;
     };
 
     "9p" = {
@@ -1072,7 +1086,7 @@ let
       ZRAM_BACKEND_LZ4HC = whenAtLeast "6.12" yes;
       ZRAM_BACKEND_LZO = whenAtLeast "6.12" yes;
       ZRAM_BACKEND_ZSTD = whenAtLeast "6.12" yes;
-      ZRAM_DEF_COMP_ZSTD = whenAtlEast "6.12" yes;
+      ZRAM_DEF_COMP_ZSTD = yes;
       ZSWAP = option yes;
       ZSWAP_COMPRESSOR_DEFAULT_ZSTD = lib.mkOptionDefault yes;
       ZPOOL = whenOlder "6.18" yes;
@@ -1171,8 +1185,8 @@ let
 
         MODULE_COMPRESS = whenAtLeast "6.12" yes;
         MODULE_COMPRESS_ALL = whenAtLeast "6.12" yes;
-        MODULE_COMPRESS_XZ = whenAtLeast "6.2" yes;
-        MODULE_DECOMPRESS = whenAtLeast "6.2" yes;
+        MODULE_COMPRESS_XZ = yes;
+        MODULE_DECOMPRESS = yes;
 
         SYSVIPC = yes; # System-V IPC
 
@@ -1248,6 +1262,7 @@ let
 
         EFI = lib.mkIf stdenv.hostPlatform.isEfi yes;
         EFI_STUB = yes; # EFI bootloader in the bzImage itself
+        EFI_GENERIC_STUB_INITRD_CMDLINE_LOADER = whenOlder "6.2" yes; # initrd kernel parameter for EFI
         PSTORE = yes;
         EFI_VARS_PSTORE = lib.mkIf (!stdenv.hostPlatform.isLoongArch64) yes;
 
@@ -1261,6 +1276,7 @@ let
         SECCOMP = yes; # used by systemd >= 231
         SECCOMP_FILTER = yes; # ditto
         POSIX_MQUEUE = yes;
+        FRONTSWAP = whenOlder "6.6" yes;
         FUSION = yes; # Fusion MPT device support
         IDLE_PAGE_TRACKING = yes;
 
