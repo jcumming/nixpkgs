@@ -18,14 +18,14 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "libtorrent-rasterbar";
-  version = "2.0.15";
+  version = "2.0.16";
 
   src = fetchFromGitHub {
     owner = "arvidn";
     repo = "libtorrent";
     tag = "v${finalAttrs.version}";
     fetchSubmodules = true;
-    hash = "sha256-5ntJQmNj+2cQJXbsJwdeT4styMYU6jT5PwtlpaDNw6w=";
+    hash = "sha256-ppoGKC+lqQShah6RrxXXxs+IcM8Es05mPdGej2m2Zo8=";
   };
 
   nativeBuildInputs = [
@@ -87,7 +87,12 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.cmakeBool "python-bindings" true)
   ];
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--version-regex"
+      "^v(2\\.0\\.[0-9]+)$"
+    ];
+  };
 
   meta = {
     homepage = "https://libtorrent.org/";

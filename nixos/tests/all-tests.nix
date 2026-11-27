@@ -603,10 +603,6 @@ in
   easytier-modular = runTest ./easytier-modular.nix;
   ec2-config = (handleTestOn [ "x86_64-linux" ] ./ec2.nix { }).boot-ec2-config or { };
   ec2-image = runTest ./ec2-image.nix;
-  ec2-image-systemd-boot = runTest {
-    imports = [ ./ec2-image.nix ];
-    _module.args.bootMode = "uefi";
-  };
   ec2-nixops = (handleTestOn [ "x86_64-linux" ] ./ec2.nix { }).boot-ec2-nixops or { };
   echoip = runTest ./echoip.nix;
   ejabberd = runTest ./xmpp/ejabberd.nix;
@@ -926,7 +922,6 @@ in
   iocaine = runTest ./iocaine.nix;
   iodine = runTest ./iodine.nix;
   iosched = runTest ./iosched.nix;
-  ipget = runTest ./ipget.nix;
   ipv6 = runTest ./ipv6.nix;
   irqbalance = runTest ./irqbalance.nix;
   isolate = runTest ./isolate.nix;
@@ -2074,6 +2069,7 @@ in
   xmonad = runTest ./xmonad.nix;
   xmonad-xdg-autostart = runTest ./xmonad-xdg-autostart.nix;
   xpadneo = runTest ./xpadneo.nix;
+  xray = import ./xray.nix { inherit runTest; };
   xrdp = runTest ./xrdp.nix;
   xrdp-with-audio-pulseaudio = runTest ./xrdp-with-audio-pulseaudio.nix;
   xscreensaver = runTest ./xscreensaver.nix;

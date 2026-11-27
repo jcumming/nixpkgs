@@ -17,13 +17,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "sticky";
-  version = "1.33";
+  version = "1.35";
 
   src = fetchFromGitHub {
     owner = "linuxmint";
     repo = "sticky";
     rev = finalAttrs.version;
-    hash = "sha256-shoTQGkxY8++57KVhPBL5QKRpd70sVPxl3pHI4iseIg=";
+    hash = "sha256-hjyjDaE3p52ESwDMwWJS8q6TqvQ7LadsasXTZlDrLgY=";
   };
 
   postPatch = ''
